@@ -1,0 +1,73 @@
+{
+  "title": "Pricing",
+  "subtitle": "Choose the plan that fits your needs",
+  "plans": {
+    "free": {
+      "name": "Free",
+      "price": "$0",
+      "period": "forever",
+      "description": "Perfect for getting started",
+      "features": [
+        "1,000 API requests/month",
+        "1 project",
+        "3 endpoints per project",
+        "All LLM providers",
+        "Basic analytics",
+        "Community support"
+      ],
+      "cta": "Get Started"
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "$29",
+      "period": "/month",
+      "description": "For growing teams and projects",
+      "features": [
+        "Unlimited API requests",
+        "Unlimited projects",
+        "Unlimited endpoints",
+        "All LLM providers",
+        "Advanced analytics",
+        "Priority support",
+        "Team collaboration",
+        "Custom domains"
+      ],
+      "cta": "Start Pro Trial",
+      "popular": true
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "Custom",
+      "period": "",
+      "description": "For large organizations",
+      "features": [
+        "Everything in Pro",
+        "Dedicated infrastructure",
+        "SLA guarantee",
+        "SSO & SAML",
+        "Audit logs",
+        "24/7 support",
+        "Custom integrations",
+        "On-premise option"
+      ],
+      "cta": "Contact Sales"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "What counts as an API request?",
+        "answer": "Each call to your ShapeShyft endpoint counts as one request, regardless of the underlying LLM provider used."
+      },
+      {
+        "question": "Do I need my own LLM API keys?",
+        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LLM servers. We securely store them encrypted."
+      },
+      {
+        "question": "Can I change plans later?",
+        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+      }
+    ]
+  }
+}

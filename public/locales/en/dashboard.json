@@ -1,0 +1,143 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome back, {{name}}",
+  "navigation": {
+    "projects": "Projects",
+    "apiKeys": "API Keys",
+    "analytics": "Analytics"
+  },
+  "projects": {
+    "title": "Projects",
+    "empty": "No projects yet",
+    "emptyDescription": "Create your first project to get started",
+    "create": "Create Project",
+    "useTemplate": "Use Template",
+    "card": {
+      "endpoints": "{{count}} endpoint(s)",
+      "created": "Created {{date}}",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "title": "Create Project",
+      "editTitle": "Edit Project",
+      "projectName": "Project Name",
+      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
+      "displayName": "Display Name",
+      "description": "Description"
+    }
+  },
+  "endpoints": {
+    "title": "Endpoints",
+    "empty": "No endpoints yet",
+    "emptyDescription": "Create your first endpoint for this project",
+    "create": "Create Endpoint",
+    "test": "Test",
+    "card": {
+      "method": "Method",
+      "type": "Type"
+    },
+    "form": {
+      "title": "Create Endpoint",
+      "editTitle": "Edit Endpoint",
+      "endpointName": "Endpoint Name",
+      "endpointNameHint": "Lowercase letters, numbers, and hyphens only",
+      "displayName": "Display Name",
+      "description": "Description",
+      "httpMethod": "HTTP Method",
+      "endpointType": "Endpoint Type",
+      "llmKey": "LLM Key",
+      "inputSchema": "Input Schema",
+      "outputSchema": "Output Schema",
+      "context": "System Context",
+      "contextHint": "Instructions for the LLM"
+    },
+    "tester": {
+      "title": "Test Endpoint",
+      "input": "Input",
+      "generateSample": "Generate Sample",
+      "execute": "Execute",
+      "response": "Response",
+      "output": "Output",
+      "usage": {
+        "title": "Usage",
+        "tokensIn": "Tokens In",
+        "tokensOut": "Tokens Out",
+        "latency": "Latency",
+        "cost": "Est. Cost"
+      }
+    }
+  },
+  "keys": {
+    "title": "API Keys",
+    "empty": "No API keys configured",
+    "emptyDescription": "Add your first LLM provider API key",
+    "add": "Add Key",
+    "card": {
+      "provider": "Provider",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "title": "Add API Key",
+      "editTitle": "Edit API Key",
+      "keyName": "Key Name",
+      "provider": "Provider",
+      "apiKey": "API Key",
+      "apiKeyHint": "Your key is encrypted at rest",
+      "endpointUrl": "Endpoint URL",
+      "endpointUrlHint": "Required for custom LLM server"
+    },
+    "providers": {
+      "openai": "OpenAI",
+      "anthropic": "Anthropic",
+      "gemini": "Google Gemini",
+      "llm_server": "Custom LLM Server"
+    }
+  },
+  "analytics": {
+    "title": "Analytics",
+    "period": {
+      "today": "Today",
+      "week": "This Week",
+      "month": "This Month",
+      "custom": "Custom Range"
+    },
+    "metrics": {
+      "totalRequests": "Total Requests",
+      "successRate": "Success Rate",
+      "avgLatency": "Avg Latency",
+      "totalCost": "Total Cost",
+      "tokensUsed": "Tokens Used"
+    },
+    "charts": {
+      "requestsOverTime": "Requests Over Time",
+      "byEndpoint": "By Endpoint"
+    }
+  },
+  "templates": {
+    "title": "Project Templates",
+    "subtitle": "Start with a pre-configured template",
+    "textClassifier": {
+      "name": "Text Classifier",
+      "description": "Classify text into categories"
+    },
+    "sentimentAnalyzer": {
+      "name": "Sentiment Analyzer",
+      "description": "Analyze sentiment and emotions"
+    },
+    "dataExtractor": {
+      "name": "Data Extractor",
+      "description": "Extract structured data from text"
+    },
+    "contentGenerator": {
+      "name": "Content Generator",
+      "description": "Generate summaries and content"
+    },
+    "localization": {
+      "name": "Localization",
+      "description": "Translate text to multiple languages"
+    }
+  }
+}

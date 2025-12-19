@@ -1,0 +1,70 @@
+{
+  "title": "Documentation",
+  "subtitle": "Learn how to build structured AI APIs with ShapeShyft",
+  "gettingStarted": {
+    "title": "Getting Started",
+    "steps": [
+      {
+        "title": "Create a Project",
+        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+      },
+      {
+        "title": "Add an LLM Key",
+        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LLM server."
+      },
+      {
+        "title": "Define an Endpoint",
+        "description": "Create an endpoint with input/output JSON schemas and connect it to your LLM key."
+      },
+      {
+        "title": "Test Your Endpoint",
+        "description": "Use the built-in tester to send requests and validate responses."
+      },
+      {
+        "title": "Integrate",
+        "description": "Call your endpoint from your application using simple GET or POST requests."
+      }
+    ]
+  },
+  "concepts": {
+    "title": "Core Concepts",
+    "endpointTypes": {
+      "title": "Endpoint Types",
+      "description": "ShapeShyft supports four endpoint types:",
+      "types": [
+        {
+          "name": "structured_in_structured_out",
+          "description": "JSON input → LLM processing → JSON output"
+        },
+        {
+          "name": "text_in_structured_out",
+          "description": "Text input → LLM processing → JSON output"
+        },
+        {
+          "name": "structured_in_api_out",
+          "description": "JSON input → API payload (no LLM)"
+        },
+        {
+          "name": "text_in_api_out",
+          "description": "Text input → API payload (no LLM)"
+        }
+      ]
+    },
+    "schemas": {
+      "title": "JSON Schemas",
+      "description": "Define the structure of your inputs and outputs using JSON Schema. ShapeShyft validates all data against your schemas."
+    },
+    "context": {
+      "title": "System Context",
+      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+    }
+  },
+  "apiReference": {
+    "title": "API Reference",
+    "description": "Access your endpoints via REST API:",
+    "endpoints": {
+      "get": "GET /api/v1/ai/:projectName/:endpointName?input=...",
+      "post": "POST /api/v1/ai/:projectName/:endpointName"
+    }
+  }
+}

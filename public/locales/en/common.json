@@ -1,0 +1,51 @@
+{
+  "appName": "ShapeShyft",
+  "companyName": "Sudobility",
+  "navigation": {
+    "home": "Home",
+    "docs": "Docs",
+    "pricing": "Pricing",
+    "dashboard": "Dashboard"
+  },
+  "auth": {
+    "login": "Log In",
+    "logout": "Log Out",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "displayName": "Display Name",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "orContinueWith": "Or continue with",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signInWithGoogle": "Sign in with Google",
+    "passwordResetSent": "Password reset email sent!",
+    "checkEmail": "Check your email for the reset link."
+  },
+  "footer": {
+    "copyright": "© {{year}} {{company}}. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contact": "Contact"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "noResults": "No results found",
+    "tryAgain": "Try Again"
+  }
+}
