@@ -5,8 +5,10 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { ThemeProvider } from './context/ThemeContext';
 import { ApiProvider } from './context/ApiContext';
+import { ToastProvider } from './context/ToastContext';
 import { AuthProviderWrapper } from './components/providers/AuthProviderWrapper';
 import { SubscriptionProviderWrapper } from './components/providers/SubscriptionProviderWrapper';
+import ToastContainer from './components/ui/ToastContainer';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -46,10 +48,11 @@ function App() {
     <I18nextProvider i18n={i18n}>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <AuthProviderWrapper>
-            <ApiProvider>
-              <SubscriptionProviderWrapper>
-                <BrowserRouter>
+          <ToastProvider>
+            <AuthProviderWrapper>
+              <ApiProvider>
+                <SubscriptionProviderWrapper>
+                  <BrowserRouter>
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes>
                     {/* Root redirect - detect language */}
@@ -89,11 +92,13 @@ function App() {
                     {/* Catch-all without language - redirect to language detection */}
                     <Route path="*" element={<LanguageRedirect />} />
                   </Routes>
-                </Suspense>
-                </BrowserRouter>
-              </SubscriptionProviderWrapper>
-            </ApiProvider>
-          </AuthProviderWrapper>
+                  </Suspense>
+                  <ToastContainer />
+                  </BrowserRouter>
+                </SubscriptionProviderWrapper>
+              </ApiProvider>
+            </AuthProviderWrapper>
+          </ToastProvider>
         </QueryClientProvider>
       </ThemeProvider>
     </I18nextProvider>
