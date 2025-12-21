@@ -152,30 +152,30 @@ function ProjectDetailPage() {
       </button>
 
       {/* Project Header */}
-      <div className="flex justify-between items-start mb-8">
-        <div>
-          <h2 className="text-2xl font-bold text-theme-text-primary mb-1">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-8">
+        <div className="min-w-0">
+          <h2 className="text-2xl font-bold text-theme-text-primary mb-1 truncate">
             {project.display_name}
           </h2>
-          <p className="text-sm text-theme-text-tertiary font-mono">{project.project_name}</p>
+          <p className="text-sm text-theme-text-tertiary font-mono truncate">{project.project_name}</p>
           {project.description && (
             <p className="mt-2 text-theme-text-secondary">{project.description}</p>
           )}
         </div>
         <button
           onClick={() => setShowEditProject(true)}
-          className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors"
+          className="flex-shrink-0 px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors"
         >
           {t('common.edit')}
         </button>
       </div>
 
       {/* Endpoints Section */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <h3 className="text-lg font-semibold text-theme-text-primary">{t('endpoints.title')}</h3>
         <button
           onClick={() => setShowCreateEndpoint(true)}
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
         >
           {t('endpoints.create')}
         </button>
@@ -193,10 +193,10 @@ function ProjectDetailPage() {
               className="p-4 bg-theme-bg-secondary rounded-xl border border-theme-border hover:border-blue-500 cursor-pointer transition-colors group"
               onClick={() => navigate(`/dashboard/projects/${projectId}/endpoints/${endpoint.uuid}`)}
             >
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                <div className="flex items-center gap-4 min-w-0">
                   <span
-                    className={`px-2 py-1 text-xs font-mono font-medium rounded ${
+                    className={`flex-shrink-0 px-2 py-1 text-xs font-mono font-medium rounded ${
                       endpoint.http_method === 'GET'
                         ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
                         : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
@@ -204,16 +204,16 @@ function ProjectDetailPage() {
                   >
                     {endpoint.http_method}
                   </span>
-                  <div>
-                    <h4 className="font-medium text-theme-text-primary">{endpoint.display_name}</h4>
-                    <p className="text-sm text-theme-text-tertiary font-mono">
+                  <div className="min-w-0">
+                    <h4 className="font-medium text-theme-text-primary truncate">{endpoint.display_name}</h4>
+                    <p className="text-sm text-theme-text-tertiary font-mono truncate">
                       /{project.project_name}/{endpoint.endpoint_name}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center justify-end gap-4 ml-11 sm:ml-0">
                   <div
-                    className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="flex items-center gap-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                     onClick={e => e.stopPropagation()}
                   >
                     <button

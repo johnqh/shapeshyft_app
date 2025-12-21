@@ -27,15 +27,15 @@ function DashboardPage() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="border-b border-theme-border mb-8">
-          <nav className="flex gap-8 -mb-px">
+        <div className="border-b border-theme-border mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <nav className="flex gap-4 sm:gap-8 -mb-px overflow-x-auto scrollbar-hide">
             {navItems.map(item => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 end={item.path === `/${currentLang}/dashboard`}
                 className={({ isActive }) =>
-                  `pb-4 text-sm font-medium border-b-2 transition-colors ${
+                  `pb-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${
                     isActive
                       ? 'border-blue-600 text-blue-600'
                       : 'border-transparent text-theme-text-secondary hover:text-theme-text-primary hover:border-theme-border'

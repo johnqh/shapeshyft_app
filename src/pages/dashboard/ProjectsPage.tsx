@@ -150,20 +150,20 @@ function ProjectsPage() {
   return (
     <div>
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <h2 className="text-xl font-semibold text-theme-text-primary">
           {t('projects.title')}
         </h2>
         <div className="flex gap-3">
           <button
             onClick={() => setShowCreateModal(true)}
-            className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex-1 sm:flex-none px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
           >
             {t('projects.create')}
           </button>
           <button
             onClick={() => setShowTemplateModal(true)}
-            className="px-4 py-2 border border-theme-border text-theme-text-primary font-medium rounded-lg hover:bg-theme-hover-bg transition-colors"
+            className="flex-1 sm:flex-none px-4 py-2 border border-theme-border text-theme-text-primary font-medium rounded-lg hover:bg-theme-hover-bg transition-colors text-sm sm:text-base"
           >
             {t('projects.useTemplate')}
           </button>
@@ -221,7 +221,7 @@ function ProjectsPage() {
                     {project.is_active ? t('projects.card.active') : t('projects.card.inactive')}
                   </span>
                   <div
-                    className="opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                     onClick={e => e.stopPropagation()}
                   >
                     <button
