@@ -36,12 +36,19 @@ function EndpointRequestsChart({ endpoints }: EndpointRequestsChartProps) {
   return (
     <ResponsiveContainer width="100%" height={Math.max(200, endpoints.length * 40)}>
       <BarChart data={data} layout="vertical" margin={{ left: 20, right: 20 }}>
-        <XAxis type="number" />
+        <XAxis
+          type="number"
+          tick={{ fill: 'var(--color-text-secondary)', fontSize: 12 }}
+          axisLine={{ stroke: 'var(--color-border)' }}
+          tickLine={{ stroke: 'var(--color-border)' }}
+        />
         <YAxis
           type="category"
           dataKey="name"
           width={120}
-          tick={{ fontSize: 12 }}
+          tick={{ fill: 'var(--color-text-secondary)', fontSize: 12 }}
+          axisLine={{ stroke: 'var(--color-border)' }}
+          tickLine={{ stroke: 'var(--color-border)' }}
         />
         <Tooltip
           formatter={(value) => (typeof value === 'number' ? value.toLocaleString() : value)}
@@ -49,6 +56,7 @@ function EndpointRequestsChart({ endpoints }: EndpointRequestsChartProps) {
             backgroundColor: 'var(--color-bg-secondary)',
             border: '1px solid var(--color-border)',
             borderRadius: '8px',
+            color: 'var(--color-text-primary)',
           }}
         />
         <Bar dataKey="requests" radius={[0, 4, 4, 0]}>

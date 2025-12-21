@@ -58,6 +58,7 @@ function TokenDistributionChart({ inputTokens, outputTokens }: TokenDistribution
               backgroundColor: 'var(--color-bg-secondary)',
               border: '1px solid var(--color-border)',
               borderRadius: '8px',
+              color: 'var(--color-text-primary)',
             }}
           />
           <Legend />

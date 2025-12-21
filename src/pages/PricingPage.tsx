@@ -145,7 +145,7 @@ function PricingPage() {
                   onClick={() => handlePlanClick(plan.key)}
                   className={`w-full py-3 font-semibold rounded-lg transition-colors ${
                     plan.popular
-                      ? 'bg-white text-blue-600 hover:bg-blue-50'
+                      ? 'bg-white text-blue-600 hover:bg-gray-100'
                       : 'bg-blue-600 text-white hover:bg-blue-700'
                   }`}
                 >
