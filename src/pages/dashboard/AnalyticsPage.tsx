@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useAnalyticsManager } from '@sudobility/shapeshyft_lib';
 import { useApi } from '../../hooks/useApi';
+import RequestDistributionChart from '../../components/dashboard/analytics/RequestDistributionChart';
+import EndpointRequestsChart from '../../components/dashboard/analytics/EndpointRequestsChart';
+import TokenDistributionChart from '../../components/dashboard/analytics/TokenDistributionChart';
 
 function AnalyticsPage() {
   const { t } = useTranslation('dashboard');
@@ -132,111 +135,38 @@ function AnalyticsPage() {
         </div>
       </div>
 
-      {/* Token Usage */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        {/* Tokens Used */}
-        <div className="p-6 bg-theme-bg-secondary rounded-xl">
-          <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
-            {t('analytics.metrics.tokensUsed')}
-          </h3>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-theme-text-secondary">{t('analytics.metrics.inputTokens')}</span>
-              <span className="font-semibold text-theme-text-primary">
-                {formatNumber(agg.total_tokens_input)}
-              </span>
-            </div>
-            <div className="w-full bg-theme-bg-tertiary rounded-full h-2">
-              <div
-                className="bg-blue-600 h-2 rounded-full"
-                style={{
-                  width: `${
-                    agg.total_tokens_input + agg.total_tokens_output > 0
-                      ? (agg.total_tokens_input / (agg.total_tokens_input + agg.total_tokens_output)) * 100
-                      : 0
-                  }%`,
-                }}
-              />
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-theme-text-secondary">{t('analytics.metrics.outputTokens')}</span>
-              <span className="font-semibold text-theme-text-primary">
-                {formatNumber(agg.total_tokens_output)}
-              </span>
-            </div>
-            <div className="w-full bg-theme-bg-tertiary rounded-full h-2">
-              <div
-                className="bg-green-600 h-2 rounded-full"
-                style={{
-                  width: `${
-                    agg.total_tokens_input + agg.total_tokens_output > 0
-                      ? (agg.total_tokens_output / (agg.total_tokens_input + agg.total_tokens_output)) * 100
-                      : 0
-                  }%`,
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Request Distribution */}
+      {/* Charts Row */}
+      <div className="grid lg:grid-cols-2 gap-6 mb-6">
+        {/* Request Distribution Chart */}
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
             {t('analytics.metrics.requestDistribution')}
           </h3>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-theme-text-secondary">{t('analytics.metrics.successful')}</span>
-              <span className="font-semibold text-green-600 dark:text-green-400">
-                {formatNumber(agg.successful_requests)}
-              </span>
-            </div>
-            <div className="w-full bg-theme-bg-tertiary rounded-full h-2">
-              <div
-                className="bg-green-600 h-2 rounded-full"
-                style={{ width: `${successRate}%` }}
-              />
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-theme-text-secondary">{t('analytics.metrics.failed')}</span>
-              <span className="font-semibold text-red-600 dark:text-red-400">
-                {formatNumber(agg.failed_requests)}
-              </span>
-            </div>
-            <div className="w-full bg-theme-bg-tertiary rounded-full h-2">
-              <div
-                className="bg-red-600 h-2 rounded-full"
-                style={{
-                  width: `${
-                    agg.total_requests > 0
-                      ? (agg.failed_requests / agg.total_requests) * 100
-                      : 0
-                  }%`,
-                }}
-              />
-            </div>
-          </div>
+          <RequestDistributionChart
+            successful={agg.successful_requests}
+            failed={agg.failed_requests}
+          />
+        </div>
+
+        {/* Token Distribution Chart */}
+        <div className="p-6 bg-theme-bg-secondary rounded-xl">
+          <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
+            {t('analytics.metrics.tokensUsed')}
+          </h3>
+          <TokenDistributionChart
+            inputTokens={agg.total_tokens_input}
+            outputTokens={agg.total_tokens_output}
+          />
         </div>
       </div>
 
-      {/* By Endpoint */}
+      {/* By Endpoint Chart */}
       {analytics.by_endpoint.length > 0 && (
-        <div className="mt-6 p-6 bg-theme-bg-secondary rounded-xl">
+        <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
-            {t('analytics.metrics.byEndpoint')}
+            {t('analytics.charts.byEndpoint')}
           </h3>
-          <div className="space-y-3">
-            {analytics.by_endpoint.map(ep => (
-              <div key={ep.endpoint_id} className="flex justify-between items-center p-3 bg-theme-bg-tertiary rounded-lg">
-                <span className="font-mono text-sm text-theme-text-primary">{ep.endpoint_name}</span>
-                <div className="flex items-center gap-4 text-sm">
-                  <span className="text-theme-text-secondary">{ep.total_requests} requests</span>
-                  <span className="text-green-600 dark:text-green-400">{ep.successful_requests} ok</span>
-                  <span className="text-red-600 dark:text-red-400">{ep.failed_requests} failed</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <EndpointRequestsChart endpoints={analytics.by_endpoint} />
         </div>
       )}
     </div>
