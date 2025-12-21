@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager } from '@sudobility/shapeshyft_lib';
 import { useApi } from '../../hooks/useApi';
+import { useToast } from '../../hooks/useToast';
 import KeyForm from '../../components/dashboard/KeyForm';
 
 const PROVIDER_ICONS: Record<string, { bg: string; text: string; abbr: string }> = {
@@ -12,8 +13,9 @@ const PROVIDER_ICONS: Record<string, { bg: string; text: string; abbr: string }>
 };
 
 function KeysPage() {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'common']);
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { success, error: showError } = useToast();
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingKey, setEditingKey] = useState<string | null>(null);
@@ -37,7 +39,12 @@ function KeysPage() {
 
   const handleDeleteKey = async (keyId: string) => {
     if (confirm(t('keys.confirmDelete'))) {
-      await deleteKey(keyId);
+      try {
+        await deleteKey(keyId);
+        success(t('common:toast.success.deleted'));
+      } catch (err) {
+        showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+      }
     }
   };
 
@@ -171,8 +178,13 @@ function KeysPage() {
       {showAddModal && (
         <KeyForm
           onSubmit={async data => {
-            await createKey(data);
-            setShowAddModal(false);
+            try {
+              await createKey(data);
+              setShowAddModal(false);
+              success(t('common:toast.success.created'));
+            } catch (err) {
+              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+            }
           }}
           onClose={() => setShowAddModal(false)}
           isLoading={isLoading}
@@ -184,13 +196,18 @@ function KeysPage() {
         <KeyForm
           apiKey={keys.find(k => k.uuid === editingKey)}
           onSubmit={async data => {
-            await updateKey(editingKey, {
-              key_name: data.key_name,
-              api_key: data.api_key,
-              endpoint_url: data.endpoint_url,
-              is_active: undefined,
-            });
-            setEditingKey(null);
+            try {
+              await updateKey(editingKey, {
+                key_name: data.key_name,
+                api_key: data.api_key,
+                endpoint_url: data.endpoint_url,
+                is_active: undefined,
+              });
+              setEditingKey(null);
+              success(t('common:toast.success.saved'));
+            } catch (err) {
+              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+            }
           }}
           onClose={() => setEditingKey(null)}
           isLoading={isLoading}

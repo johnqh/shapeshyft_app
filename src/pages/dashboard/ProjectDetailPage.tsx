@@ -5,14 +5,16 @@ import { useProjectsManager, useEndpointsManager } from '@sudobility/shapeshyft_
 import type { EndpointUpdateRequest, HttpMethod, JsonSchema } from '@sudobility/shapeshyft_types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
+import { useToast } from '../../hooks/useToast';
 import ProjectForm from '../../components/dashboard/ProjectForm';
 import EndpointForm from '../../components/dashboard/EndpointForm';
 
 function ProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { success, error: showError } = useToast();
 
   const [showEditProject, setShowEditProject] = useState(false);
   const [showCreateEndpoint, setShowCreateEndpoint] = useState(false);
@@ -52,18 +54,28 @@ function ProjectDetailPage() {
 
   const handleUpdateProject = async (data: { display_name: string; description?: string }) => {
     if (!projectId) return;
-    await updateProject(projectId, {
-      project_name: undefined,
-      display_name: data.display_name,
-      description: data.description ?? null,
-      is_active: undefined,
-    });
-    setShowEditProject(false);
+    try {
+      await updateProject(projectId, {
+        project_name: undefined,
+        display_name: data.display_name,
+        description: data.description ?? null,
+        is_active: undefined,
+      });
+      setShowEditProject(false);
+      success(t('common:toast.success.saved'));
+    } catch (err) {
+      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+    }
   };
 
   const handleDeleteEndpoint = async (endpointId: string) => {
     if (confirm(t('endpoints.confirmDelete'))) {
-      await deleteEndpoint(endpointId);
+      try {
+        await deleteEndpoint(endpointId);
+        success(t('common:toast.success.deleted'));
+      } catch (err) {
+        showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+      }
     }
   };
 
@@ -274,8 +286,13 @@ function ProjectDetailPage() {
         <EndpointForm
           projectId={projectId!}
           onSubmit={async data => {
-            await createEndpoint(data);
-            setShowCreateEndpoint(false);
+            try {
+              await createEndpoint(data);
+              setShowCreateEndpoint(false);
+              success(t('common:toast.success.created'));
+            } catch (err) {
+              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+            }
           }}
           onClose={() => setShowCreateEndpoint(false)}
           isLoading={endpointsLoading}
@@ -288,19 +305,24 @@ function ProjectDetailPage() {
           projectId={projectId!}
           endpoint={endpoints.find(e => e.uuid === editingEndpoint)}
           onSubmit={async data => {
-            const updateData: EndpointUpdateRequest = {
-              endpoint_name: data.endpoint_name,
-              display_name: data.display_name,
-              http_method: data.http_method as HttpMethod | undefined,
-              llm_key_id: data.llm_key_id,
-              input_schema: data.input_schema as JsonSchema | undefined | null,
-              output_schema: data.output_schema as JsonSchema | undefined | null,
-              description: data.description,
-              context: data.context,
-              is_active: undefined,
-            };
-            await updateEndpoint(editingEndpoint, updateData);
-            setEditingEndpoint(null);
+            try {
+              const updateData: EndpointUpdateRequest = {
+                endpoint_name: data.endpoint_name,
+                display_name: data.display_name,
+                http_method: data.http_method as HttpMethod | undefined,
+                llm_key_id: data.llm_key_id,
+                input_schema: data.input_schema as JsonSchema | undefined | null,
+                output_schema: data.output_schema as JsonSchema | undefined | null,
+                description: data.description,
+                context: data.context,
+                is_active: undefined,
+              };
+              await updateEndpoint(editingEndpoint, updateData);
+              setEditingEndpoint(null);
+              success(t('common:toast.success.saved'));
+            } catch (err) {
+              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+            }
           }}
           onClose={() => setEditingEndpoint(null)}
           isLoading={endpointsLoading}

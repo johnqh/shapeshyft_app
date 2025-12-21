@@ -4,12 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { useProjectsManager, useEndpointsManager, useEndpointTester } from '@sudobility/shapeshyft_lib';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
+import { useToast } from '../../hooks/useToast';
 
 function EndpointDetailPage() {
   const { projectId, endpointId } = useParams<{ projectId: string; endpointId: string }>();
   const { t } = useTranslation('dashboard');
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { success, error: showError } = useToast();
 
   const [testInput, setTestInput] = useState('');
   const [inputError, setInputError] = useState<string | null>(null);
@@ -90,7 +92,12 @@ function EndpointDetailPage() {
       return;
     }
 
-    await testEndpoint(project.project_name, endpoint, parsedInput);
+    const result = await testEndpoint(project.project_name, endpoint, parsedInput);
+    if (result?.success) {
+      success(t('endpoints.tester.success'));
+    } else if (result?.error) {
+      showError(result.error);
+    }
   };
 
   // Loading state

@@ -3,13 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
+import { useToast } from '../../hooks/useToast';
 import ProjectForm from '../../components/dashboard/ProjectForm';
 import TemplateSelector from '../../components/dashboard/TemplateSelector';
 
 function ProjectsPage() {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { success, error: showError } = useToast();
 
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showTemplateModal, setShowTemplateModal] = useState(false);
@@ -40,30 +42,45 @@ function ProjectsPage() {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
 
-    await createProject({
-      project_name: projectName,
-      display_name: data.display_name,
-      description: data.description ?? null,
-    });
-    setShowCreateModal(false);
+    try {
+      await createProject({
+        project_name: projectName,
+        display_name: data.display_name,
+        description: data.description ?? null,
+      });
+      setShowCreateModal(false);
+      success(t('common:toast.success.created'));
+    } catch (err) {
+      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+    }
   };
 
   const handleUpdateProject = async (
     projectId: string,
     data: { display_name: string; description?: string }
   ) => {
-    await updateProject(projectId, {
-      project_name: undefined,
-      display_name: data.display_name,
-      description: data.description ?? null,
-      is_active: undefined,
-    });
-    setEditingProject(null);
+    try {
+      await updateProject(projectId, {
+        project_name: undefined,
+        display_name: data.display_name,
+        description: data.description ?? null,
+        is_active: undefined,
+      });
+      setEditingProject(null);
+      success(t('common:toast.success.saved'));
+    } catch (err) {
+      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+    }
   };
 
   const handleDeleteProject = async (projectId: string) => {
     if (confirm(t('projects.confirmDelete'))) {
-      await deleteProject(projectId);
+      try {
+        await deleteProject(projectId);
+        success(t('common:toast.success.deleted'));
+      } catch (err) {
+        showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+      }
     }
   };
 
@@ -74,10 +91,14 @@ function ProjectsPage() {
   ) => {
     const result = applyTemplate(templateId, projectName, llmKeyId);
     if (result) {
-      await createProject(result.project);
-      // Note: Endpoints will be created on project detail page or via separate API calls
-      setShowTemplateModal(false);
-      refresh();
+      try {
+        await createProject(result.project);
+        setShowTemplateModal(false);
+        refresh();
+        success(t('common:toast.success.created'));
+      } catch (err) {
+        showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+      }
     }
   };
 
