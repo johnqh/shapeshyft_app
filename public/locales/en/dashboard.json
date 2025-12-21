@@ -5,6 +5,7 @@
     "projects": "Projects",
     "apiKeys": "API Keys",
     "analytics": "Analytics",
+    "budgets": "Budgets",
     "subscription": "Subscription"
   },
   "projects": {
@@ -209,6 +210,31 @@
     "localization": {
       "name": "Localization",
       "description": "Translate text to multiple languages"
+    }
+  },
+  "budgets": {
+    "title": "Budgets",
+    "empty": "No budgets set",
+    "emptyDescription": "Set up spending limits to track your API costs",
+    "add": "Add Budget",
+    "confirmDelete": "Are you sure you want to delete this budget?",
+    "periods": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+    },
+    "form": {
+      "name": "Budget Name",
+      "namePlaceholder": "Monthly API Limit",
+      "limit": "Spending Limit",
+      "period": "Period",
+      "add": "Add Budget"
+    },
+    "alerts": {
+      "warning": "{{name}} is at 75% of budget",
+      "critical": "{{name}} is at 90% of budget",
+      "exceeded": "{{name}} has exceeded budget",
+      "usage": "Current usage: {{percentage}}%"
     }
   },
   "schema": {

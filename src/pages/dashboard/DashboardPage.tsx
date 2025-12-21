@@ -12,6 +12,7 @@ function DashboardPage() {
     { label: t('navigation.projects'), path: `/${currentLang}/dashboard` },
     { label: t('navigation.apiKeys'), path: `/${currentLang}/dashboard/keys` },
     { label: t('navigation.analytics'), path: `/${currentLang}/dashboard/analytics` },
+    { label: t('navigation.budgets'), path: `/${currentLang}/dashboard/budgets` },
     { label: t('navigation.subscription'), path: `/${currentLang}/dashboard/subscription` },
   ];
 
