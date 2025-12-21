@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { ThemeProvider } from './context/ThemeContext';
+import { ApiProvider } from './context/ApiContext';
 import { AuthProviderWrapper } from './components/providers/AuthProviderWrapper';
 import { SubscriptionProviderWrapper } from './components/providers/SubscriptionProviderWrapper';
 
@@ -46,8 +47,9 @@ function App() {
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <AuthProviderWrapper>
-            <SubscriptionProviderWrapper>
-              <BrowserRouter>
+            <ApiProvider>
+              <SubscriptionProviderWrapper>
+                <BrowserRouter>
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes>
                     {/* Root redirect - detect language */}
@@ -88,8 +90,9 @@ function App() {
                     <Route path="*" element={<LanguageRedirect />} />
                   </Routes>
                 </Suspense>
-              </BrowserRouter>
-            </SubscriptionProviderWrapper>
+                </BrowserRouter>
+              </SubscriptionProviderWrapper>
+            </ApiProvider>
           </AuthProviderWrapper>
         </QueryClientProvider>
       </ThemeProvider>

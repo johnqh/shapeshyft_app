@@ -1,34 +1,74 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useKeysManager } from '@sudobility/shapeshyft_lib';
+import { useApi } from '../../hooks/useApi';
+import KeyForm from '../../components/dashboard/KeyForm';
 
-// Placeholder data
-const mockKeys = [
-  {
-    uuid: 'k1',
-    key_name: 'OpenAI Production',
-    provider: 'openai',
-    has_api_key: true,
-    is_active: true,
-  },
-  {
-    uuid: 'k2',
-    key_name: 'Anthropic Dev',
-    provider: 'anthropic',
-    has_api_key: true,
-    is_active: true,
-  },
-];
-
-const PROVIDER_ICONS: Record<string, { bg: string; text: string }> = {
-  openai: { bg: 'bg-green-100 dark:bg-green-900/30', text: 'text-green-700 dark:text-green-400' },
-  anthropic: { bg: 'bg-orange-100 dark:bg-orange-900/30', text: 'text-orange-700 dark:text-orange-400' },
-  gemini: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-400' },
-  llm_server: { bg: 'bg-purple-100 dark:bg-purple-900/30', text: 'text-purple-700 dark:text-purple-400' },
+const PROVIDER_ICONS: Record<string, { bg: string; text: string; abbr: string }> = {
+  openai: { bg: 'bg-green-100 dark:bg-green-900/30', text: 'text-green-700 dark:text-green-400', abbr: 'OAI' },
+  anthropic: { bg: 'bg-orange-100 dark:bg-orange-900/30', text: 'text-orange-700 dark:text-orange-400', abbr: 'CL' },
+  gemini: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-400', abbr: 'GEM' },
+  llm_server: { bg: 'bg-purple-100 dark:bg-purple-900/30', text: 'text-purple-700 dark:text-purple-400', abbr: 'LLM' },
 };
 
 function KeysPage() {
   const { t } = useTranslation('dashboard');
+  const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+
   const [showAddModal, setShowAddModal] = useState(false);
+  const [editingKey, setEditingKey] = useState<string | null>(null);
+
+  const {
+    keys,
+    isLoading,
+    error,
+    createKey,
+    updateKey,
+    deleteKey,
+    refresh,
+    clearError,
+  } = useKeysManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  const handleDeleteKey = async (keyId: string) => {
+    if (confirm(t('keys.confirmDelete'))) {
+      await deleteKey(keyId);
+    }
+  };
+
+  // Loading state
+  if (apiLoading || (isReady && isLoading && keys.length === 0)) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="text-center py-12">
+        <div className="w-16 h-16 mx-auto mb-4 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
+          <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <p className="text-theme-text-secondary mb-4">{error}</p>
+        <button
+          onClick={() => { clearError(); refresh(); }}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          {t('common.retry')}
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -46,21 +86,11 @@ function KeysPage() {
       </div>
 
       {/* Keys List */}
-      {mockKeys.length === 0 ? (
+      {keys.length === 0 ? (
         <div className="text-center py-12 bg-theme-bg-secondary rounded-xl">
           <div className="w-16 h-16 mx-auto mb-4 bg-theme-bg-tertiary rounded-full flex items-center justify-center">
-            <svg
-              className="w-8 h-8 text-theme-text-tertiary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
-              />
+            <svg className="w-8 h-8 text-theme-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
             </svg>
           </div>
           <h3 className="text-lg font-medium text-theme-text-primary mb-2">
@@ -72,90 +102,99 @@ function KeysPage() {
         </div>
       ) : (
         <div className="space-y-4">
-          {mockKeys.map(key => (
-            <div
-              key={key.uuid}
-              className="p-4 bg-theme-bg-secondary rounded-xl border border-theme-border flex justify-between items-center"
-            >
-              <div className="flex items-center gap-4">
-                <div
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                    PROVIDER_ICONS[key.provider]?.bg || 'bg-gray-100'
-                  }`}
-                >
+          {keys.map(key => {
+            const provider = PROVIDER_ICONS[key.provider] ?? {
+              bg: 'bg-gray-100 dark:bg-gray-800',
+              text: 'text-gray-600 dark:text-gray-400',
+              abbr: '?',
+            };
+
+            return (
+              <div
+                key={key.uuid}
+                className="p-4 bg-theme-bg-secondary rounded-xl border border-theme-border flex justify-between items-center group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${provider.bg}`}>
+                    <span className={`text-xs font-bold ${provider.text}`}>
+                      {provider.abbr}
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-theme-text-primary">{key.key_name}</h4>
+                    <p className="text-sm text-theme-text-tertiary">
+                      {t(`keys.providers.${key.provider}`)}
+                      {key.endpoint_url && (
+                        <span className="ml-2 font-mono text-xs">{key.endpoint_url}</span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
                   <span
-                    className={`text-xs font-bold ${
-                      PROVIDER_ICONS[key.provider]?.text || 'text-gray-600'
+                    className={`px-2 py-1 text-xs font-medium rounded-full ${
+                      key.is_active
+                        ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                     }`}
                   >
-                    {key.provider === 'openai' && 'OAI'}
-                    {key.provider === 'anthropic' && 'CL'}
-                    {key.provider === 'gemini' && 'GEM'}
-                    {key.provider === 'llm_server' && 'LLM'}
+                    {key.is_active ? t('keys.card.active') : t('keys.card.inactive')}
                   </span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-theme-text-primary">
-                    {key.key_name}
-                  </h4>
-                  <p className="text-sm text-theme-text-tertiary">
-                    {t(`keys.providers.${key.provider}`)}
-                  </p>
+                  <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => setEditingKey(key.uuid)}
+                      className="p-2 hover:bg-theme-hover-bg rounded-lg transition-colors"
+                      title={t('common.edit')}
+                    >
+                      <svg className="w-4 h-4 text-theme-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => handleDeleteKey(key.uuid)}
+                      className="p-2 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors"
+                      title={t('common.delete')}
+                    >
+                      <svg className="w-4 h-4 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <span
-                  className={`px-2 py-1 text-xs font-medium rounded-full ${
-                    key.is_active
-                      ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
-                  }`}
-                >
-                  {key.is_active ? t('keys.card.active') : t('keys.card.inactive')}
-                </span>
-                <button className="p-2 hover:bg-theme-hover-bg rounded-lg transition-colors">
-                  <svg
-                    className="w-5 h-5 text-theme-text-secondary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
-      {/* Add Key Modal - Placeholder */}
+      {/* Add Key Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-black/50"
-            onClick={() => setShowAddModal(false)}
-          />
-          <div className="relative w-full max-w-md bg-theme-bg-primary rounded-xl shadow-xl p-6">
-            <h3 className="text-lg font-semibold mb-4">
-              {t('keys.form.title')}
-            </h3>
-            <p className="text-theme-text-secondary mb-4">
-              API key form will be implemented with API integration.
-            </p>
-            <button
-              onClick={() => setShowAddModal(false)}
-              className="w-full py-2 border border-theme-border rounded-lg hover:bg-theme-hover-bg transition-colors"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+        <KeyForm
+          onSubmit={async data => {
+            await createKey(data);
+            setShowAddModal(false);
+          }}
+          onClose={() => setShowAddModal(false)}
+          isLoading={isLoading}
+        />
+      )}
+
+      {/* Edit Key Modal */}
+      {editingKey && (
+        <KeyForm
+          apiKey={keys.find(k => k.uuid === editingKey)}
+          onSubmit={async data => {
+            await updateKey(editingKey, {
+              key_name: data.key_name,
+              api_key: data.api_key,
+              endpoint_url: data.endpoint_url,
+              is_active: undefined,
+            });
+            setEditingKey(null);
+          }}
+          onClose={() => setEditingKey(null)}
+          isLoading={isLoading}
+        />
       )}
     </div>
   );
