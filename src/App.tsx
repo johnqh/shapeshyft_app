@@ -20,6 +20,7 @@ const ProjectDetailPage = lazy(() => import('./pages/dashboard/ProjectDetailPage
 const EndpointDetailPage = lazy(() => import('./pages/dashboard/EndpointDetailPage'));
 const KeysPage = lazy(() => import('./pages/dashboard/KeysPage'));
 const AnalyticsPage = lazy(() => import('./pages/dashboard/AnalyticsPage'));
+const SubscriptionPage = lazy(() => import('./pages/dashboard/SubscriptionPage'));
 
 // Layout components
 const LanguageRedirect = lazy(() => import('./components/layout/LanguageRedirect'));
@@ -83,6 +84,7 @@ function App() {
                         />
                         <Route path="keys" element={<KeysPage />} />
                         <Route path="analytics" element={<AnalyticsPage />} />
+                        <Route path="subscription" element={<SubscriptionPage />} />
                       </Route>
 
                       {/* Catch-all redirect to home */}

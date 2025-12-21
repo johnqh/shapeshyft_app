@@ -1,25 +1,29 @@
 import { useTranslation } from 'react-i18next';
 import { useAuthStatus } from '@sudobility/auth-components';
+import { useSubscriptionContext } from '@sudobility/subscription-components';
 import ScreenContainer from '../components/layout/ScreenContainer';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 
 function PricingPage() {
   const { t } = useTranslation('pricing');
   const { user, openModal } = useAuthStatus();
+  const { currentSubscription } = useSubscriptionContext();
   const { navigate } = useLocalizedNavigate();
 
   const isAuthenticated = !!user;
+  const hasActiveSubscription = currentSubscription?.isActive ?? false;
 
   const handlePlanClick = (plan: string) => {
     if (plan === 'enterprise') {
-      // Open contact form or email
       // eslint-disable-next-line react-hooks/immutability
       window.location.href = 'mailto:sales@sudobility.com';
       return;
     }
 
     if (isAuthenticated) {
-      navigate('/dashboard');
+      // If user has a subscription, go to subscription management
+      // Otherwise go to dashboard where they can subscribe
+      navigate(hasActiveSubscription ? '/dashboard/subscription' : '/dashboard');
     } else {
       openModal();
     }

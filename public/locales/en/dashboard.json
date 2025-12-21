@@ -4,7 +4,8 @@
   "navigation": {
     "projects": "Projects",
     "apiKeys": "API Keys",
-    "analytics": "Analytics"
+    "analytics": "Analytics",
+    "subscription": "Subscription"
   },
   "projects": {
     "title": "Projects",

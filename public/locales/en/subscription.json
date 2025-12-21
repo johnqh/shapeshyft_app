@@ -1,0 +1,48 @@
+{
+  "title": "Manage Subscription",
+  "noProducts": "No subscription plans available at this time.",
+  "currentStatus": {
+    "label": "Current Status",
+    "active": "Active Subscription",
+    "inactive": "No Active Subscription",
+    "inactiveMessage": "Subscribe to unlock premium features and unlimited usage.",
+    "plan": "Plan",
+    "expires": "Expires",
+    "willRenew": "Auto-Renew",
+    "premium": "Premium"
+  },
+  "periods": {
+    "month": "/month",
+    "year": "/year",
+    "week": "/week"
+  },
+  "badges": {
+    "popular": "Most Popular",
+    "saveYearly": "Save with Annual"
+  },
+  "buttons": {
+    "subscribe": "Subscribe Now",
+    "purchasing": "Processing...",
+    "restore": "Restore Purchase",
+    "restoring": "Restoring..."
+  },
+  "purchase": {
+    "success": "Subscription activated successfully!",
+    "error": "Failed to complete purchase. Please try again."
+  },
+  "restore": {
+    "success": "Purchases restored successfully!",
+    "noPurchases": "No previous purchases found.",
+    "error": "Failed to restore purchases. Please try again."
+  },
+  "trial": {
+    "note": "{{days}}-day free trial"
+  },
+  "intro": {
+    "note": "Then {{price}}"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No"
+  }
+}
