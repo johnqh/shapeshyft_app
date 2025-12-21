@@ -1,24 +1,26 @@
 import { useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthStatus } from '@sudobility/auth-components';
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { isAuthenticated, loading, openAuthModal } = useAuth();
+  const { user, loading, openModal } = useAuthStatus();
   const navigate = useNavigate();
   const { lang } = useParams<{ lang: string }>();
+
+  const isAuthenticated = !!user;
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
       // Open auth modal and redirect to home
-      openAuthModal();
+      openModal();
       navigate(`/${lang || 'en'}`, { replace: true });
     }
-  }, [isAuthenticated, loading, openAuthModal, navigate, lang]);
+  }, [isAuthenticated, loading, openModal, navigate, lang]);
 
   // Show loading while checking auth
   if (loading) {

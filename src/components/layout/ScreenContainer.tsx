@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import TopBar from './TopBar';
 import Footer from './Footer';
-import AuthModal from '../auth/AuthModal';
 
 interface ScreenContainerProps {
   children: ReactNode;
@@ -23,9 +22,6 @@ function ScreenContainer({
       <main className="flex-1">{children}</main>
 
       {showFooter && <Footer variant={footerVariant} />}
-
-      {/* Auth Modal - rendered at root level */}
-      <AuthModal />
     </div>
   );
 }

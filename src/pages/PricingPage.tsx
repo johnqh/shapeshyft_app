@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next';
+import { useAuthStatus } from '@sudobility/auth-components';
 import ScreenContainer from '../components/layout/ScreenContainer';
-import { useAuth } from '../context/AuthContext';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 
 function PricingPage() {
   const { t } = useTranslation('pricing');
-  const { isAuthenticated, openAuthModal } = useAuth();
+  const { user, openModal } = useAuthStatus();
   const { navigate } = useLocalizedNavigate();
+
+  const isAuthenticated = !!user;
 
   const handlePlanClick = (plan: string) => {
     if (plan === 'enterprise') {
@@ -19,7 +21,7 @@ function PricingPage() {
     if (isAuthenticated) {
       navigate('/dashboard');
     } else {
-      openAuthModal();
+      openModal();
     }
   };
 

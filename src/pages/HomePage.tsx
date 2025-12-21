@@ -1,18 +1,20 @@
 import { useTranslation } from 'react-i18next';
+import { useAuthStatus } from '@sudobility/auth-components';
 import ScreenContainer from '../components/layout/ScreenContainer';
-import { useAuth } from '../context/AuthContext';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 
 function HomePage() {
   const { t } = useTranslation('home');
-  const { isAuthenticated, openAuthModal } = useAuth();
+  const { user, openModal } = useAuthStatus();
   const { navigate } = useLocalizedNavigate();
+
+  const isAuthenticated = !!user;
 
   const handleCTA = () => {
     if (isAuthenticated) {
       navigate('/dashboard');
     } else {
-      openAuthModal();
+      openModal();
     }
   };
 

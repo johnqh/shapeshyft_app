@@ -1,14 +1,13 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { ThemeProvider } from './context/ThemeContext';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProviderWrapper } from './components/providers/AuthProviderWrapper';
+import { SubscriptionProviderWrapper } from './components/providers/SubscriptionProviderWrapper';
 
 // Lazy load pages for better performance
-import { lazy } from 'react';
-
 const HomePage = lazy(() => import('./pages/HomePage'));
 const PricingPage = lazy(() => import('./pages/PricingPage'));
 const DocsPage = lazy(() => import('./pages/DocsPage'));
@@ -46,50 +45,52 @@ function App() {
     <I18nextProvider i18n={i18n}>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <AuthProvider>
-            <BrowserRouter>
-              <Suspense fallback={<LoadingFallback />}>
-                <Routes>
-                  {/* Root redirect - detect language */}
-                  <Route path="/" element={<LanguageRedirect />} />
+          <AuthProviderWrapper>
+            <SubscriptionProviderWrapper>
+              <BrowserRouter>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
+                    {/* Root redirect - detect language */}
+                    <Route path="/" element={<LanguageRedirect />} />
 
-                  {/* Language-prefixed routes */}
-                  <Route path="/:lang" element={<LanguageValidator />}>
-                    {/* Public pages */}
-                    <Route index element={<HomePage />} />
-                    <Route path="pricing" element={<PricingPage />} />
-                    <Route path="docs" element={<DocsPage />} />
-                    <Route path="docs/:section" element={<DocsPage />} />
+                    {/* Language-prefixed routes */}
+                    <Route path="/:lang" element={<LanguageValidator />}>
+                      {/* Public pages */}
+                      <Route index element={<HomePage />} />
+                      <Route path="pricing" element={<PricingPage />} />
+                      <Route path="docs" element={<DocsPage />} />
+                      <Route path="docs/:section" element={<DocsPage />} />
 
-                    {/* Protected dashboard routes */}
-                    <Route
-                      path="dashboard"
-                      element={
-                        <ProtectedRoute>
-                          <DashboardPage />
-                        </ProtectedRoute>
-                      }
-                    >
-                      <Route index element={<ProjectsPage />} />
-                      <Route path="projects/:projectId" element={<ProjectDetailPage />} />
+                      {/* Protected dashboard routes */}
                       <Route
-                        path="projects/:projectId/endpoints/:endpointId"
-                        element={<EndpointDetailPage />}
-                      />
-                      <Route path="keys" element={<KeysPage />} />
-                      <Route path="analytics" element={<AnalyticsPage />} />
+                        path="dashboard"
+                        element={
+                          <ProtectedRoute>
+                            <DashboardPage />
+                          </ProtectedRoute>
+                        }
+                      >
+                        <Route index element={<ProjectsPage />} />
+                        <Route path="projects/:projectId" element={<ProjectDetailPage />} />
+                        <Route
+                          path="projects/:projectId/endpoints/:endpointId"
+                          element={<EndpointDetailPage />}
+                        />
+                        <Route path="keys" element={<KeysPage />} />
+                        <Route path="analytics" element={<AnalyticsPage />} />
+                      </Route>
+
+                      {/* Catch-all redirect to home */}
+                      <Route path="*" element={<Navigate to="." replace />} />
                     </Route>
 
-                    {/* Catch-all redirect to home */}
-                    <Route path="*" element={<Navigate to="." replace />} />
-                  </Route>
-
-                  {/* Catch-all without language - redirect to language detection */}
-                  <Route path="*" element={<LanguageRedirect />} />
-                </Routes>
-              </Suspense>
-            </BrowserRouter>
-          </AuthProvider>
+                    {/* Catch-all without language - redirect to language detection */}
+                    <Route path="*" element={<LanguageRedirect />} />
+                  </Routes>
+                </Suspense>
+              </BrowserRouter>
+            </SubscriptionProviderWrapper>
+          </AuthProviderWrapper>
         </QueryClientProvider>
       </ThemeProvider>
     </I18nextProvider>
