@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useKeysManager } from '@sudobility/shapeshyft_lib';
 import type { Endpoint, EndpointCreateRequest, HttpMethod } from '@sudobility/shapeshyft_types';
 import { useApi } from '../../hooks/useApi';
+import SchemaEditor from './SchemaEditor';
 
 const HTTP_METHODS: HttpMethod[] = ['GET', 'POST'];
 
@@ -282,22 +283,14 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
               {/* Input Schema */}
               {useInputSchema && (
                 <div>
-                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                  <label className="block text-sm font-medium text-theme-text-primary mb-2">
                     {t('endpoints.form.inputSchema')}
                   </label>
-                  <textarea
+                  <SchemaEditor
                     value={inputSchema}
-                    onChange={e => setInputSchema(e.target.value)}
-                    rows={6}
-                    className={`w-full px-3 py-2 border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none font-mono text-sm ${
-                      !validateJson(inputSchema) ? 'border-red-500' : 'border-theme-border'
-                    }`}
+                    onChange={setInputSchema}
+                    error={!validateJson(inputSchema)}
                   />
-                  {!validateJson(inputSchema) && (
-                    <p className="text-xs text-red-600 dark:text-red-400 mt-1">
-                      {t('endpoints.form.invalidJson')}
-                    </p>
-                  )}
                 </div>
               )}
 
@@ -318,22 +311,14 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
               {/* Output Schema */}
               {useOutputSchema && (
                 <div>
-                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                  <label className="block text-sm font-medium text-theme-text-primary mb-2">
                     {t('endpoints.form.outputSchema')}
                   </label>
-                  <textarea
+                  <SchemaEditor
                     value={outputSchema}
-                    onChange={e => setOutputSchema(e.target.value)}
-                    rows={6}
-                    className={`w-full px-3 py-2 border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none font-mono text-sm ${
-                      !validateJson(outputSchema) ? 'border-red-500' : 'border-theme-border'
-                    }`}
+                    onChange={setOutputSchema}
+                    error={!validateJson(outputSchema)}
                   />
-                  {!validateJson(outputSchema) && (
-                    <p className="text-xs text-red-600 dark:text-red-400 mt-1">
-                      {t('endpoints.form.invalidJson')}
-                    </p>
-                  )}
                 </div>
               )}
             </div>

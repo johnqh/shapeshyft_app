@@ -12,6 +12,9 @@
     "emptyDescription": "Create your first project to get started",
     "create": "Create Project",
     "useTemplate": "Use Template",
+    "notFound": "Project not found",
+    "backToProjects": "Back to projects",
+    "confirmDelete": "Are you sure you want to delete this project?",
     "card": {
       "endpoints": "{{count}} endpoint(s)",
       "created": "Created {{date}}",
@@ -20,11 +23,17 @@
     },
     "form": {
       "title": "Create Project",
-      "editTitle": "Edit Project",
+      "titleEdit": "Edit Project",
       "projectName": "Project Name",
+      "projectNamePlaceholder": "my-project",
       "projectNameHint": "Lowercase letters, numbers, and hyphens only",
       "displayName": "Display Name",
-      "description": "Description"
+      "displayNamePlaceholder": "My Project",
+      "description": "Description",
+      "descriptionPlaceholder": "What this project does",
+      "errors": {
+        "nameRequired": "Display name is required"
+      }
     }
   },
   "endpoints": {
@@ -33,32 +42,62 @@
     "emptyDescription": "Create your first endpoint for this project",
     "create": "Create Endpoint",
     "test": "Test",
+    "notFound": "Endpoint not found",
+    "backToProject": "Back to project",
+    "confirmDelete": "Are you sure you want to delete this endpoint?",
     "card": {
       "method": "Method",
       "type": "Type"
     },
+    "detail": {
+      "type": "Endpoint Type",
+      "context": "System Context",
+      "inputSchema": "Input Schema",
+      "outputSchema": "Output Schema"
+    },
     "form": {
       "title": "Create Endpoint",
-      "editTitle": "Edit Endpoint",
+      "titleEdit": "Edit Endpoint",
       "endpointName": "Endpoint Name",
-      "endpointNameHint": "Lowercase letters, numbers, and hyphens only",
+      "endpointNamePlaceholder": "my-endpoint",
       "displayName": "Display Name",
+      "displayNamePlaceholder": "My Endpoint",
       "description": "Description",
+      "descriptionPlaceholder": "What this endpoint does",
       "httpMethod": "HTTP Method",
-      "endpointType": "Endpoint Type",
-      "llmKey": "LLM Key",
+      "llmKey": "LLM API Key",
+      "selectKey": "Select an API key",
+      "noKeys": "No API keys configured. Add one first.",
+      "context": "System Context",
+      "contextPlaceholder": "Instructions for the LLM (system prompt)",
+      "useInputSchema": "Define input schema",
+      "useOutputSchema": "Define output schema",
       "inputSchema": "Input Schema",
       "outputSchema": "Output Schema",
-      "context": "System Context",
-      "contextHint": "Instructions for the LLM"
+      "invalidJson": "Invalid JSON",
+      "create": "Create Endpoint",
+      "errors": {
+        "nameRequired": "Display name is required",
+        "slugRequired": "Endpoint name is required",
+        "keyRequired": "LLM Key is required",
+        "invalidInputSchema": "Invalid input schema JSON",
+        "invalidOutputSchema": "Invalid output schema JSON"
+      }
     },
     "tester": {
       "title": "Test Endpoint",
       "input": "Input",
       "generateSample": "Generate Sample",
       "execute": "Execute",
+      "executing": "Executing...",
       "response": "Response",
+      "success": "Success",
+      "failed": "Failed",
+      "invalidJson": "Invalid JSON input",
       "output": "Output",
+      "latency": "Latency",
+      "inputTokens": "Input Tokens",
+      "outputTokens": "Output Tokens",
       "usage": {
         "title": "Usage",
         "tokensIn": "Tokens In",
@@ -73,6 +112,7 @@
     "empty": "No API keys configured",
     "emptyDescription": "Add your first LLM provider API key",
     "add": "Add Key",
+    "confirmDelete": "Are you sure you want to delete this API key?",
     "card": {
       "provider": "Provider",
       "status": "Status",
@@ -81,13 +121,22 @@
     },
     "form": {
       "title": "Add API Key",
-      "editTitle": "Edit API Key",
+      "titleEdit": "Edit API Key",
       "keyName": "Key Name",
+      "keyNamePlaceholder": "My OpenAI Key",
       "provider": "Provider",
       "apiKey": "API Key",
+      "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Your key is encrypted at rest",
+      "leaveBlank": "leave blank to keep current",
       "endpointUrl": "Endpoint URL",
-      "endpointUrlHint": "Required for custom LLM server"
+      "endpointUrlPlaceholder": "https://api.example.com/v1",
+      "add": "Add Key",
+      "errors": {
+        "nameRequired": "Key name is required",
+        "apiKeyRequired": "API key is required",
+        "endpointRequired": "Endpoint URL is required for custom LLM server"
+      }
     },
     "providers": {
       "openai": "OpenAI",
@@ -98,6 +147,8 @@
   },
   "analytics": {
     "title": "Analytics",
+    "noData": "No analytics data",
+    "noDataDescription": "Start making API requests to see analytics",
     "period": {
       "today": "Today",
       "week": "This Week",
@@ -109,7 +160,13 @@
       "successRate": "Success Rate",
       "avgLatency": "Avg Latency",
       "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used"
+      "tokensUsed": "Tokens Used",
+      "inputTokens": "Input Tokens",
+      "outputTokens": "Output Tokens",
+      "requestDistribution": "Request Distribution",
+      "successful": "Successful",
+      "failed": "Failed",
+      "byEndpoint": "By Endpoint"
     },
     "charts": {
       "requestsOverTime": "Requests Over Time",
@@ -119,6 +176,19 @@
   "templates": {
     "title": "Project Templates",
     "subtitle": "Start with a pre-configured template",
+    "configure": "Configure Template",
+    "projectName": "Project Name",
+    "projectNamePlaceholder": "my-project",
+    "llmKey": "LLM Key",
+    "selectKey": "Select an API key",
+    "noKeys": "No API keys available.",
+    "addKeyLink": "Add one first",
+    "preview": "Preview",
+    "willCreate": "This will create {{count}} endpoint(s):",
+    "apply": "Apply Template",
+    "errors": {
+      "fillAllFields": "Please fill all required fields"
+    },
     "textClassifier": {
       "name": "Text Classifier",
       "description": "Classify text into categories"
@@ -138,6 +208,24 @@
     "localization": {
       "name": "Localization",
       "description": "Translate text to multiple languages"
+    }
+  },
+  "schema": {
+    "editor": "Schema Editor",
+    "visual": "Visual",
+    "json": "JSON",
+    "addProperty": "Add Property",
+    "noProperties": "No properties defined. Add one to get started.",
+    "required": "Required",
+    "descriptionPlaceholder": "Property description (optional)",
+    "arrayItemSchema": "Array item schema:",
+    "types": {
+      "string": "String",
+      "number": "Number",
+      "integer": "Integer",
+      "boolean": "Boolean",
+      "object": "Object",
+      "array": "Array"
     }
   }
 }
