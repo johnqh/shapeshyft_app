@@ -22,6 +22,7 @@ const KeysPage = lazy(() => import('./pages/dashboard/KeysPage'));
 const AnalyticsPage = lazy(() => import('./pages/dashboard/AnalyticsPage'));
 const SubscriptionPage = lazy(() => import('./pages/dashboard/SubscriptionPage'));
 const BudgetsPage = lazy(() => import('./pages/dashboard/BudgetsPage'));
+const SettingsPage = lazy(() => import('./pages/dashboard/SettingsPage'));
 
 // Layout components
 const LanguageRedirect = lazy(() => import('./components/layout/LanguageRedirect'));
@@ -87,6 +88,7 @@ function App() {
                         <Route path="analytics" element={<AnalyticsPage />} />
                         <Route path="subscription" element={<SubscriptionPage />} />
                         <Route path="budgets" element={<BudgetsPage />} />
+                        <Route path="settings" element={<SettingsPage />} />
                       </Route>
 
                       {/* Catch-all redirect to home */}

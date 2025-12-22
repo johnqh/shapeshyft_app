@@ -14,6 +14,7 @@ function DashboardPage() {
     { label: t('navigation.analytics'), path: `/${currentLang}/dashboard/analytics` },
     { label: t('navigation.budgets'), path: `/${currentLang}/dashboard/budgets` },
     { label: t('navigation.subscription'), path: `/${currentLang}/dashboard/subscription` },
+    { label: t('navigation.settings'), path: `/${currentLang}/dashboard/settings` },
   ];
 
   return (

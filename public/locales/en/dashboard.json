@@ -6,7 +6,8 @@
     "apiKeys": "API Keys",
     "analytics": "Analytics",
     "budgets": "Budgets",
-    "subscription": "Subscription"
+    "subscription": "Subscription",
+    "settings": "Settings"
   },
   "projects": {
     "title": "Projects",
@@ -255,6 +256,27 @@
       "boolean": "Boolean",
       "object": "Object",
       "array": "Array"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "organization": {
+      "title": "Organization",
+      "description": "Configure your organization settings. The organization path is used in your API URLs.",
+      "name": "Organization Name",
+      "namePlaceholder": "My Organization",
+      "nameHint": "Optional display name for your organization",
+      "path": "Organization Path",
+      "pathPlaceholder": "my_org",
+      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
+      "pathTaken": "This path is already taken",
+      "pathInvalid": "Only letters, numbers, and underscores allowed"
+    },
+    "form": {
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "saved": "Settings saved successfully",
+      "error": "Failed to save settings"
     }
   }
 }
