@@ -17,6 +17,7 @@ function EndpointDetailPage() {
   const [testInput, setTestInput] = useState('');
   const [inputError, setInputError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const initializedRef = useRef(false);
 
   // Edit form state
@@ -36,7 +37,7 @@ function EndpointDetailPage() {
 
   const project = projects.find(p => p.uuid === projectId);
 
-  const { endpoints, isLoading: endpointsLoading, updateEndpoint, isUpdating } = useEndpointsManager({
+  const { endpoints, isLoading: endpointsLoading, updateEndpoint, error: updateError } = useEndpointsManager({
     baseUrl,
     networkClient,
     userId: userId ?? '',
@@ -122,8 +123,9 @@ function EndpointDetailPage() {
       }
     }
 
+    setIsSaving(true);
     try {
-      await updateEndpoint(endpoint.uuid, {
+      const updated = await updateEndpoint(endpoint.uuid, {
         endpoint_name: endpoint.endpoint_name,
         display_name: endpoint.display_name,
         description: endpoint.description,
@@ -133,10 +135,16 @@ function EndpointDetailPage() {
         input_schema: parsedInputSchema,
         output_schema: parsedOutputSchema,
       });
-      success(t('endpoints.updated'));
-      setIsEditing(false);
+      if (updated) {
+        success(t('endpoints.updated'));
+        setIsEditing(false);
+      } else {
+        showError(updateError || t('common.errorOccurred'));
+      }
     } catch (err) {
       showError(err instanceof Error ? err.message : t('common.errorOccurred'));
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -336,17 +344,17 @@ function EndpointDetailPage() {
             <div className="flex gap-3 justify-end">
               <button
                 onClick={handleCancelEdit}
-                disabled={isUpdating}
+                disabled={isSaving}
                 className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
               >
                 {t('common.cancel')}
               </button>
               <button
                 onClick={handleSaveEdit}
-                disabled={isUpdating}
+                disabled={isSaving}
                 className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
               >
-                {isUpdating ? (
+                {isSaving ? (
                   <span className="flex items-center gap-2">
                     <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
