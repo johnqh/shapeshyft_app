@@ -64,9 +64,14 @@ function EndpointDetailPage() {
     isLoading: isTesting,
     error: testError,
     testEndpoint,
+    getPrompt,
     generateSampleInput,
     validateInput,
   } = useEndpointTester(networkClient, baseUrl);
+
+  // Prompt preview state
+  const [promptPreview, setPromptPreview] = useState<string | null>(null);
+  const [isLoadingPrompt, setIsLoadingPrompt] = useState(false);
 
   // Get the latest test result for this endpoint
   const latestResult = useMemo(
@@ -153,6 +158,37 @@ function EndpointDetailPage() {
     const sample = generateSampleInput(endpoint.input_schema);
     setTestInput(JSON.stringify(sample, null, 2));
     setInputError(null);
+  };
+
+  const handleViewPrompt = async () => {
+    if (!endpoint || !project) return;
+
+    setInputError(null);
+    setPromptPreview(null);
+
+    // Parse input
+    let parsedInput: unknown;
+    try {
+      parsedInput = JSON.parse(testInput);
+    } catch {
+      setInputError(t('endpoints.tester.invalidJson'));
+      return;
+    }
+
+    setIsLoadingPrompt(true);
+    const result = await getPrompt(
+      organizationPath,
+      project.project_name,
+      endpoint.endpoint_name,
+      parsedInput
+    );
+    setIsLoadingPrompt(false);
+
+    if (result.success && result.prompt) {
+      setPromptPreview(result.prompt);
+    } else {
+      showError(result.error || t('common.errorOccurred'));
+    }
   };
 
   const handleTest = async () => {
@@ -397,12 +433,29 @@ function EndpointDetailPage() {
             )}
           </div>
 
-          <div className="flex gap-3 mb-6">
+          <div className="flex flex-wrap gap-3 mb-6">
             <button
               onClick={handleGenerateSample}
               className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors text-sm"
             >
               {t('endpoints.tester.generateSample')}
+            </button>
+            <button
+              onClick={handleViewPrompt}
+              disabled={isLoadingPrompt || !testInput.trim()}
+              className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50 text-sm"
+            >
+              {isLoadingPrompt ? (
+                <span className="flex items-center gap-2">
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  {t('common.loading')}
+                </span>
+              ) : (
+                t('endpoints.tester.viewPrompt')
+              )}
             </button>
             <button
               onClick={handleTest}
@@ -427,6 +480,26 @@ function EndpointDetailPage() {
           {testError && (
             <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
               {testError}
+            </div>
+          )}
+
+          {/* Prompt Preview */}
+          {promptPreview && (
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-medium text-theme-text-primary">
+                  {t('endpoints.tester.prompt')}
+                </label>
+                <button
+                  onClick={() => setPromptPreview(null)}
+                  className="text-xs text-theme-text-tertiary hover:text-theme-text-primary"
+                >
+                  {t('common.close')}
+                </button>
+              </div>
+              <pre className="p-3 bg-theme-bg-tertiary rounded-lg overflow-auto font-mono text-sm text-theme-text-secondary max-h-64 whitespace-pre-wrap">
+                {promptPreview}
+              </pre>
             </div>
           )}
 

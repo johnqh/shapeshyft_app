@@ -94,6 +94,8 @@
       "title": "Test Endpoint",
       "input": "Input",
       "generateSample": "Generate Sample",
+      "viewPrompt": "View Prompt",
+      "prompt": "Generated Prompt",
       "execute": "Execute",
       "executing": "Executing...",
       "response": "Response",
