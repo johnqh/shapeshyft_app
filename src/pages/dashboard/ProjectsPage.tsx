@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
+import { ShapeshyftClient } from '@sudobility/shapeshyft_client';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
@@ -90,9 +91,20 @@ function ProjectsPage() {
     llmKeyId: string
   ) => {
     const result = applyTemplate(templateId, projectName, llmKeyId);
-    if (result) {
+    if (result && userId && token) {
       try {
-        await createProject(result.project);
+        // Create the project first
+        const project = await createProject(result.project);
+        if (!project) {
+          throw new Error('Failed to create project');
+        }
+
+        // Create endpoints using the client
+        const client = new ShapeshyftClient({ networkClient, baseUrl });
+        for (const endpointData of result.endpoints) {
+          await client.createEndpoint(userId, project.uuid, endpointData, token);
+        }
+
         setShowTemplateModal(false);
         refresh();
         success(t('common:toast.success.created'));
