@@ -18,20 +18,26 @@ export function ApiProvider({ children }: ApiProviderProps) {
   const [tokenLoading, setTokenLoading] = useState(false);
 
   const baseUrl = CONSTANTS.API_URL;
+  const userId = user?.uid ?? null;
 
   // Fetch token when user changes
   useEffect(() => {
     let mounted = true;
 
     const fetchToken = async () => {
-      const currentUser = auth?.currentUser;
-      if (!currentUser) {
+      if (!userId) {
         setToken(null);
+        setTokenLoading(false);
         return;
       }
 
       setTokenLoading(true);
       try {
+        const currentUser = auth?.currentUser;
+        if (!currentUser) {
+          setToken(null);
+          return;
+        }
         const idToken = await currentUser.getIdToken();
         if (mounted) {
           setToken(idToken);
@@ -53,7 +59,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
     return () => {
       mounted = false;
     };
-  }, [user]);
+  }, [userId]);
 
   // Refresh token function for when token expires
   const refreshToken = useCallback(async (): Promise<string | null> => {
@@ -74,13 +80,13 @@ export function ApiProvider({ children }: ApiProviderProps) {
     () => ({
       networkClient,
       baseUrl,
-      userId: user?.uid ?? null,
+      userId,
       token,
-      isReady: !!user && !!token,
+      isReady: !!userId && !!token,
       isLoading: authLoading || tokenLoading,
       refreshToken,
     }),
-    [baseUrl, user, token, authLoading, tokenLoading, refreshToken]
+    [baseUrl, userId, token, authLoading, tokenLoading, refreshToken]
   );
 
   return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

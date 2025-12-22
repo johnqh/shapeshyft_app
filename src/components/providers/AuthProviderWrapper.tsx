@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AuthProvider } from '@sudobility/auth-components';
 import { auth } from '../../config/firebase';
@@ -16,13 +16,14 @@ interface AuthProviderWrapperProps {
 export function AuthProviderWrapper({ children }: AuthProviderWrapperProps) {
   const { t } = useTranslation();
 
+  // Memoize texts - must be called before any conditional returns
+  const texts = useMemo(() => createAuthTexts(t), [t]);
+  const errorTexts = useMemo(() => createAuthErrorTexts(), []);
+
   // If Firebase is not configured, render children without auth
   if (!auth) {
     return <>{children}</>;
   }
-
-  const texts = createAuthTexts(t);
-  const errorTexts = createAuthErrorTexts();
 
   return (
     <AuthProvider
