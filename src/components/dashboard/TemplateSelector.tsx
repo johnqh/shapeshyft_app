@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useKeysManager } from '@sudobility/shapeshyft_lib';
+import { useKeysManager, useSettingsManager } from '@sudobility/shapeshyft_lib';
 import type { ProjectTemplate } from '@sudobility/shapeshyft_lib';
 import { useApi } from '../../hooks/useApi';
 
@@ -27,6 +27,17 @@ function TemplateSelector({ templates, onApply, onClose }: TemplateSelectorProps
     token,
     autoFetch: isReady,
   });
+
+  const { settings } = useSettingsManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  // Get organization path - use settings value or fallback to first 8 chars of userId
+  const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
 
   const selectedTemplateData = templates.find(t => t.id === selectedTemplate);
 
@@ -208,7 +219,7 @@ function TemplateSelector({ templates, onApply, onClose }: TemplateSelectorProps
                         <span className="px-1.5 py-0.5 text-xs font-mono rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
                           POST
                         </span>
-                        <span className="font-mono">/{projectName}/{ep.endpoint_name}</span>
+                        <span className="font-mono">/{organizationPath}/{projectName}/{ep.endpoint_name}</span>
                       </li>
                     ))}
                   </ul>

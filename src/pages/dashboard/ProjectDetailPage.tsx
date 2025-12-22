@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useProjectsManager, useEndpointsManager } from '@sudobility/shapeshyft_lib';
+import { useProjectsManager, useEndpointsManager, useSettingsManager } from '@sudobility/shapeshyft_lib';
 import type { EndpointUpdateRequest, HttpMethod, JsonSchema } from '@sudobility/shapeshyft_types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
@@ -51,6 +51,17 @@ function ProjectDetailPage() {
     projectId: projectId ?? '',
     autoFetch: isReady && !!projectId,
   });
+
+  const { settings } = useSettingsManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  // Get organization path - use settings value or fallback to first 8 chars of userId
+  const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
 
   const handleUpdateProject = async (data: { display_name: string; description?: string }) => {
     if (!projectId) return;
@@ -207,7 +218,7 @@ function ProjectDetailPage() {
                   <div className="min-w-0">
                     <h4 className="font-medium text-theme-text-primary truncate">{endpoint.display_name}</h4>
                     <p className="text-sm text-theme-text-tertiary font-mono truncate">
-                      /{project.project_name}/{endpoint.endpoint_name}
+                      /{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
                     </p>
                   </div>
                 </div>

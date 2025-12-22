@@ -130,7 +130,7 @@ function DocsPage() {
               Example Request
             </h4>
             <pre className="text-sm text-blue-700 dark:text-blue-300 overflow-x-auto">
-{`curl -X POST https://api.shapeshyft.io/api/v1/ai/my-project/classify \\
+{`curl -X POST https://api.shapeshyft.io/api/v1/ai/my-org/my-project/classify \\
   -H "Content-Type: application/json" \\
   -d '{"text": "This is a great product!"}'`}
             </pre>

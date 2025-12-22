@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useProjectsManager, useEndpointsManager, useEndpointTester } from '@sudobility/shapeshyft_lib';
+import { useProjectsManager, useEndpointsManager, useEndpointTester, useSettingsManager } from '@sudobility/shapeshyft_lib';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
@@ -37,6 +37,17 @@ function EndpointDetailPage() {
   });
 
   const endpoint = endpoints.find(e => e.uuid === endpointId);
+
+  const { settings } = useSettingsManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  // Get organization path - use settings value or fallback to first 8 chars of userId
+  const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
 
   const {
     testResults,
@@ -92,7 +103,7 @@ function EndpointDetailPage() {
       return;
     }
 
-    const result = await testEndpoint(project.project_name, endpoint, parsedInput);
+    const result = await testEndpoint(organizationPath, project.project_name, endpoint, parsedInput);
     if (result?.success) {
       success(t('endpoints.tester.success'));
     } else if (result?.error) {
@@ -155,7 +166,7 @@ function EndpointDetailPage() {
             </span>
           </div>
           <p className="text-sm text-theme-text-tertiary font-mono mb-2">
-            /api/v1/ai/{project.project_name}/{endpoint.endpoint_name}
+            /api/v1/ai/{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
           </p>
           {endpoint.description && (
             <p className="text-theme-text-secondary">{endpoint.description}</p>
