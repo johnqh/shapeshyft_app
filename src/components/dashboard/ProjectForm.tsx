@@ -9,11 +9,17 @@ interface ProjectFormProps {
   isLoading?: boolean;
 }
 
+interface FieldErrors {
+  displayName?: string;
+}
+
 function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps) {
   const { t } = useTranslation('dashboard');
   const [displayName, setDisplayName] = useState(project?.display_name ?? '');
   const [description, setDescription] = useState(project?.description ?? '');
-  const [error, setError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const isEditing = !!project;
 
@@ -31,17 +37,48 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
     return () => document.removeEventListener('keydown', handleEscape);
   }, [onClose]);
 
+  const validateDisplayName = (value: string): string | undefined => {
+    if (!value.trim()) {
+      return t('projects.form.errors.nameRequired');
+    }
+    if (value.trim().length < 2) {
+      return t('projects.form.errors.nameTooShort');
+    }
+    return undefined;
+  };
+
+  const handleDisplayNameChange = (value: string) => {
+    setDisplayName(value);
+    if (touched.displayName) {
+      setFieldErrors(prev => ({
+        ...prev,
+        displayName: validateDisplayName(value),
+      }));
+    }
+  };
+
+  const handleDisplayNameBlur = () => {
+    setTouched(prev => ({ ...prev, displayName: true }));
+    setFieldErrors(prev => ({
+      ...prev,
+      displayName: validateDisplayName(displayName),
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
+    setSubmitError(null);
 
-    if (!displayName.trim()) {
-      setError(t('projects.form.errors.nameRequired'));
-      return;
-    }
+    // Validate all fields
+    const errors: FieldErrors = {
+      displayName: validateDisplayName(displayName),
+    };
 
-    if (displayName.trim().length < 2) {
-      setError(t('projects.form.errors.nameTooShort'));
+    setFieldErrors(errors);
+    setTouched({ displayName: true });
+
+    // Check if there are any errors
+    if (Object.values(errors).some(Boolean)) {
       return;
     }
 
@@ -51,9 +88,11 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
         description: description.trim() || undefined,
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      setSubmitError(err instanceof Error ? err.message : t('common.errorOccurred'));
     }
   };
+
+  const hasError = (field: keyof FieldErrors) => touched[field] && fieldErrors[field];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -82,9 +121,9 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {error && (
+          {submitError && (
             <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-              {error}
+              {submitError}
             </div>
           )}
 
@@ -100,16 +139,28 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
               id="displayName"
               type="text"
               value={displayName}
-              onChange={e => setDisplayName(e.target.value)}
+              onChange={e => handleDisplayNameChange(e.target.value)}
+              onBlur={handleDisplayNameBlur}
               placeholder={t('projects.form.displayNamePlaceholder')}
-              className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
+              className={`w-full px-3 py-2 border rounded-lg bg-theme-bg-primary outline-none transition-all ${
+                hasError('displayName')
+                  ? 'border-red-500 focus:ring-2 focus:ring-red-500/20'
+                  : 'border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+              }`}
               autoFocus
             />
-            {!isEditing && slugPreview && (
+            {hasError('displayName') ? (
+              <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {fieldErrors.displayName}
+              </p>
+            ) : !isEditing && slugPreview ? (
               <p className="mt-1 text-xs text-theme-text-tertiary">
                 {t('projects.form.slugPreview')}: <code className="font-mono">{slugPreview}</code>
               </p>
-            )}
+            ) : null}
           </div>
 
           {/* Description */}

@@ -15,6 +15,14 @@ interface EndpointFormProps {
   isLoading?: boolean;
 }
 
+interface FieldErrors {
+  displayName?: string;
+  endpointName?: string;
+  llmKeyId?: string;
+  inputSchema?: string;
+  outputSchema?: string;
+}
+
 function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormProps) {
   const { t } = useTranslation('dashboard');
   const { networkClient, baseUrl, userId, token, isReady } = useApi();
@@ -35,7 +43,9 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
   const [outputSchema, setOutputSchema] = useState(
     endpoint?.output_schema ? JSON.stringify(endpoint.output_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}'
   );
-  const [error, setError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const { keys, isLoading: keysLoading } = useKeysManager({
     baseUrl,
@@ -59,6 +69,9 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
     if (!isEditing && !endpointName) {
       setEndpointName(generateEndpointName(value));
     }
+    if (touched.displayName) {
+      setFieldErrors(prev => ({ ...prev, displayName: validateDisplayName(value) }));
+    }
   };
 
   useEffect(() => {
@@ -78,32 +91,79 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
     }
   };
 
+  const validateDisplayName = (value: string): string | undefined => {
+    if (!value.trim()) return t('endpoints.form.errors.nameRequired');
+    return undefined;
+  };
+
+  const validateEndpointName = (value: string): string | undefined => {
+    if (!value.trim()) return t('endpoints.form.errors.slugRequired');
+    return undefined;
+  };
+
+  const validateLlmKeyId = (value: string): string | undefined => {
+    if (!value) return t('endpoints.form.errors.keyRequired');
+    return undefined;
+  };
+
+  const validateInputSchema = (value: string, isUsed: boolean): string | undefined => {
+    if (isUsed && !validateJson(value)) return t('endpoints.form.errors.invalidInputSchema');
+    return undefined;
+  };
+
+  const validateOutputSchema = (value: string, isUsed: boolean): string | undefined => {
+    if (isUsed && !validateJson(value)) return t('endpoints.form.errors.invalidOutputSchema');
+    return undefined;
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+
+    let error: string | undefined;
+    switch (field) {
+      case 'displayName':
+        error = validateDisplayName(displayName);
+        break;
+      case 'endpointName':
+        error = validateEndpointName(endpointName);
+        break;
+      case 'llmKeyId':
+        error = validateLlmKeyId(llmKeyId);
+        break;
+      case 'inputSchema':
+        error = validateInputSchema(inputSchema, useInputSchema);
+        break;
+      case 'outputSchema':
+        error = validateOutputSchema(outputSchema, useOutputSchema);
+        break;
+    }
+
+    setFieldErrors(prev => ({ ...prev, [field]: error }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
+    setSubmitError(null);
 
-    if (!displayName.trim()) {
-      setError(t('endpoints.form.errors.nameRequired'));
-      return;
-    }
+    // Validate all fields
+    const errors: FieldErrors = {
+      displayName: validateDisplayName(displayName),
+      endpointName: validateEndpointName(endpointName),
+      llmKeyId: validateLlmKeyId(llmKeyId),
+      inputSchema: validateInputSchema(inputSchema, useInputSchema),
+      outputSchema: validateOutputSchema(outputSchema, useOutputSchema),
+    };
 
-    if (!endpointName.trim()) {
-      setError(t('endpoints.form.errors.slugRequired'));
-      return;
-    }
+    setFieldErrors(errors);
+    setTouched({
+      displayName: true,
+      endpointName: true,
+      llmKeyId: true,
+      inputSchema: true,
+      outputSchema: true,
+    });
 
-    if (!llmKeyId) {
-      setError(t('endpoints.form.errors.keyRequired'));
-      return;
-    }
-
-    if (useInputSchema && !validateJson(inputSchema)) {
-      setError(t('endpoints.form.errors.invalidInputSchema'));
-      return;
-    }
-
-    if (useOutputSchema && !validateJson(outputSchema)) {
-      setError(t('endpoints.form.errors.invalidOutputSchema'));
+    if (Object.values(errors).some(Boolean)) {
       return;
     }
 
@@ -119,9 +179,30 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
         output_schema: useOutputSchema ? JSON.parse(outputSchema) : null,
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      setSubmitError(err instanceof Error ? err.message : t('common.errorOccurred'));
     }
   };
+
+  const hasError = (field: keyof FieldErrors) => touched[field] && fieldErrors[field];
+
+  const renderError = (field: keyof FieldErrors) => {
+    if (!hasError(field)) return null;
+    return (
+      <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
+        <svg className="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+        </svg>
+        {fieldErrors[field]}
+      </p>
+    );
+  };
+
+  const inputClassName = (field: keyof FieldErrors, extra?: string) =>
+    `w-full px-3 py-2 border rounded-lg bg-theme-bg-primary outline-none transition-all ${extra ?? ''} ${
+      hasError(field)
+        ? 'border-red-500 focus:ring-2 focus:ring-red-500/20'
+        : 'border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+    }`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -144,9 +225,9 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
-          {error && (
+          {submitError && (
             <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-              {error}
+              {submitError}
             </div>
           )}
 
@@ -162,9 +243,11 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
                   type="text"
                   value={displayName}
                   onChange={e => handleDisplayNameChange(e.target.value)}
+                  onBlur={() => handleBlur('displayName')}
                   placeholder={t('endpoints.form.displayNamePlaceholder')}
-                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className={inputClassName('displayName')}
                 />
+                {renderError('displayName')}
               </div>
 
               {/* Endpoint Name (slug) */}
@@ -175,18 +258,22 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
                 <input
                   type="text"
                   value={endpointName}
-                  onChange={e =>
-                    setEndpointName(
-                      e.target.value
-                        .toLowerCase()
-                        .replace(/[^a-z0-9-]/g, '-')
-                        .replace(/-+/g, '-')
-                    )
-                  }
+                  onChange={e => {
+                    const value = e.target.value
+                      .toLowerCase()
+                      .replace(/[^a-z0-9-]/g, '-')
+                      .replace(/-+/g, '-');
+                    setEndpointName(value);
+                    if (touched.endpointName) {
+                      setFieldErrors(prev => ({ ...prev, endpointName: validateEndpointName(value) }));
+                    }
+                  }}
+                  onBlur={() => handleBlur('endpointName')}
                   placeholder={t('endpoints.form.endpointNamePlaceholder')}
                   disabled={isEditing}
-                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono disabled:opacity-50"
+                  className={inputClassName('endpointName', 'font-mono disabled:opacity-50')}
                 />
+                {renderError('endpointName')}
               </div>
 
               {/* Description */}
@@ -234,18 +321,27 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
                     {t('endpoints.form.noKeys')}
                   </p>
                 ) : (
-                  <select
-                    value={llmKeyId}
-                    onChange={e => setLlmKeyId(e.target.value)}
-                    className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                  >
-                    <option value="">{t('endpoints.form.selectKey')}</option>
-                    {keys.map(key => (
-                      <option key={key.uuid} value={key.uuid}>
-                        {key.key_name} ({key.provider})
-                      </option>
-                    ))}
-                  </select>
+                  <>
+                    <select
+                      value={llmKeyId}
+                      onChange={e => {
+                        setLlmKeyId(e.target.value);
+                        if (touched.llmKeyId) {
+                          setFieldErrors(prev => ({ ...prev, llmKeyId: validateLlmKeyId(e.target.value) }));
+                        }
+                      }}
+                      onBlur={() => handleBlur('llmKeyId')}
+                      className={inputClassName('llmKeyId')}
+                    >
+                      <option value="">{t('endpoints.form.selectKey')}</option>
+                      {keys.map(key => (
+                        <option key={key.uuid} value={key.uuid}>
+                          {key.key_name} ({key.provider})
+                        </option>
+                      ))}
+                    </select>
+                    {renderError('llmKeyId')}
+                  </>
                 )}
               </div>
             </div>
@@ -288,9 +384,15 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
                   </label>
                   <SchemaEditor
                     value={inputSchema}
-                    onChange={setInputSchema}
-                    error={!validateJson(inputSchema)}
+                    onChange={value => {
+                      setInputSchema(value);
+                      if (touched.inputSchema) {
+                        setFieldErrors(prev => ({ ...prev, inputSchema: validateInputSchema(value, true) }));
+                      }
+                    }}
+                    error={!!hasError('inputSchema')}
                   />
+                  {renderError('inputSchema')}
                 </div>
               )}
 
@@ -316,9 +418,15 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
                   </label>
                   <SchemaEditor
                     value={outputSchema}
-                    onChange={setOutputSchema}
-                    error={!validateJson(outputSchema)}
+                    onChange={value => {
+                      setOutputSchema(value);
+                      if (touched.outputSchema) {
+                        setFieldErrors(prev => ({ ...prev, outputSchema: validateOutputSchema(value, true) }));
+                      }
+                    }}
+                    error={!!hasError('outputSchema')}
                   />
+                  {renderError('outputSchema')}
                 </div>
               )}
             </div>

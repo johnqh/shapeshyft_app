@@ -16,6 +16,12 @@ interface KeyFormProps {
   isLoading?: boolean;
 }
 
+interface FieldErrors {
+  keyName?: string;
+  apiKey?: string;
+  endpointUrl?: string;
+}
+
 function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
   const { t } = useTranslation('dashboard');
   const isEditing = !!apiKey;
@@ -25,7 +31,9 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
   const [apiKeyValue, setApiKeyValue] = useState('');
   const [endpointUrl, setEndpointUrl] = useState(apiKey?.endpoint_url ?? '');
   const [showApiKey, setShowApiKey] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -35,22 +43,84 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [onClose]);
 
+  const validateKeyName = (value: string): string | undefined => {
+    if (!value.trim()) {
+      return t('keys.form.errors.nameRequired');
+    }
+    return undefined;
+  };
+
+  const validateApiKey = (value: string): string | undefined => {
+    if (!isEditing && !value.trim()) {
+      return t('keys.form.errors.apiKeyRequired');
+    }
+    return undefined;
+  };
+
+  const validateEndpointUrl = (value: string, currentProvider: LlmProvider): string | undefined => {
+    if (currentProvider === 'llm_server' && !value.trim()) {
+      return t('keys.form.errors.endpointRequired');
+    }
+    return undefined;
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+
+    let error: string | undefined;
+    switch (field) {
+      case 'keyName':
+        error = validateKeyName(keyName);
+        break;
+      case 'apiKey':
+        error = validateApiKey(apiKeyValue);
+        break;
+      case 'endpointUrl':
+        error = validateEndpointUrl(endpointUrl, provider);
+        break;
+    }
+
+    setFieldErrors(prev => ({ ...prev, [field]: error }));
+  };
+
+  const handleFieldChange = (field: string, value: string) => {
+    switch (field) {
+      case 'keyName':
+        setKeyName(value);
+        if (touched.keyName) {
+          setFieldErrors(prev => ({ ...prev, keyName: validateKeyName(value) }));
+        }
+        break;
+      case 'apiKey':
+        setApiKeyValue(value);
+        if (touched.apiKey) {
+          setFieldErrors(prev => ({ ...prev, apiKey: validateApiKey(value) }));
+        }
+        break;
+      case 'endpointUrl':
+        setEndpointUrl(value);
+        if (touched.endpointUrl) {
+          setFieldErrors(prev => ({ ...prev, endpointUrl: validateEndpointUrl(value, provider) }));
+        }
+        break;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
+    setSubmitError(null);
 
-    if (!keyName.trim()) {
-      setError(t('keys.form.errors.nameRequired'));
-      return;
-    }
+    // Validate all fields
+    const errors: FieldErrors = {
+      keyName: validateKeyName(keyName),
+      apiKey: validateApiKey(apiKeyValue),
+      endpointUrl: validateEndpointUrl(endpointUrl, provider),
+    };
 
-    if (!isEditing && !apiKeyValue.trim()) {
-      setError(t('keys.form.errors.apiKeyRequired'));
-      return;
-    }
+    setFieldErrors(errors);
+    setTouched({ keyName: true, apiKey: true, endpointUrl: true });
 
-    if (provider === 'llm_server' && !endpointUrl.trim()) {
-      setError(t('keys.form.errors.endpointRequired'));
+    if (Object.values(errors).some(Boolean)) {
       return;
     }
 
@@ -62,9 +132,30 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
         endpoint_url: provider === 'llm_server' ? endpointUrl.trim() : undefined,
       });
     } catch (err) {
-      setError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      setSubmitError(err instanceof Error ? err.message : t('common.errorOccurred'));
     }
   };
+
+  const hasError = (field: keyof FieldErrors) => touched[field] && fieldErrors[field];
+
+  const renderError = (field: keyof FieldErrors) => {
+    if (!hasError(field)) return null;
+    return (
+      <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
+        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+        </svg>
+        {fieldErrors[field]}
+      </p>
+    );
+  };
+
+  const inputClassName = (field: keyof FieldErrors, extra?: string) =>
+    `w-full px-3 py-2 border rounded-lg bg-theme-bg-primary outline-none transition-all ${extra ?? ''} ${
+      hasError(field)
+        ? 'border-red-500 focus:ring-2 focus:ring-red-500/20'
+        : 'border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+    }`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -87,9 +178,9 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {error && (
+          {submitError && (
             <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-              {error}
+              {submitError}
             </div>
           )}
 
@@ -101,11 +192,13 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
             <input
               type="text"
               value={keyName}
-              onChange={e => setKeyName(e.target.value)}
+              onChange={e => handleFieldChange('keyName', e.target.value)}
+              onBlur={() => handleBlur('keyName')}
               placeholder={t('keys.form.keyNamePlaceholder')}
-              className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className={inputClassName('keyName')}
               autoFocus
             />
+            {renderError('keyName')}
           </div>
 
           {/* Provider */}
@@ -136,10 +229,12 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
               <input
                 type="url"
                 value={endpointUrl}
-                onChange={e => setEndpointUrl(e.target.value)}
+                onChange={e => handleFieldChange('endpointUrl', e.target.value)}
+                onBlur={() => handleBlur('endpointUrl')}
                 placeholder={t('keys.form.endpointUrlPlaceholder')}
-                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
+                className={inputClassName('endpointUrl', 'font-mono text-sm')}
               />
+              {renderError('endpointUrl')}
             </div>
           )}
 
@@ -157,9 +252,10 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
               <input
                 type={showApiKey ? 'text' : 'password'}
                 value={apiKeyValue}
-                onChange={e => setApiKeyValue(e.target.value)}
+                onChange={e => handleFieldChange('apiKey', e.target.value)}
+                onBlur={() => handleBlur('apiKey')}
                 placeholder={isEditing ? '••••••••••••••••' : t('keys.form.apiKeyPlaceholder')}
-                className="w-full px-3 py-2 pr-10 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
+                className={inputClassName('apiKey', 'pr-10 font-mono text-sm')}
               />
               <button
                 type="button"
@@ -178,9 +274,12 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
                 )}
               </button>
             </div>
-            <p className="mt-1 text-xs text-theme-text-tertiary">
-              {t('keys.form.apiKeyHint')}
-            </p>
+            {renderError('apiKey')}
+            {!hasError('apiKey') && (
+              <p className="mt-1 text-xs text-theme-text-tertiary">
+                {t('keys.form.apiKeyHint')}
+              </p>
+            )}
           </div>
 
           {/* Actions */}

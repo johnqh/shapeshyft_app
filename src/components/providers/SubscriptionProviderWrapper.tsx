@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect, useRef } from 'react';
 import {
   SubscriptionProvider,
   useSubscriptionContext,
@@ -18,15 +18,32 @@ interface SubscriptionProviderWrapperProps {
 function SubscriptionInitializer({ children }: { children: ReactNode }) {
   const { user } = useAuthStatus();
   const { initialize } = useSubscriptionContext();
+  const initializedRef = useRef(false);
+  const userIdRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (user && !user.isAnonymous) {
-      initialize(user.uid, user.email || undefined);
+    // Only initialize once per user
+    if (user && !user.isAnonymous && user.uid !== userIdRef.current) {
+      userIdRef.current = user.uid;
+      if (!initializedRef.current) {
+        initializedRef.current = true;
+        initialize(user.uid, user.email || undefined);
+      }
+    } else if (!user || user.isAnonymous) {
+      // Reset when user logs out
+      initializedRef.current = false;
+      userIdRef.current = null;
     }
-  }, [user, initialize]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Intentionally using specific properties to avoid re-render loops
+  }, [user?.uid, user?.isAnonymous, user?.email, initialize]);
 
   return <>{children}</>;
 }
+
+// Stable error handler
+const handleSubscriptionError = (error: Error) => {
+  console.error('[Subscription] Error:', error);
+};
 
 /**
  * Wrapper component that integrates @sudobility/subscription-components
@@ -37,7 +54,7 @@ export function SubscriptionProviderWrapper({ children }: SubscriptionProviderWr
     <SubscriptionProvider
       apiKey={REVENUECAT_API_KEY}
       entitlementId={ENTITLEMENT_ID}
-      onError={(error) => console.error('[Subscription] Error:', error)}
+      onError={handleSubscriptionError}
     >
       <SubscriptionInitializer>{children}</SubscriptionInitializer>
     </SubscriptionProvider>

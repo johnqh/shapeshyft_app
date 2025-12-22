@@ -34,8 +34,10 @@
       "description": "Description",
       "descriptionPlaceholder": "What this project does",
       "errors": {
-        "nameRequired": "Display name is required"
-      }
+        "nameRequired": "Display name is required",
+        "nameTooShort": "Name must be at least 2 characters"
+      },
+      "slugPreview": "Slug"
     }
   },
   "endpoints": {
