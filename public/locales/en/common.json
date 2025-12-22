@@ -47,6 +47,7 @@
     "loading": "Loading...",
     "error": "Error",
     "save": "Save",
+    "saving": "Saving...",
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
@@ -59,7 +60,9 @@
     "search": "Search",
     "filter": "Filter",
     "noResults": "No results found",
-    "tryAgain": "Try Again"
+    "tryAgain": "Try Again",
+    "notSet": "Not set",
+    "disabled": "Disabled"
   },
   "toast": {
     "success": {

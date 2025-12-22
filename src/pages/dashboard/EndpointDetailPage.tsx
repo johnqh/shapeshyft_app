@@ -5,6 +5,7 @@ import { useProjectsManager, useEndpointsManager, useEndpointTester, useSettings
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
+import SchemaEditor from '../../components/dashboard/SchemaEditor';
 
 function EndpointDetailPage() {
   const { projectId, endpointId } = useParams<{ projectId: string; endpointId: string }>();
@@ -15,7 +16,15 @@ function EndpointDetailPage() {
 
   const [testInput, setTestInput] = useState('');
   const [inputError, setInputError] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
   const initializedRef = useRef(false);
+
+  // Edit form state
+  const [editContext, setEditContext] = useState('');
+  const [editInputSchema, setEditInputSchema] = useState('');
+  const [editOutputSchema, setEditOutputSchema] = useState('');
+  const [useInputSchema, setUseInputSchema] = useState(false);
+  const [useOutputSchema, setUseOutputSchema] = useState(false);
 
   const { projects, isLoading: projectsLoading } = useProjectsManager({
     baseUrl,
@@ -27,7 +36,7 @@ function EndpointDetailPage() {
 
   const project = projects.find(p => p.uuid === projectId);
 
-  const { endpoints, isLoading: endpointsLoading } = useEndpointsManager({
+  const { endpoints, isLoading: endpointsLoading, updateEndpoint, isUpdating } = useEndpointsManager({
     baseUrl,
     networkClient,
     userId: userId ?? '',
@@ -65,7 +74,6 @@ function EndpointDetailPage() {
   );
 
   // Initialize test input with sample when endpoint loads (only once)
-  // This is a legitimate one-time initialization, not a cascading update
   useEffect(() => {
     if (endpoint && !initializedRef.current) {
       initializedRef.current = true;
@@ -74,6 +82,63 @@ function EndpointDetailPage() {
       setTestInput(JSON.stringify(sample, null, 2));
     }
   }, [endpoint, generateSampleInput]);
+
+  const handleStartEdit = () => {
+    if (!endpoint) return;
+    setEditContext(endpoint.context ?? '');
+    setEditInputSchema(endpoint.input_schema ? JSON.stringify(endpoint.input_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
+    setEditOutputSchema(endpoint.output_schema ? JSON.stringify(endpoint.output_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
+    setUseInputSchema(!!endpoint.input_schema);
+    setUseOutputSchema(!!endpoint.output_schema);
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
+  const handleSaveEdit = async () => {
+    if (!endpoint) return;
+
+    // Validate JSON schemas if they're being used
+    let parsedInputSchema = null;
+    let parsedOutputSchema = null;
+
+    if (useInputSchema) {
+      try {
+        parsedInputSchema = JSON.parse(editInputSchema);
+      } catch {
+        showError(t('endpoints.form.errors.invalidInputSchema'));
+        return;
+      }
+    }
+
+    if (useOutputSchema) {
+      try {
+        parsedOutputSchema = JSON.parse(editOutputSchema);
+      } catch {
+        showError(t('endpoints.form.errors.invalidOutputSchema'));
+        return;
+      }
+    }
+
+    try {
+      await updateEndpoint(endpoint.uuid, {
+        endpoint_name: endpoint.endpoint_name,
+        display_name: endpoint.display_name,
+        description: endpoint.description,
+        http_method: endpoint.http_method,
+        llm_key_id: endpoint.llm_key_id,
+        context: editContext.trim() || null,
+        input_schema: parsedInputSchema,
+        output_schema: parsedOutputSchema,
+      });
+      success(t('endpoints.updated'));
+      setIsEditing(false);
+    } catch (err) {
+      showError(err instanceof Error ? err.message : t('common.errorOccurred'));
+    }
+  };
 
   const handleGenerateSample = () => {
     if (!endpoint) return;
@@ -140,19 +205,32 @@ function EndpointDetailPage() {
   return (
     <div>
       {/* Endpoint Info */}
-      <div className="flex flex-wrap items-center gap-3 mb-6 p-4 bg-theme-bg-secondary rounded-xl">
-        <span
-          className={`px-2 py-1 text-xs font-mono font-medium rounded ${
-            endpoint.http_method === 'GET'
-              ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-              : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
-          }`}
-        >
-          {endpoint.http_method}
-        </span>
-        <code className="text-sm text-theme-text-tertiary font-mono break-all">
-          /api/v1/ai/{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
-        </code>
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 p-4 bg-theme-bg-secondary rounded-xl">
+        <div className="flex flex-wrap items-center gap-3">
+          <span
+            className={`px-2 py-1 text-xs font-mono font-medium rounded ${
+              endpoint.http_method === 'GET'
+                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+            }`}
+          >
+            {endpoint.http_method}
+          </span>
+          <code className="text-sm text-theme-text-tertiary font-mono break-all">
+            /api/v1/ai/{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
+          </code>
+        </div>
+        {!isEditing && (
+          <button
+            onClick={handleStartEdit}
+            className="px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-1"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            {t('common.edit')}
+          </button>
+        )}
       </div>
       {endpoint.description && (
         <p className="text-theme-text-secondary mb-6">{endpoint.description}</p>
@@ -166,32 +244,120 @@ function EndpointDetailPage() {
             <h3 className="font-medium text-theme-text-primary mb-2">
               {t('endpoints.detail.context')}
             </h3>
-            <p className="text-sm text-theme-text-secondary whitespace-pre-wrap">
-              {endpoint.context}
-            </p>
+            {isEditing ? (
+              <textarea
+                value={editContext}
+                onChange={e => setEditContext(e.target.value)}
+                rows={6}
+                placeholder={t('endpoints.form.contextPlaceholder')}
+                className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+              />
+            ) : (
+              <p className="text-sm text-theme-text-secondary whitespace-pre-wrap">
+                {endpoint.context || <span className="italic text-theme-text-tertiary">{t('common.notSet')}</span>}
+              </p>
+            )}
           </div>
 
           {/* Input Schema */}
-          {endpoint.input_schema && (
-            <div className="p-4 bg-theme-bg-secondary rounded-xl">
-              <h3 className="font-medium text-theme-text-primary mb-2">
+          <div className="p-4 bg-theme-bg-secondary rounded-xl">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-medium text-theme-text-primary">
                 {t('endpoints.detail.inputSchema')}
               </h3>
+              {isEditing && (
+                <label className="flex items-center gap-2 text-sm text-theme-text-secondary">
+                  <input
+                    type="checkbox"
+                    checked={useInputSchema}
+                    onChange={e => setUseInputSchema(e.target.checked)}
+                    className="rounded"
+                  />
+                  {t('endpoints.form.useInputSchema')}
+                </label>
+              )}
+            </div>
+            {isEditing ? (
+              useInputSchema ? (
+                <SchemaEditor
+                  value={editInputSchema}
+                  onChange={setEditInputSchema}
+                />
+              ) : (
+                <p className="text-sm text-theme-text-tertiary italic">{t('common.disabled')}</p>
+              )
+            ) : endpoint.input_schema ? (
               <pre className="text-sm bg-theme-bg-tertiary p-3 rounded-lg overflow-auto font-mono max-h-48">
                 {JSON.stringify(endpoint.input_schema, null, 2)}
               </pre>
-            </div>
-          )}
+            ) : (
+              <p className="text-sm text-theme-text-tertiary italic">{t('common.notSet')}</p>
+            )}
+          </div>
 
           {/* Output Schema */}
-          {endpoint.output_schema && (
-            <div className="p-4 bg-theme-bg-secondary rounded-xl">
-              <h3 className="font-medium text-theme-text-primary mb-2">
+          <div className="p-4 bg-theme-bg-secondary rounded-xl">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-medium text-theme-text-primary">
                 {t('endpoints.detail.outputSchema')}
               </h3>
+              {isEditing && (
+                <label className="flex items-center gap-2 text-sm text-theme-text-secondary">
+                  <input
+                    type="checkbox"
+                    checked={useOutputSchema}
+                    onChange={e => setUseOutputSchema(e.target.checked)}
+                    className="rounded"
+                  />
+                  {t('endpoints.form.useOutputSchema')}
+                </label>
+              )}
+            </div>
+            {isEditing ? (
+              useOutputSchema ? (
+                <SchemaEditor
+                  value={editOutputSchema}
+                  onChange={setEditOutputSchema}
+                />
+              ) : (
+                <p className="text-sm text-theme-text-tertiary italic">{t('common.disabled')}</p>
+              )
+            ) : endpoint.output_schema ? (
               <pre className="text-sm bg-theme-bg-tertiary p-3 rounded-lg overflow-auto font-mono max-h-48">
                 {JSON.stringify(endpoint.output_schema, null, 2)}
               </pre>
+            ) : (
+              <p className="text-sm text-theme-text-tertiary italic">{t('common.notSet')}</p>
+            )}
+          </div>
+
+          {/* Edit Actions */}
+          {isEditing && (
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={handleCancelEdit}
+                disabled={isUpdating}
+                className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
+              >
+                {t('common.cancel')}
+              </button>
+              <button
+                onClick={handleSaveEdit}
+                disabled={isUpdating}
+                className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              >
+                {isUpdating ? (
+                  <span className="flex items-center gap-2">
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    {t('common.saving')}
+                  </span>
+                ) : (
+                  t('common.save')
+                )}
+              </button>
             </div>
           )}
         </div>

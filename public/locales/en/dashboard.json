@@ -49,6 +49,7 @@
     "test": "Test",
     "notFound": "Endpoint not found",
     "backToProject": "Back to project",
+    "updated": "Endpoint updated successfully",
     "confirmDelete": "Are you sure you want to delete this endpoint?",
     "card": {
       "method": "Method",
