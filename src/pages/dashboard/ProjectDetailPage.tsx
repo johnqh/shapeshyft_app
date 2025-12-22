@@ -151,31 +151,17 @@ function ProjectDetailPage() {
 
   return (
     <div>
-      {/* Breadcrumb */}
-      <button
-        onClick={() => navigate('/dashboard')}
-        className="flex items-center gap-1 text-sm text-theme-text-secondary hover:text-theme-text-primary mb-6"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-        {t('projects.backToProjects')}
-      </button>
-
-      {/* Project Header */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-8">
+      {/* Project Info */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 p-4 bg-theme-bg-secondary rounded-xl">
         <div className="min-w-0">
-          <h2 className="text-2xl font-bold text-theme-text-primary mb-1 truncate">
-            {project.display_name}
-          </h2>
-          <p className="text-sm text-theme-text-tertiary font-mono truncate">{project.project_name}</p>
+          <p className="text-sm text-theme-text-tertiary font-mono truncate mb-1">{project.project_name}</p>
           {project.description && (
-            <p className="mt-2 text-theme-text-secondary">{project.description}</p>
+            <p className="text-sm text-theme-text-secondary">{project.description}</p>
           )}
         </div>
         <button
           onClick={() => setShowEditProject(true)}
-          className="flex-shrink-0 px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors"
+          className="flex-shrink-0 px-3 py-1.5 text-sm border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors"
         >
           {t('common.edit')}
         </button>
@@ -186,7 +172,7 @@ function ProjectDetailPage() {
         <h3 className="text-lg font-semibold text-theme-text-primary">{t('endpoints.title')}</h3>
         <button
           onClick={() => setShowCreateEndpoint(true)}
-          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
+          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm"
         >
           {t('endpoints.create')}
         </button>

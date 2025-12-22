@@ -75,5 +75,20 @@
       "notFound": "The requested resource was not found.",
       "validation": "Please check your input and try again."
     }
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "docs": "Documentation",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "projectDetail": "Project",
+    "endpoints": "Endpoints",
+    "endpointDetail": "Endpoint",
+    "apiKeys": "API Keys",
+    "analytics": "Analytics",
+    "budgets": "Budgets",
+    "subscription": "Subscription",
+    "settings": "Settings"
   }
 }

@@ -1,57 +1,145 @@
-import { Outlet, NavLink, useParams } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { MasterDetailLayout } from '@sudobility/components';
+import { useProjectsManager, useKeysManager, useEndpointsManager } from '@sudobility/shapeshyft_lib';
 import ScreenContainer from '../../components/layout/ScreenContainer';
-import { isLanguageSupported } from '../../config/constants';
+import DashboardMasterList from '../../components/dashboard/DashboardMasterList';
+import { useApi } from '../../hooks/useApi';
+import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 
 function DashboardPage() {
   const { t } = useTranslation('dashboard');
-  const { lang } = useParams<{ lang: string }>();
-  const currentLang = lang && isLanguageSupported(lang) ? lang : 'en';
+  const location = useLocation();
+  const { navigate } = useLocalizedNavigate();
+  const { projectId, endpointId } = useParams<{ projectId: string; endpointId: string }>();
+  const { networkClient, baseUrl, userId, token, isReady } = useApi();
 
-  const navItems = [
-    { label: t('navigation.projects'), path: `/${currentLang}/dashboard` },
-    { label: t('navigation.apiKeys'), path: `/${currentLang}/dashboard/keys` },
-    { label: t('navigation.analytics'), path: `/${currentLang}/dashboard/analytics` },
-    { label: t('navigation.budgets'), path: `/${currentLang}/dashboard/budgets` },
-    { label: t('navigation.subscription'), path: `/${currentLang}/dashboard/subscription` },
-    { label: t('navigation.settings'), path: `/${currentLang}/dashboard/settings` },
-  ];
+  // Mobile view state
+  const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
+
+  // Animation ref
+  const animationRef = useRef<{ triggerTransition: (onContentChange: () => void) => void } | null>(null);
+
+  // Fetch projects and keys for the master list
+  const { projects } = useProjectsManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  const { keys } = useKeysManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  // Fetch endpoints for the current project (for detail title)
+  const { endpoints } = useEndpointsManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    projectId: projectId ?? '',
+    autoFetch: isReady && !!projectId,
+  });
+
+  // Determine detail title based on current route
+  const getDetailTitle = () => {
+    const pathname = location.pathname;
+
+    if (pathname.includes('/endpoints/') && endpointId) {
+      const endpoint = endpoints.find(e => e.uuid === endpointId);
+      return endpoint?.display_name ?? t('endpoints.detail');
+    }
+    if (pathname.includes('/projects/') && projectId) {
+      const project = projects.find(p => p.uuid === projectId);
+      return project?.display_name ?? t('projects.detail');
+    }
+    if (pathname.includes('/keys')) {
+      return t('keys.title');
+    }
+    if (pathname.includes('/analytics')) {
+      return t('analytics.title');
+    }
+    if (pathname.includes('/budgets')) {
+      return t('budgets.title');
+    }
+    if (pathname.includes('/subscription')) {
+      return t('subscription.title');
+    }
+    if (pathname.includes('/settings')) {
+      return t('settings.title');
+    }
+    return t('projects.title');
+  };
+
+  // Auto-switch to content view when navigating on mobile
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      // Show content view when we're on a specific route
+      const pathname = location.pathname;
+      const hasSpecificContent = pathname.includes('/projects/') ||
+                                  pathname.includes('/keys') ||
+                                  pathname.includes('/analytics') ||
+                                  pathname.includes('/budgets') ||
+                                  pathname.includes('/subscription') ||
+                                  pathname.includes('/settings');
+      if (hasSpecificContent) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setMobileView('content');
+      }
+    }
+  }, [location.pathname]);
+
+  const handleBackToNavigation = () => {
+    setMobileView('navigation');
+    navigate('/dashboard');
+  };
+
+  const handleNavigate = () => {
+    setMobileView('content');
+  };
+
+  // Master content (navigation sidebar)
+  const masterContent = (
+    <DashboardMasterList
+      projects={projects}
+      keys={keys}
+      onNavigate={handleNavigate}
+    />
+  );
+
+  // Detail content
+  const detailContent = (
+    <div className="min-h-[400px]">
+      <Outlet />
+    </div>
+  );
 
   return (
-    <ScreenContainer footerVariant="compact" showFooter={true}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Dashboard Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-theme-text-primary">
-            {t('title')}
-          </h1>
-        </div>
-
-        {/* Tab Navigation */}
-        <div className="border-b border-theme-border mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
-          <nav className="flex gap-4 sm:gap-8 -mb-px overflow-x-auto scrollbar-hide">
-            {navItems.map(item => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                end={item.path === `/${currentLang}/dashboard`}
-                className={({ isActive }) =>
-                  `pb-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${
-                    isActive
-                      ? 'border-blue-600 text-blue-600'
-                      : 'border-transparent text-theme-text-secondary hover:text-theme-text-primary hover:border-theme-border'
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
-
-        {/* Content */}
-        <Outlet />
-      </div>
+    <ScreenContainer footerVariant="compact" showFooter={true} showBreadcrumbs={true}>
+      <main className="flex-1">
+        <MasterDetailLayout
+          masterTitle={t('title')}
+          backButtonText={t('title')}
+          masterContent={masterContent}
+          detailContent={detailContent}
+          detailTitle={getDetailTitle()}
+          mobileView={mobileView}
+          onBackToNavigation={handleBackToNavigation}
+          animationRef={animationRef}
+          enableAnimations={true}
+          animationDuration={150}
+          masterWidth={280}
+          stickyTopOffset={80}
+        />
+      </main>
     </ScreenContainer>
   );
 }

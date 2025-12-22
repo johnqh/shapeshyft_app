@@ -139,40 +139,24 @@ function EndpointDetailPage() {
 
   return (
     <div>
-      {/* Breadcrumb */}
-      <button
-        onClick={() => navigate(`/dashboard/projects/${projectId}`)}
-        className="flex items-center gap-1 text-sm text-theme-text-secondary hover:text-theme-text-primary mb-6"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-        {t('endpoints.backToProject')}
-      </button>
-
-      {/* Endpoint Header */}
-      <div className="flex justify-between items-start mb-8">
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <h2 className="text-2xl font-bold text-theme-text-primary">{endpoint.display_name}</h2>
-            <span
-              className={`px-2 py-1 text-xs font-mono font-medium rounded ${
-                endpoint.http_method === 'GET'
-                  ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                  : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
-              }`}
-            >
-              {endpoint.http_method}
-            </span>
-          </div>
-          <p className="text-sm text-theme-text-tertiary font-mono mb-2">
-            /api/v1/ai/{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
-          </p>
-          {endpoint.description && (
-            <p className="text-theme-text-secondary">{endpoint.description}</p>
-          )}
-        </div>
+      {/* Endpoint Info */}
+      <div className="flex flex-wrap items-center gap-3 mb-6 p-4 bg-theme-bg-secondary rounded-xl">
+        <span
+          className={`px-2 py-1 text-xs font-mono font-medium rounded ${
+            endpoint.http_method === 'GET'
+              ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+              : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+          }`}
+        >
+          {endpoint.http_method}
+        </span>
+        <code className="text-sm text-theme-text-tertiary font-mono break-all">
+          /api/v1/ai/{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
+        </code>
       </div>
+      {endpoint.description && (
+        <p className="text-theme-text-secondary mb-6">{endpoint.description}</p>
+      )}
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Configuration */}
