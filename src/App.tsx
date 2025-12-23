@@ -12,11 +12,14 @@ import ToastContainer from './components/ui/ToastContainer';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
 const PricingPage = lazy(() => import('./pages/PricingPage'));
 const DocsPage = lazy(() => import('./pages/DocsPage'));
 const DashboardPage = lazy(() => import('./pages/dashboard/DashboardPage'));
 const ProjectsPage = lazy(() => import('./pages/dashboard/ProjectsPage'));
+const ProjectNewPage = lazy(() => import('./pages/dashboard/ProjectNewPage'));
 const ProjectDetailPage = lazy(() => import('./pages/dashboard/ProjectDetailPage'));
+const EndpointNewPage = lazy(() => import('./pages/dashboard/EndpointNewPage'));
 const EndpointDetailPage = lazy(() => import('./pages/dashboard/EndpointDetailPage'));
 const KeysPage = lazy(() => import('./pages/dashboard/KeysPage'));
 const AnalyticsPage = lazy(() => import('./pages/dashboard/AnalyticsPage'));
@@ -65,6 +68,7 @@ function App() {
                     <Route path="/:lang" element={<LanguageValidator />}>
                       {/* Public pages */}
                       <Route index element={<HomePage />} />
+                      <Route path="login" element={<LoginPage />} />
                       <Route path="pricing" element={<PricingPage />} />
                       <Route path="docs" element={<DocsPage />} />
                       <Route path="docs/:section" element={<DocsPage />} />
@@ -79,7 +83,9 @@ function App() {
                         }
                       >
                         <Route index element={<ProjectsPage />} />
+                        <Route path="projects/new" element={<ProjectNewPage />} />
                         <Route path="projects/:projectId" element={<ProjectDetailPage />} />
+                        <Route path="projects/:projectId/endpoints/new" element={<EndpointNewPage />} />
                         <Route
                           path="projects/:projectId/endpoints/:endpointId"
                           element={<EndpointDetailPage />}

@@ -2,12 +2,9 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager, useEndpointsManager, useSettingsManager } from '@sudobility/shapeshyft_lib';
-import type { EndpointUpdateRequest, HttpMethod, JsonSchema } from '@sudobility/shapeshyft_types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
-import ProjectForm from '../../components/dashboard/ProjectForm';
-import EndpointForm from '../../components/dashboard/EndpointForm';
 
 function ProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>();
@@ -16,9 +13,11 @@ function ProjectDetailPage() {
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
   const { success, error: showError } = useToast();
 
-  const [showEditProject, setShowEditProject] = useState(false);
-  const [showCreateEndpoint, setShowCreateEndpoint] = useState(false);
-  const [editingEndpoint, setEditingEndpoint] = useState<string | null>(null);
+  // Inline editing state for project
+  const [isEditingProject, setIsEditingProject] = useState(false);
+  const [editDisplayName, setEditDisplayName] = useState('');
+  const [editDescription, setEditDescription] = useState('');
+  const [isSavingProject, setIsSavingProject] = useState(false);
 
   const {
     projects,
@@ -38,8 +37,6 @@ function ProjectDetailPage() {
     endpoints,
     isLoading: endpointsLoading,
     error,
-    createEndpoint,
-    updateEndpoint,
     deleteEndpoint,
     refresh,
     clearError,
@@ -63,20 +60,35 @@ function ProjectDetailPage() {
   // Get organization path - use settings value or fallback to first 8 chars of userId
   const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
 
-  const handleUpdateProject = async (data: { display_name: string; description?: string }) => {
-    if (!projectId) return;
+  const handleStartEditProject = () => {
+    if (project) {
+      setEditDisplayName(project.display_name);
+      setEditDescription(project.description || '');
+      setIsEditingProject(true);
+    }
+  };
+
+  const handleSaveProject = async () => {
+    if (!projectId || !editDisplayName.trim()) return;
+    setIsSavingProject(true);
     try {
       await updateProject(projectId, {
         project_name: undefined,
-        display_name: data.display_name,
-        description: data.description ?? null,
+        display_name: editDisplayName.trim(),
+        description: editDescription.trim() || null,
         is_active: undefined,
       });
-      setShowEditProject(false);
+      setIsEditingProject(false);
       success(t('common:toast.success.saved'));
     } catch (err) {
       showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+    } finally {
+      setIsSavingProject(false);
     }
+  };
+
+  const handleCancelEditProject = () => {
+    setIsEditingProject(false);
   };
 
   const handleDeleteEndpoint = async (endpointId: string) => {
@@ -152,26 +164,75 @@ function ProjectDetailPage() {
   return (
     <div>
       {/* Project Info */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 p-4 bg-theme-bg-secondary rounded-xl">
-        <div className="min-w-0">
-          <p className="text-sm text-theme-text-tertiary font-mono truncate mb-1">{project.project_name}</p>
-          {project.description && (
-            <p className="text-sm text-theme-text-secondary">{project.description}</p>
-          )}
-        </div>
-        <button
-          onClick={() => setShowEditProject(true)}
-          className="flex-shrink-0 px-3 py-1.5 text-sm border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors"
-        >
-          {t('common.edit')}
-        </button>
+      <div className="mb-6 p-4 bg-theme-bg-secondary rounded-xl">
+        {isEditingProject ? (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                {t('projects.form.displayName')}
+              </label>
+              <input
+                type="text"
+                value={editDisplayName}
+                onChange={e => setEditDisplayName(e.target.value)}
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                autoFocus
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                {t('projects.form.description')}{' '}
+                <span className="text-theme-text-tertiary">({t('common.optional')})</span>
+              </label>
+              <textarea
+                value={editDescription}
+                onChange={e => setEditDescription(e.target.value)}
+                rows={2}
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+              />
+            </div>
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={handleCancelEditProject}
+                disabled={isSavingProject}
+                className="px-3 py-1.5 text-sm border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
+              >
+                {t('common.cancel')}
+              </button>
+              <button
+                type="button"
+                onClick={handleSaveProject}
+                disabled={isSavingProject || !editDisplayName.trim()}
+                className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              >
+                {isSavingProject ? t('common.saving') : t('common.save')}
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+            <div className="min-w-0">
+              <p className="text-sm text-theme-text-tertiary font-mono truncate mb-1">{project.project_name}</p>
+              {project.description && (
+                <p className="text-sm text-theme-text-secondary">{project.description}</p>
+              )}
+            </div>
+            <button
+              onClick={handleStartEditProject}
+              className="flex-shrink-0 px-3 py-1.5 text-sm border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors"
+            >
+              {t('common.edit')}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Endpoints Section */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <h3 className="text-lg font-semibold text-theme-text-primary">{t('endpoints.title')}</h3>
         <button
-          onClick={() => setShowCreateEndpoint(true)}
+          onClick={() => navigate(`/dashboard/projects/${projectId}/endpoints/new`)}
           className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm"
         >
           {t('endpoints.create')}
@@ -210,28 +271,9 @@ function ProjectDetailPage() {
                 </div>
                 <div className="flex items-center justify-end gap-4 ml-11 sm:ml-0">
                   <div
-                    className="flex items-center gap-2 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+                    className="sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                     onClick={e => e.stopPropagation()}
                   >
-                    <button
-                      onClick={() => setEditingEndpoint(endpoint.uuid)}
-                      className="p-1 hover:bg-theme-hover-bg rounded"
-                      title={t('common.edit')}
-                    >
-                      <svg
-                        className="w-4 h-4 text-theme-text-secondary"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                        />
-                      </svg>
-                    </button>
                     <button
                       onClick={() => handleDeleteEndpoint(endpoint.uuid)}
                       className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded"
@@ -266,64 +308,6 @@ function ProjectDetailPage() {
             </div>
           ))}
         </div>
-      )}
-
-      {/* Edit Project Modal */}
-      {showEditProject && (
-        <ProjectForm
-          project={project}
-          onSubmit={handleUpdateProject}
-          onClose={() => setShowEditProject(false)}
-          isLoading={projectsLoading}
-        />
-      )}
-
-      {/* Create Endpoint Modal */}
-      {showCreateEndpoint && (
-        <EndpointForm
-          projectId={projectId!}
-          onSubmit={async data => {
-            try {
-              await createEndpoint(data);
-              setShowCreateEndpoint(false);
-              success(t('common:toast.success.created'));
-            } catch (err) {
-              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
-            }
-          }}
-          onClose={() => setShowCreateEndpoint(false)}
-          isLoading={endpointsLoading}
-        />
-      )}
-
-      {/* Edit Endpoint Modal */}
-      {editingEndpoint && (
-        <EndpointForm
-          projectId={projectId!}
-          endpoint={endpoints.find(e => e.uuid === editingEndpoint)}
-          onSubmit={async data => {
-            try {
-              const updateData: EndpointUpdateRequest = {
-                endpoint_name: data.endpoint_name,
-                display_name: data.display_name,
-                http_method: data.http_method as HttpMethod | undefined,
-                llm_key_id: data.llm_key_id,
-                input_schema: data.input_schema as JsonSchema | undefined | null,
-                output_schema: data.output_schema as JsonSchema | undefined | null,
-                description: data.description,
-                context: data.context,
-                is_active: undefined,
-              };
-              await updateEndpoint(editingEndpoint, updateData);
-              setEditingEndpoint(null);
-              success(t('common:toast.success.saved'));
-            } catch (err) {
-              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
-            }
-          }}
-          onClose={() => setEditingEndpoint(null)}
-          isLoading={endpointsLoading}
-        />
       )}
     </div>
   );

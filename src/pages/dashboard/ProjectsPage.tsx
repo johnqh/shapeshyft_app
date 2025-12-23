@@ -5,7 +5,6 @@ import { ShapeshyftClient } from '@sudobility/shapeshyft_client';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
-import ProjectForm from '../../components/dashboard/ProjectForm';
 import TemplateSelector from '../../components/dashboard/TemplateSelector';
 
 function ProjectsPage() {
@@ -14,9 +13,7 @@ function ProjectsPage() {
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
   const { success, error: showError } = useToast();
 
-  const [showCreateModal, setShowCreateModal] = useState(false);
   const [showTemplateModal, setShowTemplateModal] = useState(false);
-  const [editingProject, setEditingProject] = useState<string | null>(null);
 
   const {
     projects,
@@ -36,43 +33,6 @@ function ProjectsPage() {
   });
 
   const { templates, applyTemplate } = useProjectTemplates();
-
-  const handleCreateProject = async (data: { display_name: string; description?: string }) => {
-    const projectName = data.display_name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-
-    try {
-      await createProject({
-        project_name: projectName,
-        display_name: data.display_name,
-        description: data.description ?? null,
-      });
-      setShowCreateModal(false);
-      success(t('common:toast.success.created'));
-    } catch (err) {
-      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
-    }
-  };
-
-  const handleUpdateProject = async (
-    projectId: string,
-    data: { display_name: string; description?: string }
-  ) => {
-    try {
-      await updateProject(projectId, {
-        project_name: undefined,
-        display_name: data.display_name,
-        description: data.description ?? null,
-        is_active: undefined,
-      });
-      setEditingProject(null);
-      success(t('common:toast.success.saved'));
-    } catch (err) {
-      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
-    }
-  };
 
   const handleDeleteProject = async (projectId: string) => {
     if (confirm(t('projects.confirmDelete'))) {
@@ -164,7 +124,7 @@ function ProjectsPage() {
       {/* Action Buttons */}
       <div className="flex gap-3 mb-6">
         <button
-          onClick={() => setShowCreateModal(true)}
+          onClick={() => navigate('/dashboard/projects/new')}
           className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm"
         >
           {t('projects.create')}
@@ -232,25 +192,6 @@ function ProjectsPage() {
                     onClick={e => e.stopPropagation()}
                   >
                     <button
-                      onClick={() => setEditingProject(project.uuid)}
-                      className="p-1 hover:bg-theme-hover-bg rounded"
-                      title={t('common.edit')}
-                    >
-                      <svg
-                        className="w-4 h-4 text-theme-text-secondary"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                        />
-                      </svg>
-                    </button>
-                    <button
                       onClick={() => handleDeleteProject(project.uuid)}
                       className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded"
                       title={t('common.delete')}
@@ -287,25 +228,6 @@ function ProjectsPage() {
             </div>
           ))}
         </div>
-      )}
-
-      {/* Create Project Modal */}
-      {showCreateModal && (
-        <ProjectForm
-          onSubmit={handleCreateProject}
-          onClose={() => setShowCreateModal(false)}
-          isLoading={isLoading}
-        />
-      )}
-
-      {/* Edit Project Modal */}
-      {editingProject && (
-        <ProjectForm
-          project={projects.find(p => p.uuid === editingProject)}
-          onSubmit={data => handleUpdateProject(editingProject, data)}
-          onClose={() => setEditingProject(null)}
-          isLoading={isLoading}
-        />
       )}
 
       {/* Template Selector Modal */}

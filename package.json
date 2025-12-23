@@ -21,7 +21,7 @@
     "@sudobility/di": "^1.5.5",
     "@sudobility/shapeshyft_client": "file:../shapeshyft_client",
     "@sudobility/shapeshyft_lib": "file:../shapeshyft_lib",
-    "@sudobility/shapeshyft_types": "^1.0.4",
+    "@sudobility/shapeshyft_types": "^1.0.5",
     "@sudobility/subscription-components": "^1.0.0",
     "@sudobility/types": "^1.9.31",
     "@tanstack/react-query": "^5.90.5",

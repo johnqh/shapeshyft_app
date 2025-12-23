@@ -8,10 +8,9 @@ import {
   TopbarNavigation,
   TopbarLogo,
   TopbarActions,
-  Logo,
   type TopbarNavItem,
 } from '@sudobility/components';
-import { AuthModal, AuthAction, useAuthStatus } from '@sudobility/auth-components';
+import { AuthAction, useAuthStatus } from '@sudobility/auth-components';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { CONSTANTS, SUPPORTED_LANGUAGES, isLanguageSupported } from '../../config/constants';
 import LocalizedLink from './LocalizedLink';
@@ -97,7 +96,7 @@ function TopBar({ variant = 'default' }: TopBarProps) {
               LinkComponent={LinkWrapper}
             >
               <TopbarLogo onClick={handleLogoClick}>
-                <Logo size="md" logoText={CONSTANTS.APP_NAME} />
+                <img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-8" />
               </TopbarLogo>
             </TopbarNavigation>
           </TopbarLeft>
@@ -156,14 +155,15 @@ function TopBar({ variant = 'default' }: TopBarProps) {
               </div>
 
               {/* Auth Action (handles login button and user dropdown) */}
-              <AuthAction avatarSize={32} dropdownAlign="right" />
+              <AuthAction
+                avatarSize={32}
+                dropdownAlign="right"
+                onLoginClick={() => navigate('/login')}
+              />
             </TopbarActions>
           </TopbarRight>
         </Topbar>
       </TopbarProvider>
-
-      {/* Auth Modal */}
-      <AuthModal />
     </>
   );
 }

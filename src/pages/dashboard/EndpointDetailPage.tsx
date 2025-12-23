@@ -21,6 +21,8 @@ function EndpointDetailPage() {
   const initializedRef = useRef(false);
 
   // Edit form state
+  const [editDisplayName, setEditDisplayName] = useState('');
+  const [editInstructions, setEditInstructions] = useState('');
   const [editContext, setEditContext] = useState('');
   const [editInputSchema, setEditInputSchema] = useState('');
   const [editOutputSchema, setEditOutputSchema] = useState('');
@@ -91,6 +93,8 @@ function EndpointDetailPage() {
 
   const handleStartEdit = () => {
     if (!endpoint) return;
+    setEditDisplayName(endpoint.display_name);
+    setEditInstructions(endpoint.instructions ?? '');
     setEditContext(endpoint.context ?? '');
     setEditInputSchema(endpoint.input_schema ? JSON.stringify(endpoint.input_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
     setEditOutputSchema(endpoint.output_schema ? JSON.stringify(endpoint.output_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
@@ -132,8 +136,8 @@ function EndpointDetailPage() {
     try {
       const updated = await updateEndpoint(endpoint.uuid, {
         endpoint_name: endpoint.endpoint_name,
-        display_name: endpoint.display_name,
-        description: endpoint.description,
+        display_name: editDisplayName.trim(),
+        instructions: editInstructions.trim() || null,
         http_method: endpoint.http_method,
         llm_key_id: endpoint.llm_key_id,
         context: editContext.trim() || null,
@@ -276,9 +280,37 @@ function EndpointDetailPage() {
           </button>
         )}
       </div>
-      {endpoint.description && (
-        <p className="text-theme-text-secondary mb-6">{endpoint.description}</p>
-      )}
+
+      {/* Description - editable */}
+      {isEditing ? (
+        <div className="mb-6 space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-theme-text-primary mb-1">
+              {t('endpoints.form.displayName')}
+            </label>
+            <input
+              type="text"
+              value={editDisplayName}
+              onChange={e => setEditDisplayName(e.target.value)}
+              className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-theme-text-primary mb-1">
+              {t('endpoints.form.instructions')}
+            </label>
+            <textarea
+              value={editInstructions}
+              onChange={e => setEditInstructions(e.target.value)}
+              rows={3}
+              placeholder={t('endpoints.form.instructionsPlaceholder')}
+              className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+            />
+          </div>
+        </div>
+      ) : endpoint.instructions ? (
+        <p className="text-theme-text-secondary mb-6">{endpoint.instructions}</p>
+      ) : null}
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Configuration */}

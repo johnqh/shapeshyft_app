@@ -31,7 +31,7 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
 
   const [displayName, setDisplayName] = useState(endpoint?.display_name ?? '');
   const [endpointName, setEndpointName] = useState(endpoint?.endpoint_name ?? '');
-  const [description, setDescription] = useState(endpoint?.description ?? '');
+  const [instructions, setInstructions] = useState(endpoint?.instructions ?? '');
   const [httpMethod, setHttpMethod] = useState<HttpMethod>(endpoint?.http_method ?? 'POST');
   const [llmKeyId, setLlmKeyId] = useState(endpoint?.llm_key_id ?? '');
   const [context, setContext] = useState(endpoint?.context ?? '');
@@ -171,7 +171,7 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
       await onSubmit({
         endpoint_name: endpointName.trim(),
         display_name: displayName.trim(),
-        description: description.trim() || null,
+        instructions: instructions.trim() || null,
         http_method: httpMethod,
         llm_key_id: llmKeyId,
         context: context.trim() || null,
@@ -276,18 +276,18 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
                 {renderError('endpointName')}
               </div>
 
-              {/* Description */}
+              {/* Instructions */}
               <div>
                 <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                  {t('endpoints.form.description')}{' '}
+                  {t('endpoints.form.instructions')}{' '}
                   <span className="text-theme-text-tertiary">({t('common.optional')})</span>
                 </label>
-                <input
-                  type="text"
-                  value={description}
-                  onChange={e => setDescription(e.target.value)}
-                  placeholder={t('endpoints.form.descriptionPlaceholder')}
-                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                <textarea
+                  value={instructions}
+                  onChange={e => setInstructions(e.target.value)}
+                  placeholder={t('endpoints.form.instructionsPlaceholder')}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
                 />
               </div>
 

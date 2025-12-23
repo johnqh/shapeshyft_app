@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 }
 
 function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { user, loading, openModal } = useAuthStatus();
+  const { user, loading } = useAuthStatus();
   const navigate = useNavigate();
   const { lang } = useParams<{ lang: string }>();
 
@@ -16,11 +16,10 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      // Open auth modal and redirect to home
-      openModal();
-      navigate(`/${lang || 'en'}`, { replace: true });
+      // Redirect to login page
+      navigate(`/${lang || 'en'}/login`, { replace: true });
     }
-  }, [isAuthenticated, loading, openModal, navigate, lang]);
+  }, [isAuthenticated, loading, navigate, lang]);
 
   // Show loading while checking auth
   if (loading) {

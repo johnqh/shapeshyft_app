@@ -11,7 +11,6 @@ import {
   FooterCompactRight,
   FooterVersion,
   FooterCopyright,
-  Logo,
 } from '@sudobility/components';
 import { CONSTANTS } from '../../config/constants';
 import LocalizedLink from './LocalizedLink';
@@ -56,7 +55,7 @@ function Footer({ variant = 'full' }: FooterProps) {
       <FooterGrid>
         <FooterBrand description="Transform LLM outputs into structured APIs. Build reliable AI-powered endpoints with schema validation.">
           <LocalizedLink to="/">
-            <Logo size="md" showText={true} logoText={CONSTANTS.APP_NAME} />
+            <img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-8" />
           </LocalizedLink>
         </FooterBrand>
 

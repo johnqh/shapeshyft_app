@@ -57,6 +57,7 @@
     },
     "detail": {
       "type": "Endpoint Type",
+      "instructions": "Instructions",
       "context": "System Context",
       "inputSchema": "Input Schema",
       "outputSchema": "Output Schema"
@@ -68,8 +69,8 @@
       "endpointNamePlaceholder": "my-endpoint",
       "displayName": "Display Name",
       "displayNamePlaceholder": "My Endpoint",
-      "description": "Description",
-      "descriptionPlaceholder": "What this endpoint does",
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "Task instructions for the LLM",
       "httpMethod": "HTTP Method",
       "llmKey": "LLM API Key",
       "selectKey": "Select an API key",
