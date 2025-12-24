@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
-import { ShapeshyftClient } from '@sudobility/shapeshyft_client';
+import { useProjectsManager } from '@sudobility/shapeshyft_lib';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
-import TemplateSelector from '../../components/dashboard/TemplateSelector';
 
 function ProjectsPage() {
   const { t } = useTranslation(['dashboard', 'common']);
@@ -13,14 +10,10 @@ function ProjectsPage() {
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
   const { success, error: showError } = useToast();
 
-  const [showTemplateModal, setShowTemplateModal] = useState(false);
-
   const {
     projects,
     isLoading,
     error,
-    createProject,
-    updateProject,
     deleteProject,
     refresh,
     clearError,
@@ -32,42 +25,11 @@ function ProjectsPage() {
     autoFetch: isReady,
   });
 
-  const { templates, applyTemplate } = useProjectTemplates();
-
   const handleDeleteProject = async (projectId: string) => {
     if (confirm(t('projects.confirmDelete'))) {
       try {
         await deleteProject(projectId);
         success(t('common:toast.success.deleted'));
-      } catch (err) {
-        showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
-      }
-    }
-  };
-
-  const handleApplyTemplate = async (
-    templateId: string,
-    projectName: string,
-    llmKeyId: string
-  ) => {
-    const result = applyTemplate(templateId, projectName, llmKeyId);
-    if (result && userId && token) {
-      try {
-        // Create the project first
-        const project = await createProject(result.project);
-        if (!project) {
-          throw new Error('Failed to create project');
-        }
-
-        // Create endpoints using the client
-        const client = new ShapeshyftClient({ networkClient, baseUrl });
-        for (const endpointData of result.endpoints) {
-          await client.createEndpoint(userId, project.uuid, endpointData, token);
-        }
-
-        setShowTemplateModal(false);
-        refresh();
-        success(t('common:toast.success.created'));
       } catch (err) {
         showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
       }
@@ -130,7 +92,7 @@ function ProjectsPage() {
           {t('projects.create')}
         </button>
         <button
-          onClick={() => setShowTemplateModal(true)}
+          onClick={() => navigate('/dashboard/projects/templates')}
           className="px-4 py-2 border border-theme-border text-theme-text-primary font-medium rounded-lg hover:bg-theme-hover-bg transition-colors text-sm"
         >
           {t('projects.useTemplate')}
@@ -228,15 +190,6 @@ function ProjectsPage() {
             </div>
           ))}
         </div>
-      )}
-
-      {/* Template Selector Modal */}
-      {showTemplateModal && (
-        <TemplateSelector
-          templates={templates}
-          onApply={handleApplyTemplate}
-          onClose={() => setShowTemplateModal(false)}
-        />
       )}
     </div>
   );

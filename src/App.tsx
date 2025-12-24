@@ -18,6 +18,7 @@ const DocsPage = lazy(() => import('./pages/DocsPage'));
 const DashboardPage = lazy(() => import('./pages/dashboard/DashboardPage'));
 const ProjectsPage = lazy(() => import('./pages/dashboard/ProjectsPage'));
 const ProjectNewPage = lazy(() => import('./pages/dashboard/ProjectNewPage'));
+const TemplatesPage = lazy(() => import('./pages/dashboard/TemplatesPage'));
 const ProjectDetailPage = lazy(() => import('./pages/dashboard/ProjectDetailPage'));
 const EndpointNewPage = lazy(() => import('./pages/dashboard/EndpointNewPage'));
 const EndpointDetailPage = lazy(() => import('./pages/dashboard/EndpointDetailPage'));
@@ -84,6 +85,7 @@ function App() {
                       >
                         <Route index element={<ProjectsPage />} />
                         <Route path="projects/new" element={<ProjectNewPage />} />
+                        <Route path="projects/templates" element={<TemplatesPage />} />
                         <Route path="projects/:projectId" element={<ProjectDetailPage />} />
                         <Route path="projects/:projectId/endpoints/new" element={<EndpointNewPage />} />
                         <Route

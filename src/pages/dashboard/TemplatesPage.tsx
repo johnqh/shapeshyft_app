@@ -1,0 +1,275 @@
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useKeysManager, useSettingsManager, useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
+import { ShapeshyftClient } from '@sudobility/shapeshyft_client';
+import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
+import { useApi } from '../../hooks/useApi';
+import { useToast } from '../../hooks/useToast';
+
+function TemplatesPage() {
+  const { t } = useTranslation(['dashboard', 'common']);
+  const { navigate } = useLocalizedNavigate();
+  const { networkClient, baseUrl, userId, token, isReady } = useApi();
+  const { success, error: showError } = useToast();
+
+  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [projectName, setProjectName] = useState('');
+  const [selectedKeyId, setSelectedKeyId] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const { keys, isLoading: keysLoading } = useKeysManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  const { settings } = useSettingsManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: isReady,
+  });
+
+  const { createProject } = useProjectsManager({
+    baseUrl,
+    networkClient,
+    userId: userId ?? '',
+    token,
+    autoFetch: false,
+  });
+
+  const { templates, applyTemplate } = useProjectTemplates();
+
+  // Get organization path - use settings value or fallback to first 8 chars of userId
+  const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
+
+  const selectedTemplateData = templates.find(t => t.id === selectedTemplate);
+
+  // Auto-fill project name when template is selected
+  useEffect(() => {
+    if (selectedTemplateData && !projectName) {
+      setProjectName(selectedTemplateData.name.toLowerCase().replace(/\s+/g, '-'));
+    }
+  }, [selectedTemplateData, projectName]);
+
+  const handleApply = async () => {
+    if (!selectedTemplate || !projectName.trim() || !selectedKeyId) {
+      setError(t('templates.errors.fillAllFields'));
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const result = applyTemplate(selectedTemplate, projectName.trim(), selectedKeyId);
+      if (result && userId && token) {
+        // Create the project first
+        const project = await createProject(result.project);
+        if (!project) {
+          throw new Error('Failed to create project');
+        }
+
+        // Create endpoints using the client
+        const client = new ShapeshyftClient({ networkClient, baseUrl });
+        for (const endpointData of result.endpoints) {
+          await client.createEndpoint(userId, project.uuid, endpointData, token);
+        }
+
+        success(t('common:toast.success.created'));
+        navigate(`/dashboard/projects/${project.uuid}`);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleCancel = () => {
+    navigate('/dashboard');
+  };
+
+  return (
+    <div>
+      <p className="text-theme-text-secondary mb-6">{t('templates.subtitle')}</p>
+
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
+          {error}
+        </div>
+      )}
+
+      {/* Template Grid */}
+      <div className="grid md:grid-cols-2 gap-4 mb-6">
+        {templates.map(template => (
+          <button
+            key={template.id}
+            onClick={() => setSelectedTemplate(template.id)}
+            className={`p-4 text-left rounded-xl border-2 transition-all ${
+              selectedTemplate === template.id
+                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                : 'border-theme-border hover:border-blue-300'
+            }`}
+          >
+            <h4 className="font-semibold text-theme-text-primary mb-1">{template.name}</h4>
+            <p className="text-sm text-theme-text-secondary mb-2">{template.description}</p>
+            <div className="flex flex-wrap gap-1">
+              {template.endpoints.map(ep => (
+                <span
+                  key={ep.endpoint_name}
+                  className="text-xs px-2 py-0.5 bg-theme-bg-tertiary text-theme-text-tertiary rounded"
+                >
+                  {ep.display_name}
+                </span>
+              ))}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {/* Configuration (shown when template selected) */}
+      {selectedTemplate && (
+        <div className="space-y-4 pt-4 border-t border-theme-border">
+          <h4 className="font-medium text-theme-text-primary">
+            {t('templates.configure')}
+          </h4>
+
+          {/* Project Name */}
+          <div>
+            <label
+              htmlFor="projectName"
+              className="block text-sm font-medium text-theme-text-primary mb-1"
+            >
+              {t('templates.projectName')}
+            </label>
+            <input
+              id="projectName"
+              type="text"
+              value={projectName}
+              onChange={e =>
+                setProjectName(
+                  e.target.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9-]/g, '-')
+                    .replace(/-+/g, '-')
+                )
+              }
+              placeholder={t('templates.projectNamePlaceholder')}
+              className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow font-mono"
+            />
+          </div>
+
+          {/* LLM Key Selection */}
+          <div>
+            <label
+              htmlFor="llmKey"
+              className="block text-sm font-medium text-theme-text-primary mb-1"
+            >
+              {t('templates.llmKey')}
+            </label>
+            {keysLoading ? (
+              <div className="h-10 bg-theme-bg-secondary rounded-lg animate-pulse" />
+            ) : keys.length === 0 ? (
+              <p className="text-sm text-theme-text-secondary">
+                {t('templates.noKeys')}{' '}
+                <button
+                  onClick={() => navigate('/dashboard/keys')}
+                  className="text-blue-600 hover:underline"
+                >
+                  {t('templates.addKeyLink')}
+                </button>
+              </p>
+            ) : (
+              <select
+                id="llmKey"
+                value={selectedKeyId}
+                onChange={e => setSelectedKeyId(e.target.value)}
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
+              >
+                <option value="">{t('templates.selectKey')}</option>
+                {keys.map(key => (
+                  <option key={key.uuid} value={key.uuid}>
+                    {key.key_name} ({key.provider})
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+
+          {/* Template Preview */}
+          {selectedTemplateData && (
+            <div className="p-4 bg-theme-bg-secondary rounded-lg">
+              <h5 className="text-sm font-medium text-theme-text-primary mb-2">
+                {t('templates.preview')}
+              </h5>
+              <p className="text-sm text-theme-text-secondary mb-2">
+                {t('templates.willCreate', { count: selectedTemplateData.endpoints.length })}
+              </p>
+              <ul className="space-y-1">
+                {selectedTemplateData.endpoints.map(ep => (
+                  <li
+                    key={ep.endpoint_name}
+                    className="text-sm text-theme-text-tertiary flex items-center gap-2"
+                  >
+                    <span className="px-1.5 py-0.5 text-xs font-mono rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                      POST
+                    </span>
+                    <span className="font-mono">/{organizationPath}/{projectName}/{ep.endpoint_name}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Actions */}
+      <div className="flex justify-end gap-3 mt-8 pt-6 border-t border-theme-border">
+        <button
+          onClick={handleCancel}
+          disabled={isLoading}
+          className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
+        >
+          {t('common.cancel')}
+        </button>
+        <button
+          onClick={handleApply}
+          disabled={isLoading || !selectedTemplate || !projectName.trim() || !selectedKeyId}
+          className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  fill="none"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              {t('common.creating')}
+            </span>
+          ) : (
+            t('templates.apply')
+          )}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default TemplatesPage;
