@@ -5,7 +5,22 @@
       "Bash(npm run lint:*)",
       "Bash(npm run typecheck:*)",
       "Bash(npm install:*)",
-      "Bash(npm test:*)"
+      "Bash(npm test:*)",
+      "Bash(npm run build:app:*)",
+      "Bash(curl:*)",
+      "Bash(npm run format:*)",
+      "Bash(cat:*)",
+      "Bash(bun link)",
+      "Bash(bun link:*)",
+      "Bash(bun run build)",
+      "Bash(bun run:*)",
+      "Bash(grep:*)",
+      "Bash(convert:*)",
+      "Bash(sips --help:*)",
+      "Bash(sips:*)",
+      "Bash(ls:*)",
+      "Bash(npm run:*)",
+      "Bash(npm version:*)"
     ]
   }
 }

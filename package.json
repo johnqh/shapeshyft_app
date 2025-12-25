@@ -1,7 +1,7 @@
 {
   "name": "shapeshyft_app",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,15 +14,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@revenuecat/purchases-js": "^1.22.1",
     "@sudobility/auth-components": "^1.0.0",
-    "@sudobility/components": "^4.0.85",
+    "@sudobility/components": "^4.0.91",
     "@sudobility/design": "^1.1.15",
     "@sudobility/di": "^1.5.5",
-    "@sudobility/shapeshyft_client": "file:../shapeshyft_client",
-    "@sudobility/shapeshyft_lib": "file:../shapeshyft_lib",
+    "@sudobility/shapeshyft_client": "^0.0.3",
+    "@sudobility/shapeshyft_lib": "^0.0.4",
     "@sudobility/shapeshyft_types": "^1.0.5",
-    "@sudobility/subscription-components": "file:../../0xmail/mail_box_components/packages/subscription-components",
+    "@sudobility/subscription-components": "^1.0.3",
     "@sudobility/types": "^1.9.31",
     "@tanstack/react-query": "^5.90.5",
     "class-variance-authority": "^0.7.1",
