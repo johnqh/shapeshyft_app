@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  SubscriptionLayout,
   SubscriptionTile,
+  SegmentedControl,
   useSubscriptionContext,
 } from '@sudobility/subscription-components';
 import { useToast } from '../../hooks/useToast';
@@ -119,91 +121,72 @@ function SubscriptionPage() {
     if (lowerIdentifier.includes('developer')) {
       return t('features.developer', { returnObjects: true }) as string[];
     }
-    // Fallback to description if no tier match
+    // Fallback to empty array if no tier match
     return [];
   };
 
+  const billingPeriodOptions = [
+    { value: 'monthly' as const, label: t('billingPeriod.monthly') },
+    { value: 'yearly' as const, label: t('billingPeriod.yearly') },
+  ];
+
   return (
-    <div className="space-y-6">
-      {/* Error Message */}
-      {error && (
-        <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400">
-          {error}
-        </div>
-      )}
-
-      {/* Current Status */}
-      <div className="p-4 bg-theme-bg-secondary rounded-lg border border-theme-border">
-        <h3 className="text-sm font-medium text-theme-text-secondary mb-2">
-          {t('currentStatus.label')}
-        </h3>
-        {currentSubscription?.isActive ? (
-          <div>
-            <p className="font-semibold text-theme-text-primary mb-2">
-              {t('currentStatus.active')}
-            </p>
-            <div className="space-y-1 text-sm">
-              <p>
-                <span className="text-theme-text-secondary">{t('currentStatus.plan')}:</span>{' '}
-                <span className="text-theme-text-primary">
-                  {currentSubscription.productIdentifier || t('currentStatus.premium')}
-                </span>
-              </p>
-              <p>
-                <span className="text-theme-text-secondary">{t('currentStatus.expires')}:</span>{' '}
-                <span className="text-theme-text-primary">
-                  {formatExpirationDate(currentSubscription.expirationDate)}
-                </span>
-              </p>
-              <p>
-                <span className="text-theme-text-secondary">{t('currentStatus.willRenew')}:</span>{' '}
-                <span className="text-theme-text-primary">
-                  {currentSubscription.willRenew ? t('common.yes') : t('common.no')}
-                </span>
-              </p>
-            </div>
+    <SubscriptionLayout
+      title={t('title')}
+      error={error}
+      currentStatusLabel={t('currentStatus.label')}
+      currentStatus={{
+        isActive: currentSubscription?.isActive ?? false,
+        activeContent: currentSubscription?.isActive
+          ? {
+              title: t('currentStatus.active'),
+              fields: [
+                {
+                  label: t('currentStatus.plan'),
+                  value: currentSubscription.productIdentifier || t('currentStatus.premium'),
+                },
+                {
+                  label: t('currentStatus.expires'),
+                  value: formatExpirationDate(currentSubscription.expirationDate),
+                },
+                {
+                  label: t('currentStatus.willRenew'),
+                  value: currentSubscription.willRenew ? t('common.yes') : t('common.no'),
+                },
+              ],
+            }
+          : undefined,
+        inactiveContent: !currentSubscription?.isActive
+          ? {
+              title: t('currentStatus.inactive'),
+              message: t('currentStatus.inactiveMessage'),
+            }
+          : undefined,
+      }}
+      aboveProducts={
+        !isLoading && products.length > 0 ? (
+          <div className="flex justify-center mb-6">
+            <SegmentedControl
+              options={billingPeriodOptions}
+              value={billingPeriod}
+              onChange={handlePeriodChange}
+            />
           </div>
-        ) : (
-          <div>
-            <p className="font-semibold text-theme-text-primary mb-1">
-              {t('currentStatus.inactive')}
-            </p>
-            <p className="text-sm text-theme-text-secondary">
-              {t('currentStatus.inactiveMessage')}
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Billing Period Segmented Control */}
-      {!isLoading && products.length > 0 && (
-        <div className="flex justify-center">
-          <div className="inline-flex rounded-lg bg-theme-bg-secondary p-1">
-            <button
-              onClick={() => handlePeriodChange('monthly')}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                billingPeriod === 'monthly'
-                  ? 'bg-theme-bg-primary text-theme-text-primary shadow-sm'
-                  : 'text-theme-text-secondary hover:text-theme-text-primary'
-              }`}
-            >
-              {t('billingPeriod.monthly')}
-            </button>
-            <button
-              onClick={() => handlePeriodChange('yearly')}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                billingPeriod === 'yearly'
-                  ? 'bg-theme-bg-primary text-theme-text-primary shadow-sm'
-                  : 'text-theme-text-secondary hover:text-theme-text-primary'
-              }`}
-            >
-              {t('billingPeriod.yearly')}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Subscription Tiles */}
+        ) : null
+      }
+      primaryAction={{
+        label: isPurchasing ? t('buttons.purchasing') : t('buttons.subscribe'),
+        onClick: handlePurchase,
+        disabled: !selectedPlan || isPurchasing || isRestoring,
+        loading: isPurchasing,
+      }}
+      secondaryAction={{
+        label: isRestoring ? t('buttons.restoring') : t('buttons.restore'),
+        onClick: handleRestore,
+        disabled: isPurchasing || isRestoring,
+        loading: isRestoring,
+      }}
+    >
       {isLoading ? (
         <div className="flex items-center justify-center py-12">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
@@ -217,98 +200,34 @@ function SubscriptionPage() {
           {t('noProductsForPeriod')}
         </div>
       ) : (
-        <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
-          {filteredProducts.map((product, index) => (
-            <SubscriptionTile
-              key={product.identifier}
-              id={product.identifier}
-              title={product.title}
-              price={product.priceString}
-              periodLabel={getPeriodLabel(product.period)}
-              features={getProductFeatures(product.identifier)}
-              isSelected={selectedPlan === product.identifier}
-              onSelect={() => setSelectedPlan(product.identifier)}
-              isBestValue={product.identifier.toLowerCase().includes('pro')}
-              discountBadge={
-                product.period?.includes('Y')
-                  ? { text: t('badges.saveYearly'), isBestValue: true }
+        filteredProducts.map((product) => (
+          <SubscriptionTile
+            key={product.identifier}
+            id={product.identifier}
+            title={product.title}
+            price={product.priceString}
+            periodLabel={getPeriodLabel(product.period)}
+            features={getProductFeatures(product.identifier)}
+            isSelected={selectedPlan === product.identifier}
+            onSelect={() => setSelectedPlan(product.identifier)}
+            isBestValue={product.identifier.toLowerCase().includes('pro')}
+            discountBadge={
+              product.period?.includes('Y')
+                ? { text: t('badges.saveYearly'), isBestValue: true }
+                : undefined
+            }
+            introPriceNote={
+              product.freeTrialPeriod
+                ? getTrialLabel(product.freeTrialPeriod)
+                : product.introPrice
+                  ? t('intro.note', { price: product.introPrice })
                   : undefined
-              }
-              introPriceNote={
-                product.freeTrialPeriod
-                  ? getTrialLabel(product.freeTrialPeriod)
-                  : product.introPrice
-                    ? t('intro.note', { price: product.introPrice })
-                    : undefined
-              }
-              disabled={isPurchasing || isRestoring}
-            />
-          ))}
-        </div>
+            }
+            disabled={isPurchasing || isRestoring}
+          />
+        ))
       )}
-
-      {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 pt-4">
-        <button
-          onClick={handlePurchase}
-          disabled={!selectedPlan || isPurchasing || isRestoring}
-          className="flex-1 px-4 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isPurchasing ? (
-            <span className="flex items-center justify-center gap-2">
-              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                  fill="none"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                />
-              </svg>
-              {t('buttons.purchasing')}
-            </span>
-          ) : (
-            t('buttons.subscribe')
-          )}
-        </button>
-        <button
-          onClick={handleRestore}
-          disabled={isPurchasing || isRestoring}
-          className="px-4 py-3 border border-theme-border text-theme-text-primary font-medium rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
-        >
-          {isRestoring ? (
-            <span className="flex items-center justify-center gap-2">
-              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                  fill="none"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                />
-              </svg>
-              {t('buttons.restoring')}
-            </span>
-          ) : (
-            t('buttons.restore')
-          )}
-        </button>
-      </div>
-    </div>
+    </SubscriptionLayout>
   );
 }
 

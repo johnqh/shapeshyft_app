@@ -86,7 +86,6 @@ function EndpointDetailPage() {
     if (endpoint && !initializedRef.current) {
       initializedRef.current = true;
       const sample = generateSampleInput(endpoint.input_schema);
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTestInput(JSON.stringify(sample, null, 2));
     }
   }, [endpoint, generateSampleInput]);
@@ -143,6 +142,7 @@ function EndpointDetailPage() {
         context: editContext.trim() || null,
         input_schema: parsedInputSchema,
         output_schema: parsedOutputSchema,
+        is_active: endpoint.is_active,
       });
       if (updated) {
         success(t('endpoints.updated'));
