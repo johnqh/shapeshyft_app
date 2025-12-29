@@ -14,11 +14,11 @@
       },
       {
         "title": "Define an Endpoint",
-        "description": "Create an endpoint with input/output JSON schemas and connect it to your LLM key."
+        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
       },
       {
-        "title": "Test Your Endpoint",
-        "description": "Use the built-in tester to send requests and validate responses."
+        "title": "Set Your Organization Path",
+        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
       },
       {
         "title": "Integrate",
@@ -28,43 +28,83 @@
   },
   "concepts": {
     "title": "Core Concepts",
-    "endpointTypes": {
-      "title": "Endpoint Types",
-      "description": "ShapeShyft supports four endpoint types:",
-      "types": [
+    "endpoints": {
+      "title": "Endpoints",
+      "description": "Each endpoint is configured with:",
+      "items": [
         {
-          "name": "structured_in_structured_out",
-          "description": "JSON input → LLM processing → JSON output"
+          "name": "Output Schema",
+          "description": "JSON Schema defining the structure of the LLM's response"
         },
         {
-          "name": "text_in_structured_out",
-          "description": "Text input → LLM processing → JSON output"
+          "name": "Instructions",
+          "description": "Specific instructions for what the LLM should do with the input"
         },
         {
-          "name": "structured_in_api_out",
-          "description": "JSON input → API payload (no LLM)"
+          "name": "Context",
+          "description": "System context/prompt to guide the LLM's behavior"
         },
         {
-          "name": "text_in_api_out",
-          "description": "Text input → API payload (no LLM)"
+          "name": "HTTP Method",
+          "description": "GET (query params) or POST (JSON body) for input data"
         }
       ]
     },
     "schemas": {
       "title": "JSON Schemas",
-      "description": "Define the structure of your inputs and outputs using JSON Schema. ShapeShyft validates all data against your schemas."
+      "description": "Define the structure of your outputs using JSON Schema. ShapeShyft instructs the LLM to return data matching your schema."
     },
     "context": {
       "title": "System Context",
       "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+    },
+    "organizationPath": {
+      "title": "Organization Path",
+      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
     }
   },
   "apiReference": {
     "title": "API Reference",
-    "description": "Access your endpoints via REST API:",
+    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
     "endpoints": {
-      "get": "GET /api/v1/ai/:projectName/:endpointName?input=...",
-      "post": "POST /api/v1/ai/:projectName/:endpointName"
+      "main": {
+        "title": "Execute Endpoint",
+        "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
+        "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
+        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+      },
+      "prompt": {
+        "title": "Get Prompt Only",
+        "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
+        "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
+        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+      }
+    },
+    "response": {
+      "title": "Response Format",
+      "description": "Successful responses include the LLM output and usage statistics:",
+      "fields": [
+        {
+          "name": "output",
+          "description": "The structured response from the LLM matching your output schema"
+        },
+        {
+          "name": "usage.tokens_input",
+          "description": "Number of input tokens used"
+        },
+        {
+          "name": "usage.tokens_output",
+          "description": "Number of output tokens generated"
+        },
+        {
+          "name": "usage.latency_ms",
+          "description": "Request latency in milliseconds"
+        },
+        {
+          "name": "usage.estimated_cost_cents",
+          "description": "Estimated cost in cents"
+        }
+      ]
     }
   }
 }
