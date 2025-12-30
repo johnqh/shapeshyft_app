@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSettingsManager } from '@sudobility/shapeshyft_lib';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
 
 function SettingsPage() {
   const { t } = useTranslation('dashboard');
   const { networkClient, baseUrl, userId, token } = useApi();
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
 
   const { settings, isLoading, error, updateSettings } = useSettingsManager({
     baseUrl,
@@ -67,7 +69,7 @@ function SettingsPage() {
       if (message.includes('already taken')) {
         setPathError(t('settings.organization.pathTaken'));
       } else {
-        showError(message);
+        getInfoService().show(t('settings.form.error'), message, InfoType.ERROR, 5000);
       }
     } finally {
       setIsSaving(false);
@@ -78,18 +80,17 @@ function SettingsPage() {
     (settings?.organization_name ?? '') !== organizationName ||
     (settings?.organization_path ?? '') !== organizationPath;
 
+  // Show error via InfoInterface
+  useEffect(() => {
+    if (error && !settings) {
+      getInfoService().show(t('settings.form.error'), error, InfoType.ERROR, 5000);
+    }
+  }, [error, settings, t]);
+
   if (isLoading && !settings) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-      </div>
-    );
-  }
-
-  if (error && !settings) {
-    return (
-      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 text-red-600 dark:text-red-400">
-        {error}
       </div>
     );
   }

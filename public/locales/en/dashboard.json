@@ -282,5 +282,31 @@
       "saved": "Settings saved successfully",
       "error": "Failed to save settings"
     }
+  },
+  "apiKey": {
+    "title": "Project API Key",
+    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
+    "createdAt": "Created",
+    "show": "Show API key",
+    "hide": "Hide API key",
+    "copy": "Copy API key",
+    "refresh": "Refresh API key",
+    "copied": "Copied!",
+    "copiedMessage": "API key copied to clipboard",
+    "refreshed": "API Key Refreshed",
+    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
+    "confirmRefreshTitle": "Refresh API Key?",
+    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
+    "confirmRefresh": "Refresh Key"
+  },
+  "ipAllowlist": {
+    "title": "IP Allowlist",
+    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
+    "allAllowed": "All IPs allowed",
+    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
+    "add": "Add",
+    "removeIp": "Remove {{ip}}",
+    "invalidIp": "Invalid IPv4 address",
+    "duplicateIp": "This IP is already in the list"
   }
 }

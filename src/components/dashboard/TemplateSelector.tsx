@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager, useSettingsManager } from '@sudobility/shapeshyft_lib';
 import type { ProjectTemplate } from '@sudobility/shapeshyft_lib';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useApi } from '../../hooks/useApi';
 
 interface TemplateSelectorProps {
@@ -18,7 +20,6 @@ function TemplateSelector({ templates, onApply, onClose }: TemplateSelectorProps
   const [projectName, setProjectName] = useState('');
   const [selectedKeyId, setSelectedKeyId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const { keys, isLoading: keysLoading } = useKeysManager({
     baseUrl,
@@ -58,17 +59,16 @@ function TemplateSelector({ templates, onApply, onClose }: TemplateSelectorProps
 
   const handleApply = async () => {
     if (!selectedTemplate || !projectName.trim() || !selectedKeyId) {
-      setError(t('templates.errors.fillAllFields'));
+      getInfoService().show(t('common.error'), t('templates.errors.fillAllFields'), InfoType.ERROR, 5000);
       return;
     }
 
     setIsLoading(true);
-    setError(null);
 
     try {
       await onApply(selectedTemplate, projectName.trim(), selectedKeyId);
     } catch (err) {
-      setError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
     } finally {
       setIsLoading(false);
     }
@@ -101,12 +101,6 @@ function TemplateSelector({ templates, onApply, onClose }: TemplateSelectorProps
 
         {/* Content */}
         <div className="p-6 overflow-y-auto flex-1">
-          {error && (
-            <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-              {error}
-            </div>
-          )}
-
           {/* Template Grid */}
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {templates.map(template => (

@@ -2,6 +2,8 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager, useEndpointsManager, useEndpointTester, useSettingsManager } from '@sudobility/shapeshyft_lib';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
@@ -89,6 +91,13 @@ function EndpointDetailPage() {
       setTestInput(JSON.stringify(sample, null, 2));
     }
   }, [endpoint, generateSampleInput]);
+
+  // Show test error via InfoInterface
+  useEffect(() => {
+    if (testError) {
+      getInfoService().show(t('common.error'), testError, InfoType.ERROR, 5000);
+    }
+  }, [testError, t]);
 
   const handleStartEdit = () => {
     if (!endpoint) return;
@@ -508,12 +517,6 @@ function EndpointDetailPage() {
             </button>
           </div>
 
-          {/* Error */}
-          {testError && (
-            <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-              {testError}
-            </div>
-          )}
 
           {/* Prompt Preview */}
           {promptPreview && (

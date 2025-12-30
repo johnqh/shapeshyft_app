@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager, useSettingsManager, useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
 import { ShapeshyftClient } from '@sudobility/shapeshyft_client';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
@@ -10,7 +12,7 @@ function TemplatesPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, userId, token, isReady } = useApi();
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
 
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [projectName, setProjectName] = useState('');
@@ -58,7 +60,7 @@ function TemplatesPage() {
 
   const handleApply = async () => {
     if (!selectedTemplate || !projectName.trim() || !selectedKeyId) {
-      setError(t('templates.errors.fillAllFields'));
+      getInfoService().show(t('common.error'), t('templates.errors.fillAllFields'), InfoType.ERROR, 5000);
       return;
     }
 
@@ -84,8 +86,9 @@ function TemplatesPage() {
         navigate(`/dashboard/projects/${project.uuid}`);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : t('common.errorOccurred'));
-      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+      const errorMessage = err instanceof Error ? err.message : t('common.errorOccurred');
+      setError(errorMessage);
+      getInfoService().show(t('common.error'), errorMessage, InfoType.ERROR, 5000);
     } finally {
       setIsLoading(false);
     }

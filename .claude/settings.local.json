@@ -20,7 +20,15 @@
       "Bash(sips:*)",
       "Bash(ls:*)",
       "Bash(npm run:*)",
-      "Bash(npm version:*)"
+      "Bash(npm version:*)",
+      "Bash(find:*)",
+      "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && grep -B 2 -A 5 \"\"\"\"getInfoService\\\\|InfoType\"\"\"\" {} | head -25')",
+      "Bash(npm ls:*)",
+      "Bash(npm link)",
+      "Bash(npm link:*)",
+      "Bash(bun test:*)",
+      "Bash(bun add:*)",
+      "Bash(bunx vitest run:*)"
     ]
   }
 }

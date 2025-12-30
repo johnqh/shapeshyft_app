@@ -19,6 +19,7 @@ export default defineConfig({
     include: ['react', 'react-dom'],
   },
   build: {
+    chunkSizeWarningLimit: 700,
     rollupOptions: {
       output: {
         manualChunks(id) {

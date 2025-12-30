@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   SubscriptionLayout,
@@ -6,13 +6,15 @@ import {
   SegmentedControl,
   useSubscriptionContext,
 } from '@sudobility/subscription-components';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useToast } from '../../hooks/useToast';
 
 type BillingPeriod = 'monthly' | 'yearly';
 
 function SubscriptionPage() {
   const { t } = useTranslation('subscription');
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
   const {
     products,
     currentSubscription,
@@ -27,6 +29,14 @@ function SubscriptionPage() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
+
+  // Show error via InfoInterface
+  useEffect(() => {
+    if (error) {
+      getInfoService().show(t('common.error'), error, InfoType.ERROR, 5000);
+      clearError();
+    }
+  }, [error, clearError, t]);
 
   // Filter products by billing period and sort by price
   const filteredProducts = products
@@ -55,7 +65,7 @@ function SubscriptionPage() {
         setSelectedPlan(null);
       }
     } catch (err) {
-      showError(err instanceof Error ? err.message : t('purchase.error'));
+      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('purchase.error'), InfoType.ERROR, 5000);
     } finally {
       setIsPurchasing(false);
     }
@@ -70,10 +80,10 @@ function SubscriptionPage() {
       if (result) {
         success(t('restore.success'));
       } else {
-        showError(t('restore.noPurchases'));
+        getInfoService().show(t('common.error'), t('restore.noPurchases'), InfoType.WARNING, 5000);
       }
     } catch (err) {
-      showError(err instanceof Error ? err.message : t('restore.error'));
+      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('restore.error'), InfoType.ERROR, 5000);
     } finally {
       setIsRestoring(false);
     }

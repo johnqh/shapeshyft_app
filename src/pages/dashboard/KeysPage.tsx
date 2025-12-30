@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager } from '@sudobility/shapeshyft_lib';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
 import KeyForm from '../../components/dashboard/KeyForm';
@@ -15,7 +17,7 @@ const PROVIDER_ICONS: Record<string, { bg: string; text: string; abbr: string }>
 function KeysPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingKey, setEditingKey] = useState<string | null>(null);
@@ -27,7 +29,6 @@ function KeysPage() {
     createKey,
     updateKey,
     deleteKey,
-    refresh,
     clearError,
   } = useKeysManager({
     baseUrl,
@@ -37,13 +38,21 @@ function KeysPage() {
     autoFetch: isReady,
   });
 
+  // Show error via InfoInterface
+  useEffect(() => {
+    if (error) {
+      getInfoService().show(t('common.error'), error, InfoType.ERROR, 5000);
+      clearError();
+    }
+  }, [error, clearError, t]);
+
   const handleDeleteKey = async (keyId: string) => {
     if (confirm(t('keys.confirmDelete'))) {
       try {
         await deleteKey(keyId);
         success(t('common:toast.success.deleted'));
       } catch (err) {
-        showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+        getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common:toast.error.generic'), InfoType.ERROR, 5000);
       }
     }
   };
@@ -53,26 +62,6 @@ function KeysPage() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
-  // Error state
-  if (error) {
-    return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 mx-auto mb-4 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-          <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>
-        </div>
-        <p className="text-theme-text-secondary mb-4">{error}</p>
-        <button
-          onClick={() => { clearError(); refresh(); }}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          {t('common.retry')}
-        </button>
       </div>
     );
   }
@@ -182,7 +171,7 @@ function KeysPage() {
               setShowAddModal(false);
               success(t('common:toast.success.created'));
             } catch (err) {
-              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+              getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common:toast.error.generic'), InfoType.ERROR, 5000);
             }
           }}
           onClose={() => setShowAddModal(false)}
@@ -205,7 +194,7 @@ function KeysPage() {
               setEditingKey(null);
               success(t('common:toast.success.saved'));
             } catch (err) {
-              showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+              getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common:toast.error.generic'), InfoType.ERROR, 5000);
             }
           }}
           onClose={() => setEditingKey(null)}

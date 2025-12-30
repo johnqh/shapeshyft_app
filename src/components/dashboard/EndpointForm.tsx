@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager } from '@sudobility/shapeshyft_lib';
 import type { Endpoint, EndpointCreateRequest, HttpMethod } from '@sudobility/shapeshyft_types';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useApi } from '../../hooks/useApi';
 import SchemaEditor from './SchemaEditor';
 
@@ -43,7 +45,6 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
   const [outputSchema, setOutputSchema] = useState(
     endpoint?.output_schema ? JSON.stringify(endpoint.output_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}'
   );
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -143,7 +144,6 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitError(null);
 
     // Validate all fields
     const errors: FieldErrors = {
@@ -179,7 +179,7 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
         output_schema: useOutputSchema ? JSON.parse(outputSchema) : null,
       });
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
     }
   };
 
@@ -225,12 +225,6 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
-          {submitError && (
-            <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-              {submitError}
-            </div>
-          )}
-
           <div className="grid md:grid-cols-2 gap-6">
             {/* Left Column */}
             <div className="space-y-4">

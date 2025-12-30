@@ -4,6 +4,8 @@ import {
   useSubscriptionContext,
 } from '@sudobility/subscription-components';
 import { useAuthStatus } from '@sudobility/auth-components';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 
 const REVENUECAT_API_KEY = import.meta.env.VITE_REVENUECAT_API_KEY || '';
 const ENTITLEMENT_ID = import.meta.env.VITE_REVENUECAT_ENTITLEMENT_ID || 'premium';
@@ -42,7 +44,7 @@ function SubscriptionInitializer({ children }: { children: ReactNode }) {
 
 // Stable error handler
 const handleSubscriptionError = (error: Error) => {
-  console.error('[Subscription] Error:', error);
+  getInfoService().show('Subscription Error', error.message, InfoType.ERROR, 5000);
 };
 
 /**

@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager, useEndpointsManager } from '@sudobility/shapeshyft_lib';
 import type { HttpMethod } from '@sudobility/shapeshyft_types';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
@@ -23,7 +25,7 @@ function EndpointNewPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, userId, token, isReady } = useApi();
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
 
   const [displayName, setDisplayName] = useState('');
   const [endpointName, setEndpointName] = useState('');
@@ -35,7 +37,6 @@ function EndpointNewPage() {
   const [useOutputSchema, setUseOutputSchema] = useState(false);
   const [inputSchema, setInputSchema] = useState('{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
   const [outputSchema, setOutputSchema] = useState('{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -136,7 +137,6 @@ function EndpointNewPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitError(null);
 
     // Validate all fields
     const errors: FieldErrors = {
@@ -174,8 +174,7 @@ function EndpointNewPage() {
       success(t('common:toast.success.created'));
       navigate(`/dashboard/projects/${projectId}`);
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : t('common.errorOccurred'));
-      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
     }
   };
 
@@ -207,12 +206,6 @@ function EndpointNewPage() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        {submitError && (
-          <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-            {submitError}
-          </div>
-        )}
-
         <div className="grid md:grid-cols-2 gap-6">
           {/* Left Column */}
           <div className="space-y-4">

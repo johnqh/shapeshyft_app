@@ -4,8 +4,11 @@ import './index.css';
 
 // Initialize DI services BEFORE importing App
 import { initializeStorageService, initializeNetworkService } from '@sudobility/di';
+import { initializeInfoService } from '@sudobility/di_web';
+
 initializeStorageService();
 initializeNetworkService();
+initializeInfoService();
 
 // Initialize i18n
 import './i18n';

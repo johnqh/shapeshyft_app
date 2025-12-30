@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager } from '@sudobility/shapeshyft_lib';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
@@ -8,14 +11,13 @@ function ProjectsPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
 
   const {
     projects,
     isLoading,
     error,
     deleteProject,
-    refresh,
     clearError,
   } = useProjectsManager({
     baseUrl,
@@ -25,13 +27,21 @@ function ProjectsPage() {
     autoFetch: isReady,
   });
 
+  // Show error via InfoInterface
+  useEffect(() => {
+    if (error) {
+      getInfoService().show(t('common.error'), error, InfoType.ERROR, 5000);
+      clearError();
+    }
+  }, [error, clearError, t]);
+
   const handleDeleteProject = async (projectId: string) => {
     if (confirm(t('projects.confirmDelete'))) {
       try {
         await deleteProject(projectId);
         success(t('common:toast.success.deleted'));
       } catch (err) {
-        showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+        getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common:toast.error.generic'), InfoType.ERROR, 5000);
       }
     }
   };
@@ -41,42 +51,6 @@ function ProjectsPage() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
-  // Show error state
-  if (error) {
-    return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 mx-auto mb-4 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-          <svg
-            className="w-8 h-8 text-red-600 dark:text-red-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-            />
-          </svg>
-        </div>
-        <h3 className="text-lg font-medium text-theme-text-primary mb-2">
-          {t('common.error')}
-        </h3>
-        <p className="text-theme-text-secondary mb-4">{error}</p>
-        <button
-          onClick={() => {
-            clearError();
-            refresh();
-          }}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          {t('common.retry')}
-        </button>
       </div>
     );
   }

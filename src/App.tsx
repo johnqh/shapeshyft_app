@@ -9,6 +9,7 @@ import { ToastProvider } from './context/ToastContext';
 import { AuthProviderWrapper } from './components/providers/AuthProviderWrapper';
 import { SubscriptionProviderWrapper } from './components/providers/SubscriptionProviderWrapper';
 import ToastContainer from './components/ui/ToastContainer';
+import { InfoBanner } from '@sudobility/di_web';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -108,6 +109,7 @@ function App() {
                   </Routes>
                   </Suspense>
                   <ToastContainer />
+                  <InfoBanner />
                   </BrowserRouter>
                 </SubscriptionProviderWrapper>
               </ApiProvider>

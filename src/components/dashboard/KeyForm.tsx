@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { LlmApiKeySafe, LlmApiKeyCreateRequest, LlmProvider } from '@sudobility/shapeshyft_types';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 
 const PROVIDERS: { value: LlmProvider; label: string }[] = [
   { value: 'openai', label: 'OpenAI' },
@@ -31,7 +33,6 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
   const [apiKeyValue, setApiKeyValue] = useState('');
   const [endpointUrl, setEndpointUrl] = useState(apiKey?.endpoint_url ?? '');
   const [showApiKey, setShowApiKey] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -112,7 +113,6 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitError(null);
 
     // Validate all fields
     const errors: FieldErrors = {
@@ -136,7 +136,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
         endpoint_url: provider === 'llm_server' ? endpointUrl.trim() : undefined,
       });
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
     }
   };
 
@@ -182,12 +182,6 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          {submitError && (
-            <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-              {submitError}
-            </div>
-          )}
-
           {/* Provider */}
           <div>
             <label className="block text-sm font-medium text-theme-text-primary mb-1">

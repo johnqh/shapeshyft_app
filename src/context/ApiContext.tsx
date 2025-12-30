@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import type { ReactNode } from 'react';
-import { networkClient } from '@sudobility/di';
+import { networkClient, getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useAuthStatus } from '@sudobility/auth-components';
 import { auth } from '../config/firebase';
 import { CONSTANTS } from '../config/constants';
@@ -42,8 +43,8 @@ export function ApiProvider({ children }: ApiProviderProps) {
         if (mounted) {
           setToken(idToken);
         }
-      } catch (error) {
-        console.error('Failed to get ID token:', error);
+      } catch {
+        getInfoService().show('Authentication Error', 'Failed to get ID token', InfoType.ERROR, 5000);
         if (mounted) {
           setToken(null);
         }
@@ -69,8 +70,8 @@ export function ApiProvider({ children }: ApiProviderProps) {
       const newToken = await currentUser.getIdToken(true); // Force refresh
       setToken(newToken);
       return newToken;
-    } catch (error) {
-      console.error('Failed to refresh ID token:', error);
+    } catch {
+      getInfoService().show('Authentication Error', 'Failed to refresh ID token', InfoType.ERROR, 5000);
       setToken(null);
       return null;
     }

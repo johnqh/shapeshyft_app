@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useBudgetTracker, useAnalyticsManager } from '@sudobility/shapeshyft_lib';
 import type { Budget, BudgetPeriod } from '@sudobility/shapeshyft_lib';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { BudgetCard, BudgetForm, BudgetAlerts } from '../../components/dashboard/budgets';
 import { useToast } from '../../hooks/useToast';
 import { useApi } from '../../hooks/useApi';
 
 function BudgetsPage() {
   const { t } = useTranslation('dashboard');
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
   const { networkClient, baseUrl, userId, token } = useApi();
 
   const {
@@ -52,7 +54,7 @@ function BudgetsPage() {
       setShowForm(false);
       setEditingBudget(null);
     } catch {
-      showError(t('common.error'));
+      getInfoService().show(t('common.error'), t('common.error'), InfoType.ERROR, 5000);
     }
   };
 

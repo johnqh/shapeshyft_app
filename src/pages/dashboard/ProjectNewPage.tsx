@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager } from '@sudobility/shapeshyft_lib';
+import { getInfoService } from '@sudobility/di';
+import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
@@ -13,11 +15,10 @@ function ProjectNewPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, userId, token, isReady } = useApi();
-  const { success, error: showError } = useToast();
+  const { success } = useToast();
 
   const [displayName, setDisplayName] = useState('');
   const [description, setDescription] = useState('');
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -65,7 +66,6 @@ function ProjectNewPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitError(null);
 
     // Validate all fields
     const errors: FieldErrors = {
@@ -98,8 +98,7 @@ function ProjectNewPage() {
         navigate('/dashboard');
       }
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : t('common.errorOccurred'));
-      showError(err instanceof Error ? err.message : t('common:toast.error.generic'));
+      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
     }
   };
 
@@ -112,12 +111,6 @@ function ProjectNewPage() {
   return (
     <div className="max-w-2xl">
       <form onSubmit={handleSubmit} className="space-y-6">
-        {submitError && (
-          <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
-            {submitError}
-          </div>
-        )}
-
         {/* Display Name */}
         <div>
           <label
