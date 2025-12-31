@@ -208,6 +208,12 @@ const SettingsIcon = () => (
   </svg>
 );
 
+const RateLimitsIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+  </svg>
+);
+
 const StatusBadge: React.FC<{ isActive: boolean }> = ({ isActive }) => (
   <span
     className={`w-2 h-2 rounded-full flex-shrink-0 ${
@@ -224,11 +230,12 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
 
   // Determine current section from URL
   const pathname = location.pathname;
-  const isProjectsSection = pathname.includes('/dashboard') && !pathname.includes('/keys') && !pathname.includes('/analytics') && !pathname.includes('/budgets') && !pathname.includes('/subscription') && !pathname.includes('/settings');
+  const isProjectsSection = pathname.includes('/dashboard') && !pathname.includes('/keys') && !pathname.includes('/analytics') && !pathname.includes('/budgets') && !pathname.includes('/subscription') && !pathname.includes('/settings') && !pathname.includes('/rate-limits');
   const isKeysSection = pathname.includes('/dashboard/keys');
   const isAnalyticsSection = pathname.includes('/dashboard/analytics');
   const isBudgetsSection = pathname.includes('/dashboard/budgets');
   const isSubscriptionSection = pathname.includes('/dashboard/subscription');
+  const isRateLimitsSection = pathname.includes('/dashboard/rate-limits');
   const isSettingsSection = pathname.includes('/dashboard/settings');
 
   const handleNavigation = (path: string) => {
@@ -311,6 +318,15 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         icon={<SubscriptionIcon />}
         isSelected={isSubscriptionSection}
         onSelect={() => handleNavigation('/dashboard/subscription')}
+      />
+
+      {/* Rate Limits */}
+      <CollapsibleSection
+        id="rate-limits"
+        title={t('navigation.rateLimits')}
+        icon={<RateLimitsIcon />}
+        isSelected={isRateLimitsSection}
+        onSelect={() => handleNavigation('/dashboard/rate-limits')}
       />
 
       {/* Divider */}

@@ -78,6 +78,9 @@ function DashboardPage() {
     if (pathname.includes('/settings')) {
       return t('settings.title');
     }
+    if (pathname.includes('/rate-limits')) {
+      return t('rateLimits.title');
+    }
     return t('projects.title');
   };
 
@@ -92,6 +95,7 @@ function DashboardPage() {
                                   pathname.includes('/analytics') ||
                                   pathname.includes('/budgets') ||
                                   pathname.includes('/subscription') ||
+                                  pathname.includes('/rate-limits') ||
                                   pathname.includes('/settings');
       if (hasSpecificContent) {
         // eslint-disable-next-line react-hooks/set-state-in-effect

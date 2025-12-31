@@ -7,6 +7,7 @@
     "analytics": "Analytics",
     "budgets": "Budgets",
     "subscription": "Subscription",
+    "rateLimits": "Rate Limits",
     "settings": "Settings"
   },
   "projects": {
@@ -308,5 +309,36 @@
     "removeIp": "Remove {{ip}}",
     "invalidIp": "Invalid IPv4 address",
     "duplicateIp": "This IP is already in the list"
+  },
+  "rateLimits": {
+    "title": "Rate Limits",
+    "loading": "Loading...",
+    "error": "Failed to load rate limits",
+    "retry": "Retry",
+    "upgradeButton": "Upgrade Plan",
+    "currentTier": "Current",
+    "tabs": {
+      "currentLimits": "Current Limits",
+      "usageHistory": "Usage History"
+    },
+    "periods": {
+      "hourly": "Hourly",
+      "daily": "Daily",
+      "monthly": "Monthly"
+    },
+    "usage": {
+      "title": "Rate Limits",
+      "currentUsage": "Current Usage",
+      "planComparison": "Plan Comparison",
+      "used": "used",
+      "limit": "limit",
+      "unlimited": "Unlimited",
+      "remaining": "remaining"
+    },
+    "history": {
+      "title": "Usage History",
+      "requests": "Requests",
+      "noData": "No usage data available for this period"
+    }
   }
 }

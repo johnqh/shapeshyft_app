@@ -28,6 +28,7 @@ const AnalyticsPage = lazy(() => import('./pages/dashboard/AnalyticsPage'));
 const SubscriptionPage = lazy(() => import('./pages/dashboard/SubscriptionPage'));
 const BudgetsPage = lazy(() => import('./pages/dashboard/BudgetsPage'));
 const SettingsPage = lazy(() => import('./pages/dashboard/SettingsPage'));
+const RateLimitsPage = lazy(() => import('./pages/dashboard/RateLimitsPage'));
 
 // Layout components
 const LanguageRedirect = lazy(() => import('./components/layout/LanguageRedirect'));
@@ -98,6 +99,7 @@ function App() {
                         <Route path="subscription" element={<SubscriptionPage />} />
                         <Route path="budgets" element={<BudgetsPage />} />
                         <Route path="settings" element={<SettingsPage />} />
+                        <Route path="rate-limits" element={<RateLimitsPage />} />
                       </Route>
 
                       {/* Catch-all redirect to home */}

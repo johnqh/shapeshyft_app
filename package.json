@@ -27,6 +27,8 @@
     "@sudobility/design": "^1.1.15",
     "@sudobility/di": "^1.5.8",
     "@sudobility/di_web": "^0.1.17",
+    "@sudobility/ratelimit-components": "file:../../0xmail/mail_box_components/packages/ratelimit-components",
+    "@sudobility/ratelimit-pages": "file:../ratelimit_pages",
     "@sudobility/shapeshyft_client": "^0.0.6",
     "@sudobility/shapeshyft_lib": "^0.0.7",
     "@sudobility/shapeshyft_types": "^1.0.8",
