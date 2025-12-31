@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   RateLimitsPage as RateLimitsPageComponent,
   RateLimitHistoryPage,
-} from "@sudobility/ratelimit-pages";
+} from "@sudobility/ratelimit_pages";
 import { useApi } from "../../hooks/useApi";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 

@@ -25,7 +25,7 @@ PROJECTS=(
     "../ratelimit_client:0"
     "../shapeshyft_types:60"
     "../ratelimit_pages:0"
-    "../shapeshyft_api:60"
+    "../shapeshyft_api:0"
     "../shapeshyft_client:60"
     "../shapeshyft_lib:60"
     "../shapeshyft_app:0"
