@@ -8,10 +8,14 @@ import { ThemeProvider } from './context/ThemeContext';
 import { ApiProvider } from './context/ApiContext';
 import { ToastProvider } from './context/ToastContext';
 import { AuthProviderWrapper } from './components/providers/AuthProviderWrapper';
-import { SubscriptionProviderWrapper } from './components/providers/SubscriptionProviderWrapper';
+import { LazySubscriptionProvider } from './components/providers/LazySubscriptionProvider';
 import ToastContainer from './components/ui/ToastContainer';
 import { InfoBanner } from '@sudobility/di_web';
-import { PerformancePanel } from '@sudobility/components';
+
+// Lazy load PerformancePanel - only used in dev mode
+const PerformancePanel = lazy(() =>
+  import('@sudobility/components').then(mod => ({ default: mod.PerformancePanel }))
+);
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -71,7 +75,7 @@ function App() {
             <ToastProvider>
               <AuthProviderWrapper>
                 <ApiProvider>
-                  <SubscriptionProviderWrapper>
+                  <LazySubscriptionProvider>
                     <BrowserRouter>
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes>
@@ -146,7 +150,7 @@ function App() {
                   )}
                   <InfoBanner />
                   </BrowserRouter>
-                  </SubscriptionProviderWrapper>
+                  </LazySubscriptionProvider>
                 </ApiProvider>
               </AuthProviderWrapper>
             </ToastProvider>

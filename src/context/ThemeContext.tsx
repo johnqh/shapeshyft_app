@@ -1,8 +1,24 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
-import { createSimpleStorage } from '@sudobility/components';
 import { Theme, FontSize } from '@sudobility/types';
-import { storage as platformStorage } from '@sudobility/di';
+
+// Simple storage using localStorage directly to avoid importing @sudobility/components (648KB) on critical path
+const storage = {
+  getItem: (key: string): string | null => {
+    try {
+      return localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      localStorage.setItem(key, value);
+    } catch {
+      // Ignore storage errors (e.g., private browsing mode)
+    }
+  },
+};
 
 interface ThemeContextType {
   theme: Theme;
@@ -27,8 +43,6 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const storage = createSimpleStorage(platformStorage);
-
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = storage.getItem('shapeshyft-theme');
     return (saved as Theme) || Theme.LIGHT;

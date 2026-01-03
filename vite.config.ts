@@ -27,6 +27,18 @@ export default defineConfig({
     cssCodeSplit: true,
     sourcemap: false,
     chunkSizeWarningLimit: 500,
+    // Only preload direct imports, not lazy-loaded chunks
+    modulePreload: {
+      resolveDependencies: (_filename, deps) => {
+        // Don't preload lazy-loaded pages or heavy vendor chunks
+        return deps.filter(dep =>
+          !dep.includes('page-') &&
+          !dep.includes('vendor-charts') &&
+          !dep.includes('vendor-revenuecat') &&
+          !dep.includes('vendor-ui')
+        );
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {

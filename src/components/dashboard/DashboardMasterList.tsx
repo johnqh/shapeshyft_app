@@ -1,7 +1,7 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { ChevronRight } from 'lucide-react';
 import type { Project, LlmApiKeySafe } from '@sudobility/shapeshyft_types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 
@@ -97,7 +97,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
             className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 hover:scale-105 transition-all duration-200 mr-1"
             aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
           >
-            <ChevronRightIcon
+            <ChevronRight
               className={`h-4 w-4 text-gray-400 transition-transform duration-300 ease-in-out ${
                 isExpanded ? 'rotate-90' : 'rotate-0'
               }`}

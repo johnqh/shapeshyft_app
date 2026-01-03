@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ChartBarIcon,
-  BoltIcon,
-  GlobeAltIcon,
-  CheckIcon,
-  ExclamationTriangleIcon,
-  RocketLaunchIcon,
-  ArrowPathIcon,
-} from '@heroicons/react/24/outline';
+  BarChart3,
+  Zap,
+  Globe,
+  Check,
+  AlertTriangle,
+  Rocket,
+  RefreshCw,
+} from 'lucide-react';
 
 type VitalsRating = 'good' | 'needsImprovement' | 'poor';
 
@@ -70,7 +70,7 @@ function PerformancePage() {
       {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full mb-4">
-          <RocketLaunchIcon className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
+          <Rocket className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
           <span className="text-green-800 dark:text-green-300 font-semibold">
             {t('performance.badge', 'Performance & Optimization')}
           </span>
@@ -119,7 +119,7 @@ function PerformancePage() {
         <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
           <div className="p-6 border-b border-theme-border">
             <div className="flex items-center gap-3">
-              <ChartBarIcon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              <BarChart3 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               <h2 className="text-lg font-semibold text-theme-text-primary">
                 {t('performance.webVitals.title', 'Core Web Vitals')}
               </h2>
@@ -178,7 +178,7 @@ CLS: < 0.1 (good), < 0.25 (needs improvement)`}
         <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
           <div className="p-6 border-b border-theme-border">
             <div className="flex items-center gap-3">
-              <BoltIcon className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
+              <Zap className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
               <h2 className="text-lg font-semibold text-theme-text-primary">
                 {t('performance.bundle.title', 'Bundle Optimization')}
               </h2>
@@ -194,13 +194,13 @@ CLS: < 0.1 (good), < 0.25 (needs improvement)`}
               <div className="space-y-2">
                 <div className="p-3 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
                   <p className="text-sm text-blue-800 dark:text-blue-200 flex items-center gap-2">
-                    <ArrowPathIcon className="w-4 h-4 animate-spin" />
+                    <RefreshCw className="w-4 h-4 animate-spin" />
                     Component loading...
                   </p>
                 </div>
                 <div className="p-3 rounded bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
                   <p className="text-sm text-green-800 dark:text-green-200 flex items-center gap-2">
-                    <CheckIcon className="w-4 h-4" />
+                    <Check className="w-4 h-4" />
                     Component loaded
                   </p>
                 </div>
@@ -232,7 +232,7 @@ CLS: < 0.1 (good), < 0.25 (needs improvement)`}
       <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
         <div className="p-6 border-b border-theme-border">
           <div className="flex items-center gap-3">
-            <GlobeAltIcon className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
+            <Globe className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
             <h2 className="text-lg font-semibold text-theme-text-primary">
               {t('performance.api.title', 'API Performance')}
             </h2>
@@ -288,7 +288,7 @@ Locales: Stale While Revalidate`}
       <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
         <div className="p-6 border-b border-theme-border">
           <div className="flex items-center gap-3">
-            <CheckIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
+            <Check className="h-6 w-6 text-green-600 dark:text-green-400" />
             <h2 className="text-lg font-semibold text-theme-text-primary">
               {t('performance.bestPractices.title', 'Performance Best Practices')}
             </h2>
@@ -299,32 +299,32 @@ Locales: Stale While Revalidate`}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 className="font-medium text-theme-text-primary mb-4 flex items-center gap-2">
-                <CheckIcon className="h-5 w-5 text-green-500" />
+                <Check className="h-5 w-5 text-green-500" />
                 Do This
               </h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
-                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Use code splitting for dashboard features</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Implement lazy loading for images and components</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Cache API responses with TanStack Query</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Preload routes on hover for instant navigation</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Monitor Core Web Vitals in production</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Use service worker for offline support</span>
                 </li>
               </ul>
@@ -332,32 +332,32 @@ Locales: Stale While Revalidate`}
 
             <div>
               <h4 className="font-medium text-theme-text-primary mb-4 flex items-center gap-2">
-                <ExclamationTriangleIcon className="h-5 w-5 text-red-500" />
+                <AlertTriangle className="h-5 w-5 text-red-500" />
                 Avoid This
               </h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
-                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Loading all components eagerly on initial page load</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Making redundant API calls without caching</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Causing layout shifts with dynamic content</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Using blocking rendering for non-critical features</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Ignoring network conditions for resource loading</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">Importing large libraries without tree-shaking</span>
                 </li>
               </ul>

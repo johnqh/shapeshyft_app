@@ -1,12 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAnalyticsManager } from '@sudobility/shapeshyft_lib';
 import { getInfoService } from '@sudobility/di';
 import { InfoType } from '@sudobility/types';
 import { useApi } from '../../hooks/useApi';
-import RequestDistributionChart from '../../components/dashboard/analytics/RequestDistributionChart';
-import EndpointRequestsChart from '../../components/dashboard/analytics/EndpointRequestsChart';
-import TokenDistributionChart from '../../components/dashboard/analytics/TokenDistributionChart';
+
+// Lazy load chart components to defer recharts (~360KB) until needed
+const RequestDistributionChart = lazy(() => import('../../components/dashboard/analytics/RequestDistributionChart'));
+const EndpointRequestsChart = lazy(() => import('../../components/dashboard/analytics/EndpointRequestsChart'));
+const TokenDistributionChart = lazy(() => import('../../components/dashboard/analytics/TokenDistributionChart'));
+
+// Chart loading fallback
+const ChartSkeleton = () => (
+  <div className="h-64 flex items-center justify-center">
+    <div className="animate-pulse bg-theme-bg-tertiary rounded w-full h-full" />
+  </div>
+);
 
 function AnalyticsPage() {
   const { t } = useTranslation('dashboard');
@@ -130,10 +139,12 @@ function AnalyticsPage() {
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
             {t('analytics.metrics.requestDistribution')}
           </h3>
-          <RequestDistributionChart
-            successful={agg.successful_requests}
-            failed={agg.failed_requests}
-          />
+          <Suspense fallback={<ChartSkeleton />}>
+            <RequestDistributionChart
+              successful={agg.successful_requests}
+              failed={agg.failed_requests}
+            />
+          </Suspense>
         </div>
 
         {/* Token Distribution Chart */}
@@ -141,10 +152,12 @@ function AnalyticsPage() {
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
             {t('analytics.metrics.tokensUsed')}
           </h3>
-          <TokenDistributionChart
-            inputTokens={agg.total_tokens_input}
-            outputTokens={agg.total_tokens_output}
-          />
+          <Suspense fallback={<ChartSkeleton />}>
+            <TokenDistributionChart
+              inputTokens={agg.total_tokens_input}
+              outputTokens={agg.total_tokens_output}
+            />
+          </Suspense>
         </div>
       </div>
 
@@ -154,7 +167,9 @@ function AnalyticsPage() {
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
             {t('analytics.charts.byEndpoint')}
           </h3>
-          <EndpointRequestsChart endpoints={analytics.by_endpoint} />
+          <Suspense fallback={<ChartSkeleton />}>
+            <EndpointRequestsChart endpoints={analytics.by_endpoint} />
+          </Suspense>
         </div>
       )}
     </div>

@@ -62,3 +62,5 @@ export function SubscriptionProviderWrapper({ children }: SubscriptionProviderWr
     </SubscriptionProvider>
   );
 }
+
+export default SubscriptionProviderWrapper;
