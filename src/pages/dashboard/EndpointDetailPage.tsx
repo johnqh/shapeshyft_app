@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useProjectsManager, useEndpointsManager, useEndpointTester, useSettingsManager } from '@sudobility/shapeshyft_lib';
+import { useProjectsManager, useEndpointsManager, useEndpointTester } from '@sudobility/shapeshyft_lib';
 import { getInfoService } from '@sudobility/di';
 import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
@@ -10,10 +10,14 @@ import { useToast } from '../../hooks/useToast';
 import SchemaEditor from '../../components/dashboard/SchemaEditor';
 
 function EndpointDetailPage() {
-  const { projectId, endpointId } = useParams<{ projectId: string; endpointId: string }>();
+  const { entitySlug = '', projectId, endpointId } = useParams<{
+    entitySlug: string;
+    projectId: string;
+    endpointId: string;
+  }>();
   const { t } = useTranslation('dashboard');
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { networkClient, baseUrl, token, isReady, isLoading: apiLoading } = useApi();
   const { success, error: showError } = useToast();
 
   const [testInput, setTestInput] = useState('');
@@ -34,9 +38,9 @@ function EndpointDetailPage() {
   const { projects, isLoading: projectsLoading } = useProjectsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   const project = projects.find(p => p.uuid === projectId);
@@ -44,24 +48,13 @@ function EndpointDetailPage() {
   const { endpoints, isLoading: endpointsLoading, updateEndpoint, error: updateError } = useEndpointsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
     projectId: projectId ?? '',
-    autoFetch: isReady && !!projectId,
+    autoFetch: isReady && !!projectId && !!entitySlug,
   });
 
   const endpoint = endpoints.find(e => e.uuid === endpointId);
-
-  const { settings } = useSettingsManager({
-    baseUrl,
-    networkClient,
-    userId: userId ?? '',
-    token,
-    autoFetch: isReady,
-  });
-
-  // Get organization path - use settings value or fallback to first 8 chars of userId
-  const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
 
   const {
     testResults,
@@ -190,7 +183,7 @@ function EndpointDetailPage() {
 
     setIsLoadingPrompt(true);
     const result = await getPrompt(
-      organizationPath,
+      entitySlug,
       project.project_name,
       endpoint.endpoint_name,
       parsedInput
@@ -225,7 +218,7 @@ function EndpointDetailPage() {
       return;
     }
 
-    const result = await testEndpoint(organizationPath, project.project_name, endpoint, parsedInput);
+    const result = await testEndpoint(entitySlug, project.project_name, endpoint, parsedInput);
     if (result?.success) {
       success(t('endpoints.tester.success'));
     } else if (result?.error) {
@@ -274,7 +267,7 @@ function EndpointDetailPage() {
             {endpoint.http_method}
           </span>
           <code className="text-sm text-theme-text-tertiary font-mono break-all">
-            /api/v1/ai/{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
+            /api/v1/ai/{entitySlug}/{project.project_name}/{endpoint.endpoint_name}
           </code>
         </div>
         {!isEditing && (

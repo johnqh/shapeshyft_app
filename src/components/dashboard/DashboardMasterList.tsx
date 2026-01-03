@@ -226,20 +226,20 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
   const { t } = useTranslation('dashboard');
   const { navigate } = useLocalizedNavigate();
   const location = useLocation();
-  const { projectId } = useParams<{ projectId: string }>();
+  const { entitySlug = '', projectId } = useParams<{ entitySlug: string; projectId: string }>();
 
   // Determine current section from URL
   const pathname = location.pathname;
   const isProjectsSection = pathname.includes('/dashboard') && !pathname.includes('/keys') && !pathname.includes('/analytics') && !pathname.includes('/budgets') && !pathname.includes('/subscription') && !pathname.includes('/settings') && !pathname.includes('/rate-limits');
-  const isKeysSection = pathname.includes('/dashboard/keys');
-  const isAnalyticsSection = pathname.includes('/dashboard/analytics');
-  const isBudgetsSection = pathname.includes('/dashboard/budgets');
-  const isSubscriptionSection = pathname.includes('/dashboard/subscription');
-  const isRateLimitsSection = pathname.includes('/dashboard/rate-limits');
-  const isSettingsSection = pathname.includes('/dashboard/settings');
+  const isKeysSection = pathname.includes('/keys');
+  const isAnalyticsSection = pathname.includes('/analytics');
+  const isBudgetsSection = pathname.includes('/budgets');
+  const isSubscriptionSection = pathname.includes('/subscription');
+  const isRateLimitsSection = pathname.includes('/rate-limits');
+  const isSettingsSection = pathname.includes('/settings');
 
   const handleNavigation = (path: string) => {
-    navigate(path);
+    navigate(`/dashboard/${entitySlug}${path}`);
     onNavigate?.();
   };
 
@@ -252,7 +252,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         icon={<FolderIcon />}
         isSelected={isProjectsSection}
         selectedChildId={projectId}
-        onSelect={() => handleNavigation('/dashboard')}
+        onSelect={() => handleNavigation('')}
         hasChildren={projects.length > 0}
         childCount={projects.length}
       >
@@ -262,7 +262,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
             label={project.display_name}
             sublabel={project.project_name}
             isSelected={projectId === project.uuid}
-            onClick={() => handleNavigation(`/dashboard/projects/${project.uuid}`)}
+            onClick={() => handleNavigation(`/projects/${project.uuid}`)}
             statusBadge={<StatusBadge isActive={project.is_active ?? false} />}
           />
         ))}
@@ -274,7 +274,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         title={t('navigation.apiKeys')}
         icon={<KeyIcon />}
         isSelected={isKeysSection}
-        onSelect={() => handleNavigation('/dashboard/keys')}
+        onSelect={() => handleNavigation('/keys')}
         hasChildren={keys.length > 0}
         childCount={keys.length}
       >
@@ -284,7 +284,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
             label={key.key_name}
             sublabel={t(`keys.providers.${key.provider}`)}
             isSelected={false}
-            onClick={() => handleNavigation('/dashboard/keys')}
+            onClick={() => handleNavigation('/keys')}
             statusBadge={<StatusBadge isActive={key.is_active ?? false} />}
           />
         ))}
@@ -299,7 +299,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         title={t('navigation.analytics')}
         icon={<ChartIcon />}
         isSelected={isAnalyticsSection}
-        onSelect={() => handleNavigation('/dashboard/analytics')}
+        onSelect={() => handleNavigation('/analytics')}
       />
 
       {/* Budgets */}
@@ -308,7 +308,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         title={t('navigation.budgets')}
         icon={<BudgetIcon />}
         isSelected={isBudgetsSection}
-        onSelect={() => handleNavigation('/dashboard/budgets')}
+        onSelect={() => handleNavigation('/budgets')}
       />
 
       {/* Subscription */}
@@ -317,7 +317,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         title={t('navigation.subscription')}
         icon={<SubscriptionIcon />}
         isSelected={isSubscriptionSection}
-        onSelect={() => handleNavigation('/dashboard/subscription')}
+        onSelect={() => handleNavigation('/subscription')}
       />
 
       {/* Rate Limits */}
@@ -326,7 +326,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         title={t('navigation.rateLimits')}
         icon={<RateLimitsIcon />}
         isSelected={isRateLimitsSection}
-        onSelect={() => handleNavigation('/dashboard/rate-limits')}
+        onSelect={() => handleNavigation('/rate-limits')}
       />
 
       {/* Divider */}
@@ -338,7 +338,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         title={t('navigation.settings')}
         icon={<SettingsIcon />}
         isSelected={isSettingsSection}
-        onSelect={() => handleNavigation('/dashboard/settings')}
+        onSelect={() => handleNavigation('/settings')}
       />
     </div>
   );

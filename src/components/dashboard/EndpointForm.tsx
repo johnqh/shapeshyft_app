@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager } from '@sudobility/shapeshyft_lib';
 import type { Endpoint, EndpointCreateRequest, HttpMethod } from '@sudobility/shapeshyft_types';
@@ -27,7 +28,8 @@ interface FieldErrors {
 
 function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormProps) {
   const { t } = useTranslation('dashboard');
-  const { networkClient, baseUrl, userId, token, isReady } = useApi();
+  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
+  const { networkClient, baseUrl, token, isReady } = useApi();
 
   const isEditing = !!endpoint;
 
@@ -51,9 +53,9 @@ function EndpointForm({ endpoint, onSubmit, onClose, isLoading }: EndpointFormPr
   const { keys, isLoading: keysLoading } = useKeysManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   // Auto-generate endpoint name from display name

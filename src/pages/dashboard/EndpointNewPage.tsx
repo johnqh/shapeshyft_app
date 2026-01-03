@@ -21,10 +21,10 @@ interface FieldErrors {
 }
 
 function EndpointNewPage() {
-  const { projectId } = useParams<{ projectId: string }>();
+  const { entitySlug = '', projectId } = useParams<{ entitySlug: string; projectId: string }>();
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, userId, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, isReady } = useApi();
   const { success } = useToast();
 
   const [displayName, setDisplayName] = useState('');
@@ -43,18 +43,18 @@ function EndpointNewPage() {
   const { keys, isLoading: keysLoading } = useKeysManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   const { createEndpoint, isLoading } = useEndpointsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
     projectId: projectId ?? '',
-    autoFetch: isReady && !!projectId,
+    autoFetch: isReady && !!projectId && !!entitySlug,
   });
 
   // Auto-generate endpoint name from display name
@@ -172,14 +172,14 @@ function EndpointNewPage() {
         output_schema: useOutputSchema ? JSON.parse(outputSchema) : null,
       });
       success(t('common:toast.success.created'));
-      navigate(`/dashboard/projects/${projectId}`);
+      navigate(`/dashboard/${entitySlug}/projects/${projectId}`);
     } catch (err) {
       getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
     }
   };
 
   const handleCancel = () => {
-    navigate(`/dashboard/projects/${projectId}`);
+    navigate(`/dashboard/${entitySlug}/projects/${projectId}`);
   };
 
   const hasError = (field: keyof FieldErrors) => touched[field] && fieldErrors[field];

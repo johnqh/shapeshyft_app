@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager } from '@sudobility/shapeshyft_lib';
 import { getInfoService } from '@sudobility/di';
@@ -14,7 +15,8 @@ interface FieldErrors {
 function ProjectNewPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, userId, token, isReady } = useApi();
+  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
+  const { networkClient, baseUrl, token, isReady } = useApi();
   const { success } = useToast();
 
   const [displayName, setDisplayName] = useState('');
@@ -25,9 +27,9 @@ function ProjectNewPage() {
   const { createProject, isLoading } = useProjectsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   // Generate slug preview
@@ -93,9 +95,9 @@ function ProjectNewPage() {
       });
       success(t('common:toast.success.created'));
       if (project) {
-        navigate(`/dashboard/projects/${project.uuid}`);
+        navigate(`/dashboard/${entitySlug}/projects/${project.uuid}`);
       } else {
-        navigate('/dashboard');
+        navigate(`/dashboard/${entitySlug}`);
       }
     } catch (err) {
       getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
@@ -103,7 +105,7 @@ function ProjectNewPage() {
   };
 
   const handleCancel = () => {
-    navigate('/dashboard');
+    navigate(`/dashboard/${entitySlug}`);
   };
 
   const hasError = (field: keyof FieldErrors) => touched[field] && fieldErrors[field];

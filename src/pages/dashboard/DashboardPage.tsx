@@ -12,8 +12,12 @@ function DashboardPage() {
   const { t } = useTranslation('dashboard');
   const location = useLocation();
   const { navigate } = useLocalizedNavigate();
-  const { projectId, endpointId } = useParams<{ projectId: string; endpointId: string }>();
-  const { networkClient, baseUrl, userId, token, isReady } = useApi();
+  const { entitySlug = '', projectId, endpointId } = useParams<{
+    entitySlug: string;
+    projectId: string;
+    endpointId: string;
+  }>();
+  const { networkClient, baseUrl, token, isReady } = useApi();
 
   // Mobile view state
   const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
@@ -25,27 +29,27 @@ function DashboardPage() {
   const { projects } = useProjectsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   const { keys } = useKeysManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   // Fetch endpoints for the current project (for detail title)
   const { endpoints } = useEndpointsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
     projectId: projectId ?? '',
-    autoFetch: isReady && !!projectId,
+    autoFetch: isReady && !!projectId && !!entitySlug,
   });
 
   // Determine detail title based on current route
@@ -106,7 +110,7 @@ function DashboardPage() {
 
   const handleBackToNavigation = () => {
     setMobileView('navigation');
-    navigate('/dashboard');
+    navigate(`/dashboard/${entitySlug}`);
   };
 
   const handleNavigate = () => {

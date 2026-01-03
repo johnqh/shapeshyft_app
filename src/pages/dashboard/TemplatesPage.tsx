@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useKeysManager, useSettingsManager, useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
+import { useKeysManager, useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
 import { ShapeshyftClient } from '@sudobility/shapeshyft_client';
 import { getInfoService } from '@sudobility/di';
 import { InfoType } from '@sudobility/types';
@@ -11,7 +12,8 @@ import { useToast } from '../../hooks/useToast';
 function TemplatesPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, userId, token, isReady } = useApi();
+  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
+  const { networkClient, baseUrl, token, isReady } = useApi();
   const { success } = useToast();
 
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
@@ -23,31 +25,20 @@ function TemplatesPage() {
   const { keys, isLoading: keysLoading } = useKeysManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
-  });
-
-  const { settings } = useSettingsManager({
-    baseUrl,
-    networkClient,
-    userId: userId ?? '',
-    token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   const { createProject } = useProjectsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
     autoFetch: false,
   });
 
   const { templates, applyTemplate } = useProjectTemplates();
-
-  // Get organization path - use settings value or fallback to first 8 chars of userId
-  const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
 
   const selectedTemplateData = templates.find(t => t.id === selectedTemplate);
 
@@ -69,7 +60,7 @@ function TemplatesPage() {
 
     try {
       const result = applyTemplate(selectedTemplate, projectName.trim(), selectedKeyId);
-      if (result && userId && token) {
+      if (result && entitySlug && token) {
         // Create the project first
         const project = await createProject(result.project);
         if (!project) {
@@ -79,11 +70,11 @@ function TemplatesPage() {
         // Create endpoints using the client
         const client = new ShapeshyftClient({ networkClient, baseUrl });
         for (const endpointData of result.endpoints) {
-          await client.createEndpoint(userId, project.uuid, endpointData, token);
+          await client.createEndpoint(entitySlug, project.uuid, endpointData, token);
         }
 
         success(t('common:toast.success.created'));
-        navigate(`/dashboard/projects/${project.uuid}`);
+        navigate(`/dashboard/${entitySlug}/projects/${project.uuid}`);
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : t('common.errorOccurred');
@@ -95,7 +86,7 @@ function TemplatesPage() {
   };
 
   const handleCancel = () => {
-    navigate('/dashboard');
+    navigate(`/dashboard/${entitySlug}`);
   };
 
   return (
@@ -182,7 +173,7 @@ function TemplatesPage() {
               <p className="text-sm text-theme-text-secondary">
                 {t('templates.noKeys')}{' '}
                 <button
-                  onClick={() => navigate('/dashboard/keys')}
+                  onClick={() => navigate(`/dashboard/${entitySlug}/keys`)}
                   className="text-blue-600 hover:underline"
                 >
                   {t('templates.addKeyLink')}
@@ -223,7 +214,7 @@ function TemplatesPage() {
                     <span className="px-1.5 py-0.5 text-xs font-mono rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
                       POST
                     </span>
-                    <span className="font-mono">/{organizationPath}/{projectName}/{ep.endpoint_name}</span>
+                    <span className="font-mono">/{entitySlug}/{projectName}/{ep.endpoint_name}</span>
                   </li>
                 ))}
               </ul>

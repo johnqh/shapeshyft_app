@@ -12,27 +12,27 @@ import { useApi } from './useApi';
 export const useBreadcrumbs = () => {
   const location = useLocation();
   const { t, i18n } = useTranslation('common');
-  const { projectId } = useParams<{ projectId?: string }>();
-  const { networkClient, baseUrl, userId, token, isReady } = useApi();
+  const { entitySlug = '', projectId } = useParams<{ entitySlug?: string; projectId?: string }>();
+  const { networkClient, baseUrl, token, isReady } = useApi();
   const breadcrumbBuilder = BreadcrumbBuilder.getInstance();
 
   // Fetch projects for dynamic titles
   const { projects } = useProjectsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   // Fetch endpoints for dynamic titles (only when we have a projectId)
   const { endpoints } = useEndpointsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
     projectId: projectId ?? '',
-    autoFetch: isReady && !!projectId,
+    autoFetch: isReady && !!projectId && !!entitySlug,
   });
 
   // Build dynamic titles map

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useProjectsManager, useEndpointsManager, useSettingsManager } from '@sudobility/shapeshyft_lib';
+import { useProjectsManager, useEndpointsManager } from '@sudobility/shapeshyft_lib';
 import { getInfoService } from '@sudobility/di';
 import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
@@ -9,10 +9,10 @@ import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
 
 function ProjectDetailPage() {
-  const { projectId } = useParams<{ projectId: string }>();
+  const { entitySlug = '', projectId } = useParams<{ entitySlug: string; projectId: string }>();
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { networkClient, baseUrl, token, isReady, isLoading: apiLoading } = useApi();
   const { success } = useToast();
 
   // Inline editing state for project
@@ -28,9 +28,9 @@ function ProjectDetailPage() {
   } = useProjectsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   const project = projects.find(p => p.uuid === projectId);
@@ -44,22 +44,11 @@ function ProjectDetailPage() {
   } = useEndpointsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
     projectId: projectId ?? '',
-    autoFetch: isReady && !!projectId,
+    autoFetch: isReady && !!projectId && !!entitySlug,
   });
-
-  const { settings } = useSettingsManager({
-    baseUrl,
-    networkClient,
-    userId: userId ?? '',
-    token,
-    autoFetch: isReady,
-  });
-
-  // Get organization path - use settings value or fallback to first 8 chars of userId
-  const organizationPath = settings?.organization_path || (userId ? userId.replace(/-/g, '').slice(0, 8) : '');
 
   // Show error via InfoInterface
   useEffect(() => {
@@ -128,7 +117,7 @@ function ProjectDetailPage() {
           {t('projects.notFound')}
         </h3>
         <button
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate(`/dashboard/${entitySlug}`)}
           className="text-blue-600 hover:underline"
         >
           {t('projects.backToProjects')}
@@ -208,7 +197,7 @@ function ProjectDetailPage() {
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <h3 className="text-lg font-semibold text-theme-text-primary">{t('endpoints.title')}</h3>
         <button
-          onClick={() => navigate(`/dashboard/projects/${projectId}/endpoints/new`)}
+          onClick={() => navigate(`/dashboard/${entitySlug}/projects/${projectId}/endpoints/new`)}
           className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm"
         >
           {t('endpoints.create')}
@@ -225,7 +214,7 @@ function ProjectDetailPage() {
             <div
               key={endpoint.uuid}
               className="p-4 bg-theme-bg-secondary rounded-xl border border-theme-border hover:border-blue-500 cursor-pointer transition-colors group"
-              onClick={() => navigate(`/dashboard/projects/${projectId}/endpoints/${endpoint.uuid}`)}
+              onClick={() => navigate(`/dashboard/${entitySlug}/projects/${projectId}/endpoints/${endpoint.uuid}`)}
             >
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                 <div className="flex items-center gap-4 min-w-0">
@@ -241,7 +230,7 @@ function ProjectDetailPage() {
                   <div className="min-w-0">
                     <h4 className="font-medium text-theme-text-primary truncate">{endpoint.display_name}</h4>
                     <p className="text-sm text-theme-text-tertiary font-mono truncate">
-                      /{organizationPath}/{project.project_name}/{endpoint.endpoint_name}
+                      /{entitySlug}/{project.project_name}/{endpoint.endpoint_name}
                     </p>
                   </div>
                 </div>
@@ -273,7 +262,7 @@ function ProjectDetailPage() {
                   <button
                     onClick={e => {
                       e.stopPropagation();
-                      navigate(`/dashboard/projects/${projectId}/endpoints/${endpoint.uuid}`);
+                      navigate(`/dashboard/${entitySlug}/projects/${projectId}/endpoints/${endpoint.uuid}`);
                     }}
                     className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
                   >

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useKeysManager } from '@sudobility/shapeshyft_lib';
 import { getInfoService } from '@sudobility/di';
@@ -16,7 +17,8 @@ const PROVIDER_ICONS: Record<string, { bg: string; text: string; abbr: string }>
 
 function KeysPage() {
   const { t } = useTranslation(['dashboard', 'common']);
-  const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
+  const { networkClient, baseUrl, token, isReady, isLoading: apiLoading } = useApi();
   const { success } = useToast();
 
   const [showAddModal, setShowAddModal] = useState(false);
@@ -33,9 +35,9 @@ function KeysPage() {
   } = useKeysManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   // Show error via InfoInterface

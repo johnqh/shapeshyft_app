@@ -21,9 +21,12 @@ BASE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 # Wait times are used for packages that need CI/CD to complete publishing
 # before dependent packages can fetch the new version from npm.
 PROJECTS=(
+    "../entity_service:0"
+    "../entity_client:0"
     "../ratelimit_service:0"
     "../ratelimit_client:0"
     "../shapeshyft_types:60"
+    "../entity_pages:0"
     "../ratelimit_pages:0"
     "../shapeshyft_api:0"
     "../shapeshyft_client:60"

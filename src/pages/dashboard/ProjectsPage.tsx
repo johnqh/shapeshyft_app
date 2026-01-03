@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager } from '@sudobility/shapeshyft_lib';
 import { getInfoService } from '@sudobility/di';
@@ -10,7 +11,8 @@ import { useToast } from '../../hooks/useToast';
 function ProjectsPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
+  const { networkClient, baseUrl, token, isReady, isLoading: apiLoading } = useApi();
   const { success } = useToast();
 
   const {
@@ -22,9 +24,9 @@ function ProjectsPage() {
   } = useProjectsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    entitySlug,
     token,
-    autoFetch: isReady,
+    autoFetch: isReady && !!entitySlug,
   });
 
   // Show error via InfoInterface
@@ -60,13 +62,13 @@ function ProjectsPage() {
       {/* Action Buttons */}
       <div className="flex gap-3 mb-6">
         <button
-          onClick={() => navigate('/dashboard/projects/new')}
+          onClick={() => navigate(`/dashboard/${entitySlug}/projects/new`)}
           className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors text-sm"
         >
           {t('projects.create')}
         </button>
         <button
-          onClick={() => navigate('/dashboard/projects/templates')}
+          onClick={() => navigate(`/dashboard/${entitySlug}/projects/templates`)}
           className="px-4 py-2 border border-theme-border text-theme-text-primary font-medium rounded-lg hover:bg-theme-hover-bg transition-colors text-sm"
         >
           {t('projects.useTemplate')}
@@ -102,7 +104,7 @@ function ProjectsPage() {
             <div
               key={project.uuid}
               className="p-6 bg-theme-bg-secondary rounded-xl border border-theme-border hover:border-blue-500 cursor-pointer transition-colors group"
-              onClick={() => navigate(`/dashboard/projects/${project.uuid}`)}
+              onClick={() => navigate(`/dashboard/${entitySlug}/projects/${project.uuid}`)}
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="flex-1 min-w-0">

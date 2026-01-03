@@ -29,11 +29,15 @@ const SubscriptionPage = lazy(() => import('./pages/dashboard/SubscriptionPage')
 const BudgetsPage = lazy(() => import('./pages/dashboard/BudgetsPage'));
 const SettingsPage = lazy(() => import('./pages/dashboard/SettingsPage'));
 const RateLimitsPage = lazy(() => import('./pages/dashboard/RateLimitsPage'));
+const WorkspacesPage = lazy(() => import('./pages/dashboard/WorkspacesPage'));
+const MembersPage = lazy(() => import('./pages/dashboard/MembersPage'));
+const InvitationsPage = lazy(() => import('./pages/dashboard/InvitationsPage'));
 
 // Layout components
 const LanguageRedirect = lazy(() => import('./components/layout/LanguageRedirect'));
 const LanguageValidator = lazy(() => import('./components/layout/LanguageValidator'));
 const ProtectedRoute = lazy(() => import('./components/layout/ProtectedRoute'));
+const EntityRedirect = lazy(() => import('./components/layout/EntityRedirect'));
 
 // Create React Query client
 const queryClient = new QueryClient({
@@ -76,9 +80,19 @@ function App() {
                       <Route path="docs" element={<DocsPage />} />
                       <Route path="docs/:section" element={<DocsPage />} />
 
-                      {/* Protected dashboard routes */}
+                      {/* Dashboard redirect - picks default entity */}
                       <Route
                         path="dashboard"
+                        element={
+                          <ProtectedRoute>
+                            <EntityRedirect />
+                          </ProtectedRoute>
+                        }
+                      />
+
+                      {/* Protected dashboard routes with entity slug */}
+                      <Route
+                        path="dashboard/:entitySlug"
                         element={
                           <ProtectedRoute>
                             <DashboardPage />
@@ -100,6 +114,9 @@ function App() {
                         <Route path="budgets" element={<BudgetsPage />} />
                         <Route path="settings" element={<SettingsPage />} />
                         <Route path="rate-limits" element={<RateLimitsPage />} />
+                        <Route path="workspaces" element={<WorkspacesPage />} />
+                        <Route path="members" element={<MembersPage />} />
+                        <Route path="invitations" element={<InvitationsPage />} />
                       </Route>
 
                       {/* Catch-all redirect to home */}
