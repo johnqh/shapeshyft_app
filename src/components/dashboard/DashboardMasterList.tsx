@@ -230,8 +230,8 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
 
   // Determine current section from URL
   const pathname = location.pathname;
-  const isProjectsSection = pathname.includes('/dashboard') && !pathname.includes('/keys') && !pathname.includes('/analytics') && !pathname.includes('/budgets') && !pathname.includes('/subscription') && !pathname.includes('/settings') && !pathname.includes('/rate-limits');
-  const isKeysSection = pathname.includes('/keys');
+  const isProjectsSection = pathname.includes('/dashboard') && !pathname.includes('/providers') && !pathname.includes('/analytics') && !pathname.includes('/budgets') && !pathname.includes('/subscription') && !pathname.includes('/settings') && !pathname.includes('/rate-limits');
+  const isProvidersSection = pathname.includes('/providers');
   const isAnalyticsSection = pathname.includes('/analytics');
   const isBudgetsSection = pathname.includes('/budgets');
   const isSubscriptionSection = pathname.includes('/subscription');
@@ -268,13 +268,13 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
         ))}
       </CollapsibleSection>
 
-      {/* API Keys Section */}
+      {/* Providers Section */}
       <CollapsibleSection
-        id="keys"
-        title={t('navigation.apiKeys')}
+        id="providers"
+        title={t('navigation.providers')}
         icon={<KeyIcon />}
-        isSelected={isKeysSection}
-        onSelect={() => handleNavigation('/keys')}
+        isSelected={isProvidersSection}
+        onSelect={() => handleNavigation('/providers')}
         hasChildren={keys.length > 0}
         childCount={keys.length}
       >
@@ -284,7 +284,7 @@ export function DashboardMasterList({ projects, keys, onNavigate }: DashboardMas
             label={key.key_name}
             sublabel={t(`keys.providers.${key.provider}`)}
             isSelected={false}
-            onClick={() => handleNavigation('/keys')}
+            onClick={() => handleNavigation('/providers')}
             statusBadge={<StatusBadge isActive={key.is_active ?? false} />}
           />
         ))}

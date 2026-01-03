@@ -67,7 +67,7 @@ function DashboardPage() {
       const project = projects.find(p => p.uuid === projectId);
       return project?.display_name ?? t('projects.detail');
     }
-    if (pathname.includes('/keys')) {
+    if (pathname.includes('/providers')) {
       return t('keys.title');
     }
     if (pathname.includes('/analytics')) {
@@ -95,7 +95,7 @@ function DashboardPage() {
       // Show content view when we're on a specific route
       const pathname = location.pathname;
       const hasSpecificContent = pathname.includes('/projects/') ||
-                                  pathname.includes('/keys') ||
+                                  pathname.includes('/providers') ||
                                   pathname.includes('/analytics') ||
                                   pathname.includes('/budgets') ||
                                   pathname.includes('/subscription') ||

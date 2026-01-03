@@ -3,7 +3,7 @@
   "welcome": "Welcome back, {{name}}",
   "navigation": {
     "projects": "Projects",
-    "apiKeys": "API Keys",
+    "providers": "Providers",
     "analytics": "Analytics",
     "budgets": "Budgets",
     "subscription": "Subscription",
@@ -118,11 +118,11 @@
     }
   },
   "keys": {
-    "title": "API Keys",
-    "empty": "No API keys configured",
-    "emptyDescription": "Add your first LLM provider API key",
-    "add": "Add Key",
-    "confirmDelete": "Are you sure you want to delete this API key?",
+    "title": "Providers",
+    "empty": "No providers configured",
+    "emptyDescription": "Add your first LLM provider",
+    "add": "Add Provider",
+    "confirmDelete": "Are you sure you want to delete this provider?",
     "card": {
       "provider": "Provider",
       "status": "Status",
@@ -145,14 +145,14 @@
       "errors": {
         "nameRequired": "Key name is required",
         "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LLM server"
+        "endpointRequired": "Endpoint URL is required for custom LM server"
       }
     },
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LLM Server"
+      "llm_server": "Custom LM Server"
     }
   },
   "analytics": {

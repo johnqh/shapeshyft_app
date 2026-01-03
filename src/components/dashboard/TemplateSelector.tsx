@@ -165,7 +165,7 @@ function TemplateSelector({ templates, onApply, onClose }: TemplateSelectorProps
                 ) : keys.length === 0 ? (
                   <p className="text-sm text-theme-text-secondary">
                     {t('templates.noKeys')}{' '}
-                    <a href="#/keys" className="text-blue-600 hover:underline">
+                    <a href="#/providers" className="text-blue-600 hover:underline">
                       {t('templates.addKeyLink')}
                     </a>
                   </p>

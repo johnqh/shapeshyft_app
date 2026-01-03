@@ -108,7 +108,7 @@ function App() {
                           path="projects/:projectId/endpoints/:endpointId"
                           element={<EndpointDetailPage />}
                         />
-                        <Route path="keys" element={<KeysPage />} />
+                        <Route path="providers" element={<KeysPage />} />
                         <Route path="analytics" element={<AnalyticsPage />} />
                         <Route path="subscription" element={<SubscriptionPage />} />
                         <Route path="budgets" element={<BudgetsPage />} />

@@ -173,7 +173,7 @@ function TemplatesPage() {
               <p className="text-sm text-theme-text-secondary">
                 {t('templates.noKeys')}{' '}
                 <button
-                  onClick={() => navigate(`/dashboard/${entitySlug}/keys`)}
+                  onClick={() => navigate(`/dashboard/${entitySlug}/providers`)}
                   className="text-blue-600 hover:underline"
                 >
                   {t('templates.addKeyLink')}

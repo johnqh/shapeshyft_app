@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProjectsManager, useEndpointsManager } from '@sudobility/shapeshyft_lib';
@@ -7,6 +7,7 @@ import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { useApi } from '../../hooks/useApi';
 import { useToast } from '../../hooks/useToast';
+import ApiKeySection from '../../components/dashboard/ApiKeySection';
 
 function ProjectDetailPage() {
   const { entitySlug = '', projectId } = useParams<{ entitySlug: string; projectId: string }>();
@@ -25,6 +26,8 @@ function ProjectDetailPage() {
     projects,
     isLoading: projectsLoading,
     updateProject,
+    getProjectApiKey,
+    refreshProjectApiKey,
   } = useProjectsManager({
     baseUrl,
     networkClient,
@@ -99,6 +102,18 @@ function ProjectDetailPage() {
       }
     }
   };
+
+  const handleGetApiKey = useCallback(async (): Promise<string | null> => {
+    if (!projectId) return null;
+    const result = await getProjectApiKey(projectId);
+    return result?.api_key ?? null;
+  }, [projectId, getProjectApiKey]);
+
+  const handleRefreshApiKey = useCallback(async (): Promise<string | null> => {
+    if (!projectId) return null;
+    const result = await refreshProjectApiKey(projectId);
+    return result?.api_key ?? null;
+  }, [projectId, refreshProjectApiKey]);
 
   // Loading state
   if (apiLoading || projectsLoading || (isReady && endpointsLoading && endpoints.length === 0)) {
@@ -191,6 +206,16 @@ function ProjectDetailPage() {
             </button>
           </div>
         )}
+      </div>
+
+      {/* API Key Section */}
+      <div className="mb-6">
+        <ApiKeySection
+          project={project}
+          onGetApiKey={handleGetApiKey}
+          onRefreshApiKey={handleRefreshApiKey}
+          isLoading={projectsLoading}
+        />
       </div>
 
       {/* Endpoints Section */}

@@ -48,7 +48,7 @@ const pathTranslationKeys: Record<string, string> = {
 
   // Dashboard paths
   '/dashboard': 'breadcrumbs.dashboard',
-  '/dashboard/keys': 'breadcrumbs.apiKeys',
+  '/dashboard/providers': 'breadcrumbs.providers',
   '/dashboard/analytics': 'breadcrumbs.analytics',
   '/dashboard/budgets': 'breadcrumbs.budgets',
   '/dashboard/subscription': 'breadcrumbs.subscription',

@@ -62,7 +62,12 @@
     "noResults": "No results found",
     "tryAgain": "Try Again",
     "notSet": "Not set",
-    "disabled": "Disabled"
+    "disabled": "Disabled",
+    "refresh": "Refresh",
+    "yes": "Yes",
+    "no": "No",
+    "errorOccurred": "An error occurred",
+    "optional": "optional"
   },
   "toast": {
     "success": {
@@ -89,6 +94,7 @@
     "endpoints": "Endpoints",
     "endpointDetail": "Endpoint",
     "apiKeys": "API Keys",
+    "providers": "Providers",
     "analytics": "Analytics",
     "budgets": "Budgets",
     "subscription": "Subscription",

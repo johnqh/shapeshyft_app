@@ -24,6 +24,7 @@ function EndpointDetailPage() {
   const [inputError, setInputError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [projectApiKey, setProjectApiKey] = useState<string | null>(null);
   const initializedRef = useRef(false);
 
   // Edit form state
@@ -35,7 +36,7 @@ function EndpointDetailPage() {
   const [useInputSchema, setUseInputSchema] = useState(false);
   const [useOutputSchema, setUseOutputSchema] = useState(false);
 
-  const { projects, isLoading: projectsLoading } = useProjectsManager({
+  const { projects, isLoading: projectsLoading, getProjectApiKey } = useProjectsManager({
     baseUrl,
     networkClient,
     entitySlug,
@@ -84,6 +85,17 @@ function EndpointDetailPage() {
       setTestInput(JSON.stringify(sample, null, 2));
     }
   }, [endpoint, generateSampleInput]);
+
+  // Fetch project API key for testing
+  useEffect(() => {
+    if (projectId && isReady && getProjectApiKey) {
+      getProjectApiKey(projectId).then(result => {
+        if (result?.api_key) {
+          setProjectApiKey(result.api_key);
+        }
+      });
+    }
+  }, [projectId, isReady, getProjectApiKey]);
 
   // Show test error via InfoInterface
   useEffect(() => {
@@ -186,7 +198,8 @@ function EndpointDetailPage() {
       entitySlug,
       project.project_name,
       endpoint.endpoint_name,
-      parsedInput
+      parsedInput,
+      projectApiKey ?? undefined
     );
     setIsLoadingPrompt(false);
 
@@ -218,7 +231,7 @@ function EndpointDetailPage() {
       return;
     }
 
-    const result = await testEndpoint(entitySlug, project.project_name, endpoint, parsedInput);
+    const result = await testEndpoint(entitySlug, project.project_name, endpoint, parsedInput, projectApiKey ?? undefined);
     if (result?.success) {
       success(t('endpoints.tester.success'));
     } else if (result?.error) {

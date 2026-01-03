@@ -9,7 +9,7 @@ describe('BreadcrumbBuilder', () => {
       'breadcrumbs.dashboard': 'Dashboard',
       'breadcrumbs.pricing': 'Pricing',
       'breadcrumbs.docs': 'Documentation',
-      'breadcrumbs.apiKeys': 'API Keys',
+      'breadcrumbs.providers': 'Providers',
       'breadcrumbs.analytics': 'Analytics',
       'breadcrumbs.budgets': 'Budgets',
       'breadcrumbs.subscription': 'Subscription',
@@ -47,7 +47,7 @@ describe('BreadcrumbBuilder', () => {
     });
 
     it('handles dashboard sub-paths', () => {
-      expect(builder.localizedBreadcrumb('/dashboard/keys', mockT)).toBe('API Keys');
+      expect(builder.localizedBreadcrumb('/dashboard/providers', mockT)).toBe('Providers');
       expect(builder.localizedBreadcrumb('/dashboard/analytics', mockT)).toBe('Analytics');
       expect(builder.localizedBreadcrumb('/dashboard/budgets', mockT)).toBe('Budgets');
       expect(builder.localizedBreadcrumb('/en/dashboard/settings', mockT)).toBe('Settings');
@@ -91,11 +91,11 @@ describe('BreadcrumbBuilder', () => {
     });
 
     it('builds breadcrumb trail for nested paths', () => {
-      const result = builder.localizedBreadcrumbs('/en/dashboard/keys', mockT);
+      const result = builder.localizedBreadcrumbs('/en/dashboard/providers', mockT);
       expect(result).toHaveLength(3);
       expect(result[0]).toEqual({ title: 'Home', path: '/en' });
       expect(result[1]).toEqual({ title: 'Dashboard', path: '/en/dashboard' });
-      expect(result[2]).toEqual({ title: 'API Keys', path: '/en/dashboard/keys' });
+      expect(result[2]).toEqual({ title: 'Providers', path: '/en/dashboard/providers' });
     });
 
     it('handles language prefix correctly', () => {
@@ -123,12 +123,12 @@ describe('BreadcrumbBuilder', () => {
 
   describe('getLocalizedBreadcrumbItems', () => {
     it('formats breadcrumbs for component use', () => {
-      const result = builder.getLocalizedBreadcrumbItems('/en/dashboard/keys', mockT);
+      const result = builder.getLocalizedBreadcrumbItems('/en/dashboard/providers', mockT);
 
       expect(result).toHaveLength(3);
       expect(result[0]).toEqual({ label: 'Home', href: '/en', current: false });
       expect(result[1]).toEqual({ label: 'Dashboard', href: '/en/dashboard', current: false });
-      expect(result[2]).toEqual({ label: 'API Keys', href: undefined, current: true });
+      expect(result[2]).toEqual({ label: 'Providers', href: undefined, current: true });
     });
 
     it('marks only the last item as current', () => {
