@@ -11,6 +11,7 @@ import { AuthProviderWrapper } from './components/providers/AuthProviderWrapper'
 import { SubscriptionProviderWrapper } from './components/providers/SubscriptionProviderWrapper';
 import ToastContainer from './components/ui/ToastContainer';
 import { InfoBanner } from '@sudobility/di_web';
+import { PerformancePanel } from '@sudobility/components';
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -33,6 +34,7 @@ const RateLimitsPage = lazy(() => import('./pages/dashboard/RateLimitsPage'));
 const WorkspacesPage = lazy(() => import('./pages/dashboard/WorkspacesPage'));
 const MembersPage = lazy(() => import('./pages/dashboard/MembersPage'));
 const InvitationsPage = lazy(() => import('./pages/dashboard/InvitationsPage'));
+const PerformancePage = lazy(() => import('./pages/dashboard/PerformancePage'));
 
 // Layout components
 const LanguageRedirect = lazy(() => import('./components/layout/LanguageRedirect'));
@@ -56,6 +58,9 @@ const LoadingFallback = () => (
     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
   </div>
 );
+
+// Stable reference for PerformancePanel to prevent infinite re-renders
+const PERFORMANCE_API_PATTERNS = ['/api/'];
 
 function App() {
   return (
@@ -119,6 +124,7 @@ function App() {
                         <Route path="workspaces" element={<WorkspacesPage />} />
                         <Route path="members" element={<MembersPage />} />
                         <Route path="invitations" element={<InvitationsPage />} />
+                        <Route path="performance" element={<PerformancePage />} />
                       </Route>
 
                       {/* Catch-all redirect to home */}
@@ -130,6 +136,14 @@ function App() {
                   </Routes>
                   </Suspense>
                   <ToastContainer />
+                  {/* Floating performance panel - controlled by VITE_SHOW_PERFORMANCE_MONITOR */}
+                  {import.meta.env.VITE_SHOW_PERFORMANCE_MONITOR === 'true' && (
+                    <PerformancePanel
+                      enabled={true}
+                      position="bottom-right"
+                      apiPatterns={PERFORMANCE_API_PATTERNS}
+                    />
+                  )}
                   <InfoBanner />
                   </BrowserRouter>
                   </SubscriptionProviderWrapper>

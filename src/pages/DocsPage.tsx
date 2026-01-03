@@ -25,13 +25,6 @@ function DocsPage() {
     }
   }, [section, navigate]);
 
-  // Auto-switch to content view on mobile when section changes
-  useEffect(() => {
-    if (section && window.innerWidth < 768) {
-      setMobileView('content');
-    }
-  }, [section]);
-
   const handleBackToNavigation = () => {
     setMobileView('navigation');
   };

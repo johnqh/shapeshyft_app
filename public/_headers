@@ -1,0 +1,66 @@
+# Cache control headers for ShapeShyft
+# Works with Netlify, Cloudflare Pages, and other hosting providers
+
+# Static assets with hash in filename - cache forever
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# JavaScript and CSS chunks
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts - cache for 1 year
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images - cache for 1 week
+/*.png
+  Cache-Control: public, max-age=604800
+
+/*.jpg
+  Cache-Control: public, max-age=604800
+
+/*.jpeg
+  Cache-Control: public, max-age=604800
+
+/*.svg
+  Cache-Control: public, max-age=604800
+
+/*.webp
+  Cache-Control: public, max-age=604800
+
+/*.ico
+  Cache-Control: public, max-age=604800
+
+# JSON files - short cache for dynamic data
+/*.json
+  Cache-Control: public, max-age=3600
+
+# HTML - no cache, always revalidate
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Locales - cache for 1 hour
+/locales/*
+  Cache-Control: public, max-age=3600
+
+# Service worker - never cache
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Security headers for all routes
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

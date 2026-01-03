@@ -16,6 +16,13 @@ import './i18n';
 // Import App AFTER DI initialization
 import App from './App';
 
+// Initialize performance monitoring
+import { registerServiceWorker } from './utils/serviceWorker';
+import { initWebVitals } from './utils/webVitals';
+
+registerServiceWorker();
+initWebVitals();
+
 // Render React app
 const root = document.getElementById('root')!;
 createRoot(root).render(
