@@ -1,7 +1,7 @@
 {
   "name": "shapeshyft_app",
   "private": true,
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -34,8 +34,8 @@
     "@sudobility/ratelimit-components": "^1.0.0",
     "@sudobility/ratelimit_client": "^0.0.13",
     "@sudobility/ratelimit_pages": "^1.0.7",
-    "@sudobility/shapeshyft_client": "^0.0.11",
-    "@sudobility/shapeshyft_lib": "^0.0.12",
+    "@sudobility/shapeshyft_client": "^0.0.12",
+    "@sudobility/shapeshyft_lib": "^0.0.13",
     "@sudobility/shapeshyft_types": "^1.0.13",
     "@sudobility/subscription-components": "^1.0.5",
     "@sudobility/types": "^1.9.40",
