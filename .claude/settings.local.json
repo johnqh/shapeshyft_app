@@ -28,7 +28,8 @@
       "Bash(npm link:*)",
       "Bash(bun test:*)",
       "Bash(bun add:*)",
-      "Bash(bunx vitest run:*)"
+      "Bash(bunx vitest run:*)",
+      "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && grep -o \"\"\"\"/[a-z/]*ratelimits\"\"\"\" {} | head -3')"
     ]
   }
 }
