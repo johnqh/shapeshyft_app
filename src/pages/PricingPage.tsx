@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useAuthStatus } from '@sudobility/auth-components';
 import { useSubscriptionContext } from '@sudobility/subscription-components';
 import ScreenContainer from '../components/layout/ScreenContainer';
+import SEO from '../components/seo/SEO';
+import AISearchOptimization from '../components/seo/AISearchOptimization';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 
 function PricingPage() {
@@ -46,6 +48,32 @@ function PricingPage() {
 
   return (
     <ScreenContainer footerVariant="full">
+      <SEO
+        title="Pricing"
+        description="ShapeShyft pricing plans. Start free, scale as you grow. Flexible plans for developers, teams, and enterprises building AI-powered APIs."
+        canonical="/pricing"
+        keywords="LLM API pricing, AI API cost, structured output pricing, API pricing plans"
+      />
+      <AISearchOptimization
+        pageType="pricing"
+        pageName="ShapeShyft Pricing"
+        description="Flexible pricing plans for building structured LLM APIs. Start free, scale as you grow."
+        keywords={['LLM API pricing', 'AI API cost', 'structured output pricing']}
+        faqs={[
+          {
+            question: 'Is there a free tier?',
+            answer: 'Yes, ShapeShyft offers a free tier with limited requests per month to get started.',
+          },
+          {
+            question: 'What payment methods are accepted?',
+            answer: 'We accept all major credit cards through our secure payment processor.',
+          },
+          {
+            question: 'Can I upgrade or downgrade my plan?',
+            answer: 'Yes, you can change your plan at any time. Changes take effect on your next billing cycle.',
+          },
+        ]}
+      />
       {/* Header */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">

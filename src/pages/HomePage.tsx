@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useAuthStatus } from '@sudobility/auth-components';
 import ScreenContainer from '../components/layout/ScreenContainer';
+import SEO from '../components/seo/SEO';
+import AISearchOptimization from '../components/seo/AISearchOptimization';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 
 function HomePage() {
@@ -20,6 +22,49 @@ function HomePage() {
 
   return (
     <ScreenContainer footerVariant="full">
+      <SEO
+        canonical="/"
+        keywords="LLM API, structured output, JSON Schema, AI API, OpenAI, Anthropic, Claude, GPT, REST API"
+      />
+      <AISearchOptimization
+        pageType="landing"
+        pageName="ShapeShyft - Transform LLM Outputs into Structured APIs"
+        description="Build reliable AI-powered REST APIs with JSON Schema validation. Transform unstructured LLM responses into predictable, type-safe endpoints."
+        keywords={['LLM API', 'structured output', 'JSON Schema', 'AI API', 'OpenAI', 'Anthropic', 'REST API']}
+        features={[
+          'Structured LLM output with JSON Schema',
+          'Multi-provider support (OpenAI, Anthropic, Google)',
+          'REST API generation',
+          'Token usage tracking',
+          'Rate limiting',
+        ]}
+        useCases={[
+          'Text classification and sentiment analysis',
+          'Data extraction from unstructured text',
+          'Structured content generation',
+          'AI-powered form validation',
+        ]}
+        benefits={[
+          'No more parsing unstructured LLM text',
+          'Type-safe API responses',
+          'Works with any major LLM provider',
+          'Built-in usage analytics',
+        ]}
+        faqs={[
+          {
+            question: 'What is ShapeShyft?',
+            answer: 'ShapeShyft transforms unstructured LLM outputs into reliable, type-safe REST APIs using JSON Schema validation.',
+          },
+          {
+            question: 'Which LLM providers are supported?',
+            answer: 'ShapeShyft supports OpenAI, Anthropic Claude, Google Gemini, and custom LLM servers with OpenAI-compatible APIs.',
+          },
+          {
+            question: 'Is there a free tier?',
+            answer: 'Yes, ShapeShyft offers a free tier with limited requests to get started.',
+          },
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20" />

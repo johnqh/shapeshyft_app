@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { HelmetProvider } from 'react-helmet-async';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { ThemeProvider } from './context/ThemeContext';
@@ -58,14 +59,15 @@ const LoadingFallback = () => (
 
 function App() {
   return (
-    <I18nextProvider i18n={i18n}>
-      <ThemeProvider>
-        <QueryClientProvider client={queryClient}>
-          <ToastProvider>
-            <AuthProviderWrapper>
-              <ApiProvider>
-                <SubscriptionProviderWrapper>
-                  <BrowserRouter>
+    <HelmetProvider>
+      <I18nextProvider i18n={i18n}>
+        <ThemeProvider>
+          <QueryClientProvider client={queryClient}>
+            <ToastProvider>
+              <AuthProviderWrapper>
+                <ApiProvider>
+                  <SubscriptionProviderWrapper>
+                    <BrowserRouter>
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes>
                     {/* Root redirect - detect language */}
@@ -130,13 +132,14 @@ function App() {
                   <ToastContainer />
                   <InfoBanner />
                   </BrowserRouter>
-                </SubscriptionProviderWrapper>
-              </ApiProvider>
-            </AuthProviderWrapper>
-          </ToastProvider>
-        </QueryClientProvider>
-      </ThemeProvider>
-    </I18nextProvider>
+                  </SubscriptionProviderWrapper>
+                </ApiProvider>
+              </AuthProviderWrapper>
+            </ToastProvider>
+          </QueryClientProvider>
+        </ThemeProvider>
+      </I18nextProvider>
+    </HelmetProvider>
   );
 }
 

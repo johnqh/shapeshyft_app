@@ -1,0 +1,146 @@
+# robots.txt for ShapeShyft
+# https://shapeshyft.io
+
+# ===========================================
+# Standard Search Engine Crawlers
+# ===========================================
+
+User-agent: *
+Allow: /
+Disallow: /*/dashboard/
+
+# Crawl delay for general bots
+Crawl-delay: 2
+
+# ===========================================
+# Google
+# ===========================================
+
+User-agent: Googlebot
+Allow: /
+Disallow: /*/dashboard/
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+
+# ===========================================
+# Bing
+# ===========================================
+
+User-agent: Bingbot
+Allow: /
+Disallow: /*/dashboard/
+Crawl-delay: 2
+
+# ===========================================
+# AI Search Engine Crawlers
+# ===========================================
+
+# OpenAI GPT
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# Anthropic Claude
+User-agent: Claude-Web
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# Google Gemini/Bard
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# You.com
+User-agent: YouBot
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# Cohere
+User-agent: CohereBot
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# Common Crawl (used by many AI systems)
+User-agent: CCBot
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+Allow: /llms.txt
+Allow: /ai-sitemap.json
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+User-agent: FacebookBot
+Allow: /
+Allow: /llms.txt
+Disallow: /*/dashboard/
+Crawl-delay: 5
+
+# ===========================================
+# Sitemaps
+# ===========================================
+
+Sitemap: https://shapeshyft.io/sitemap.xml
+Sitemap: https://shapeshyft.io/ai-sitemap.json
+
+# ===========================================
+# AI Content Files
+# ===========================================
+
+# LLMs.txt - AI crawler guidance
+# Available at: https://shapeshyft.io/llms.txt
+
+# AI Sitemap - Structured data for AI
+# Available at: https://shapeshyft.io/ai-sitemap.json

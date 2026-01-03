@@ -1,0 +1,152 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ShapeShyft",
+  "alternateName": "ShapeShyft - Structured LLM Output Platform",
+  "url": "https://shapeshyft.io",
+  "description": "Transform unstructured LLM outputs into reliable, type-safe REST APIs with JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LLM servers.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sudobility",
+    "url": "https://sudobility.com"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://shapeshyft.io/en/docs?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "mainEntity": {
+    "@type": "SoftwareApplication",
+    "name": "ShapeShyft",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free tier available with paid plans for higher usage"
+    },
+    "featureList": [
+      "Structured LLM output using JSON Schema",
+      "Multi-provider support (OpenAI, Anthropic, Google Gemini)",
+      "Automatic REST API generation",
+      "Token usage tracking and analytics",
+      "Cost estimation per request",
+      "Rate limiting with configurable limits",
+      "Project-based organization",
+      "Per-project API keys",
+      "Built-in endpoint testing",
+      "Request history and logging"
+    ],
+    "screenshot": "https://shapeshyft.io/screenshot.png",
+    "softwareRequirements": "HTTP client or REST API library"
+  },
+  "hasPart": [
+    {
+      "@type": "WebPage",
+      "name": "Home",
+      "url": "https://shapeshyft.io/",
+      "description": "ShapeShyft homepage - Transform LLM outputs into structured APIs",
+      "isPartOf": { "@id": "https://shapeshyft.io" }
+    },
+    {
+      "@type": "WebPage",
+      "name": "Getting Started",
+      "url": "https://shapeshyft.io/en/docs/getting-started",
+      "description": "Quick start guide for ShapeShyft - Create your first structured LLM endpoint",
+      "isPartOf": { "@id": "https://shapeshyft.io" }
+    },
+    {
+      "@type": "WebPage",
+      "name": "Core Concepts",
+      "url": "https://shapeshyft.io/en/docs/concepts",
+      "description": "Learn about endpoints, JSON schemas, system context, and organization paths",
+      "isPartOf": { "@id": "https://shapeshyft.io" }
+    },
+    {
+      "@type": "WebPage",
+      "name": "API Reference",
+      "url": "https://shapeshyft.io/en/docs/api-reference",
+      "description": "Complete API documentation for ShapeShyft REST endpoints",
+      "isPartOf": { "@id": "https://shapeshyft.io" }
+    },
+    {
+      "@type": "WebPage",
+      "name": "Pricing",
+      "url": "https://shapeshyft.io/en/pricing",
+      "description": "ShapeShyft pricing plans - Free tier, Pro, and Enterprise options",
+      "isPartOf": { "@id": "https://shapeshyft.io" }
+    }
+  ],
+  "about": {
+    "@type": "Thing",
+    "name": "Structured LLM Output",
+    "description": "Converting unstructured Large Language Model responses into typed, validated JSON data structures"
+  },
+  "keywords": [
+    "LLM API",
+    "structured output",
+    "JSON Schema",
+    "OpenAI API",
+    "Anthropic Claude",
+    "Google Gemini",
+    "REST API",
+    "AI integration",
+    "type-safe AI",
+    "structured data",
+    "prompt engineering",
+    "AI endpoints"
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Developers, AI Engineers, Product Teams, Startups"
+  },
+  "useCases": [
+    {
+      "name": "Text Classification",
+      "description": "Classify text into predefined categories with confidence scores. Use cases include sentiment analysis, content moderation, and intent detection."
+    },
+    {
+      "name": "Data Extraction",
+      "description": "Extract structured data from unstructured text. Parse receipts, extract entities from documents, normalize addresses and contact information."
+    },
+    {
+      "name": "Content Generation",
+      "description": "Generate structured content like product descriptions, metadata, SEO tags, or formatted responses with guaranteed schema compliance."
+    },
+    {
+      "name": "Form Validation",
+      "description": "Use AI understanding to validate and normalize user input, handling edge cases that rule-based validation cannot."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is ShapeShyft?",
+      "answer": "ShapeShyft is a platform that transforms unstructured LLM (Large Language Model) outputs into reliable, type-safe REST APIs. You define your output format using JSON Schema, and ShapeShyft ensures the LLM response matches that structure."
+    },
+    {
+      "question": "Which LLM providers does ShapeShyft support?",
+      "answer": "ShapeShyft supports OpenAI (GPT-4, GPT-3.5), Anthropic (Claude 3, Claude 2), Google (Gemini Pro, Gemini Ultra), and any custom LLM server with an OpenAI-compatible API."
+    },
+    {
+      "question": "How does structured output work?",
+      "answer": "You define a JSON Schema for your desired output format. ShapeShyft uses advanced prompt engineering to instruct the LLM to return data matching your schema, then validates the response before returning it to you."
+    },
+    {
+      "question": "Is there a free tier?",
+      "answer": "Yes, ShapeShyft offers a free tier with limited requests. Paid plans are available for higher usage limits, multiple projects, and priority support."
+    },
+    {
+      "question": "Do I need to handle prompt engineering?",
+      "answer": "No, ShapeShyft handles the prompt engineering for you. You provide the instructions and context for what you want the LLM to do, and ShapeShyft constructs the optimal prompt to get structured output."
+    }
+  ],
+  "technicalSpecs": {
+    "apiFormat": "REST with JSON",
+    "authentication": "Bearer token (API key)",
+    "schemaFormat": "JSON Schema (draft-07)",
+    "supportedMethods": "GET, POST",
+    "responseFormat": "JSON with usage metrics"
+  },
+  "lastModified": "2025-01-03"
+}

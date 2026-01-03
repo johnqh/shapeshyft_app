@@ -1,6 +1,11 @@
 {
   "title": "Documentation",
   "subtitle": "Learn how to build structured AI APIs with ShapeShyft",
+  "nav": {
+    "gettingStarted": "Getting Started",
+    "concepts": "Core Concepts",
+    "apiReference": "API Reference"
+  },
   "gettingStarted": {
     "title": "Getting Started",
     "steps": [

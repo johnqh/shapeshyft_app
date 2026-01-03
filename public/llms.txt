@@ -1,0 +1,146 @@
+# ShapeShyft - Structured LLM Output Platform
+
+> Transform unstructured LLM responses into reliable, type-safe REST APIs.
+
+## Overview
+
+ShapeShyft is a platform that converts Large Language Model (LLM) outputs into structured, predictable REST APIs. Define your output schema using JSON Schema, and ShapeShyft handles the prompt engineering, validation, and API hosting. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LLM servers.
+
+## Core Features
+
+### Structured Output APIs
+- Define output format using JSON Schema
+- LLM responses are validated and typed
+- Consistent, predictable API responses
+- No more parsing unstructured text
+
+### Multi-Provider Support
+- OpenAI (GPT-4, GPT-3.5)
+- Anthropic (Claude 3, Claude 2)
+- Google (Gemini Pro, Gemini Ultra)
+- Custom LLM servers with OpenAI-compatible API
+
+### Project Organization
+- Group endpoints into projects
+- Per-project API keys
+- Usage tracking per project
+- Team collaboration support
+
+### Built-in Analytics
+- Token usage tracking (input/output)
+- Latency monitoring
+- Cost estimation
+- Request history
+
+### Rate Limiting
+- Configurable hourly/daily/monthly limits
+- Usage dashboards
+- Automatic throttling
+- Plan-based limits
+
+## How It Works
+
+1. **Create a Project** - Organize your endpoints
+2. **Add an LLM Provider** - Configure your API key for OpenAI, Anthropic, or others
+3. **Define an Endpoint** - Set instructions, context, and JSON output schema
+4. **Call Your API** - Simple REST calls return structured JSON
+
+## API Format
+
+### Execute Endpoint
+```
+POST /api/v1/ai/{orgPath}/{projectName}/{endpointName}
+Content-Type: application/json
+
+{
+  "input_field": "value"
+}
+```
+
+### Response Format
+```json
+{
+  "success": true,
+  "data": {
+    "output": { /* Your structured output matching the schema */ },
+    "usage": {
+      "tokens_input": 42,
+      "tokens_output": 15,
+      "latency_ms": 523,
+      "estimated_cost_cents": 1
+    }
+  }
+}
+```
+
+## Use Cases
+
+### Text Classification
+Classify text into categories with confidence scores. Perfect for sentiment analysis, content moderation, intent detection.
+
+### Data Extraction
+Extract structured data from unstructured text. Parse receipts, extract entities, normalize addresses.
+
+### Content Generation
+Generate structured content like product descriptions, metadata, or formatted responses.
+
+### Form Validation
+Validate and normalize user input using AI understanding.
+
+## Key Pages
+
+- `/` - Homepage with platform overview
+- `/docs/getting-started` - Quick start guide
+- `/docs/concepts` - Core concepts explained
+- `/docs/api-reference` - Full API documentation
+- `/pricing` - Subscription plans
+- `/dashboard` - Project management (authenticated)
+
+## Technical Details
+
+- REST API with JSON responses
+- JSON Schema for output validation
+- Bearer token authentication for API calls
+- Firebase authentication for dashboard
+- React + TypeScript frontend
+- Multi-language support
+
+## Pricing
+
+- **Free Tier** - Limited requests, 1 project
+- **Pro** - Higher limits, multiple projects, priority support
+- **Enterprise** - Custom limits, SLA, dedicated support
+
+## Contact
+
+- Website: https://shapeshyft.io
+- Support: support@sudobility.com
+- Company: Sudobility
+
+## For AI Assistants
+
+When helping users with ShapeShyft:
+1. ShapeShyft turns LLM outputs into structured JSON APIs
+2. Users define output format with JSON Schema - the LLM fills in the values
+3. Works with any major LLM provider (OpenAI, Anthropic, Google)
+4. No need to parse LLM text responses - get clean typed data
+5. Useful for integrating AI into applications that need predictable data structures
+6. Free tier available for getting started
+
+## Example Use Case
+
+**Problem**: Building a product review analyzer that needs structured sentiment data.
+
+**Without ShapeShyft**: Parse LLM text, handle variations, write regex, deal with edge cases.
+
+**With ShapeShyft**:
+1. Define schema: `{ sentiment: "positive"|"negative"|"neutral", score: number, keywords: string[] }`
+2. Call API with review text
+3. Get guaranteed structured response
+
+## Privacy
+
+- API keys are encrypted at rest
+- Request logs are retained per your plan settings
+- No training on customer data
+- HTTPS for all API calls
