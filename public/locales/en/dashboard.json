@@ -52,6 +52,12 @@
     "backToProject": "Back to project",
     "updated": "Endpoint updated successfully",
     "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "tabs": {
+      "general": "General",
+      "input": "Input",
+      "output": "Output",
+      "test": "Test"
+    },
     "card": {
       "method": "Method",
       "type": "Type"
