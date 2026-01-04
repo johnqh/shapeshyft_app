@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-01-03T23:50:48.350Z",
+  "criticalPath": {
+    "uncompressed": 189305,
+    "gzip": 28839,
+    "brotli": 24513
+  },
+  "totalBundles": {
+    "js": 2715682,
+    "css": 165406
+  },
+  "budgets": {
+    "criticalPath": 51200,
+    "totalJS": 204800,
+    "totalCSS": 51200,
+    "image": 102400,
+    "font": 51200
+  },
+  "recommendations": [
+    {
+      "type": "success",
+      "message": "Critical path within budget: 28.2KB ≤ 50KB"
+    },
+    {
+      "type": "warning",
+      "message": "Total JS is large: 2.6MB",
+      "suggestion": "Analyze bundle composition and remove unused dependencies"
+    },
+    {
+      "type": "success",
+      "message": "Estimated compression: 84.8% size reduction with gzip"
+    }
+  ],
+  "scores": {
+    "performance": "🟢 Excellent"
+  },
+  "loadTimes": {
+    "Slow 3G": {
+      "gzip": 0.57678,
+      "uncompressed": 3.7861000000000002
+    },
+    "Fast 3G": {
+      "gzip": 0.144195,
+      "uncompressed": 0.9465250000000001
+    },
+    "4G": {
+      "gzip": 0.025634666666666667,
+      "uncompressed": 0.16827111111111112
+    },
+    "Cable": {
+      "gzip": 0.009228479999999999,
+      "uncompressed": 0.0605776
+    },
+    "Fiber": {
+      "gzip": 0.0023071199999999997,
+      "uncompressed": 0.0151444
+    }
+  }
+}

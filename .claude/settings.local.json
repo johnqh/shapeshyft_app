@@ -29,7 +29,13 @@
       "Bash(bun test:*)",
       "Bash(bun add:*)",
       "Bash(bunx vitest run:*)",
-      "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && grep -o \"\"\"\"/[a-z/]*ratelimits\"\"\"\" {} | head -3')"
+      "Bash(xargs -I {} sh -c 'echo \"\"\"\"=== {} ===\"\"\"\" && grep -o \"\"\"\"/[a-z/]*ratelimits\"\"\"\" {} | head -3')",
+      "Bash(chmod:*)",
+      "Bash(node:*)",
+      "Bash(gzip:*)",
+      "Bash(bun pm ls:*)",
+      "Bash(bun install:*)",
+      "Bash(git add:*)"
     ]
   }
 }
