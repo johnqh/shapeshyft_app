@@ -260,6 +260,7 @@
     "required": "Required",
     "descriptionPlaceholder": "Property description (optional)",
     "arrayItemSchema": "Array item schema:",
+    "clickToEditName": "Click to edit field name",
     "types": {
       "string": "String",
       "number": "Number",

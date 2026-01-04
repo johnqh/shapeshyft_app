@@ -156,15 +156,24 @@ function PropertyEditor({
             onBlur={handleNameBlur}
             onKeyDown={e => e.key === 'Enter' && handleNameBlur()}
             autoFocus
-            className="px-2 py-1 w-32 border border-theme-border rounded bg-theme-bg-primary text-sm font-mono"
+            className="px-2 py-1 w-32 border border-blue-500 rounded bg-theme-bg-primary text-sm font-mono ring-2 ring-blue-500/20"
           />
         ) : (
           <button
             type="button"
             onClick={() => setEditingName(true)}
-            className="px-2 py-1 text-sm font-mono text-theme-text-primary hover:bg-theme-hover-bg rounded"
+            className="group/name px-2 py-1 text-sm font-mono text-theme-text-primary border border-dashed border-theme-border hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded flex items-center gap-1.5 transition-colors"
+            title={t('schema.clickToEditName')}
           >
             {name}
+            <svg
+              className="w-3 h-3 text-theme-text-tertiary group-hover/name:text-blue-500 transition-colors"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
           </button>
         )}
 
