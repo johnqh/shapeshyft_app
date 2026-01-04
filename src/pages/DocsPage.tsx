@@ -76,7 +76,7 @@ function DocsPage() {
         description: 'Step-by-step guide to creating your first structured AI API endpoint with ShapeShyft',
         steps: [
           { name: 'Create a Project', text: 'Start by creating a new project in your dashboard to organize your endpoints.' },
-          { name: 'Add an LLM Provider', text: 'Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LLM server.' },
+          { name: 'Add an LLM Provider', text: 'Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server.' },
           { name: 'Define an Endpoint', text: 'Create an endpoint with instructions, context, and JSON output schema.' },
           { name: 'Test Your Endpoint', text: 'Use the built-in tester to verify your endpoint returns structured data.' },
           { name: 'Integrate', text: 'Call your endpoint from your application using simple GET or POST requests.' },

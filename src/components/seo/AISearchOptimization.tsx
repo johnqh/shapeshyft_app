@@ -49,7 +49,7 @@ export function AISearchOptimization({
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Web',
     description:
-      'ShapeShyft transforms unstructured LLM outputs into reliable, type-safe REST APIs using JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LLM servers.',
+      'ShapeShyft transforms unstructured LLM outputs into reliable, type-safe REST APIs using JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.',
     url: BASE_URL,
     creator: {
       '@type': 'Organization',

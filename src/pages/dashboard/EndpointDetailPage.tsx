@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useProjectsManager, useEndpointsManager, useEndpointTester } from '@sudobility/shapeshyft_lib';
+import { useProjectsManager, useEndpointsManager, useEndpointTester, useKeysManager } from '@sudobility/shapeshyft_lib';
 import { getInfoService } from '@sudobility/di';
 import { InfoType } from '@sudobility/types';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
@@ -33,10 +33,19 @@ function EndpointDetailPage() {
   const [editContext, setEditContext] = useState('');
   const [editInputSchema, setEditInputSchema] = useState('');
   const [editOutputSchema, setEditOutputSchema] = useState('');
+  const [editLlmKeyId, setEditLlmKeyId] = useState('');
   const [useInputSchema, setUseInputSchema] = useState(false);
   const [useOutputSchema, setUseOutputSchema] = useState(false);
 
   const { projects, isLoading: projectsLoading, getProjectApiKey } = useProjectsManager({
+    baseUrl,
+    networkClient,
+    entitySlug,
+    token,
+    autoFetch: isReady && !!entitySlug,
+  });
+
+  const { keys, isLoading: keysLoading } = useKeysManager({
     baseUrl,
     networkClient,
     entitySlug,
@@ -111,6 +120,7 @@ function EndpointDetailPage() {
     setEditContext(endpoint.context ?? '');
     setEditInputSchema(endpoint.input_schema ? JSON.stringify(endpoint.input_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
     setEditOutputSchema(endpoint.output_schema ? JSON.stringify(endpoint.output_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
+    setEditLlmKeyId(endpoint.llm_key_id);
     setUseInputSchema(!!endpoint.input_schema);
     setUseOutputSchema(!!endpoint.output_schema);
     setIsEditing(true);
@@ -152,7 +162,7 @@ function EndpointDetailPage() {
         display_name: editDisplayName.trim(),
         instructions: editInstructions.trim() || null,
         http_method: endpoint.http_method,
-        llm_key_id: endpoint.llm_key_id,
+        llm_key_id: editLlmKeyId,
         context: editContext.trim() || null,
         input_schema: parsedInputSchema,
         output_schema: parsedOutputSchema,
@@ -240,7 +250,7 @@ function EndpointDetailPage() {
   };
 
   // Loading state
-  if (apiLoading || projectsLoading || endpointsLoading) {
+  if (apiLoading || projectsLoading || endpointsLoading || keysLoading) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -330,6 +340,30 @@ function EndpointDetailPage() {
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Configuration */}
         <div className="space-y-6">
+          {/* Provider */}
+          <div className="p-4 bg-theme-bg-secondary rounded-xl">
+            <h3 className="font-medium text-theme-text-primary mb-2">
+              {t('endpoints.form.llmKey')}
+            </h3>
+            {isEditing ? (
+              <select
+                value={editLlmKeyId}
+                onChange={e => setEditLlmKeyId(e.target.value)}
+                className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              >
+                {keys.map(key => (
+                  <option key={key.uuid} value={key.uuid}>
+                    {key.key_name} ({t(`keys.providers.${key.provider}`)})
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <p className="text-sm text-theme-text-secondary">
+                {keys.find(k => k.uuid === endpoint.llm_key_id)?.key_name || endpoint.llm_key_id}
+              </p>
+            )}
+          </div>
+
           {/* System Context */}
           <div className="p-4 bg-theme-bg-secondary rounded-xl">
             <h3 className="font-medium text-theme-text-primary mb-2">

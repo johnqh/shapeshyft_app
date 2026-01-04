@@ -14,7 +14,7 @@
     },
     "multiProvider": {
       "title": "Multi-Provider Support",
-      "description": "Use OpenAI, Anthropic, Google Gemini, or your own LLM server. Switch providers without changing your code."
+      "description": "Use OpenAI, Anthropic, Google Gemini, or your own LM server. Switch providers without changing your code."
     },
     "analytics": {
       "title": "Built-in Analytics",

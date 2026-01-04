@@ -51,6 +51,8 @@ describe('ThemeContext', () => {
   beforeEach(() => {
     // Reset document classes
     document.documentElement.classList.remove('light', 'dark', 'font-small', 'font-medium', 'font-large');
+    // Clear localStorage to ensure clean state
+    localStorage.clear();
   });
 
   afterEach(() => {
@@ -131,12 +133,14 @@ describe('ThemeContext', () => {
     expect(document.documentElement.classList.contains('light')).toBe(false);
   });
 
-  it('applies font size class to document', () => {
-    render(
-      <ThemeProvider>
-        <TestComponent />
-      </ThemeProvider>
-    );
+  it('applies font size class to document', async () => {
+    await act(async () => {
+      render(
+        <ThemeProvider>
+          <TestComponent />
+        </ThemeProvider>
+      );
+    });
 
     expect(document.documentElement.classList.contains('font-medium')).toBe(true);
 

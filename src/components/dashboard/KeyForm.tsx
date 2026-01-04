@@ -8,7 +8,7 @@ const PROVIDERS: { value: LlmProvider; label: string }[] = [
   { value: 'openai', label: 'OpenAI' },
   { value: 'anthropic', label: 'Anthropic (Claude)' },
   { value: 'gemini', label: 'Google Gemini' },
-  { value: 'llm_server', label: 'Custom LLM Server' },
+  { value: 'llm_server', label: 'Custom LM Server' },
 ];
 
 interface KeyFormProps {
@@ -52,7 +52,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
   };
 
   const validateApiKey = (value: string, currentProvider: LlmProvider): string | undefined => {
-    // API key not required for custom LLM server or when editing
+    // API key not required for custom LM server or when editing
     if (currentProvider === 'llm_server' || isEditing) {
       return undefined;
     }
@@ -236,7 +236,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
             </div>
           )}
 
-          {/* API Key (not needed for custom LLM server) */}
+          {/* API Key (not needed for custom LM server) */}
           {provider !== 'llm_server' && (
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-1">

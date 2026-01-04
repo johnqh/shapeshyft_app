@@ -14,8 +14,8 @@
         "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
       },
       {
-        "title": "Add an LLM Key",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LLM server."
+        "title": "Add a Provider",
+        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
       },
       {
         "title": "Define an Endpoint",

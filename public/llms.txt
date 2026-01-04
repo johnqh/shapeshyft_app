@@ -4,7 +4,7 @@
 
 ## Overview
 
-ShapeShyft is a platform that converts Large Language Model (LLM) outputs into structured, predictable REST APIs. Define your output schema using JSON Schema, and ShapeShyft handles the prompt engineering, validation, and API hosting. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LLM servers.
+ShapeShyft is a platform that converts Large Language Model (LLM) outputs into structured, predictable REST APIs. Define your output schema using JSON Schema, and ShapeShyft handles the prompt engineering, validation, and API hosting. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.
 
 ## Core Features
 
@@ -18,7 +18,7 @@ ShapeShyft is a platform that converts Large Language Model (LLM) outputs into s
 - OpenAI (GPT-4, GPT-3.5)
 - Anthropic (Claude 3, Claude 2)
 - Google (Gemini Pro, Gemini Ultra)
-- Custom LLM servers with OpenAI-compatible API
+- Custom LM servers with OpenAI-compatible API
 
 ### Project Organization
 - Group endpoints into projects

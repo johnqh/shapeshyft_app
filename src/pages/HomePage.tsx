@@ -57,7 +57,7 @@ function HomePage() {
           },
           {
             question: 'Which LLM providers are supported?',
-            answer: 'ShapeShyft supports OpenAI, Anthropic Claude, Google Gemini, and custom LLM servers with OpenAI-compatible APIs.',
+            answer: 'ShapeShyft supports OpenAI, Anthropic Claude, Google Gemini, and custom LM servers with OpenAI-compatible APIs.',
           },
           {
             question: 'Is there a free tier?',

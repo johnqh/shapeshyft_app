@@ -4,7 +4,7 @@
   "name": "ShapeShyft",
   "alternateName": "ShapeShyft - Structured LLM Output Platform",
   "url": "https://shapeshyft.io",
-  "description": "Transform unstructured LLM outputs into reliable, type-safe REST APIs with JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LLM servers.",
+  "description": "Transform unstructured LLM outputs into reliable, type-safe REST APIs with JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.",
   "publisher": {
     "@type": "Organization",
     "name": "Sudobility",
@@ -126,7 +126,7 @@
     },
     {
       "question": "Which LLM providers does ShapeShyft support?",
-      "answer": "ShapeShyft supports OpenAI (GPT-4, GPT-3.5), Anthropic (Claude 3, Claude 2), Google (Gemini Pro, Gemini Ultra), and any custom LLM server with an OpenAI-compatible API."
+      "answer": "ShapeShyft supports OpenAI (GPT-4, GPT-3.5), Anthropic (Claude 3, Claude 2), Google (Gemini Pro, Gemini Ultra), and any custom LM server with an OpenAI-compatible API."
     },
     {
       "question": "How does structured output work?",

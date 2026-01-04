@@ -73,8 +73,8 @@
       "instructions": "Instructions",
       "instructionsPlaceholder": "Task instructions for the LLM",
       "httpMethod": "HTTP Method",
-      "llmKey": "LLM API Key",
-      "selectKey": "Select an API key",
+      "llmKey": "Provider",
+      "selectKey": "Select a Provider",
       "noKeys": "No API keys configured. Add one first.",
       "context": "System Context",
       "contextPlaceholder": "Instructions for the LLM (system prompt)",
@@ -87,7 +87,7 @@
       "errors": {
         "nameRequired": "Display name is required",
         "slugRequired": "Endpoint name is required",
-        "keyRequired": "LLM Key is required",
+        "keyRequired": "Provider is required",
         "invalidInputSchema": "Invalid input schema JSON",
         "invalidOutputSchema": "Invalid output schema JSON"
       }
@@ -189,8 +189,8 @@
     "configure": "Configure Template",
     "projectName": "Project Name",
     "projectNamePlaceholder": "my-project",
-    "llmKey": "LLM Key",
-    "selectKey": "Select an API key",
+    "llmKey": "Provider",
+    "selectKey": "Select a Provider",
     "noKeys": "No API keys available.",
     "addKeyLink": "Add one first",
     "preview": "Preview",

@@ -62,7 +62,7 @@
       },
       {
         "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LLM servers. We securely store them encrypted."
+        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
       },
       {
         "question": "Can I change plans later?",
