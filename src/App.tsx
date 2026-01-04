@@ -22,6 +22,11 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const PricingPage = lazy(() => import('./pages/PricingPage'));
 const DocsPage = lazy(() => import('./pages/DocsPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
+const AppSettingsPage = lazy(() => import('./pages/SettingsPage'));
 const DashboardPage = lazy(() => import('./pages/dashboard/DashboardPage'));
 const ProjectsPage = lazy(() => import('./pages/dashboard/ProjectsPage'));
 const ProjectNewPage = lazy(() => import('./pages/dashboard/ProjectNewPage'));
@@ -90,6 +95,11 @@ function App() {
                       <Route path="pricing" element={<PricingPage />} />
                       <Route path="docs" element={<DocsPage />} />
                       <Route path="docs/:section" element={<DocsPage />} />
+                      <Route path="about" element={<AboutPage />} />
+                      <Route path="contact" element={<ContactPage />} />
+                      <Route path="privacy" element={<PrivacyPage />} />
+                      <Route path="terms" element={<TermsPage />} />
+                      <Route path="settings" element={<AppSettingsPage />} />
 
                       {/* Dashboard redirect - picks default entity */}
                       <Route

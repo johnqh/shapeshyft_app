@@ -35,7 +35,10 @@
       "Bash(gzip:*)",
       "Bash(bun pm ls:*)",
       "Bash(bun install:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(npx vitest:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)"
     ]
   }
 }

@@ -5,7 +5,8 @@
     "home": "Home",
     "docs": "Docs",
     "pricing": "Pricing",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "settings": "Settings"
   },
   "auth": {
     "login": "Log In",
@@ -88,6 +89,12 @@
     "home": "Home",
     "pricing": "Pricing",
     "docs": "Documentation",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "settings": "Settings",
+    "login": "Login",
     "dashboard": "Dashboard",
     "projects": "Projects",
     "projectDetail": "Project",
@@ -98,6 +105,11 @@
     "analytics": "Analytics",
     "budgets": "Budgets",
     "subscription": "Subscription",
-    "settings": "Settings"
+    "dashboardSettings": "Settings",
+    "rateLimits": "Rate Limits",
+    "workspaces": "Workspaces",
+    "members": "Members",
+    "invitations": "Invitations",
+    "performance": "Performance"
   }
 }

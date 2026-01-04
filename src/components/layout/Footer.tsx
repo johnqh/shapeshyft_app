@@ -67,7 +67,7 @@ function Footer({ variant = 'full' }: FooterProps) {
             <LocalizedLink to="/pricing">Pricing</LocalizedLink>
           </FooterLink>
           <FooterLink>
-            <LocalizedLink to="/docs/api">API Reference</LocalizedLink>
+            <LocalizedLink to="/docs/api-reference">API Reference</LocalizedLink>
           </FooterLink>
         </FooterLinkSection>
 

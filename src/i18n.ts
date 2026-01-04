@@ -67,7 +67,7 @@ i18n
     lowerCaseLng: false,
 
     defaultNS: 'common',
-    ns: ['common', 'home', 'pricing', 'docs', 'dashboard', 'auth'],
+    ns: ['common', 'home', 'pricing', 'docs', 'dashboard', 'auth', 'about', 'contact', 'privacy', 'terms', 'settings'],
   });
 
 export default i18n;

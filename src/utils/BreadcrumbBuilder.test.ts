@@ -14,6 +14,7 @@ describe('BreadcrumbBuilder', () => {
       'breadcrumbs.budgets': 'Budgets',
       'breadcrumbs.subscription': 'Subscription',
       'breadcrumbs.settings': 'Settings',
+      'breadcrumbs.dashboardSettings': 'Settings',
       'breadcrumbs.projectDetail': 'Project',
       'breadcrumbs.endpointDetail': 'Endpoint',
     };

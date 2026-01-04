@@ -45,6 +45,12 @@ const pathTranslationKeys: Record<string, string> = {
   '/': 'breadcrumbs.home',
   '/pricing': 'breadcrumbs.pricing',
   '/docs': 'breadcrumbs.docs',
+  '/about': 'breadcrumbs.about',
+  '/contact': 'breadcrumbs.contact',
+  '/privacy': 'breadcrumbs.privacy',
+  '/terms': 'breadcrumbs.terms',
+  '/settings': 'breadcrumbs.settings',
+  '/login': 'breadcrumbs.login',
 
   // Dashboard paths
   '/dashboard': 'breadcrumbs.dashboard',
@@ -52,7 +58,12 @@ const pathTranslationKeys: Record<string, string> = {
   '/dashboard/analytics': 'breadcrumbs.analytics',
   '/dashboard/budgets': 'breadcrumbs.budgets',
   '/dashboard/subscription': 'breadcrumbs.subscription',
-  '/dashboard/settings': 'breadcrumbs.settings',
+  '/dashboard/settings': 'breadcrumbs.dashboardSettings',
+  '/dashboard/rate-limits': 'breadcrumbs.rateLimits',
+  '/dashboard/workspaces': 'breadcrumbs.workspaces',
+  '/dashboard/members': 'breadcrumbs.members',
+  '/dashboard/invitations': 'breadcrumbs.invitations',
+  '/dashboard/performance': 'breadcrumbs.performance',
 };
 
 /**

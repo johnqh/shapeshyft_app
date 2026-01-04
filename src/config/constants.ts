@@ -5,6 +5,7 @@ export const CONSTANTS = {
   APP_VERSION: import.meta.env.VITE_APP_VERSION || '0.0.1',
   API_URL: import.meta.env.VITE_SHAPESHYFT_API_URL || 'http://localhost:8787',
   DEV_MODE: import.meta.env.VITE_DEV_MODE === 'true',
+  SUPPORT_EMAIL: 'support@shapeshyft.com',
 
   // Social links (add as needed)
   SOCIAL_LINKS: {

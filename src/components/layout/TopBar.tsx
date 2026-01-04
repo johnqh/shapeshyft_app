@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import {
   TopbarProvider,
   Topbar,
@@ -8,36 +9,113 @@ import {
   TopbarNavigation,
   TopbarLogo,
   TopbarActions,
+  Logo,
   type TopbarNavItem,
 } from '@sudobility/components';
-import { AuthAction, useAuthStatus } from '@sudobility/auth-components';
+import { AuthAction, useAuthStatus, type AuthMenuItem } from '@sudobility/auth-components';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import { CONSTANTS, SUPPORTED_LANGUAGES, isLanguageSupported } from '../../config/constants';
 import LocalizedLink from './LocalizedLink';
 
-// Language display names
-const LANGUAGE_NAMES: Record<string, string> = {
-  en: 'English',
-  ar: 'العربية',
-  de: 'Deutsch',
-  es: 'Español',
-  fr: 'Français',
-  it: 'Italiano',
-  ja: '日本語',
-  ko: '한국어',
-  pt: 'Português',
-  ru: 'Русский',
-  sv: 'Svenska',
-  th: 'ไทย',
-  uk: 'Українська',
-  vi: 'Tiếng Việt',
-  zh: '简体中文',
-  'zh-hant': '繁體中文',
+// Language display names and flags
+const LANGUAGE_INFO: Record<string, { name: string; flag: string }> = {
+  en: { name: 'English', flag: '🇺🇸' },
+  ar: { name: 'العربية', flag: '🇸🇦' },
+  de: { name: 'Deutsch', flag: '🇩🇪' },
+  es: { name: 'Español', flag: '🇪🇸' },
+  fr: { name: 'Français', flag: '🇫🇷' },
+  it: { name: 'Italiano', flag: '🇮🇹' },
+  ja: { name: '日本語', flag: '🇯🇵' },
+  ko: { name: '한국어', flag: '🇰🇷' },
+  pt: { name: 'Português', flag: '🇧🇷' },
+  ru: { name: 'Русский', flag: '🇷🇺' },
+  sv: { name: 'Svenska', flag: '🇸🇪' },
+  th: { name: 'ไทย', flag: '🇹🇭' },
+  uk: { name: 'Українська', flag: '🇺🇦' },
+  vi: { name: 'Tiếng Việt', flag: '🇻🇳' },
+  zh: { name: '简体中文', flag: '🇨🇳' },
+  'zh-hant': { name: '繁體中文', flag: '🇹🇼' },
 };
 
 interface TopBarProps {
   variant?: 'default' | 'transparent';
 }
+
+// Icon components for nav items (styled like heroicons/outline)
+const HomeIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+  </svg>
+);
+
+const DocumentTextIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+  </svg>
+);
+
+const CurrencyDollarIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+  </svg>
+);
+
+const Squares2X2Icon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+  </svg>
+);
+
+const Cog6ToothIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+  </svg>
+);
+
+// Menu icons for dropdown (smaller, 16px style)
+const MenuFolderIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+  </svg>
+);
+
+const MenuKeyIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+  </svg>
+);
+
+const MenuChartIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  </svg>
+);
+
+const MenuBudgetIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
+const MenuSubscriptionIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+  </svg>
+);
+
+const MenuRateLimitsIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+  </svg>
+);
+
+const MenuSettingsIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+  </svg>
+);
 
 // Custom Link wrapper for TopbarNavigation
 const LinkWrapper = ({
@@ -56,23 +134,83 @@ const LinkWrapper = ({
 
 function TopBar({ variant = 'default' }: TopBarProps) {
   const { t } = useTranslation('common');
+  const { t: tDashboard } = useTranslation('dashboard');
+  const location = useLocation();
   const { navigate, switchLanguage, currentLanguage } = useLocalizedNavigate();
   const { user } = useAuthStatus();
   const [showLangMenu, setShowLangMenu] = useState(false);
 
   const isAuthenticated = !!user;
 
+  // Extract entitySlug from URL if on dashboard page
+  // Path is like /en/dashboard/my-entity/...
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+  const dashboardIndex = pathSegments.indexOf('dashboard');
+  const entitySlug = dashboardIndex >= 0 && pathSegments.length > dashboardIndex + 1
+    ? pathSegments[dashboardIndex + 1]
+    : null;
+
+  // Build menu items for authenticated user dropdown
+  const menuItems: AuthMenuItem[] = isAuthenticated ? [
+    {
+      id: 'projects',
+      label: tDashboard('navigation.projects'),
+      icon: <MenuFolderIcon />,
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}` : '/dashboard'),
+    },
+    {
+      id: 'providers',
+      label: tDashboard('navigation.providers'),
+      icon: <MenuKeyIcon />,
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}/providers` : '/dashboard'),
+    },
+    {
+      id: 'analytics',
+      label: tDashboard('navigation.analytics'),
+      icon: <MenuChartIcon />,
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}/analytics` : '/dashboard'),
+    },
+    {
+      id: 'budgets',
+      label: tDashboard('navigation.budgets'),
+      icon: <MenuBudgetIcon />,
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}/budgets` : '/dashboard'),
+    },
+    {
+      id: 'subscription',
+      label: tDashboard('navigation.subscription'),
+      icon: <MenuSubscriptionIcon />,
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}/subscription` : '/dashboard'),
+    },
+    {
+      id: 'rate-limits',
+      label: tDashboard('navigation.rateLimits'),
+      icon: <MenuRateLimitsIcon />,
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}/rate-limits` : '/dashboard'),
+    },
+    {
+      id: 'settings',
+      label: tDashboard('navigation.settings'),
+      icon: <MenuSettingsIcon />,
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}/settings` : '/dashboard'),
+      dividerAfter: true,
+    },
+  ] : [];
+
   // Build navigation items
   const navItems: TopbarNavItem[] = [
-    { id: 'home', label: t('navigation.home'), href: '/' },
-    { id: 'docs', label: t('navigation.docs'), href: '/docs' },
-    { id: 'pricing', label: t('navigation.pricing'), href: '/pricing' },
+    { id: 'home', label: t('navigation.home'), icon: HomeIcon, href: '/' },
+    { id: 'docs', label: t('navigation.docs'), icon: DocumentTextIcon, href: '/docs' },
+    { id: 'pricing', label: t('navigation.pricing'), icon: CurrencyDollarIcon, href: '/pricing' },
   ];
 
   // Add dashboard if authenticated
   if (isAuthenticated) {
-    navItems.push({ id: 'dashboard', label: t('navigation.dashboard'), href: '/dashboard' });
+    navItems.push({ id: 'dashboard', label: t('navigation.dashboard'), icon: Squares2X2Icon, href: '/dashboard' });
   }
+
+  // Settings always appears last in navigation
+  navItems.push({ id: 'settings', label: t('navigation.settings'), icon: Cog6ToothIcon, href: '/settings' });
 
   const handleLogoClick = () => {
     navigate('/');
@@ -95,8 +233,8 @@ function TopBar({ variant = 'default' }: TopBarProps) {
               collapseBelow="lg"
               LinkComponent={LinkWrapper}
             >
-              <TopbarLogo onClick={handleLogoClick}>
-                <img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-8" />
+              <TopbarLogo onClick={handleLogoClick} size="md">
+                <Logo size="md" logoText={CONSTANTS.APP_NAME} />
               </TopbarLogo>
             </TopbarNavigation>
           </TopbarLeft>
@@ -107,15 +245,17 @@ function TopBar({ variant = 'default' }: TopBarProps) {
               <div className="relative">
                 <button
                   onClick={() => setShowLangMenu(!showLangMenu)}
-                  className="flex items-center gap-1 px-2 py-1 text-sm rounded-md hover:bg-theme-hover-bg transition-colors"
+                  className="flex items-center gap-2 px-3 py-2 h-10 rounded-lg hover:bg-theme-hover-bg transition-colors"
                   aria-label="Select language"
                 >
-                  <span className="hidden sm:inline">
-                    {LANGUAGE_NAMES[currentLanguage] || 'English'}
+                  <span className="text-lg leading-none">
+                    {LANGUAGE_INFO[currentLanguage]?.flag || '🌐'}
                   </span>
-                  <span className="sm:hidden">{currentLanguage.toUpperCase()}</span>
+                  <span className="hidden sm:block text-sm font-medium text-theme-text-secondary">
+                    {LANGUAGE_INFO[currentLanguage]?.name || 'English'}
+                  </span>
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 text-theme-text-secondary"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -135,18 +275,19 @@ function TopBar({ variant = 'default' }: TopBarProps) {
                       className="fixed inset-0 z-40"
                       onClick={() => setShowLangMenu(false)}
                     />
-                    <div className="absolute right-0 mt-2 w-48 bg-theme-bg-primary border border-theme-border rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
+                    <div className="absolute right-0 mt-2 w-48 bg-theme-bg-primary border border-theme-border rounded-lg shadow-lg z-50">
                       {SUPPORTED_LANGUAGES.map(langCode => (
                         <button
                           key={langCode}
                           onClick={() => handleLanguageChange(langCode)}
-                          className={`w-full px-4 py-2 text-left text-sm hover:bg-theme-hover-bg transition-colors ${
+                          className={`w-full px-4 py-2 text-left text-sm hover:bg-theme-hover-bg transition-colors flex items-center gap-2 ${
                             langCode === currentLanguage
                               ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
                               : ''
                           }`}
                         >
-                          {LANGUAGE_NAMES[langCode]}
+                          <span className="text-lg leading-none">{LANGUAGE_INFO[langCode]?.flag}</span>
+                          <span>{LANGUAGE_INFO[langCode]?.name}</span>
                         </button>
                       ))}
                     </div>
@@ -159,6 +300,7 @@ function TopBar({ variant = 'default' }: TopBarProps) {
                 avatarSize={32}
                 dropdownAlign="right"
                 onLoginClick={() => navigate('/login')}
+                menuItems={menuItems}
               />
             </TopbarActions>
           </TopbarRight>

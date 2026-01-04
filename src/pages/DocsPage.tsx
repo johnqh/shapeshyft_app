@@ -87,7 +87,7 @@ function DocsPage() {
   };
 
   return (
-    <ScreenContainer footerVariant="compact" showFooter={true}>
+    <ScreenContainer footerVariant="compact" showFooter={true} showBreadcrumbs>
       <SEO
         title={getDetailTitle()}
         description={getSeoDescription()}

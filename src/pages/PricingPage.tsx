@@ -47,7 +47,7 @@ function PricingPage() {
   ];
 
   return (
-    <ScreenContainer footerVariant="full">
+    <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         title="Pricing"
         description="ShapeShyft pricing plans. Start free, scale as you grow. Flexible plans for developers, teams, and enterprises building AI-powered APIs."
