@@ -121,6 +121,7 @@ function App() {
                         }
                       >
                         <Route index element={<ProjectsPage />} />
+                        <Route path="projects" element={<ProjectsPage />} />
                         <Route path="projects/new" element={<ProjectNewPage />} />
                         <Route path="projects/templates" element={<TemplatesPage />} />
                         <Route path="projects/:projectId" element={<ProjectDetailPage />} />

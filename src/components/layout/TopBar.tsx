@@ -156,7 +156,7 @@ function TopBar({ variant = 'default' }: TopBarProps) {
       id: 'projects',
       label: tDashboard('navigation.projects'),
       icon: <MenuFolderIcon />,
-      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}` : '/dashboard'),
+      onClick: () => navigate(entitySlug ? `/dashboard/${entitySlug}/projects` : '/dashboard'),
     },
     {
       id: 'providers',
