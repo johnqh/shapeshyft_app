@@ -1,7 +1,7 @@
 {
   "name": "shapeshyft_app",
   "private": true,
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -26,7 +26,7 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@revenuecat/purchases-js": "^1.22.1",
     "@sudobility/auth-components": "^1.0.0",
-    "@sudobility/components": "^4.0.101",
+    "@sudobility/components": "^4.0.102",
     "@sudobility/design": "^1.1.15",
     "@sudobility/di": "^1.5.8",
     "@sudobility/di_web": "^0.1.17",
@@ -35,7 +35,7 @@
     "@sudobility/entity_pages": "^0.0.2",
     "@sudobility/ratelimit-components": "^1.0.0",
     "@sudobility/ratelimit_client": "^0.0.13",
-    "@sudobility/ratelimit_pages": "^1.0.11",
+    "@sudobility/ratelimit_pages": "^1.0.12",
     "@sudobility/shapeshyft_client": "^0.0.12",
     "@sudobility/shapeshyft_lib": "^0.0.14",
     "@sudobility/shapeshyft_types": "^1.0.13",
