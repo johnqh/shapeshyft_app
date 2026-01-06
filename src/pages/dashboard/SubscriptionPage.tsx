@@ -202,6 +202,39 @@ function SubscriptionPage() {
     return getRateLimitFeatures(packageId);
   };
 
+  /**
+   * Calculate yearly savings percentage compared to monthly plan
+   * @param yearlyPackageId - The yearly package identifier
+   * @returns Savings percentage (e.g., 20 for 20%) or undefined if can't calculate
+   */
+  const getYearlySavingsPercent = (yearlyPackageId: string): number | undefined => {
+    const yearlyEntitlement = PACKAGE_ENTITLEMENT_MAP[yearlyPackageId];
+    if (!yearlyEntitlement) return undefined;
+
+    // Find the yearly product
+    const yearlyProduct = products.find(p => p.identifier === yearlyPackageId);
+    if (!yearlyProduct) return undefined;
+
+    // Find the corresponding monthly product with the same entitlement
+    const monthlyPackageId = Object.entries(PACKAGE_ENTITLEMENT_MAP).find(
+      ([pkgId, ent]) => ent === yearlyEntitlement && pkgId.includes('monthly')
+    )?.[0];
+    if (!monthlyPackageId) return undefined;
+
+    const monthlyProduct = products.find(p => p.identifier === monthlyPackageId);
+    if (!monthlyProduct) return undefined;
+
+    const yearlyPrice = parseFloat(yearlyProduct.price);
+    const monthlyPrice = parseFloat(monthlyProduct.price);
+
+    if (monthlyPrice <= 0 || yearlyPrice <= 0) return undefined;
+
+    const annualizedMonthly = monthlyPrice * 12;
+    const savings = ((annualizedMonthly - yearlyPrice) / annualizedMonthly) * 100;
+
+    return Math.round(savings);
+  };
+
   const billingPeriodOptions = [
     { value: 'monthly' as const, label: t('billingPeriod.monthly') },
     { value: 'yearly' as const, label: t('billingPeriod.yearly') },
@@ -301,7 +334,12 @@ function SubscriptionPage() {
             isBestValue={product.identifier.includes('pro')}
             discountBadge={
               product.period?.includes('Y')
-                ? { text: t('badges.saveYearly'), isBestValue: true }
+                ? (() => {
+                    const savings = getYearlySavingsPercent(product.identifier);
+                    return savings && savings > 0
+                      ? { text: t('badges.savePercent', 'Save {{percent}}%', { percent: savings }), isBestValue: true }
+                      : undefined;
+                  })()
                 : undefined
             }
             introPriceNote={
