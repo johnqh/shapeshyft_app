@@ -14,6 +14,16 @@ import { useApi } from '../../hooks/useApi';
 
 type BillingPeriod = 'monthly' | 'yearly';
 
+// Package ID to entitlement mapping (from RevenueCat configuration)
+const PACKAGE_ENTITLEMENT_MAP: Record<string, string> = {
+  ultra_yearly: 'bandwidth_ultra',
+  ultra_monthly: 'bandwidth_ultra',
+  pro_yearly: 'bandwidth_pro',
+  pro_monthly: 'bandwidth_pro',
+  dev_yearly: 'bandwidth_dev',
+  dev_monthly: 'bandwidth_dev',
+};
+
 function SubscriptionPage() {
   const { t } = useTranslation('subscription');
   const { success } = useToast();
@@ -136,16 +146,18 @@ function SubscriptionPage() {
 
   /**
    * Get the rate limit tier that matches a product's entitlement
+   * @param packageId - The package identifier from RevenueCat
    */
-  const getRateLimitTierForProduct = (entitlement?: string): RateLimitTier | undefined => {
+  const getRateLimitTierForProduct = (packageId: string): RateLimitTier | undefined => {
     if (!rateLimitsConfig?.tiers) return undefined;
 
-    // Use the entitlement from the product (set in RevenueCat offering metadata)
+    // Look up entitlement from package ID mapping
+    const entitlement = PACKAGE_ENTITLEMENT_MAP[packageId];
     if (entitlement) {
       return rateLimitsConfig.tiers.find(tier => tier.entitlement === entitlement);
     }
 
-    // Fallback to free tier if no entitlement specified
+    // Fallback to free tier if no entitlement found
     return rateLimitsConfig.tiers.find(tier => tier.entitlement === 'none');
   };
 
@@ -159,9 +171,10 @@ function SubscriptionPage() {
 
   /**
    * Get rate limit features as strings for a product
+   * @param packageId - The package identifier from RevenueCat
    */
-  const getRateLimitFeatures = (entitlement?: string): string[] => {
-    const tier = getRateLimitTierForProduct(entitlement);
+  const getRateLimitFeatures = (packageId: string): string[] => {
+    const tier = getRateLimitTierForProduct(packageId);
     if (!tier) return [];
 
     const features: string[] = [];
@@ -184,9 +197,9 @@ function SubscriptionPage() {
     return features;
   };
 
-  const getProductFeatures = (entitlement?: string): string[] => {
-    // Only show rate limit features from the API based on product entitlement
-    return getRateLimitFeatures(entitlement);
+  const getProductFeatures = (packageId: string): string[] => {
+    // Get rate limit features based on package ID → entitlement mapping
+    return getRateLimitFeatures(packageId);
   };
 
   const billingPeriodOptions = [
@@ -282,10 +295,10 @@ function SubscriptionPage() {
             title={product.title}
             price={product.priceString}
             periodLabel={getPeriodLabel(product.period)}
-            features={getProductFeatures(product.entitlement)}
+            features={getProductFeatures(product.identifier)}
             isSelected={selectedPlan === product.identifier}
             onSelect={() => setSelectedPlan(product.identifier)}
-            isBestValue={product.entitlement === 'pro'}
+            isBestValue={product.identifier.includes('pro')}
             discountBadge={
               product.period?.includes('Y')
                 ? { text: t('badges.saveYearly'), isBestValue: true }
