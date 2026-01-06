@@ -1,25 +1,25 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import Backend from 'i18next-http-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { SUPPORTED_LANGUAGES, isLanguageSupported } from './config/constants';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import Backend from "i18next-http-backend";
+import LanguageDetector from "i18next-browser-languagedetector";
+import { SUPPORTED_LANGUAGES, isLanguageSupported } from "./config/constants";
 
 // Detect language from URL path first, then localStorage
 const detectLanguageFromPath = (): string => {
   // Check if window is defined (not in test/SSR environment)
-  if (typeof window === 'undefined') {
-    return 'en';
+  if (typeof window === "undefined") {
+    return "en";
   }
 
   // Check URL path first
-  const pathLang = window.location.pathname.split('/')[1];
+  const pathLang = window.location.pathname.split("/")[1];
   if (pathLang && isLanguageSupported(pathLang)) {
     return pathLang;
   }
 
   // Fall back to localStorage (user's saved preference)
   try {
-    const stored = localStorage.getItem('language');
+    const stored = localStorage.getItem("language");
     if (stored && isLanguageSupported(stored)) {
       return stored;
     }
@@ -27,7 +27,7 @@ const detectLanguageFromPath = (): string => {
     // localStorage may throw in Safari private browsing
   }
 
-  return 'en';
+  return "en";
 };
 
 i18n
@@ -37,9 +37,9 @@ i18n
   .init({
     lng: detectLanguageFromPath(),
     fallbackLng: {
-      zh: ['zh', 'en'],
-      'zh-hant': ['zh-hant', 'zh', 'en'],
-      default: ['en'],
+      zh: ["zh", "en"],
+      "zh-hant": ["zh-hant", "zh", "en"],
+      default: ["en"],
     },
     initImmediate: false, // Don't block - load async
     supportedLngs: [...SUPPORTED_LANGUAGES],
@@ -55,19 +55,31 @@ i18n
     },
 
     detection: {
-      order: ['path', 'localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'language',
+      order: ["path", "localStorage", "navigator"],
+      caches: ["localStorage"],
+      lookupLocalStorage: "language",
       lookupFromPathIndex: 0,
     },
 
-    load: 'languageOnly',
+    load: "languageOnly",
     preload: [],
     cleanCode: false,
     lowerCaseLng: false,
 
-    defaultNS: 'common',
-    ns: ['common', 'home', 'pricing', 'docs', 'dashboard', 'auth', 'about', 'contact', 'privacy', 'terms', 'settings'],
+    defaultNS: "common",
+    ns: [
+      "common",
+      "home",
+      "pricing",
+      "docs",
+      "dashboard",
+      "auth",
+      "about",
+      "contact",
+      "privacy",
+      "terms",
+      "settings",
+    ],
   });
 
 export default i18n;

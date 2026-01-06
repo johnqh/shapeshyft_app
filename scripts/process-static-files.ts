@@ -1,28 +1,28 @@
 #!/usr/bin/env tsx
 
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
+import * as fs from "fs";
+import * as path from "path";
+import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load environment variables: .env first (defaults), then .env.local (overrides)
-dotenv.config({ path: path.join(__dirname, '..', '.env') });
-const envLocalPath = path.join(__dirname, '..', '.env.local');
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
+const envLocalPath = path.join(__dirname, "..", ".env.local");
 if (fs.existsSync(envLocalPath)) {
   dotenv.config({ path: envLocalPath, override: true });
 }
 
 // Required environment variables with fallbacks
-const APP_DOMAIN = process.env.VITE_APP_DOMAIN || 'shapeshyft.ai';
-const APP_NAME = process.env.VITE_APP_NAME || 'ShapeShyft';
-const COMPANY_NAME = process.env.VITE_COMPANY_NAME || 'Sudobility';
+const APP_DOMAIN = process.env.VITE_APP_DOMAIN || "shapeshyft.ai";
+const APP_NAME = process.env.VITE_APP_NAME || "ShapeShyft";
+const COMPANY_NAME = process.env.VITE_COMPANY_NAME || "Sudobility";
 const SUPPORT_EMAIL = process.env.VITE_SUPPORT_EMAIL || `support@${APP_DOMAIN}`;
 
 // Get today's date for lastmod
-const TODAY = new Date().toISOString().split('T')[0];
+const TODAY = new Date().toISOString().split("T")[0];
 
 interface FileTemplate {
   template: string; // Template file path (relative to project root)
@@ -33,29 +33,29 @@ interface FileTemplate {
 // Define files to process
 const FILES_TO_PROCESS: FileTemplate[] = [
   {
-    template: 'index_template.html',
-    output: 'index.html',
-    description: 'Main HTML file',
+    template: "index_template.html",
+    output: "index.html",
+    description: "Main HTML file",
   },
   {
-    template: 'public/sitemap.template.xml',
-    output: 'public/sitemap.xml',
-    description: 'Sitemap',
+    template: "public/sitemap.template.xml",
+    output: "public/sitemap.xml",
+    description: "Sitemap",
   },
   {
-    template: 'public/robots.template.txt',
-    output: 'public/robots.txt',
-    description: 'Robots file',
+    template: "public/robots.template.txt",
+    output: "public/robots.txt",
+    description: "Robots file",
   },
   {
-    template: 'public/ai-sitemap.template.json',
-    output: 'public/ai-sitemap.json',
-    description: 'AI sitemap',
+    template: "public/ai-sitemap.template.json",
+    output: "public/ai-sitemap.json",
+    description: "AI sitemap",
   },
   {
-    template: 'public/llms.template.txt',
-    output: 'public/llms.txt',
-    description: 'LLMs.txt file',
+    template: "public/llms.template.txt",
+    output: "public/llms.txt",
+    description: "LLMs.txt file",
   },
 ];
 
@@ -73,7 +73,7 @@ function replaceVariables(content: string): string {
 }
 
 function processFile(fileConfig: FileTemplate): void {
-  const projectRoot = path.join(__dirname, '..');
+  const projectRoot = path.join(__dirname, "..");
   const templatePath = path.join(projectRoot, fileConfig.template);
   const outputPath = path.join(projectRoot, fileConfig.output);
 
@@ -85,7 +85,7 @@ function processFile(fileConfig: FileTemplate): void {
 
   try {
     // Read template
-    const template = fs.readFileSync(templatePath, 'utf8');
+    const template = fs.readFileSync(templatePath, "utf8");
 
     // Replace variables
     const processed = replaceVariables(template);
@@ -97,7 +97,7 @@ function processFile(fileConfig: FileTemplate): void {
     }
 
     // Write output
-    fs.writeFileSync(outputPath, processed, 'utf8');
+    fs.writeFileSync(outputPath, processed, "utf8");
 
     console.log(`✅ Processed ${fileConfig.description}: ${fileConfig.output}`);
   } catch (error) {
@@ -107,17 +107,17 @@ function processFile(fileConfig: FileTemplate): void {
 }
 
 function main() {
-  console.log('🔧 Processing static files...');
+  console.log("🔧 Processing static files...");
   console.log(`   Domain: ${APP_DOMAIN}`);
   console.log(`   App Name: ${APP_NAME}`);
   console.log(`   Company: ${COMPANY_NAME}`);
-  console.log('');
+  console.log("");
 
   let processedCount = 0;
   let skippedCount = 0;
 
   for (const fileConfig of FILES_TO_PROCESS) {
-    const templatePath = path.join(__dirname, '..', fileConfig.template);
+    const templatePath = path.join(__dirname, "..", fileConfig.template);
     if (fs.existsSync(templatePath)) {
       processFile(fileConfig);
       processedCount++;
@@ -127,7 +127,7 @@ function main() {
     }
   }
 
-  console.log('');
+  console.log("");
   console.log(`✨ Static file processing complete!`);
   console.log(`   Processed: ${processedCount} files`);
   if (skippedCount > 0) {

@@ -1,14 +1,20 @@
-import { useEffect, lazy, Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useAnalyticsManager } from '@sudobility/shapeshyft_lib';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
-import { useApi } from '../../hooks/useApi';
+import { useEffect, lazy, Suspense } from "react";
+import { useTranslation } from "react-i18next";
+import { useAnalyticsManager } from "@sudobility/shapeshyft_lib";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
+import { useApi } from "../../hooks/useApi";
 
 // Lazy load chart components to defer recharts (~360KB) until needed
-const RequestDistributionChart = lazy(() => import('../../components/dashboard/analytics/RequestDistributionChart'));
-const EndpointRequestsChart = lazy(() => import('../../components/dashboard/analytics/EndpointRequestsChart'));
-const TokenDistributionChart = lazy(() => import('../../components/dashboard/analytics/TokenDistributionChart'));
+const RequestDistributionChart = lazy(
+  () => import("../../components/dashboard/analytics/RequestDistributionChart"),
+);
+const EndpointRequestsChart = lazy(
+  () => import("../../components/dashboard/analytics/EndpointRequestsChart"),
+);
+const TokenDistributionChart = lazy(
+  () => import("../../components/dashboard/analytics/TokenDistributionChart"),
+);
 
 // Chart loading fallback
 const ChartSkeleton = () => (
@@ -18,27 +24,30 @@ const ChartSkeleton = () => (
 );
 
 function AnalyticsPage() {
-  const { t } = useTranslation('dashboard');
-  const { networkClient, baseUrl, userId, token, testMode, isReady, isLoading: apiLoading } = useApi();
-
+  const { t } = useTranslation("dashboard");
   const {
-    analytics,
-    isLoading,
-    error,
-    refresh,
-    clearError,
-  } = useAnalyticsManager({
-    baseUrl,
     networkClient,
-    userId: userId ?? '',
+    baseUrl,
+    userId,
     token,
     testMode,
-  });
+    isReady,
+    isLoading: apiLoading,
+  } = useApi();
+
+  const { analytics, isLoading, error, refresh, clearError } =
+    useAnalyticsManager({
+      baseUrl,
+      networkClient,
+      userId: userId ?? "",
+      token,
+      testMode,
+    });
 
   // Show error via InfoInterface
   useEffect(() => {
     if (error) {
-      getInfoService().show(t('common.error'), error, InfoType.ERROR, 5000);
+      getInfoService().show(t("common.error"), error, InfoType.ERROR, 5000);
       clearError();
     }
   }, [error, clearError, t]);
@@ -63,19 +72,20 @@ function AnalyticsPage() {
     return (
       <div className="text-center py-12">
         <h3 className="text-lg font-medium text-theme-text-primary mb-2">
-          {t('analytics.noData')}
+          {t("analytics.noData")}
         </h3>
         <p className="text-theme-text-secondary">
-          {t('analytics.noDataDescription')}
+          {t("analytics.noDataDescription")}
         </p>
       </div>
     );
   }
 
   const agg = analytics.aggregate;
-  const successRate = agg.total_requests > 0
-    ? ((agg.successful_requests / agg.total_requests) * 100).toFixed(1)
-    : '0.0';
+  const successRate =
+    agg.total_requests > 0
+      ? ((agg.successful_requests / agg.total_requests) * 100).toFixed(1)
+      : "0.0";
 
   return (
     <div>
@@ -86,7 +96,7 @@ function AnalyticsPage() {
           disabled={isLoading}
           className="px-4 py-2 text-sm bg-theme-bg-secondary text-theme-text-primary hover:bg-theme-hover-bg rounded-lg transition-colors disabled:opacity-50"
         >
-          {t('common.refresh')}
+          {t("common.refresh")}
         </button>
       </div>
 
@@ -95,7 +105,7 @@ function AnalyticsPage() {
         {/* Total Requests */}
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-sm text-theme-text-secondary mb-2">
-            {t('analytics.metrics.totalRequests')}
+            {t("analytics.metrics.totalRequests")}
           </h3>
           <p className="text-3xl font-bold text-theme-text-primary">
             {formatNumber(agg.total_requests)}
@@ -105,7 +115,7 @@ function AnalyticsPage() {
         {/* Success Rate */}
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-sm text-theme-text-secondary mb-2">
-            {t('analytics.metrics.successRate')}
+            {t("analytics.metrics.successRate")}
           </h3>
           <p className="text-3xl font-bold text-green-600 dark:text-green-400">
             {successRate}%
@@ -115,7 +125,7 @@ function AnalyticsPage() {
         {/* Avg Latency */}
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-sm text-theme-text-secondary mb-2">
-            {t('analytics.metrics.avgLatency')}
+            {t("analytics.metrics.avgLatency")}
           </h3>
           <p className="text-3xl font-bold text-theme-text-primary">
             {agg.average_latency_ms}ms
@@ -125,7 +135,7 @@ function AnalyticsPage() {
         {/* Total Cost */}
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-sm text-theme-text-secondary mb-2">
-            {t('analytics.metrics.totalCost')}
+            {t("analytics.metrics.totalCost")}
           </h3>
           <p className="text-3xl font-bold text-theme-text-primary">
             ${(agg.total_estimated_cost_cents / 100).toFixed(2)}
@@ -138,7 +148,7 @@ function AnalyticsPage() {
         {/* Request Distribution Chart */}
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
-            {t('analytics.metrics.requestDistribution')}
+            {t("analytics.metrics.requestDistribution")}
           </h3>
           <Suspense fallback={<ChartSkeleton />}>
             <RequestDistributionChart
@@ -151,7 +161,7 @@ function AnalyticsPage() {
         {/* Token Distribution Chart */}
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
-            {t('analytics.metrics.tokensUsed')}
+            {t("analytics.metrics.tokensUsed")}
           </h3>
           <Suspense fallback={<ChartSkeleton />}>
             <TokenDistributionChart
@@ -166,7 +176,7 @@ function AnalyticsPage() {
       {analytics.by_endpoint.length > 0 && (
         <div className="p-6 bg-theme-bg-secondary rounded-xl">
           <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
-            {t('analytics.charts.byEndpoint')}
+            {t("analytics.charts.byEndpoint")}
           </h3>
           <Suspense fallback={<ChartSkeleton />}>
             <EndpointRequestsChart endpoints={analytics.by_endpoint} />

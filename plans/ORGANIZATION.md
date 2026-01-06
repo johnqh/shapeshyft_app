@@ -7,10 +7,12 @@ Multi-tenant organization support for ShapeShyft and Whisperly applications.
 ## Overview
 
 **Goal:** Add organization support with a new "entity" concept that can be:
+
 - **Personal**: Auto-created on user login (one per user)
 - **Organization**: User-created, supports multiple members with roles
 
 **Key Decisions:**
+
 - Auto-migrate existing users to personal entities
 - Pending invitations auto-accept when user signs up
 - Shared `entity_service` library for both APIs
@@ -76,17 +78,17 @@ ALTER TABLE llm_api_keys ADD COLUMN entity_id UUID REFERENCES entities(id) ON DE
 
 ## Role Permissions
 
-| Permission | Admin | Manager | Viewer |
-|------------|-------|---------|--------|
-| View entity | ✓ | ✓ | ✓ |
-| Edit entity settings | ✓ | ✗ | ✗ |
-| Delete entity | ✓ | ✗ | ✗ |
-| Manage members | ✓ | ✗ | ✗ |
-| Invite members | ✓ | ✗ | ✗ |
-| Create/edit projects | ✓ | ✓ | ✗ |
-| View projects | ✓ | ✓ | ✓ |
-| Create/edit API keys | ✓ | ✓ | ✗ |
-| View/use API keys | ✓ | ✓ | ✓ |
+| Permission           | Admin | Manager | Viewer |
+| -------------------- | ----- | ------- | ------ |
+| View entity          | ✓     | ✓       | ✓      |
+| Edit entity settings | ✓     | ✗       | ✗      |
+| Delete entity        | ✓     | ✗       | ✗      |
+| Manage members       | ✓     | ✗       | ✗      |
+| Invite members       | ✓     | ✗       | ✗      |
+| Create/edit projects | ✓     | ✓       | ✗      |
+| View projects        | ✓     | ✓       | ✓      |
+| Create/edit API keys | ✓     | ✓       | ✗      |
+| View/use API keys    | ✓     | ✓       | ✓      |
 
 ---
 
@@ -166,6 +168,7 @@ entity_pages/
 ## API Endpoints
 
 ### Entity Routes
+
 ```
 GET    /api/v1/entities                              # List user's entities
 POST   /api/v1/entities                              # Create organization
@@ -175,6 +178,7 @@ DELETE /api/v1/entities/:entitySlug                  # Delete (org only)
 ```
 
 ### Member Routes
+
 ```
 GET    /api/v1/entities/:entitySlug/members          # List members
 PUT    /api/v1/entities/:entitySlug/members/:userId  # Update role
@@ -182,6 +186,7 @@ DELETE /api/v1/entities/:entitySlug/members/:userId  # Remove member
 ```
 
 ### Invitation Routes
+
 ```
 GET    /api/v1/entities/:entitySlug/invitations      # List invitations
 POST   /api/v1/entities/:entitySlug/invitations      # Create invitation
@@ -192,6 +197,7 @@ POST   /api/v1/invitations/:token/decline            # Decline
 ```
 
 ### Updated Project Routes (entity-centric)
+
 ```
 GET    /api/v1/entities/:entitySlug/projects         # List projects
 POST   /api/v1/entities/:entitySlug/projects         # Create project
@@ -199,6 +205,7 @@ POST   /api/v1/entities/:entitySlug/projects         # Create project
 ```
 
 ### Public API URL
+
 ```
 /{entity_slug}/{project_name}/{endpoint_name}
 # e.g., /abc12xyz/my-project/translate
@@ -208,17 +215,17 @@ POST   /api/v1/entities/:entitySlug/projects         # Create project
 
 ## Implementation Phases
 
-| Phase | Description | Est. |
-|-------|-------------|------|
+| Phase | Description                                        | Est. |
+| ----- | -------------------------------------------------- | ---- |
 | **1** | Types package (`~/0xmail/types/src/types/entity/`) | 0.5d |
-| **2** | entity_service backend library | 2d |
-| **3** | Database migration script | 0.5d |
-| **4** | whisperly_api integration | 1d |
-| **5** | entity_client frontend library | 1d |
-| **6** | entity-components UI library | 1d |
-| **7** | entity_pages page containers | 1d |
-| **8** | whisperly_app integration | 1d |
-| **9** | shapeshyft_api + shapeshyft_app integration | 1d |
+| **2** | entity_service backend library                     | 2d   |
+| **3** | Database migration script                          | 0.5d |
+| **4** | whisperly_api integration                          | 1d   |
+| **5** | entity_client frontend library                     | 1d   |
+| **6** | entity-components UI library                       | 1d   |
+| **7** | entity_pages page containers                       | 1d   |
+| **8** | whisperly_app integration                          | 1d   |
+| **9** | shapeshyft_api + shapeshyft_app integration        | 1d   |
 
 **Total: ~9 days**
 
@@ -226,17 +233,17 @@ POST   /api/v1/entities/:entitySlug/projects         # Create project
 
 ## Critical Files to Modify
 
-| File | Change |
-|------|--------|
-| `~/0xmail/types/src/types/entity/` | **NEW** - Entity types |
-| `./entity_service/` | **NEW** - Backend service |
-| `./entity_client/` | **NEW** - Frontend client |
-| `./entity_pages/` | **NEW** - Page containers |
-| `~/0xmail/mail_box_components/packages/entity-components/` | **NEW** - UI components |
-| `~/whisperly/whisperly_api/src/db/schema.ts` | Add entity tables |
-| `~/whisperly/whisperly_api/src/routes/` | Add entity routes |
-| `~/shapeshyft/shapeshyft_api/src/db/schema.ts` | Add entity tables |
-| `~/shapeshyft/shapeshyft_api/src/routes/` | Add entity routes |
+| File                                                       | Change                    |
+| ---------------------------------------------------------- | ------------------------- |
+| `~/0xmail/types/src/types/entity/`                         | **NEW** - Entity types    |
+| `./entity_service/`                                        | **NEW** - Backend service |
+| `./entity_client/`                                         | **NEW** - Frontend client |
+| `./entity_pages/`                                          | **NEW** - Page containers |
+| `~/0xmail/mail_box_components/packages/entity-components/` | **NEW** - UI components   |
+| `~/whisperly/whisperly_api/src/db/schema.ts`               | Add entity tables         |
+| `~/whisperly/whisperly_api/src/routes/`                    | Add entity routes         |
+| `~/shapeshyft/shapeshyft_api/src/db/schema.ts`             | Add entity tables         |
+| `~/shapeshyft/shapeshyft_api/src/routes/`                  | Add entity routes         |
 
 ---
 
@@ -268,13 +275,13 @@ async function getOrCreateUser(firebaseUid: string, email?: string) {
 ### Entity Slug Generation
 
 ```typescript
-const SLUG_CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789';
+const SLUG_CHARS = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 function generateEntitySlug(length = 8): string {
   return Array.from(
     { length },
-    () => SLUG_CHARS[Math.floor(Math.random() * SLUG_CHARS.length)]
-  ).join('');
+    () => SLUG_CHARS[Math.floor(Math.random() * SLUG_CHARS.length)],
+  ).join("");
 }
 ```
 

@@ -1,5 +1,12 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { useTranslation } from 'react-i18next';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
+import { useTranslation } from "react-i18next";
 
 interface TokenDistributionChartProps {
   inputTokens: number;
@@ -7,24 +14,35 @@ interface TokenDistributionChartProps {
 }
 
 const COLORS = {
-  input: '#3b82f6', // blue-600
-  output: '#10b981', // green-600
+  input: "#3b82f6", // blue-600
+  output: "#10b981", // green-600
 };
 
-function TokenDistributionChart({ inputTokens, outputTokens }: TokenDistributionChartProps) {
-  const { t } = useTranslation('dashboard');
+function TokenDistributionChart({
+  inputTokens,
+  outputTokens,
+}: TokenDistributionChartProps) {
+  const { t } = useTranslation("dashboard");
 
   const total = inputTokens + outputTokens;
 
   const data = [
-    { name: t('analytics.metrics.inputTokens'), value: inputTokens, color: COLORS.input },
-    { name: t('analytics.metrics.outputTokens'), value: outputTokens, color: COLORS.output },
-  ].filter(d => d.value > 0);
+    {
+      name: t("analytics.metrics.inputTokens"),
+      value: inputTokens,
+      color: COLORS.input,
+    },
+    {
+      name: t("analytics.metrics.outputTokens"),
+      value: outputTokens,
+      color: COLORS.output,
+    },
+  ].filter((d) => d.value > 0);
 
   if (data.length === 0) {
     return (
       <div className="flex items-center justify-center h-48 text-theme-text-tertiary">
-        {t('analytics.noData')}
+        {t("analytics.noData")}
       </div>
     );
   }
@@ -53,19 +71,21 @@ function TokenDistributionChart({ inputTokens, outputTokens }: TokenDistribution
             ))}
           </Pie>
           <Tooltip
-            formatter={(value) => (typeof value === 'number' ? formatValue(value) : value)}
+            formatter={(value) =>
+              typeof value === "number" ? formatValue(value) : value
+            }
             contentStyle={{
-              backgroundColor: 'var(--color-bg-secondary)',
-              border: '1px solid var(--color-border)',
-              borderRadius: '8px',
-              color: 'var(--color-text-primary)',
+              backgroundColor: "var(--color-bg-secondary)",
+              border: "1px solid var(--color-border)",
+              borderRadius: "8px",
+              color: "var(--color-text-primary)",
             }}
           />
           <Legend />
         </PieChart>
       </ResponsiveContainer>
       <div className="text-center text-sm text-theme-text-secondary mt-2">
-        {t('analytics.metrics.tokensUsed')}: {formatValue(total)}
+        {t("analytics.metrics.tokensUsed")}: {formatValue(total)}
       </div>
     </div>
   );

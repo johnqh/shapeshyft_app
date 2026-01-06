@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import type { LlmApiKeySafe, LlmApiKeyCreateRequest, LlmProvider } from '@sudobility/shapeshyft_types';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import type {
+  LlmApiKeySafe,
+  LlmApiKeyCreateRequest,
+  LlmProvider,
+} from "@sudobility/shapeshyft_types";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
 
 const PROVIDERS: { value: LlmProvider; label: string }[] = [
-  { value: 'openai', label: 'OpenAI' },
-  { value: 'anthropic', label: 'Anthropic (Claude)' },
-  { value: 'gemini', label: 'Google Gemini' },
-  { value: 'llm_server', label: 'Custom LM Server' },
+  { value: "openai", label: "OpenAI" },
+  { value: "anthropic", label: "Anthropic (Claude)" },
+  { value: "gemini", label: "Google Gemini" },
+  { value: "llm_server", label: "Custom LM Server" },
 ];
 
 interface KeyFormProps {
@@ -25,87 +29,104 @@ interface FieldErrors {
 }
 
 function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation("dashboard");
   const isEditing = !!apiKey;
 
-  const [keyName, setKeyName] = useState(apiKey?.key_name ?? '');
-  const [provider, setProvider] = useState<LlmProvider>(apiKey?.provider ?? 'openai');
-  const [apiKeyValue, setApiKeyValue] = useState('');
-  const [endpointUrl, setEndpointUrl] = useState(apiKey?.endpoint_url ?? '');
+  const [keyName, setKeyName] = useState(apiKey?.key_name ?? "");
+  const [provider, setProvider] = useState<LlmProvider>(
+    apiKey?.provider ?? "openai",
+  );
+  const [apiKeyValue, setApiKeyValue] = useState("");
+  const [endpointUrl, setEndpointUrl] = useState(apiKey?.endpoint_url ?? "");
   const [showApiKey, setShowApiKey] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
   const validateKeyName = (value: string): string | undefined => {
     if (!value.trim()) {
-      return t('keys.form.errors.nameRequired');
+      return t("keys.form.errors.nameRequired");
     }
     return undefined;
   };
 
-  const validateApiKey = (value: string, currentProvider: LlmProvider): string | undefined => {
+  const validateApiKey = (
+    value: string,
+    currentProvider: LlmProvider,
+  ): string | undefined => {
     // API key not required for custom LM server or when editing
-    if (currentProvider === 'llm_server' || isEditing) {
+    if (currentProvider === "llm_server" || isEditing) {
       return undefined;
     }
     if (!value.trim()) {
-      return t('keys.form.errors.apiKeyRequired');
+      return t("keys.form.errors.apiKeyRequired");
     }
     return undefined;
   };
 
-  const validateEndpointUrl = (value: string, currentProvider: LlmProvider): string | undefined => {
-    if (currentProvider === 'llm_server' && !value.trim()) {
-      return t('keys.form.errors.endpointRequired');
+  const validateEndpointUrl = (
+    value: string,
+    currentProvider: LlmProvider,
+  ): string | undefined => {
+    if (currentProvider === "llm_server" && !value.trim()) {
+      return t("keys.form.errors.endpointRequired");
     }
     return undefined;
   };
 
   const handleBlur = (field: string) => {
-    setTouched(prev => ({ ...prev, [field]: true }));
+    setTouched((prev) => ({ ...prev, [field]: true }));
 
     let error: string | undefined;
     switch (field) {
-      case 'keyName':
+      case "keyName":
         error = validateKeyName(keyName);
         break;
-      case 'apiKey':
+      case "apiKey":
         error = validateApiKey(apiKeyValue, provider);
         break;
-      case 'endpointUrl':
+      case "endpointUrl":
         error = validateEndpointUrl(endpointUrl, provider);
         break;
     }
 
-    setFieldErrors(prev => ({ ...prev, [field]: error }));
+    setFieldErrors((prev) => ({ ...prev, [field]: error }));
   };
 
   const handleFieldChange = (field: string, value: string) => {
     switch (field) {
-      case 'keyName':
+      case "keyName":
         setKeyName(value);
         if (touched.keyName) {
-          setFieldErrors(prev => ({ ...prev, keyName: validateKeyName(value) }));
+          setFieldErrors((prev) => ({
+            ...prev,
+            keyName: validateKeyName(value),
+          }));
         }
         break;
-      case 'apiKey':
+      case "apiKey":
         setApiKeyValue(value);
         if (touched.apiKey) {
-          setFieldErrors(prev => ({ ...prev, apiKey: validateApiKey(value, provider) }));
+          setFieldErrors((prev) => ({
+            ...prev,
+            apiKey: validateApiKey(value, provider),
+          }));
         }
         break;
-      case 'endpointUrl':
+      case "endpointUrl":
         setEndpointUrl(value);
         if (touched.endpointUrl) {
-          setFieldErrors(prev => ({ ...prev, endpointUrl: validateEndpointUrl(value, provider) }));
+          setFieldErrors((prev) => ({
+            ...prev,
+            endpointUrl: validateEndpointUrl(value, provider),
+          }));
         }
         break;
     }
@@ -133,21 +154,32 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
         key_name: keyName.trim(),
         provider,
         api_key: apiKeyValue.trim() || undefined,
-        endpoint_url: provider === 'llm_server' ? endpointUrl.trim() : undefined,
+        endpoint_url:
+          provider === "llm_server" ? endpointUrl.trim() : undefined,
       });
     } catch (err) {
-      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
+      getInfoService().show(
+        t("common.error"),
+        err instanceof Error ? err.message : t("common.errorOccurred"),
+        InfoType.ERROR,
+        5000,
+      );
     }
   };
 
-  const hasError = (field: keyof FieldErrors) => touched[field] && fieldErrors[field];
+  const hasError = (field: keyof FieldErrors) =>
+    touched[field] && fieldErrors[field];
 
   const renderError = (field: keyof FieldErrors) => {
     if (!hasError(field)) return null;
     return (
       <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          <path
+            fillRule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+            clipRule="evenodd"
+          />
         </svg>
         {fieldErrors[field]}
       </p>
@@ -155,10 +187,10 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
   };
 
   const inputClassName = (field: keyof FieldErrors, extra?: string) =>
-    `w-full px-3 py-2 border rounded-lg bg-theme-bg-primary outline-none transition-all ${extra ?? ''} ${
+    `w-full px-3 py-2 border rounded-lg bg-theme-bg-primary outline-none transition-all ${extra ?? ""} ${
       hasError(field)
-        ? 'border-red-500 focus:ring-2 focus:ring-red-500/20'
-        : 'border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+        ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
+        : "border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent"
     }`;
 
   return (
@@ -168,14 +200,24 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-theme-border">
           <h3 className="text-lg font-semibold text-theme-text-primary">
-            {isEditing ? t('keys.form.titleEdit') : t('keys.form.title')}
+            {isEditing ? t("keys.form.titleEdit") : t("keys.form.title")}
           </h3>
           <button
             onClick={onClose}
             className="p-1 rounded-full hover:bg-theme-hover-bg transition-colors"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -185,16 +227,16 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
           {/* Provider */}
           <div>
             <label className="block text-sm font-medium text-theme-text-primary mb-1">
-              {t('keys.form.provider')}
+              {t("keys.form.provider")}
             </label>
             <select
               value={provider}
-              onChange={e => setProvider(e.target.value as LlmProvider)}
+              onChange={(e) => setProvider(e.target.value as LlmProvider)}
               disabled={isEditing}
               className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none disabled:opacity-50"
               autoFocus
             >
-              {PROVIDERS.map(p => (
+              {PROVIDERS.map((p) => (
                 <option key={p.value} value={p.value}>
                   {p.label}
                 </option>
@@ -205,56 +247,65 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
           {/* Key Name */}
           <div>
             <label className="block text-sm font-medium text-theme-text-primary mb-1">
-              {t('keys.form.keyName')}
+              {t("keys.form.keyName")}
             </label>
             <input
               type="text"
               value={keyName}
-              onChange={e => handleFieldChange('keyName', e.target.value)}
-              onBlur={() => handleBlur('keyName')}
-              placeholder={t('keys.form.keyNamePlaceholder')}
-              className={inputClassName('keyName')}
+              onChange={(e) => handleFieldChange("keyName", e.target.value)}
+              onBlur={() => handleBlur("keyName")}
+              placeholder={t("keys.form.keyNamePlaceholder")}
+              className={inputClassName("keyName")}
             />
-            {renderError('keyName')}
+            {renderError("keyName")}
           </div>
 
           {/* Endpoint URL (for llm_server) */}
-          {provider === 'llm_server' && (
+          {provider === "llm_server" && (
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                {t('keys.form.endpointUrl')}
+                {t("keys.form.endpointUrl")}
               </label>
               <input
                 type="url"
                 value={endpointUrl}
-                onChange={e => handleFieldChange('endpointUrl', e.target.value)}
-                onBlur={() => handleBlur('endpointUrl')}
-                placeholder={t('keys.form.endpointUrlPlaceholder')}
-                className={inputClassName('endpointUrl', 'font-mono text-sm')}
+                onChange={(e) =>
+                  handleFieldChange("endpointUrl", e.target.value)
+                }
+                onBlur={() => handleBlur("endpointUrl")}
+                placeholder={t("keys.form.endpointUrlPlaceholder")}
+                className={inputClassName("endpointUrl", "font-mono text-sm")}
               />
-              {renderError('endpointUrl')}
+              {renderError("endpointUrl")}
             </div>
           )}
 
           {/* API Key (not needed for custom LM server) */}
-          {provider !== 'llm_server' && (
+          {provider !== "llm_server" && (
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                {t('keys.form.apiKey')}
+                {t("keys.form.apiKey")}
                 {isEditing && (
                   <span className="text-theme-text-tertiary ml-1">
-                    ({t('keys.form.leaveBlank')})
+                    ({t("keys.form.leaveBlank")})
                   </span>
                 )}
               </label>
               <div className="relative">
                 <input
-                  type={showApiKey ? 'text' : 'password'}
+                  type={showApiKey ? "text" : "password"}
                   value={apiKeyValue}
-                  onChange={e => handleFieldChange('apiKey', e.target.value)}
-                  onBlur={() => handleBlur('apiKey')}
-                  placeholder={isEditing ? '••••••••••••••••' : t('keys.form.apiKeyPlaceholder')}
-                  className={inputClassName('apiKey', 'pr-10 font-mono text-sm')}
+                  onChange={(e) => handleFieldChange("apiKey", e.target.value)}
+                  onBlur={() => handleBlur("apiKey")}
+                  placeholder={
+                    isEditing
+                      ? "••••••••••••••••"
+                      : t("keys.form.apiKeyPlaceholder")
+                  }
+                  className={inputClassName(
+                    "apiKey",
+                    "pr-10 font-mono text-sm",
+                  )}
                 />
                 <button
                   type="button"
@@ -262,21 +313,46 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
                   className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-theme-hover-bg rounded"
                 >
                   {showApiKey ? (
-                    <svg className="w-5 h-5 text-theme-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                    <svg
+                      className="w-5 h-5 text-theme-text-tertiary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                      />
                     </svg>
                   ) : (
-                    <svg className="w-5 h-5 text-theme-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <svg
+                      className="w-5 h-5 text-theme-text-tertiary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
                     </svg>
                   )}
                 </button>
               </div>
-              {renderError('apiKey')}
-              {!hasError('apiKey') && (
+              {renderError("apiKey")}
+              {!hasError("apiKey") && (
                 <p className="mt-1 text-xs text-theme-text-tertiary">
-                  {t('keys.form.apiKeyHint')}
+                  {t("keys.form.apiKeyHint")}
                 </p>
               )}
             </div>
@@ -290,7 +366,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
               disabled={isLoading}
               className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
             >
-              {t('common.cancel')}
+              {t("common.cancel")}
             </button>
             <button
               type="submit"
@@ -300,15 +376,27 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
               {isLoading ? (
                 <span className="flex items-center gap-2">
                   <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      fill="none"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    />
                   </svg>
-                  {t('common.saving')}
+                  {t("common.saving")}
                 </span>
               ) : isEditing ? (
-                t('common.save')
+                t("common.save")
               ) : (
-                t('keys.form.add')
+                t("keys.form.add")
               )}
             </button>
           </div>

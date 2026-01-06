@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
-import { Theme, FontSize } from '@sudobility/types';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from "react";
+import { Theme, FontSize } from "@sudobility/types";
 
 // Simple storage using localStorage directly to avoid importing @sudobility/components (648KB) on critical path
 const storage = {
@@ -33,7 +33,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;
 };
@@ -44,23 +44,23 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    const saved = storage.getItem('shapeshyft-theme');
+    const saved = storage.getItem("shapeshyft-theme");
     return (saved as Theme) || Theme.LIGHT;
   });
 
   const [fontSize, setFontSizeState] = useState<FontSize>(() => {
-    const saved = storage.getItem('shapeshyft-font-size');
+    const saved = storage.getItem("shapeshyft-font-size");
     return (saved as FontSize) || FontSize.MEDIUM;
   });
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    storage.setItem('shapeshyft-theme', newTheme);
+    storage.setItem("shapeshyft-theme", newTheme);
   };
 
   const setFontSize = (newFontSize: FontSize) => {
     setFontSizeState(newFontSize);
-    storage.setItem('shapeshyft-font-size', newFontSize);
+    storage.setItem("shapeshyft-font-size", newFontSize);
   };
 
   useEffect(() => {
@@ -72,35 +72,37 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
     if (theme === Theme.SYSTEM) {
       // Detect system theme preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       actualTheme = prefersDark ? Theme.DARK : Theme.LIGHT;
     }
 
     // Apply theme class
-    root.classList.remove('light', 'dark');
+    root.classList.remove("light", "dark");
     root.classList.add(actualTheme);
 
     // Apply font size class
-    root.classList.remove('font-small', 'font-medium', 'font-large');
+    root.classList.remove("font-small", "font-medium", "font-large");
     root.classList.add(`font-${fontSize}`);
   }, [theme, fontSize]);
 
   useEffect(() => {
     // Listen for system theme changes when using system theme
     if (theme === Theme.SYSTEM) {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
       const handleChange = (e: MediaQueryListEvent) => {
         const root = document.documentElement;
         const actualTheme = e.matches ? Theme.DARK : Theme.LIGHT;
-        root.classList.remove('light', 'dark');
+        root.classList.remove("light", "dark");
         root.classList.add(actualTheme);
       };
 
-      mediaQuery.addEventListener('change', handleChange);
+      mediaQuery.addEventListener("change", handleChange);
 
       return () => {
-        mediaQuery.removeEventListener('change', handleChange);
+        mediaQuery.removeEventListener("change", handleChange);
       };
     }
   }, [theme]);
@@ -112,5 +114,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     setFontSize,
   };
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
 };

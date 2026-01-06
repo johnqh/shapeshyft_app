@@ -1,12 +1,14 @@
-import { type ReactNode, Suspense, lazy, useMemo } from 'react';
-import { useAuthStatus } from '@sudobility/auth-components';
+import { type ReactNode, Suspense, lazy, useMemo } from "react";
+import { useAuthStatus } from "@sudobility/auth-components";
 import {
   SafeSubscriptionContext,
   STUB_SUBSCRIPTION_VALUE,
-} from './SafeSubscriptionContext';
+} from "./SafeSubscriptionContext";
 
 // Lazy load the actual subscription provider - this defers the 600KB RevenueCat SDK
-const SubscriptionProviderWrapper = lazy(() => import('./SubscriptionProviderWrapper'));
+const SubscriptionProviderWrapper = lazy(
+  () => import("./SubscriptionProviderWrapper"),
+);
 
 function StubSubscriptionProvider({ children }: { children: ReactNode }) {
   return (
@@ -25,7 +27,9 @@ interface LazySubscriptionProviderProps {
  * when the user is authenticated. This saves ~600KB on initial load.
  * For unauthenticated users, provides a stub context so hooks don't throw.
  */
-export function LazySubscriptionProvider({ children }: LazySubscriptionProviderProps) {
+export function LazySubscriptionProvider({
+  children,
+}: LazySubscriptionProviderProps) {
   const { user } = useAuthStatus();
 
   // Only load subscription provider for authenticated users
@@ -40,7 +44,9 @@ export function LazySubscriptionProvider({ children }: LazySubscriptionProviderP
 
   // For authenticated users, load the subscription provider
   return (
-    <Suspense fallback={<StubSubscriptionProvider>{children}</StubSubscriptionProvider>}>
+    <Suspense
+      fallback={<StubSubscriptionProvider>{children}</StubSubscriptionProvider>}
+    >
       <SubscriptionProviderWrapper>{children}</SubscriptionProviderWrapper>
     </Suspense>
   );

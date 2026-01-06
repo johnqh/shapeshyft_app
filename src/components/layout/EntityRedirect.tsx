@@ -3,12 +3,12 @@
  * @description Redirects to the user's default entity when accessing /dashboard without an entity slug
  */
 
-import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEntities } from '@sudobility/entity_client';
-import { entityClient } from '../../config/entityClient';
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEntities } from "@sudobility/entity_client";
+import { entityClient } from "../../config/entityClient";
 
-const LAST_ENTITY_KEY = 'shapeshyft_last_entity';
+const LAST_ENTITY_KEY = "shapeshyft_last_entity";
 
 /**
  * Redirects from /dashboard to /dashboard/:entitySlug
@@ -25,27 +25,29 @@ function EntityRedirect() {
     if (error || !entities || entities.length === 0) {
       // No entities available - this shouldn't happen for authenticated users
       // but handle gracefully
-      console.error('No entities available for user');
+      console.error("No entities available for user");
       return;
     }
 
     // Try to find the last used entity
     const lastEntitySlug = localStorage.getItem(LAST_ENTITY_KEY);
     const lastEntity = lastEntitySlug
-      ? entities.find(e => e.entitySlug === lastEntitySlug)
+      ? entities.find((e) => e.entitySlug === lastEntitySlug)
       : null;
 
     // Pick default: last used > personal > first
     const defaultEntity =
       lastEntity ||
-      entities.find(e => e.entityType === 'personal') ||
+      entities.find((e) => e.entityType === "personal") ||
       entities[0];
 
     if (defaultEntity) {
       // Save as last used
       localStorage.setItem(LAST_ENTITY_KEY, defaultEntity.entitySlug);
       // Redirect to the entity dashboard
-      navigate(`/${lang}/dashboard/${defaultEntity.entitySlug}`, { replace: true });
+      navigate(`/${lang}/dashboard/${defaultEntity.entitySlug}`, {
+        replace: true,
+      });
     }
   }, [entities, isLoading, error, navigate, lang]);
 

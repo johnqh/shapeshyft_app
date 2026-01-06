@@ -3,12 +3,12 @@
  * @description Page for listing and managing user's workspaces
  */
 
-import { EntityListPage } from '@sudobility/entity_pages';
-import { entityClient } from '../../config/entityClient';
-import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
-import type { EntityWithRole } from '@sudobility/entity_client';
+import { EntityListPage } from "@sudobility/entity_pages";
+import { entityClient } from "../../config/entityClient";
+import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+import type { EntityWithRole } from "@sudobility/entity_client";
 
-const LAST_ENTITY_KEY = 'shapeshyft_last_entity';
+const LAST_ENTITY_KEY = "shapeshyft_last_entity";
 
 function WorkspacesPage() {
   const { navigate } = useLocalizedNavigate();
@@ -19,10 +19,7 @@ function WorkspacesPage() {
   };
 
   return (
-    <EntityListPage
-      client={entityClient}
-      onSelectEntity={handleSelectEntity}
-    />
+    <EntityListPage client={entityClient} onSelectEntity={handleSelectEntity} />
   );
 }
 

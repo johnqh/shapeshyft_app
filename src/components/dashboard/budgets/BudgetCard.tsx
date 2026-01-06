@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
-import type { Budget } from '@sudobility/shapeshyft_lib';
+import { useTranslation } from "react-i18next";
+import type { Budget } from "@sudobility/shapeshyft_lib";
 
 interface BudgetCardProps {
   budget: Budget;
@@ -8,8 +8,13 @@ interface BudgetCardProps {
   onDelete: (id: string) => void;
 }
 
-function BudgetCard({ budget, currentSpend, onEdit, onDelete }: BudgetCardProps) {
-  const { t } = useTranslation('dashboard');
+function BudgetCard({
+  budget,
+  currentSpend,
+  onEdit,
+  onDelete,
+}: BudgetCardProps) {
+  const { t } = useTranslation("dashboard");
 
   const percentage = Math.min((currentSpend / budget.limitCents) * 100, 100);
   const isWarning = percentage >= 75 && percentage < 90;
@@ -17,10 +22,10 @@ function BudgetCard({ budget, currentSpend, onEdit, onDelete }: BudgetCardProps)
   const isExceeded = percentage >= 100;
 
   const getProgressColor = () => {
-    if (isExceeded) return 'bg-red-600';
-    if (isCritical) return 'bg-orange-500';
-    if (isWarning) return 'bg-yellow-500';
-    return 'bg-green-500';
+    if (isExceeded) return "bg-red-600";
+    if (isCritical) return "bg-orange-500";
+    if (isWarning) return "bg-yellow-500";
+    return "bg-green-500";
   };
 
   const formatCurrency = (cents: number) => {
@@ -40,19 +45,39 @@ function BudgetCard({ budget, currentSpend, onEdit, onDelete }: BudgetCardProps)
           <button
             onClick={() => onEdit(budget)}
             className="p-1.5 text-theme-text-secondary hover:text-theme-text-primary hover:bg-theme-hover-bg rounded transition-colors"
-            aria-label={t('common.edit')}
+            aria-label={t("common.edit")}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              />
             </svg>
           </button>
           <button
             onClick={() => onDelete(budget.id)}
             className="p-1.5 text-theme-text-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors"
-            aria-label={t('common.delete')}
+            aria-label={t("common.delete")}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
             </svg>
           </button>
         </div>
@@ -73,12 +98,17 @@ function BudgetCard({ budget, currentSpend, onEdit, onDelete }: BudgetCardProps)
         <span className="text-theme-text-secondary">
           {formatCurrency(currentSpend)} / {formatCurrency(budget.limitCents)}
         </span>
-        <span className={`font-medium ${
-          isExceeded ? 'text-red-600' :
-          isCritical ? 'text-orange-500' :
-          isWarning ? 'text-yellow-600' :
-          'text-green-600'
-        }`}>
+        <span
+          className={`font-medium ${
+            isExceeded
+              ? "text-red-600"
+              : isCritical
+                ? "text-orange-500"
+                : isWarning
+                  ? "text-yellow-600"
+                  : "text-green-600"
+          }`}
+        >
           {percentage.toFixed(0)}%
         </span>
       </div>

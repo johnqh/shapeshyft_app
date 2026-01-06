@@ -1,6 +1,6 @@
-import { isLanguageSupported } from '../config/constants';
+import { isLanguageSupported } from "../config/constants";
 
-const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_LANGUAGE = "en";
 
 export interface BreadcrumbPath {
   title: string;
@@ -18,7 +18,7 @@ export interface BreadcrumbItem {
  * Returns language code if valid, otherwise undefined
  */
 function extractLanguageFromPath(path: string): string | undefined {
-  const segments = path.split('/').filter(Boolean);
+  const segments = path.split("/").filter(Boolean);
   if (segments.length > 0 && isLanguageSupported(segments[0])) {
     return segments[0];
   }
@@ -32,8 +32,8 @@ function removeLanguageFromPath(path: string): string {
   const lang = extractLanguageFromPath(path);
   if (!lang) return path;
 
-  const withoutLang = path.replace(new RegExp(`^/${lang}/?`), '/');
-  return withoutLang || '/';
+  const withoutLang = path.replace(new RegExp(`^/${lang}/?`), "/");
+  return withoutLang || "/";
 }
 
 /**
@@ -41,29 +41,29 @@ function removeLanguageFromPath(path: string): string {
  */
 const pathTranslationKeys: Record<string, string> = {
   // Root paths
-  '': 'breadcrumbs.home',
-  '/': 'breadcrumbs.home',
-  '/pricing': 'breadcrumbs.pricing',
-  '/docs': 'breadcrumbs.docs',
-  '/about': 'breadcrumbs.about',
-  '/contact': 'breadcrumbs.contact',
-  '/privacy': 'breadcrumbs.privacy',
-  '/terms': 'breadcrumbs.terms',
-  '/settings': 'breadcrumbs.settings',
-  '/login': 'breadcrumbs.login',
+  "": "breadcrumbs.home",
+  "/": "breadcrumbs.home",
+  "/pricing": "breadcrumbs.pricing",
+  "/docs": "breadcrumbs.docs",
+  "/about": "breadcrumbs.about",
+  "/contact": "breadcrumbs.contact",
+  "/privacy": "breadcrumbs.privacy",
+  "/terms": "breadcrumbs.terms",
+  "/settings": "breadcrumbs.settings",
+  "/login": "breadcrumbs.login",
 
   // Dashboard paths
-  '/dashboard': 'breadcrumbs.dashboard',
-  '/dashboard/providers': 'breadcrumbs.providers',
-  '/dashboard/analytics': 'breadcrumbs.analytics',
-  '/dashboard/budgets': 'breadcrumbs.budgets',
-  '/dashboard/subscription': 'breadcrumbs.subscription',
-  '/dashboard/settings': 'breadcrumbs.dashboardSettings',
-  '/dashboard/rate-limits': 'breadcrumbs.rateLimits',
-  '/dashboard/workspaces': 'breadcrumbs.workspaces',
-  '/dashboard/members': 'breadcrumbs.members',
-  '/dashboard/invitations': 'breadcrumbs.invitations',
-  '/dashboard/performance': 'breadcrumbs.performance',
+  "/dashboard": "breadcrumbs.dashboard",
+  "/dashboard/providers": "breadcrumbs.providers",
+  "/dashboard/analytics": "breadcrumbs.analytics",
+  "/dashboard/budgets": "breadcrumbs.budgets",
+  "/dashboard/subscription": "breadcrumbs.subscription",
+  "/dashboard/settings": "breadcrumbs.dashboardSettings",
+  "/dashboard/rate-limits": "breadcrumbs.rateLimits",
+  "/dashboard/workspaces": "breadcrumbs.workspaces",
+  "/dashboard/members": "breadcrumbs.members",
+  "/dashboard/invitations": "breadcrumbs.invitations",
+  "/dashboard/performance": "breadcrumbs.performance",
 };
 
 /**
@@ -87,8 +87,8 @@ export class BreadcrumbBuilder {
   private getTranslationKey(path: string): string | null {
     const pathWithoutLang = removeLanguageFromPath(path);
     let normalizedPath = pathWithoutLang;
-    if (normalizedPath !== '/' && normalizedPath.endsWith('/')) {
-      normalizedPath = normalizedPath.replace(/\/+$/, '');
+    if (normalizedPath !== "/" && normalizedPath.endsWith("/")) {
+      normalizedPath = normalizedPath.replace(/\/+$/, "");
     }
     normalizedPath = normalizedPath.toLowerCase();
 
@@ -101,12 +101,12 @@ export class BreadcrumbBuilder {
   public localizedBreadcrumb(
     path: string,
     t: (key: string) => string,
-    dynamicTitles?: Record<string, string>
+    dynamicTitles?: Record<string, string>,
   ): string {
     const pathWithoutLang = removeLanguageFromPath(path);
     let normalizedPath = pathWithoutLang;
-    if (normalizedPath !== '/' && normalizedPath.endsWith('/')) {
-      normalizedPath = normalizedPath.replace(/\/+$/, '');
+    if (normalizedPath !== "/" && normalizedPath.endsWith("/")) {
+      normalizedPath = normalizedPath.replace(/\/+$/, "");
     }
 
     // Check for dynamic titles (e.g., project names, endpoint names)
@@ -121,22 +121,30 @@ export class BreadcrumbBuilder {
     }
 
     // Handle dynamic segments like /dashboard/projects/:projectId
-    const segments = normalizedPath.split('/').filter(Boolean);
+    const segments = normalizedPath.split("/").filter(Boolean);
 
     // Check if this is a dynamic route
-    if (segments.length >= 3 && segments[0] === 'dashboard' && segments[1] === 'projects') {
+    if (
+      segments.length >= 3 &&
+      segments[0] === "dashboard" &&
+      segments[1] === "projects"
+    ) {
       // /dashboard/projects/:projectId
       if (segments.length === 3) {
-        return dynamicTitles?.[normalizedPath] || t('breadcrumbs.projectDetail');
+        return (
+          dynamicTitles?.[normalizedPath] || t("breadcrumbs.projectDetail")
+        );
       }
       // /dashboard/projects/:projectId/endpoints/:endpointId
-      if (segments.length >= 5 && segments[3] === 'endpoints') {
-        return dynamicTitles?.[normalizedPath] || t('breadcrumbs.endpointDetail');
+      if (segments.length >= 5 && segments[3] === "endpoints") {
+        return (
+          dynamicTitles?.[normalizedPath] || t("breadcrumbs.endpointDetail")
+        );
       }
     }
 
     // Fallback: capitalize the last segment
-    const lastSegment = segments[segments.length - 1] || '';
+    const lastSegment = segments[segments.length - 1] || "";
     return lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1);
   }
 
@@ -146,34 +154,34 @@ export class BreadcrumbBuilder {
   public localizedBreadcrumbs(
     path: string | undefined,
     t: (key: string) => string,
-    dynamicTitles?: Record<string, string>
+    dynamicTitles?: Record<string, string>,
   ): BreadcrumbPath[] {
     if (!path) return [];
 
     let cleanPath = path;
-    if (cleanPath !== '/' && cleanPath.endsWith('/')) {
-      cleanPath = cleanPath.replace(/\/+$/, '');
+    if (cleanPath !== "/" && cleanPath.endsWith("/")) {
+      cleanPath = cleanPath.replace(/\/+$/, "");
     }
 
     const lang = extractLanguageFromPath(cleanPath) || DEFAULT_LANGUAGE;
     const pathWithoutLang = removeLanguageFromPath(cleanPath);
 
     // If we're at the home page, return Home only
-    if (!pathWithoutLang || pathWithoutLang === '/') {
+    if (!pathWithoutLang || pathWithoutLang === "/") {
       return [
         {
-          title: t('breadcrumbs.home'),
+          title: t("breadcrumbs.home"),
           path: `/${lang}`,
         },
       ];
     }
 
-    const segments = pathWithoutLang.split('/').filter(Boolean);
+    const segments = pathWithoutLang.split("/").filter(Boolean);
     const result: BreadcrumbPath[] = [];
 
     // Always start with Home
     result.push({
-      title: t('breadcrumbs.home'),
+      title: t("breadcrumbs.home"),
       path: `/${lang}`,
     });
 
@@ -188,11 +196,11 @@ export class BreadcrumbBuilder {
 
       // Check if this is an intermediate segment that should be skipped
       // Skip /dashboard/projects when followed by a projectId
-      if (pathForTitle === '/dashboard/projects' && i < segments.length - 1) {
+      if (pathForTitle === "/dashboard/projects" && i < segments.length - 1) {
         continue;
       }
       // Skip /dashboard/projects/:id/endpoints when followed by an endpointId
-      if (segments[i] === 'endpoints' && i < segments.length - 1) {
+      if (segments[i] === "endpoints" && i < segments.length - 1) {
         continue;
       }
 
@@ -212,7 +220,7 @@ export class BreadcrumbBuilder {
   public getLocalizedBreadcrumbItems(
     path: string,
     t: (key: string) => string,
-    dynamicTitles?: Record<string, string>
+    dynamicTitles?: Record<string, string>,
   ): BreadcrumbItem[] {
     const breadcrumbs = this.localizedBreadcrumbs(path, t, dynamicTitles);
 

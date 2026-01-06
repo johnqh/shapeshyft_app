@@ -1,24 +1,28 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useKeysManager, useProjectsManager, useProjectTemplates } from '@sudobility/shapeshyft_lib';
-import { ShapeshyftClient } from '@sudobility/shapeshyft_client';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
-import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
-import { useApi } from '../../hooks/useApi';
-import { useToast } from '../../hooks/useToast';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import {
+  useKeysManager,
+  useProjectsManager,
+  useProjectTemplates,
+} from "@sudobility/shapeshyft_lib";
+import { ShapeshyftClient } from "@sudobility/shapeshyft_client";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
+import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+import { useApi } from "../../hooks/useApi";
+import { useToast } from "../../hooks/useToast";
 
 function TemplatesPage() {
-  const { t } = useTranslation(['dashboard', 'common']);
+  const { t } = useTranslation(["dashboard", "common"]);
   const { navigate } = useLocalizedNavigate();
-  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
+  const { entitySlug = "" } = useParams<{ entitySlug: string }>();
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const { success } = useToast();
 
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
-  const [projectName, setProjectName] = useState('');
-  const [selectedKeyId, setSelectedKeyId] = useState('');
+  const [projectName, setProjectName] = useState("");
+  const [selectedKeyId, setSelectedKeyId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,18 +46,25 @@ function TemplatesPage() {
 
   const { templates, applyTemplate } = useProjectTemplates();
 
-  const selectedTemplateData = templates.find(t => t.id === selectedTemplate);
+  const selectedTemplateData = templates.find((t) => t.id === selectedTemplate);
 
   // Auto-fill project name when template is selected
   useEffect(() => {
     if (selectedTemplateData && !projectName) {
-      setProjectName(selectedTemplateData.name.toLowerCase().replace(/\s+/g, '-'));
+      setProjectName(
+        selectedTemplateData.name.toLowerCase().replace(/\s+/g, "-"),
+      );
     }
   }, [selectedTemplateData, projectName]);
 
   const handleApply = async () => {
     if (!selectedTemplate || !projectName.trim() || !selectedKeyId) {
-      getInfoService().show(t('common.error'), t('templates.errors.fillAllFields'), InfoType.ERROR, 5000);
+      getInfoService().show(
+        t("common.error"),
+        t("templates.errors.fillAllFields"),
+        InfoType.ERROR,
+        5000,
+      );
       return;
     }
 
@@ -61,27 +72,46 @@ function TemplatesPage() {
     setError(null);
 
     try {
-      const result = applyTemplate(selectedTemplate, projectName.trim(), selectedKeyId);
+      const result = applyTemplate(
+        selectedTemplate,
+        projectName.trim(),
+        selectedKeyId,
+      );
       if (result && entitySlug && token) {
         // Create the project first
         const project = await createProject(result.project);
         if (!project) {
-          throw new Error('Failed to create project');
+          throw new Error("Failed to create project");
         }
 
         // Create endpoints using the client
-        const client = new ShapeshyftClient({ networkClient, baseUrl, testMode });
+        const client = new ShapeshyftClient({
+          networkClient,
+          baseUrl,
+          testMode,
+        });
         for (const endpointData of result.endpoints) {
-          await client.createEndpoint(entitySlug, project.uuid, endpointData, token);
+          await client.createEndpoint(
+            entitySlug,
+            project.uuid,
+            endpointData,
+            token,
+          );
         }
 
-        success(t('common:toast.success.created'));
+        success(t("common:toast.success.created"));
         navigate(`/dashboard/${entitySlug}/projects/${project.uuid}`);
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : t('common.errorOccurred');
+      const errorMessage =
+        err instanceof Error ? err.message : t("common.errorOccurred");
       setError(errorMessage);
-      getInfoService().show(t('common.error'), errorMessage, InfoType.ERROR, 5000);
+      getInfoService().show(
+        t("common.error"),
+        errorMessage,
+        InfoType.ERROR,
+        5000,
+      );
     } finally {
       setIsLoading(false);
     }
@@ -93,7 +123,9 @@ function TemplatesPage() {
 
   return (
     <div>
-      <p className="text-theme-text-secondary mb-6">{t('templates.subtitle')}</p>
+      <p className="text-theme-text-secondary mb-6">
+        {t("templates.subtitle")}
+      </p>
 
       {error && (
         <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
@@ -103,20 +135,24 @@ function TemplatesPage() {
 
       {/* Template Grid */}
       <div className="grid md:grid-cols-2 gap-4 mb-6">
-        {templates.map(template => (
+        {templates.map((template) => (
           <button
             key={template.id}
             onClick={() => setSelectedTemplate(template.id)}
             className={`p-4 text-left rounded-xl border-2 transition-all ${
               selectedTemplate === template.id
-                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                : 'border-theme-border hover:border-blue-300'
+                ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                : "border-theme-border hover:border-blue-300"
             }`}
           >
-            <h4 className="font-semibold text-theme-text-primary mb-1">{template.name}</h4>
-            <p className="text-sm text-theme-text-secondary mb-2">{template.description}</p>
+            <h4 className="font-semibold text-theme-text-primary mb-1">
+              {template.name}
+            </h4>
+            <p className="text-sm text-theme-text-secondary mb-2">
+              {template.description}
+            </p>
             <div className="flex flex-wrap gap-1">
-              {template.endpoints.map(ep => (
+              {template.endpoints.map((ep) => (
                 <span
                   key={ep.endpoint_name}
                   className="text-xs px-2 py-0.5 bg-theme-bg-tertiary text-theme-text-tertiary rounded"
@@ -133,7 +169,7 @@ function TemplatesPage() {
       {selectedTemplate && (
         <div className="space-y-4 pt-4 border-t border-theme-border">
           <h4 className="font-medium text-theme-text-primary">
-            {t('templates.configure')}
+            {t("templates.configure")}
           </h4>
 
           {/* Project Name */}
@@ -142,21 +178,21 @@ function TemplatesPage() {
               htmlFor="projectName"
               className="block text-sm font-medium text-theme-text-primary mb-1"
             >
-              {t('templates.projectName')}
+              {t("templates.projectName")}
             </label>
             <input
               id="projectName"
               type="text"
               value={projectName}
-              onChange={e =>
+              onChange={(e) =>
                 setProjectName(
                   e.target.value
                     .toLowerCase()
-                    .replace(/[^a-z0-9-]/g, '-')
-                    .replace(/-+/g, '-')
+                    .replace(/[^a-z0-9-]/g, "-")
+                    .replace(/-+/g, "-"),
                 )
               }
-              placeholder={t('templates.projectNamePlaceholder')}
+              placeholder={t("templates.projectNamePlaceholder")}
               className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow font-mono"
             />
           </div>
@@ -167,29 +203,29 @@ function TemplatesPage() {
               htmlFor="llmKey"
               className="block text-sm font-medium text-theme-text-primary mb-1"
             >
-              {t('templates.llmKey')}
+              {t("templates.llmKey")}
             </label>
             {keysLoading ? (
               <div className="h-10 bg-theme-bg-secondary rounded-lg animate-pulse" />
             ) : keys.length === 0 ? (
               <p className="text-sm text-theme-text-secondary">
-                {t('templates.noKeys')}{' '}
+                {t("templates.noKeys")}{" "}
                 <button
                   onClick={() => navigate(`/dashboard/${entitySlug}/providers`)}
                   className="text-blue-600 hover:underline"
                 >
-                  {t('templates.addKeyLink')}
+                  {t("templates.addKeyLink")}
                 </button>
               </p>
             ) : (
               <select
                 id="llmKey"
                 value={selectedKeyId}
-                onChange={e => setSelectedKeyId(e.target.value)}
+                onChange={(e) => setSelectedKeyId(e.target.value)}
                 className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
               >
-                <option value="">{t('templates.selectKey')}</option>
-                {keys.map(key => (
+                <option value="">{t("templates.selectKey")}</option>
+                {keys.map((key) => (
                   <option key={key.uuid} value={key.uuid}>
                     {key.key_name} ({key.provider})
                   </option>
@@ -202,13 +238,15 @@ function TemplatesPage() {
           {selectedTemplateData && (
             <div className="p-4 bg-theme-bg-secondary rounded-lg">
               <h5 className="text-sm font-medium text-theme-text-primary mb-2">
-                {t('templates.preview')}
+                {t("templates.preview")}
               </h5>
               <p className="text-sm text-theme-text-secondary mb-2">
-                {t('templates.willCreate', { count: selectedTemplateData.endpoints.length })}
+                {t("templates.willCreate", {
+                  count: selectedTemplateData.endpoints.length,
+                })}
               </p>
               <ul className="space-y-1">
-                {selectedTemplateData.endpoints.map(ep => (
+                {selectedTemplateData.endpoints.map((ep) => (
                   <li
                     key={ep.endpoint_name}
                     className="text-sm text-theme-text-tertiary flex items-center gap-2"
@@ -216,7 +254,9 @@ function TemplatesPage() {
                     <span className="px-1.5 py-0.5 text-xs font-mono rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
                       POST
                     </span>
-                    <span className="font-mono">/{entitySlug}/{projectName}/{ep.endpoint_name}</span>
+                    <span className="font-mono">
+                      /{entitySlug}/{projectName}/{ep.endpoint_name}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -232,11 +272,16 @@ function TemplatesPage() {
           disabled={isLoading}
           className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
         >
-          {t('common.cancel')}
+          {t("common.cancel")}
         </button>
         <button
           onClick={handleApply}
-          disabled={isLoading || !selectedTemplate || !projectName.trim() || !selectedKeyId}
+          disabled={
+            isLoading ||
+            !selectedTemplate ||
+            !projectName.trim() ||
+            !selectedKeyId
+          }
           className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? (
@@ -257,10 +302,10 @@ function TemplatesPage() {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
               </svg>
-              {t('common.creating')}
+              {t("common.creating")}
             </span>
           ) : (
-            t('templates.apply')
+            t("templates.apply")
           )}
         </button>
       </div>

@@ -1,5 +1,5 @@
-import { useToast } from '../../hooks/useToast';
-import Toast from './Toast';
+import { useToast } from "../../hooks/useToast";
+import Toast from "./Toast";
 
 function ToastContainer() {
   const { toasts, removeToast } = useToast();
@@ -12,7 +12,7 @@ function ToastContainer() {
       aria-live="polite"
       aria-label="Notifications"
     >
-      {toasts.map(toast => (
+      {toasts.map((toast) => (
         <Toast key={toast.id} toast={toast} onDismiss={removeToast} />
       ))}
     </div>

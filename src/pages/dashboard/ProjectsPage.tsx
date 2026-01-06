@@ -1,18 +1,23 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useProjectsManager } from '@sudobility/shapeshyft_lib';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
-import { ItemList } from '@sudobility/components';
-import type { Project } from '@sudobility/shapeshyft_types';
-import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
-import { useApi } from '../../hooks/useApi';
-import { useToast } from '../../hooks/useToast';
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useProjectsManager } from "@sudobility/shapeshyft_lib";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
+import { ItemList } from "@sudobility/components";
+import type { Project } from "@sudobility/shapeshyft_types";
+import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+import { useApi } from "../../hooks/useApi";
+import { useToast } from "../../hooks/useToast";
 
 // Icons
 const FolderIcon = () => (
-  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-8 h-8"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -23,13 +28,28 @@ const FolderIcon = () => (
 );
 
 const PlusIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M12 4v16m8-8H4"
+    />
   </svg>
 );
 
 const TemplateIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -40,42 +60,49 @@ const TemplateIcon = () => (
 );
 
 function ProjectsPage() {
-  const { t } = useTranslation(['dashboard', 'common']);
+  const { t } = useTranslation(["dashboard", "common"]);
   const { navigate } = useLocalizedNavigate();
-  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
-  const { networkClient, baseUrl, token, testMode, isReady, isLoading: apiLoading } = useApi();
-  const { success } = useToast();
-
+  const { entitySlug = "" } = useParams<{ entitySlug: string }>();
   const {
-    projects,
-    isLoading,
-    error,
-    deleteProject,
-    clearError,
-  } = useProjectsManager({
-    baseUrl,
     networkClient,
-    entitySlug,
+    baseUrl,
     token,
     testMode,
-    autoFetch: isReady && !!entitySlug,
-  });
+    isReady,
+    isLoading: apiLoading,
+  } = useApi();
+  const { success } = useToast();
+
+  const { projects, isLoading, error, deleteProject, clearError } =
+    useProjectsManager({
+      baseUrl,
+      networkClient,
+      entitySlug,
+      token,
+      testMode,
+      autoFetch: isReady && !!entitySlug,
+    });
 
   // Show error via InfoInterface
   useEffect(() => {
     if (error) {
-      getInfoService().show(t('common.error'), error, InfoType.ERROR, 5000);
+      getInfoService().show(t("common.error"), error, InfoType.ERROR, 5000);
       clearError();
     }
   }, [error, clearError, t]);
 
   const handleDeleteProject = async (projectId: string) => {
-    if (confirm(t('projects.confirmDelete'))) {
+    if (confirm(t("projects.confirmDelete"))) {
       try {
         await deleteProject(projectId);
-        success(t('common:toast.success.deleted'));
+        success(t("common:toast.success.deleted"));
       } catch (err) {
-        getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common:toast.error.generic'), InfoType.ERROR, 5000);
+        getInfoService().show(
+          t("common.error"),
+          err instanceof Error ? err.message : t("common:toast.error.generic"),
+          InfoType.ERROR,
+          5000,
+        );
       }
     }
   };
@@ -83,7 +110,9 @@ function ProjectsPage() {
   const renderProjectCard = (project: Project) => (
     <div
       className="p-6 bg-theme-bg-secondary rounded-xl border border-theme-border hover:border-blue-500 cursor-pointer transition-colors group"
-      onClick={() => navigate(`/dashboard/${entitySlug}/projects/${project.uuid}`)}
+      onClick={() =>
+        navigate(`/dashboard/${entitySlug}/projects/${project.uuid}`)
+      }
     >
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1 min-w-0">
@@ -98,20 +127,22 @@ function ProjectsPage() {
           <span
             className={`px-2 py-1 text-xs font-medium rounded-full ${
               project.is_active
-                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
+                : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
             }`}
           >
-            {project.is_active ? t('projects.card.active') : t('projects.card.inactive')}
+            {project.is_active
+              ? t("projects.card.active")
+              : t("projects.card.inactive")}
           </span>
           <div
             className="sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => handleDeleteProject(project.uuid)}
               className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded"
-              title={t('common.delete')}
+              title={t("common.delete")}
             >
               <svg
                 className="w-4 h-4 text-red-600 dark:text-red-400"
@@ -139,8 +170,10 @@ function ProjectsPage() {
 
       <div className="flex justify-between items-center text-sm text-theme-text-tertiary">
         <span>
-          {t('projects.card.created', {
-            date: project.created_at ? new Date(project.created_at).toLocaleDateString() : '-',
+          {t("projects.card.created", {
+            date: project.created_at
+              ? new Date(project.created_at).toLocaleDateString()
+              : "-",
           })}
         </span>
       </div>
@@ -149,35 +182,36 @@ function ProjectsPage() {
 
   return (
     <ItemList
-      title={t('projects.title')}
+      title={t("projects.title")}
       items={projects}
       renderItem={renderProjectCard}
-      keyExtractor={project => project.uuid}
+      keyExtractor={(project) => project.uuid}
       loading={apiLoading || (isReady && isLoading && projects.length === 0)}
       actions={[
         {
-          id: 'create',
-          label: t('projects.create'),
+          id: "create",
+          label: t("projects.create"),
           onClick: () => navigate(`/dashboard/${entitySlug}/projects/new`),
           icon: <PlusIcon />,
-          variant: 'primary',
+          variant: "primary",
         },
         {
-          id: 'templates',
-          label: t('projects.useTemplate'),
-          onClick: () => navigate(`/dashboard/${entitySlug}/projects/templates`),
+          id: "templates",
+          label: t("projects.useTemplate"),
+          onClick: () =>
+            navigate(`/dashboard/${entitySlug}/projects/templates`),
           icon: <TemplateIcon />,
-          variant: 'secondary',
+          variant: "secondary",
         },
       ]}
-      emptyMessage={t('projects.emptyDescription')}
+      emptyMessage={t("projects.emptyDescription")}
       emptyIcon={
         <div className="w-16 h-16 bg-theme-bg-secondary rounded-full flex items-center justify-center text-theme-text-tertiary">
           <FolderIcon />
         </div>
       }
       emptyAction={{
-        label: t('projects.create'),
+        label: t("projects.create"),
         onClick: () => navigate(`/dashboard/${entitySlug}/projects/new`),
       }}
       spacing="md"

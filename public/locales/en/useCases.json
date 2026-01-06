@@ -63,17 +63,32 @@
     "textClassification": {
       "title": "Text Classification",
       "description": "Automatically categorize text into predefined labels with high accuracy. Perfect for sentiment analysis, topic detection, intent recognition, and content moderation.",
-      "examples": ["Sentiment Analysis", "Topic Detection", "Intent Recognition", "Content Moderation"]
+      "examples": [
+        "Sentiment Analysis",
+        "Topic Detection",
+        "Intent Recognition",
+        "Content Moderation"
+      ]
     },
     "dataExtraction": {
       "title": "Data Extraction",
       "description": "Extract structured information from unstructured text documents. Transform invoices, contracts, emails, and forms into clean, usable data.",
-      "examples": ["Invoice Processing", "Resume Parsing", "Contract Analysis", "Email Extraction"]
+      "examples": [
+        "Invoice Processing",
+        "Resume Parsing",
+        "Contract Analysis",
+        "Email Extraction"
+      ]
     },
     "contentGeneration": {
       "title": "Content Generation",
       "description": "Generate high-quality, structured content programmatically. Create product descriptions, marketing copy, documentation, and more with consistent formatting.",
-      "examples": ["Product Descriptions", "Marketing Copy", "Documentation", "Email Templates"]
+      "examples": [
+        "Product Descriptions",
+        "Marketing Copy",
+        "Documentation",
+        "Email Templates"
+      ]
     }
   },
   "text": {
@@ -107,22 +122,42 @@
       "sentiment": {
         "title": "Sentiment Analysis",
         "description": "Analyze customer feedback, reviews, and social media mentions to understand public perception. Get consistent sentiment scores that integrate directly into your analytics pipeline.",
-        "examples": ["Product reviews", "Customer support tickets", "Social media monitoring", "Survey responses"]
+        "examples": [
+          "Product reviews",
+          "Customer support tickets",
+          "Social media monitoring",
+          "Survey responses"
+        ]
       },
       "intent": {
         "title": "Intent Recognition",
         "description": "Understand what users want from their messages. Route inquiries to the right department, trigger automated workflows, or provide instant responses based on detected intent.",
-        "examples": ["Chatbot routing", "Email categorization", "Voice assistant commands", "Support ticket triage"]
+        "examples": [
+          "Chatbot routing",
+          "Email categorization",
+          "Voice assistant commands",
+          "Support ticket triage"
+        ]
       },
       "topic": {
         "title": "Topic Detection",
         "description": "Automatically tag content with relevant topics and categories. Perfect for content management, search optimization, and organizing large document collections.",
-        "examples": ["News categorization", "Document tagging", "Research paper classification", "Content recommendation"]
+        "examples": [
+          "News categorization",
+          "Document tagging",
+          "Research paper classification",
+          "Content recommendation"
+        ]
       },
       "moderation": {
         "title": "Content Moderation",
         "description": "Flag inappropriate content, detect spam, and identify policy violations. Get structured classifications that enable automated moderation workflows.",
-        "examples": ["User-generated content", "Comment sections", "Forum posts", "Product listings"]
+        "examples": [
+          "User-generated content",
+          "Comment sections",
+          "Forum posts",
+          "Product listings"
+        ]
       }
     },
     "cta": {
@@ -161,22 +196,42 @@
       "invoice": {
         "title": "Invoice Processing",
         "description": "Extract vendor details, line items, totals, and tax information from invoices in any format. Feed directly into your accounting system.",
-        "examples": ["AP automation", "Expense tracking", "Audit preparation", "Vendor management"]
+        "examples": [
+          "AP automation",
+          "Expense tracking",
+          "Audit preparation",
+          "Vendor management"
+        ]
       },
       "resume": {
         "title": "Resume Parsing",
         "description": "Convert resumes into structured candidate profiles. Extract contact info, work history, education, skills, and certifications consistently.",
-        "examples": ["ATS integration", "Candidate matching", "Skills inventory", "Recruitment analytics"]
+        "examples": [
+          "ATS integration",
+          "Candidate matching",
+          "Skills inventory",
+          "Recruitment analytics"
+        ]
       },
       "contract": {
         "title": "Contract Analysis",
         "description": "Pull key terms, dates, parties, and obligations from legal documents. Automate contract review and compliance monitoring.",
-        "examples": ["Due diligence", "Risk assessment", "Renewal tracking", "Clause extraction"]
+        "examples": [
+          "Due diligence",
+          "Risk assessment",
+          "Renewal tracking",
+          "Clause extraction"
+        ]
       },
       "form": {
         "title": "Form Processing",
         "description": "Digitize paper forms, applications, and questionnaires. Extract field values regardless of layout variations.",
-        "examples": ["Insurance claims", "Loan applications", "Government forms", "Survey responses"]
+        "examples": [
+          "Insurance claims",
+          "Loan applications",
+          "Government forms",
+          "Survey responses"
+        ]
       }
     },
     "benefits": {
@@ -230,22 +285,42 @@
       "productDescriptions": {
         "title": "Product Descriptions",
         "description": "Generate consistent, compelling product copy at scale. Define structure for features, benefits, specs, and SEO keywords—then generate thousands of descriptions programmatically.",
-        "examples": ["E-commerce listings", "Catalog pages", "Marketplace listings", "Product specs"]
+        "examples": [
+          "E-commerce listings",
+          "Catalog pages",
+          "Marketplace listings",
+          "Product specs"
+        ]
       },
       "marketingCopy": {
         "title": "Marketing Copy",
         "description": "Create structured marketing content with consistent formatting. Headlines, body copy, CTAs, and metadata all conform to your brand guidelines.",
-        "examples": ["Ad copy", "Landing pages", "Email campaigns", "Social media posts"]
+        "examples": [
+          "Ad copy",
+          "Landing pages",
+          "Email campaigns",
+          "Social media posts"
+        ]
       },
       "documentation": {
         "title": "Documentation",
         "description": "Generate technical documentation with consistent structure. API docs, user guides, and help articles all follow your defined templates.",
-        "examples": ["API documentation", "User guides", "FAQ generation", "Release notes"]
+        "examples": [
+          "API documentation",
+          "User guides",
+          "FAQ generation",
+          "Release notes"
+        ]
       },
       "personalizedContent": {
         "title": "Personalized Content",
         "description": "Create individualized content at scale. Generate personalized emails, recommendations, and reports based on user data while maintaining consistent structure.",
-        "examples": ["Personalized emails", "Custom reports", "Recommendations", "Notifications"]
+        "examples": [
+          "Personalized emails",
+          "Custom reports",
+          "Recommendations",
+          "Notifications"
+        ]
       }
     },
     "benefits": {

@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { AuthInline, useAuthStatus } from '@sudobility/auth-components';
-import { CONSTANTS } from '../config/constants';
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { AuthInline, useAuthStatus } from "@sudobility/auth-components";
+import { CONSTANTS } from "../config/constants";
 
 function LoginPage() {
   const { user, loading } = useAuthStatus();
@@ -11,7 +11,7 @@ function LoginPage() {
   // Redirect to dashboard if already authenticated
   useEffect(() => {
     if (!loading && user) {
-      navigate(`/${lang || 'en'}/dashboard`, { replace: true });
+      navigate(`/${lang || "en"}/dashboard`, { replace: true });
     }
   }, [user, loading, navigate, lang]);
 
@@ -35,7 +35,7 @@ function LoginPage() {
         <div className="bg-theme-bg-secondary rounded-xl p-6 border border-theme-border">
           <AuthInline
             onSuccess={() => {
-              navigate(`/${lang || 'en'}/dashboard`, { replace: true });
+              navigate(`/${lang || "en"}/dashboard`, { replace: true });
             }}
           />
         </div>

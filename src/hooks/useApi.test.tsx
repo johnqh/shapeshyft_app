@@ -1,25 +1,25 @@
-import { describe, it, expect } from 'vitest';
-import { renderHook } from '@testing-library/react';
-import { useApi, useApiReady } from './useApi';
-import { ApiContext, type ApiContextValue } from '../context/apiContextDef';
-import type { ReactNode } from 'react';
+import { describe, it, expect } from "vitest";
+import { renderHook } from "@testing-library/react";
+import { useApi, useApiReady } from "./useApi";
+import { ApiContext, type ApiContextValue } from "../context/apiContextDef";
+import type { ReactNode } from "react";
 
-describe('useApi', () => {
-  it('throws error when used outside ApiProvider', () => {
+describe("useApi", () => {
+  it("throws error when used outside ApiProvider", () => {
     expect(() => {
       renderHook(() => useApi());
-    }).toThrow('useApi must be used within an ApiProvider');
+    }).toThrow("useApi must be used within an ApiProvider");
   });
 
-  it('returns context value when used within ApiProvider', () => {
+  it("returns context value when used within ApiProvider", () => {
     const mockContextValue: ApiContextValue = {
-      networkClient: {} as ApiContextValue['networkClient'],
-      baseUrl: 'https://api.example.com',
-      userId: 'user-123',
-      token: 'test-token',
+      networkClient: {} as ApiContextValue["networkClient"],
+      baseUrl: "https://api.example.com",
+      userId: "user-123",
+      token: "test-token",
       isReady: true,
       isLoading: false,
-      refreshToken: async () => 'new-token',
+      refreshToken: async () => "new-token",
     };
 
     const wrapper = ({ children }: { children: ReactNode }) => (
@@ -30,22 +30,22 @@ describe('useApi', () => {
 
     const { result } = renderHook(() => useApi(), { wrapper });
     expect(result.current).toBe(mockContextValue);
-    expect(result.current.userId).toBe('user-123');
-    expect(result.current.token).toBe('test-token');
+    expect(result.current.userId).toBe("user-123");
+    expect(result.current.token).toBe("test-token");
   });
 });
 
-describe('useApiReady', () => {
-  it('throws error when used outside ApiProvider', () => {
+describe("useApiReady", () => {
+  it("throws error when used outside ApiProvider", () => {
     expect(() => {
       renderHook(() => useApiReady());
-    }).toThrow('useApi must be used within an ApiProvider');
+    }).toThrow("useApi must be used within an ApiProvider");
   });
 
-  it('throws error when API is not ready', () => {
+  it("throws error when API is not ready", () => {
     const mockContextValue: ApiContextValue = {
-      networkClient: {} as ApiContextValue['networkClient'],
-      baseUrl: 'https://api.example.com',
+      networkClient: {} as ApiContextValue["networkClient"],
+      baseUrl: "https://api.example.com",
       userId: null,
       token: null,
       isReady: false,
@@ -61,18 +61,20 @@ describe('useApiReady', () => {
 
     expect(() => {
       renderHook(() => useApiReady(), { wrapper });
-    }).toThrow('useApiReady called before API is ready. Ensure user is authenticated.');
+    }).toThrow(
+      "useApiReady called before API is ready. Ensure user is authenticated.",
+    );
   });
 
-  it('returns context value when API is ready', () => {
+  it("returns context value when API is ready", () => {
     const mockContextValue: ApiContextValue = {
-      networkClient: {} as ApiContextValue['networkClient'],
-      baseUrl: 'https://api.example.com',
-      userId: 'user-123',
-      token: 'test-token',
+      networkClient: {} as ApiContextValue["networkClient"],
+      baseUrl: "https://api.example.com",
+      userId: "user-123",
+      token: "test-token",
       isReady: true,
       isLoading: false,
-      refreshToken: async () => 'new-token',
+      refreshToken: async () => "new-token",
     };
 
     const wrapper = ({ children }: { children: ReactNode }) => (
@@ -82,7 +84,7 @@ describe('useApiReady', () => {
     );
 
     const { result } = renderHook(() => useApiReady(), { wrapper });
-    expect(result.current.userId).toBe('user-123');
-    expect(result.current.token).toBe('test-token');
+    expect(result.current.userId).toBe("user-123");
+    expect(result.current.token).toBe("test-token");
   });
 });

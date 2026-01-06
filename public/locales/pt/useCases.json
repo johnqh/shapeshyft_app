@@ -1,0 +1,346 @@
+{
+  "seo": {
+    "main": {
+      "title": "Casos de uso - {{appName}}",
+      "description": "Descubra como o {{appName}} transforma saídas de LLM em dados estruturados e confiáveis. De classificação de texto à extração de dados e geração de conteúdo.",
+      "keywords": "Casos de uso de LLM, saída estruturada, classificação de texto, extração de dados, geração de conteúdo, aplicações de IA"
+    },
+    "text": {
+      "title": "Classificação de Texto - Casos de Uso - {{appName}}",
+      "description": "Classifique automaticamente o texto com modelos de linguagem grandes e obtenha saída estruturada e validada. Análise de sentimento, reconhecimento de intenção, detecção de tópico e moderação de conteúdo.",
+      "keywords": "classificação de texto, análise de sentimento, reconhecimento de intenção, detecção de tópico, moderação de conteúdo, NLP, classificação de LLM"
+    },
+    "data": {
+      "title": "Extração de Dados - Casos de Uso - {{appName}}",
+      "description": "Extraia dados estruturados de documentos não estruturados com modelos de linguagem grandes. Processamento de faturas, análise de currículos, análise de contratos e digitalização de formulários.",
+      "keywords": "extração de dados, processamento de documentos, OCR de faturas, análise de currículos, análise de contratos, dados estruturados, extração por LLM"
+    },
+    "content": {
+      "title": "Geração de Conteúdo - Casos de Uso - {{appName}}",
+      "description": "Crie conteúdo estruturado com LLMs. Descrições de produtos, textos de marketing, documentação e conteúdo personalizado com formatação garantida.",
+      "keywords": "geração de conteúdo, redação de conteúdo com IA, descrições de produtos, automação de marketing, conteúdo estruturado, conteúdo de LLM"
+    }
+  },
+  "nav": {
+    "allUseCases": "Todos os Casos de Uso",
+    "readDocs": "Leia a documentação",
+    "viewPricing": "Ver Preços",
+    "exploreOther": "Explore Outras Aplicações"
+  },
+  "main": {
+    "hero": {
+      "title": "Construa qualquer coisa com saída estruturada de LLM",
+      "subtitle": "{{appName}} transforma respostas de IA imprevisíveis em dados confiáveis e validados por esquema. Abaixo estão alguns casos de uso comuns – mas sua imaginação é o único limite."
+    },
+    "flexibility": {
+      "title": "Seu Caso de Uso, Suas Regras",
+      "description": "Embora tenhamos destacado padrões comuns, {{appName}} foi projetado para ser completamente flexível. Defina qualquer esquema JSON, conecte qualquer provedor de LLM e construa exatamente o que precisar. Seja você criar um chatbot, analisar artigos de pesquisa, automatizar fluxos de trabalho ou construir algo totalmente novo — se você puder descrevê-lo em um esquema, {{appName}} pode entregá-lo."
+    },
+    "features": {
+      "customSchemas": {
+        "title": "Esquemas personalizados",
+        "description": "Defina qualquer estrutura de dados que precisar"
+      },
+      "anyProvider": {
+        "title": "Qualquer provedor de LLM",
+        "description": "OpenAI, Anthropic, Google e mais"
+      },
+      "validatedOutput": {
+        "title": "Saída validada",
+        "description": "Conformidade garantida com o esquema"
+      },
+      "apiFirst": {
+        "title": "Primeiro a API",
+        "description": "Integração fácil com qualquer pilha"
+      }
+    },
+    "cta": {
+      "title": "Pronto para construir?",
+      "subtitle": "Comece com nosso plano gratuito e veja como o {{appName}} pode transformar sua integração com IA."
+    }
+  },
+  "useCases": {
+    "textClassification": {
+      "title": "Classificação de texto",
+      "description": "Classifique automaticamente o texto em rótulos pré-definidos com alta precisão. Perfeito para análise de sentimento, detecção de tópicos, reconhecimento de intenção e moderação de conteúdo.",
+      "examples": [
+        "Análise de Sentimento",
+        "Detecção de Tópico",
+        "Reconhecimento de Intenção",
+        "Moderação de Conteúdo"
+      ]
+    },
+    "dataExtraction": {
+      "title": "Extração de dados",
+      "description": "Extraia informações estruturadas de documentos de texto não estruturados. Transforme faturas, contratos, e-mails e formulários em dados limpos e utilizáveis.",
+      "examples": [
+        "Processamento de faturas",
+        "Análise de currículo",
+        "Análise de Contrato",
+        "Extração de E-mail"
+      ]
+    },
+    "contentGeneration": {
+      "title": "Geração de Conteúdo",
+      "description": "Gere conteúdo de alta qualidade e estruturado de forma programática. Crie descrições de produtos, textos de marketing, documentação e muito mais com formatação consistente.",
+      "examples": [
+        "Descrições de Produto",
+        "Texto de marketing",
+        "Documentação",
+        "Modelos de E-mail"
+      ]
+    }
+  },
+  "text": {
+    "hero": {
+      "title": "Classificação de texto",
+      "subtitle": "Transforme texto não estruturado em categorias acionáveis. Defina seu esquema de classificação, e {{appName}} garante que cada resposta atenda aos seus requisitos exatos."
+    },
+    "howItWorks": {
+      "title": "Como Funciona",
+      "step1": {
+        "title": "Defina seu Esquema",
+        "description": "Especifique exatamente quais classificações você precisa — categorias, pontuações de confiança, rótulos múltiplos ou estruturas aninhadas."
+      },
+      "step2": {
+        "title": "Envie seu texto",
+        "description": "Chame a API do {{appName}} com seu texto. Encaminhamos para o seu LLM escolhido com prompt otimizado."
+      },
+      "step3": {
+        "title": "Obtenha a saída validada",
+        "description": "Receba JSON que corresponda exatamente ao seu esquema—garantido. Sem erros de análise, sem formatos inesperados."
+      }
+    },
+    "example": {
+      "title": "Exemplo: Classificação de Feedback de Cliente",
+      "schemaTitle": "Seu Esquema JSON",
+      "outputTitle": "Saída Garantida",
+      "note": "Cada resposta é validada em relação ao seu esquema antes de ser devolvida. As respostas inválidas são automaticamente reenviadas."
+    },
+    "applications": {
+      "title": "Aplicações",
+      "sentiment": {
+        "title": "Análise de Sentimento",
+        "description": "Analise o feedback dos clientes, as avaliações e as menções nas redes sociais para compreender a percepção pública. Obtenha pontuações de sentimento consistentes que se integrem diretamente à sua pipeline de análise.",
+        "examples": [
+          "Avaliações de produtos",
+          "Bilhetes de suporte ao cliente",
+          "Monitoramento de redes sociais",
+          "Respostas da pesquisa"
+        ]
+      },
+      "intent": {
+        "title": "Reconhecimento de Intenção",
+        "description": "Entenda o que os usuários querem com suas mensagens. Encaminhe consultas para o departamento adequado, dispare fluxos de trabalho automatizados ou forneça respostas imediatas com base na intenção detectada.",
+        "examples": [
+          "Roteamento de chatbot",
+          "Classificação de e-mails",
+          "Comandos de assistente de voz",
+          "Classificação de bilhetes de suporte"
+        ]
+      },
+      "topic": {
+        "title": "Detecção de Tópico",
+        "description": "Marque automaticamente o conteúdo com tópicos e categorias relevantes. Perfeito para gerenciamento de conteúdo, otimização de busca e organização de grandes coleções de documentos.",
+        "examples": [
+          "Classificação de notícias",
+          "Marcação de documentos",
+          "Classificação de artigo científico",
+          "Recomendação de conteúdo"
+        ]
+      },
+      "moderation": {
+        "title": "Moderação de Conteúdo",
+        "description": "Sinalize conteúdo inadequado, detecte spam e identifique violações de política. Obtenha classificações estruturadas que permitam fluxos automatizados de moderação.",
+        "examples": [
+          "Conteúdo gerado pelo usuário",
+          "Seções de comentários",
+          "Postagens no fórum",
+          "Listagens de produtos"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Comece a Classificar Textos Hoje",
+      "subtitle": "Crie seu primeiro endpoint de classificação de texto em minutos. Nenhuma experiência em ML é necessária."
+    }
+  },
+  "data": {
+    "hero": {
+      "title": "Extração de dados",
+      "subtitle": "Converta documentos não estruturados em dados limpos e estruturados. Defina sua estrutura-alvo e o {{appName}} extrai exatamente as informações de que você precisa — todas as vezes."
+    },
+    "howItWorks": {
+      "title": "Como Funciona",
+      "step1": {
+        "title": "Defina seu Esquema",
+        "description": "Descreva a estrutura de dados exata que você deseja extrair — objetos aninhados, arrays, campos tipados com validação."
+      },
+      "step2": {
+        "title": "Envie seu documento",
+        "description": "Envie o texto do documento para a API do {{appName}}. Nós cuidamos da lógica de solicitação e extração."
+      },
+      "step3": {
+        "title": "Obter dados estruturados",
+        "description": "Receba um JSON validado que corresponda ao seu esquema. Importe diretamente para bancos de dados, planilhas ou APIs."
+      }
+    },
+    "example": {
+      "title": "Exemplo: Extração de Dados de Fatura",
+      "schemaTitle": "Seu Esquema JSON",
+      "outputTitle": "Saída extraída",
+      "note": "Estruturas aninhadas complexas são extraídas com precisão, com tipagem adequada para números, datas e matrizes."
+    },
+    "applications": {
+      "title": "Aplicações",
+      "invoice": {
+        "title": "Processamento de faturas",
+        "description": "Extraia os detalhes do fornecedor, itens da linha, totais e informações de impostos de faturas em qualquer formato. Alimente diretamente seu sistema contábil.",
+        "examples": [
+          "Automação de AP",
+          "Rastreamento de despesas",
+          "Preparação para auditoria",
+          "Gestão de fornecedores"
+        ]
+      },
+      "resume": {
+        "title": "Análise de currículo",
+        "description": "Converta currículos em perfis de candidatos estruturados. Extraia informações de contato, histórico profissional, educação, habilidades e certificações de forma consistente.",
+        "examples": [
+          "Integração ATS",
+          "Correspondência de candidatos",
+          "Inventário de habilidades",
+          "Análise de recrutamento"
+        ]
+      },
+      "contract": {
+        "title": "Análise de Contrato",
+        "description": "Extraia termos-chave, datas, partes e obrigações de documentos legais. Automatize a revisão de contratos e o monitoramento de conformidade.",
+        "examples": [
+          "Devida diligência",
+          "Avaliação de risco",
+          "Rastreamento de renovação",
+          "Extração de cláusulas"
+        ]
+      },
+      "form": {
+        "title": "Processamento de formulários",
+        "description": "Digitalize formulários em papel, aplicações e questionários. Extraia valores de campo independentemente das variações de layout.",
+        "examples": [
+          "Reclamações de seguros",
+          "Solicitações de empréstimo",
+          "Formulários governamentais",
+          "Respostas da pesquisa"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Por que {{appName}} para Extração de Dados?",
+      "schemaEnforcement": {
+        "title": "Forçamento de Esquema",
+        "description": "Cada extração corresponde exatamente ao seu esquema. Nenhum campo ausente, nenhum formato inesperado."
+      },
+      "formatFlexibility": {
+        "title": "Flexibilidade de formato",
+        "description": "Manipule variações nos layouts de documentos. O mesmo esquema funciona em diferentes formatos."
+      },
+      "instantIntegration": {
+        "title": "Integração Instantânea",
+        "description": "Obtenha JSON limpo, pronto para bancos de dados, APIs e planilhas, sem pós-processamento."
+      }
+    },
+    "cta": {
+      "title": "Comece a Extrair Dados Hoje",
+      "subtitle": "Crie seu primeiro endpoint de extração de dados em minutos. Sem necessidade de treinamento de ML."
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "Geração de Conteúdo",
+      "subtitle": "Crie conteúdo de alta qualidade de forma programática, com estrutura garantida. Defina seu formato de conteúdo uma vez, e gere em grande escala com consistência perfeita."
+    },
+    "howItWorks": {
+      "title": "Como Funciona",
+      "step1": {
+        "title": "Defina seu formato",
+        "description": "Especifique a estrutura do conteúdo — títulos, seções principais, tópicos em lista, metadados e limites de comprimento."
+      },
+      "step2": {
+        "title": "Fornecer contexto",
+        "description": "Envie dados do produto, tópicos ou material de origem. O LLM gera conteúdo adaptado à sua entrada."
+      },
+      "step3": {
+        "title": "Obter conteúdo formatado",
+        "description": "Receba conteúdo perfeitamente estruturado, pronto para seu CMS, banco de dados ou aplicativo."
+      }
+    },
+    "example": {
+      "title": "Exemplo: Geração de descrição de produto",
+      "schemaTitle": "Seu Esquema de Conteúdo",
+      "outputTitle": "Conteúdo gerado",
+      "note": "Cada peça de conteúdo corresponde às suas restrições de esquema—limites de comprimento, campos obrigatórios e limites de matriz."
+    },
+    "applications": {
+      "title": "Aplicações",
+      "productDescriptions": {
+        "title": "Descrições de Produto",
+        "description": "Crie cópias de produto coerentes e impactantes em grande escala. Defina a estrutura para recursos, benefícios, especificações e palavras-chave de SEO — depois gere milhares de descrições de forma programática.",
+        "examples": [
+          "Listagens de e-commerce",
+          "Páginas do catálogo",
+          "Listagens na Marketplace",
+          "Especificações do produto"
+        ]
+      },
+      "marketingCopy": {
+        "title": "Texto de marketing",
+        "description": "Crie conteúdo de marketing estruturado com formatação consistente. Títulos, texto principal, chamadas para ação e metadados estão todos alinhados às suas diretrizes da marca.",
+        "examples": [
+          "Texto de anúncio",
+          "Páginas de aterragem",
+          "Campanhas de e-mail",
+          "Publicações nas redes sociais"
+        ]
+      },
+      "documentation": {
+        "title": "Documentação",
+        "description": "Gere documentação técnica com estrutura consistente. Documentos da API, guias do usuário e artigos de ajuda seguem todos seus modelos definidos.",
+        "examples": [
+          "Documentação da API",
+          "Guias do usuário",
+          "Geração de Perguntas Frequentes",
+          "Notas de lançamento"
+        ]
+      },
+      "personalizedContent": {
+        "title": "Conteúdo Personalizado",
+        "description": "Crie conteúdo personalizado em grande escala. Gere e-mails personalizados, recomendações e relatórios com base nos dados do usuário, mantendo uma estrutura consistente.",
+        "examples": [
+          "E-mails personalizados",
+          "Relatórios personalizados",
+          "Recomendações",
+          "Notificações"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Por que {{appName}} para Geração de Conteúdo?",
+      "lengthControl": {
+        "title": "Controle de Comprimento",
+        "description": "Defina limites de caracteres para títulos, descrições e conteúdo principal. Nunca ultrapasse os limites da plataforma."
+      },
+      "consistentStructure": {
+        "title": "Estrutura consistente",
+        "description": "Cada peça de conteúdo segue seu formato definido. Perfeito para modelos e geração em massa."
+      },
+      "scaleInstantly": {
+        "title": "Escale Instantaneamente",
+        "description": "Gere centenas de peças de conteúdo com um único endpoint. Mesma qualidade, fração do tempo."
+      }
+    },
+    "cta": {
+      "title": "Comece a gerar conteúdo hoje",
+      "subtitle": "Crie seu primeiro ponto de extremidade de geração de conteúdo em minutos. Escalone de um para milhares instantaneamente."
+    }
+  }
+}

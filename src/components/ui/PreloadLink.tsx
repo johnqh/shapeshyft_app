@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import type { LinkProps } from 'react-router-dom';
-import { useCallback, useRef } from 'react';
+import { Link } from "react-router-dom";
+import type { LinkProps } from "react-router-dom";
+import { useCallback, useRef } from "react";
 
 type PreloadFn = () => Promise<unknown>;
 
@@ -12,31 +12,31 @@ interface PreloadLinkProps extends LinkProps {
 const preloadedModules = new Set<string>();
 
 const routeModules: Record<string, () => Promise<unknown>> = {
-  '/': () => import('../../pages/HomePage'),
-  '/login': () => import('../../pages/LoginPage'),
-  '/pricing': () => import('../../pages/PricingPage'),
-  '/docs': () => import('../../pages/DocsPage'),
-  '/dashboard': () => import('../../pages/dashboard/DashboardPage'),
-  '/projects': () => import('../../pages/dashboard/ProjectsPage'),
-  '/projects/new': () => import('../../pages/dashboard/ProjectNewPage'),
-  '/projects/templates': () => import('../../pages/dashboard/TemplatesPage'),
-  '/providers': () => import('../../pages/dashboard/KeysPage'),
-  '/analytics': () => import('../../pages/dashboard/AnalyticsPage'),
-  '/subscription': () => import('../../pages/dashboard/SubscriptionPage'),
-  '/budgets': () => import('../../pages/dashboard/BudgetsPage'),
-  '/settings': () => import('../../pages/dashboard/SettingsPage'),
-  '/rate-limits': () => import('../../pages/dashboard/RateLimitsPage'),
-  '/workspaces': () => import('../../pages/dashboard/WorkspacesPage'),
-  '/members': () => import('../../pages/dashboard/MembersPage'),
-  '/invitations': () => import('../../pages/dashboard/InvitationsPage'),
-  '/performance': () => import('../../pages/dashboard/PerformancePage'),
+  "/": () => import("../../pages/HomePage"),
+  "/login": () => import("../../pages/LoginPage"),
+  "/pricing": () => import("../../pages/PricingPage"),
+  "/docs": () => import("../../pages/DocsPage"),
+  "/dashboard": () => import("../../pages/dashboard/DashboardPage"),
+  "/projects": () => import("../../pages/dashboard/ProjectsPage"),
+  "/projects/new": () => import("../../pages/dashboard/ProjectNewPage"),
+  "/projects/templates": () => import("../../pages/dashboard/TemplatesPage"),
+  "/providers": () => import("../../pages/dashboard/KeysPage"),
+  "/analytics": () => import("../../pages/dashboard/AnalyticsPage"),
+  "/subscription": () => import("../../pages/dashboard/SubscriptionPage"),
+  "/budgets": () => import("../../pages/dashboard/BudgetsPage"),
+  "/settings": () => import("../../pages/dashboard/SettingsPage"),
+  "/rate-limits": () => import("../../pages/dashboard/RateLimitsPage"),
+  "/workspaces": () => import("../../pages/dashboard/WorkspacesPage"),
+  "/members": () => import("../../pages/dashboard/MembersPage"),
+  "/invitations": () => import("../../pages/dashboard/InvitationsPage"),
+  "/performance": () => import("../../pages/dashboard/PerformancePage"),
 };
 
 function getRouteModule(to: string): PreloadFn | undefined {
   // Normalize path - remove language prefix and entity slug
   const normalizedPath = to
-    .replace(/^\/[a-z]{2}\//, '/') // Remove /en/, /es/, etc.
-    .replace(/\/dashboard\/[^/]+/, '/dashboard'); // Remove entity slug
+    .replace(/^\/[a-z]{2}\//, "/") // Remove /en/, /es/, etc.
+    .replace(/\/dashboard\/[^/]+/, "/dashboard"); // Remove entity slug
 
   // Check for exact match first
   if (routeModules[normalizedPath]) {
@@ -65,7 +65,7 @@ export function PreloadLink({
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handlePreload = useCallback(() => {
-    const toPath = typeof to === 'string' ? to : to.pathname || '';
+    const toPath = typeof to === "string" ? to : to.pathname || "";
 
     if (preloadedModules.has(toPath)) {
       return;
@@ -93,7 +93,7 @@ export function PreloadLink({
       handlePreload();
       onMouseEnter?.(e);
     },
-    [handlePreload, onMouseEnter]
+    [handlePreload, onMouseEnter],
   );
 
   const handleFocus = useCallback(
@@ -101,7 +101,7 @@ export function PreloadLink({
       handlePreload();
       onFocus?.(e);
     },
-    [handlePreload, onFocus]
+    [handlePreload, onFocus],
   );
 
   return (

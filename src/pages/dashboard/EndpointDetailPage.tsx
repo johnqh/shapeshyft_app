@@ -1,40 +1,71 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useProjectsManager, useEndpointsManager, useEndpointTester, useKeysManager } from '@sudobility/shapeshyft_lib';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@sudobility/components';
-import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
-import { useApi } from '../../hooks/useApi';
-import { useToast } from '../../hooks/useToast';
-import SchemaEditor from '../../components/dashboard/SchemaEditor';
+import { useState, useMemo, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import {
+  useProjectsManager,
+  useEndpointsManager,
+  useEndpointTester,
+  useKeysManager,
+} from "@sudobility/shapeshyft_lib";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@sudobility/components";
+import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+import { useApi } from "../../hooks/useApi";
+import { useToast } from "../../hooks/useToast";
+import SchemaEditor from "../../components/dashboard/SchemaEditor";
 
 // Icons
 const EditIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+    />
   </svg>
 );
 
-type TabId = 'general' | 'input' | 'output' | 'test';
+type TabId = "general" | "input" | "output" | "test";
 
 function EndpointDetailPage() {
-  const { entitySlug = '', projectId, endpointId } = useParams<{
+  const {
+    entitySlug = "",
+    projectId,
+    endpointId,
+  } = useParams<{
     entitySlug: string;
     projectId: string;
     endpointId: string;
   }>();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation("dashboard");
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, token, testMode, isReady, isLoading: apiLoading } = useApi();
+  const {
+    networkClient,
+    baseUrl,
+    token,
+    testMode,
+    isReady,
+    isLoading: apiLoading,
+  } = useApi();
   const { success, error: showError } = useToast();
 
   // Tab state
-  const [activeTab, setActiveTab] = useState<TabId>('general');
+  const [activeTab, setActiveTab] = useState<TabId>("general");
 
   // Test state
-  const [testInput, setTestInput] = useState('');
+  const [testInput, setTestInput] = useState("");
   const [inputError, setInputError] = useState<string | null>(null);
   const [projectApiKey, setProjectApiKey] = useState<string | null>(null);
   const initializedRef = useRef(false);
@@ -46,20 +77,24 @@ function EndpointDetailPage() {
   const [isSaving, setIsSaving] = useState(false);
 
   // Edit form state - General
-  const [editDisplayName, setEditDisplayName] = useState('');
-  const [editInstructions, setEditInstructions] = useState('');
-  const [editContext, setEditContext] = useState('');
-  const [editLlmKeyId, setEditLlmKeyId] = useState('');
+  const [editDisplayName, setEditDisplayName] = useState("");
+  const [editInstructions, setEditInstructions] = useState("");
+  const [editContext, setEditContext] = useState("");
+  const [editLlmKeyId, setEditLlmKeyId] = useState("");
 
   // Edit form state - Input
-  const [editInputSchema, setEditInputSchema] = useState('');
+  const [editInputSchema, setEditInputSchema] = useState("");
   const [useInputSchema, setUseInputSchema] = useState(false);
 
   // Edit form state - Output
-  const [editOutputSchema, setEditOutputSchema] = useState('');
+  const [editOutputSchema, setEditOutputSchema] = useState("");
   const [useOutputSchema, setUseOutputSchema] = useState(false);
 
-  const { projects, isLoading: projectsLoading, getProjectApiKey } = useProjectsManager({
+  const {
+    projects,
+    isLoading: projectsLoading,
+    getProjectApiKey,
+  } = useProjectsManager({
     baseUrl,
     networkClient,
     entitySlug,
@@ -77,19 +112,24 @@ function EndpointDetailPage() {
     autoFetch: isReady && !!entitySlug,
   });
 
-  const project = projects.find(p => p.uuid === projectId);
+  const project = projects.find((p) => p.uuid === projectId);
 
-  const { endpoints, isLoading: endpointsLoading, updateEndpoint, error: updateError } = useEndpointsManager({
+  const {
+    endpoints,
+    isLoading: endpointsLoading,
+    updateEndpoint,
+    error: updateError,
+  } = useEndpointsManager({
     baseUrl,
     networkClient,
     entitySlug,
     token,
     testMode,
-    projectId: projectId ?? '',
+    projectId: projectId ?? "",
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
 
-  const endpoint = endpoints.find(e => e.uuid === endpointId);
+  const endpoint = endpoints.find((e) => e.uuid === endpointId);
 
   const {
     testResults,
@@ -107,8 +147,11 @@ function EndpointDetailPage() {
 
   // Get the latest test result for this endpoint
   const latestResult = useMemo(
-    () => testResults.filter(r => r.endpointId === endpointId).sort((a, b) => b.timestamp - a.timestamp)[0],
-    [testResults, endpointId]
+    () =>
+      testResults
+        .filter((r) => r.endpointId === endpointId)
+        .sort((a, b) => b.timestamp - a.timestamp)[0],
+    [testResults, endpointId],
   );
 
   // Initialize test input with sample when endpoint loads (only once)
@@ -123,7 +166,7 @@ function EndpointDetailPage() {
   // Fetch project API key for testing
   useEffect(() => {
     if (projectId && isReady && getProjectApiKey) {
-      getProjectApiKey(projectId).then(result => {
+      getProjectApiKey(projectId).then((result) => {
         if (result?.api_key) {
           setProjectApiKey(result.api_key);
         }
@@ -134,7 +177,7 @@ function EndpointDetailPage() {
   // Show test error via InfoInterface
   useEffect(() => {
     if (testError) {
-      getInfoService().show(t('common.error'), testError, InfoType.ERROR, 5000);
+      getInfoService().show(t("common.error"), testError, InfoType.ERROR, 5000);
     }
   }, [testError, t]);
 
@@ -142,8 +185,8 @@ function EndpointDetailPage() {
   const handleStartEditGeneral = () => {
     if (!endpoint) return;
     setEditDisplayName(endpoint.display_name);
-    setEditInstructions(endpoint.instructions ?? '');
-    setEditContext(endpoint.context ?? '');
+    setEditInstructions(endpoint.instructions ?? "");
+    setEditContext(endpoint.context ?? "");
     setEditLlmKeyId(endpoint.llm_key_id);
     setIsEditingGeneral(true);
   };
@@ -168,13 +211,13 @@ function EndpointDetailPage() {
         is_active: endpoint.is_active,
       });
       if (updated) {
-        success(t('endpoints.updated'));
+        success(t("endpoints.updated"));
         setIsEditingGeneral(false);
       } else {
-        showError(updateError || t('common.errorOccurred'));
+        showError(updateError || t("common.errorOccurred"));
       }
     } catch (err) {
-      showError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      showError(err instanceof Error ? err.message : t("common.errorOccurred"));
     } finally {
       setIsSaving(false);
     }
@@ -183,7 +226,11 @@ function EndpointDetailPage() {
   // Edit handlers for Input tab
   const handleStartEditInput = () => {
     if (!endpoint) return;
-    setEditInputSchema(endpoint.input_schema ? JSON.stringify(endpoint.input_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
+    setEditInputSchema(
+      endpoint.input_schema
+        ? JSON.stringify(endpoint.input_schema, null, 2)
+        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
+    );
     setUseInputSchema(!!endpoint.input_schema);
     setIsEditingInput(true);
   };
@@ -200,7 +247,7 @@ function EndpointDetailPage() {
       try {
         parsedInputSchema = JSON.parse(editInputSchema);
       } catch {
-        showError(t('endpoints.form.errors.invalidInputSchema'));
+        showError(t("endpoints.form.errors.invalidInputSchema"));
         return;
       }
     }
@@ -219,13 +266,13 @@ function EndpointDetailPage() {
         is_active: endpoint.is_active,
       });
       if (updated) {
-        success(t('endpoints.updated'));
+        success(t("endpoints.updated"));
         setIsEditingInput(false);
       } else {
-        showError(updateError || t('common.errorOccurred'));
+        showError(updateError || t("common.errorOccurred"));
       }
     } catch (err) {
-      showError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      showError(err instanceof Error ? err.message : t("common.errorOccurred"));
     } finally {
       setIsSaving(false);
     }
@@ -234,7 +281,11 @@ function EndpointDetailPage() {
   // Edit handlers for Output tab
   const handleStartEditOutput = () => {
     if (!endpoint) return;
-    setEditOutputSchema(endpoint.output_schema ? JSON.stringify(endpoint.output_schema, null, 2) : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}');
+    setEditOutputSchema(
+      endpoint.output_schema
+        ? JSON.stringify(endpoint.output_schema, null, 2)
+        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
+    );
     setUseOutputSchema(!!endpoint.output_schema);
     setIsEditingOutput(true);
   };
@@ -251,7 +302,7 @@ function EndpointDetailPage() {
       try {
         parsedOutputSchema = JSON.parse(editOutputSchema);
       } catch {
-        showError(t('endpoints.form.errors.invalidOutputSchema'));
+        showError(t("endpoints.form.errors.invalidOutputSchema"));
         return;
       }
     }
@@ -270,13 +321,13 @@ function EndpointDetailPage() {
         is_active: endpoint.is_active,
       });
       if (updated) {
-        success(t('endpoints.updated'));
+        success(t("endpoints.updated"));
         setIsEditingOutput(false);
       } else {
-        showError(updateError || t('common.errorOccurred'));
+        showError(updateError || t("common.errorOccurred"));
       }
     } catch (err) {
-      showError(err instanceof Error ? err.message : t('common.errorOccurred'));
+      showError(err instanceof Error ? err.message : t("common.errorOccurred"));
     } finally {
       setIsSaving(false);
     }
@@ -300,7 +351,7 @@ function EndpointDetailPage() {
     try {
       parsedInput = JSON.parse(testInput);
     } catch {
-      setInputError(t('endpoints.tester.invalidJson'));
+      setInputError(t("endpoints.tester.invalidJson"));
       return;
     }
 
@@ -310,14 +361,14 @@ function EndpointDetailPage() {
       project.project_name,
       endpoint.endpoint_name,
       parsedInput,
-      projectApiKey ?? undefined
+      projectApiKey ?? undefined,
     );
     setIsLoadingPrompt(false);
 
     if (result.success && result.prompt) {
       setPromptPreview(result.prompt);
     } else {
-      showError(result.error || t('common.errorOccurred'));
+      showError(result.error || t("common.errorOccurred"));
     }
   };
 
@@ -330,19 +381,25 @@ function EndpointDetailPage() {
     try {
       parsedInput = JSON.parse(testInput);
     } catch {
-      setInputError(t('endpoints.tester.invalidJson'));
+      setInputError(t("endpoints.tester.invalidJson"));
       return;
     }
 
     const validation = validateInput(parsedInput, endpoint.input_schema);
     if (!validation.valid) {
-      setInputError(validation.errors.join(', '));
+      setInputError(validation.errors.join(", "));
       return;
     }
 
-    const result = await testEndpoint(entitySlug, project.project_name, endpoint, parsedInput, projectApiKey ?? undefined);
+    const result = await testEndpoint(
+      entitySlug,
+      project.project_name,
+      endpoint,
+      parsedInput,
+      projectApiKey ?? undefined,
+    );
     if (result?.success) {
-      success(t('endpoints.tester.success'));
+      success(t("endpoints.tester.success"));
     } else if (result?.error) {
       showError(result.error);
     }
@@ -362,13 +419,17 @@ function EndpointDetailPage() {
     return (
       <div className="text-center py-12">
         <h3 className="text-lg font-medium text-theme-text-primary mb-2">
-          {t('endpoints.notFound')}
+          {t("endpoints.notFound")}
         </h3>
         <button
-          onClick={() => navigate(projectId ? `/dashboard/projects/${projectId}` : '/dashboard')}
+          onClick={() =>
+            navigate(
+              projectId ? `/dashboard/projects/${projectId}` : "/dashboard",
+            )
+          }
           className="text-blue-600 hover:underline"
         >
-          {t('common.goBack')}
+          {t("common.goBack")}
         </button>
       </div>
     );
@@ -380,25 +441,28 @@ function EndpointDetailPage() {
       <div className="flex flex-wrap items-center gap-3 mb-6 p-4 bg-theme-bg-secondary rounded-xl">
         <span
           className={`px-2 py-1 text-xs font-mono font-medium rounded ${
-            endpoint.http_method === 'GET'
-              ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-              : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+            endpoint.http_method === "GET"
+              ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
+              : "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
           }`}
         >
           {endpoint.http_method}
         </span>
         <code className="text-sm text-theme-text-tertiary font-mono break-all">
-          /api/v1/ai/{entitySlug}/{project.project_name}/{endpoint.endpoint_name}
+          /api/v1/ai/{entitySlug}/{project.project_name}/
+          {endpoint.endpoint_name}
         </code>
       </div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
         <TabsList className="mb-6">
-          <TabsTrigger value="general">{t('endpoints.tabs.general')}</TabsTrigger>
-          <TabsTrigger value="input">{t('endpoints.tabs.input')}</TabsTrigger>
-          <TabsTrigger value="output">{t('endpoints.tabs.output')}</TabsTrigger>
-          <TabsTrigger value="test">{t('endpoints.tabs.test')}</TabsTrigger>
+          <TabsTrigger value="general">
+            {t("endpoints.tabs.general")}
+          </TabsTrigger>
+          <TabsTrigger value="input">{t("endpoints.tabs.input")}</TabsTrigger>
+          <TabsTrigger value="output">{t("endpoints.tabs.output")}</TabsTrigger>
+          <TabsTrigger value="test">{t("endpoints.tabs.test")}</TabsTrigger>
         </TabsList>
 
         {/* General Tab */}
@@ -407,7 +471,7 @@ function EndpointDetailPage() {
             {/* Header with Edit button */}
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-theme-text-primary">
-                {t('endpoints.tabs.general')}
+                {t("endpoints.tabs.general")}
               </h3>
               {!isEditingGeneral && (
                 <button
@@ -415,7 +479,7 @@ function EndpointDetailPage() {
                   className="px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-1"
                 >
                   <EditIcon />
-                  {t('common.edit')}
+                  {t("common.edit")}
                 </button>
               )}
             </div>
@@ -424,25 +488,25 @@ function EndpointDetailPage() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                    {t('endpoints.form.displayName')}
+                    {t("endpoints.form.displayName")}
                   </label>
                   <input
                     type="text"
                     value={editDisplayName}
-                    onChange={e => setEditDisplayName(e.target.value)}
+                    onChange={(e) => setEditDisplayName(e.target.value)}
                     className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                    {t('endpoints.form.llmKey')}
+                    {t("endpoints.form.llmKey")}
                   </label>
                   <select
                     value={editLlmKeyId}
-                    onChange={e => setEditLlmKeyId(e.target.value)}
+                    onChange={(e) => setEditLlmKeyId(e.target.value)}
                     className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   >
-                    {keys.map(key => (
+                    {keys.map((key) => (
                       <option key={key.uuid} value={key.uuid}>
                         {key.key_name} ({t(`keys.providers.${key.provider}`)})
                       </option>
@@ -451,25 +515,25 @@ function EndpointDetailPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                    {t('endpoints.form.instructions')}
+                    {t("endpoints.form.instructions")}
                   </label>
                   <textarea
                     value={editInstructions}
-                    onChange={e => setEditInstructions(e.target.value)}
+                    onChange={(e) => setEditInstructions(e.target.value)}
                     rows={3}
-                    placeholder={t('endpoints.form.instructionsPlaceholder')}
+                    placeholder={t("endpoints.form.instructionsPlaceholder")}
                     className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                    {t('endpoints.detail.context')}
+                    {t("endpoints.detail.context")}
                   </label>
                   <textarea
                     value={editContext}
-                    onChange={e => setEditContext(e.target.value)}
+                    onChange={(e) => setEditContext(e.target.value)}
                     rows={6}
-                    placeholder={t('endpoints.form.contextPlaceholder')}
+                    placeholder={t("endpoints.form.contextPlaceholder")}
                     className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
                   />
                 </div>
@@ -479,39 +543,58 @@ function EndpointDetailPage() {
                     disabled={isSaving}
                     className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
                   >
-                    {t('common.cancel')}
+                    {t("common.cancel")}
                   </button>
                   <button
                     onClick={handleSaveGeneral}
                     disabled={isSaving}
                     className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
                   >
-                    {isSaving ? t('common.saving') : t('common.save')}
+                    {isSaving ? t("common.saving") : t("common.save")}
                   </button>
                 </div>
               </div>
             ) : (
               <div className="space-y-4">
                 <div className="p-4 bg-theme-bg-secondary rounded-xl">
-                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">{t('endpoints.form.displayName')}</h4>
-                  <p className="text-theme-text-primary">{endpoint.display_name}</p>
-                </div>
-                <div className="p-4 bg-theme-bg-secondary rounded-xl">
-                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">{t('endpoints.form.llmKey')}</h4>
+                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
+                    {t("endpoints.form.displayName")}
+                  </h4>
                   <p className="text-theme-text-primary">
-                    {keys.find(k => k.uuid === endpoint.llm_key_id)?.key_name || endpoint.llm_key_id}
+                    {endpoint.display_name}
                   </p>
                 </div>
                 <div className="p-4 bg-theme-bg-secondary rounded-xl">
-                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">{t('endpoints.form.instructions')}</h4>
-                  <p className="text-theme-text-primary whitespace-pre-wrap">
-                    {endpoint.instructions || <span className="italic text-theme-text-tertiary">{t('common.notSet')}</span>}
+                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
+                    {t("endpoints.form.llmKey")}
+                  </h4>
+                  <p className="text-theme-text-primary">
+                    {keys.find((k) => k.uuid === endpoint.llm_key_id)
+                      ?.key_name || endpoint.llm_key_id}
                   </p>
                 </div>
                 <div className="p-4 bg-theme-bg-secondary rounded-xl">
-                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">{t('endpoints.detail.context')}</h4>
+                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
+                    {t("endpoints.form.instructions")}
+                  </h4>
                   <p className="text-theme-text-primary whitespace-pre-wrap">
-                    {endpoint.context || <span className="italic text-theme-text-tertiary">{t('common.notSet')}</span>}
+                    {endpoint.instructions || (
+                      <span className="italic text-theme-text-tertiary">
+                        {t("common.notSet")}
+                      </span>
+                    )}
+                  </p>
+                </div>
+                <div className="p-4 bg-theme-bg-secondary rounded-xl">
+                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
+                    {t("endpoints.detail.context")}
+                  </h4>
+                  <p className="text-theme-text-primary whitespace-pre-wrap">
+                    {endpoint.context || (
+                      <span className="italic text-theme-text-tertiary">
+                        {t("common.notSet")}
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -525,7 +608,7 @@ function EndpointDetailPage() {
             {/* Header with Edit button */}
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-theme-text-primary">
-                {t('endpoints.detail.inputSchema')}
+                {t("endpoints.detail.inputSchema")}
               </h3>
               {!isEditingInput && (
                 <button
@@ -533,7 +616,7 @@ function EndpointDetailPage() {
                   className="px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-1"
                 >
                   <EditIcon />
-                  {t('common.edit')}
+                  {t("common.edit")}
                 </button>
               )}
             </div>
@@ -544,10 +627,10 @@ function EndpointDetailPage() {
                   <input
                     type="checkbox"
                     checked={useInputSchema}
-                    onChange={e => setUseInputSchema(e.target.checked)}
+                    onChange={(e) => setUseInputSchema(e.target.checked)}
                     className="rounded"
                   />
-                  {t('endpoints.form.useInputSchema')}
+                  {t("endpoints.form.useInputSchema")}
                 </label>
                 {useInputSchema ? (
                   <SchemaEditor
@@ -555,7 +638,9 @@ function EndpointDetailPage() {
                     onChange={setEditInputSchema}
                   />
                 ) : (
-                  <p className="text-sm text-theme-text-tertiary italic p-4 bg-theme-bg-secondary rounded-xl">{t('common.disabled')}</p>
+                  <p className="text-sm text-theme-text-tertiary italic p-4 bg-theme-bg-secondary rounded-xl">
+                    {t("common.disabled")}
+                  </p>
                 )}
                 <div className="flex gap-3 justify-end">
                   <button
@@ -563,14 +648,14 @@ function EndpointDetailPage() {
                     disabled={isSaving}
                     className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
                   >
-                    {t('common.cancel')}
+                    {t("common.cancel")}
                   </button>
                   <button
                     onClick={handleSaveInput}
                     disabled={isSaving}
                     className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
                   >
-                    {isSaving ? t('common.saving') : t('common.save')}
+                    {isSaving ? t("common.saving") : t("common.save")}
                   </button>
                 </div>
               </div>
@@ -581,7 +666,9 @@ function EndpointDetailPage() {
                     {JSON.stringify(endpoint.input_schema, null, 2)}
                   </pre>
                 ) : (
-                  <p className="text-sm text-theme-text-tertiary italic">{t('common.notSet')}</p>
+                  <p className="text-sm text-theme-text-tertiary italic">
+                    {t("common.notSet")}
+                  </p>
                 )}
               </div>
             )}
@@ -594,7 +681,7 @@ function EndpointDetailPage() {
             {/* Header with Edit button */}
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-theme-text-primary">
-                {t('endpoints.detail.outputSchema')}
+                {t("endpoints.detail.outputSchema")}
               </h3>
               {!isEditingOutput && (
                 <button
@@ -602,7 +689,7 @@ function EndpointDetailPage() {
                   className="px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors flex items-center gap-1"
                 >
                   <EditIcon />
-                  {t('common.edit')}
+                  {t("common.edit")}
                 </button>
               )}
             </div>
@@ -613,10 +700,10 @@ function EndpointDetailPage() {
                   <input
                     type="checkbox"
                     checked={useOutputSchema}
-                    onChange={e => setUseOutputSchema(e.target.checked)}
+                    onChange={(e) => setUseOutputSchema(e.target.checked)}
                     className="rounded"
                   />
-                  {t('endpoints.form.useOutputSchema')}
+                  {t("endpoints.form.useOutputSchema")}
                 </label>
                 {useOutputSchema ? (
                   <SchemaEditor
@@ -624,7 +711,9 @@ function EndpointDetailPage() {
                     onChange={setEditOutputSchema}
                   />
                 ) : (
-                  <p className="text-sm text-theme-text-tertiary italic p-4 bg-theme-bg-secondary rounded-xl">{t('common.disabled')}</p>
+                  <p className="text-sm text-theme-text-tertiary italic p-4 bg-theme-bg-secondary rounded-xl">
+                    {t("common.disabled")}
+                  </p>
                 )}
                 <div className="flex gap-3 justify-end">
                   <button
@@ -632,14 +721,14 @@ function EndpointDetailPage() {
                     disabled={isSaving}
                     className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
                   >
-                    {t('common.cancel')}
+                    {t("common.cancel")}
                   </button>
                   <button
                     onClick={handleSaveOutput}
                     disabled={isSaving}
                     className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
                   >
-                    {isSaving ? t('common.saving') : t('common.save')}
+                    {isSaving ? t("common.saving") : t("common.save")}
                   </button>
                 </div>
               </div>
@@ -650,7 +739,9 @@ function EndpointDetailPage() {
                     {JSON.stringify(endpoint.output_schema, null, 2)}
                   </pre>
                 ) : (
-                  <p className="text-sm text-theme-text-tertiary italic">{t('common.notSet')}</p>
+                  <p className="text-sm text-theme-text-tertiary italic">
+                    {t("common.notSet")}
+                  </p>
                 )}
               </div>
             )}
@@ -661,27 +752,29 @@ function EndpointDetailPage() {
         <TabsContent value="test">
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-theme-text-primary">
-              {t('endpoints.tester.title')}
+              {t("endpoints.tester.title")}
             </h3>
 
             {/* Input */}
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-2">
-                {t('endpoints.tester.input')}
+                {t("endpoints.tester.input")}
               </label>
               <textarea
                 value={testInput}
-                onChange={e => {
+                onChange={(e) => {
                   setTestInput(e.target.value);
                   setInputError(null);
                 }}
                 rows={8}
                 className={`w-full px-3 py-2 bg-theme-bg-primary border rounded-lg font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${
-                  inputError ? 'border-red-500' : 'border-theme-border'
+                  inputError ? "border-red-500" : "border-theme-border"
                 }`}
               />
               {inputError && (
-                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{inputError}</p>
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                  {inputError}
+                </p>
               )}
             </div>
 
@@ -690,21 +783,25 @@ function EndpointDetailPage() {
                 onClick={handleGenerateSample}
                 className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors text-sm"
               >
-                {t('endpoints.tester.generateSample')}
+                {t("endpoints.tester.generateSample")}
               </button>
               <button
                 onClick={handleViewPrompt}
                 disabled={isLoadingPrompt || !testInput.trim()}
                 className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50 text-sm"
               >
-                {isLoadingPrompt ? t('common.loading') : t('endpoints.tester.viewPrompt')}
+                {isLoadingPrompt
+                  ? t("common.loading")
+                  : t("endpoints.tester.viewPrompt")}
               </button>
               <button
                 onClick={handleTest}
                 disabled={isTesting || !testInput.trim()}
                 className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 text-sm"
               >
-                {isTesting ? t('endpoints.tester.executing') : t('endpoints.tester.execute')}
+                {isTesting
+                  ? t("endpoints.tester.executing")
+                  : t("endpoints.tester.execute")}
               </button>
             </div>
 
@@ -713,13 +810,13 @@ function EndpointDetailPage() {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-sm font-medium text-theme-text-primary">
-                    {t('endpoints.tester.prompt')}
+                    {t("endpoints.tester.prompt")}
                   </label>
                   <button
                     onClick={() => setPromptPreview(null)}
                     className="text-xs text-theme-text-tertiary hover:text-theme-text-primary"
                   >
-                    {t('common.close')}
+                    {t("common.close")}
                   </button>
                 </div>
                 <pre className="p-3 bg-theme-bg-secondary rounded-lg overflow-auto font-mono text-sm text-theme-text-secondary max-h-64 whitespace-pre-wrap">
@@ -733,16 +830,18 @@ function EndpointDetailPage() {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-sm font-medium text-theme-text-primary">
-                    {t('endpoints.tester.response')}
+                    {t("endpoints.tester.response")}
                   </label>
                   <span
                     className={`text-xs px-2 py-0.5 rounded-full ${
                       latestResult.success
-                        ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                        : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                        ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
+                        : "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400"
                     }`}
                   >
-                    {latestResult.success ? t('endpoints.tester.success') : t('endpoints.tester.failed')}
+                    {latestResult.success
+                      ? t("endpoints.tester.success")
+                      : t("endpoints.tester.failed")}
                   </span>
                 </div>
 
@@ -761,20 +860,32 @@ function EndpointDetailPage() {
                   <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {latestResult.latencyMs && (
                       <div className="text-center p-3 bg-theme-bg-secondary rounded-lg">
-                        <p className="text-xs text-theme-text-tertiary">{t('endpoints.tester.latency')}</p>
-                        <p className="font-semibold text-theme-text-primary">{latestResult.latencyMs}ms</p>
+                        <p className="text-xs text-theme-text-tertiary">
+                          {t("endpoints.tester.latency")}
+                        </p>
+                        <p className="font-semibold text-theme-text-primary">
+                          {latestResult.latencyMs}ms
+                        </p>
                       </div>
                     )}
                     {latestResult.tokensInput && (
                       <div className="text-center p-3 bg-theme-bg-secondary rounded-lg">
-                        <p className="text-xs text-theme-text-tertiary">{t('endpoints.tester.inputTokens')}</p>
-                        <p className="font-semibold text-theme-text-primary">{latestResult.tokensInput}</p>
+                        <p className="text-xs text-theme-text-tertiary">
+                          {t("endpoints.tester.inputTokens")}
+                        </p>
+                        <p className="font-semibold text-theme-text-primary">
+                          {latestResult.tokensInput}
+                        </p>
                       </div>
                     )}
                     {latestResult.tokensOutput && (
                       <div className="text-center p-3 bg-theme-bg-secondary rounded-lg">
-                        <p className="text-xs text-theme-text-tertiary">{t('endpoints.tester.outputTokens')}</p>
-                        <p className="font-semibold text-theme-text-primary">{latestResult.tokensOutput}</p>
+                        <p className="text-xs text-theme-text-tertiary">
+                          {t("endpoints.tester.outputTokens")}
+                        </p>
+                        <p className="font-semibold text-theme-text-primary">
+                          {latestResult.tokensOutput}
+                        </p>
                       </div>
                     )}
                   </div>

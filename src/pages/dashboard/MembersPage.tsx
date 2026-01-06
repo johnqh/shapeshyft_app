@@ -3,18 +3,18 @@
  * @description Page for managing entity members and invitations
  */
 
-import { useParams } from 'react-router-dom';
-import { MembersManagementPage } from '@sudobility/entity_pages';
-import { useEntities } from '@sudobility/entity_client';
-import { entityClient } from '../../config/entityClient';
-import { useAuthStatus } from '@sudobility/auth-components';
+import { useParams } from "react-router-dom";
+import { MembersManagementPage } from "@sudobility/entity_pages";
+import { useEntities } from "@sudobility/entity_client";
+import { entityClient } from "../../config/entityClient";
+import { useAuthStatus } from "@sudobility/auth-components";
 
 function MembersPage() {
-  const { entitySlug = '' } = useParams<{ entitySlug: string }>();
+  const { entitySlug = "" } = useParams<{ entitySlug: string }>();
   const { data: entities, isLoading } = useEntities(entityClient);
   const { user } = useAuthStatus();
 
-  const currentEntity = entities?.find(e => e.entitySlug === entitySlug);
+  const currentEntity = entities?.find((e) => e.entitySlug === entitySlug);
 
   if (isLoading || !currentEntity) {
     return (

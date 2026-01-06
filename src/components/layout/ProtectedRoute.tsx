@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import type { ReactNode } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAuthStatus } from '@sudobility/auth-components';
+import { useEffect } from "react";
+import type { ReactNode } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuthStatus } from "@sudobility/auth-components";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -17,7 +17,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
   useEffect(() => {
     if (!loading && !isAuthenticated) {
       // Redirect to login page
-      navigate(`/${lang || 'en'}/login`, { replace: true });
+      navigate(`/${lang || "en"}/login`, { replace: true });
     }
   }, [isAuthenticated, loading, navigate, lang]);
 

@@ -1,13 +1,13 @@
-import { type ReactNode, useEffect, useRef } from 'react';
+import { type ReactNode, useEffect, useRef } from "react";
 import {
   SubscriptionProvider,
   useSubscriptionContext,
-} from '@sudobility/subscription-components';
-import { useAuthStatus } from '@sudobility/auth-components';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
-import { SafeSubscriptionContext } from './SafeSubscriptionContext';
-import { CONSTANTS } from '../../config/constants';
+} from "@sudobility/subscription-components";
+import { useAuthStatus } from "@sudobility/auth-components";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
+import { SafeSubscriptionContext } from "./SafeSubscriptionContext";
+import { CONSTANTS } from "../../config/constants";
 
 interface SubscriptionProviderWrapperProps {
   children: ReactNode;
@@ -55,14 +55,21 @@ function SubscriptionInitializer({ children }: { children: ReactNode }) {
 
 // Stable error handler
 const handleSubscriptionError = (error: Error) => {
-  getInfoService().show('Subscription Error', error.message, InfoType.ERROR, 5000);
+  getInfoService().show(
+    "Subscription Error",
+    error.message,
+    InfoType.ERROR,
+    5000,
+  );
 };
 
 /**
  * Wrapper component that integrates @sudobility/subscription-components
  * with the app's auth system and auto-initializes when user is available
  */
-export function SubscriptionProviderWrapper({ children }: SubscriptionProviderWrapperProps) {
+export function SubscriptionProviderWrapper({
+  children,
+}: SubscriptionProviderWrapperProps) {
   return (
     <SubscriptionProvider
       apiKey={CONSTANTS.REVENUECAT_API_KEY}

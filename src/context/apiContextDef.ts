@@ -1,5 +1,5 @@
-import { createContext } from 'react';
-import type { NetworkClient } from '@sudobility/types';
+import { createContext } from "react";
+import type { NetworkClient } from "@sudobility/types";
 
 export interface ApiContextValue {
   networkClient: NetworkClient;

@@ -1,13 +1,10 @@
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = "v1";
 const STATIC_CACHE = `shapeshyft-static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `shapeshyft-dynamic-${CACHE_VERSION}`;
 const IMAGE_CACHE = `shapeshyft-images-${CACHE_VERSION}`;
 
 // Files to cache immediately on install
-const PRECACHE_URLS = [
-  '/',
-  '/manifest.json',
-];
+const PRECACHE_URLS = ["/", "/manifest.json"];
 
 // Cache size limits
 const CACHE_LIMITS = {
@@ -16,30 +13,32 @@ const CACHE_LIMITS = {
 };
 
 // Install event - precache essential files
-self.addEventListener('install', (event) => {
+self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE).then((cache) => {
       return cache.addAll(PRECACHE_URLS);
-    })
+    }),
   );
   self.skipWaiting();
 });
 
 // Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
           .filter((name) => {
-            return name.startsWith('shapeshyft-') &&
-                   name !== STATIC_CACHE &&
-                   name !== DYNAMIC_CACHE &&
-                   name !== IMAGE_CACHE;
+            return (
+              name.startsWith("shapeshyft-") &&
+              name !== STATIC_CACHE &&
+              name !== DYNAMIC_CACHE &&
+              name !== IMAGE_CACHE
+            );
           })
-          .map((name) => caches.delete(name))
+          .map((name) => caches.delete(name)),
       );
-    })
+    }),
   );
   self.clients.claim();
 });
@@ -55,29 +54,29 @@ async function trimCache(cacheName, maxItems) {
 }
 
 // Fetch event - implement caching strategies
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
   // Skip non-GET requests
-  if (request.method !== 'GET') {
+  if (request.method !== "GET") {
     return;
   }
 
   // Skip API requests - always fetch from network
-  if (url.pathname.startsWith('/api/')) {
+  if (url.pathname.startsWith("/api/")) {
     return;
   }
 
   // Skip chrome-extension and other non-http(s) requests
-  if (!url.protocol.startsWith('http')) {
+  if (!url.protocol.startsWith("http")) {
     return;
   }
 
   // Strategy: Cache First for static assets (JS, CSS, fonts)
   if (
     url.pathname.match(/\.(js|css|woff2?|ttf|eot)$/) ||
-    url.pathname.startsWith('/assets/')
+    url.pathname.startsWith("/assets/")
   ) {
     event.respondWith(cacheFirst(request, STATIC_CACHE));
     return;
@@ -91,16 +90,16 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Strategy: Stale While Revalidate for locales
-  if (url.pathname.startsWith('/locales/')) {
+  if (url.pathname.startsWith("/locales/")) {
     event.respondWith(staleWhileRevalidate(request, DYNAMIC_CACHE));
     return;
   }
 
   // Strategy: Network First for HTML pages
   if (
-    request.headers.get('accept')?.includes('text/html') ||
-    url.pathname === '/' ||
-    !url.pathname.includes('.')
+    request.headers.get("accept")?.includes("text/html") ||
+    url.pathname === "/" ||
+    !url.pathname.includes(".")
   ) {
     event.respondWith(networkFirst(request, DYNAMIC_CACHE));
     event.waitUntil(trimCache(DYNAMIC_CACHE, CACHE_LIMITS[DYNAMIC_CACHE]));
@@ -128,7 +127,7 @@ async function cacheFirst(request, cacheName) {
     return response;
   } catch (error) {
     // Return offline fallback if available
-    return caches.match('/');
+    return caches.match("/");
   }
 }
 
@@ -148,8 +147,8 @@ async function networkFirst(request, cacheName) {
       return cached;
     }
     // Return offline fallback for navigation requests
-    if (request.headers.get('accept')?.includes('text/html')) {
-      return caches.match('/');
+    if (request.headers.get("accept")?.includes("text/html")) {
+      return caches.match("/");
     }
     throw error;
   }
@@ -171,8 +170,8 @@ async function staleWhileRevalidate(request, cacheName) {
 }
 
 // Handle messages from the main thread
-self.addEventListener('message', (event) => {
-  if (event.data?.type === 'SKIP_WAITING') {
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });

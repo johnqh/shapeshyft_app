@@ -1,0 +1,346 @@
+{
+  "seo": {
+    "main": {
+      "title": "Användningsområden - {{appName}}",
+      "description": "Upptäck hur {{appName}} omvandlar LLM-utdata till strukturerad och pålitlig data. Från textklassificering till dataextraktion och innehållsgenerering.",
+      "keywords": "Användningsområden för stora språkmodeller, strukturerad utdata, textklassificering, dataextraktion, innehållsskapande, AI-tillämpningar"
+    },
+    "text": {
+      "title": "Textklassificering - Användningsområden - {{appName}}",
+      "description": "Automatisk kategorisering av text med LLM:er och erhållande av strukturerad, validerad utdata. Stämningssanalys, avsiktsigenkänning, ämnesdetektering och innehållsmoderering.",
+      "keywords": "textklassificering, sentimentanalys, avsiktsigenkänning, ämnesdetektering, innehållsmoderering, NLP, klassificering av stora språkmodeller"
+    },
+    "data": {
+      "title": "Dataextraktion - Användningsområden - {{appName}}",
+      "description": "Extrahera strukturerad data från ostrukturerade dokument med LLM:er. Fakturahantering, CV-tolkning, kontraktanalys och formulärdigitalisering.",
+      "keywords": "dataextraktion, dokumentbearbetning, fakturauppåtagningsOCR, CV-tolkning, kontraktanalys, strukturerad data, LLM-extraktion"
+    },
+    "content": {
+      "title": "Innehållsgenerering - Användningsområden - {{appName}}",
+      "description": "Skapa strukturerad innehåll med LLM:ar. Produktbeskrivningar, marknadsföringskopior, dokumentation och personlig innehåll med garanterad formatering.",
+      "keywords": "innehållsgenerering, AI-copywriting, produktbeskrivningar, marknadsföringsautomatisering, strukturerat innehåll, LLM-innehåll"
+    }
+  },
+  "nav": {
+    "allUseCases": "Alla användningsområden",
+    "readDocs": "Läs dokumentationen",
+    "viewPricing": "Visa pris",
+    "exploreOther": "Utforska andra användningsområden"
+  },
+  "main": {
+    "hero": {
+      "title": "Bygg allt med strukturerad LLM-utdata",
+      "subtitle": "{{appName}} omvandlar oförutsägbara AI-svar till pålitliga, schemavaliderade data. Här är några vanliga användningsområden – men din fantasi är det enda gränsen."
+    },
+    "flexibility": {
+      "title": "Ditt användningsområde, dina regler",
+      "description": "Även om vi har framhävt vanliga mönster är {{appName} utformad för att vara helt flexibel. Definiera valfri JSON-schema, anslut valfri LLM-providern och bygg exakt det du behöver. Oavsett om du skapar en chattbot, analyserar forskningspapper, automatiserar arbetsflöden eller bygger något helt nytt – om du kan beskriva det i en schema kan {{appName}} leverera det."
+    },
+    "features": {
+      "customSchemas": {
+        "title": "Anpassade scheman",
+        "description": "Definiera någon datastruktur du behöver"
+      },
+      "anyProvider": {
+        "title": "Varje LLM-providern",
+        "description": "OpenAI, Anthropic, Google och fler"
+      },
+      "validatedOutput": {
+        "title": "Validerat utdata",
+        "description": "Tillgång till schemaavvikelser"
+      },
+      "apiFirst": {
+        "title": "API-först",
+        "description": "Enkel integration med vilken stack som helst"
+      }
+    },
+    "cta": {
+      "title": "Klar att bygga?",
+      "subtitle": "Börja med vår kostnadsfria nivå och se hur {{appName}} kan förändra din AI-integration."
+    }
+  },
+  "useCases": {
+    "textClassification": {
+      "title": "Textklassificering",
+      "description": "Automatiskt kategorisera text till fördefinierade etiketter med hög noggrannhet. Perfekt för sentimentanalys, ämnesidentifiering, avsiktsigenkänning och innehållsmoderering.",
+      "examples": [
+        "Sentimentanalys",
+        "Ämnesdetektering",
+        "Avsiktsigenkänning",
+        "Innehållsmoderering"
+      ]
+    },
+    "dataExtraction": {
+      "title": "Dataextraktion",
+      "description": "Extrahera strukturerad information från ostrukturerade textdokument. Förvandla fakturor, avtal, e-post och former till ren och användbar data.",
+      "examples": [
+        "Fakturahandling",
+        "Förståelse av CV",
+        "Kontraktanalys",
+        "Extrahering av e-post"
+      ]
+    },
+    "contentGeneration": {
+      "title": "Innehållsgenerering",
+      "description": "Skapa högkvalitativt, strukturerat innehåll programmerat. Skapa produktbeskrivningar, marknadsföringstexter, dokumentation och mer med konsekvent formatering.",
+      "examples": [
+        "Produktbeskrivningar",
+        "Marknadsföringstext",
+        "Dokumentation",
+        "E-postmallar"
+      ]
+    }
+  },
+  "text": {
+    "hero": {
+      "title": "Textklassificering",
+      "subtitle": "Förvandla ostrukturerad text till genomförbara kategorier. Definiera ditt klassificeringsschema, och {{appName}} säkerställer att varje svar matchar dina exakta krav."
+    },
+    "howItWorks": {
+      "title": "Så här fungerar det",
+      "step1": {
+        "title": "Definiera ditt schema",
+        "description": "Ange exakt vilka klassificeringar du behöver – kategorier, säkerhetsnivåer, flera etiketter eller inbäddade strukturer."
+      },
+      "step2": {
+        "title": "Skicka din text",
+        "description": "Anropa {{appName}} API med din text. Vi dirigerar den till din valda LLM med optimerat uppmanande."
+      },
+      "step3": {
+        "title": "Få validerad utdata",
+        "description": "Ta emot JSON som matchar ditt schema exakt – garanterat. Inga fel vid tolkning, inga oväntade format."
+      }
+    },
+    "example": {
+      "title": "Exempel: Kundåterkoppling klassificering",
+      "schemaTitle": "Ditt JSON-schema",
+      "outputTitle": "Säkert utdata",
+      "note": "Varje svar valideras mot ditt schema innan det returneras. Ogiltiga utdata försöks automatiskt igen."
+    },
+    "applications": {
+      "title": "Program",
+      "sentiment": {
+        "title": "Sentimentanalys",
+        "description": "Analysera kundåterkopplingar, recensioner och sociala mediamentioner för att förstå allmän opinion. Få konsekventa sentimentpoäng som direkt integreras i din analyspipeline.",
+        "examples": [
+          "Produktrecensioner",
+          "Kundsupportbiljetter",
+          "Övervakning av sociala medier",
+          "Uppgifter från enkäter"
+        ]
+      },
+      "intent": {
+        "title": "Avsiktsigenkänning",
+        "description": "Förstå vad användare vill ha av sina meddelanden. Dirigera frågor till rätt avdelning, utlösa automatiserade arbetsflöden eller ge snabba svar baserat på upptäckt avsikt.",
+        "examples": [
+          "Chatbotomdirigering",
+          "E-postkategorisering",
+          "Kommandon för talassistent",
+          "Supportbiljettstyrning"
+        ]
+      },
+      "topic": {
+        "title": "Ämnesdetektering",
+        "description": "Tagga innehåll automatiskt med relevanta ämnen och kategorier. Perfekt för innehållshantering, sökoptimering och organisation av stora dokumentkollektioner.",
+        "examples": [
+          "Nyhetskategorisering",
+          "Dokumenttaggning",
+          "Forskarpappersklassificering",
+          "Innehållsrekommendation"
+        ]
+      },
+      "moderation": {
+        "title": "Innehållsmoderering",
+        "description": "Flagga olämpligt innehåll, upptäck skräppost och identifiera policybrott. Få strukturerade klassificeringar som möjliggör automatiserade modereringsarbetsflöden.",
+        "examples": [
+          "Användargenererat innehåll",
+          "Kommentarsnuttar",
+          "Foruminlägg",
+          "Produktlistor"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Börja klassificera text idag",
+      "subtitle": "Skapa ditt första textklassificeringsslutpunkt på minuter. Ingen maskininlärningskompetens krävs."
+    }
+  },
+  "data": {
+    "hero": {
+      "title": "Dataextraktion",
+      "subtitle": "Förvandla oklassade dokument till rena, strukturerade data. Definiera ditt målschema, och {{appName}} extraherar exakt den information du behöver – varje gång."
+    },
+    "howItWorks": {
+      "title": "Så här fungerar det",
+      "step1": {
+        "title": "Definiera ditt schema",
+        "description": "Beskriv den exakta datastruktur du vill extrahera – inbäddade objekt, arrayer, typade fält med validering."
+      },
+      "step2": {
+        "title": "Skicka ditt dokument",
+        "description": "Skicka dokumenttext till {{appName}-API:et. Vi hanterar uppmanings- och extraheringslogiken."
+      },
+      "step3": {
+        "title": "Få strukturerad data",
+        "description": "Ta emot validerat JSON som matchar ditt schema. Importera direkt till databaser, kalkylblad eller API:er."
+      }
+    },
+    "example": {
+      "title": "Exempel: Extrahering av fakturainformation",
+      "schemaTitle": "Ditt JSON-schema",
+      "outputTitle": "Extraherat utdata",
+      "note": "Komplexa inbäddade strukturer extraheras korrekt, med rätt typning för tal, datum och matriser."
+    },
+    "applications": {
+      "title": "Program",
+      "invoice": {
+        "title": "Fakturahandling",
+        "description": "Extrahera leverantörsuppgifter, postuppgifter, totals och skatteinformation från fakturor i vilken form som helst. Mata direkt in i ditt bokföringssystem.",
+        "examples": [
+          "Automatisk fakturahanterning",
+          "Spårning av utgifter",
+          "Förberedelse av granskning",
+          "Leverantörsförvaltning"
+        ]
+      },
+      "resume": {
+        "title": "Tillståndsanalys",
+        "description": "Konvertera CV till strukturerade kandidatprofiler. Extrahera kontaktuppgifter, arbetslivserfarenhet, utbildning, färdigheter och certifikat konsekvent.",
+        "examples": [
+          "ATS-integration",
+          "Kandidatmatchning",
+          "Kompetensinventering",
+          "Rekrutteringsanalys"
+        ]
+      },
+      "contract": {
+        "title": "Kontraktanalys",
+        "description": "Extrahera nyckelbegrepp, datum, parter och skyldigheter från rättsliga dokument. Automatisera avtalssökväg och uppföljning av följd.",
+        "examples": [
+          "Förundersökning",
+          "Riskbedömning",
+          "Förnyelseuppföljning",
+          "Extraktion av klausuler"
+        ]
+      },
+      "form": {
+        "title": "Formulärhantering",
+        "description": "Skriv om pappersformer, ansökningar och enkäter till digital form. Extrahera fältdatum oavsett layoutförskjutningar.",
+        "examples": [
+          "Försäkringsansökningar",
+          "Låneansökningar",
+          "Myndighetsformulär",
+          "Uppgifter från enkäter"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Varför {{appName}} för dataextraktion?",
+      "schemaEnforcement": {
+        "title": "Schemakontroll",
+        "description": "Varje extrahering matchar ditt exakta schema. Inga saknade fält, inga oväntade format."
+      },
+      "formatFlexibility": {
+        "title": "Formatflexibilitet",
+        "description": "Hantera variationer i dokumentlayouter. Samma schema fungerar över olika format."
+      },
+      "instantIntegration": {
+        "title": "Snabb integration",
+        "description": "Få ren JSON redo för databaser, API:er och kalkylblad utan efterbearbetning."
+      }
+    },
+    "cta": {
+      "title": "Börja extrahera data idag",
+      "subtitle": "Skapa ditt första endpoints för extrahering av data på några minuter. Inget maskininlärningsbehov."
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "Innehållsgenerering",
+      "subtitle": "Skapa högkvalitativt innehåll programmatiskt med garanterad struktur. Definiera ditt innehållsformat en gång, och generera sedan i skala med perfekt konsekvens."
+    },
+    "howItWorks": {
+      "title": "Så här fungerar det",
+      "step1": {
+        "title": "Definiera ditt format",
+        "description": "Ange innehållsstruktur – rubriker, textavsnitt, punktlistor, metadata och längdgränser."
+      },
+      "step2": {
+        "title": "Ge kontext",
+        "description": "Skicka produktdata, ämnen eller källmaterial. LLM:en genererar innehåll anpassat efter ditt innehåll."
+      },
+      "step3": {
+        "title": "Få formaterad innehåll",
+        "description": "Ta emot perfekt strukturerad innehåll redo för ditt CMS, databas eller applikation."
+      }
+    },
+    "example": {
+      "title": "Exempel: Generering av produktbeskrivning",
+      "schemaTitle": "Ditt innehållsschema",
+      "outputTitle": "Genererat innehåll",
+      "note": "Varje innehållsdel överensstämmer med dina schemabegränsningar – längdgränser, obligatoriska fält och arraygränser."
+    },
+    "applications": {
+      "title": "Program",
+      "productDescriptions": {
+        "title": "Produktbeskrivningar",
+        "description": "Skapa konsekvent och övertygande produktkopier i skala. Definiera struktur för funktioner, fördelar, specifikationer och SEO-nyckelord – generera sedan tusentals beskrivningar programmerat.",
+        "examples": [
+          "E-handelslistor",
+          "Katalogsidor",
+          "Listor på marknadsplatsen",
+          "Produktspecifikationer"
+        ]
+      },
+      "marketingCopy": {
+        "title": "Marknadsföringstext",
+        "description": "Skapa strukturerad marknadsföringstext med konsekvent formatering. Rubriker, textinnehåll, CTA:er och metadata följer alla dina varumärkesriktlinjer.",
+        "examples": [
+          "Anslagskopia",
+          "Landnings sidor",
+          "E-postkampanjer",
+          "Inlägg på sociala medier"
+        ]
+      },
+      "documentation": {
+        "title": "Dokumentation",
+        "description": "Skapa teknisk dokumentation med konsekvent struktur. API-dokumentation, användarhandledningar och hjälpartiklar följer alla dina definierade mallar.",
+        "examples": [
+          "API-dokumentation",
+          "Användarhandböcker",
+          "Generering av vanliga frågor",
+          "Versionsinformation"
+        ]
+      },
+      "personalizedContent": {
+        "title": "Personligt innehåll",
+        "description": "Skapa anpassad innehåll i stor skala. Skapa personliga e-postmeddelanden, rekommendationer och rapporter baserat på användardata samtidigt som du bibehåller konsekvent struktur.",
+        "examples": [
+          "Personliga e-postmeddelanden",
+          "Anpassade rapporter",
+          "Rekommendationer",
+          "Notiser"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Varför {{appName}} för innehållsgenerering?",
+      "lengthControl": {
+        "title": "Längdkontroll",
+        "description": "Ange teckengränser för rubriker, beskrivningar och huvudinnehåll. Överträffas aldrig plattformens gränser."
+      },
+      "consistentStructure": {
+        "title": "Konsekvent struktur",
+        "description": "Varje innehållsstycke följer din definierade format. Perfekt för mallar och massgenerering."
+      },
+      "scaleInstantly": {
+        "title": "Skala omedelbart",
+        "description": "Skapa hundratals innehållsstycken med en enda slutpunkt. Samma kvalitet, bråkdelen av tiden."
+      }
+    },
+    "cta": {
+      "title": "Börja generera innehåll idag",
+      "subtitle": "Skapa ditt första innehållsgenereringsslutpunkt på minuter. Skala från ett till tusentals omedelbart."
+    }
+  }
+}

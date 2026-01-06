@@ -64,6 +64,7 @@ bun run format       # Format with Prettier
 ## Key Dependencies
 
 Internal packages:
+
 - `@sudobility/shapeshyft_client` - API client hooks
 - `@sudobility/shapeshyft_lib` - Business logic stores
 - `@sudobility/shapeshyft_types` - TypeScript types
@@ -73,6 +74,7 @@ Internal packages:
 - `@sudobility/subscription-components` - Subscription UI
 
 External packages:
+
 - `@tanstack/react-query` - Data fetching
 - `zustand` - State management
 - `react-router-dom` - Routing
@@ -82,6 +84,7 @@ External packages:
 ## Environment Variables
 
 Configure in `.env.local`:
+
 - `VITE_API_URL` - Backend API URL
 - `VITE_FIREBASE_*` - Firebase config
 - `VITE_REVENUECAT_*` - RevenueCat config

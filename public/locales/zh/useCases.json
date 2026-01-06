@@ -1,0 +1,271 @@
+{
+  "seo": {
+    "main": {
+      "title": "使用案例 - {{appName}}",
+      "description": "了解 {{appName}} 如何将 LLM 输出转换为结构化、可靠的数据。涵盖文本分类、数据提取和内容生成。",
+      "keywords": "大语言模型应用场景、结构化输出、文本分类、数据提取、内容生成、人工智能应用"
+    },
+    "text": {
+      "title": "文本分类 - 使用案例 - {{appName}}",
+      "description": "使用大语言模型自动对文本进行分类，并获取结构化、经过验证的输出。情感分析、意图识别、主题检测和内容审核。",
+      "keywords": "文本分类、情感分析、意图识别、主题检测、内容审核、自然语言处理、大语言模型分类"
+    },
+    "data": {
+      "title": "数据提取 - 使用案例 - {{appName}}",
+      "description": "使用大语言模型从非结构化文档中提取结构化数据。发票处理、简历解析、合同分析和表单数字化。",
+      "keywords": "数据提取，文档处理，发票OCR，简历解析，合同分析，结构化数据，LLM提取"
+    },
+    "content": {
+      "title": "内容生成 - 使用场景 - {{appName}}",
+      "description": "使用大语言模型生成结构化内容。产品描述、营销文案、文档及保证格式规范的个性化内容。",
+      "keywords": "内容生成，AI文案写作，产品描述，营销自动化，结构化内容，大语言模型内容"
+    }
+  },
+  "nav": {
+    "allUseCases": "所有使用案例",
+    "readDocs": "阅读文档",
+    "viewPricing": "查看价格",
+    "exploreOther": "探索其他应用场景"
+  },
+  "main": {
+    "hero": {
+      "title": "使用结构化LLM输出构建任何内容",
+      "subtitle": "{{appName}} 将不可预测的AI响应转化为可靠且经过模式验证的数据。以下是一些常见用例——但你的想象力是唯一的限制。"
+    },
+    "flexibility": {
+      "title": "您的使用场景，您的规则",
+      "description": "尽管我们已强调了常见模式，{{appName} 设计为完全灵活。定义任何 JSON 模式，连接任何 LLM 服务商，并构建您所需的一切。无论您是在创建聊天机器人、分析研究论文、自动化工作流，还是构建完全新颖的项目——只要您能用模式描述它，{{appName}} 都能实现。"
+    },
+    "features": {
+      "customSchemas": {
+        "title": "自定义架构",
+        "description": "定义任何你需要的数据结构"
+      },
+      "anyProvider": {
+        "title": "任何大型语言模型提供商",
+        "description": "OpenAI、Anthropic、Google 等"
+      },
+      "validatedOutput": {
+        "title": "已验证输出",
+        "description": "保证模式符合性"
+      },
+      "apiFirst": {
+        "title": "API优先",
+        "description": "与任何技术栈轻松集成"
+      }
+    },
+    "cta": {
+      "title": "准备好了吗？",
+      "subtitle": "从我们的免费版开始，了解{{appName}}如何改变您的AI集成。"
+    }
+  },
+  "useCases": {
+    "textClassification": {
+      "title": "文本分类",
+      "description": "自动将文本精确分类到预定义标签中。适用于情感分析、主题检测、意图识别和内容审核。",
+      "examples": ["情感分析", "主题检测", "意图识别", "内容审核"]
+    },
+    "dataExtraction": {
+      "title": "数据提取",
+      "description": "从非结构化文本文档中提取结构化信息。将发票、合同、电子邮件和表格转换为清晰、可用的数据。",
+      "examples": ["发票处理", "简历解析", "合约分析", "邮件提取"]
+    },
+    "contentGeneration": {
+      "title": "内容生成",
+      "description": "通过程序化方式生成高质量、结构化的内容。创建产品描述、营销文案、文档等，保持格式一致。",
+      "examples": ["产品描述", "营销文案", "文档", "电子邮件模板"]
+    }
+  },
+  "text": {
+    "hero": {
+      "title": "文本分类",
+      "subtitle": "将非结构化文本转化为可操作的类别。定义你的分类方案，{{appName}} 确保每个响应都符合你的精确要求。"
+    },
+    "howItWorks": {
+      "title": "工作原理",
+      "step1": {
+        "title": "定义您的模式",
+        "description": "请明确说明您需要的分类类型——类别、置信度分数、多个标签，或嵌套结构。"
+      },
+      "step2": {
+        "title": "发送您的文本",
+        "description": "使用您的文本调用{{appName}} API。我们将它路由到您选择的LLM，并使用优化的提示。"
+      },
+      "step3": {
+        "title": "获取已验证的输出",
+        "description": "接收完全符合您模式的JSON——确保无误。无解析错误，无意外格式。"
+      }
+    },
+    "example": {
+      "title": "示例：客户反馈分类",
+      "schemaTitle": "您的JSON Schema",
+      "outputTitle": "保证输出",
+      "note": "每次响应在返回前都会根据您的模式进行验证。无效输出会自动重试。"
+    },
+    "applications": {
+      "title": "应用程序",
+      "sentiment": {
+        "title": "情感分析",
+        "description": "分析客户反馈、评论和社交媒体提及，以了解公众看法。获得可直接集成到您的分析管道中的一致情感评分。",
+        "examples": ["产品评价", "客户支持工单", "社交媒体监控", "调查回复"]
+      },
+      "intent": {
+        "title": "意图识别",
+        "description": "理解用户消息中的真实需求，将咨询引导至正确的部门，触发自动化工作流程，或根据识别出的意图提供即时回复。",
+        "examples": ["聊天机器人路由", "邮件分类", "语音助手指令", "工单分类"]
+      },
+      "topic": {
+        "title": "主题检测",
+        "description": "自动为内容打上相关主题和分类标签。适用于内容管理、搜索优化以及大型文档集合的整理。",
+        "examples": ["新闻分类", "文档标记", "论文分类", "内容推荐"]
+      },
+      "moderation": {
+        "title": "内容审核",
+        "description": "举报不当内容，检测垃圾信息，并识别违反政策的行为。获取结构化分类，以实现自动化审核流程。",
+        "examples": ["用户生成内容", "评论区", "论坛帖子", "产品列表"]
+      }
+    },
+    "cta": {
+      "title": "立即开始文本分类",
+      "subtitle": "几分钟内创建您的第一个文本分类端点。无需机器学习专业知识。"
+    }
+  },
+  "data": {
+    "hero": {
+      "title": "数据提取",
+      "subtitle": "将非结构化文档转换为清晰的结构化数据。定义您的目标数据结构，{{appName}} 每次都能准确提取您所需的信息。"
+    },
+    "howItWorks": {
+      "title": "工作原理",
+      "step1": {
+        "title": "定义您的模式",
+        "description": "描述您想要提取的数据结构的精确形式——嵌套对象、数组、带验证的类型字段。"
+      },
+      "step2": {
+        "title": "发送您的文件",
+        "description": "将文档文本传递给 {{appName}} API。我们负责提示和提取逻辑。"
+      },
+      "step3": {
+        "title": "获取结构化数据",
+        "description": "接收与您的模式匹配的已验证JSON。直接导入数据库、电子表格或API。"
+      }
+    },
+    "example": {
+      "title": "示例：发票数据提取",
+      "schemaTitle": "您的JSON Schema",
+      "outputTitle": "提取的输出",
+      "note": "复杂的嵌套结构被准确提取，数字、日期和数组均有正确的类型。"
+    },
+    "applications": {
+      "title": "应用程序",
+      "invoice": {
+        "title": "发票处理",
+        "description": "从任何格式的发票中提取供应商详情、明细项、总额和税项信息，并直接输入您的会计系统。",
+        "examples": ["AP自动化", "费用跟踪", "审计准备", "供应商管理"]
+      },
+      "resume": {
+        "title": "简历解析",
+        "description": "将简历转换为结构化的候选人档案。一致地提取联系方式、工作经历、教育背景、技能和证书。",
+        "examples": ["ATS集成", "候选人匹配", "技能清单", "招聘分析"]
+      },
+      "contract": {
+        "title": "合约分析",
+        "description": "提取法律文件中的关键词、日期、当事人和义务。自动化合同审查与合规监控。",
+        "examples": ["尽职调查", "风险评估", "续订跟踪", "条款抽取"]
+      },
+      "form": {
+        "title": "表单处理",
+        "description": "将纸质表单、申请表和问卷数字化。无论布局如何变化，均可提取字段值。",
+        "examples": ["保险索赔", "贷款申请", "政府表格", "调查回复"]
+      }
+    },
+    "benefits": {
+      "title": "为什么使用 {{appName}} 进行数据提取？",
+      "schemaEnforcement": {
+        "title": "模式强制执行",
+        "description": "每次提取都完全符合您的精确模式。没有缺失字段，没有意外格式。"
+      },
+      "formatFlexibility": {
+        "title": "格式灵活性",
+        "description": "处理文档布局的差异。相同的模式适用于不同格式。"
+      },
+      "instantIntegration": {
+        "title": "即时集成",
+        "description": "获取干净的JSON，可直接用于数据库、API和电子表格，无需后续处理。"
+      }
+    },
+    "cta": {
+      "title": "立即开始提取数据",
+      "subtitle": "几分钟内即可构建您的第一个数据提取端点。无需机器学习训练。"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "内容生成",
+      "subtitle": "通过程序化方式生成高质量内容，确保结构一致。一次性定义内容格式，即可大规模生成，保持完美一致性。"
+    },
+    "howItWorks": {
+      "title": "工作原理",
+      "step1": {
+        "title": "定义您的格式",
+        "description": "指定内容结构——标题、正文部分、项目符号、元数据及长度限制。"
+      },
+      "step2": {
+        "title": "提供上下文",
+        "description": "发送产品数据、主题或原始素材。大语言模型根据您的输入生成定制内容。"
+      },
+      "step3": {
+        "title": "获取格式化内容",
+        "description": "接收结构完美的内容，可直接用于您的CMS、数据库或应用程序。"
+      }
+    },
+    "example": {
+      "title": "示例：产品描述生成",
+      "schemaTitle": "您的内容架构",
+      "outputTitle": "生成内容",
+      "note": "每项内容均符合您的架构约束——长度限制、必填字段和数组范围。"
+    },
+    "applications": {
+      "title": "应用程序",
+      "productDescriptions": {
+        "title": "产品描述",
+        "description": "大规模生成一致且具有吸引力的产品文案。定义功能、优势、规格和SEO关键词的结构，然后程序化生成成千上万条产品描述。",
+        "examples": ["电子商务列表", "目录页面", "市场列表", "产品规格"]
+      },
+      "marketingCopy": {
+        "title": "营销文案",
+        "description": "根据品牌规范，创建结构化营销内容，确保标题、正文、行动号召和元数据格式统一。",
+        "examples": ["广告文案", "着陆页面", "电子邮件营销活动", "社交媒体帖子"]
+      },
+      "documentation": {
+        "title": "文档",
+        "description": "使用统一结构生成技术文档。API 文档、用户指南和帮助文章均遵循您定义的模板。",
+        "examples": ["API 文档", "用户指南", "常见问题生成", "更新日志"]
+      },
+      "personalizedContent": {
+        "title": "个性化内容",
+        "description": "大规模创建个性化内容。根据用户数据生成个性化邮件、推荐和报告，同时保持一致的结构。",
+        "examples": ["个性化邮件", "自定义报告", "推荐", "通知"]
+      }
+    },
+    "benefits": {
+      "title": "为什么使用 {{appName}} 进行内容生成？",
+      "lengthControl": {
+        "title": "长度控制",
+        "description": "为标题、描述和正文内容设置字符限制。切勿超出平台限制。"
+      },
+      "consistentStructure": {
+        "title": "一致的结构",
+        "description": "每一段内容都遵循您定义的格式。非常适合模板和批量生成。"
+      },
+      "scaleInstantly": {
+        "title": "立即扩展",
+        "description": "通过单个端点生成数百条内容，质量相同，耗时仅为几分之一。"
+      }
+    },
+    "cta": {
+      "title": "立即开始生成内容",
+      "subtitle": "几分钟内创建您的首个内容生成端点。可立即从一个扩展到数千个。"
+    }
+  }
+}

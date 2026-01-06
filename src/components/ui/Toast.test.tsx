@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, act, fireEvent } from '@testing-library/react';
-import Toast from './Toast';
-import type { Toast as ToastType } from '../../context/toastContextDef';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { render, screen, act, fireEvent } from "@testing-library/react";
+import Toast from "./Toast";
+import type { Toast as ToastType } from "../../context/toastContextDef";
 
-describe('Toast', () => {
+describe("Toast", () => {
   const mockOnDismiss = vi.fn();
 
   beforeEach(() => {
@@ -16,8 +16,11 @@ describe('Toast', () => {
     vi.useRealTimers();
   });
 
-  const createToast = (type: ToastType['type'], message: string): ToastType => ({
-    id: 'test-id',
+  const createToast = (
+    type: ToastType["type"],
+    message: string,
+  ): ToastType => ({
+    id: "test-id",
     type,
     message,
     duration: 5000,
@@ -31,86 +34,86 @@ describe('Toast', () => {
     });
   };
 
-  it('renders success toast with correct message', () => {
-    const toast = createToast('success', 'Operation successful');
+  it("renders success toast with correct message", () => {
+    const toast = createToast("success", "Operation successful");
     renderAndWaitForAnimation(toast);
 
-    expect(screen.getByRole('alert')).toBeInTheDocument();
-    expect(screen.getByText('Operation successful')).toBeInTheDocument();
+    expect(screen.getByRole("alert")).toBeInTheDocument();
+    expect(screen.getByText("Operation successful")).toBeInTheDocument();
   });
 
-  it('renders error toast', () => {
-    const toast = createToast('error', 'Something went wrong');
+  it("renders error toast", () => {
+    const toast = createToast("error", "Something went wrong");
     renderAndWaitForAnimation(toast);
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
   });
 
-  it('renders warning toast', () => {
-    const toast = createToast('warning', 'Please check your input');
+  it("renders warning toast", () => {
+    const toast = createToast("warning", "Please check your input");
     renderAndWaitForAnimation(toast);
 
-    expect(screen.getByText('Please check your input')).toBeInTheDocument();
+    expect(screen.getByText("Please check your input")).toBeInTheDocument();
   });
 
-  it('renders info toast', () => {
-    const toast = createToast('info', 'Here is some information');
+  it("renders info toast", () => {
+    const toast = createToast("info", "Here is some information");
     renderAndWaitForAnimation(toast);
 
-    expect(screen.getByText('Here is some information')).toBeInTheDocument();
+    expect(screen.getByText("Here is some information")).toBeInTheDocument();
   });
 
-  it('has dismiss button with aria-label', () => {
-    const toast = createToast('success', 'Test message');
+  it("has dismiss button with aria-label", () => {
+    const toast = createToast("success", "Test message");
     renderAndWaitForAnimation(toast);
 
-    expect(screen.getByRole('button', { name: 'Dismiss' })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Dismiss" })).toBeInTheDocument();
   });
 
-  it('calls onDismiss when dismiss button is clicked', () => {
-    const toast = createToast('success', 'Test message');
+  it("calls onDismiss when dismiss button is clicked", () => {
+    const toast = createToast("success", "Test message");
     renderAndWaitForAnimation(toast);
 
     // Click the dismiss button
-    fireEvent.click(screen.getByRole('button', { name: 'Dismiss' }));
+    fireEvent.click(screen.getByRole("button", { name: "Dismiss" }));
 
     // Wait for the animation delay (200ms)
     act(() => {
       vi.advanceTimersByTime(200);
     });
 
-    expect(mockOnDismiss).toHaveBeenCalledWith('test-id');
+    expect(mockOnDismiss).toHaveBeenCalledWith("test-id");
   });
 
-  it('applies success styling', () => {
-    const toast = createToast('success', 'Success');
+  it("applies success styling", () => {
+    const toast = createToast("success", "Success");
     renderAndWaitForAnimation(toast);
 
-    const alert = screen.getByRole('alert');
-    expect(alert.className).toContain('bg-green');
+    const alert = screen.getByRole("alert");
+    expect(alert.className).toContain("bg-green");
   });
 
-  it('applies error styling', () => {
-    const toast = createToast('error', 'Error');
+  it("applies error styling", () => {
+    const toast = createToast("error", "Error");
     renderAndWaitForAnimation(toast);
 
-    const alert = screen.getByRole('alert');
-    expect(alert.className).toContain('bg-red');
+    const alert = screen.getByRole("alert");
+    expect(alert.className).toContain("bg-red");
   });
 
-  it('applies warning styling', () => {
-    const toast = createToast('warning', 'Warning');
+  it("applies warning styling", () => {
+    const toast = createToast("warning", "Warning");
     renderAndWaitForAnimation(toast);
 
-    const alert = screen.getByRole('alert');
-    expect(alert.className).toContain('bg-yellow');
+    const alert = screen.getByRole("alert");
+    expect(alert.className).toContain("bg-yellow");
   });
 
-  it('applies info styling', () => {
-    const toast = createToast('info', 'Info');
+  it("applies info styling", () => {
+    const toast = createToast("info", "Info");
     renderAndWaitForAnimation(toast);
 
-    const alert = screen.getByRole('alert');
-    expect(alert.className).toContain('bg-blue');
+    const alert = screen.getByRole("alert");
+    expect(alert.className).toContain("bg-blue");
   });
 });

@@ -1,0 +1,281 @@
+{
+  "seo": {
+    "main": {
+      "title": "使用案例 - {{appName}}",
+      "description": "了解{{appName}}如何將LLM輸出轉化為結構化且可靠的資料。從文字分類、資料擷取到內容生成。",
+      "keywords": "大型語言模型的應用場景、結構化輸出、文字分類、資料擷取、內容生成、人工智慧應用"
+    },
+    "text": {
+      "title": "文字分類 - 應用場景 - {{appName}}",
+      "description": "使用大型語言模型自動分類文字，並取得結構化且經過驗證的輸出。情緒分析、意圖辨識、主題檢測與內容審核。",
+      "keywords": "文字分類、情感分析、意圖辨識、主題檢測、內容審核、自然語言處理、大語言模型分類"
+    },
+    "data": {
+      "title": "資料提取 - 使用案例 - {{appName}}",
+      "description": "使用LLM從非結構化文件中提取結構化資料。發票處理、簡歷解析、合約分析及表單數位化。",
+      "keywords": "資料提取、文件處理、發票OCR、簡歷解析、合約分析、結構化資料、LLM提取"
+    },
+    "content": {
+      "title": "內容生成 - 使用案例 - {{appName}}",
+      "description": "使用LLM生成結構化內容。產品描述、行銷文案、文件資料及個人化內容，確保格式固定。",
+      "keywords": "內容生成、AI文案撰寫、產品描述、行銷自動化、結構化內容、大型語言模型內容"
+    }
+  },
+  "nav": {
+    "allUseCases": "所有使用案例",
+    "readDocs": "閱讀文件",
+    "viewPricing": "查看定價",
+    "exploreOther": "探索其他使用案例"
+  },
+  "main": {
+    "hero": {
+      "title": "使用結構化LLM輸出構建任何內容",
+      "subtitle": "{{appName}} 將不可預測的 AI 回應轉換為可靠且經過結構驗證的資料。以下是一些常見用途——但你的想像力才是唯一的限制。"
+    },
+    "flexibility": {
+      "title": "您的使用案例，您的规则",
+      "description": "雖然我們已強調常見的模式，{{appName} 設計為完全彈性。定義任何 JSON 模式，連接任何 LLM 提供商，並打造您所需的任何內容。無論您是建立聊天機器人、分析研究論文、自動化工作流程，還是開發全新的應用——只要您能以模式描述它，{{appName}} 就能實現。"
+    },
+    "features": {
+      "customSchemas": {
+        "title": "自訂結構",
+        "description": "定義任何所需的資料結構"
+      },
+      "anyProvider": {
+        "title": "任何大型語言模型供應商",
+        "description": "OpenAI、Anthropic、Google 及更多"
+      },
+      "validatedOutput": {
+        "title": "驗證輸出",
+        "description": "確保架構符合性"
+      },
+      "apiFirst": {
+        "title": "首重API",
+        "description": "與任何技術堆疊的簡單整合"
+      }
+    },
+    "cta": {
+      "title": "準備好了嗎？",
+      "subtitle": "從我們的免費層級開始，體驗 {{appName}} 如何改變您的 AI 整合。"
+    }
+  },
+  "useCases": {
+    "textClassification": {
+      "title": "文字分類",
+      "description": "自動將文字精確分類至預設標籤。適用於情感分析、主題檢測、意圖識別和內容審核。",
+      "examples": ["情感分析", "主題檢測", "意圖識別", "內容審核"]
+    },
+    "dataExtraction": {
+      "title": "資料提取",
+      "description": "從非結構化文字文件中提取結構化資訊。將發票、合約、電郵和表格轉換為乾淨、可用的資料。",
+      "examples": ["發票處理", "簡歷解析", "合約分析", "電子郵件提取"]
+    },
+    "contentGeneration": {
+      "title": "內容生成",
+      "description": "程式化生成高品質、結構化的內容。以一致的格式建立產品描述、行銷文案、文件等。",
+      "examples": ["產品描述", "行銷文案", "文件說明", "電子郵件範本"]
+    }
+  },
+  "text": {
+    "hero": {
+      "title": "文字分類",
+      "subtitle": "將非結構化文字轉換為可操作的類別。定義您的分類架構，且{{appName}}確保每個回應都符合您的精確要求。"
+    },
+    "howItWorks": {
+      "title": "如何運作",
+      "step1": {
+        "title": "定義您的結構",
+        "description": "明確指出您需要哪些分類——類別、置信度分數、多個標籤或巢狀結構。"
+      },
+      "step2": {
+        "title": "發送您的文字",
+        "description": "使用您的文字調用{{appName}} API。我們會將其路由至您選擇的LLM，並使用優化提示。"
+      },
+      "step3": {
+        "title": "獲取驗證輸出",
+        "description": "接收完全符合您資料結構的 JSON—確保無誤。無解析錯誤，無意外格式。"
+      }
+    },
+    "example": {
+      "title": "範例：客戶反饋分類",
+      "schemaTitle": "您的JSON Schema",
+      "outputTitle": "保證輸出",
+      "note": "每次回應在回傳前都會根據您的結構進行驗證。無效的輸出會自動重試。"
+    },
+    "applications": {
+      "title": "應用程式",
+      "sentiment": {
+        "title": "情感分析",
+        "description": "分析客戶反饋、評論和社交媒體提及，以了解公眾看法。獲得可直接整合至分析管道的連續情感分數。",
+        "examples": ["產品評論", "客戶支援票券", "社交媒體監控", "問卷回覆"]
+      },
+      "intent": {
+        "title": "意圖識別",
+        "description": "了解使用者訊息背後的需求，將詢問導向正確的部門，觸發自動化工作流程，或根據偵測到的意圖提供即時回應。",
+        "examples": [
+          "聊天機器人路由",
+          "電子郵件分類",
+          "語音助手指令",
+          "支援票證分類"
+        ]
+      },
+      "topic": {
+        "title": "主題檢測",
+        "description": "自動為內容標記相關主題與分類。非常適合內容管理、搜尋優化以及整理大量文件資料庫。",
+        "examples": ["新聞分類", "文件標籤", "論文分類", "內容推薦"]
+      },
+      "moderation": {
+        "title": "內容審核",
+        "description": "檢舉不當內容、偵測垃圾訊息並識別違反政策的行為。取得結構化分類，以支援自動化審核工作流程。",
+        "examples": ["使用者產生的內容", "評論區", "論壇文章", "產品列表"]
+      }
+    },
+    "cta": {
+      "title": "立即開始文字分類",
+      "subtitle": "在數分鐘內建立您的第一個文字分類端點。無需機器學習專業知識。"
+    }
+  },
+  "data": {
+    "hero": {
+      "title": "資料提取",
+      "subtitle": "將非結構化文件轉換為乾淨的結構化資料。定義您的目標資料結構，{{appName}} 每次都能精確提取您所需的資訊。"
+    },
+    "howItWorks": {
+      "title": "如何運作",
+      "step1": {
+        "title": "定義您的結構",
+        "description": "描述您想要提取的資料結構——巢狀物件、陣列、具類型欄位與驗證。"
+      },
+      "step2": {
+        "title": "發送您的文件",
+        "description": "將文件文字傳送到 {{appName}} API。我們會處理提示和提取邏輯。"
+      },
+      "step3": {
+        "title": "取得結構化資料",
+        "description": "接收符合您資料結構的已驗證JSON。直接匯入資料庫、試算表或API。"
+      }
+    },
+    "example": {
+      "title": "範例：發票資料擷取",
+      "schemaTitle": "您的JSON Schema",
+      "outputTitle": "提取的輸出",
+      "note": "複雜的嵌套結構被精確提取，數字、日期和陣列均有正確的類型。"
+    },
+    "applications": {
+      "title": "應用程式",
+      "invoice": {
+        "title": "發票處理",
+        "description": "從任何格式的發票中提取供應商詳情、項目明細、總金額及稅務資訊，並直接輸入會計系統。",
+        "examples": ["自動化採購", "支出追蹤", "審計準備", "供應商管理"]
+      },
+      "resume": {
+        "title": "簡歷解析",
+        "description": "將簡歷轉換為結構化的候選人檔案。一致地提取聯絡資訊、工作經歷、教育背景、技能和證書。",
+        "examples": ["ATS整合", "候選人匹配", "技能清單", "招募分析"]
+      },
+      "contract": {
+        "title": "合約分析",
+        "description": "提取法律文件中的關鍵條款、日期、當事方及義務。自動化合約審查與合規監控。",
+        "examples": ["盡職調查", "風險評估", "續約追蹤", "條款提取"]
+      },
+      "form": {
+        "title": "表單處理",
+        "description": "將紙質表單、申請表和問卷數位化。無論版面如何變動，均可提取欄位值。",
+        "examples": ["保險理賠", "貸款申請", "政府表格", "問卷回覆"]
+      }
+    },
+    "benefits": {
+      "title": "為什麼選擇 {{appName}} 進行資料提取？",
+      "schemaEnforcement": {
+        "title": "結構強制執行",
+        "description": "每次提取都完全符合您的資料結構。沒有遺漏欄位，也沒有意外的格式。"
+      },
+      "formatFlexibility": {
+        "title": "格式靈活性",
+        "description": "處理文件版面的差異。相同的結構可適用於不同格式。"
+      },
+      "instantIntegration": {
+        "title": "即時整合",
+        "description": "取得可直接用於資料庫、API 和試算表的乾淨 JSON，無需後續處理。"
+      }
+    },
+    "cta": {
+      "title": "立即開始提取資料",
+      "subtitle": "幾分鐘內建立您的第一個資料擷取端點。無需機器學習訓練。"
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "內容生成",
+      "subtitle": "透過程式化方式產生高品質內容，確保結構完整。一次定義內容格式，即可大量產出，並保持完美一致性。"
+    },
+    "howItWorks": {
+      "title": "如何運作",
+      "step1": {
+        "title": "定義您的格式",
+        "description": "指定內容結構—標題、正文區段、項目符號清單、元資料以及長度限制。"
+      },
+      "step2": {
+        "title": "提供上下文",
+        "description": "發送產品資料、主題或原始素材。LLM 根據您的輸入生成定制內容。"
+      },
+      "step3": {
+        "title": "取得格式化內容",
+        "description": "接收已完美結構化的內容，可直接用於您的內容管理系統、資料庫或應用程式。"
+      }
+    },
+    "example": {
+      "title": "範例：產品描述生成",
+      "schemaTitle": "您的內容結構",
+      "outputTitle": "生成內容",
+      "note": "每一段內容都符合您的結構限制——長度限制、必要欄位和陣列範圍。"
+    },
+    "applications": {
+      "title": "應用程式",
+      "productDescriptions": {
+        "title": "產品描述",
+        "description": "以一致且具吸引力的方式大規模生成產品文案。定義功能、優勢、規格與SEO關鍵字的結構，並程式化生成數千則描述。",
+        "examples": [
+          "電子商務 listings",
+          "目錄頁面",
+          "市場上架項目",
+          "產品規格"
+        ]
+      },
+      "marketingCopy": {
+        "title": "行銷文案",
+        "description": "建立結構化行銷內容，並保持格式一致。標題、正文文案、行動呼籲（CTA）及元資料皆符合您的品牌指南。",
+        "examples": ["廣告文案", "登陸頁面", "電子郵件行銷活動", "社交媒體貼文"]
+      },
+      "documentation": {
+        "title": "文件說明",
+        "description": "建立具一致結構的技術文件。API 文件、使用者指南與幫助文章皆遵循您所定義的範本。",
+        "examples": ["API文件", "使用者指南", "常見問題生成", "發行說明"]
+      },
+      "personalizedContent": {
+        "title": "個人化內容",
+        "description": "在大規模下建立個人化內容。根據使用者資料，產生個人化的電子郵件、推薦內容和報告，同時維持一致的結構。",
+        "examples": ["個人化郵件", "自訂報表", "推薦", "通知"]
+      }
+    },
+    "benefits": {
+      "title": "為什麼選擇 {{appName}} 用於內容生成？",
+      "lengthControl": {
+        "title": "長度控制",
+        "description": "為標題、描述和正文內容設定字數限制。絕對不可超過平台的限制。"
+      },
+      "consistentStructure": {
+        "title": "一致的結構",
+        "description": "每一段內容都符合您定義的格式。非常適合用於範本和大量產生。"
+      },
+      "scaleInstantly": {
+        "title": "立即擴展",
+        "description": "透過單一端點生成數百個內容項目，品質相同，耗時僅為其一部分。"
+      }
+    },
+    "cta": {
+      "title": "立即開始生成內容",
+      "subtitle": "在數分鐘內建立您的第一個內容生成端點。立即從一個擴展到數千個。"
+    }
+  }
+}

@@ -1,13 +1,13 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
-import type { ReactNode } from 'react';
-import { networkClient, getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
-import { useAuthStatus } from '@sudobility/auth-components';
-import { auth } from '../config/firebase';
-import { CONSTANTS } from '../config/constants';
-import { ApiContext, type ApiContextValue } from './apiContextDef';
+import { useEffect, useState, useMemo, useCallback } from "react";
+import type { ReactNode } from "react";
+import { networkClient, getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
+import { useAuthStatus } from "@sudobility/auth-components";
+import { auth } from "../config/firebase";
+import { CONSTANTS } from "../config/constants";
+import { ApiContext, type ApiContextValue } from "./apiContextDef";
 
-export { ApiContext, type ApiContextValue } from './apiContextDef';
+export { ApiContext, type ApiContextValue } from "./apiContextDef";
 
 interface ApiProviderProps {
   children: ReactNode;
@@ -45,7 +45,12 @@ export function ApiProvider({ children }: ApiProviderProps) {
           setToken(idToken);
         }
       } catch {
-        getInfoService().show('Authentication Error', 'Failed to get ID token', InfoType.ERROR, 5000);
+        getInfoService().show(
+          "Authentication Error",
+          "Failed to get ID token",
+          InfoType.ERROR,
+          5000,
+        );
         if (mounted) {
           setToken(null);
         }
@@ -72,7 +77,12 @@ export function ApiProvider({ children }: ApiProviderProps) {
       setToken(newToken);
       return newToken;
     } catch {
-      getInfoService().show('Authentication Error', 'Failed to refresh ID token', InfoType.ERROR, 5000);
+      getInfoService().show(
+        "Authentication Error",
+        "Failed to refresh ID token",
+        InfoType.ERROR,
+        5000,
+      );
       setToken(null);
       return null;
     }
@@ -89,7 +99,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
       testMode,
       refreshToken,
     }),
-    [baseUrl, userId, token, authLoading, tokenLoading, testMode, refreshToken]
+    [baseUrl, userId, token, authLoading, tokenLoading, testMode, refreshToken],
   );
 
   return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

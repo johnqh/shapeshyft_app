@@ -1,49 +1,51 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { MasterDetailLayout } from '@sudobility/components';
-import ScreenContainer from '../components/layout/ScreenContainer';
-import SEO from '../components/seo/SEO';
-import AISearchOptimization from '../components/seo/AISearchOptimization';
-import DocsSidebar from '../components/docs/DocsSidebar';
-import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
-import { CONSTANTS } from '../config/constants';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { MasterDetailLayout } from "@sudobility/components";
+import ScreenContainer from "../components/layout/ScreenContainer";
+import SEO from "../components/seo/SEO";
+import AISearchOptimization from "../components/seo/AISearchOptimization";
+import DocsSidebar from "../components/docs/DocsSidebar";
+import { useLocalizedNavigate } from "../hooks/useLocalizedNavigate";
+import { CONSTANTS } from "../config/constants";
 
-type DocSection = 'getting-started' | 'concepts' | 'api-reference';
+type DocSection = "getting-started" | "concepts" | "api-reference";
 
 function DocsPage() {
-  const { t } = useTranslation('docs');
+  const { t } = useTranslation("docs");
   const { section } = useParams<{ section?: string }>();
   const { navigate } = useLocalizedNavigate();
-  const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
+  const [mobileView, setMobileView] = useState<"navigation" | "content">(
+    "navigation",
+  );
 
-  const currentSection = (section as DocSection) || 'getting-started';
+  const currentSection = (section as DocSection) || "getting-started";
 
   // Redirect to default section if no section specified
   useEffect(() => {
     if (!section) {
-      navigate('/docs/getting-started', { replace: true });
+      navigate("/docs/getting-started", { replace: true });
     }
   }, [section, navigate]);
 
   const handleBackToNavigation = () => {
-    setMobileView('navigation');
+    setMobileView("navigation");
   };
 
   const handleNavigate = () => {
-    setMobileView('content');
+    setMobileView("content");
   };
 
   const getDetailTitle = () => {
     switch (currentSection) {
-      case 'getting-started':
-        return t('gettingStarted.title');
-      case 'concepts':
-        return t('concepts.title');
-      case 'api-reference':
-        return t('apiReference.title');
+      case "getting-started":
+        return t("gettingStarted.title");
+      case "concepts":
+        return t("concepts.title");
+      case "api-reference":
+        return t("apiReference.title");
       default:
-        return t('title');
+        return t("title");
     }
   };
 
@@ -51,9 +53,9 @@ function DocsPage() {
 
   const detailContent = (
     <div className="p-6">
-      {currentSection === 'getting-started' && <GettingStartedContent />}
-      {currentSection === 'concepts' && <ConceptsContent />}
-      {currentSection === 'api-reference' && <ApiReferenceContent />}
+      {currentSection === "getting-started" && <GettingStartedContent />}
+      {currentSection === "concepts" && <ConceptsContent />}
+      {currentSection === "api-reference" && <ApiReferenceContent />}
     </div>
   );
 
@@ -61,28 +63,43 @@ function DocsPage() {
 
   const getSeoDescription = () => {
     switch (currentSection) {
-      case 'getting-started':
-        return t('seo.gettingStarted', { appName });
-      case 'concepts':
-        return t('seo.concepts');
-      case 'api-reference':
-        return t('seo.apiReference', { appName });
+      case "getting-started":
+        return t("seo.gettingStarted", { appName });
+      case "concepts":
+        return t("seo.concepts");
+      case "api-reference":
+        return t("seo.apiReference", { appName });
       default:
-        return t('seo.default', { appName });
+        return t("seo.default", { appName });
     }
   };
 
   const getHowTo = () => {
-    if (currentSection === 'getting-started') {
+    if (currentSection === "getting-started") {
       return {
-        name: t('howTo.name'),
-        description: t('howTo.description', { appName }),
+        name: t("howTo.name"),
+        description: t("howTo.description", { appName }),
         steps: [
-          { name: t('howTo.steps.createProject.name'), text: t('howTo.steps.createProject.text') },
-          { name: t('howTo.steps.addProvider.name'), text: t('howTo.steps.addProvider.text') },
-          { name: t('howTo.steps.defineEndpoint.name'), text: t('howTo.steps.defineEndpoint.text') },
-          { name: t('howTo.steps.testEndpoint.name'), text: t('howTo.steps.testEndpoint.text') },
-          { name: t('howTo.steps.integrate.name'), text: t('howTo.steps.integrate.text') },
+          {
+            name: t("howTo.steps.createProject.name"),
+            text: t("howTo.steps.createProject.text"),
+          },
+          {
+            name: t("howTo.steps.addProvider.name"),
+            text: t("howTo.steps.addProvider.text"),
+          },
+          {
+            name: t("howTo.steps.defineEndpoint.name"),
+            text: t("howTo.steps.defineEndpoint.text"),
+          },
+          {
+            name: t("howTo.steps.testEndpoint.name"),
+            text: t("howTo.steps.testEndpoint.text"),
+          },
+          {
+            name: t("howTo.steps.integrate.name"),
+            text: t("howTo.steps.integrate.text"),
+          },
         ],
       };
     }
@@ -101,13 +118,19 @@ function DocsPage() {
         pageType="documentation"
         pageName={getDetailTitle()}
         description={getSeoDescription()}
-        keywords={['LLM API', 'documentation', 'JSON Schema', 'tutorial', 'structured output']}
+        keywords={[
+          "LLM API",
+          "documentation",
+          "JSON Schema",
+          "tutorial",
+          "structured output",
+        ]}
         howTo={getHowTo()}
       />
       <main className="flex-1">
         <MasterDetailLayout
-          masterTitle={t('title')}
-          backButtonText={t('title')}
+          masterTitle={t("title")}
+          backButtonText={t("title")}
           masterContent={masterContent}
           detailContent={detailContent}
           detailTitle={getDetailTitle()}
@@ -124,15 +147,16 @@ function DocsPage() {
 }
 
 function GettingStartedContent() {
-  const { t } = useTranslation('docs');
+  const { t } = useTranslation("docs");
   const appName = CONSTANTS.APP_NAME;
-  const steps = t('gettingStarted.steps', { returnObjects: true }) as { title: string; description: string }[];
+  const steps = t("gettingStarted.steps", { returnObjects: true }) as {
+    title: string;
+    description: string;
+  }[];
 
   return (
     <div className="space-y-8 max-w-3xl">
-      <p className="text-theme-text-secondary">
-        {t('subtitle', { appName })}
-      </p>
+      <p className="text-theme-text-secondary">{t("subtitle", { appName })}</p>
 
       <div className="space-y-4">
         {steps.map((step, index) => (
@@ -147,7 +171,9 @@ function GettingStartedContent() {
               <h3 className="font-semibold text-theme-text-primary mb-1">
                 {step.title}
               </h3>
-              <p className="text-theme-text-secondary text-sm">{step.description}</p>
+              <p className="text-theme-text-secondary text-sm">
+                {step.description}
+              </p>
             </div>
           </div>
         ))}
@@ -157,19 +183,21 @@ function GettingStartedContent() {
 }
 
 function ConceptsContent() {
-  const { t } = useTranslation('docs');
+  const { t } = useTranslation("docs");
   const appName = CONSTANTS.APP_NAME;
-  const endpointItems = t('concepts.endpoints.items', { returnObjects: true }) as { name: string; description: string }[];
+  const endpointItems = t("concepts.endpoints.items", {
+    returnObjects: true,
+  }) as { name: string; description: string }[];
 
   return (
     <div className="space-y-10 max-w-3xl">
       {/* Endpoints */}
       <div>
         <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
-          {t('concepts.endpoints.title')}
+          {t("concepts.endpoints.title")}
         </h2>
         <p className="text-theme-text-secondary mb-4">
-          {t('concepts.endpoints.description')}
+          {t("concepts.endpoints.description")}
         </p>
         <div className="space-y-3">
           {endpointItems.map((item, index) => (
@@ -191,40 +219,40 @@ function ConceptsContent() {
       {/* Input Schema */}
       <div>
         <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
-          {t('concepts.inputSchema.title')}
+          {t("concepts.inputSchema.title")}
         </h2>
         <p className="text-theme-text-secondary">
-          {t('concepts.inputSchema.description', { appName })}
+          {t("concepts.inputSchema.description", { appName })}
         </p>
       </div>
 
       {/* Output Schema */}
       <div>
         <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
-          {t('concepts.outputSchema.title')}
+          {t("concepts.outputSchema.title")}
         </h2>
         <p className="text-theme-text-secondary">
-          {t('concepts.outputSchema.description', { appName })}
+          {t("concepts.outputSchema.description", { appName })}
         </p>
       </div>
 
       {/* System Context */}
       <div>
         <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
-          {t('concepts.context.title')}
+          {t("concepts.context.title")}
         </h2>
         <p className="text-theme-text-secondary">
-          {t('concepts.context.description')}
+          {t("concepts.context.description")}
         </p>
       </div>
 
       {/* Organization Path */}
       <div>
         <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
-          {t('concepts.organizationPath.title')}
+          {t("concepts.organizationPath.title")}
         </h2>
         <p className="text-theme-text-secondary">
-          {t('concepts.organizationPath.description')}
+          {t("concepts.organizationPath.description")}
         </p>
       </div>
     </div>
@@ -232,31 +260,37 @@ function ConceptsContent() {
 }
 
 function ApiReferenceContent() {
-  const { t } = useTranslation('docs');
-  const responseFields = t('apiReference.response.fields', { returnObjects: true }) as { name: string; description: string }[];
+  const { t } = useTranslation("docs");
+  const responseFields = t("apiReference.response.fields", {
+    returnObjects: true,
+  }) as { name: string; description: string }[];
 
   return (
     <div className="space-y-8 max-w-3xl">
       <p className="text-theme-text-secondary">
-        {t('apiReference.description')}
+        {t("apiReference.description")}
       </p>
 
       {/* Main Endpoints */}
       <div>
         <h2 className="text-lg font-semibold text-theme-text-primary mb-3">
-          {t('apiReference.endpoints.main.title')}
+          {t("apiReference.endpoints.main.title")}
         </h2>
         <p className="text-theme-text-secondary mb-4">
-          {t('apiReference.endpoints.main.description')}
+          {t("apiReference.endpoints.main.description")}
         </p>
         <div className="space-y-3">
           <div className="p-4 bg-theme-bg-secondary rounded-lg font-mono text-sm">
-            <span className="text-green-600 dark:text-green-400">GET</span>{' '}
-            <span className="text-theme-text-primary">/api/v1/ai/:orgPath/:projectName/:endpointName</span>
+            <span className="text-green-600 dark:text-green-400">GET</span>{" "}
+            <span className="text-theme-text-primary">
+              /api/v1/ai/:orgPath/:projectName/:endpointName
+            </span>
           </div>
           <div className="p-4 bg-theme-bg-secondary rounded-lg font-mono text-sm">
-            <span className="text-blue-600 dark:text-blue-400">POST</span>{' '}
-            <span className="text-theme-text-primary">/api/v1/ai/:orgPath/:projectName/:endpointName</span>
+            <span className="text-blue-600 dark:text-blue-400">POST</span>{" "}
+            <span className="text-theme-text-primary">
+              /api/v1/ai/:orgPath/:projectName/:endpointName
+            </span>
           </div>
         </div>
       </div>
@@ -264,19 +298,23 @@ function ApiReferenceContent() {
       {/* Prompt-Only Endpoints */}
       <div>
         <h2 className="text-lg font-semibold text-theme-text-primary mb-3">
-          {t('apiReference.endpoints.prompt.title')}
+          {t("apiReference.endpoints.prompt.title")}
         </h2>
         <p className="text-theme-text-secondary mb-4">
-          {t('apiReference.endpoints.prompt.description')}
+          {t("apiReference.endpoints.prompt.description")}
         </p>
         <div className="space-y-3">
           <div className="p-4 bg-theme-bg-secondary rounded-lg font-mono text-sm">
-            <span className="text-green-600 dark:text-green-400">GET</span>{' '}
-            <span className="text-theme-text-primary">/api/v1/ai/:orgPath/:projectName/:endpointName/prompt</span>
+            <span className="text-green-600 dark:text-green-400">GET</span>{" "}
+            <span className="text-theme-text-primary">
+              /api/v1/ai/:orgPath/:projectName/:endpointName/prompt
+            </span>
           </div>
           <div className="p-4 bg-theme-bg-secondary rounded-lg font-mono text-sm">
-            <span className="text-blue-600 dark:text-blue-400">POST</span>{' '}
-            <span className="text-theme-text-primary">/api/v1/ai/:orgPath/:projectName/:endpointName/prompt</span>
+            <span className="text-blue-600 dark:text-blue-400">POST</span>{" "}
+            <span className="text-theme-text-primary">
+              /api/v1/ai/:orgPath/:projectName/:endpointName/prompt
+            </span>
           </div>
         </div>
       </div>
@@ -284,10 +322,10 @@ function ApiReferenceContent() {
       {/* Response Format */}
       <div>
         <h2 className="text-lg font-semibold text-theme-text-primary mb-3">
-          {t('apiReference.response.title')}
+          {t("apiReference.response.title")}
         </h2>
         <p className="text-theme-text-secondary mb-4">
-          {t('apiReference.response.description')}
+          {t("apiReference.response.description")}
         </p>
         <div className="space-y-3">
           {responseFields.map((field, index) => (
@@ -309,10 +347,10 @@ function ApiReferenceContent() {
       {/* Example Request */}
       <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
         <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-          {t('apiReference.example.requestTitle')}
+          {t("apiReference.example.requestTitle")}
         </h3>
         <pre className="text-sm text-blue-700 dark:text-blue-300 overflow-x-auto">
-{`curl -X POST https://api.${CONSTANTS.APP_DOMAIN}/api/v1/ai/my-org/my-project/classify \\
+          {`curl -X POST https://api.${CONSTANTS.APP_DOMAIN}/api/v1/ai/my-org/my-project/classify \\
   -H "Content-Type: application/json" \\
   -d '{"text": "This is a great product!"}'`}
         </pre>
@@ -321,10 +359,10 @@ function ApiReferenceContent() {
       {/* Example Response */}
       <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
         <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2">
-          {t('apiReference.example.responseTitle')}
+          {t("apiReference.example.responseTitle")}
         </h3>
         <pre className="text-sm text-green-700 dark:text-green-300 overflow-x-auto">
-{`{
+          {`{
   "success": true,
   "data": {
     "output": {

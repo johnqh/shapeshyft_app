@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import type { Project } from '@sudobility/shapeshyft_types';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import type { Project } from "@sudobility/shapeshyft_types";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
 
 interface ProjectFormProps {
   project?: Project;
-  onSubmit: (data: { display_name: string; description?: string }) => Promise<void>;
+  onSubmit: (data: {
+    display_name: string;
+    description?: string;
+  }) => Promise<void>;
   onClose: () => void;
   isLoading?: boolean;
 }
@@ -15,10 +18,15 @@ interface FieldErrors {
   displayName?: string;
 }
 
-function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps) {
-  const { t } = useTranslation('dashboard');
-  const [displayName, setDisplayName] = useState(project?.display_name ?? '');
-  const [description, setDescription] = useState(project?.description ?? '');
+function ProjectForm({
+  project,
+  onSubmit,
+  onClose,
+  isLoading,
+}: ProjectFormProps) {
+  const { t } = useTranslation("dashboard");
+  const [displayName, setDisplayName] = useState(project?.display_name ?? "");
+  const [description, setDescription] = useState(project?.description ?? "");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
@@ -27,23 +35,23 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
   // Generate slug preview
   const slugPreview = displayName
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
   const validateDisplayName = (value: string): string | undefined => {
     if (!value.trim()) {
-      return t('projects.form.errors.nameRequired');
+      return t("projects.form.errors.nameRequired");
     }
     if (value.trim().length < 2) {
-      return t('projects.form.errors.nameTooShort');
+      return t("projects.form.errors.nameTooShort");
     }
     return undefined;
   };
@@ -51,7 +59,7 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
   const handleDisplayNameChange = (value: string) => {
     setDisplayName(value);
     if (touched.displayName) {
-      setFieldErrors(prev => ({
+      setFieldErrors((prev) => ({
         ...prev,
         displayName: validateDisplayName(value),
       }));
@@ -59,8 +67,8 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
   };
 
   const handleDisplayNameBlur = () => {
-    setTouched(prev => ({ ...prev, displayName: true }));
-    setFieldErrors(prev => ({
+    setTouched((prev) => ({ ...prev, displayName: true }));
+    setFieldErrors((prev) => ({
       ...prev,
       displayName: validateDisplayName(displayName),
     }));
@@ -88,11 +96,17 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
         description: description.trim() || undefined,
       });
     } catch (err) {
-      getInfoService().show(t('common.error'), err instanceof Error ? err.message : t('common.errorOccurred'), InfoType.ERROR, 5000);
+      getInfoService().show(
+        t("common.error"),
+        err instanceof Error ? err.message : t("common.errorOccurred"),
+        InfoType.ERROR,
+        5000,
+      );
     }
   };
 
-  const hasError = (field: keyof FieldErrors) => touched[field] && fieldErrors[field];
+  const hasError = (field: keyof FieldErrors) =>
+    touched[field] && fieldErrors[field];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -101,14 +115,21 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-theme-border">
           <h3 className="text-lg font-semibold text-theme-text-primary">
-            {isEditing ? t('projects.form.titleEdit') : t('projects.form.title')}
+            {isEditing
+              ? t("projects.form.titleEdit")
+              : t("projects.form.title")}
           </h3>
           <button
             onClick={onClose}
             className="p-1 rounded-full hover:bg-theme-hover-bg transition-colors"
-            aria-label={t('common.close')}
+            aria-label={t("common.close")}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -127,32 +148,41 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
               htmlFor="displayName"
               className="block text-sm font-medium text-theme-text-primary mb-1"
             >
-              {t('projects.form.displayName')}
+              {t("projects.form.displayName")}
             </label>
             <input
               id="displayName"
               type="text"
               value={displayName}
-              onChange={e => handleDisplayNameChange(e.target.value)}
+              onChange={(e) => handleDisplayNameChange(e.target.value)}
               onBlur={handleDisplayNameBlur}
-              placeholder={t('projects.form.displayNamePlaceholder')}
+              placeholder={t("projects.form.displayNamePlaceholder")}
               className={`w-full px-3 py-2 border rounded-lg bg-theme-bg-primary outline-none transition-all ${
-                hasError('displayName')
-                  ? 'border-red-500 focus:ring-2 focus:ring-red-500/20'
-                  : 'border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                hasError("displayName")
+                  ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
+                  : "border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               }`}
               autoFocus
             />
-            {hasError('displayName') ? (
+            {hasError("displayName") ? (
               <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                <svg
+                  className="w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 {fieldErrors.displayName}
               </p>
             ) : !isEditing && slugPreview ? (
               <p className="mt-1 text-xs text-theme-text-tertiary">
-                {t('projects.form.slugPreview')}: <code className="font-mono">{slugPreview}</code>
+                {t("projects.form.slugPreview")}:{" "}
+                <code className="font-mono">{slugPreview}</code>
               </p>
             ) : null}
           </div>
@@ -163,14 +193,16 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
               htmlFor="description"
               className="block text-sm font-medium text-theme-text-primary mb-1"
             >
-              {t('projects.form.description')}{' '}
-              <span className="text-theme-text-tertiary">({t('common.optional')})</span>
+              {t("projects.form.description")}{" "}
+              <span className="text-theme-text-tertiary">
+                ({t("common.optional")})
+              </span>
             </label>
             <textarea
               id="description"
               value={description}
-              onChange={e => setDescription(e.target.value)}
-              placeholder={t('projects.form.descriptionPlaceholder')}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={t("projects.form.descriptionPlaceholder")}
               rows={3}
               className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow resize-none"
             />
@@ -184,7 +216,7 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
               disabled={isLoading}
               className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
             >
-              {t('common.cancel')}
+              {t("common.cancel")}
             </button>
             <button
               type="submit"
@@ -209,12 +241,12 @@ function ProjectForm({ project, onSubmit, onClose, isLoading }: ProjectFormProps
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  {t('common.saving')}
+                  {t("common.saving")}
                 </span>
               ) : isEditing ? (
-                t('common.save')
+                t("common.save")
               ) : (
-                t('projects.form.create')
+                t("projects.form.create")
               )}
             </button>
           </div>

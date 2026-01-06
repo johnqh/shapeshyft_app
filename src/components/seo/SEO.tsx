@@ -1,20 +1,21 @@
-import { Helmet } from 'react-helmet-async';
-import { CONSTANTS } from '../../config/constants';
+import { Helmet } from "react-helmet-async";
+import { CONSTANTS } from "../../config/constants";
 
 interface SEOProps {
   title?: string;
   description?: string;
   keywords?: string;
   canonical?: string;
-  ogType?: 'website' | 'article' | 'product';
+  ogType?: "website" | "article" | "product";
   ogImage?: string;
   noIndex?: boolean;
   structuredData?: object;
 }
 
-const BASE_URL = `https://${import.meta.env.VITE_APP_DOMAIN || 'shapeshyft.ai'}`;
+const BASE_URL = `https://${import.meta.env.VITE_APP_DOMAIN || "shapeshyft.ai"}`;
 const DEFAULT_TITLE = `${CONSTANTS.APP_NAME} - Transform LLM Outputs into Structured APIs`;
-const DEFAULT_DESCRIPTION = 'Build reliable AI-powered REST APIs with JSON Schema validation. Transform unstructured LLM responses into predictable, type-safe endpoints.';
+const DEFAULT_DESCRIPTION =
+  "Build reliable AI-powered REST APIs with JSON Schema validation. Transform unstructured LLM responses into predictable, type-safe endpoints.";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 export function SEO({
@@ -22,7 +23,7 @@ export function SEO({
   description = DEFAULT_DESCRIPTION,
   keywords,
   canonical,
-  ogType = 'website',
+  ogType = "website",
   ogImage = DEFAULT_IMAGE,
   noIndex = false,
   structuredData,

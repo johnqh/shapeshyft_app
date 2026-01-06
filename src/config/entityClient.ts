@@ -3,9 +3,9 @@
  * @description Provides a singleton instance of EntityClient for the app
  */
 
-import { EntityClient } from '@sudobility/entity_client';
-import { auth } from './firebase';
-import { CONSTANTS } from './constants';
+import { EntityClient } from "@sudobility/entity_client";
+import { auth } from "./firebase";
+import { CONSTANTS } from "./constants";
 
 /**
  * Get the current user's Firebase ID token.

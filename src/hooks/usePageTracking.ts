@@ -3,10 +3,10 @@
  * Automatically tracks page views when route changes
  */
 
-import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useAnalytics } from './useAnalytics';
-import { getPageName } from '../utils/analytics';
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { useAnalytics } from "./useAnalytics";
+import { getPageName } from "../utils/analytics";
 
 /**
  * Hook that automatically tracks page views on route changes

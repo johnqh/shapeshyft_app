@@ -1,35 +1,35 @@
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSettingsManager } from '@sudobility/shapeshyft_lib';
-import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
-import { useApi } from '../../hooks/useApi';
-import { useToast } from '../../hooks/useToast';
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useSettingsManager } from "@sudobility/shapeshyft_lib";
+import { getInfoService } from "@sudobility/di";
+import { InfoType } from "@sudobility/types";
+import { useApi } from "../../hooks/useApi";
+import { useToast } from "../../hooks/useToast";
 
 function SettingsPage() {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation("dashboard");
   const { networkClient, baseUrl, userId, token, testMode } = useApi();
   const { success } = useToast();
 
   const { settings, isLoading, error, updateSettings } = useSettingsManager({
     baseUrl,
     networkClient,
-    userId: userId ?? '',
+    userId: userId ?? "",
     token,
     testMode,
     autoFetch: true,
   });
 
-  const [organizationName, setOrganizationName] = useState('');
-  const [organizationPath, setOrganizationPath] = useState('');
+  const [organizationName, setOrganizationName] = useState("");
+  const [organizationPath, setOrganizationPath] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [pathError, setPathError] = useState<string | null>(null);
 
   // Sync form state with loaded settings
   useEffect(() => {
     if (settings) {
-      setOrganizationName(settings.organization_name ?? '');
-      setOrganizationPath(settings.organization_path ?? '');
+      setOrganizationName(settings.organization_name ?? "");
+      setOrganizationPath(settings.organization_path ?? "");
     }
   }, [settings]);
 
@@ -39,7 +39,7 @@ function SettingsPage() {
     }
     const regex = /^[a-zA-Z0-9_]+$/;
     if (!regex.test(value)) {
-      setPathError(t('settings.organization.pathInvalid'));
+      setPathError(t("settings.organization.pathInvalid"));
       return false;
     }
     setPathError(null);
@@ -64,13 +64,19 @@ function SettingsPage() {
         organization_name: organizationName.trim() || undefined,
         organization_path: organizationPath.trim() || undefined,
       });
-      success(t('settings.form.saved'));
+      success(t("settings.form.saved"));
     } catch (err) {
-      const message = err instanceof Error ? err.message : t('settings.form.error');
-      if (message.includes('already taken')) {
-        setPathError(t('settings.organization.pathTaken'));
+      const message =
+        err instanceof Error ? err.message : t("settings.form.error");
+      if (message.includes("already taken")) {
+        setPathError(t("settings.organization.pathTaken"));
       } else {
-        getInfoService().show(t('settings.form.error'), message, InfoType.ERROR, 5000);
+        getInfoService().show(
+          t("settings.form.error"),
+          message,
+          InfoType.ERROR,
+          5000,
+        );
       }
     } finally {
       setIsSaving(false);
@@ -78,13 +84,18 @@ function SettingsPage() {
   };
 
   const hasChanges =
-    (settings?.organization_name ?? '') !== organizationName ||
-    (settings?.organization_path ?? '') !== organizationPath;
+    (settings?.organization_name ?? "") !== organizationName ||
+    (settings?.organization_path ?? "") !== organizationPath;
 
   // Show error via InfoInterface
   useEffect(() => {
     if (error && !settings) {
-      getInfoService().show(t('settings.form.error'), error, InfoType.ERROR, 5000);
+      getInfoService().show(
+        t("settings.form.error"),
+        error,
+        InfoType.ERROR,
+        5000,
+      );
     }
   }, [error, settings, t]);
 
@@ -102,10 +113,10 @@ function SettingsPage() {
       <div className="bg-theme-bg-primary border border-theme-border rounded-xl shadow-sm overflow-hidden">
         <div className="p-6 border-b border-theme-border">
           <h2 className="text-lg font-semibold text-theme-text-primary">
-            {t('settings.organization.title')}
+            {t("settings.organization.title")}
           </h2>
           <p className="mt-1 text-sm text-theme-text-secondary">
-            {t('settings.organization.description')}
+            {t("settings.organization.description")}
           </p>
         </div>
 
@@ -116,18 +127,18 @@ function SettingsPage() {
               htmlFor="organizationName"
               className="block text-sm font-medium text-theme-text-primary mb-1"
             >
-              {t('settings.organization.name')}
+              {t("settings.organization.name")}
             </label>
             <input
               id="organizationName"
               type="text"
               value={organizationName}
-              onChange={e => setOrganizationName(e.target.value)}
-              placeholder={t('settings.organization.namePlaceholder')}
+              onChange={(e) => setOrganizationName(e.target.value)}
+              placeholder={t("settings.organization.namePlaceholder")}
               className="w-full max-w-md px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
             />
             <p className="mt-1 text-xs text-theme-text-tertiary">
-              {t('settings.organization.nameHint')}
+              {t("settings.organization.nameHint")}
             </p>
           </div>
 
@@ -137,23 +148,27 @@ function SettingsPage() {
               htmlFor="organizationPath"
               className="block text-sm font-medium text-theme-text-primary mb-1"
             >
-              {t('settings.organization.path')}
+              {t("settings.organization.path")}
             </label>
             <input
               id="organizationPath"
               type="text"
               value={organizationPath}
-              onChange={e => handlePathChange(e.target.value)}
-              placeholder={t('settings.organization.pathPlaceholder')}
+              onChange={(e) => handlePathChange(e.target.value)}
+              placeholder={t("settings.organization.pathPlaceholder")}
               className={`w-full max-w-md px-3 py-2 border rounded-lg bg-theme-bg-primary focus:ring-2 focus:border-transparent outline-none font-mono text-sm ${
                 pathError
-                  ? 'border-red-500 focus:ring-red-500/20'
-                  : 'border-theme-border focus:ring-blue-500'
+                  ? "border-red-500 focus:ring-red-500/20"
+                  : "border-theme-border focus:ring-blue-500"
               }`}
             />
             {pathError ? (
               <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                  className="w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path
                     fillRule="evenodd"
                     d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
@@ -164,16 +179,19 @@ function SettingsPage() {
               </p>
             ) : (
               <p className="mt-1 text-xs text-theme-text-tertiary">
-                {t('settings.organization.pathHint')}
+                {t("settings.organization.pathHint")}
               </p>
             )}
 
             {/* Preview URL */}
             {organizationPath && !pathError && (
               <div className="mt-3 p-3 bg-theme-bg-secondary rounded-lg">
-                <p className="text-xs text-theme-text-tertiary mb-1">{t('settings.organization.apiUrlPreview')}</p>
+                <p className="text-xs text-theme-text-tertiary mb-1">
+                  {t("settings.organization.apiUrlPreview")}
+                </p>
                 <code className="text-sm font-mono text-theme-text-primary">
-                  /api/v1/ai/<span className="text-blue-600">{organizationPath}</span>
+                  /api/v1/ai/
+                  <span className="text-blue-600">{organizationPath}</span>
                   /project-name/endpoint-name
                 </code>
               </div>
@@ -205,10 +223,10 @@ function SettingsPage() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  {t('settings.form.saving')}
+                  {t("settings.form.saving")}
                 </span>
               ) : (
-                t('settings.form.save')
+                t("settings.form.save")
               )}
             </button>
           </div>

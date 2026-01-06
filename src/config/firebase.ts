@@ -1,10 +1,10 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import {
   getAnalytics,
   isSupported as isAnalyticsSupported,
   type Analytics,
-} from 'firebase/analytics';
+} from "firebase/analytics";
 
 // Firebase configuration from environment variables
 const firebaseConfig = {
@@ -19,9 +19,9 @@ const firebaseConfig = {
 
 // Check if Firebase is configured
 export const isFirebaseConfigured = (): boolean => {
-  const requiredFields = ['apiKey', 'authDomain', 'projectId', 'appId'];
+  const requiredFields = ["apiKey", "authDomain", "projectId", "appId"];
   return requiredFields.every(
-    field => firebaseConfig[field as keyof typeof firebaseConfig]
+    (field) => firebaseConfig[field as keyof typeof firebaseConfig],
   );
 };
 
@@ -62,7 +62,7 @@ const initAnalytics = async (): Promise<Analytics | null> => {
 };
 
 // Initialize analytics immediately
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   initAnalytics();
 }
 

@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { Outlet, useParams, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { isLanguageSupported } from '../../config/constants';
+import { useEffect } from "react";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { isLanguageSupported } from "../../config/constants";
 
 function LanguageValidator() {
   const { lang } = useParams<{ lang: string }>();
@@ -11,7 +11,7 @@ function LanguageValidator() {
   useEffect(() => {
     // Validate language parameter
     if (!lang || !isLanguageSupported(lang)) {
-      navigate('/en', { replace: true });
+      navigate("/en", { replace: true });
       return;
     }
 
@@ -22,7 +22,7 @@ function LanguageValidator() {
 
     // Save to localStorage
     try {
-      localStorage.setItem('language', lang);
+      localStorage.setItem("language", lang);
     } catch {
       // Ignore localStorage errors
     }

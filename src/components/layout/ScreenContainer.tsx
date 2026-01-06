@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react';
-import { BreadcrumbSection, LayoutProvider } from '@sudobility/components';
-import TopBar from './TopBar';
-import Footer from './Footer';
-import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
-import { CONSTANTS } from '../../config/constants';
+import type { ReactNode } from "react";
+import { BreadcrumbSection, LayoutProvider } from "@sudobility/components";
+import TopBar from "./TopBar";
+import Footer from "./Footer";
+import { useBreadcrumbs } from "../../hooks/useBreadcrumbs";
+import { CONSTANTS } from "../../config/constants";
 
 interface ShareConfig {
   title: string;
@@ -14,14 +14,15 @@ interface ShareConfig {
 
 const DEFAULT_SHARE_CONFIG: ShareConfig = {
   title: `${CONSTANTS.APP_NAME} - Transform LLM Outputs into Structured APIs`,
-  description: 'Build reliable AI-powered REST APIs with JSON Schema validation.',
-  hashtags: [CONSTANTS.APP_NAME, 'AI', 'LLM', 'API', 'StructuredOutput'],
+  description:
+    "Build reliable AI-powered REST APIs with JSON Schema validation.",
+  hashtags: [CONSTANTS.APP_NAME, "AI", "LLM", "API", "StructuredOutput"],
 };
 
 interface ScreenContainerProps {
   children: ReactNode;
-  footerVariant?: 'full' | 'compact';
-  topbarVariant?: 'default' | 'transparent';
+  footerVariant?: "full" | "compact";
+  topbarVariant?: "default" | "transparent";
   showFooter?: boolean;
   showBreadcrumbs?: boolean;
   shareConfig?: ShareConfig | false;
@@ -29,23 +30,28 @@ interface ScreenContainerProps {
 
 function ScreenContainer({
   children,
-  footerVariant = 'full',
-  topbarVariant = 'default',
+  footerVariant = "full",
+  topbarVariant = "default",
   showFooter = true,
   showBreadcrumbs = false,
   shareConfig,
 }: ScreenContainerProps) {
   const { items: breadcrumbItems } = useBreadcrumbs();
-  const effectiveShareConfig = shareConfig === false ? undefined : (shareConfig ?? DEFAULT_SHARE_CONFIG);
+  const effectiveShareConfig =
+    shareConfig === false ? undefined : (shareConfig ?? DEFAULT_SHARE_CONFIG);
 
   return (
     <LayoutProvider mode="standard">
       <div className="min-h-screen flex flex-col bg-theme-bg-primary">
         <TopBar variant={topbarVariant} />
 
-        {(showBreadcrumbs || effectiveShareConfig) && breadcrumbItems.length > 0 && (
-          <BreadcrumbSection items={breadcrumbItems} shareConfig={effectiveShareConfig} />
-        )}
+        {(showBreadcrumbs || effectiveShareConfig) &&
+          breadcrumbItems.length > 0 && (
+            <BreadcrumbSection
+              items={breadcrumbItems}
+              shareConfig={effectiveShareConfig}
+            />
+          )}
 
         <main className="flex-1">{children}</main>
 

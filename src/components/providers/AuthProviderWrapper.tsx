@@ -1,9 +1,12 @@
-import { type ReactNode, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { AuthProvider } from '@sudobility/auth-components';
-import { auth } from '../../config/firebase';
-import { createAuthTexts, createAuthErrorTexts } from '../../config/auth-config';
-import { getFirebaseErrorMessage } from '../../utils/auth';
+import { type ReactNode, useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { AuthProvider } from "@sudobility/auth-components";
+import { auth } from "../../config/firebase";
+import {
+  createAuthTexts,
+  createAuthErrorTexts,
+} from "../../config/auth-config";
+import { getFirebaseErrorMessage } from "../../utils/auth";
 
 interface AuthProviderWrapperProps {
   children: ReactNode;
@@ -27,9 +30,9 @@ export function AuthProviderWrapper({ children }: AuthProviderWrapperProps) {
 
   return (
     <AuthProvider
-      firebaseConfig={{ type: 'instance', auth }}
+      firebaseConfig={{ type: "instance", auth }}
       providerConfig={{
-        providers: ['google', 'email'],
+        providers: ["google", "email"],
         enableAnonymous: false,
       }}
       texts={texts}

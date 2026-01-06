@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { reportRouteChange } from '../utils/webVitals';
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { reportRouteChange } from "../utils/webVitals";
 
 /**
  * Hook to track route change performance

@@ -1,0 +1,346 @@
+{
+  "seo": {
+    "main": {
+      "title": "Các trường hợp sử dụng - {{appName}}",
+      "description": "Khám phá cách {{appName}} chuyển đổi đầu ra của LLM thành dữ liệu có cấu trúc và đáng tin cậy. Từ phân loại văn bản đến trích xuất dữ liệu và tạo nội dung.",
+      "keywords": "Các trường hợp sử dụng LLM, đầu ra có cấu trúc, phân loại văn bản, trích xuất dữ liệu, tạo nội dung, ứng dụng AI"
+    },
+    "text": {
+      "title": "Phân loại văn bản - Các trường hợp sử dụng - {{appName}}",
+      "description": "Phân loại văn bản tự động bằng mô hình ngôn ngữ lớn và nhận kết quả được cấu trúc, xác thực. Phân tích cảm xúc, nhận diện mục đích, phát hiện chủ đề và kiểm duyệt nội dung.",
+      "keywords": "phân loại văn bản, phân tích cảm xúc, nhận diện mục đích, phát hiện chủ đề, kiểm duyệt nội dung, xử lý ngôn ngữ tự nhiên, phân loại mô hình ngôn ngữ lớn"
+    },
+    "data": {
+      "title": "Trích xuất dữ liệu - Các trường hợp sử dụng - {{appName}}",
+      "description": "Trích xuất dữ liệu có cấu trúc từ tài liệu không có cấu trúc bằng LLM. Xử lý hóa đơn, phân tích sơ yếu lý lịch, phân tích hợp đồng và số hóa biểu mẫu.",
+      "keywords": "trích xuất dữ liệu, xử lý tài liệu, OCR hóa đơn, phân tích sơ yếu lý lịch, phân tích hợp đồng, dữ liệu có cấu trúc, trích xuất từ LLM"
+    },
+    "content": {
+      "title": "Tạo nội dung - Trường hợp sử dụng - {{appName}}",
+      "description": "Tạo nội dung có cấu trúc bằng LLMs. Mô tả sản phẩm, nội dung tiếp thị, tài liệu hướng dẫn và nội dung cá nhân hóa với định dạng đảm bảo.",
+      "keywords": "tạo nội dung, viết nội dung bằng AI, mô tả sản phẩm, tự động hóa tiếp thị, nội dung có cấu trúc, nội dung từ LLM"
+    }
+  },
+  "nav": {
+    "allUseCases": "Tất cả các trường hợp sử dụng",
+    "readDocs": "Đọc tài liệu",
+    "viewPricing": "Xem giá",
+    "exploreOther": "Khám phá các trường hợp sử dụng khác"
+  },
+  "main": {
+    "hero": {
+      "title": "Xây dựng bất cứ điều gì với đầu ra có cấu trúc từ LLM",
+      "subtitle": "{{appName}} biến các phản hồi AI không thể dự đoán thành dữ liệu đáng tin cậy, đã được xác thực theo lược đồ. Dưới đây là một số trường hợp sử dụng phổ biến—nhưng tưởng tượng của bạn là giới hạn duy nhất."
+    },
+    "flexibility": {
+      "title": "Thử thách của bạn, quy tắc của bạn",
+      "description": "Mặc dù chúng tôi đã chỉ ra các mẫu phổ biến, {{appName}} được thiết kế để hoàn toàn linh hoạt. Định nghĩa bất kỳ lược đồ JSON nào, kết nối bất kỳ nhà cung cấp LLM nào, và xây dựng chính xác những gì bạn cần. Dù bạn đang tạo chatbot, phân tích bài báo nghiên cứu, tự động hóa quy trình làm việc hay xây dựng điều gì đó hoàn toàn mới—nếu bạn có thể mô tả nó trong một lược đồ, {{appName}} có thể thực hiện nó."
+    },
+    "features": {
+      "customSchemas": {
+        "title": "Sơ đồ tùy chỉnh",
+        "description": "Xác định bất kỳ cấu trúc dữ liệu nào bạn cần"
+      },
+      "anyProvider": {
+        "title": "Mọi nhà cung cấp LLM",
+        "description": "OpenAI, Anthropic, Google và hơn thế nữa"
+      },
+      "validatedOutput": {
+        "title": "Kết quả đã được xác minh",
+        "description": "Tuân thủ đúng lược đồ được đảm bảo"
+      },
+      "apiFirst": {
+        "title": "Đầu tiên là API",
+        "description": "Tích hợp dễ dàng với bất kỳ ngăn xếp nào"
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng để xây dựng?",
+      "subtitle": "Bắt đầu với gói miễn phí của chúng tôi và xem {{appName}} có thể biến đổi tích hợp AI của bạn như thế nào."
+    }
+  },
+  "useCases": {
+    "textClassification": {
+      "title": "Phân loại văn bản",
+      "description": "Phân loại tự động văn bản vào các nhãn được định trước với độ chính xác cao. Lý tưởng cho phân tích cảm xúc, phát hiện chủ đề, nhận diện mục đích và kiểm duyệt nội dung.",
+      "examples": [
+        "Phân tích cảm xúc",
+        "Phát hiện chủ đề",
+        "Nhận diện mục đích",
+        "Điều tiết nội dung"
+      ]
+    },
+    "dataExtraction": {
+      "title": "Trích xuất dữ liệu",
+      "description": "Trích xuất thông tin có cấu trúc từ tài liệu văn bản không có cấu trúc. Chuyển đổi hóa đơn, hợp đồng, email và biểu mẫu thành dữ liệu sạch và có thể sử dụng.",
+      "examples": [
+        "Xử lý hóa đơn",
+        "Phân tích tóm tắt hồ sơ",
+        "Phân tích hợp đồng",
+        "Trích xuất địa chỉ email"
+      ]
+    },
+    "contentGeneration": {
+      "title": "Tạo nội dung",
+      "description": "Tạo nội dung chất lượng cao, có cấu trúc một cách tự động hóa. Tạo mô tả sản phẩm, nội dung tiếp thị, tài liệu hướng dẫn và nhiều hơn nữa với định dạng nhất quán.",
+      "examples": [
+        "Mô tả sản phẩm",
+        "Nội dung tiếp thị",
+        "Tài liệu hướng dẫn",
+        "Mẫu email"
+      ]
+    }
+  },
+  "text": {
+    "hero": {
+      "title": "Phân loại văn bản",
+      "subtitle": "Chuyển đổi văn bản không cấu trúc thành các danh mục có thể thực thi. Xác định lược đồ phân loại của bạn, và {{appName}} đảm bảo mọi phản hồi đều khớp với yêu cầu chính xác của bạn."
+    },
+    "howItWorks": {
+      "title": "Cách thức hoạt động",
+      "step1": {
+        "title": "Định nghĩa lược đồ của bạn",
+        "description": "Chỉ rõ chính xác các phân loại bạn cần—thể loại, điểm tin cậy, nhiều nhãn, hoặc cấu trúc lồng ghép."
+      },
+      "step2": {
+        "title": "Gửi văn bản của bạn",
+        "description": "Gọi API của {{appName}} với văn bản của bạn. Chúng tôi sẽ định tuyến đến LLM mà bạn đã chọn với cách đặt câu hỏi được tối ưu hóa."
+      },
+      "step3": {
+        "title": "Lấy đầu ra đã được xác thực",
+        "description": "Nhận JSON khớp chính xác với lược đồ của bạn—đảm bảo. Không có lỗi phân tích, không có định dạng bất ngờ."
+      }
+    },
+    "example": {
+      "title": "Ví dụ: Phân loại phản hồi từ khách hàng",
+      "schemaTitle": "Mã hóa JSON của bạn",
+      "outputTitle": "Kết quả đảm bảo",
+      "note": "Mỗi phản hồi đều được xác minh đối với lược đồ của bạn trước khi được trả về. Các đầu ra không hợp lệ sẽ được thử lại tự động."
+    },
+    "applications": {
+      "title": "Ứng dụng",
+      "sentiment": {
+        "title": "Phân tích cảm xúc",
+        "description": "Phân tích phản hồi khách hàng, đánh giá và các đề cập trên mạng xã hội để hiểu nhận thức công chúng. Nhận các điểm cảm xúc nhất quán, tích hợp trực tiếp vào luồng phân tích của bạn.",
+        "examples": [
+          "Nhận xét về sản phẩm",
+          "Vé hỗ trợ khách hàng",
+          "Giám sát mạng xã hội",
+          "Kết quả khảo sát"
+        ]
+      },
+      "intent": {
+        "title": "Nhận diện mục đích",
+        "description": "Hiểu được nhu cầu của người dùng từ các tin nhắn của họ. Chuyển các yêu cầu đến bộ phận phù hợp, kích hoạt các quy trình tự động hóa hoặc cung cấp phản hồi ngay lập tức dựa trên ý định được phát hiện.",
+        "examples": [
+          "Định tuyến chatbot",
+          "Phân loại email",
+          "Lệnh trợ lý giọng nói",
+          "Phân loại vé hỗ trợ"
+        ]
+      },
+      "topic": {
+        "title": "Phát hiện chủ đề",
+        "description": "Tự động gắn thẻ nội dung với các chủ đề và thể loại liên quan. Lý tưởng cho quản lý nội dung, tối ưu hóa tìm kiếm và sắp xếp các bộ sưu tập tài liệu lớn.",
+        "examples": [
+          "Phân loại tin tức",
+          "Gắn thẻ tài liệu",
+          "Phân loại bài báo nghiên cứu",
+          "Đề xuất nội dung"
+        ]
+      },
+      "moderation": {
+        "title": "Điều tiết nội dung",
+        "description": "Thông báo nội dung không phù hợp, phát hiện spam và xác định vi phạm chính sách. Nhận các phân loại có cấu trúc để hỗ trợ quy trình kiểm duyệt tự động.",
+        "examples": [
+          "Nội dung do người dùng tạo ra",
+          "Phần bình luận",
+          "Bài đăng trên diễn đàn",
+          "Danh sách sản phẩm"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Bắt đầu phân loại văn bản ngay hôm nay",
+      "subtitle": "Tạo điểm cuối phân loại văn bản đầu tiên của bạn trong vài phút. Không cần chuyên môn về học máy."
+    }
+  },
+  "data": {
+    "hero": {
+      "title": "Trích xuất dữ liệu",
+      "subtitle": "Chuyển đổi tài liệu không cấu trúc thành dữ liệu sạch, có cấu trúc. Xác định lược đồ mục tiêu của bạn, và {{appName}} sẽ trích xuất chính xác thông tin bạn cần—mỗi lần."
+    },
+    "howItWorks": {
+      "title": "Cách thức hoạt động",
+      "step1": {
+        "title": "Định nghĩa lược đồ của bạn",
+        "description": "Mô tả chính xác cấu trúc dữ liệu bạn muốn trích xuất—các đối tượng lồng nhau, mảng, các trường có kiểu và kiểm tra hợp lệ."
+      },
+      "step2": {
+        "title": "Gửi tài liệu của bạn",
+        "description": "Gửi văn bản tài liệu đến API {{appName} của chúng tôi. Chúng tôi sẽ xử lý logic nhắc nhở và trích xuất."
+      },
+      "step3": {
+        "title": "Nhận dữ liệu có cấu trúc",
+        "description": "Nhận JSON đã được xác thực khớp với lược đồ của bạn. Nhập trực tiếp vào cơ sở dữ liệu, bảng tính hoặc API."
+      }
+    },
+    "example": {
+      "title": "Ví dụ: Trích xuất dữ liệu hóa đơn",
+      "schemaTitle": "Mã hóa JSON của bạn",
+      "outputTitle": "Kết quả trích xuất",
+      "note": "Các cấu trúc lồng ghép phức tạp được trích xuất chính xác, với kiểu dữ liệu phù hợp cho số, ngày tháng và mảng."
+    },
+    "applications": {
+      "title": "Ứng dụng",
+      "invoice": {
+        "title": "Xử lý hóa đơn",
+        "description": "Trích xuất thông tin nhà cung cấp, danh sách mặt hàng, tổng cộng và thông tin thuế từ hóa đơn ở bất kỳ định dạng nào. Nhập trực tiếp vào hệ thống kế toán của bạn.",
+        "examples": [
+          "Tự động hóa hóa đơn thanh toán",
+          "Theo dõi chi phí",
+          "Chuẩn bị kiểm toán",
+          "Quản lý nhà cung cấp"
+        ]
+      },
+      "resume": {
+        "title": "Phân tích tóm tắt hồ sơ",
+        "description": "Chuyển đổi hồ sơ cá nhân thành các hồ sơ ứng viên có cấu trúc. Trích xuất thông tin liên hệ, kinh nghiệm làm việc, học vấn, kỹ năng và chứng chỉ một cách nhất quán.",
+        "examples": [
+          "Tích hợp ATS",
+          "Phù hợp ứng viên",
+          "Danh sách kỹ năng",
+          "Phân tích tuyển dụng"
+        ]
+      },
+      "contract": {
+        "title": "Phân tích hợp đồng",
+        "description": "Trích xuất các thuật ngữ quan trọng, ngày tháng, bên liên quan và nghĩa vụ từ tài liệu pháp lý. Tự động hóa việc xem xét hợp đồng và giám sát tuân thủ.",
+        "examples": [
+          "Công tác kiểm tra kỹ lưỡng",
+          "Đánh giá rủi ro",
+          "Theo dõi gia hạn",
+          "Trích xuất điều khoản"
+        ]
+      },
+      "form": {
+        "title": "Xử lý biểu mẫu",
+        "description": "Chuyển đổi các biểu mẫu, đơn đăng ký và bảng hỏi giấy thành dạng số hóa. Trích xuất giá trị trường bất kể sự khác biệt về bố cục.",
+        "examples": [
+          "Yêu cầu bồi thường bảo hiểm",
+          "Đơn xin vay vốn",
+          "Hồ sơ chính phủ",
+          "Kết quả khảo sát"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Tại sao {{appName}} cho trích xuất dữ liệu?",
+      "schemaEnforcement": {
+        "title": "Kiểm tra tính hợp lệ của lược đồ",
+        "description": "Mỗi lần trích xuất đều khớp chính xác với lược đồ của bạn. Không có trường nào bị thiếu, không có định dạng nào bất ngờ."
+      },
+      "formatFlexibility": {
+        "title": "Tính linh hoạt định dạng",
+        "description": "Xử lý các biến thể bố cục tài liệu. Cùng một lược đồ hoạt động hiệu quả trên các định dạng khác nhau."
+      },
+      "instantIntegration": {
+        "title": "Tích hợp tức thì",
+        "description": "Nhận JSON sạch, sẵn sàng cho cơ sở dữ liệu, API và bảng tính mà không cần xử lý thêm."
+      }
+    },
+    "cta": {
+      "title": "Bắt đầu trích xuất dữ liệu ngay hôm nay",
+      "subtitle": "Xây dựng điểm cuối trích xuất dữ liệu đầu tiên của bạn trong vài phút. Không cần huấn luyện mô hình học máy."
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "Tạo nội dung",
+      "subtitle": "Tạo nội dung chất lượng cao một cách tự động hóa với cấu trúc đảm bảo. Xác định định dạng nội dung một lần, sau đó tạo nội dung quy mô lớn với sự nhất quán hoàn hảo."
+    },
+    "howItWorks": {
+      "title": "Cách thức hoạt động",
+      "step1": {
+        "title": "Định nghĩa định dạng của bạn",
+        "description": "Xác định cấu trúc nội dung—tiêu đề, các phần nội dung chính, điểm liệt kê, dữ liệu phụ, và giới hạn độ dài"
+      },
+      "step2": {
+        "title": "Cung cấp bối cảnh",
+        "description": "Gửi dữ liệu sản phẩm, chủ đề hoặc tài liệu nguồn. LLM sẽ tạo nội dung được tùy chỉnh theo đầu vào của bạn."
+      },
+      "step3": {
+        "title": "Nhận nội dung được định dạng",
+        "description": "Nhận nội dung được cấu trúc một cách hoàn hảo, sẵn sàng cho hệ thống quản lý nội dung, cơ sở dữ liệu hoặc ứng dụng của bạn."
+      }
+    },
+    "example": {
+      "title": "Ví dụ: Tạo mô tả sản phẩm",
+      "schemaTitle": "Mẫu nội dung của bạn",
+      "outputTitle": "Nội dung được tạo ra",
+      "note": "Mỗi phần nội dung đều phù hợp với các ràng buộc lược đồ của bạn—giới hạn độ dài, các trường bắt buộc và giới hạn mảng."
+    },
+    "applications": {
+      "title": "Ứng dụng",
+      "productDescriptions": {
+        "title": "Mô tả sản phẩm",
+        "description": "Tạo nội dung sản phẩm nhất quán và thu hút quy mô lớn. Xác định cấu trúc cho tính năng, lợi ích, thông số kỹ thuật và từ khóa SEO — sau đó sinh ra hàng nghìn mô tả một cách tự động.",
+        "examples": [
+          "Danh sách thương mại điện tử",
+          "Trang danh mục",
+          "Danh sách trên chợ thị trường",
+          "Thông số sản phẩm"
+        ]
+      },
+      "marketingCopy": {
+        "title": "Nội dung tiếp thị",
+        "description": "Tạo nội dung tiếp thị có cấu trúc với định dạng nhất quán. Tiêu đề, nội dung chính, nút kêu gọi hành động và dữ liệu meta đều tuân thủ đúng hướng dẫn thương hiệu của bạn.",
+        "examples": [
+          "Lời quảng cáo",
+          "Trang đích",
+          "Chiến dịch email",
+          "Bài đăng trên mạng xã hội"
+        ]
+      },
+      "documentation": {
+        "title": "Tài liệu hướng dẫn",
+        "description": "Tạo tài liệu kỹ thuật với cấu trúc nhất quán. Tài liệu API, hướng dẫn người dùng và bài viết trợ giúp đều tuân theo các mẫu đã xác định của bạn.",
+        "examples": [
+          "Tài liệu API",
+          "Hướng dẫn người dùng",
+          "Tạo câu hỏi thường gặp",
+          "Ghi chú phát hành"
+        ]
+      },
+      "personalizedContent": {
+        "title": "Nội dung được cá nhân hóa",
+        "description": "Tạo nội dung cá nhân hóa quy mô lớn. Tạo email, đề xuất và báo cáo cá nhân hóa dựa trên dữ liệu người dùng, đồng thời duy trì cấu trúc nhất quán.",
+        "examples": [
+          "Thư điện tử cá nhân hóa",
+          "Báo cáo tùy chỉnh",
+          "Gợi ý",
+          "Thông báo"
+        ]
+      }
+    },
+    "benefits": {
+      "title": "Tại sao {{appName}} cho Tạo nội dung?",
+      "lengthControl": {
+        "title": "Kiểm soát độ dài",
+        "description": "Đặt giới hạn độ dài cho tiêu đề, mô tả và nội dung chính. Không bao giờ vượt quá giới hạn của nền tảng."
+      },
+      "consistentStructure": {
+        "title": "Cấu trúc nhất quán",
+        "description": "Mỗi phần nội dung đều tuân theo định dạng bạn đã xác định. Lý tưởng cho mẫu và tạo khối lượng lớn."
+      },
+      "scaleInstantly": {
+        "title": "Mở rộng ngay lập tức",
+        "description": "Tạo hàng trăm nội dung chỉ với một điểm cuối. Chất lượng tương tự, thời gian chỉ bằng một phần nhỏ."
+      }
+    },
+    "cta": {
+      "title": "Bắt đầu tạo nội dung ngay hôm nay",
+      "subtitle": "Tạo điểm cuối sinh nội dung đầu tiên của bạn trong vài phút. Mở rộng từ một lên hàng nghìn ngay lập tức."
+    }
+  }
+}

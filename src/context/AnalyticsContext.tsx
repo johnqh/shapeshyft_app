@@ -4,24 +4,36 @@
  * Uses hashed user IDs for privacy-preserving analytics
  */
 
-import { useCallback, useEffect, useState, useMemo, type ReactNode } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+  type ReactNode,
+} from "react";
 import {
   logEvent,
   setUserId,
   setUserProperties,
   type Analytics,
-} from 'firebase/analytics';
-import { getFirebaseAnalytics, IS_DEVELOPMENT } from '../config/firebase';
+} from "firebase/analytics";
+import { getFirebaseAnalytics, IS_DEVELOPMENT } from "../config/firebase";
 import {
   hashUserId,
   AnalyticsEvents,
   type AnalyticsEvent,
   type AnalyticsEventParams,
-} from '../utils/analytics';
-import { useApi } from '../hooks/useApi';
-import { AnalyticsContext, type AnalyticsContextValue } from './analyticsContextDef';
+} from "../utils/analytics";
+import { useApi } from "../hooks/useApi";
+import {
+  AnalyticsContext,
+  type AnalyticsContextValue,
+} from "./analyticsContextDef";
 
-export { AnalyticsContext, type AnalyticsContextValue } from './analyticsContextDef';
+export {
+  AnalyticsContext,
+  type AnalyticsContextValue,
+} from "./analyticsContextDef";
 
 interface AnalyticsProviderProps {
   children: ReactNode;
@@ -56,7 +68,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
           setUserId(analytics, hash);
           setUserProperties(analytics, {
             user_hash: hash,
-            test_mode: testMode ? 'true' : 'false',
+            test_mode: testMode ? "true" : "false",
           });
         }
       } else {
@@ -85,7 +97,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
 
       logEvent(analytics, event.event as string, parameters);
     },
-    [analytics, userHash, testMode]
+    [analytics, userHash, testMode],
   );
 
   /**
@@ -101,7 +113,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
         },
       });
     },
-    [trackEvent]
+    [trackEvent],
   );
 
   /**
@@ -117,7 +129,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
         },
       });
     },
-    [trackEvent]
+    [trackEvent],
   );
 
   /**
@@ -133,7 +145,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
         },
       });
     },
-    [trackEvent]
+    [trackEvent],
   );
 
   /**
@@ -147,7 +159,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
 
       setUserProperties(analytics, { [name]: value });
     },
-    [analytics]
+    [analytics],
   );
 
   const value = useMemo<AnalyticsContextValue>(
@@ -160,7 +172,15 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
       isAnalyticsEnabled: !IS_DEVELOPMENT && !!analytics,
       userHash,
     }),
-    [trackEvent, trackPageView, trackButtonClick, trackError, setUserProperty, analytics, userHash]
+    [
+      trackEvent,
+      trackPageView,
+      trackButtonClick,
+      trackError,
+      setUserProperty,
+      analytics,
+      userHash,
+    ],
   );
 
   return (
@@ -169,4 +189,3 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
     </AnalyticsContext.Provider>
   );
 }
-
