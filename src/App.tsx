@@ -27,6 +27,10 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const AppSettingsPage = lazy(() => import('./pages/SettingsPage'));
+const UseCasesPage = lazy(() => import('./pages/use-cases/UseCasesPage'));
+const UseCasesTextPage = lazy(() => import('./pages/use-cases/UseCasesTextPage'));
+const UseCasesDataPage = lazy(() => import('./pages/use-cases/UseCasesDataPage'));
+const UseCasesContentPage = lazy(() => import('./pages/use-cases/UseCasesContentPage'));
 const DashboardPage = lazy(() => import('./pages/dashboard/DashboardPage'));
 const ProjectsPage = lazy(() => import('./pages/dashboard/ProjectsPage'));
 const ProjectNewPage = lazy(() => import('./pages/dashboard/ProjectNewPage'));
@@ -95,6 +99,10 @@ function App() {
                       <Route path="pricing" element={<PricingPage />} />
                       <Route path="docs" element={<DocsPage />} />
                       <Route path="docs/:section" element={<DocsPage />} />
+                      <Route path="use-cases" element={<UseCasesPage />} />
+                      <Route path="use-cases/text" element={<UseCasesTextPage />} />
+                      <Route path="use-cases/data" element={<UseCasesDataPage />} />
+                      <Route path="use-cases/content" element={<UseCasesContentPage />} />
                       <Route path="about" element={<AboutPage />} />
                       <Route path="contact" element={<ContactPage />} />
                       <Route path="privacy" element={<PrivacyPage />} />

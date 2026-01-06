@@ -3,6 +3,7 @@
   "companyName": "Sudobility",
   "navigation": {
     "home": "Home",
+    "useCases": "Use Cases",
     "docs": "Docs",
     "pricing": "Pricing",
     "dashboard": "Dashboard",
@@ -87,6 +88,10 @@
   },
   "breadcrumbs": {
     "home": "Home",
+    "useCases": "Use Cases",
+    "useCasesText": "Text Classification",
+    "useCasesData": "Data Extraction",
+    "useCasesContent": "Content Generation",
     "pricing": "Pricing",
     "docs": "Documentation",
     "about": "About",

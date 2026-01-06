@@ -353,7 +353,7 @@ function SubscriptionPage() {
         </div>
       ) : (
         <>
-          {/* Free tier tile - shown first */}
+          {/* Free tier tile - shown first, no radio button */}
           <SubscriptionTile
             key="free"
             id="free"
@@ -365,6 +365,7 @@ function SubscriptionPage() {
             onSelect={() => setSelectedPlan(null)}
             topBadge={!currentSubscription?.isActive ? { text: t('badges.currentPlan', 'Current Plan'), color: 'green' } : undefined}
             disabled={isPurchasing || isRestoring}
+            hideSelectionIndicator
           />
           {/* Paid plans */}
           {filteredProducts.map((product) => (

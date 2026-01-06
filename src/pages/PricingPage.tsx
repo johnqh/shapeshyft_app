@@ -237,7 +237,7 @@ function PricingPage() {
               gap: '1.5rem',
             }}
           >
-            {/* Free Tier - no CTA button */}
+            {/* Free Tier - no CTA button or radio */}
             <SubscriptionTile
               id="free"
               title="Free"
@@ -247,6 +247,7 @@ function PricingPage() {
               isSelected={false}
               onSelect={handleFreePlanClick}
               topBadge={!hasActiveSubscription ? { text: t('badges.currentPlan', 'Current Plan'), color: 'green' } : undefined}
+              hideSelectionIndicator
             />
 
             {/* Paid Plans with CTA buttons */}

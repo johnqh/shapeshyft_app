@@ -126,14 +126,9 @@ function GettingStartedContent() {
 
   return (
     <div className="space-y-8 max-w-3xl">
-      <div>
-        <h1 className="text-2xl font-bold text-theme-text-primary mb-2">
-          {t('gettingStarted.title')}
-        </h1>
-        <p className="text-theme-text-secondary">
-          {t('subtitle')}
-        </p>
-      </div>
+      <p className="text-theme-text-secondary">
+        {t('subtitle')}
+      </p>
 
       <div className="space-y-4">
         {steps.map((step, index) => (
@@ -163,12 +158,6 @@ function ConceptsContent() {
 
   return (
     <div className="space-y-10 max-w-3xl">
-      <div>
-        <h1 className="text-2xl font-bold text-theme-text-primary mb-2">
-          {t('concepts.title')}
-        </h1>
-      </div>
-
       {/* Endpoints */}
       <div>
         <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
@@ -194,13 +183,23 @@ function ConceptsContent() {
         </div>
       </div>
 
-      {/* JSON Schemas */}
+      {/* Input Schema */}
       <div>
         <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
-          {t('concepts.schemas.title')}
+          {t('concepts.inputSchema.title')}
         </h2>
         <p className="text-theme-text-secondary">
-          {t('concepts.schemas.description')}
+          {t('concepts.inputSchema.description')}
+        </p>
+      </div>
+
+      {/* Output Schema */}
+      <div>
+        <h2 className="text-xl font-semibold text-theme-text-primary mb-3">
+          {t('concepts.outputSchema.title')}
+        </h2>
+        <p className="text-theme-text-secondary">
+          {t('concepts.outputSchema.description')}
         </p>
       </div>
 
@@ -233,14 +232,9 @@ function ApiReferenceContent() {
 
   return (
     <div className="space-y-8 max-w-3xl">
-      <div>
-        <h1 className="text-2xl font-bold text-theme-text-primary mb-2">
-          {t('apiReference.title')}
-        </h1>
-        <p className="text-theme-text-secondary">
-          {t('apiReference.description')}
-        </p>
-      </div>
+      <p className="text-theme-text-secondary">
+        {t('apiReference.description')}
+      </p>
 
       {/* Main Endpoints */}
       <div>

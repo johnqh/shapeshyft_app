@@ -42,9 +42,9 @@ interface TopBarProps {
 }
 
 // Icon components for nav items (styled like heroicons/outline)
-const HomeIcon = ({ className }: { className?: string }) => (
+const LightBulbIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
   </svg>
 );
 
@@ -197,9 +197,9 @@ function TopBar({ variant = 'default' }: TopBarProps) {
     },
   ] : [];
 
-  // Build navigation items
+  // Build navigation items (Home removed - users can click logo to go home)
   const navItems: TopbarNavItem[] = [
-    { id: 'home', label: t('navigation.home'), icon: HomeIcon, href: '/' },
+    { id: 'use-cases', label: t('navigation.useCases'), icon: LightBulbIcon, href: '/use-cases' },
     { id: 'docs', label: t('navigation.docs'), icon: DocumentTextIcon, href: '/docs' },
     { id: 'pricing', label: t('navigation.pricing'), icon: CurrencyDollarIcon, href: '/pricing' },
   ];
