@@ -38,7 +38,10 @@
       "Bash(git add:*)",
       "Bash(npx vitest:*)",
       "Bash(python3:*)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "WebSearch",
+      "WebFetch(domain:community.revenuecat.com)",
+      "WebFetch(domain:www.revenuecat.com)"
     ]
   }
 }

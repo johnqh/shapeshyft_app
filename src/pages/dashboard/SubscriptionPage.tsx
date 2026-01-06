@@ -350,8 +350,8 @@ function SubscriptionPage() {
           <SubscriptionTile
             key="free"
             id="free"
-            title={t('plans.free.title', 'Free')}
-            price={t('plans.free.price', '$0')}
+            title="Free"
+            price="$0"
             periodLabel={t('periods.month')}
             features={getFreeTierFeatures()}
             isSelected={!currentSubscription?.isActive && selectedPlan === null}
