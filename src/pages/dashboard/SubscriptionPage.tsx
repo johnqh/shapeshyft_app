@@ -7,14 +7,17 @@ import {
   useSubscriptionContext,
 } from '@sudobility/subscription-components';
 import { getInfoService } from '@sudobility/di';
-import { InfoType } from '@sudobility/types';
+import { InfoType, type RateLimitTier } from '@sudobility/types';
+import { useRateLimits } from '@sudobility/shapeshyft_client';
 import { useToast } from '../../hooks/useToast';
+import { useApi } from '../../hooks/useApi';
 
 type BillingPeriod = 'monthly' | 'yearly';
 
 function SubscriptionPage() {
   const { t } = useTranslation('subscription');
   const { success } = useToast();
+  const { networkClient, baseUrl, token, isReady } = useApi();
   const {
     products,
     currentSubscription,
@@ -25,10 +28,22 @@ function SubscriptionPage() {
     clearError,
   } = useSubscriptionContext();
 
+  const {
+    config: rateLimitsConfig,
+    refreshConfig: refreshRateLimits,
+  } = useRateLimits(networkClient, baseUrl);
+
   const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>('monthly');
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
+
+  // Fetch rate limits on mount
+  useEffect(() => {
+    if (isReady && token) {
+      refreshRateLimits(token);
+    }
+  }, [isReady, token, refreshRateLimits]);
 
   // Show error via InfoInterface
   useEffect(() => {
@@ -119,20 +134,59 @@ function SubscriptionPage() {
     return t('trial.days', { count: parseInt(num, 10) });
   };
 
-  const getProductFeatures = (identifier: string): string[] => {
-    // Extract tier from product identifier (e.g., "shapeshyft_developer_monthly" -> "developer")
-    const lowerIdentifier = identifier.toLowerCase();
-    if (lowerIdentifier.includes('enterprise')) {
-      return t('features.enterprise', { returnObjects: true }) as string[];
+  /**
+   * Get the rate limit tier that matches a product's entitlement
+   */
+  const getRateLimitTierForProduct = (entitlement?: string): RateLimitTier | undefined => {
+    if (!rateLimitsConfig?.tiers) return undefined;
+
+    // Use the entitlement from the product (set in RevenueCat offering metadata)
+    if (entitlement) {
+      return rateLimitsConfig.tiers.find(tier => tier.entitlement === entitlement);
     }
-    if (lowerIdentifier.includes('pro')) {
-      return t('features.pro', { returnObjects: true }) as string[];
+
+    // Fallback to free tier if no entitlement specified
+    return rateLimitsConfig.tiers.find(tier => tier.entitlement === 'none');
+  };
+
+  /**
+   * Format rate limit value for display
+   */
+  const formatRateLimit = (limit: number | null): string => {
+    if (limit === null) return t('rateLimits.unlimited', 'Unlimited');
+    return limit.toLocaleString();
+  };
+
+  /**
+   * Get rate limit features as strings for a product
+   */
+  const getRateLimitFeatures = (entitlement?: string): string[] => {
+    const tier = getRateLimitTierForProduct(entitlement);
+    if (!tier) return [];
+
+    const features: string[] = [];
+
+    if (tier.limits.hourly !== null) {
+      features.push(t('rateLimits.hourly', '{{limit}} requests/hour', { limit: formatRateLimit(tier.limits.hourly) }));
     }
-    if (lowerIdentifier.includes('developer')) {
-      return t('features.developer', { returnObjects: true }) as string[];
+    if (tier.limits.daily !== null) {
+      features.push(t('rateLimits.daily', '{{limit}} requests/day', { limit: formatRateLimit(tier.limits.daily) }));
     }
-    // Fallback to empty array if no tier match
-    return [];
+    if (tier.limits.monthly !== null) {
+      features.push(t('rateLimits.monthly', '{{limit}} requests/month', { limit: formatRateLimit(tier.limits.monthly) }));
+    }
+
+    // If all limits are null, show unlimited
+    if (tier.limits.hourly === null && tier.limits.daily === null && tier.limits.monthly === null) {
+      features.push(t('rateLimits.unlimitedRequests', 'Unlimited API requests'));
+    }
+
+    return features;
+  };
+
+  const getProductFeatures = (entitlement?: string): string[] => {
+    // Only show rate limit features from the API based on product entitlement
+    return getRateLimitFeatures(entitlement);
   };
 
   const billingPeriodOptions = [
@@ -163,6 +217,17 @@ function SubscriptionPage() {
                   label: t('currentStatus.willRenew'),
                   value: currentSubscription.willRenew ? t('common.yes') : t('common.no'),
                 },
+                // Rate limit usage fields
+                ...(rateLimitsConfig ? [
+                  {
+                    label: t('currentStatus.monthlyUsage', 'Monthly Usage'),
+                    value: `${rateLimitsConfig.currentUsage.monthly.toLocaleString()} / ${formatRateLimit(rateLimitsConfig.currentLimits.monthly)}`,
+                  },
+                  {
+                    label: t('currentStatus.dailyUsage', 'Daily Usage'),
+                    value: `${rateLimitsConfig.currentUsage.daily.toLocaleString()} / ${formatRateLimit(rateLimitsConfig.currentLimits.daily)}`,
+                  },
+                ] : []),
               ],
             }
           : undefined,
@@ -217,10 +282,10 @@ function SubscriptionPage() {
             title={product.title}
             price={product.priceString}
             periodLabel={getPeriodLabel(product.period)}
-            features={getProductFeatures(product.identifier)}
+            features={getProductFeatures(product.entitlement)}
             isSelected={selectedPlan === product.identifier}
             onSelect={() => setSelectedPlan(product.identifier)}
-            isBestValue={product.identifier.toLowerCase().includes('pro')}
+            isBestValue={product.entitlement === 'pro'}
             discountBadge={
               product.period?.includes('Y')
                 ? { text: t('badges.saveYearly'), isBestValue: true }

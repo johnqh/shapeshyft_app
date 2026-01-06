@@ -6,12 +6,25 @@ import {
 import { useAuthStatus } from '@sudobility/auth-components';
 import { getInfoService } from '@sudobility/di';
 import { InfoType } from '@sudobility/types';
+import { SafeSubscriptionContext } from './SafeSubscriptionContext';
 
 const REVENUECAT_API_KEY = import.meta.env.VITE_REVENUECAT_API_KEY || '';
 const ENTITLEMENT_ID = import.meta.env.VITE_REVENUECAT_ENTITLEMENT_ID || 'premium';
 
 interface SubscriptionProviderWrapperProps {
   children: ReactNode;
+}
+
+/**
+ * Bridge component that exposes the real subscription context to SafeSubscriptionContext
+ */
+function SafeContextBridge({ children }: { children: ReactNode }) {
+  const subscriptionValue = useSubscriptionContext();
+  return (
+    <SafeSubscriptionContext.Provider value={subscriptionValue}>
+      {children}
+    </SafeSubscriptionContext.Provider>
+  );
 }
 
 /**
@@ -58,7 +71,9 @@ export function SubscriptionProviderWrapper({ children }: SubscriptionProviderWr
       entitlementId={ENTITLEMENT_ID}
       onError={handleSubscriptionError}
     >
-      <SubscriptionInitializer>{children}</SubscriptionInitializer>
+      <SafeContextBridge>
+        <SubscriptionInitializer>{children}</SubscriptionInitializer>
+      </SafeContextBridge>
     </SubscriptionProvider>
   );
 }

@@ -21,7 +21,7 @@ function HomePage() {
   };
 
   return (
-    <ScreenContainer footerVariant="full">
+    <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/"
         keywords="LLM API, structured output, JSON Schema, AI API, OpenAI, Anthropic, Claude, GPT, REST API"

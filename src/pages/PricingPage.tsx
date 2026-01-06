@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useAuthStatus } from '@sudobility/auth-components';
-import { useSubscriptionContext } from '@sudobility/subscription-components';
+import { useSafeSubscriptionContext } from '../components/providers/SafeSubscriptionContext';
 import ScreenContainer from '../components/layout/ScreenContainer';
 import SEO from '../components/seo/SEO';
 import AISearchOptimization from '../components/seo/AISearchOptimization';
@@ -9,7 +9,7 @@ import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 function PricingPage() {
   const { t } = useTranslation('pricing');
   const { user, openModal } = useAuthStatus();
-  const { currentSubscription } = useSubscriptionContext();
+  const { currentSubscription } = useSafeSubscriptionContext();
   const { navigate } = useLocalizedNavigate();
 
   const isAuthenticated = !!user;

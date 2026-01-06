@@ -52,13 +52,7 @@ function Footer({ variant = 'full' }: FooterProps) {
 
   return (
     <FooterContainer variant="full">
-      <FooterGrid>
-        <FooterBrand description="Transform LLM outputs into structured APIs. Build reliable AI-powered endpoints with schema validation.">
-          <LocalizedLink to="/">
-            <img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-8" />
-          </LocalizedLink>
-        </FooterBrand>
-
+      <FooterGrid className="md:grid-cols-3">
         <FooterLinkSection title="Product">
           <FooterLink>
             <LocalizedLink to="/docs">Documentation</LocalizedLink>
@@ -100,6 +94,11 @@ function Footer({ variant = 'full' }: FooterProps) {
       </FooterGrid>
 
       <FooterBottom>
+        <FooterBrand description="Transform LLM outputs into structured APIs. Build reliable AI-powered endpoints with schema validation." className="flex flex-col items-center">
+          <LocalizedLink to="/">
+            <img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-8" />
+          </LocalizedLink>
+        </FooterBrand>
         <FooterVersion version={CONSTANTS.APP_VERSION} />
         <FooterCopyright year={currentYear} companyName={CONSTANTS.COMPANY_NAME} />
       </FooterBottom>
