@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "仪表板",
+  "welcome": "欢迎回来，{{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "项目",
+    "providers": "提供者",
+    "analytics": "分析",
+    "budgets": "预算",
+    "subscription": "订阅",
+    "rateLimits": "速率限制",
+    "settings": "设置"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "项目",
+    "empty": "暂无项目",
+    "emptyDescription": "创建您的第一个项目以开始",
+    "create": "创建项目",
+    "useTemplate": "使用模板",
+    "notFound": "项目未找到",
+    "backToProjects": "返回项目",
+    "confirmDelete": "您确定要删除这个项目吗？",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} 个端点",
+      "created": "创建于 {{date}}",
+      "active": "活跃的",
+      "inactive": "不活跃"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
-      "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "title": "创建项目",
+      "titleEdit": "编辑项目",
+      "projectName": "项目名称",
+      "projectNamePlaceholder": "我的项目",
+      "projectNameHint": "仅限小写字母、数字和连字符",
+      "displayName": "显示名称",
+      "displayNamePlaceholder": "我的项目",
+      "description": "描述",
+      "descriptionPlaceholder": "该项目的作用",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "显示名称是必需的",
+        "nameTooShort": "名称必须至少为2个字符"
       },
       "slugPreview": "Slug"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "端点",
+    "empty": "暂无端点",
+    "emptyDescription": "为此项目创建您的第一个端点",
+    "create": "创建端点",
+    "test": "测试",
+    "notFound": "未找到端点",
+    "backToProject": "返回项目",
+    "updated": "端点更新成功",
+    "confirmDelete": "您确定要删除这个端点吗？",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "通用",
+      "input": "输入",
+      "output": "输出",
+      "test": "测试"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "方法",
+      "type": "类型"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "端点类型",
+      "instructions": "使用说明",
+      "context": "系统上下文",
+      "inputSchema": "输入模式",
+      "outputSchema": "输出模式"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
-      "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "title": "创建端点",
+      "titleEdit": "编辑端点",
+      "endpointName": "端点名称",
+      "endpointNamePlaceholder": "我的端点",
+      "displayName": "显示名称",
+      "displayNamePlaceholder": "我的端点",
+      "instructions": "使用说明",
+      "instructionsPlaceholder": "LLM的任务说明",
+      "httpMethod": "HTTP 方法",
+      "llmKey": "提供者",
+      "selectKey": "选择一个提供方",
+      "noKeys": "未配置API密钥。请先添加一个。",
+      "context": "系统上下文",
+      "contextPlaceholder": "LLM的使用说明（系统提示）",
+      "useInputSchema": "定义输入模式",
+      "useOutputSchema": "定义输出模式",
+      "inputSchema": "输入模式",
+      "outputSchema": "输出模式",
+      "invalidJson": "无效的 JSON",
+      "create": "创建端点",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "显示名称是必需的",
+        "slugRequired": "端点名称是必需的",
+        "keyRequired": "需要提供方",
+        "invalidInputSchema": "无效的输入模式JSON",
+        "invalidOutputSchema": "无效的输出模式JSON"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "测试端点",
+      "input": "输入",
+      "generateSample": "生成示例",
+      "viewPrompt": "查看提示",
+      "prompt": "生成的提示",
+      "execute": "执行",
+      "executing": "执行中...",
+      "response": "响应",
+      "success": "成功",
+      "failed": "失败",
+      "invalidJson": "无效的JSON输入",
+      "output": "输出",
+      "latency": "延迟",
+      "inputTokens": "输入令牌",
+      "outputTokens": "输出令牌",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "使用",
+        "tokensIn": "代币收入",
+        "tokensOut": "Token 出",
+        "latency": "延迟",
+        "cost": "预计费用"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "提供者",
+    "empty": "未配置任何提供者",
+    "emptyDescription": "添加您的第一个LLM提供商",
+    "add": "添加提供者",
+    "confirmDelete": "您确定要删除这个提供者吗？",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "provider": "提供者",
+      "status": "状态",
+      "active": "活跃的",
+      "inactive": "不活跃"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "title": "添加 API 密钥",
+      "titleEdit": "编辑 API 密钥",
+      "keyName": "密钥名称",
+      "keyNamePlaceholder": "我的 OpenAI 密钥",
+      "provider": "提供者",
+      "apiKey": "API密钥",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "您的密钥在静态时已加密",
+      "leaveBlank": "留空以保留当前设置",
+      "endpointUrl": "端点URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "添加密钥",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "密钥名称是必需的",
+        "apiKeyRequired": "需要API密钥",
+        "endpointRequired": "自定义LM服务器需要提供端点URL"
       }
     },
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "自定义LM服务器"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "分析",
+    "noData": "无分析数据",
+    "noDataDescription": "开始发送API请求以查看分析数据",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "今天",
+      "week": "本周",
+      "month": "本月",
+      "custom": "自定义范围"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "总请求数",
+      "successRate": "成功率",
+      "avgLatency": "平均延迟",
+      "totalCost": "总成本",
+      "tokensUsed": "已使用的令牌",
+      "inputTokens": "输入令牌",
+      "outputTokens": "输出令牌",
+      "requestDistribution": "请求分发",
+      "successful": "成功",
+      "failed": "失败",
+      "byEndpoint": "通过端点"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "随时间变化的请求",
+      "byEndpoint": "通过端点"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
-    "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "title": "项目模板",
+    "subtitle": "从预配置的模板开始",
+    "configure": "配置模板",
+    "projectName": "项目名称",
+    "projectNamePlaceholder": "我的项目",
+    "llmKey": "提供者",
+    "selectKey": "选择一个提供方",
+    "noKeys": "没有可用的 API 密钥。",
+    "addKeyLink": "添加一个第一个",
+    "preview": "预览",
+    "willCreate": "这将创建 {{count}} 个端点：",
+    "apply": "应用模板",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "请填写所有必填字段"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "文本分类器",
+      "description": "将文本分类到类别中"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "情感分析器",
+      "description": "分析情感和情绪"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "数据提取器",
+      "description": "从文本中提取结构化数据"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "内容生成器",
+      "description": "生成摘要和内容"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "本地化",
+      "description": "将文本翻译成多种语言"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "预算",
+    "empty": "未设置预算",
+    "emptyDescription": "设置支出限额以跟踪您的API费用",
+    "add": "添加预算",
+    "confirmDelete": "您确定要删除这个预算吗？",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "每日",
+      "weekly": "每周",
+      "monthly": "每月"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "预算名称",
+      "namePlaceholder": "每月API限额",
+      "limit": "支出限额",
+      "period": "周期",
+      "add": "添加预算"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} 已使用75%的预算",
+      "critical": "{{name}} 已使用90%的预算",
+      "exceeded": "{{name}} 已超出预算",
+      "usage": "当前使用量： {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
+    "editor": "模式编辑器",
+    "visual": "视觉",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "添加属性",
+    "noProperties": "未定义任何属性。添加一个以开始。",
+    "required": "必需的",
+    "descriptionPlaceholder": "物业描述（可选）",
+    "arrayItemSchema": "数组项模式：",
+    "clickToEditName": "点击以编辑字段名称",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "string": "字符串",
+      "number": "数字",
+      "integer": "整数",
+      "boolean": "布尔",
+      "object": "对象",
+      "array": "数组"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "设置",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
+      "title": "组织",
+      "description": "配置您的组织设置。组织路径将用于您的 API URL 中。",
+      "name": "组织名称",
+      "namePlaceholder": "我的组织",
+      "nameHint": "组织的可选显示名称",
+      "path": "组织路径",
       "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "pathHint": "用于API URL中：/api/v1/ai/{org_path}/...",
+      "pathTaken": "此路径已被占用",
+      "pathInvalid": "仅允许字母、数字和下划线",
+      "apiUrlPreview": "API URL 预览："
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "保存更改",
+      "saving": "保存中...",
+      "saved": "设置已成功保存",
+      "error": "保存设置失败"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "项目 API 密钥",
+    "description": "使用此密钥对您的端点的 API 请求进行身份验证。将其作为查询参数（api_key=...）或授权头中的 Bearer 令牌包含在内。",
+    "createdAt": "创建了",
+    "show": "显示API密钥",
+    "hide": "隐藏API密钥",
+    "copy": "复制API密钥",
+    "refresh": "刷新API密钥",
+    "copied": "已复制！",
+    "copiedMessage": "API密钥已复制到剪贴板",
+    "refreshed": "API密钥已刷新",
+    "refreshedMessage": "您的 API 密钥已刷新。请确保在应用程序中更新它。",
+    "confirmRefreshTitle": "刷新API密钥？",
+    "confirmRefreshMessage": "这将使当前的 API 密钥失效。任何使用旧密钥的应用程序将立即停止工作。",
+    "confirmRefresh": "刷新密钥"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "IP 白名单",
+    "description": "将端点访问限制为特定IP地址。留空以允许所有IP。",
+    "allAllowed": "允许所有IP地址",
+    "placeholder": "输入IPv4地址（例如：192.168.1.1）",
+    "add": "添加",
+    "removeIp": "删除 {{ip}}",
+    "invalidIp": "无效的IPv4地址",
+    "duplicateIp": "此IP地址已在列表中"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "速率限制",
+    "loading": "加载中...",
+    "error": "加载速率限制失败",
+    "retry": "重试",
+    "upgradeButton": "升级计划",
+    "currentTier": "当前",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "当前限制",
+      "usageHistory": "使用记录"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "每小时",
+      "daily": "每日",
+      "monthly": "每月"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "速率限制",
+      "currentUsage": "当前使用量",
+      "planComparison": "套餐比较",
+      "used": "用过的",
+      "limit": "限制",
+      "unlimited": "无限",
+      "remaining": "剩余"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "使用记录",
+      "requests": "请求",
+      "noData": "此期间无可用的使用数据"
     }
   }
 }

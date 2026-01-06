@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "Условия использования — {{appName}}",
+    "description": "Прочтите условия использования API-платформы {{appName}."
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Условия использования",
+  "lastUpdated": "Последнее обновление: {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. Принятие условий",
+      "content": "Используя или применяя {{appName}}, вы подтверждаете свое согласие с данными Условиями использования. Если вы не согласны с этими условиями, пожалуйста, не используйте наш сервис."
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. Описание услуги",
+      "content": "{{appName}} предоставляет платформу API, которая преобразует выходные данные LLM в структурированные данные с использованием проверки схемы JSON. Мы выступаем в качестве промежуточного ПО между вашими приложениями и различными поставщиками LLM."
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. Учетные записи пользователей",
+      "description": "При создании учетной записи вы соглашаетесь с:",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "Предоставьте точную и полную информацию",
+        "Сохраняйте безопасность учетных данных вашего аккаунта",
+        "Принять на себя ответственность за все действия, совершенные под вашей учетной записью",
+        "Сообщите нам немедленно о любом несанкционированном доступе"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. Допустимое использование",
+      "description": "Вы соглашаетесь не использовать {{appName}} для:",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "Нарушать любые применимые законы или правила",
+        "Нарушить права интеллектуальной собственности",
+        "Передавать вредоносный код или проводить атаки",
+        "Попытка получить неавторизованный доступ к нашим системам",
+        "Перепродавать или распространять наши услуги без разрешения"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. Использование API и лимиты запросов",
+      "content": "Использование вами API подчиняется ограничениям скорости в зависимости от вашего тарифного плана. Мы оставляем за собой право ограничить или приостановить доступ при чрезмерном использовании или злоупотреблении."
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. Интеллектуальная собственность",
+      "content": "{{appName}} и его исходный контент, функции и функциональность принадлежат Sudobility и охраняются международным авторским правом, правом на товарные знаки и другими законами об интеллектуальной собственности. Ваши данные и выходные данные API остаются вашими."
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. Ограничение ответственности",
+      "content": "{{appName}} предоставляется «как есть» без каких-либо гарантий. Мы не несём ответственности за какие-либо косвенные, случайные, особые, последствия или штрафные убытки, возникшие в результате использования вами сервиса."
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. Прекращение",
+      "content": "Мы можем в любое время прекратить действие вашего аккаунта или временно его заблокировать за нарушение этих условий. Вы можете в любое время отменить свой аккаунт через настройки аккаунта."
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. Изменения в условиях",
+      "content": "Мы оставляем за собой право в любое время вносить изменения в эти условия. Мы уведомим вас о существенных изменениях по электронной почте или через сервис. Продолжение использования после внесения изменений означает принятие новых условий."
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. Контактная информация",
+      "description": "По вопросам к данным Условиям использования, пожалуйста, свяжитесь с нами:",
+      "email": "Почта:"
     }
   }
 }

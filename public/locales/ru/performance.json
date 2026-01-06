@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "Производительность и оптимизация",
+  "title": "Мониторинг производительности",
+  "description": "Мониторинг основных показателей веб-производительности, производительности пакетов и задержки API для обеспечения оптимального пользовательского опыта.",
   "quickStats": {
-    "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
+    "lazyLoad": "Ленивая загрузка",
+    "codeSplitting": "Разделение кода",
     "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "offlineCache": "Офлайн-кэш",
+    "preloading": "Предварительная загрузка",
+    "routePrefetch": "Предварительная загрузка маршрутов",
+    "lcpTarget": "Цель LCP"
   },
   "webVitals": {
-    "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "title": "Ядра веб-показателей",
+    "description": "Мониторинг метрик Core Web Vitals в режиме реального времени.",
     "lcp": {
-      "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "title": "Наибольший отображаемый элемент",
+      "description": "Время на отрисовку самого большого элемента"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "Задержка первого ввода",
+      "description": "Время до взаимодействия с ответом"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "Суммарное смещение макета",
+      "description": "Оценка визуальной стабильности"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
-    "react": "React:",
+    "title": "Оптимизация пакета",
+    "description": "Разбиение кода и отложенная загрузка для уменьшения размера начального пакета.",
+    "lazyLoadingStates": "Состояния ленивой загрузки",
+    "componentLoading": "Загрузка компонента...",
+    "componentLoaded": "Компонент загружен",
+    "bundleAnalysis": "Анализ пакета",
+    "react": "React",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "UI-компоненты:",
+    "charts": "Графики:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "Производительность API",
+    "description": "Мониторинг времени отклика API и эффективности кэширования.",
+    "currentLatency": "Текущая задержка API",
+    "averageResponseTime": "Среднее время отклика",
+    "cacheStatus": "Состояние кэша",
+    "freshData": "Свежие данные",
+    "recentlyFetched": "Недавно получено",
+    "staleData": "Устаревшие данные",
+    "needsRefresh": "Требуется обновление",
+    "cachingStrategy": "Стратегия кэширования"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "Рекомендации по оптимизации производительности",
+    "doThis": "Сделай это",
+    "avoidThis": "Избегайте этого",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "Используйте разделение кода для функций панели мониторинга",
+      "lazyLoading": "Реализуйте ленивую загрузку изображений и компонентов",
+      "cacheApi": "Кэшируйте ответы API с помощью TanStack Query",
+      "preloadRoutes": "Предварительно загружайте маршруты при наведении для мгновенного перехода",
+      "monitorVitals": "Мониторинг основных показателей веб-производительности в среде production",
+      "serviceWorker": "Используйте сервисный рабочий процесс для поддержки оффлайн-режима"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "Загрузка всех компонентов немедленно при первоначальной загрузке страницы",
+      "redundantCalls": "Избыточные вызовы API без кэширования",
+      "layoutShifts": "Вызывает смещения макета с динамическим содержимым",
+      "blockingRender": "Использование блокирующего отображения для не критичных функций",
+      "ignoreNetwork": "Игнорирование условий сети при загрузке ресурсов",
+      "noTreeShaking": "Импорт больших библиотек без дерева-обрезки"
     }
   }
 }

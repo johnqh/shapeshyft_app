@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "性能与优化",
+  "title": "性能监控",
+  "description": "监控核心Web指标、捆绑包性能和API延迟，以确保最佳用户体验。",
   "quickStats": {
-    "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
-    "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "lazyLoad": "懒加载",
+    "codeSplitting": "代码分割",
+    "serviceWorker": "服务工作者",
+    "offlineCache": "离线缓存",
+    "preloading": "预加载",
+    "routePrefetch": "路由预取",
+    "lcpTarget": "LCP 目标"
   },
   "webVitals": {
-    "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "title": "核心网页指标",
+    "description": "实时监控核心网页指标（Core Web Vitals）数据。",
     "lcp": {
-      "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "title": "最大内容绘制",
+      "description": "渲染最大元素所需时间"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "首次输入延迟",
+      "description": "交互响应时间"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "累积布局偏移",
+      "description": "视觉稳定性评分"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
-    "react": "React:",
-    "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "title": "捆绑优化",
+    "description": "代码拆分和懒加载以减小初始包大小。",
+    "lazyLoadingStates": "懒加载状态",
+    "componentLoading": "组件加载中...",
+    "componentLoaded": "组件已加载",
+    "bundleAnalysis": "捆绑分析",
+    "react": "React",
+    "firebase": "Firebase：",
+    "uiComponents": "用户界面组件：",
+    "charts": "图表："
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "API性能",
+    "description": "监控API响应时间及缓存有效性。",
+    "currentLatency": "当前API延迟",
+    "averageResponseTime": "平均响应时间",
+    "cacheStatus": "缓存状态",
+    "freshData": "最新数据",
+    "recentlyFetched": "最近获取的",
+    "staleData": "过期数据",
+    "needsRefresh": "需要刷新",
+    "cachingStrategy": "缓存策略"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "性能最佳实践",
+    "doThis": "执行此操作",
+    "avoidThis": "避免此行为",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "为仪表板功能使用代码拆分",
+      "lazyLoading": "实现图片和组件的懒加载",
+      "cacheApi": "使用 TanStack Query 缓存 API 响应",
+      "preloadRoutes": "悬停时预加载路由，实现即时导航",
+      "monitorVitals": "在生产环境中监控核心Web指标",
+      "serviceWorker": "使用服务工作者实现离线支持"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "在初始页面加载时立即加载所有组件",
+      "redundantCalls": "未缓存情况下重复调用API",
+      "layoutShifts": "动态内容导致的布局偏移",
+      "blockingRender": "对非关键功能使用阻塞渲染",
+      "ignoreNetwork": "忽略网络状况进行资源加载",
+      "noTreeShaking": "导入大型库但未进行摇树优化"
     }
   }
 }

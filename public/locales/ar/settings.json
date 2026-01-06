@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "الإعدادات - {{appName}}",
+    "description": "قم بتكوين تجربة {{appName}} الخاصة بك مع إعدادات الموضوع والعرض."
   },
-  "title": "Settings",
+  "title": "الإعدادات",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "المظهر",
+    "description": "قم بتعديل مظهر التطبيق وطريقة عمله."
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "description": "Choose your preferred color theme."
+    "label": "السمة",
+    "light": "الضوء",
+    "dark": "الداكن",
+    "system": "النظام",
+    "description": "اختر موضوع اللون المفضل لديك."
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
-    "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "label": "حجم الخط",
+    "small": "صغير",
+    "medium": "الوسيلة الوسطى",
+    "large": "الكبير",
+    "description": "قم بتعديل حجم النص لتحسين الوضوح."
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "حول الإعدادات",
+    "description": "تُحفظ تفضيلاتك تلقائيًا وتبقى سارية بين الجلسات."
   }
 }

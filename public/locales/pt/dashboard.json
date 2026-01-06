@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "Painel",
+  "welcome": "Bem-vindo de volta, {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
+    "projects": "Projetos",
+    "providers": "Fornecedores",
     "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "budgets": "Orçamentos",
+    "subscription": "Assinatura",
+    "rateLimits": "Limites de Taxa",
+    "settings": "Configurações"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "Projetos",
+    "empty": "Ainda não há projetos",
+    "emptyDescription": "Crie seu primeiro projeto para começar",
+    "create": "Criar Projeto",
+    "useTemplate": "Use o modelo",
+    "notFound": "Projeto não encontrado",
+    "backToProjects": "Voltar para os projetos",
+    "confirmDelete": "Você tem certeza de que deseja excluir este projeto?",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} ponto(s) de extremidade",
+      "created": "Criado {{date}}",
+      "active": "Ativo",
+      "inactive": "Inativo"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
-      "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "title": "Criar Projeto",
+      "titleEdit": "Editar Projeto",
+      "projectName": "Nome do Projeto",
+      "projectNamePlaceholder": "meu-projeto",
+      "projectNameHint": "Apenas letras minúsculas, números e hifens",
+      "displayName": "Nome para exibição",
+      "displayNamePlaceholder": "Meu Projeto",
+      "description": "Descrição",
+      "descriptionPlaceholder": "O que este projeto faz",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "O nome de exibição é obrigatório",
+        "nameTooShort": "O nome deve ter pelo menos 2 caracteres"
       },
       "slugPreview": "Slug"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "Pontos de extremidade",
+    "empty": "Ainda não há endpoints",
+    "emptyDescription": "Crie seu primeiro endpoint para este projeto",
+    "create": "Criar Endpoint",
+    "test": "Teste",
+    "notFound": "Endpoint não encontrado",
+    "backToProject": "Voltar para o projeto",
+    "updated": "Endpoint atualizado com sucesso",
+    "confirmDelete": "Você tem certeza de que deseja excluir esta extremidade?",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "Geral",
+      "input": "Entrada",
+      "output": "Saída",
+      "test": "Teste"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "Método",
+      "type": "Tipo"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "Tipo de ponto de extremidade",
+      "instructions": "Instruções",
+      "context": "Contexto do sistema",
+      "inputSchema": "Esquema de Entrada",
+      "outputSchema": "Esquema de saída"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
-      "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "title": "Criar Ponto de Acesso",
+      "titleEdit": "Editar ponto de acesso",
+      "endpointName": "Nome do ponto de extremidade",
+      "endpointNamePlaceholder": "meu-portal",
+      "displayName": "Nome para exibição",
+      "displayNamePlaceholder": "Meu Ponto de Acesso",
+      "instructions": "Instruções",
+      "instructionsPlaceholder": "Instruções da tarefa para o LLM",
+      "httpMethod": "Método HTTP",
+      "llmKey": "Fornecedor",
+      "selectKey": "Selecione um provedor",
+      "noKeys": "Nenhuma chave de API configurada. Adicione uma primeiro.",
+      "context": "Contexto do sistema",
+      "contextPlaceholder": "Instruções para o LLM (prompt do sistema)",
+      "useInputSchema": "Defina o esquema de entrada",
+      "useOutputSchema": "Defina o esquema de saída",
+      "inputSchema": "Esquema de Entrada",
+      "outputSchema": "Esquema de saída",
+      "invalidJson": "JSON inválido",
+      "create": "Criar Ponto de Acesso",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "O nome de exibição é obrigatório",
+        "slugRequired": "O nome do ponto de extremidade é obrigatório",
+        "keyRequired": "O provedor é obrigatório",
+        "invalidInputSchema": "Esquema JSON de entrada inválido",
+        "invalidOutputSchema": "Esquema JSON de saída inválido"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
+      "title": "Testar ponto final",
+      "input": "Entrada",
+      "generateSample": "Gerar amostra",
+      "viewPrompt": "Visualizar Prompt",
+      "prompt": "Prompt gerado",
       "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "executing": "Executando...",
+      "response": "Resposta",
+      "success": "Sucesso",
+      "failed": "Falhou",
+      "invalidJson": "Entrada JSON inválida",
+      "output": "Saída",
+      "latency": "Latência",
+      "inputTokens": "Tokens de entrada",
+      "outputTokens": "Tokens de saída",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "Uso",
+        "tokensIn": "Tokens Em",
+        "tokensOut": "Tokens Saindo",
+        "latency": "Latência",
+        "cost": "Custo Est."
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "Fornecedores",
+    "empty": "Nenhum provedor configurado",
+    "emptyDescription": "Adicione seu primeiro provedor de LLM",
+    "add": "Adicionar provedor",
+    "confirmDelete": "Tem certeza de que deseja excluir este provedor?",
     "card": {
-      "provider": "Provider",
+      "provider": "Provedor",
       "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "active": "Ativo",
+      "inactive": "Inativo"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "title": "Adicionar chave de API",
+      "titleEdit": "Editar chave de API",
+      "keyName": "Nome da Chave",
+      "keyNamePlaceholder": "A minha chave do OpenAI",
+      "provider": "Provedor",
+      "apiKey": "Chave da API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "Sua chave está criptografada em repouso",
+      "leaveBlank": "deixe em branco para manter o atual",
+      "endpointUrl": "URL do ponto de extremidade",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "Adicionar Chave",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "O nome da chave é obrigatório",
+        "apiKeyRequired": "A chave da API é obrigatória",
+        "endpointRequired": "É necessário o URL do ponto final para o servidor LM personalizado"
       }
     },
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "Servidor Personalizado de LM"
     }
   },
   "analytics": {
     "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "noData": "Sem dados de análise",
+    "noDataDescription": "Comece a fazer solicitações de API para ver análises",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "Hoje",
+      "week": "Esta Semana",
+      "month": "Este mês",
+      "custom": "Faixa personalizada"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "Solicitações totais",
+      "successRate": "Taxa de sucesso",
+      "avgLatency": "Latência Média",
+      "totalCost": "Custo Total",
+      "tokensUsed": "Tokens utilizados",
+      "inputTokens": "Tokens de entrada",
+      "outputTokens": "Tokens de saída",
+      "requestDistribution": "Distribuição de Solicitações",
+      "successful": "Bem-sucedido",
+      "failed": "Falhou",
+      "byEndpoint": "Por Endpoint"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "Solicitações ao Longo do Tempo",
+      "byEndpoint": "Por Endpoint"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
-    "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "title": "Modelos de Projeto",
+    "subtitle": "Comece com uma modelo pré-configurado",
+    "configure": "Configurar modelo",
+    "projectName": "Nome do Projeto",
+    "projectNamePlaceholder": "meu-projeto",
+    "llmKey": "Fornecedor",
+    "selectKey": "Selecione um provedor",
+    "noKeys": "Nenhuma chave de API disponível.",
+    "addKeyLink": "Adicione um primeiro",
+    "preview": "Pré-visualização",
+    "willCreate": "Isso criará {{count}} ponto(s) de extremidade:",
+    "apply": "Aplicar modelo",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "Preencha todos os campos obrigatórios"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "Classificador de Texto",
+      "description": "Classifique o texto em categorias"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "Analizador de Sentimentos",
+      "description": "Analise o sentimento e as emoções"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "Extrator de Dados",
+      "description": "Extrair dados estruturados do texto"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "Gerador de Conteúdo",
+      "description": "Gerar resumos e conteúdo"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "Localização",
+      "description": "Traduza o texto para múltiplos idiomas"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "Orçamentos",
+    "empty": "Sem orçamentos definidos",
+    "emptyDescription": "Defina limites de gasto para acompanhar seus custos com a API",
+    "add": "Adicionar orçamento",
+    "confirmDelete": "Tem certeza de que deseja excluir este orçamento?",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "Diário",
+      "weekly": "Semanal",
+      "monthly": "Mensal"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "Nome do orçamento",
+      "namePlaceholder": "Limite Mensal da API",
+      "limit": "Limite de gasto",
+      "period": "Período",
+      "add": "Adicionar orçamento"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} está com 75% do orçamento",
+      "critical": "{{name}} está a 90% do orçamento",
+      "exceeded": "{{name}} ultrapassou o orçamento",
+      "usage": "Uso atual: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
+    "editor": "Editor de Esquema",
     "visual": "Visual",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "Adicionar Propriedade",
+    "noProperties": "Nenhuma propriedade definida. Adicione uma para começar.",
+    "required": "Obrigatório",
+    "descriptionPlaceholder": "Descrição da propriedade (opcional)",
+    "arrayItemSchema": "Esquema do item de matriz:",
+    "clickToEditName": "Clique para editar o nome do campo",
     "types": {
       "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
+      "number": "Número",
+      "integer": "Inteiro",
+      "boolean": "Booleano",
+      "object": "Objeto",
       "array": "Array"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "Configurações",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
+      "title": "Organização",
+      "description": "Configure as configurações da sua organização. O caminho da organização é usado em suas URLs da API.",
+      "name": "Nome da Organização",
+      "namePlaceholder": "Minha Organização",
+      "nameHint": "Nome de exibição opcional para sua organização",
+      "path": "Caminho da Organização",
       "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "pathHint": "Usado em URLs da API: /api/v1/ai/{org_path}/...",
+      "pathTaken": "Este caminho já foi percorrido",
+      "pathInvalid": "Apenas letras, números e underscores são permitidos",
+      "apiUrlPreview": "Visualização da URL da API:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "Salvar alterações",
+      "saving": "Salvando...",
+      "saved": "Configurações salvas com sucesso",
+      "error": "Falha ao salvar as configurações"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "Chave de API do projeto",
+    "description": "Use esta chave para autenticar solicitações de API para seus endpoints. Inclua-a como parâmetro de consulta (api_key=...) ou como token Bearer no cabeçalho de Autorização.",
+    "createdAt": "Criado",
+    "show": "Mostrar chave da API",
+    "hide": "Ocultar chave da API",
+    "copy": "Copiar chave da API",
+    "refresh": "Atualizar chave de API",
+    "copied": "Copiado!",
+    "copiedMessage": "Chave da API copiada para a área de transferência",
+    "refreshed": "Chave da API atualizada",
+    "refreshedMessage": "A sua chave de API foi atualizada. Certifique-se de atualizá-la em suas aplicações.",
+    "confirmRefreshTitle": "Atualizar a chave de API?",
+    "confirmRefreshMessage": "Isso invalidará a chave de API atual. Quaisquer aplicativos usando a chave antiga deixarão de funcionar imediatamente.",
+    "confirmRefresh": "Atualizar Chave"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "Lista de IP permitidos",
+    "description": "Restrinja o acesso ao ponto de extremidade a endereços IP específicos. Deixe em branco para permitir todos os IPs.",
+    "allAllowed": "Todos os IPs permitidos",
+    "placeholder": "Insira o endereço IPv4 (por exemplo, 192.168.1.1)",
+    "add": "Adicionar",
+    "removeIp": "Remova {{ip}}",
+    "invalidIp": "Endereço IPv4 inválido",
+    "duplicateIp": "Este IP já está na lista"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
+    "title": "Limites de Taxa",
+    "loading": "Carregando...",
+    "error": "Falha ao carregar os limites de taxa",
     "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "upgradeButton": "Atualizar Plano",
+    "currentTier": "Atual",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "Limites atuais",
+      "usageHistory": "Histórico de uso"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "Horário",
+      "daily": "Diário",
+      "monthly": "Mensal"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "Limites de Taxa",
+      "currentUsage": "Uso atual",
+      "planComparison": "Comparação de Planos",
+      "used": "usado",
+      "limit": "limite",
+      "unlimited": "Ilimitado",
+      "remaining": "restante"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "Histórico de Uso",
+      "requests": "Solicitações",
+      "noData": "Nenhum dado de uso disponível para este período"
     }
   }
 }

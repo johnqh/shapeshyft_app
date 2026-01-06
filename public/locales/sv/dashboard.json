@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "Instrumentbräda",
+  "welcome": "Välkommen tillbaka, {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "Projekt",
+    "providers": "Leverantörer",
+    "analytics": "Analys",
+    "budgets": "Budgetar",
+    "subscription": "Prenumeration",
+    "rateLimits": "Beloppsgränser",
+    "settings": "Inställningar"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "Projekt",
+    "empty": "Inga projekt ännu",
+    "emptyDescription": "Skapa ditt första projekt för att komma igång",
+    "create": "Skapa projekt",
+    "useTemplate": "Använd mall",
+    "notFound": "Projektet hittades inte",
+    "backToProjects": "Tillbaka till projekt",
+    "confirmDelete": "Vill du verkligen ta bort detta projekt?",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} slutpunkt(er)",
+      "created": "Skapad {{date}}",
+      "active": "Aktiv",
+      "inactive": "Inaktiv"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
-      "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "title": "Skapa projekt",
+      "titleEdit": "Redigera projekt",
+      "projectName": "Projektnamn",
+      "projectNamePlaceholder": "mitt-projekt",
+      "projectNameHint": "Endast gemener, siffror och bindestreck",
+      "displayName": "Visningsnamn",
+      "displayNamePlaceholder": "Mitt projekt",
+      "description": "Beskrivning",
+      "descriptionPlaceholder": "Vad detta projekt gör",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "Visningsnamn krävs",
+        "nameTooShort": "Namnet måste vara minst 2 tecken"
       },
       "slugPreview": "Slug"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
+    "title": "Slutpunkter",
+    "empty": "Inga slutpunkter ännu",
+    "emptyDescription": "Skapa ditt första slutpunkt för detta projekt",
+    "create": "Skapa slutpunkt",
     "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "notFound": "Slutpunkt hittades inte",
+    "backToProject": "Tillbaka till projektet",
+    "updated": "Slutpunkt uppdaterad成功",
+    "confirmDelete": "Vill du verkligen ta bort denna slutpunkt?",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
+      "general": "Allmän",
+      "input": "Indata",
+      "output": "Utdata",
       "test": "Test"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "Metod",
+      "type": "Typ"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "Slutpunktstyp",
+      "instructions": "Instruktioner",
+      "context": "Systemkontext",
+      "inputSchema": "Indata schema",
+      "outputSchema": "Utdata schema"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
-      "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
+      "title": "Skapa slutpunkt",
+      "titleEdit": "Redigera slutpunkt",
+      "endpointName": "Slutpunktens namn",
+      "endpointNamePlaceholder": "mitt-slutpunkt",
+      "displayName": "Visningsnamn",
+      "displayNamePlaceholder": "Mitt slutpunkt",
+      "instructions": "Instruktioner",
+      "instructionsPlaceholder": "Uppgiftsinstruktioner för LLM",
+      "httpMethod": "HTTP-metod",
       "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "selectKey": "Välj en leverantör",
+      "noKeys": "Ingen API-nyckel konfigurerad. Lägg till en först.",
+      "context": "Systemkontext",
+      "contextPlaceholder": "Anvisningar för LLM (systemprompt)",
+      "useInputSchema": "Definiera inmatningsschema",
+      "useOutputSchema": "Definiera utdata schema",
+      "inputSchema": "Indata schema",
+      "outputSchema": "Utdata schema",
+      "invalidJson": "Ogiltig JSON",
+      "create": "Skapa slutpunkt",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "Visningsnamn krävs",
+        "slugRequired": "Slutpunktens namn krävs",
+        "keyRequired": "Leverantör krävs",
+        "invalidInputSchema": "Ogiltig inmatningsschema i JSON",
+        "invalidOutputSchema": "Felaktigt utdataformat JSON"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
+      "title": "Testa slutpunkt",
+      "input": "Indata",
+      "generateSample": "Generera exempel",
+      "viewPrompt": "Visa prompt",
+      "prompt": "Genererad prompt",
+      "execute": "Utför",
+      "executing": "Exekverar...",
+      "response": "Svar",
       "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "failed": "Misslyckat",
+      "invalidJson": "Ogiltig JSON-ingång",
+      "output": "Utdata",
+      "latency": "Fördröjning",
+      "inputTokens": "Indata-tokenar",
+      "outputTokens": "Utmatningstokens",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "Användning",
+        "tokensIn": "Tokenar In",
+        "tokensOut": "Tokens ut",
+        "latency": "Fördröjning",
+        "cost": "Uppskattat kostnad"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "Leverantörer",
+    "empty": "Inga leverantörer konfigurerade",
+    "emptyDescription": "Lägg till din första LLM-leverantör",
+    "add": "Lägg till leverantör",
+    "confirmDelete": "Vill du verkligen ta bort detta leverantör?",
     "card": {
       "provider": "Provider",
       "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "active": "Aktiv",
+      "inactive": "Inaktiv"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
+      "title": "Lägg till API-nyckel",
+      "titleEdit": "Redigera API-nyckel",
+      "keyName": "Nyckelnamn",
+      "keyNamePlaceholder": "Mitt OpenAI-nyckel",
       "provider": "Provider",
-      "apiKey": "API Key",
+      "apiKey": "API-nyckel",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "Din nyckel är krypterad i vila",
+      "leaveBlank": "lämna tomt för att behålla nuvarande",
+      "endpointUrl": "Slutpunktens URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "Lägg till nyckel",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "Nyckelnamn krävs",
+        "apiKeyRequired": "API-nyckel krävs",
+        "endpointRequired": "Endpoint-URL krävs för anpassad LM-server"
       }
     },
     "providers": {
       "openai": "OpenAI",
-      "anthropic": "Anthropic",
+      "anthropic": "Företaget Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "Anpassad LM-server"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "Analys",
+    "noData": "Ingen analysdata",
+    "noDataDescription": "Börja skicka API-begäranden för att se analysdata",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "Idag",
+      "week": "Denna vecka",
+      "month": "Denna månad",
+      "custom": "Anpassad intervall"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "Totala förfrågningar",
+      "successRate": "Success rate",
+      "avgLatency": "Genomsnittlig fördröjning",
+      "totalCost": "Total kostnad",
+      "tokensUsed": "Använda token",
+      "inputTokens": "Inmatnings-token",
+      "outputTokens": "Utmatningstokens",
+      "requestDistribution": "Förfrågans distribution",
+      "successful": "Sucessfullt",
+      "failed": "Misslyckat",
+      "byEndpoint": "Genom slutpunkt"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "Anfrågningar över tid",
+      "byEndpoint": "Genom slutpunkt"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
-    "projectNamePlaceholder": "my-project",
+    "title": "Projektmallar",
+    "subtitle": "Börja med ett förkonfigurerat mall",
+    "configure": "Konfigurera mall",
+    "projectName": "Projektnamn",
+    "projectNamePlaceholder": "mitt-projekt",
     "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "selectKey": "Välj en leverantör",
+    "noKeys": "Inga API-nycklar tillgängliga.",
+    "addKeyLink": "Lägg till en första",
+    "preview": "Förhandsgranska",
+    "willCreate": "Detta kommer att skapa {{count}} slutpunkt(er):",
+    "apply": "Använd mall",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "Fyll i alla obligatoriska fält"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "Textklassificerare",
+      "description": "Klassificera text till kategorier"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "Sentimentanalysator",
+      "description": "Analysera åtminstone och känslor"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "Dataextraherare",
+      "description": "Extrahera strukturerad data från text"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "Innehållsgenerering",
+      "description": "Skapa sammanfattningar och innehåll"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "Platsanpassning",
+      "description": "Översätt text till flera språk"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "Budgetar",
+    "empty": "Ingen budget satt",
+    "emptyDescription": "Ställ in utgiftsbegränsningar för att spåra dina API-kostnader",
+    "add": "Lägg till budget",
+    "confirmDelete": "Vill du verkligen ta bort detta budget?",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "Dagligt",
+      "weekly": "Veckovis",
+      "monthly": "Månadlig"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "Budgett namn",
+      "namePlaceholder": "Månadslimit för API",
+      "limit": "Utgiftsgräns",
+      "period": "Perioden",
+      "add": "Lägg till budget"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} är vid 75 % av budgeten",
+      "critical": "{{name}} är på 90 procent av budgeten",
+      "exceeded": "{{name}} har överskridit budgeten",
+      "usage": "Nuvarande användning: {{percentage}}%"
     }
   },
   "schema": {
     "editor": "Schema Editor",
-    "visual": "Visual",
+    "visual": "Visuell",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "Lägg till egenskap",
+    "noProperties": "Inga egenskaper definierade. Lägg till en för att komma igång.",
+    "required": "Nödvändig",
+    "descriptionPlaceholder": "Egendomsbeskrivning (valfritt)",
+    "arrayItemSchema": "Arrayelementsschema:",
+    "clickToEditName": "Klicka för att redigera fältnamn",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
+      "string": "Sträng",
+      "number": "Nummer",
+      "integer": "Heltal",
       "boolean": "Boolean",
-      "object": "Object",
+      "object": "Objekt",
       "array": "Array"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "Inställningar",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
-      "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "title": "Organisation",
+      "description": "Konfigurera dina organisationsinställningar. Organisationsvägen används i dina API-URL:er.",
+      "name": "Organisationsnamn",
+      "namePlaceholder": "Mitt företag",
+      "nameHint": "Valfritt visningsnamn för din organisation",
+      "path": "Organisationsväg",
+      "pathPlaceholder": "min_organisation",
+      "pathHint": "Använt i API-URL:er: /api/v1/ai/{org_path}/...",
+      "pathTaken": "Denna väg är redan tagen",
+      "pathInvalid": "Endast bokstäver, siffror och understreck tillåtna",
+      "apiUrlPreview": "API-URL förhandsgranskning:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "Spara ändringar",
+      "saving": "Sparar...",
+      "saved": "Inställningarna sparades framgångsrikt",
+      "error": "Det gick inte att spara inställningarna"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "Projekt-API-nyckel",
+    "description": "Använd denna nyckel för att autentisera API-begäranden till dina slutpunkter. Inkludera den som en frågeparameter (api_key=...) eller Bearer-token i Authorization-huvudet.",
+    "createdAt": "Skapad",
+    "show": "Visa API-nyckel",
+    "hide": "Dölj API-nyckel",
+    "copy": "Kopiera API-nyckel",
+    "refresh": "Uppdatera API-nyckel",
+    "copied": "Kopierat!",
+    "copiedMessage": "API-nyckel kopierad till urklipp",
+    "refreshed": "API-nyckel uppdaterad",
+    "refreshedMessage": "Ditt API-nyckel har uppdaterats. Se till att uppdatera den i dina appar.",
+    "confirmRefreshTitle": "Uppdatera API-nyckel?",
+    "confirmRefreshMessage": "Detta gör den nuvarande API-nyckeln ogiltig. Alla appar som använder den gamla nyckeln slutar fungera omedelbart.",
+    "confirmRefresh": "Uppdatera nyckel"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "IP-tillåtna listan",
+    "description": "Begränsa åtkomst till slutpunkt till vissa IP-adresser. Lämna tomt för att tillåta alla IP-adresser.",
+    "allAllowed": "Alla IP-adresser tillåtna",
+    "placeholder": "Ange IPv4-adress (t.ex. 192.168.1.1)",
+    "add": "Lägg till",
+    "removeIp": "Ta bort {{ip}}",
+    "invalidIp": "Ogiltig IPv4-adress",
+    "duplicateIp": "Denna IP finns redan i listan"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "Beloppsgränser",
+    "loading": "Läser in...",
+    "error": "Kunde inte ladda avgiftsgränser",
+    "retry": "Försök igen",
+    "upgradeButton": "Uppgradera plan",
+    "currentTier": "Nuvarande",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "Nuvarande gränser",
+      "usageHistory": "Användningshistorik"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "Timme",
+      "daily": "Dagligt",
+      "monthly": "Månadlig"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "Beloppsgränser",
+      "currentUsage": "Nuvarande användning",
+      "planComparison": "Planjämförelse",
+      "used": "använt",
+      "limit": "gräns",
+      "unlimited": "Obegränsat",
+      "remaining": "kvarvarande"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "Användningshistorik",
+      "requests": "Förfrågningar",
+      "noData": "Ingen användningsdata finns tillgänglig för denna period"
     }
   }
 }

@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "Настройки — {{appName}}",
+    "description": "Настройте свой опыт работы с {{appName}} с помощью тем и настроек отображения."
   },
-  "title": "Settings",
+  "title": "Настройки",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "Внешний вид",
+    "description": "Настройте внешний вид приложения."
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "description": "Choose your preferred color theme."
+    "label": "Тема",
+    "light": "Свет",
+    "dark": "Темный",
+    "system": "Система",
+    "description": "Выберите предпочитаемую цветовую тему."
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
-    "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "label": "Размер шрифта",
+    "small": "Маленький",
+    "medium": "Средний",
+    "large": "Большой",
+    "description": "Измените размер текста для лучшей читаемости."
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "О параметрах настройки",
+    "description": "Ваши предпочтения сохраняются автоматически и сохраняются между сеансами."
   }
 }

@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "성능 및 최적화",
+  "title": "성능 모니터링",
+  "description": "핵심 웹 요소, 번들 성능 및 API 지연 시간을 모니터링하여 최적의 사용자 경험을 보장합니다.",
   "quickStats": {
-    "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
-    "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "lazyLoad": "지연 로드",
+    "codeSplitting": "코드 분할",
+    "serviceWorker": "서비스 워커",
+    "offlineCache": "오프라인 캐시",
+    "preloading": "프리로딩",
+    "routePrefetch": "경로 미리 불러오기",
+    "lcpTarget": "LCP 대상"
   },
   "webVitals": {
-    "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "title": "코어 웹 베테르",
+    "description": "코어 웹 비탈스 지표의 실시간 모니터링.",
     "lcp": {
-      "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "title": "가장 큰 콘텐츠 페인트",
+      "description": "가장 큰 요소를 렌더링할 시간"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "첫 번째 입력 지연",
+      "description": "상호작용 응답 시간"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "누적 레이아웃 이동",
+      "description": "시각적 안정성 점수"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
-    "react": "React:",
+    "title": "번들 최적화",
+    "description": "초기 번들 크기를 줄이기 위한 코드 분할 및 지연 로딩.",
+    "lazyLoadingStates": "지연 로딩 상태",
+    "componentLoading": "컴포넌트 로딩 중...",
+    "componentLoaded": "컴포넌트 로드됨",
+    "bundleAnalysis": "번들 분석",
+    "react": "리액트:",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "UI 구성 요소:",
+    "charts": "차트:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "API 성능",
+    "description": "API 응답 시간과 캐싱 효과성을 모니터링합니다.",
+    "currentLatency": "현재 API 지연 시간",
+    "averageResponseTime": "평균 응답 시간",
+    "cacheStatus": "캐시 상태",
+    "freshData": "신선한 데이터",
+    "recentlyFetched": "최근에 가져온",
+    "staleData": "오래된 데이터",
+    "needsRefresh": "새로 고침 필요",
+    "cachingStrategy": "캐싱 전략"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "성능 최적화 방법",
+    "doThis": "이것을 하세요",
+    "avoidThis": "이것을 피하세요",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "대시보드 기능에 코드 분할을 사용하세요",
+      "lazyLoading": "이미지와 컴포넌트에 지연 로딩 구현",
+      "cacheApi": "TanStack Query를 사용하여 API 응답 캐시하기",
+      "preloadRoutes": "호버 시 라우트를 미리 로드하여 즉시 탐색 가능하게 하기",
+      "monitorVitals": "프로덕션 환경에서 핵심 웹 지표 모니터링",
+      "serviceWorker": "오프라인 지원을 위해 서비스 워커를 사용하십시오"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "초기 페이지 로드 시 모든 컴포넌트를 즉시 로드합니다",
+      "redundantCalls": "캐싱 없이 반복적인 API 호출 수행하기",
+      "layoutShifts": "동적 콘텐츠로 인한 레이아웃 이동",
+      "blockingRender": "비핵심 기능에 대해 블로킹 렌더링 사용",
+      "ignoreNetwork": "자원 로딩 시 네트워크 상태 무시",
+      "noTreeShaking": "트리 쉐이킹 없이 큰 라이브러리 가져오기"
     }
   }
 }

@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "{{appName}}에 대해",
+    "description": "{{appName}}에 대해 알아보기 - LLM 출력을 구조화되고 신뢰할 수 있는 API로 변환하는 플랫폼입니다."
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "{{appName}}에 관하여",
+    "subtitle": "우리는 개발자 전 세계에서 AI API를 신뢰할 수 있고 예측 가능한 것으로 만들기 위한 미션을 수행하고 있습니다."
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "우리의 이야기",
+    "paragraph1": "{{appName}}는 단순한 실망에서 탄생했다: LLM 출력을 다루는 것은 예측할 수 없다. AI를 애플리케이션에 통합한 모든 개발자는 구조화되지 않은 텍스트 응답을 분석하고 예외 상황을 처리하는 어려움을 알고 있다.",
+    "paragraph2": "우리는 이 문제를 한 번에 해결하기 위해 {{appName}}을 개발했습니다. JSON 스키마 검증과 지능적인 프롬프트 엔지니어링을 결합함으로써, 개발자가 신뢰할 수 있는 구조화되고 타입 안전한 API로 혼란스러운 LLM 출력을 변환합니다."
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "우리의 미션",
+    "description": "개발자가 AI 통합을 기존 API와 동일하게 신뢰할 수 있도록 도구를 제공합니다. 우리는 구조화된 출력이 복잡한 파싱 로직이나 끝없이 반복되는 오류 처리를 필요로 하지 않아야 한다고 믿습니다."
   },
   "values": {
-    "title": "Our Values",
+    "title": "우리의 가치",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "신뢰성 우선:",
+      "description": "귀하의 API는 항상 일관되게 작동해야 합니다."
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "개발자 간편성:",
+      "description": "복잡한 기능을 간단한 인터페이스로."
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "투명한 가격:",
+      "description": "사용한 만큼 지불하세요. 숨겨진 수수료는 없습니다."
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "지속적인 혁신:",
+      "description": "항상 발전하고, 항상 진화합니다."
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "시작하시겠습니까?",
+    "description": "{{appName}를 사용하여 신뢰할 수 있는 AI 기반 애플리케이션을 개발하는 개발자들과 함께하세요.",
+    "button": "문서 읽기"
   }
 }

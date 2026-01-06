@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "เอกสารประกอบ",
+  "subtitle": "เรียนรู้วิธีสร้าง API ปัญญาประดิษฐ์ที่มีโครงสร้างด้วย {{appName}}",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "เรียนรู้วิธีเริ่มต้นใช้งาน {{appName}} สร้างโปรเจกต์ ตั้งค่าผู้ให้บริการ LLM และสร้างจุดสิ้นสุด AI แบบโครงสร้างครั้งแรกของคุณ",
+    "concepts": "เข้าใจแนวคิดพื้นฐาน: จุดสิ้นสุด (endpoints), โครงสร้างข้อมูล JSON, บริบทของระบบ และเส้นทางองค์กร สำหรับการสร้าง API ปัญญาประดิษฐ์ที่มีโครงสร้าง",
+    "apiReference": "เอกสารอ้างอิง API ครบถ้วนสำหรับ {{appName}} พร้อมจุดสิ้นสุด REST รูปแบบคำขอ โครงสร้างการตอบกลับ และตัวอย่างโค้ด",
+    "default": "เอกสารประกอบ {{appName}} ศึกษาวิธีสร้าง API แบบ REST ที่มีพลังจากปัญญาประดิษฐ์และมีการตรวจสอบความถูกต้องด้วย JSON Schema"
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "วิธีการสร้างจุดสิ้นสุด LLM ที่มีโครงสร้าง",
+    "description": "คู่มือขั้นตอนการสร้างจุดสิ้นสุด API ของ AI แบบโครงสร้างครั้งแรกของคุณด้วย {{appName}}",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "สร้างโครงการ",
+        "text": "เริ่มต้นโดยสร้างโปรเจกต์ใหม่ในแดชบอร์ดของคุณเพื่อจัดระเบียบเอนด์พอยต์ของคุณ"
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "เพิ่มผู้ให้บริการ LLM",
+        "text": "ตั้งค่าคีย์ API ของคุณสำหรับ OpenAI, Anthropic, Google Gemini หรือเซิร์ฟเวอร์โมเดลภาษาแบบกำหนดเอง"
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "กำหนดจุดสิ้นสุด",
+        "text": "สร้างจุดสิ้นสุดพร้อมคำชี้แจง บริบท และโครงสร้างข้อมูล JSON ออก"
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "ทดสอบจุดสิ้นสุดของคุณ",
+        "text": "ใช้ตัวทดสอบที่มีอยู่ในตัวเพื่อยืนยันว่าจุดสิ้นสุดของคุณส่งคืนข้อมูลที่จัดโครงสร้างไว้"
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "รวมเข้าด้วยกัน",
+        "text": "เรียกใช้จุดสิ้นสุดของคุณจากแอปพลิเคชันของคุณด้วยคำขอ GET หรือ POST ที่ง่าย"
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "เริ่มต้นใช้งาน",
+    "concepts": "แนวคิดหลัก",
+    "apiReference": "อ้างอิง API"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "เริ่มต้นใช้งาน",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "สร้างโครงการ",
+        "description": "เริ่มต้นโดยสร้างโปรเจกต์ใหม่ในแดชบอร์ดของคุณ ตั้งชื่อโปรเจกต์และสามารถเพิ่มคำอธิบายได้ตามต้องการ"
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "เพิ่มผู้ให้บริการ",
+        "description": "ตั้งค่าคีย์ API ของคุณสำหรับ OpenAI, Anthropic, Google Gemini หรือเซิร์ฟเวอร์โมเดลภาษาแบบกำหนดเอง"
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "กำหนดจุดสิ้นสุด",
+        "description": "สร้างจุดสิ้นสุดพร้อมโครงสร้าง JSON ของผลลัพธ์ คำแนะนำ และบริบท แล้วเชื่อมต่อกับคีย์ LLM ของคุณ"
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "ตั้งเส้นทางองค์กรของคุณ",
+        "description": "ตั้งค่าเส้นทางองค์กรแบบกำหนดเองในตั้งค่า หรือใช้เส้นทางเริ่มต้นที่สร้างอัตโนมัติของคุณ"
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "รวมเข้าด้วยกัน",
+        "description": "เรียกใช้จุดสิ้นสุดของคุณจากแอปพลิเคชันของคุณด้วยคำขอ GET หรือ POST แบบง่าย"
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "แนวคิดหลัก",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "จุดสิ้นสุด",
+      "description": "แต่ละจุดสิ้นสุดได้รับการตั้งค่าด้วย:",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "สกีมาร์กของอินพุต",
+          "description": "โครงสร้าง JSON Schema ที่กำหนดโครงสร้างข้อมูลนำเข้าที่คาดหวัง (ไม่บ Obligatory)"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "สกีมาเอาต์พุต",
+          "description": "โครงสร้างสัญญา JSON ที่กำหนดรูปแบบการตอบกลับของโมเดลภาษา"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "คำชี้แจง",
+          "description": "คำชี้แจงเฉพาะเจาะจงว่า LLM ควรทำอะไรกับข้อมูลนำเข้า"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "บริบท",
+          "description": "บริบทระบบ/คำชี้นำเพื่อแนะนำพฤติกรรมของโมเดลภาษา"
         },
         {
           "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "description": "GET (พารามิเตอร์คำขอ) หรือ POST (ร่างข้อมูล JSON) สำหรับข้อมูลนำเข้า"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "สกีมาอินพุต",
+      "description": "กำหนดโครงสร้างข้อมูลนำเข้าที่คาดหวังโดยใช้ JSON Schema หากผู้เรียกใช้ส่งข้อมูลไปยังจุดสิ้นสุดของคุณ {{appName}} จะตรวจสอบข้อมูลนั้นตามสคีมาร์กของคุณก่อนการประมวลผล ซึ่งจะทำให้มั่นใจได้ว่า LLM จะได้รับข้อมูลที่มีรูปแบบถูกต้อง และให้ข้อความข้อผิดพลาดที่ชัดเจนสำหรับคำขอที่ไม่ถูกต้อง"
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "สกีมาเอาต์พุต",
+      "description": "กำหนดโครงสร้างของผลลัพธ์ LLM โดยใช้ JSON Schema {{appName}} ชี้นำ LLM ให้ส่งข้อมูลที่สอดคล้องกับสคีมของคุณ และตรวจสอบความถูกต้องของคำตอบ โดยทำการลองใหม่อัตโนมัติหากผลลัพธ์ไม่สอดคล้อง"
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "บริบทของระบบ",
+      "description": "ให้คำสั่งระบบเพื่อแนะนำพฤติกรรมของโมเดลภาษา ข้อมูลนี้จะถูกรวมไว้ในทุกคำขอที่ส่งไปยังเอนด์พอ인ต์ของคุณ"
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "เส้นทางองค์กร",
+      "description": "เส้นทางขององค์กรของคุณถูกใช้ใน URL ของ API โดยค่าเริ่มต้นจะเป็นตัวอักษร 8 ตัวแรกของรหัสผู้ใช้ของคุณ แต่คุณสามารถกำหนดเองได้ในตั้งค่า"
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "อ้างอิง API",
+    "description": "เข้าถึงจุดสิ้นสุดของคุณผ่าน REST API จุดสิ้นสุด AI ทั้งหมดเปิดให้ใช้งานโดยสาธารณะและไม่ต้องการการยืนยันตัวตน",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "ดำเนินการปลายทาง",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "ดำเนินการเรียกใช้จุดสิ้นสุดและส่งคืนผลลัพธ์จาก LLM พร้อมด้วยข้อมูลการใช้งาน"
       },
       "prompt": {
-        "title": "Get Prompt Only",
+        "title": "เฉพาะการรับคำสั่ง",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "description": "คืนค่าพรอมต์ที่สร้างขึ้นโดยไม่เรียกใช้ LLM ใช้สำหรับการแก้ไขข้อผิดพลาด"
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "รูปแบบการตอบกลับ",
+      "description": "การตอบสนองที่ประสบความสำเร็จจะรวมถึงผลลัพธ์จาก LLM และสถิติการใช้งาน:",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "ผลลัพธ์",
+          "description": "การตอบกลับแบบโครงสร้างจากโมเดลภาษาที่สอดคล้องกับรูปแบบการออกผลของคุณ"
         },
         {
           "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "description": "จำนวนโทเกนอินพุตที่ใช้"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "จำนวนโทเกนเอาต์พุตที่สร้างขึ้น"
         },
         {
           "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "description": "เวลาตอบสนองของคำขอในหน่วยมิลลิวินาที"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "ค่าใช้จ่ายประมาณการ (ส่วนของเซนต์)",
+          "description": "ค่าใช้จ่ายประมาณในเซนต์"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "ตัวอย่างคำขอ",
+      "responseTitle": "ตัวอย่างการตอบกลับ"
     }
   }
 }

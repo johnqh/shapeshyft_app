@@ -1,271 +1,346 @@
 {
   "seo": {
     "main": {
-      "title": "Use Cases - {{appName}}",
-      "description": "Discover how {{appName}} transforms LLM outputs into structured, reliable data. From text classification to data extraction and content generation.",
-      "keywords": "LLM use cases, structured output, text classification, data extraction, content generation, AI applications"
+      "title": "Verwendungsfälle - {{appName}}",
+      "description": "Entdecken Sie, wie {{appName}} LLM-Ausgaben in strukturierte, zuverlässige Daten umwandelt. Von der Textklassifizierung über die Datenextraktion bis hin zur Inhaltsgenerierung.",
+      "keywords": "LLM-Anwendungsfälle, strukturierte Ausgabe, Textklassifikation, Datenextraktion, Inhaltsgenerierung, KI-Anwendungen"
     },
     "text": {
-      "title": "Text Classification - Use Cases - {{appName}}",
-      "description": "Automatically categorize text with LLMs and get structured, validated output. Sentiment analysis, intent recognition, topic detection, and content moderation.",
-      "keywords": "text classification, sentiment analysis, intent recognition, topic detection, content moderation, NLP, LLM classification"
+      "title": "Textklassifizierung - Einsatzfälle - {{appName}}",
+      "description": "Text automatisch mit LLMs kategorisieren und strukturierte, validierte Ausgabe erhalten. Stimmungsanalyse, Absichtserkennung, Themenerkennung und Inhaltsthematisierung.",
+      "keywords": "Textklassifikation, Sentimentanalyse, Absichtserkennung, Themenerkennung, Inhaltskontrolle, NLP, LLM-Klassifikation"
     },
     "data": {
-      "title": "Data Extraction - Use Cases - {{appName}}",
-      "description": "Extract structured data from unstructured documents with LLMs. Invoice processing, resume parsing, contract analysis, and form digitization.",
-      "keywords": "data extraction, document processing, invoice OCR, resume parsing, contract analysis, structured data, LLM extraction"
+      "title": "Datenextraktion - Einsatzfälle - {{appName}}",
+      "description": "Extrahieren Sie strukturierte Daten aus unstrukturierten Dokumenten mit LLMs. Rechnungsverarbeitung, Lebenslaufanalyse, Vertragsanalyse und Formulardigitalisierung.",
+      "keywords": "Datenextraktion, Dokumentenverarbeitung, Rechnungs-OCR, Lebenslaufanalyse, Vertragsanalyse, strukturierte Daten, LLM-Extraktion"
     },
     "content": {
-      "title": "Content Generation - Use Cases - {{appName}}",
-      "description": "Generate structured content with LLMs. Product descriptions, marketing copy, documentation, and personalized content with guaranteed formatting.",
-      "keywords": "content generation, AI copywriting, product descriptions, marketing automation, structured content, LLM content"
+      "title": "Inhaltsgenerierung - Einsatzfälle - {{appName}}",
+      "description": "Generieren strukturierter Inhalte mit LLMs. Produktbeschreibungen, Marketingtexte, Dokumentationen und personalisierte Inhalte mit garantiertem Format.",
+      "keywords": "Inhaltsgenerierung, KI-Texterstellung, Produktbeschreibungen, Marketing-Automatisierung, strukturierte Inhalte, LLM-Inhalte"
     }
   },
   "nav": {
-    "allUseCases": "All Use Cases",
+    "allUseCases": "Alle Einsatzfälle",
     "readDocs": "Read the Docs",
-    "viewPricing": "View Pricing",
-    "exploreOther": "Explore Other Use Cases"
+    "viewPricing": "Preise anzeigen",
+    "exploreOther": "Weitere Anwendungsfälle erkunden"
   },
   "main": {
     "hero": {
-      "title": "Build Anything with Structured LLM Output",
-      "subtitle": "{{appName}} transforms unpredictable AI responses into reliable, schema-validated data. Here are some common use cases—but your imagination is the only limit."
+      "title": "Erstellen Sie alles mit strukturiertem LLM-Ausgabe",
+      "subtitle": "{{appName}} wandelt unvorhersehbare KI-Antworten in zuverlässige, schema-validierte Daten um. Hier sind einige gängige Anwendungsfälle – aber Ihre Fantasie ist die einzige Grenze."
     },
     "flexibility": {
-      "title": "Your Use Case, Your Rules",
-      "description": "While we've highlighted common patterns, {{appName}} is designed to be completely flexible. Define any JSON schema, connect any LLM provider, and build exactly what you need. Whether you're creating a chatbot, analyzing research papers, automating workflows, or building something entirely new—if you can describe it in a schema, {{appName}} can deliver it."
+      "title": "Ihr Anwendungsfall, Ihre Regeln",
+      "description": "Während wir häufige Muster hervorgehoben haben, ist {{appName} vollständig anpassbar konzipiert. Definieren Sie beliebige JSON-Schemata, verbinden Sie beliebige LLM-Anbieter und erstellen Sie genau das, was Sie benötigen. Egal, ob Sie einen Chatbot erstellen, Forschungspapiere analysieren, Workflows automatisieren oder etwas völlig Neues bauen – wenn Sie es in einem Schema beschreiben können, kann {{appName}} es liefern."
     },
     "features": {
       "customSchemas": {
-        "title": "Custom Schemas",
-        "description": "Define any data structure you need"
+        "title": "Benutzerdefinierte Schemas",
+        "description": "Definieren Sie eine beliebige Datenstruktur, die Sie benötigen"
       },
       "anyProvider": {
-        "title": "Any LLM Provider",
-        "description": "OpenAI, Anthropic, Google & more"
+        "title": "Jeder LLM-Anbieter",
+        "description": "OpenAI, Anthropic, Google und mehr"
       },
       "validatedOutput": {
-        "title": "Validated Output",
-        "description": "Guaranteed schema compliance"
+        "title": "Validierter Ausgang",
+        "description": "Gewährleistete Schema-Konformität"
       },
       "apiFirst": {
-        "title": "API-First",
-        "description": "Easy integration with any stack"
+        "title": "API-erster Ansatz",
+        "description": "Einfache Integration in jedes Stack"
       }
     },
     "cta": {
-      "title": "Ready to Build?",
-      "subtitle": "Start with our free tier and see how {{appName}} can transform your AI integration."
+      "title": "Bereit zum Bauen?",
+      "subtitle": "Beginnen Sie mit unserer kostenlosen Stufe und sehen Sie, wie {{appName}} Ihre KI-Integration verändern kann."
     }
   },
   "useCases": {
     "textClassification": {
-      "title": "Text Classification",
-      "description": "Automatically categorize text into predefined labels with high accuracy. Perfect for sentiment analysis, topic detection, intent recognition, and content moderation.",
-      "examples": ["Sentiment Analysis", "Topic Detection", "Intent Recognition", "Content Moderation"]
+      "title": "Textklassifikation",
+      "description": "Text automatisch in vordefinierte Labels mit hoher Genauigkeit einteilen. Perfekt für Sentiment-Analyse, Themen-Erkennung, Absichtserkennung und Inhaltssicherung.",
+      "examples": [
+        "Sentimentanalyse",
+        "Themen-Erkennung",
+        "Absichtserkennung",
+        "Inhaltsmoderation"
+      ]
     },
     "dataExtraction": {
-      "title": "Data Extraction",
-      "description": "Extract structured information from unstructured text documents. Transform invoices, contracts, emails, and forms into clean, usable data.",
-      "examples": ["Invoice Processing", "Resume Parsing", "Contract Analysis", "Email Extraction"]
+      "title": "Datenextraktion",
+      "description": "Extrahieren Sie strukturierte Informationen aus unstrukturierten Textdokumenten. Wandeln Sie Rechnungen, Verträge, E-Mails und Formulare in saubere, nutzbare Daten um.",
+      "examples": [
+        "Rechnungsverarbeitung",
+        "Lebenslauf-Parsing",
+        "Vertragsanalyse",
+        "E-Mail-Auszug"
+      ]
     },
     "contentGeneration": {
-      "title": "Content Generation",
-      "description": "Generate high-quality, structured content programmatically. Create product descriptions, marketing copy, documentation, and more with consistent formatting.",
-      "examples": ["Product Descriptions", "Marketing Copy", "Documentation", "Email Templates"]
+      "title": "Inhaltsgenerierung",
+      "description": "Generieren Sie hochwertigen, strukturierten Inhalt programmatisch. Erstellen Sie Produktbeschreibungen, Marketingtexte, Dokumentationen und mehr mit konsistenter Formatierung.",
+      "examples": [
+        "Produktbeschreibungen",
+        "Werbe-Text",
+        "Dokumentation",
+        "E-Mail-Vorlagen"
+      ]
     }
   },
   "text": {
     "hero": {
-      "title": "Text Classification",
-      "subtitle": "Transform unstructured text into actionable categories. Define your classification schema, and {{appName}} ensures every response matches your exact requirements."
+      "title": "Textklassifikation",
+      "subtitle": "Wandeln Sie unstrukturierten Text in handlungsorientierte Kategorien um. Definieren Sie Ihr Klassifizierungsschema, und {{appName}} stellt sicher, dass jede Antwort Ihren genauen Anforderungen entspricht."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "So funktioniert es",
       "step1": {
-        "title": "Define Your Schema",
-        "description": "Specify exactly what classifications you need—categories, confidence scores, multiple labels, or nested structures."
+        "title": "Definieren Sie Ihr Schema",
+        "description": "Geben Sie genau an, welche Klassifizierungen Sie benötigen – Kategorien, Konfidenzwerte, mehrere Labels oder geschachtelte Strukturen."
       },
       "step2": {
-        "title": "Send Your Text",
-        "description": "Call the {{appName}} API with your text. We route it to your chosen LLM with optimized prompting."
+        "title": "Ihre Nachricht senden",
+        "description": "Rufen Sie die {{appName}} API mit Ihrem Text auf. Wir leiten ihn mit optimiertem Prompt an Ihr gewähltes LLM weiter."
       },
       "step3": {
-        "title": "Get Validated Output",
-        "description": "Receive JSON that matches your schema exactly—guaranteed. No parsing errors, no unexpected formats."
+        "title": "Gültige Ausgabe erhalten",
+        "description": "Empfange JSON, das genau deinem Schema entspricht – garantiert. Keine Analysefehler, keine unerwarteten Formate."
       }
     },
     "example": {
-      "title": "Example: Customer Feedback Classification",
-      "schemaTitle": "Your JSON Schema",
-      "outputTitle": "Guaranteed Output",
-      "note": "Every response is validated against your schema before being returned. Invalid outputs are automatically retried."
+      "title": "Beispiel: Klassifizierung von Kundenfeedback",
+      "schemaTitle": "Ihr JSON-Schema",
+      "outputTitle": "Sichere Ausgabe",
+      "note": "Jede Antwort wird vor der Rückgabe anhand Ihres Schemas überprüft. Ungültige Ausgaben werden automatisch erneut versucht."
     },
     "applications": {
-      "title": "Applications",
+      "title": "Anwendungen",
       "sentiment": {
-        "title": "Sentiment Analysis",
-        "description": "Analyze customer feedback, reviews, and social media mentions to understand public perception. Get consistent sentiment scores that integrate directly into your analytics pipeline.",
-        "examples": ["Product reviews", "Customer support tickets", "Social media monitoring", "Survey responses"]
+        "title": "Sentimentanalyse",
+        "description": "Analysieren Sie Kundenfeedback, Bewertungen und Social-Media-Beiträge, um das öffentliche Bild zu verstehen. Erhalten Sie konsistente Stimmungsindizes, die direkt in Ihre Analyse-Pipeline integriert werden können.",
+        "examples": [
+          "Produktbewertungen",
+          "Support-Tickets für Kunden",
+          "Überwachung sozialer Medien",
+          "Umfrageantworten"
+        ]
       },
       "intent": {
-        "title": "Intent Recognition",
-        "description": "Understand what users want from their messages. Route inquiries to the right department, trigger automated workflows, or provide instant responses based on detected intent.",
-        "examples": ["Chatbot routing", "Email categorization", "Voice assistant commands", "Support ticket triage"]
+        "title": "Absichtserkennung",
+        "description": "Verstehen Sie, was Benutzer von ihren Nachrichten erwarten. Leiten Sie Anfragen an die richtige Abteilung weiter, aktivieren Sie automatisierte Workflows oder geben Sie sofortige Antworten basierend auf dem erkannten Ziel.",
+        "examples": [
+          "Chatbot-Weiterleitung",
+          "E-Mail-Kategorisierung",
+          "Sprachassistenten-Befehle",
+          "Support-Ticket-Triage"
+        ]
       },
       "topic": {
-        "title": "Topic Detection",
-        "description": "Automatically tag content with relevant topics and categories. Perfect for content management, search optimization, and organizing large document collections.",
-        "examples": ["News categorization", "Document tagging", "Research paper classification", "Content recommendation"]
+        "title": "Themen-Erkennung",
+        "description": "Automatisch Inhalte mit relevanten Themen und Kategorien markieren. Perfekt für die Inhaltsverwaltung, Suchmaschinenoptimierung und die Organisation großer Dokumentensammlungen.",
+        "examples": [
+          "Nachrichtenkategorisierung",
+          "Dokumentenmarkierung",
+          "Klassifizierung wissenschaftlicher Arbeiten",
+          "Inhaltsempfehlung"
+        ]
       },
       "moderation": {
-        "title": "Content Moderation",
-        "description": "Flag inappropriate content, detect spam, and identify policy violations. Get structured classifications that enable automated moderation workflows.",
-        "examples": ["User-generated content", "Comment sections", "Forum posts", "Product listings"]
+        "title": "Inhaltsmoderation",
+        "description": "Flaggen Sie unangemessene Inhalte, erkennen Sie Spam und identifizieren Sie Verstöße gegen die Richtlinien. Erhalten Sie strukturierte Klassifizierungen, die automatisierte Moderationsabläufe ermöglichen.",
+        "examples": [
+          "Benutzererzeugter Inhalt",
+          "Kommentarsektionen",
+          "Forumbeiträge",
+          "Produktlisten"
+        ]
       }
     },
     "cta": {
-      "title": "Start Classifying Text Today",
-      "subtitle": "Create your first text classification endpoint in minutes. No ML expertise required."
+      "title": "Beginnen Sie heute mit der Klassifizierung von Text",
+      "subtitle": "Erstellen Sie in wenigen Minuten Ihre erste Textklassifizierungs-Endpoint. Keine ML-Expertise erforderlich."
     }
   },
   "data": {
     "hero": {
-      "title": "Data Extraction",
-      "subtitle": "Turn unstructured documents into clean, structured data. Define your target schema, and {{appName}} extracts exactly the information you need—every time."
+      "title": "Datenextraktion",
+      "subtitle": "Wandeln Sie unstrukturierte Dokumente in saubere, strukturierte Daten um. Definieren Sie Ihr Ziel-Schema, und {{appName}} extrahiert genau die Informationen, die Sie benötigen – jedes Mal."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "So funktioniert es",
       "step1": {
-        "title": "Define Your Schema",
-        "description": "Describe the exact data structure you want to extract—nested objects, arrays, typed fields with validation."
+        "title": "Definieren Sie Ihr Schema",
+        "description": "Beschreiben Sie die genaue Datenstruktur, die Sie extrahieren möchten – geschachtelte Objekte, Arrays, typisierte Felder mit Validierung."
       },
       "step2": {
-        "title": "Send Your Document",
-        "description": "Pass document text to the {{appName}} API. We handle the prompting and extraction logic."
+        "title": "Ihr Dokument senden",
+        "description": "Dokumenttext an die {{appName}} API übergeben. Wir übernehmen die Prompting- und Extraktionslogik."
       },
       "step3": {
-        "title": "Get Structured Data",
-        "description": "Receive validated JSON matching your schema. Import directly into databases, spreadsheets, or APIs."
+        "title": "Strukturierte Daten abrufen",
+        "description": "Empfangen Sie überprüfte JSON-Daten, die Ihrem Schema entsprechen. Importieren Sie sie direkt in Datenbanken, Tabellenkalkulationen oder APIs."
       }
     },
     "example": {
-      "title": "Example: Invoice Data Extraction",
-      "schemaTitle": "Your JSON Schema",
-      "outputTitle": "Extracted Output",
-      "note": "Complex nested structures are extracted accurately, with proper typing for numbers, dates, and arrays."
+      "title": "Beispiel: Extraktion von Rechnungsdaten",
+      "schemaTitle": "Ihr JSON-Schema",
+      "outputTitle": "Extrahierter Ausgabewert",
+      "note": "Komplexe geschachtelte Strukturen werden genau extrahiert, wobei Zahlen, Daten und Arrays korrekt typisiert werden."
     },
     "applications": {
-      "title": "Applications",
+      "title": "Anwendungen",
       "invoice": {
-        "title": "Invoice Processing",
-        "description": "Extract vendor details, line items, totals, and tax information from invoices in any format. Feed directly into your accounting system.",
-        "examples": ["AP automation", "Expense tracking", "Audit preparation", "Vendor management"]
+        "title": "Rechnungsverarbeitung",
+        "description": "Extrahieren Sie Lieferantendaten, Positionen, Gesamtbeträge und Steuerinformationen aus Rechnungen in beliebiger Form. Speisen Sie diese direkt in Ihr Buchungssystem ein.",
+        "examples": [
+          "AP-Automatisierung",
+          "Ausgabenverfolgung",
+          "Vorbereitung der Prüfung",
+          "Anbietermanagement"
+        ]
       },
       "resume": {
-        "title": "Resume Parsing",
-        "description": "Convert resumes into structured candidate profiles. Extract contact info, work history, education, skills, and certifications consistently.",
-        "examples": ["ATS integration", "Candidate matching", "Skills inventory", "Recruitment analytics"]
+        "title": "Lebenslauf-Parsing",
+        "description": "Wandeln Sie Lebensläufe in strukturierte Kandidatendatenprofile um. Extrahieren Sie kontaktbezogene Informationen, Berufserfahrung, Ausbildung, Fähigkeiten und Zertifizierungen konsistent.",
+        "examples": [
+          "ATS-Integration",
+          "Kandidateneinstimmung",
+          "Fähigkeiteninventar",
+          "Rekrutierungsanalytik"
+        ]
       },
       "contract": {
-        "title": "Contract Analysis",
-        "description": "Pull key terms, dates, parties, and obligations from legal documents. Automate contract review and compliance monitoring.",
-        "examples": ["Due diligence", "Risk assessment", "Renewal tracking", "Clause extraction"]
+        "title": "Vertragsanalyse",
+        "description": "Ziehen Sie Schlüsselbegriffe, Daten, Parteien und Verpflichtungen aus Rechtsdokumenten. Automatisieren Sie die Vertragsprüfung und die Überwachung der Einhaltung.",
+        "examples": [
+          "Sorgfaltspflicht",
+          "Risikobewertung",
+          "Nachverfolgung der Verlängerung",
+          "Klauselextraktion"
+        ]
       },
       "form": {
-        "title": "Form Processing",
-        "description": "Digitize paper forms, applications, and questionnaires. Extract field values regardless of layout variations.",
-        "examples": ["Insurance claims", "Loan applications", "Government forms", "Survey responses"]
+        "title": "Formularverarbeitung",
+        "description": "Digitieren Sie Papierformulare, Anträge und Fragebögen. Extrahieren Sie Feldwerte unabhängig von Layoutvariationen.",
+        "examples": [
+          "Versicherungsansprüche",
+          "Darlehensanträge",
+          "Regierungsformulare",
+          "Umfrageantworten"
+        ]
       }
     },
     "benefits": {
-      "title": "Why {{appName}} for Data Extraction?",
+      "title": "Warum {{appName}} für die Datenextraktion?",
       "schemaEnforcement": {
-        "title": "Schema Enforcement",
-        "description": "Every extraction matches your exact schema. No missing fields, no unexpected formats."
+        "title": "Schema-Prüfung",
+        "description": "Jede Extraktion entspricht genau Ihrem Schema. Keine fehlenden Felder, keine unerwarteten Formate."
       },
       "formatFlexibility": {
-        "title": "Format Flexibility",
-        "description": "Handle variations in document layouts. The same schema works across different formats."
+        "title": "Formatflexibilität",
+        "description": "Berücksichtige Layout-Variationen in Dokumenten. Dasselbe Schema funktioniert in verschiedenen Formaten."
       },
       "instantIntegration": {
-        "title": "Instant Integration",
-        "description": "Get clean JSON ready for databases, APIs, and spreadsheets without post-processing."
+        "title": "Sofortige Integration",
+        "description": "Erhalten Sie sauberes JSON, das direkt für Datenbanken, APIs und Tabellenkalkulationen verwendet werden kann, ohne Nachbearbeitung."
       }
     },
     "cta": {
-      "title": "Start Extracting Data Today",
-      "subtitle": "Build your first data extraction endpoint in minutes. No ML training required."
+      "title": "Heute noch Daten extrahieren beginnen",
+      "subtitle": "Erstellen Sie in wenigen Minuten Ihre erste Datenextraktionsendpunkt. Kein maschinelles Lernen erforderlich."
     }
   },
   "content": {
     "hero": {
-      "title": "Content Generation",
-      "subtitle": "Generate high-quality content programmatically with guaranteed structure. Define your content format once, then generate at scale with perfect consistency."
+      "title": "Inhaltsgenerierung",
+      "subtitle": "Generieren Sie hochwertigen Inhalt programmatisch mit garantiertem Aufbau. Definieren Sie Ihr Inhaltsformat einmal, und generieren Sie dann in großem Stil mit perfekter Konsistenz."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "So funktioniert es",
       "step1": {
-        "title": "Define Your Format",
-        "description": "Specify content structure—headlines, body sections, bullet points, metadata, and length constraints."
+        "title": "Definieren Sie Ihr Format",
+        "description": "Geben Sie die Inhaltsstruktur an – Überschriften, Hauptabschnitte, Aufzählungspunkte, Metadaten und Längenbeschränkungen."
       },
       "step2": {
-        "title": "Provide Context",
-        "description": "Send product data, topics, or source material. The LLM generates content tailored to your input."
+        "title": "Zum Kontext hinzufügen",
+        "description": "Senden Sie Produktinformationen, Themen oder Quellmaterial. Die LLM erstellt Inhalte, die an Ihre Eingabe angepasst sind."
       },
       "step3": {
-        "title": "Get Formatted Content",
-        "description": "Receive perfectly structured content ready for your CMS, database, or application."
+        "title": "Formatierten Inhalt abrufen",
+        "description": "Erhalten Sie perfekt strukturierten Inhalt, der sofort für Ihre CMS-, Datenbank- oder Anwendungsumgebung nutzbar ist."
       }
     },
     "example": {
-      "title": "Example: Product Description Generation",
-      "schemaTitle": "Your Content Schema",
-      "outputTitle": "Generated Content",
-      "note": "Every piece of content matches your schema constraints—length limits, required fields, and array bounds."
+      "title": "Beispiel: Generierung von Produktbeschreibungen",
+      "schemaTitle": "Ihr Inhalts-Schema",
+      "outputTitle": "Generierte Inhalte",
+      "note": "Jedes Stück Inhalt entspricht Ihren Schemabeschränkungen – Längenbegrenzungen, erforderliche Felder und Arraygrenzen."
     },
     "applications": {
-      "title": "Applications",
+      "title": "Anwendungen",
       "productDescriptions": {
-        "title": "Product Descriptions",
-        "description": "Generate consistent, compelling product copy at scale. Define structure for features, benefits, specs, and SEO keywords—then generate thousands of descriptions programmatically.",
-        "examples": ["E-commerce listings", "Catalog pages", "Marketplace listings", "Product specs"]
+        "title": "Produktbeschreibungen",
+        "description": "Generieren Sie skalierbar konsistente und überzeugende Produktbeschreibungen. Definieren Sie die Struktur für Features, Vorteile, Spezifikationen und SEO-Schlüsselwörter – und generieren Sie anschließend Tausende Beschreibungen programmatisch.",
+        "examples": [
+          "E-Commerce-Listings",
+          "Katalogseiten",
+          "Marktplatzlistings",
+          "Produktspezifikationen"
+        ]
       },
       "marketingCopy": {
-        "title": "Marketing Copy",
-        "description": "Create structured marketing content with consistent formatting. Headlines, body copy, CTAs, and metadata all conform to your brand guidelines.",
-        "examples": ["Ad copy", "Landing pages", "Email campaigns", "Social media posts"]
+        "title": "Werbe-Text",
+        "description": "Erstellen Sie strukturierte Marketinginhalte mit konsistenter Formatierung. Überschriften, Haupttext, Aufforderungen zum Handeln und Metadaten entsprechen allen Markenrichtlinien.",
+        "examples": [
+          "Anzeigentext",
+          "Landingpages",
+          "E-Mail-Kampagnen",
+          "Soziale Medien-Beiträge"
+        ]
       },
       "documentation": {
-        "title": "Documentation",
-        "description": "Generate technical documentation with consistent structure. API docs, user guides, and help articles all follow your defined templates.",
-        "examples": ["API documentation", "User guides", "FAQ generation", "Release notes"]
+        "title": "Dokumentation",
+        "description": "Generieren Sie technische Dokumentation mit konsistenter Struktur. API-Dokumentation, Benutzerhandbücher und Hilfsartikel folgen allen definierten Vorlagen.",
+        "examples": [
+          "API-Dokumentation",
+          "Benutzerhandbücher",
+          "FAQ-Generierung",
+          "Versionshinweise"
+        ]
       },
       "personalizedContent": {
-        "title": "Personalized Content",
-        "description": "Create individualized content at scale. Generate personalized emails, recommendations, and reports based on user data while maintaining consistent structure.",
-        "examples": ["Personalized emails", "Custom reports", "Recommendations", "Notifications"]
+        "title": "Personalisierte Inhalte",
+        "description": "Erstellen Sie skalierbar individuelle Inhalte. Generieren Sie personalisierte E-Mails, Empfehlungen und Berichte basierend auf Nutzerdaten, wobei eine konsistente Struktur gewahrt bleibt.",
+        "examples": [
+          "Persönliche E-Mails",
+          "Benutzerdefinierte Berichte",
+          "Empfehlungen",
+          "Benachrichtigungen"
+        ]
       }
     },
     "benefits": {
-      "title": "Why {{appName}} for Content Generation?",
+      "title": "Warum {{appName}} für die Inhaltserstellung?",
       "lengthControl": {
-        "title": "Length Control",
-        "description": "Set character limits for headlines, descriptions, and body content. Never exceed platform limits."
+        "title": "Längenkontrolle",
+        "description": "Legen Sie Zeichenbegrenzungen für Überschriften, Beschreibungen und Haupttext fest. Überschreiten Sie niemals die Plattformbegrenzungen."
       },
       "consistentStructure": {
-        "title": "Consistent Structure",
-        "description": "Every piece of content follows your defined format. Perfect for templates and bulk generation."
+        "title": "Konsistente Struktur",
+        "description": "Jedes Stück Inhalt folgt Ihrem definierten Format. Perfekt für Vorlagen und Massenerzeugung."
       },
       "scaleInstantly": {
-        "title": "Scale Instantly",
-        "description": "Generate hundreds of content pieces with a single endpoint. Same quality, fraction of the time."
+        "title": "Sofort skalieren",
+        "description": "Generieren Sie hunderte von Inhaltstücke mit einer einzigen Endpoint. Gleiche Qualität, Bruchteil der Zeit."
       }
     },
     "cta": {
-      "title": "Start Generating Content Today",
-      "subtitle": "Create your first content generation endpoint in minutes. Scale from one to thousands instantly."
+      "title": "Inhalte heute erstellen",
+      "subtitle": "Erstellen Sie in wenigen Minuten Ihre erste Endpoint für die Inhaltsgenerierung. Skalieren Sie von einem auf Tausende sofort."
     }
   }
 }

@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "대시보드",
+  "welcome": "다시 오셨습니다, {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "프로젝트",
+    "providers": "공급자",
+    "analytics": "분석",
+    "budgets": "예산",
+    "subscription": "구독",
+    "rateLimits": "제한 속도",
+    "settings": "설정"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "프로젝트",
+    "empty": "아직 프로젝트가 없습니다",
+    "emptyDescription": "프로젝트를 시작하려면 첫 번째 프로젝트를 생성하세요",
+    "create": "프로젝트 생성",
+    "useTemplate": "템플릿 사용",
+    "notFound": "프로젝트를 찾을 수 없습니다",
+    "backToProjects": "프로젝트로 돌아가기",
+    "confirmDelete": "이 프로젝트를 삭제하시겠습니까?",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} 엔드포인트",
+      "created": "생성됨 {{date}}",
+      "active": "활성 상태",
+      "inactive": "비활성"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
+      "title": "프로젝트 생성",
+      "titleEdit": "프로젝트 편집",
+      "projectName": "프로젝트 이름",
       "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "projectNameHint": "소문자, 숫자, 하이픈만 사용",
+      "displayName": "표시 이름",
+      "displayNamePlaceholder": "내 프로젝트",
+      "description": "설명",
+      "descriptionPlaceholder": "이 프로젝트가 하는 일",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "표시 이름은 필수 항목입니다",
+        "nameTooShort": "이름은 최소 2자 이상이어야 합니다"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "슬러그"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "엔드포인트",
+    "empty": "아직 엔드포인트가 없습니다",
+    "emptyDescription": "이 프로젝트용 첫 번째 엔드포인트를 생성하세요",
+    "create": "엔드포인트 생성",
+    "test": "테스트",
+    "notFound": "엔드포인트를 찾을 수 없습니다",
+    "backToProject": "프로젝트로 돌아가기",
+    "updated": "엔드포인트가 성공적으로 업데이트되었습니다",
+    "confirmDelete": "이 엔드포인트를 삭제하시겠습니까?",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "일반",
+      "input": "입력",
+      "output": "출력",
+      "test": "테스트"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "방법",
+      "type": "타입"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "엔드포인트 유형",
+      "instructions": "지침",
+      "context": "시스템 컨텍스트",
+      "inputSchema": "입력 스키마",
+      "outputSchema": "출력 스키마"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
+      "title": "엔드포인트 생성",
+      "titleEdit": "엔드포인트 편집",
+      "endpointName": "엔드포인트 이름",
       "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "displayName": "표시 이름",
+      "displayNamePlaceholder": "내 엔드포인트",
+      "instructions": "지침",
+      "instructionsPlaceholder": "LLM의 작업 지침",
+      "httpMethod": "HTTP 메서드",
+      "llmKey": "공급자",
+      "selectKey": "공급자 선택",
+      "noKeys": "API 키가 설정되지 않았습니다. 먼저 하나를 추가하세요.",
+      "context": "시스템 컨텍스트",
+      "contextPlaceholder": "LLM의 지침(시스템 프롬프트)",
+      "useInputSchema": "입력 스키마 정의",
+      "useOutputSchema": "출력 스키마 정의",
+      "inputSchema": "입력 스키마",
+      "outputSchema": "출력 스키마",
+      "invalidJson": "유효하지 않은 JSON",
+      "create": "엔드포인트 생성",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "표시 이름은 필수 항목입니다",
+        "slugRequired": "엔드포인트 이름이 필요합니다",
+        "keyRequired": "공급자가 필요합니다",
+        "invalidInputSchema": "잘못된 입력 스키마 JSON",
+        "invalidOutputSchema": "잘못된 출력 스키마 JSON"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "테스트 엔드포인트",
+      "input": "입력",
+      "generateSample": "샘플 생성",
+      "viewPrompt": "프롬프트 보기",
+      "prompt": "생성된 프롬프트",
+      "execute": "실행",
+      "executing": "실행 중...",
+      "response": "응답",
+      "success": "성공",
+      "failed": "실패함",
+      "invalidJson": "잘못된 JSON 입력",
+      "output": "출력",
+      "latency": "지연 시간",
+      "inputTokens": "입력 토큰",
+      "outputTokens": "출력 토큰",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "사용법",
+        "tokensIn": "토큰 인",
+        "tokensOut": "토큰 아웃",
+        "latency": "지연 시간",
+        "cost": "예상 비용"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "공급자",
+    "empty": "설정된 공급자 없음",
+    "emptyDescription": "첫 번째 LLM 공급업체를 추가하세요",
+    "add": "공급자 추가",
+    "confirmDelete": "이 공급자를 삭제하시겠습니까?",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "provider": "공급자",
+      "status": "상태",
+      "active": "활성 중",
+      "inactive": "비활성"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "title": "API 키 추가",
+      "titleEdit": "API 키 편집",
+      "keyName": "키 이름",
+      "keyNamePlaceholder": "내 OpenAI 키",
+      "provider": "공급자",
+      "apiKey": "API 키",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "귀하의 키는 저장 중 암호화되어 있습니다",
+      "leaveBlank": "현재 설정을 유지하려면 공백으로 두세요",
+      "endpointUrl": "엔드포인트 URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "키 추가",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "키 이름이 필요합니다",
+        "apiKeyRequired": "API 키가 필요합니다",
+        "endpointRequired": "사용자 지정 LM 서버에 Endpoint URL이 필요합니다."
       }
     },
     "providers": {
-      "openai": "OpenAI",
-      "anthropic": "Anthropic",
+      "openai": "오픈AI",
+      "anthropic": "애너스틱",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "사용자 지정 LM 서버"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "분석",
+    "noData": "분석 데이터 없음",
+    "noDataDescription": "분석 정보를 보려면 API 요청을 시작하세요",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "오늘",
+      "week": "이번 주",
+      "month": "이번 달",
+      "custom": "사용자 지정 범위"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "전체 요청",
+      "successRate": "성공률",
+      "avgLatency": "평균 지연 시간",
+      "totalCost": "총 비용",
+      "tokensUsed": "사용된 토큰",
+      "inputTokens": "입력 토큰",
+      "outputTokens": "출력 토큰",
+      "requestDistribution": "요청 분배",
+      "successful": "성공적",
+      "failed": "실패함",
+      "byEndpoint": "엔드포인트로"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "시간에 따른 요청량",
+      "byEndpoint": "엔드포인트로"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
+    "title": "프로젝트 템플릿",
+    "subtitle": "미리 설정된 템플릿에서 시작하세요",
+    "configure": "템플릿 구성",
+    "projectName": "프로젝트 이름",
     "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "llmKey": "공급자",
+    "selectKey": "공급자 선택",
+    "noKeys": "사용 가능한 API 키가 없습니다.",
+    "addKeyLink": "첫 번째 하나 추가",
+    "preview": "미리보기",
+    "willCreate": "이 작업으로 인해 {{count}}개의 엔드포인트가 생성됩니다:",
+    "apply": "템플릿 적용",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "모든 필수 항목을 입력해 주세요"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "텍스트 분류기",
+      "description": "텍스트를 카테고리로 분류"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "감성 분석기",
+      "description": "감정과 감성을 분석하세요"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "데이터 추출기",
+      "description": "텍스트에서 구조화된 데이터 추출"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "컨텐츠 생성기",
+      "description": "요약 및 콘텐츠 생성"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "현지화",
+      "description": "다양한 언어로 텍스트를 번역하세요"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "예산",
+    "empty": "예산이 설정되지 않음",
+    "emptyDescription": "API 비용을 추적하기 위해 지출 한도를 설정하세요",
+    "add": "예산 추가",
+    "confirmDelete": "이 예산을 삭제하시겠습니까?",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "일일",
+      "weekly": "주간",
+      "monthly": "월간"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "예산 이름",
+      "namePlaceholder": "월간 API 한도",
+      "limit": "지출 한도",
+      "period": "기간",
+      "add": "예산 추가"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}}는 예산의 75%에 도달했습니다",
+      "critical": "{{name}}는 예산의 90%에 도달했습니다",
+      "exceeded": "{{name}}의 예산을 초과했습니다",
+      "usage": "현재 사용량: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
+    "editor": "스키마 편집기",
+    "visual": "시각적",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "재산 추가",
+    "noProperties": "속성이 정의되지 않았습니다. 시작하려면 하나를 추가하세요.",
+    "required": "필요한",
+    "descriptionPlaceholder": "부동산 설명 (선택 사항)",
+    "arrayItemSchema": "배열 항목 스키마:",
+    "clickToEditName": "필드 이름을 편집하려면 클릭하세요",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "string": "문자열",
+      "number": "숫자",
+      "integer": "정수",
+      "boolean": "논리형",
+      "object": "개체",
+      "array": "배열"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "설정",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
+      "title": "조직",
+      "description": "조직 설정을 구성하세요. 조직 경로는 API URL에서 사용됩니다.",
+      "name": "기관 이름",
+      "namePlaceholder": "내 조직",
+      "nameHint": "조직용 선택적 표시 이름",
+      "path": "조직 경로",
       "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "pathHint": "API URL에서 사용됨: /api/v1/ai/{org_path}/...",
+      "pathTaken": "이 길은 이미 사용 중입니다",
+      "pathInvalid": "알파벳, 숫자, 밑줄만 허용됨",
+      "apiUrlPreview": "API URL 미리보기:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "변경 사항 저장",
+      "saving": "저장 중...",
+      "saved": "설정이 성공적으로 저장되었습니다",
+      "error": "설정을 저장하는 데 실패했습니다"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "프로젝트 API 키",
+    "description": "이 키를 사용하여 엔드포인트에 API 요청을 인증하세요. 쿼리 파라미터(api_key=...) 또는 Authorization 헤더의 Bearer 토큰으로 포함하세요.",
+    "createdAt": "만든",
+    "show": "API 키 표시",
+    "hide": "API 키 숨기기",
+    "copy": "API 키 복사",
+    "refresh": "API 키 새로 고침",
+    "copied": "복사됨!",
+    "copiedMessage": "API 키가 클립보드에 복사됨",
+    "refreshed": "API 키가 새로 고침됨",
+    "refreshedMessage": "API 키가 새로 고침되었습니다. 애플리케이션에서 이를 업데이트하세요.",
+    "confirmRefreshTitle": "API 키 새로 고치기?",
+    "confirmRefreshMessage": "이 작업은 현재의 API 키를 무효화합니다. 이전 키를 사용하는 모든 애플리케이션은 즉시 작동을 멈춥니다.",
+    "confirmRefresh": "키 새로 고침"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "IP 허용 목록",
+    "description": "특정 IP 주소로 엔드포인트 접근을 제한합니다. 모든 IP 주소를 허용하려면 비워 두세요.",
+    "allAllowed": "모든 IP 주소 허용",
+    "placeholder": "IPv4 주소를 입력하세요 (예: 192.168.1.1)",
+    "add": "추가하기",
+    "removeIp": "{{ip}} 제거",
+    "invalidIp": "유효하지 않은 IPv4 주소",
+    "duplicateIp": "이 IP는 이미 목록에 있습니다"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "제한 속도",
+    "loading": "로딩 중...",
+    "error": "레이트 제한을 불러오지 못했습니다",
+    "retry": "다시 시도하세요",
+    "upgradeButton": "업그레이드 플랜",
+    "currentTier": "현재",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "현재 한도",
+      "usageHistory": "사용 내역"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "시간당",
+      "daily": "일일",
+      "monthly": "월간"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "제한 속도",
+      "currentUsage": "현재 사용량",
+      "planComparison": "플랜 비교",
+      "used": "사용된",
+      "limit": "제한",
+      "unlimited": "무제한",
+      "remaining": "남은"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "사용 기록",
+      "requests": "요청",
+      "noData": "이 기간 동안 사용 데이터가 사용할 수 없습니다"
     }
   }
 }

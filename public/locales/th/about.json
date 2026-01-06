@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "เกี่ยวกับ {{appName}}",
+    "description": "เรียนรู้เกี่ยวกับ {{appName}} - แพลตฟอร์มที่เปลี่ยนผลลัพธ์จาก LLM ให้เป็น API ที่มีโครงสร้างและน่าเชื่อถือ"
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "เกี่ยวกับ {{appName}}",
+    "subtitle": "เราอยู่บนภารกิจเพื่อทำให้ API ปัญญาประดิษฐ์น่าเชื่อถือและคาดเดาได้สำหรับนักพัฒนาทุกคนทั่วโลก"
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "เรื่องของเรา",
+    "paragraph1": "{{appName}} เกิดจากการรู้สึกไม่พอใจอย่างง่ายดาย: การทำงานกับผลลัพธ์จากโมเดลภาษาขนาดใหญ่ (LLM) นั้นไม่แน่นอน ทุกผู้พัฒนาที่เคยผสานปัญญาประดิษฐ์เข้ากับแอปพลิเคชันของตนต่างรู้ดีถึงความท้าทายในการวิเคราะห์ข้อความที่ไม่มีโครงสร้างและจัดการกับกรณีเฉพาะตัว",
+    "paragraph2": "เราได้สร้าง {{appName}} เพื่อแก้ปัญหานี้ให้จบสิ้น ด้วยการผสานการตรวจสอบ JSON Schema เข้ากับการสร้างคำสั่งอัจฉริยะ เราจะเปลี่ยนผลลัพธ์จาก LLM ที่สับสนให้กลายเป็น API ที่มีโครงสร้างและปลอดภัยต่อประเภท ซึ่งนักพัฒนาสามารถพึ่งพาได้"
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "ภารกิจของเรา",
+    "description": "เพื่อให้ผู้พัฒนาได้รับเครื่องมือที่ช่วยให้การผสานระบบปัญญาประดิษฐ์ (AI) มีความน่าเชื่อถือเท่ากับ API แบบดั้งเดิม เราเชื่อว่าการส่งออกข้อมูลที่มีโครงสร้างไม่จำเป็นต้องใช้ตรรกะการแยกวิเคราะห์ที่ซับซ้อนหรือการจัดการข้อผิดพลาดอย่างไม่มีที่สิ้นสุด"
   },
   "values": {
-    "title": "Our Values",
+    "title": "ค่านิยมของเรา",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "ความน่าเชื่อถือเป็นอันดับแรก:",
+      "description": "API ของคุณควรทำงานได้อย่างสม่ำเสมอทุกครั้ง"
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "ความง่ายสำหรับผู้พัฒนา:",
+      "description": "ฟังก์ชันที่ซับซ้อนแต่มีอินเทอร์เฟซที่ง่าย"
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "ราคาที่โปร่งใส:",
+      "description": "จ่ายตามที่ใช้ ไม่มีค่าธรรมเนียมซ่อนเร้น"
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "นวัตกรรมอย่างต่อเนื่อง:",
+      "description": "พัฒนาอยู่เสมอ ปรับตัวอยู่เสมอ"
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "พร้อมเริ่มต้นหรือยัง?",
+    "description": "ร่วมกับผู้พัฒนาที่กำลังสร้างแอปพลิเคชันที่เชื่อถือได้ด้วยปัญญาประดิษฐ์ด้วย {{appName}}",
+    "button": "อ่านเอกสาร"
   }
 }

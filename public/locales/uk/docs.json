@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "Документація",
+  "subtitle": "Навчіться створювати структуровані API для штучного інтелекту за допомогою {{appName}}",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "Дізнайтеся, як почати роботу з {{appName}}. Створюйте проекти, налаштовуйте постачальників LLM і створюйте перший структурований API-ендпоінт для штучного інтелекту.",
+    "concepts": "Розуміти основні концепції: закінчення точки входу, схеми JSON, контекст системи та шляхи організації для створення структурованих API для штучного інтелекту.",
+    "apiReference": "Повна довідка з API для {{appName}. REST-точки доступу, формати запитів, структури відповідей та приклади коду.",
+    "default": "Документація {{appName} . Дізнайтеся, як створювати надійні REST API з підтримкою штучного інтелекту з валідацією за допомогою JSON Schema."
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "Як створити структуровану точку входу для LLM",
+    "description": "Послідовне керівництво з створення першого структурованого API-кінцевого пункту для штучного інтелекту з використанням {{appName}",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "Створити проект",
+        "text": "Розпочніть створення нового проекту на панелі керування для організації ваших кінцевих точок."
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "Додати постачальника LLM",
+        "text": "Налаштуйте свій ключ API для OpenAI, Anthropic, Google Gemini або власного сервера мовної моделі."
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "Визначте кінцеву точку",
+        "text": "Створіть точку входу з інструкціями, контекстом і схемою виводу у форматі JSON."
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "Перевірте свій кінцевий пункт",
+        "text": "Використовуйте вбудований тестер, щоб переконатися, що ваш точка входу повертає структуровані дані."
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "Інтегрувати",
+        "text": "Викличте свій закінчення з додатку за допомогою простих запитів GET або POST."
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "Початок роботи",
+    "concepts": "Основні концепції",
+    "apiReference": "Посилання на API"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "Початок роботи",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "Створити проект",
+        "description": "Почніть із створення нового проекту на вашому панелі керування. Надайте йому ім'я та необов'язкове опис."
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "Додати постачальника",
+        "description": "Налаштуйте свій ключ API для OpenAI, Anthropic, Google Gemini або власного сервера мовної моделі."
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "Визначте кінцеву точку",
+        "description": "Створіть точку входу зі схемою виводу JSON, інструкціями та контекстом. Підключіть її до ключа вашого LLM."
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "Встановіть шлях вашої організації",
+        "description": "Налаштуйте шлях організації за замовчуванням у налаштуваннях або використовуйте автоматично створений шлях за замовчуванням."
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "Інтегрувати",
+        "description": "Викличте свій endpoint із додатку за допомогою простих запитів GET або POST."
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "Основні концепції",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "Кінцеві точки",
+      "description": "Кожен кінцевий пункт налаштовано з:",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "Схема вхідних даних",
+          "description": "Схема JSON, що визначає очікувану структуру вхідних даних (не обов’язково)"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "Схема виводу",
+          "description": "Схема JSON, що визначає структуру відповіді LLM"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "Інструкції",
+          "description": "Конкретні інструкції для того, що повинен зробити LLM із вхідними даними"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "Контекст",
+          "description": "Контекст системи/запит для керування поведінкою LLM"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "HTTP-метод",
+          "description": "GET (параметри запиту) або POST (тіло JSON) для вхідних даних"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "Схема вхідних даних",
+      "description": "Визначте очікуваний структуру вхідних даних за допомогою JSON-схеми. Коли викликачі надсилають дані до вашого закінчення, {{appName}} перевіряє їх відповідно до вашої схеми вхідних даних перед обробкою. Це забезпечує, що ваш LLM отримує коректно структуровані дані і надає чіткі повідомлення про помилки для недійсних запитів."
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "Схема виводу",
+      "description": "Визначте структуру виводу LLM за допомогою JSON-схеми. {{appName}} інструктує LLM повернути дані, що відповідають вашій схемі, і перевіряє відповідь, автоматично повторюючи спробу, якщо вивід не відповідає формату."
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "Контекст системи",
+      "description": "Надайте системні підказки для керування поведінкою LLM. Цей контекст додається до кожного запиту до вашого точки входу."
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "Шлях організації",
+      "description": "Шлях вашої організації використовується у URL-адресах API. За замовчуванням це перші 8 символів вашого ідентифікатора користувача, але ви можете налаштувати його у налаштуваннях."
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "Посилання на API",
+    "description": "Доступ до ваших точок входу через REST API. Усі AI-точки входу є публічними і не вимагають автентифікації.",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "Виконати кінцеву точку",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "Виконує кінцеву точку та повертає відповідь LLM із метриками використання."
       },
       "prompt": {
-        "title": "Get Prompt Only",
+        "title": "Отримати лише запит",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "description": "Повертає згенерований запит без виклику LLM. Корисно для налагодження."
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "Формат відповіді",
+      "description": "Успішні відповіді містять вихід LLM та статистику використання:",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "вивід",
+          "description": "Структурована відповідь від LLM, що відповідає вашій схемі виведення"
         },
         {
           "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "description": "Кількість вхідних токенів, використаних"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "Кількість згенерованих токенів виводу"
         },
         {
           "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "description": "Затримка запиту в мілісекундах"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "використання.приблизна вартість центів",
+          "description": "Орієнтовна вартість у центах"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "Приклад запиту",
+      "responseTitle": "Приклад відповіді"
     }
   }
 }

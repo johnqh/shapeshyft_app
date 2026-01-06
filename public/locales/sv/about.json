@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "Om {{appName}}",
+    "description": "Lär dig om {{appName}} – plattformen som omvandlar LLM-utdata till strukturerade, pålitliga API:er."
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "Om {{appName}}",
+    "subtitle": "Vi är på ett uppdrag att göra AI-API:er tillförlitliga och förutsägbara för utvecklare överallwhere."
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "Vårt berättelse",
+    "paragraph1": "{{appName}} föddes ur en enkel frustration: att arbeta med LLM-utdata är osäkert. Varje utvecklare som har integrerat AI i sina appar känner till utmaningen med att tolka osammanhängande textsvaret och hantera gränsfall.",
+    "paragraph2": "Vi byggde {{appName}} för att lösa detta problem en och för alla. Genom att kombinera JSON Schema-validering med intelligent promptingenjörering omvandlar vi kaotiska LLM-utdata till strukturerade, typ-säkra API:er som utvecklare kan lita på."
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "Vårt mål",
+    "description": "Att ge utvecklare verktyg som gör att AI-integrering är lika pålitlig som traditionella API:er. Vi tror att strukturerade utdata inte bör kräva komplexa tolkningslogik eller oändlig felhantering."
   },
   "values": {
-    "title": "Our Values",
+    "title": "Våra värden",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "Tillförlitlighet först:",
+      "description": "Dina API:er bör fungera konsekvent, varje gång."
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "Utvecklars enkelhet:",
+      "description": "Komplex funktionalitet med enkla gränssnitt."
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "Genomskinlig prisangivelse:",
+      "description": "Betal för det du använder, inga dolda avgifter."
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "Kontinuerlig innovation:",
+      "description": "Alltid förbättrar, alltid utvecklas."
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "Klar att börja?",
+    "description": "Gå med utvecklare som bygger pålitliga AI-drivna appar med {{appName}.",
+    "button": "Läs dokumentationen"
   }
 }

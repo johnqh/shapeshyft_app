@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "価格設定",
+  "subtitle": "ご要望に合ったプランを選択してください",
   "plans": {
     "free": {
-      "name": "Free",
-      "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "name": "無料",
+      "price": "0ドル",
+      "period": "永遠に",
+      "description": "スタートするのに最適",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1か月あたり1,000回のAPIリクエスト",
+        "1プロジェクト",
+        "プロジェクトあたり3つのエンドポイント",
+        "すべてのLLMプロバイダー",
+        "基本的な分析",
+        "コミュニティサポート"
       ],
-      "cta": "Get Started"
+      "cta": "スタートする"
     },
     "pro": {
-      "name": "Pro",
-      "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "name": "プロ",
+      "price": "29ドル",
+      "period": "/月",
+      "description": "拡大するチームやプロジェクト向け",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "無制限のAPIリクエスト",
+        "無制限のプロジェクト",
+        "無制限のエンドポイント",
+        "すべてのLLMプロバイダー",
+        "高度な分析",
+        "優先サポート",
+        "チーム協力",
+        "カスタムドメイン"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "プロトライアルを開始",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "企業向け",
+      "price": "カスタム",
       "period": "",
-      "description": "For large organizations",
+      "description": "大規模な組織向け",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "プロのすべて",
+        "専用インフラ構造",
+        "SLA保証",
+        "SSO および SAML",
+        "監査ログ",
+        "24時間365日サポート",
+        "カスタム統合",
+        "オンプレミスオプション"
       ],
-      "cta": "Contact Sales"
+      "cta": "営業担当へお問い合わせ"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "よくある質問",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "APIリクエストとはどのようなものか？",
+        "answer": "あなたの {{appName}} エンドポイントへの各呼び出しは、使用される下位の LLM プロバイダーに関係なく、1回のリクエストとカウントされます。"
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "独自のLLM APIキーが必要ですか？",
+        "answer": "はい、OpenAI、Anthropic、Google、またはカスタムLMサーバーのAPIキーを自分で提供します。これらは暗号化されて安全に保管されます。"
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "後でプランを変更できますか？",
+        "answer": "はい、いつでもプランのアップグレードまたはダウングレードが可能です。変更内容は次の請求サイクルから適用されます。"
       }
     ]
   }

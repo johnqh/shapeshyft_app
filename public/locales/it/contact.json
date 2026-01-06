@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "Contattaci - {{appName}}",
+    "description": "Mettersi in contatto con il team {{appName}. Siamo qui per aiutarti con qualsiasi domanda sul nostro piattaforma API."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "Contattaci",
+  "subtitle": "Hai domande? Saremmo felici di sentirti. Invia un messaggio e ti risponderemo al più presto.",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "Scrivici un'email",
+    "description": "Il modo migliore per contattarci è via email. Di solito rispondiamo entro 24-48 ore nei giorni feriali.",
+    "support": "Supporto"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "Tempo di risposta",
+    "description": "Cerchiamo di rispondere a tutte le richieste entro 1-2 giorni lavorativi. Per problemi urgenti, inserire \"URGENTE\" nell'oggetto dell'email."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "Support tecnico",
+    "description": "Per problemi con l'API, bug o domande tecniche, includi il tuo ID progetto e eventuali messaggi di errore rilevanti nella tua email."
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "Documentazione",
+    "description": "Molte domande frequenti sono già risposte nella nostra documentazione. Controlla lì prima per trovare soluzioni rapide."
   }
 }

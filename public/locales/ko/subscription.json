@@ -1,100 +1,100 @@
 {
-  "title": "Manage Subscription",
-  "noProducts": "No subscription plans available at this time.",
-  "noProductsForPeriod": "No plans available for this billing period.",
+  "title": "구독 관리",
+  "noProducts": "현재 이용 가능한 구독 플랜이 없습니다.",
+  "noProductsForPeriod": "이 청구 기간에 이용 가능한 플랜이 없습니다.",
   "freeTier": {
-    "title": "Free",
-    "price": "$0",
-    "schemaValidation": "JSON Schema-validated outputs",
-    "allProviders": "All LLM providers (OpenAI, Anthropic, Google)",
-    "endpointTesting": "Built-in endpoint testing",
-    "analytics": "Basic usage analytics"
+    "title": "무료",
+    "price": "0달러",
+    "schemaValidation": "JSON 스키마 검증 출력",
+    "allProviders": "모든 LLM 공급자(OpenAI, Anthropic, Google)",
+    "endpointTesting": "내장 엔드포인트 테스팅",
+    "analytics": "기본 사용 분석"
   },
   "rateLimits": {
-    "hourly": "{{limit}} requests/hour",
-    "daily": "{{limit}} requests/day",
-    "monthly": "{{limit}} requests/month",
-    "unlimited": "Unlimited",
-    "unlimitedRequests": "Unlimited API requests"
+    "hourly": "{{limit}} 건/시간",
+    "daily": "{{limit}} 건/일",
+    "monthly": "{{limit}} 건/월",
+    "unlimited": "무제한",
+    "unlimitedRequests": "무제한 API 요청"
   },
   "billingPeriod": {
-    "monthly": "Monthly",
-    "yearly": "Yearly"
+    "monthly": "월간",
+    "yearly": "연간"
   },
   "features": {
     "developer": [
-      "1,000 API calls/month",
-      "2 projects",
-      "5 endpoints per project",
-      "Community support"
+      "월 1,000회 API 호출",
+      "2개의 프로젝트",
+      "프로젝트당 5개의 엔드포인트",
+      "커뮤니티 지원"
     ],
     "pro": [
-      "10,000 API calls/month",
-      "10 projects",
-      "Unlimited endpoints",
-      "Priority support",
-      "Advanced analytics"
+      "월 10,000회 API 호출",
+      "10개의 프로젝트",
+      "무제한 엔드포인트",
+      "우선 순위 지원",
+      "고급 분석"
     ],
     "enterprise": [
-      "Unlimited API calls",
-      "Unlimited projects",
-      "Unlimited endpoints",
-      "Dedicated support",
-      "Custom integrations",
-      "SLA guarantee"
+      "무제한 API 호출",
+      "무제한 프로젝트",
+      "무제한 엔드포인트",
+      "전용 지원",
+      "사용자 지정 통합",
+      "SLA 보증"
     ]
   },
   "currentStatus": {
-    "label": "Current Status",
-    "active": "Active Subscription",
-    "inactive": "No Active Subscription",
-    "inactiveMessage": "Subscribe to unlock premium features and unlimited usage.",
-    "plan": "Plan",
-    "expires": "Expires",
-    "willRenew": "Auto-Renew",
-    "premium": "Premium",
-    "monthlyUsage": "Monthly Usage",
-    "dailyUsage": "Daily Usage"
+    "label": "현재 상태",
+    "active": "구독 중인 항목",
+    "inactive": "활성 구독 없음",
+    "inactiveMessage": "프리미엄 기능과 무제한 사용을 해제하려면 구독하세요.",
+    "plan": "계획",
+    "expires": "만료됨",
+    "willRenew": "자동 갱신",
+    "premium": "프리미엄",
+    "monthlyUsage": "월간 사용량",
+    "dailyUsage": "일일 사용량"
   },
   "periods": {
-    "month": "/month",
-    "year": "/year",
-    "week": "/week"
+    "month": "/월",
+    "year": "/년",
+    "week": "/주"
   },
   "badges": {
-    "popular": "Most Popular",
-    "saveYearly": "Save with Annual",
-    "currentPlan": "Current Plan",
-    "savePercent": "Save {{percent}}%"
+    "popular": "가장 인기 있는",
+    "saveYearly": "연간으로 저장",
+    "currentPlan": "현재 플랜",
+    "savePercent": "{{percent}}% 저장"
   },
   "buttons": {
-    "subscribe": "Subscribe Now",
-    "purchasing": "Processing...",
-    "restore": "Restore Purchase",
-    "restoring": "Restoring..."
+    "subscribe": "지금 구독하기",
+    "purchasing": "처리 중...",
+    "restore": "구매 복원",
+    "restoring": "복원 중..."
   },
   "purchase": {
-    "success": "Subscription activated successfully!",
-    "error": "Failed to complete purchase. Please try again."
+    "success": "구독이 성공적으로 활성화되었습니다!",
+    "error": "구매를 완료하지 못했습니다. 다시 시도해 주세요."
   },
   "restore": {
-    "success": "Purchases restored successfully!",
-    "noPurchases": "No previous purchases found.",
-    "error": "Failed to restore purchases. Please try again."
+    "success": "구매 내역이 성공적으로 복원되었습니다!",
+    "noPurchases": "이전 구매 내역이 없습니다.",
+    "error": "구매 내역 복원에 실패했습니다. 다시 시도해 주세요."
   },
   "trial": {
-    "days_one": "{{count}}-day free trial",
-    "days_other": "{{count}}-day free trial",
-    "weeks_one": "{{count}}-week free trial",
-    "weeks_other": "{{count}}-week free trial",
-    "months_one": "{{count}}-month free trial",
-    "months_other": "{{count}}-month free trial"
+    "days_one": "{{count}일 무료 체험",
+    "days_other": "{{count}일 무료 체험",
+    "weeks_one": "{{count}주 무료 체험",
+    "weeks_other": "{{count}주 무료 체험",
+    "months_one": "{{count}개월 무료 체험",
+    "months_other": "{{count}개월 무료 체험"
   },
   "intro": {
-    "note": "Then {{price}}"
+    "note": "그런 다음 {{price}}"
   },
   "common": {
-    "yes": "Yes",
-    "no": "No"
+    "yes": "예",
+    "no": "아니요"
   }
 }

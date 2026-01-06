@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "Prissättning",
+  "subtitle": "Välj det plan som passar dina behov",
   "plans": {
     "free": {
-      "name": "Free",
+      "name": "Gratis",
       "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "period": "för alltid",
+      "description": "Perfekt för att komma igång",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1 000 API-förfrågningar/månad",
+        "1 projekt",
+        "3 slutpunkter per projekt",
+        "Alla LLM-providers",
+        "Grundläggande analys",
+        "Community support på svenska"
       ],
-      "cta": "Get Started"
+      "cta": "Börja"
     },
     "pro": {
       "name": "Pro",
-      "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "price": "29 dollar",
+      "period": "/månad",
+      "description": "För växande team och projekt",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "Obegränsade API-begäranden",
+        "Obegränsade projekt",
+        "Obegränsade slutpunkter",
+        "Alla LLM-providers",
+        "Avancerad analys",
+        "Prioriterad support",
+        "Team samarbete",
+        "Anpassade domäner"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "Starta provperiod",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "Företag",
+      "price": "Anpassad",
       "period": "",
-      "description": "For large organizations",
+      "description": "För stora organisationer",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
+        "Allt i Pro",
+        "Dedikerad infrastruktur",
+        "SLA-garanti",
         "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "Åtkomstloggar",
+        "24/7-support",
+        "Anpassade integrationer",
+        "Alternativ för egen drift"
       ],
-      "cta": "Contact Sales"
+      "cta": "Kontakta sales"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Vanliga frågor",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "Vad räknas som en API-begäran?",
+        "answer": "Varje anrop till din {{appName}} slutpunkt räknas som ett anrop, oavsett vilken LLM-providern som används bakom scenen."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "Behöver jag egna API-nycklar för min egen LLM?",
+        "answer": "Ja, du anger dina egna API-nycklar för OpenAI, Anthropic, Google eller anpassade LM-servrar. Vi lagrar dem säkert krypterade."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "Kan jag ändra planer senare?",
+        "answer": "Ja, du kan uppgradera eller nergradera ditt abonnemang när som helst. Ändringar träder i kraft vid nästa faktureringscykel."
       }
     ]
   }

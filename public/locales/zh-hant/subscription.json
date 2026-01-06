@@ -1,100 +1,100 @@
 {
-  "title": "Manage Subscription",
-  "noProducts": "No subscription plans available at this time.",
-  "noProductsForPeriod": "No plans available for this billing period.",
+  "title": "管理訂閱",
+  "noProducts": "目前沒有可用的訂閱方案。",
+  "noProductsForPeriod": "此計費期間沒有可用的計畫。",
   "freeTier": {
-    "title": "Free",
+    "title": "免費",
     "price": "$0",
-    "schemaValidation": "JSON Schema-validated outputs",
-    "allProviders": "All LLM providers (OpenAI, Anthropic, Google)",
-    "endpointTesting": "Built-in endpoint testing",
-    "analytics": "Basic usage analytics"
+    "schemaValidation": "經過 JSON Schema 驗證的輸出",
+    "allProviders": "所有大型語言模型提供者（OpenAI、Anthropic、Google）",
+    "endpointTesting": "內建端點測試",
+    "analytics": "基本使用分析"
   },
   "rateLimits": {
-    "hourly": "{{limit}} requests/hour",
-    "daily": "{{limit}} requests/day",
-    "monthly": "{{limit}} requests/month",
-    "unlimited": "Unlimited",
-    "unlimitedRequests": "Unlimited API requests"
+    "hourly": "{{limit}} 次/小時",
+    "daily": "{{limit}} 次/天",
+    "monthly": "{{limit}} 次/月",
+    "unlimited": "無限",
+    "unlimitedRequests": "無限次API請求"
   },
   "billingPeriod": {
-    "monthly": "Monthly",
-    "yearly": "Yearly"
+    "monthly": "每月",
+    "yearly": "每年"
   },
   "features": {
     "developer": [
-      "1,000 API calls/month",
-      "2 projects",
-      "5 endpoints per project",
-      "Community support"
+      "每月1,000次API呼叫",
+      "2個項目",
+      "每個項目5個端點",
+      "社群支援"
     ],
     "pro": [
-      "10,000 API calls/month",
-      "10 projects",
-      "Unlimited endpoints",
-      "Priority support",
-      "Advanced analytics"
+      "每月10,000次API呼叫",
+      "10個項目",
+      "無限的端點",
+      "優先支援",
+      "進階分析"
     ],
     "enterprise": [
-      "Unlimited API calls",
-      "Unlimited projects",
-      "Unlimited endpoints",
-      "Dedicated support",
-      "Custom integrations",
-      "SLA guarantee"
+      "無限次API呼叫",
+      "無限專案",
+      "無限的端點",
+      "專人支援",
+      "自訂整合",
+      "服務等級協議保證"
     ]
   },
   "currentStatus": {
-    "label": "Current Status",
-    "active": "Active Subscription",
-    "inactive": "No Active Subscription",
-    "inactiveMessage": "Subscribe to unlock premium features and unlimited usage.",
-    "plan": "Plan",
-    "expires": "Expires",
-    "willRenew": "Auto-Renew",
-    "premium": "Premium",
-    "monthlyUsage": "Monthly Usage",
-    "dailyUsage": "Daily Usage"
+    "label": "目前狀態",
+    "active": "啟用中的訂閱",
+    "inactive": "沒有活躍的訂閱",
+    "inactiveMessage": "訂閱以解鎖高級功能和無限使用次數。",
+    "plan": "計畫",
+    "expires": "到期",
+    "willRenew": "自動續訂",
+    "premium": "高級",
+    "monthlyUsage": "每月用量",
+    "dailyUsage": "每日使用"
   },
   "periods": {
-    "month": "/month",
+    "month": "/月",
     "year": "/year",
-    "week": "/week"
+    "week": "/週"
   },
   "badges": {
-    "popular": "Most Popular",
-    "saveYearly": "Save with Annual",
-    "currentPlan": "Current Plan",
-    "savePercent": "Save {{percent}}%"
+    "popular": "最熱門",
+    "saveYearly": "以年為單位儲存",
+    "currentPlan": "目前的計劃",
+    "savePercent": "儲存 {{percent}}%"
   },
   "buttons": {
-    "subscribe": "Subscribe Now",
-    "purchasing": "Processing...",
-    "restore": "Restore Purchase",
-    "restoring": "Restoring..."
+    "subscribe": "立即訂閱",
+    "purchasing": "處理中...",
+    "restore": "恢復購買",
+    "restoring": "正在還原..."
   },
   "purchase": {
-    "success": "Subscription activated successfully!",
-    "error": "Failed to complete purchase. Please try again."
+    "success": "訂閱已成功激活！",
+    "error": "購買失敗，請再試一次。"
   },
   "restore": {
-    "success": "Purchases restored successfully!",
-    "noPurchases": "No previous purchases found.",
-    "error": "Failed to restore purchases. Please try again."
+    "success": "已成功恢復購買記錄！",
+    "noPurchases": "未找到之前的購買記錄。",
+    "error": "還原購買項目失敗，請再試一次。"
   },
   "trial": {
-    "days_one": "{{count}}-day free trial",
-    "days_other": "{{count}}-day free trial",
-    "weeks_one": "{{count}}-week free trial",
-    "weeks_other": "{{count}}-week free trial",
-    "months_one": "{{count}}-month free trial",
-    "months_other": "{{count}}-month free trial"
+    "days_one": "{{count}天免費試用",
+    "days_other": "{{count}天免費試用",
+    "weeks_one": "{{count}週免費試用",
+    "weeks_other": "{{count}週免費試用",
+    "months_one": "{{count}個月免費試用",
+    "months_other": "{{count}個月免費試用"
   },
   "intro": {
-    "note": "Then {{price}}"
+    "note": "然後 {{price}}"
   },
   "common": {
-    "yes": "Yes",
-    "no": "No"
+    "yes": "是",
+    "no": "沒有"
   }
 }

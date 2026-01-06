@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "개인정보 보호정책 - {{appName}}",
+    "description": "{{appName}}이 개인 정보를 어떻게 수집하고 사용하며 보호하는지 알아보세요."
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "개인정보 보호정책",
+  "lastUpdated": "마지막 업데이트: {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "소개",
+      "content": "{{appName}에서 우리는 귀하의 개인정보를 중시합니다. 본 개인정보 보호정책은 귀하가 당사 서비스를 사용할 때 정보를 어떻게 수집, 사용, 공개 및 보호하는지 설명합니다."
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "수집하는 정보",
+      "description": "당신이 직접 우리에게 제공하는 정보를 수집합니다:",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "계정 정보(이메일 주소, 이름)",
+        "API 사용 데이터 및 분석",
+        "결제 정보 (결제 제공업체에서 안전하게 처리됨)",
+        "당신이 우리에게 보내는 통신 내용"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "귀하의 정보를 어떻게 사용하는지",
+      "description": "우리는 수집한 정보를 다음 목적으로 사용합니다:",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "서비스를 제공하고 유지하며 개선합니다",
+        "거래를 처리하고 관련 정보를 전송합니다",
+        "기술 알림, 업데이트 및 지원 메시지를 보내기",
+        "댓글, 질문 및 요청에 답변하세요",
+        "사용 패턴과 트렌드를 모니터링하고 분석합니다"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "데이터 보안",
+      "content": "당사는 귀하의 개인정보가 무단 접근, 변경, 공개 또는 파괴로부터 보호되도록 적절한 기술적 및 관리적 조치를 시행합니다. API 키는 저장 시 암호화되며, 모든 데이터는 보안 연결을 통해 전송됩니다."
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "데이터 보유",
+      "content": "계정이 활성 상태인 동안 또는 서비스를 제공하기 위해 필요한 한, 귀하의 개인정보를 보유합니다. 귀하는 언제든지 계정 및 관련 데이터 삭제를 요청할 수 있습니다."
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "귀하의 권리",
+      "description": "당신은 다음 권리를 가지고 있습니다:",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "개인 정보에 액세스하기",
+        "부정확한 데이터를 수정하세요",
+        "데이터 삭제 요청",
+        "포트블러 형식으로 데이터를 내보내기",
+        "마케팅 커뮤니케이션 수신을 거부합니다"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "쿠키 및 추적",
+      "content": "세션과 설정 유지에 필수 쿠키를 사용합니다. 광고 목적의 타사 추적 쿠키는 사용하지 않습니다."
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "이 정책의 변경 사항",
+      "content": "우리는 때때로 이 개인정보 보호정책을 수정할 수 있습니다. 변경 사항에 대해 우리는 새로운 개인정보 보호정책을 이 페이지에 게시하고 '마지막 업데이트' 날짜를 업데이트함으로써 알립니다."
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "문의하기",
+      "description": "이 개인정보 보호정책에 대해 궁금한 점이 있으면 문의해 주세요:",
+      "email": "이메일:"
     }
   }
 }

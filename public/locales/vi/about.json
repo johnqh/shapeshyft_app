@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "Về {{appName}}",
+    "description": "Tìm hiểu về {{appName}} - nền tảng chuyển đổi đầu ra của LLM thành các API có cấu trúc và đáng tin cậy."
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "Về {{appName}}",
+    "subtitle": "Chúng tôi đang trên hành trình mang lại tính tin cậy và dự đoán được cho các API trí tuệ nhân tạo cho các nhà phát triển trên khắp nơi."
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "Câu chuyện của chúng tôi",
+    "paragraph1": "{{appName}} ra đời từ một sự thất vọng đơn giản: việc làm việc với đầu ra của LLM là không thể đoán trước. Mọi nhà phát triển từng tích hợp AI vào ứng dụng của mình đều biết rõ thách thức khi phân tích các phản hồi văn bản không cấu trúc và xử lý các trường hợp đặc biệt.",
+    "paragraph2": "Chúng tôi đã xây dựng {{appName}} để giải quyết triệt để vấn đề này. Bằng cách kết hợp kiểm tra tính hợp lệ JSON Schema với kỹ thuật xây dựng lời nhắc thông minh, chúng tôi biến các đầu ra hỗn loạn từ LLM thành các API có cấu trúc, an toàn về kiểu dữ liệu, mà các nhà phát triển có thể tin cậy."
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "Sứ mệnh của chúng tôi",
+    "description": "Để trao quyền cho các nhà phát triển với những công cụ giúp tích hợp AI đáng tin cậy như các API truyền thống. Chúng tôi tin rằng đầu ra có cấu trúc không nên đòi hỏi logic phân tích phức tạp hay xử lý lỗi liên miên."
   },
   "values": {
-    "title": "Our Values",
+    "title": "Giá trị của chúng tôi",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "Uy tín hàng đầu:",
+      "description": "Các API của bạn nên hoạt động nhất quán, mỗi lần."
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "Tính đơn giản cho nhà phát triển:",
+      "description": "Chức năng phức tạp với giao diện đơn giản."
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "Giá minh bạch:",
+      "description": "Thanh toán theo nhu cầu sử dụng, không có phí ẩn."
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "Sáng tạo liên tục:",
+      "description": "Luôn được cải thiện, luôn luôn phát triển."
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "Sẵn sàng để bắt đầu?",
+    "description": "Tham gia cùng các nhà phát triển đang xây dựng các ứng dụng tin cậy được hỗ trợ bởi trí tuệ nhân tạo với {{appName}.",
+    "button": "Đọc tài liệu"
   }
 }

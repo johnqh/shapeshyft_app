@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "设置 - {{appName}}",
+    "description": "通过主题和显示设置来自定义您的 {{appName}} 体验。"
   },
-  "title": "Settings",
+  "title": "设置",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "外观",
+    "description": "自定义应用程序的外观和感觉。"
   },
   "theme": {
-    "label": "Theme",
+    "label": "主题",
     "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "description": "Choose your preferred color theme."
+    "dark": "暗",
+    "system": "系统",
+    "description": "选择您偏好的颜色主题。"
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
-    "medium": "Medium",
+    "label": "字体大小",
+    "small": "小",
+    "medium": "中等",
     "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "description": "调整文字大小以提高可读性。"
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "关于设置",
+    "description": "您的偏好会自动保存，并在各会话间持续有效。"
   }
 }

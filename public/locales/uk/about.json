@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "Про {{appName}}",
+    "description": "Дізнайтеся про {{appName}} — платформу, яка перетворює виходи моделей масивного мовлення на структуровані надійні API."
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "Про {{appName}}",
+    "subtitle": "Ми маємо мету зробити API штучного інтелекту надійними та передбачуваними для розробників усієї планети."
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "Наша історія",
+    "paragraph1": "{{appName}} виник з простої фрустрації: робота з виводом LLM є непередбачуваною. Кожен розробник, який інтегрував ШІ у свої додатки, знає виклик, пов'язаний із аналізом неструктурованих текстових відповідей і обробкою крайніх випадків.",
+    "paragraph2": "Ми створили {{appName} для того, щоб вирішити цю проблему раз і назавжди. Об’єднуючи валідацію JSON Schema з розумною інженерією запитів, ми перетворюємо хаотичні виходи LLM на структуровані, безпечні за типом API, на які можна покладатися розробникам."
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "Наша місія",
+    "description": "Надати розробникам інструментів, які роблять інтеграцію ШІ такою ж надійною, як і традиційні API. Ми вважаємо, що структуровані виходи не повинні потребувати складної логіки парсингу або безкінечної обробки помилок."
   },
   "values": {
-    "title": "Our Values",
+    "title": "Наші цінності",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "Надійність пріоритет:",
+      "description": "Ваші API мають працювати стабільно, кожен раз."
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "Простота розробника:",
+      "description": "Складна функціональність із простими інтерфейсами."
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "Прозорі ціни:",
+      "description": "Платіть лише за те, що використовуєте, без прихованих комісій."
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "Неперервне інноваційне розвиток",
+      "description": "Завжди поліпшується, завжди розвивається."
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "Готові розпочати?",
+    "description": "Приєднуйтеся до розробників, які створюють надійні застосування з штучним інтелектом за допомогою {{appName}.",
+    "button": "Перегляньте документацію"
   }
 }

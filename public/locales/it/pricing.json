@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "Prezzi",
+  "subtitle": "Scegli il piano che più si adatta alle tue esigenze",
   "plans": {
     "free": {
-      "name": "Free",
+      "name": "Gratuito",
       "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "period": "per sempre",
+      "description": "Ideale per iniziare",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1.000 richieste API/mese",
+        "1 progetto",
+        "3 endpoint per progetto",
+        "Tutti i provider di LLM",
+        "Analisi di base",
+        "Supporto della community"
       ],
-      "cta": "Get Started"
+      "cta": "Inizia ora"
     },
     "pro": {
       "name": "Pro",
       "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "period": "/al mese",
+      "description": "Per team e progetti in crescita",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "Richieste API illimitate",
+        "Progetti illimitati",
+        "Punti finali illimitati",
+        "Tutti i provider di LLM",
+        "Analisi avanzate",
+        "Supporto prioritario",
+        "Collaborazione tra team",
+        "Domini personalizzati"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "Inizia il periodo di prova professionale",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "Impresa",
+      "price": "Personalizzato",
       "period": "",
-      "description": "For large organizations",
+      "description": "Per grandi organizzazioni",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "Tutto in Pro",
+        "Infrastruttura dedicata",
+        "Garanzia SLA",
+        "SSO e SAML",
+        "Registri di audit",
+        "Supporto 24/7",
+        "Integrazioni personalizzate",
+        "Opzione on-premise"
       ],
-      "cta": "Contact Sales"
+      "cta": "Contatta il servizio vendite"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Domande frequenti",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "Cosa si intende per richiesta all'API?",
+        "answer": "Ogni chiamata al tuo endpoint {{appName}} viene conteggiata come una richiesta, indipendentemente dal provider LLM utilizzato."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "Ho bisogno delle mie chiavi API per un LLM?",
+        "answer": "Sì, fornisci tu stesso le tue chiavi API per OpenAI, Anthropic, Google o server personalizzati per modelli linguistici. Le memorizziamo in modo sicuro, crittografate."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "Posso cambiare piano in un secondo momento?",
+        "answer": "Sì, puoi aggiornare o aggiornare il tuo piano in qualsiasi momento. Le modifiche avranno effetto nel prossimo ciclo di fatturazione."
       }
     ]
   }

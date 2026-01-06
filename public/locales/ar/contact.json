@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "اتصل بنا - {{appName}}",
+    "description": "اتصل بفريق {{appName}}. نحن هنا لمساعدتك في أي استفسارات حول منصتنا لواجهة برمجة التطبيقات."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "اتصل بنا",
+  "subtitle": "هل لديك أسئلة؟ نحن نتطلع لسماعك. أرسل لنا رسالة وسوف نرد عليك في أسرع وقت ممكن.",
   "email": {
     "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "description": "الطريقة الأفضل للتواصل معنا هي عبر البريد الإلكتروني. نحن عادةً نرد خلال 24-48 ساعة خلال أيام العمل.",
+    "support": "الدعم"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "وقت الاستجابة",
+    "description": "نهدف إلى الرد على جميع الاستفسارات خلال 1-2 أيام عمل. بالنسبة للقضايا الطارئة، يُرجى إدراج \"طارئ\" في عنوان الرسالة."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "الدعم الفني",
+    "description": "بالنسبة إلى مشكلات واجهة برمجة التطبيقات، والأعطال، أو الأسئلة الفنية، يُرجى تضمين معرف مشروعك وأي رسائل خطأ ذات صلة في بريدك الإلكتروني."
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "التوثيق",
+    "description": "تُجيب وثائقنا عن العديد من الأسئلة الشائعة. تحقق هناك أولاً للحصول على حلول سريعة."
   }
 }

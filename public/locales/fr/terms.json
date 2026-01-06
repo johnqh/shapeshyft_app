@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "Conditions d'utilisation - {{appName}}",
+    "description": "Lisez les conditions d'utilisation de la plateforme API de {{appName}."
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Conditions d'utilisation",
+  "lastUpdated": "Dernière mise à jour : {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. Acceptation des conditions",
+      "content": "En accédant à ou en utilisant {{appName}}, vous acceptez d'être lié par ces Conditions d'utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser notre service."
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. Description du service",
+      "content": "{{appName}} fournit une plateforme d'API qui transforme les sorties des LLM en données structurées à l'aide de la validation JSON Schema. Nous agissons comme un middleware entre vos applications et divers fournisseurs de LLM."
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. Comptes utilisateurs",
+      "description": "Lorsque vous créez un compte, vous acceptez :",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "Fournissez des informations précises et complètes",
+        "Maintenez la sécurité de vos identifiants de compte",
+        "Assumer la responsabilité de toutes les activités effectuées sous votre compte",
+        "Informez-nous immédiatement de tout accès non autorisé"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. Utilisation acceptable",
+      "description": "Vous acceptez de ne pas utiliser {{appName}} pour :",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "Enfreindre quelle que soit la loi ou la réglementation applicable",
+        "Violation des droits de propriété intellectuelle",
+        "Transmettre du code malveillant ou mener des attaques",
+        "Tenter d'accéder sans autorisation à nos systèmes",
+        "Revendre ou redistribuer nos services sans autorisation"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. Utilisation de l'API et limites de taux",
+      "content": "L'utilisation de l'API est soumise à des limites de débit en fonction de votre niveau d'abonnement. Nous nous réservons le droit de limiter ou de suspendre l'accès en cas d'utilisation excessive ou d'abus."
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. Propriété intellectuelle",
+      "content": "{{appName}} et son contenu original, ses fonctionnalités et son utilisation sont la propriété de Sudobility et sont protégés par les lois internationales sur le droit d'auteur, les marques déposées et les autres lois relatives aux droits de propriété intellectuelle. Vos données et sorties d'API restent votre propriété."
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. Limitation de responsabilité",
+      "content": "{{appName}} est fourni \"tel quel\" sans aucune garantie de quelque nature que ce soit. Nous ne saurions être tenus responsables de quelque dommage indirect, accessoire, spécial, consécutif ou punitif découlant de votre utilisation du service."
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. Résiliation",
+      "content": "Nous pouvons résilier ou suspendre votre compte à tout moment en cas de violation de ces conditions. Vous pouvez annuler votre compte à tout moment via vos paramètres de compte."
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. Modifications des conditions",
+      "content": "Nous nous réservons le droit de modifier ces conditions à tout moment. Nous vous informerons des modifications importantes par courriel ou via le service. L'utilisation continue du service après les modifications vaut acceptation des nouvelles conditions."
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. Informations de contact",
+      "description": "Pour toute question concernant ces conditions d'utilisation, veuillez nous contacter :",
+      "email": "Courriel :"
     }
   }
 }

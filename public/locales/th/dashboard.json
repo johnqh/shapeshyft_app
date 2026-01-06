@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "แดชบอร์ด",
+  "welcome": "ยินดีกลับมาอีกครั้ง, {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "โครงการ",
+    "providers": "ผู้ให้บริการ",
+    "analytics": "การวิเคราะห์ข้อมูล",
+    "budgets": "งบประมาณ",
+    "subscription": "การสมัครสมาชิก",
+    "rateLimits": "ขีดจำกัดอัตรา",
+    "settings": "การตั้งค่า"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "โครงการ",
+    "empty": "ยังไม่มีโครงการใดๆ",
+    "emptyDescription": "สร้างโปรเจกต์แรกของคุณเพื่อเริ่มต้น",
+    "create": "สร้างโปรเจกต์",
+    "useTemplate": "ใช้เทมเพลต",
+    "notFound": "ไม่พบโครงการ",
+    "backToProjects": "กลับไปที่โครงการ",
+    "confirmDelete": "คุณแน่ใจหรือว่าต้องการลบโปรเจกต์นี้?",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} จุดปลายทาง",
+      "created": "สร้างเมื่อ {{date}}",
+      "active": "เปิดใช้งาน",
+      "inactive": "ไม่ใช้งาน"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
-      "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "title": "สร้างโปรเจกต์",
+      "titleEdit": "แก้ไขโปรเจกต์",
+      "projectName": "ชื่อโปรเจกต์",
+      "projectNamePlaceholder": "โปรเจกต์ของฉัน",
+      "projectNameHint": "ตัวอักษรพิมพ์เล็ก ตัวเลข และเครื่องหมายกากบาทเท่านั้น",
+      "displayName": "ชื่อแสดง",
+      "displayNamePlaceholder": "โปรเจกต์ของฉัน",
+      "description": "คำอธิบาย",
+      "descriptionPlaceholder": "สิ่งที่โครงการนี้ทำ",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "ต้องระบุชื่อแสดง",
+        "nameTooShort": "ชื่อต้องมีอย่างน้อย 2 ตัวอักษร"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "สแล็ก"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "จุดสิ้นสุด",
+    "empty": "ยังไม่มีจุดสิ้นสุด (endpoint) อยู่เลย",
+    "emptyDescription": "สร้างจุดสิ้นสุดแรกของโปรเจกต์นี้",
+    "create": "สร้างจุดสิ้นสุด",
+    "test": "ทดสอบ",
+    "notFound": "ไม่พบจุดสิ้นสุด",
+    "backToProject": "กลับไปที่โครงการ",
+    "updated": "อัปเดตจุดสิ้นสุดสำเร็จแล้ว",
+    "confirmDelete": "คุณแน่ใจหรือว่าต้องการลบจุดสิ้นสุดนี้?",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "ทั่วไป",
+      "input": "ป้อนข้อมูล",
+      "output": "ผลลัพธ์",
+      "test": "ทดสอบ"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "วิธีการ",
+      "type": "ประเภท"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "ประเภทจุดสิ้นสุด",
+      "instructions": "คำชี้แจง",
+      "context": "บริบทของระบบ",
+      "inputSchema": "สกีมาอินพุต",
+      "outputSchema": "สกีมาเอาต์พุต"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
+      "title": "สร้าง Endpoint",
+      "titleEdit": "แก้ไขจุดสิ้นสุด",
+      "endpointName": "ชื่อจุดสิ้นสุด",
       "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
+      "displayName": "ชื่อที่แสดง",
       "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "instructions": "คำชี้แจง",
+      "instructionsPlaceholder": "คำชี้แจงงานสำหรับโมเดลภาษา",
+      "httpMethod": "วิธีการ HTTP",
+      "llmKey": "ผู้ให้บริการ",
+      "selectKey": "เลือกผู้ให้บริการ",
+      "noKeys": "ไม่มีคีย์ API ที่ตั้งค่าไว้ โปรดเพิ่มคีย์ก่อน",
+      "context": "บริบทของระบบ",
+      "contextPlaceholder": "คำชี้แจงสำหรับโมเดลภาษา (คำสั่งระบบ)",
+      "useInputSchema": "กำหนดโครงสร้างอินพุต",
+      "useOutputSchema": "กำหนดโครงสร้างเอาต์พุต",
+      "inputSchema": "สกีมาร์กของอินพุต",
+      "outputSchema": "สกีมาเอาต์พุต",
+      "invalidJson": "ข้อมูล JSON ไม่ถูกต้อง",
+      "create": "สร้างเอนด์พออยน์",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "ต้องระบุชื่อแสดง",
+        "slugRequired": "ต้องระบุชื่อจุดสิ้นสุด",
+        "keyRequired": "ต้องมีผู้ให้บริการ",
+        "invalidInputSchema": "รูปแบบข้อมูลนำเข้า JSON ไม่ถูกต้อง",
+        "invalidOutputSchema": "รูปแบบ JSON ของผลลัพธ์ไม่ถูกต้อง"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "ทดสอบจุดสิ้นสุด",
+      "input": "ป้อนข้อมูล",
+      "generateSample": "สร้างตัวอย่าง",
+      "viewPrompt": "ดูคำชี้แจง",
+      "prompt": "พรอมต์ที่สร้างขึ้น",
+      "execute": "ดำเนินการ",
+      "executing": "กำลังดำเนินการ...",
+      "response": "การตอบกลับ",
+      "success": "สำเร็จ",
+      "failed": "ล้มเหลว",
+      "invalidJson": "ข้อมูล JSON ไม่ถูกต้อง",
+      "output": "ผลลัพธ์",
+      "latency": "ความล่าช้า",
+      "inputTokens": "จำนวนโทเกนนำเข้า",
+      "outputTokens": "โทเก็นเอาต์พุต",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "การใช้งาน",
+        "tokensIn": "โทเก็นใน",
+        "tokensOut": "โทเกนที่ได้รับ",
+        "latency": "ความหน่วงเวลา",
+        "cost": "ค่าใช้จ่ายประมาณ"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "ผู้ให้บริการ",
+    "empty": "ไม่มีผู้ให้บริการที่ตั้งค่าไว้",
+    "emptyDescription": "เพิ่มผู้ให้บริการ LLM รายแรกของคุณ",
+    "add": "เพิ่มผู้ให้บริการ",
+    "confirmDelete": "คุณแน่ใจหรือว่าต้องการลบผู้ให้บริการนี้?",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
+      "provider": "ผู้ให้บริการ",
+      "status": "สถานะ",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "ไม่ใช้งาน"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "title": "เพิ่มคีย์ API",
+      "titleEdit": "แก้ไขคีย์ API",
+      "keyName": "ชื่อคีย์",
+      "keyNamePlaceholder": "คีย์ OpenAI ของฉัน",
+      "provider": "ผู้ให้บริการ",
+      "apiKey": "คีย์ API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "กุญแจของคุณถูกเข้ารหัสไว้ขณะเก็บรักษา",
+      "leaveBlank": "ปล่อยว่างเพื่อคงค่าเดิม",
+      "endpointUrl": "URL จุดสิ้นสุด",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "เพิ่มกุญแจ",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "ต้องระบุชื่อคีย์",
+        "apiKeyRequired": "ต้องใช้คีย์ API",
+        "endpointRequired": "ต้องระบุ URL จุดสิ้นสุดสำหรับเซิร์ฟเวอร์ LM แบบกำหนดเอง"
       }
     },
     "providers": {
       "openai": "OpenAI",
-      "anthropic": "Anthropic",
+      "anthropic": "บริษัท Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "เซิร์ฟเวอร์ LM แบบกำหนดเอง"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "การวิเคราะห์ข้อมูล",
+    "noData": "ข้อมูลวิเคราะห์ไม่มี",
+    "noDataDescription": "เริ่มส่งคำขอ API เพื่อดูข้อมูลวิเคราะห์",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "วันนี้",
+      "week": "สัปดาห์นี้",
+      "month": "เดือนนี้",
+      "custom": "ช่วงกำหนดเอง"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "จำนวนคำขอทั้งหมด",
+      "successRate": "อัตราความสำเร็จ",
+      "avgLatency": "ค่าความหน่วงเฉลี่ย",
+      "totalCost": "ค่าใช้จ่ายทั้งหมด",
+      "tokensUsed": "จำนวนโทเกนที่ใช้",
+      "inputTokens": "จำนวนโทเกนนำเข้า",
+      "outputTokens": "โทเคนเอาต์พุต",
+      "requestDistribution": "การกระจายคำขอ",
+      "successful": "สำเร็จ",
+      "failed": "ล้มเหลว",
+      "byEndpoint": "โดยจุดสิ้นสุด"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "คำขอตามเวลา",
+      "byEndpoint": "โดยจุดสิ้นสุด"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
-    "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "title": "เทมเพลตโครงการ",
+    "subtitle": "เริ่มต้นด้วยเทมเพลตที่ตั้งค่าไว้ล่วงหน้า",
+    "configure": "ตั้งค่าเทมเพลต",
+    "projectName": "ชื่อโปรเจกต์",
+    "projectNamePlaceholder": "โปรเจกต์ของฉัน",
+    "llmKey": "ผู้ให้บริการ",
+    "selectKey": "เลือกผู้ให้บริการ",
+    "noKeys": "ไม่มีคีย์ API ให้ใช้",
+    "addKeyLink": "เพิ่มหนึ่งอันแรก",
+    "preview": "ตัวอย่าง",
+    "willCreate": "จะสร้างจุดสิ้นสุด {{count}} จุด:",
+    "apply": "ใช้เทมเพลต",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "กรุณากรอกข้อมูลที่จำเป็นทั้งหมด"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "ตัวจำแนกข้อความ",
+      "description": "จำแนกข้อความเป็นหมวดหมู่"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "เครื่องวิเคราะห์อารมณ์",
+      "description": "วิเคราะห์อารมณ์และอารมณ์ความรู้สึก"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "เครื่องมือดึงข้อมูล",
+      "description": "ดึงข้อมูลโครงสร้างจากข้อความ"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "เครื่องสร้างเนื้อหา",
+      "description": "สรุปและเนื้อหา"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "การแปลภาษาท้องถิ่น",
+      "description": "แปลข้อความเป็นหลายภาษา"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "งบประมาณ",
+    "empty": "ไม่มีงบประมาณที่ตั้งไว้",
+    "emptyDescription": "ตั้งค่าขีดจำกัดการใช้จ่ายเพื่อติดตามค่าใช้จ่ายของ API ของคุณ",
+    "add": "เพิ่มงบประมาณ",
+    "confirmDelete": "คุณแน่ใจหรือว่าต้องการลบงบประมาณนี้?",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "รายวัน",
+      "weekly": "รายสัปดาห์",
+      "monthly": "รายเดือน"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "ชื่องบประมาณ",
+      "namePlaceholder": "ขีดจำกัดการใช้งาน API ต่อเดือน",
+      "limit": "ขีดจำกัดการใช้จ่าย",
+      "period": "ช่วงเวลา",
+      "add": "เพิ่มงบประมาณ"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} อยู่ที่ 75% ของงบประมาณ",
+      "critical": "{{name}} อยู่ที่ 90% ของงบประมาณ",
+      "exceeded": "{{name}} ได้เกินงบประมาณแล้ว",
+      "usage": "การใช้งานปัจจุบัน: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
+    "editor": "ตัวแก้ไขสคีมา",
+    "visual": "ภาพเห็น",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "เพิ่มสิทธิ์",
+    "noProperties": "ไม่มีคุณสมบัติที่กำหนดไว้ โปรดเพิ่มหนึ่งรายการเพื่อเริ่มต้น",
+    "required": "จำเป็น",
+    "descriptionPlaceholder": "คำอธิบายสินค้า (ไม่บังคับ)",
+    "arrayItemSchema": "สคีมของรายการอาร์เรย์:",
+    "clickToEditName": "คลิกเพื่อแก้ไขชื่อฟิลด์",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "string": "สตริง",
+      "number": "จำนวน",
+      "integer": "จำนวนเต็ม",
+      "boolean": "บูลีน",
+      "object": "วัตถุ",
+      "array": "อาร์เรย์"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "การตั้งค่า",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
+      "title": "องค์กร",
+      "description": "ตั้งค่าการตั้งค่าองค์กรของคุณ เส้นทางองค์กรจะถูกใช้ใน URL API ของคุณ",
+      "name": "ชื่อองค์กร",
+      "namePlaceholder": "องค์กรของฉัน",
+      "nameHint": "ชื่อแสดงตามความพึงพอใจสำหรับองค์กรของคุณ",
+      "path": "เส้นทางองค์กร",
       "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "pathHint": "ใช้ใน URL API: /api/v1/ai/{org_path}/...",
+      "pathTaken": "เส้นทางนี้ถูกใช้ไปแล้ว",
+      "pathInvalid": "ตัวอักษร ตัวเลข และอักษรขีดล่างเท่านั้นที่อนุญาต",
+      "apiUrlPreview": "ตัวอย่าง URL API:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "บันทึกการเปลี่ยนแปลง",
+      "saving": "กำลังบันทึก...",
+      "saved": "บันทึกการตั้งค่าสำเร็จแล้ว",
+      "error": "ไม่สามารถบันทึกการตั้งค่าได้"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "คีย์ API โปรเจกต์",
+    "description": "ใช้คีย์นี้เพื่อยืนยันตัวตนการร้องขอ API ไปยังจุดสิ้นสุดของคุณ รวมไว้เป็นพารามิเตอร์คำถาม (api_key=...) หรือโทเค็น Bearer ในหัวข้อ Authorization",
+    "createdAt": "สร้างแล้ว",
+    "show": "แสดงคีย์ API",
+    "hide": "ซ่อนคีย์ API",
+    "copy": "คัดลอกคีย์ API",
+    "refresh": "รีเฟรชคีย์ API",
+    "copied": "คัดลอกแล้ว!",
+    "copiedMessage": "คัดลอกคีย์ API ไปยังคลิปบอร์ดแล้ว",
+    "refreshed": "API Key ถูกอัปเดตแล้ว",
+    "refreshedMessage": "คีย์ API ของคุณได้รับการอัปเดตแล้ว โปรดตรวจสอบให้แน่ใจว่าได้อัปเดตคีย์ในแอปพลิเคชันของคุณแล้ว",
+    "confirmRefreshTitle": "รีเฟรชคีย์ API?",
+    "confirmRefreshMessage": "การกระทำนี้จะทำให้คีย์ API ปัจจุบันไม่ถูกต้อง แอปพลิเคชันที่ใช้คีย์เก่าจะหยุดทำงานทันที",
+    "confirmRefresh": "รีเฟรชกุญแจ"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "รายการอนุญาต IP",
+    "description": "จำกัดการเข้าถึงปลายทางให้เฉพาะที่อยู่ IP ที่กำหนด ปล่อยว่างไว้เพื่ออนุญาตให้ที่อยู่ IP ทั้งหมด",
+    "allAllowed": "อนุญาตให้ทุก IP",
+    "placeholder": "ป้อนที่อยู่ IPv4 (ตัวอย่าง: 192.168.1.1)",
+    "add": "เพิ่ม",
+    "removeIp": "ลบ {{ip}}",
+    "invalidIp": "ที่อยู่ IPv4 ไม่ถูกต้อง",
+    "duplicateIp": "IP นี้อยู่ในรายการแล้ว"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "ขีดจำกัดอัตรา",
+    "loading": "กำลังโหลด...",
+    "error": "โหลดขีดจำกัดอัตราไม่สำเร็จ",
+    "retry": "ลองอีกครั้ง",
+    "upgradeButton": "อัปเกรดแผน",
+    "currentTier": "ปัจจุบัน",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "ขีดจำกัดปัจจุบัน",
+      "usageHistory": "ประวัติการใช้งาน"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "รายชั่วโมง",
+      "daily": "รายวัน",
+      "monthly": "รายเดือน"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "ข้อจำกัดอัตรา",
+      "currentUsage": "การใช้งานปัจจุบัน",
+      "planComparison": "เปรียบเทียบแผน",
+      "used": "ถูกใช้",
+      "limit": "จำกัด",
+      "unlimited": "ไม่จำกัด",
+      "remaining": "ที่เหลืออยู่"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "ประวัติการใช้งาน",
+      "requests": "คำขอ",
+      "noData": "ไม่มีข้อมูลการใช้งานสำหรับช่วงเวลานี้"
     }
   }
 }

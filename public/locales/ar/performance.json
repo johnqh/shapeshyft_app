@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "الأداء والتحسين",
+  "title": "مراقبة الأداء",
+  "description": "راقب مؤشرات Core Web Vitals والأداء الحزمي وتأخير واجهة برمجة التطبيقات للتأكد من تجربة مستخدم مثالية.",
   "quickStats": {
-    "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
-    "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "lazyLoad": "تحميل بطيء",
+    "codeSplitting": "التقسيم الكودي",
+    "serviceWorker": "Worker الخدمة",
+    "offlineCache": "الذاكرة المؤقتة غير المتصلة",
+    "preloading": "التحميل المسبق",
+    "routePrefetch": "الاستعداد المسبق للمسار",
+    "lcpTarget": "الهدف من LCP"
   },
   "webVitals": {
-    "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "title": "مقاييس الويب الأساسية",
+    "description": "المراقبة الفورية لمقاييس Core Web Vitals.",
     "lcp": {
-      "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "title": "أكبر محتوى مطروح",
+      "description": "وقت عرض العنصر الأكبر"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "تأخير الإدخال الأول",
+      "description": "الوقت اللازم للرد التفاعلي"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "انزلاق التخطيط التراكمي",
+      "description": "درجة استقرار البصرية"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
-    "react": "React:",
+    "title": "تحسين الحزمة",
+    "description": "تقسيم الشفرة والتحميل البطيء لتقليل حجم الحزمة الأولية.",
+    "lazyLoadingStates": "States of Lazy Loading",
+    "componentLoading": "جارٍ تحميل المكون...",
+    "componentLoaded": "المكوّن تم تحميله",
+    "bundleAnalysis": "تحليل الحزمة",
+    "react": "الرد:",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "مكوّنات واجهة المستخدم:",
+    "charts": "الرسوم البيانية:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "أداء واجهة برمجة التطبيقات",
+    "description": "راقب أوقات応ة استجابة واجهة برمجة التطبيقات وفعالية التخزين المؤقت.",
+    "currentLatency": "تأخير واجهة برمجة التطبيقات الحالية",
+    "averageResponseTime": "متوسط وقت الاستجابة",
+    "cacheStatus": "حالة الذاكرة المؤقتة",
+    "freshData": "بيانات جديدة",
+    "recentlyFetched": "مُستَخْرَج حَديثًا",
+    "staleData": "بيانات قديمة",
+    "needsRefresh": "تحتاج إلى تحديث",
+    "cachingStrategy": "استراتيجية التخزين المؤقت"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "أفضل الممارسات للأداء",
+    "doThis": "افعل هذا",
+    "avoidThis": "تجنب هذا",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "استخدم تقسيم الشفرة للميزات الخاصة باللوحة الرئيسية",
+      "lazyLoading": "قم بتطبيق التحميل البطيء للصور والمكونات",
+      "cacheApi": "قم بتخزين استجابات واجهة برمجة التطبيقات (API) باستخدام TanStack Query",
+      "preloadRoutes": "قم بتحميل المسارات مسبقًا عند التمرير لتصفح فوري",
+      "monitorVitals": "مراقبة مؤشرات أداء الويب الأساسية في البيئة الإنتاجية",
+      "serviceWorker": "استخدم خدمة الوكيل للدعم دون اتصال"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "تحميل جميع المكونات فورًا عند التحميل الأولي للصفحة",
+      "redundantCalls": "إجراء استدعاءات واجهة برمجة التطبيقات الزائدة دون استخدام التخزين المؤقت",
+      "layoutShifts": "السبب في حدوث انزلاقات التخطيط مع المحتوى الديناميكي",
+      "blockingRender": "استخدام التحجيم المُعَقِّد للوظائف غير الحرجة",
+      "ignoreNetwork": "تجاهل ظروف الشبكة لتحميل الموارد",
+      "noTreeShaking": "استيراد مكتبات كبيرة دون تقليل الحجم (tree-shaking)"
     }
   }
 }

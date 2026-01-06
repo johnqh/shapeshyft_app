@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "{{appName}}について",
+    "description": "{{appName}}について学ぶ - LLMの出力を構造化され信頼性の高いAPIに変換するプラットフォームです。"
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "{{appName}}について",
+    "subtitle": "開発者すべてにとって、AI APIを信頼性と予測可能性のあるものにするためのミッションに取り組んでいます。"
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "私たちの物語",
+    "paragraph1": "{{appName}} は単純ないらだちから生まれました。LLMの出力とやり取りすることは予測不能です。AIをアプリケーションに統合したことがある開発者は、構造化されていないテキスト出力を解析し、例外ケースを処理する難しさを知っています。",
+    "paragraph2": "私たちはこの問題を一度限りで解決するために {{appName}} を構築しました。JSONスキーマ検証と知能的なプロンプト設計を組み合わせることで、混沌としたLLM出力を構造的で型安全なAPIに変換し、開発者が信頼できるものにしています。"
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "私たちのミッション",
+    "description": "開発者に、AIの統合を従来のAPIと同様に信頼性の高いものにするためのツールを提供する。構造化出力は複雑なパースロジックや果てしないエラー処理を必要とすべきでない。"
   },
   "values": {
-    "title": "Our Values",
+    "title": "私たちの価値観",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "信頼性最優先：",
+      "description": "あなたのAPIは、常に一貫して動作する必要があります。"
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "開発者向けのシンプルさ：",
+      "description": "複雑な機能性とシンプルなインターフェース。"
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "明確な価格設定：",
+      "description": "利用した分だけ支払い、隠れた手数料はありません。"
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "継続的なイノベーション：",
+      "description": "常に進化し、常に改善される。"
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "スタートする準備はできていますか？",
+    "description": "{{appName} を使って信頼性の高いAI駆動のアプリケーションを開発している開発者たちに参加しましょう。",
+    "button": "ドキュメントを読む"
   }
 }

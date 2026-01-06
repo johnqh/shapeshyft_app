@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "Панель керування",
+  "welcome": "Вітаємо знову, {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "Проекти",
+    "providers": "Постачальники",
+    "analytics": "Аналітика",
+    "budgets": "Бюджети",
+    "subscription": "Підписка",
+    "rateLimits": "Оманичні ліміти",
+    "settings": "Налаштування"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "Проекти",
+    "empty": "Ще немає проектів",
+    "emptyDescription": "Створіть свій перший проект, щоб почати",
+    "create": "Створити проект",
+    "useTemplate": "Використовуй шаблон",
+    "notFound": "Проект не знайдено",
+    "backToProjects": "Назад до проектів",
+    "confirmDelete": "Ви впевнені, що хочете видалити цей проект?",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} точка(и) доступу",
+      "created": "Створено {{date}}",
+      "active": "Активний",
+      "inactive": "Неактивний"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
+      "title": "Створити проект",
+      "titleEdit": "Редагувати проект",
+      "projectName": "Назва проекту",
       "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "projectNameHint": "Лише малі літери, цифри і дефіси",
+      "displayName": "Псевдонім",
+      "displayNamePlaceholder": "Мій проект",
+      "description": "Опис",
+      "descriptionPlaceholder": "Що робить цей проект",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "Обов’язково вказати ім’я для відображення",
+        "nameTooShort": "Ім'я має містити не менше 2 символів"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Слаг"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "Точки приєднання",
+    "empty": "Ще немає точок входу",
+    "emptyDescription": "Створіть перший endpoint для цього проекту",
+    "create": "Створити точку входу",
+    "test": "Тест",
+    "notFound": "Точка приєднання не знайдена",
+    "backToProject": "Назад до проекту",
+    "updated": "Точка приєднання успішно оновлена",
+    "confirmDelete": "Ви впевнені, що хочете видалити цей кінцевий пункт?",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "Загальний",
+      "input": "Введіть",
+      "output": "Вивід",
+      "test": "Тест"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "Метод",
+      "type": "Тип"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "Тип кінцевої точки",
+      "instructions": "Інструкції",
+      "context": "Контекст системи",
+      "inputSchema": "Схема вхідних даних",
+      "outputSchema": "Схема виводу"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
+      "title": "Створити точку входу",
+      "titleEdit": "Редагувати кінцеву точку",
+      "endpointName": "Назва кінцевої точки",
       "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "displayName": "Ім'я для відображення",
+      "displayNamePlaceholder": "Мій закінчений пункт",
+      "instructions": "Інструкції",
+      "instructionsPlaceholder": "Інструкції до завдання для LLM",
+      "httpMethod": "HTTP-метод",
+      "llmKey": "Постачальник",
+      "selectKey": "Виберіть постачальника",
+      "noKeys": "Не налаштовано ключів API. Спочатку додайте один.",
+      "context": "Контекст системи",
+      "contextPlaceholder": "Інструкції для LLM (системний промт)",
+      "useInputSchema": "Визначте схему вхідних даних",
+      "useOutputSchema": "Визначте схему виходу",
+      "inputSchema": "Схема вхідних даних",
+      "outputSchema": "Схема виходу",
+      "invalidJson": "Недійсний JSON",
+      "create": "Створити точку входу",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "Обов’язково вказати ім’я для відображення",
+        "slugRequired": "Необхідно вказати ім'я кінцевої точки",
+        "keyRequired": "Постачальник необхідний",
+        "invalidInputSchema": "Невірна схема вхідних даних JSON",
+        "invalidOutputSchema": "Невірна схема виводу JSON"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "Тестовий закінчення",
+      "input": "Введіть",
+      "generateSample": "Створити приклад",
+      "viewPrompt": "Переглянути запит",
+      "prompt": "Згенерований запит",
+      "execute": "Виконати",
+      "executing": "Виконується...",
+      "response": "Відповідь",
+      "success": "Успіх",
+      "failed": "Не вдалося",
+      "invalidJson": "Невірний вхідний JSON-дані",
+      "output": "Вивід",
+      "latency": "Затримка",
+      "inputTokens": "Кількість вхідних токенів",
+      "outputTokens": "Токени виводу",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "Використання",
+        "tokensIn": "Токени в",
+        "tokensOut": "Токени виходять",
+        "latency": "Затримка",
+        "cost": "Орієнтовна вартість"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "Постачальники",
+    "empty": "Немає налаштованих постачальників",
+    "emptyDescription": "Додайте свого першого постачальника LLM",
+    "add": "Додати постачальника",
+    "confirmDelete": "Ви впевнені, що хочете видалити цього постачальника?",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "provider": "Постачальник",
+      "status": "Статус",
+      "active": "Активний",
+      "inactive": "Неактивний"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "title": "Додати ключ API",
+      "titleEdit": "Редагувати ключ API",
+      "keyName": "Назва ключа",
+      "keyNamePlaceholder": "Мій ключ OpenAI",
+      "provider": "Постачальник",
+      "apiKey": "Ключ API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "Ваш ключ зашифровано на носії",
+      "leaveBlank": "залиште порожнім, щоб залишити поточне",
+      "endpointUrl": "URL точки входа",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "Додати ключ",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "Необхідно вказати ім'я ключа",
+        "apiKeyRequired": "Ключ API є обов’язковим",
+        "endpointRequired": "Необхідний URL-адрес точки входу для власного сервера LM"
       }
     },
     "providers": {
       "openai": "OpenAI",
-      "anthropic": "Anthropic",
+      "anthropic": "Компанія Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "Сервер особистого LM"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "Аналітика",
+    "noData": "Немає даних аналітики",
+    "noDataDescription": "Почніть робити запити до API, щоб побачити аналітику",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "Сьогодні",
+      "week": "Цього тижня",
+      "month": "Цього місяця",
+      "custom": "Нестандартний діапазон"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "Загальна кількість запитів",
+      "successRate": "Відсоток успішних спроб",
+      "avgLatency": "Середній час затримки",
+      "totalCost": "Загальна вартість",
+      "tokensUsed": "Використані токени",
+      "inputTokens": "Кількість вхідних токенів",
+      "outputTokens": "Токени виводу",
+      "requestDistribution": "Розподіл запитів",
+      "successful": "Успішний",
+      "failed": "Не вдалося",
+      "byEndpoint": "За точкою призначення"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "Запити з часом",
+      "byEndpoint": "За точкою призначення"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
+    "title": "Шаблони проектів",
+    "subtitle": "Розпочніть з попередньо налаштованого шаблону",
+    "configure": "Налаштувати шаблон",
+    "projectName": "Назва проекту",
     "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "llmKey": "Постачальник",
+    "selectKey": "Виберіть постачальника",
+    "noKeys": "Немає доступних ключів API.",
+    "addKeyLink": "Додайте один перший",
+    "preview": "Попередній перегляд",
+    "willCreate": "Це створить {{count}} кінцеву(і) точку(и):",
+    "apply": "Застосувати шаблон",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "Будь ласка, заповніть усі обов'язкові поля"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "Класифікатор текстів",
+      "description": "Класифікуйте текст за категоріями"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "Аналізатор настрою",
+      "description": "Аналіз емоцій та настрою"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "Екстрактор даних",
+      "description": "Витягніть структуровані дані з тексту"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "Генератор контенту",
+      "description": "Створити зведення та зміст"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "Локалізація",
+      "description": "Перекладіть текст на кілька мов"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "Бюджети",
+    "empty": "Бюджети не встановлено",
+    "emptyDescription": "Налаштуйте обмеження витрат, щоб відстежувати витрати на API",
+    "add": "Додати бюджет",
+    "confirmDelete": "Ви впевнені, що хочете видалити цей бюджет?",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "Щоденний",
+      "weekly": "Щотижнево",
+      "monthly": "Щомісячно"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "Назва бюджету",
+      "namePlaceholder": "Місячний ліміт API",
+      "limit": "Ліміт витрат",
+      "period": "Період",
+      "add": "Додати бюджет"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} витрачає 75% бюджету",
+      "critical": "{{name}} знаходиться на 90% бюджету",
+      "exceeded": "{{name}} перевищив бюджет",
+      "usage": "Поточне використання: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
-    "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "editor": "Редактор схеми",
+    "visual": "Візуальний",
+    "json": "Формат JSON",
+    "addProperty": "Додати властивість",
+    "noProperties": "Властивості не визначені. Додайте одну, щоб почати.",
+    "required": "Необхідно",
+    "descriptionPlaceholder": "Опис властивості (необов'язково)",
+    "arrayItemSchema": "Схема елемента масиву:",
+    "clickToEditName": "Натисніть, щоб змінити назву поля",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "string": "Рядок",
+      "number": "Число",
+      "integer": "Ціле число",
+      "boolean": "Булево",
+      "object": "Об'єкт",
+      "array": "Масив"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "Налаштування",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
+      "title": "Організація",
+      "description": "Налаштуйте параметри організації. Шлях організації використовується у вашому URL-адресі API.",
+      "name": "Назва організації",
+      "namePlaceholder": "Моя організація",
+      "nameHint": "Необов’язкове ім’я організації",
+      "path": "Шлях організації",
       "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "pathHint": "Використовується в URL-адресах API: /api/v1/ai/{org_path}/...",
+      "pathTaken": "Цей шлях вже пройдено",
+      "pathInvalid": "Дозволені лише літери, цифри та підкреслення",
+      "apiUrlPreview": "Попередній перегляд URL API:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "Зберегти зміни",
+      "saving": "Збереження...",
+      "saved": "Налаштування успішно збережені",
+      "error": "Не вдалося зберегти налаштування"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "Ключ API проекту",
+    "description": "Використовуйте цей ключ для автентифікації запитів до API на ваші точки входу. Додайте його як параметр запиту (api_key=...) або токен Bearer у заголовку Authorization.",
+    "createdAt": "Створено",
+    "show": "Показати ключ API",
+    "hide": "Приховати ключ API",
+    "copy": "Копіювати ключ API",
+    "refresh": "Оновити ключ API",
+    "copied": "Скопійовано!",
+    "copiedMessage": "Ключ API скопійовано в буфер обміну",
+    "refreshed": "Ключ API оновлено",
+    "refreshedMessage": "Ваш ключ API було оновлено. Переконайтесь, що оновили його у своїх додатках.",
+    "confirmRefreshTitle": "Оновити ключ API?",
+    "confirmRefreshMessage": "Це зробить недійсним поточний ключ API. Усі додатки, які використовують старий ключ, негайно перестануть працювати.",
+    "confirmRefresh": "Оновити ключ"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "Список дозволених IP-адрес",
+    "description": "Обмежте доступ до точок входу за певними IP-адресами. Залиште порожнім, щоб дозволити всі IP-адреси.",
+    "allAllowed": "Дозволені всі IP",
+    "placeholder": "Введіть адресу IPv4 (наприклад, 192.168.1.1)",
+    "add": "Додати",
+    "removeIp": "Видалити {{ip}}",
+    "invalidIp": "Невірний адреса IPv4",
+    "duplicateIp": "Цей IP вже є в списку"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "Оманичні ліміти",
+    "loading": "Завантаження...",
+    "error": "Не вдалося завантажити обмеження швидкості",
+    "retry": "Повторити",
+    "upgradeButton": "Оновити план",
+    "currentTier": "Поточний",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "Поточні ліміти",
+      "usageHistory": "Історія використання"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "Годинний",
+      "daily": "Щоденний",
+      "monthly": "Щомісячно"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "Оманичні ліміти",
+      "currentUsage": "Поточне використання",
+      "planComparison": "Порівняння планів",
+      "used": "використаний",
+      "limit": "обмеження",
+      "unlimited": "Безмежний",
+      "remaining": "залишилось"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "Історія використання",
+      "requests": "Запити",
+      "noData": "Дані про використання недоступні для цього періоду"
     }
   }
 }

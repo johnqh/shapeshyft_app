@@ -1,271 +1,346 @@
 {
   "seo": {
     "main": {
-      "title": "Use Cases - {{appName}}",
-      "description": "Discover how {{appName}} transforms LLM outputs into structured, reliable data. From text classification to data extraction and content generation.",
-      "keywords": "LLM use cases, structured output, text classification, data extraction, content generation, AI applications"
+      "title": "حالات الاستخدام - {{appName}}",
+      "description": "اكتشف كيف تقوم {{appName}} بتحويل إخراجات نماذج اللغة الكبيرة إلى بيانات منظمة وموثوقة. من تصنيف النصوص إلى استخراج البيانات وإنشاء المحتوى.",
+      "keywords": "حالات استخدام نماذج اللغة الكبيرة، إخراج منظم، تصنيف النص، استخراج البيانات، توليد المحتوى، تطبيقات الذكاء الاصطناعي"
     },
     "text": {
-      "title": "Text Classification - Use Cases - {{appName}}",
-      "description": "Automatically categorize text with LLMs and get structured, validated output. Sentiment analysis, intent recognition, topic detection, and content moderation.",
-      "keywords": "text classification, sentiment analysis, intent recognition, topic detection, content moderation, NLP, LLM classification"
+      "title": "تصنيف النص - حالات الاستخدام - {{appName}}",
+      "description": "صنف النص تلقائيًا باستخدام نماذج لغة كبيرة واحصل على مخرجات منظمة ومُختَرَة. تحليل المشاعر، وتحديد النية، وكشف الموضوع، والرقابة على المحتوى.",
+      "keywords": "تصنيف النص، تحليل المشاعر، تحديد النية، كشف الموضوع، رقابة المحتوى، معالجة اللغة الطبيعية، تصنيف النماذج الكبيرة للغة"
     },
     "data": {
-      "title": "Data Extraction - Use Cases - {{appName}}",
-      "description": "Extract structured data from unstructured documents with LLMs. Invoice processing, resume parsing, contract analysis, and form digitization.",
-      "keywords": "data extraction, document processing, invoice OCR, resume parsing, contract analysis, structured data, LLM extraction"
+      "title": "استخراج البيانات - حالات الاستخدام - {{appName}}",
+      "description": "استخراج البيانات الهيكلية من الوثائق غير الهيكلية باستخدام نماذج اللغة الكبيرة. معالجة الفواتير، تحليل السير الذاتية، تحليل العقود، وتحويل النماذج إلى صيغ رقمية.",
+      "keywords": "استخراج البيانات، معالجة المستندات، استخراج فواتير الصور عبر التعرف البصري على الحروف، تحليل السير الذاتية، تحليل العقود، بيانات منظمة، استخراج النماذج اللغوية الكبيرة"
     },
     "content": {
-      "title": "Content Generation - Use Cases - {{appName}}",
-      "description": "Generate structured content with LLMs. Product descriptions, marketing copy, documentation, and personalized content with guaranteed formatting.",
-      "keywords": "content generation, AI copywriting, product descriptions, marketing automation, structured content, LLM content"
+      "title": "توليد المحتوى - حالات الاستخدام - {{appName}}",
+      "description": "إنشاء محتوى منظم باستخدام نماذج اللغة الكبيرة. وصفات المنتجات، والنصوص التسويقية، والتوثيقات، والمحتوى المخصص بتنسيق مضمون دائمًا.",
+      "keywords": "إنشاء المحتوى، كتابة النصوص بالذكاء الاصطناعي، وصف المنتجات، أتمتة التسويق، محتوى منظم، محتوى نماذج اللغة الكبيرة"
     }
   },
   "nav": {
-    "allUseCases": "All Use Cases",
-    "readDocs": "Read the Docs",
-    "viewPricing": "View Pricing",
-    "exploreOther": "Explore Other Use Cases"
+    "allUseCases": "جميع الحالات المستخدمة",
+    "readDocs": "قراءة الوثائق",
+    "viewPricing": "عرض الأسعار",
+    "exploreOther": "استكشف حالات استخدام أخرى"
   },
   "main": {
     "hero": {
-      "title": "Build Anything with Structured LLM Output",
-      "subtitle": "{{appName}} transforms unpredictable AI responses into reliable, schema-validated data. Here are some common use cases—but your imagination is the only limit."
+      "title": "ابني أي شيء باستخدام إخراج نموذج لغوي منظم",
+      "subtitle": "{{appName}} يحوّل استجابات الذكاء الاصطناعي غير المتوقعة إلى بيانات موثوقة ومُختَبَرة وفق الهيكل. إليك بعض الاستخدامات الشائعة—لكن خيالك هو الحد الوحيد."
     },
     "flexibility": {
-      "title": "Your Use Case, Your Rules",
-      "description": "While we've highlighted common patterns, {{appName}} is designed to be completely flexible. Define any JSON schema, connect any LLM provider, and build exactly what you need. Whether you're creating a chatbot, analyzing research papers, automating workflows, or building something entirely new—if you can describe it in a schema, {{appName}} can deliver it."
+      "title": "حالتك المستخدمة، قواعدك أنت",
+      "description": "بينما أبرزنا الأنماط الشائعة، فإن {{appName} مصمم لتكون مرنة تمامًا. عيّن أي مخطط JSON، وقم بتوصيل أي مزود لنموذج لغوي كبير، وابنِ بالضبط ما تحتاجه. سواء كنت تنشئ روبوت محادثة، أو تحليل أوراق بحثية، أو أتمتة سير عمل، أو تبني شيئًا جديدًا تمامًا — إذا يمكنك وصفه بمخطط، فإن {{appName}} يمكنه توصيله."
     },
     "features": {
       "customSchemas": {
-        "title": "Custom Schemas",
-        "description": "Define any data structure you need"
+        "title": "النماذج المخصصة",
+        "description": "حدد أي هيكل بيانات تحتاجه"
       },
       "anyProvider": {
-        "title": "Any LLM Provider",
-        "description": "OpenAI, Anthropic, Google & more"
+        "title": "أي مزود لنموذج لغوي كبير",
+        "description": "OpenAI، Anthropic، Google وآخرون"
       },
       "validatedOutput": {
-        "title": "Validated Output",
-        "description": "Guaranteed schema compliance"
+        "title": "الإخراج المُختَبَر",
+        "description": "الامتثال المضمون للهيكل"
       },
       "apiFirst": {
         "title": "API-First",
-        "description": "Easy integration with any stack"
+        "description": "التكامل السهل مع أي بيئة برمجية"
       }
     },
     "cta": {
-      "title": "Ready to Build?",
-      "subtitle": "Start with our free tier and see how {{appName}} can transform your AI integration."
+      "title": "جاهز للبناء؟",
+      "subtitle": "ابدأ بباقة المجاني لدينا وشاهد كيف يمكن لـ {{appName}} أن تُحوّل دمج الذكاء الاصطناعي لديك."
     }
   },
   "useCases": {
     "textClassification": {
-      "title": "Text Classification",
-      "description": "Automatically categorize text into predefined labels with high accuracy. Perfect for sentiment analysis, topic detection, intent recognition, and content moderation.",
-      "examples": ["Sentiment Analysis", "Topic Detection", "Intent Recognition", "Content Moderation"]
+      "title": "التقسيم النصي",
+      "description": "صنف النص تلقائيًا إلى تسميات محددة مسبقًا بدقة عالية. مثالي لتحليل المشاعر، وكشف الموضوعات، وتمييز النوايا، والرقابة على المحتوى.",
+      "examples": [
+        "تحليل المشاعر",
+        "كشف الموضوع",
+        "التعرف على النية",
+        "الرقابة على المحتوى"
+      ]
     },
     "dataExtraction": {
-      "title": "Data Extraction",
-      "description": "Extract structured information from unstructured text documents. Transform invoices, contracts, emails, and forms into clean, usable data.",
-      "examples": ["Invoice Processing", "Resume Parsing", "Contract Analysis", "Email Extraction"]
+      "title": "استخراج البيانات",
+      "description": "استخراج المعلومات الهيكلية من المستندات غير الهيكلية. تحويل الفواتير والعقود والبريد الإلكتروني والصيغ إلى بيانات نظيفة قابلة للاستخدام.",
+      "examples": [
+        "معالجة الفواتير",
+        "تحليل السيرة الذاتية",
+        "تحليل العقد",
+        "استخراج البريد الإلكتروني"
+      ]
     },
     "contentGeneration": {
-      "title": "Content Generation",
-      "description": "Generate high-quality, structured content programmatically. Create product descriptions, marketing copy, documentation, and more with consistent formatting.",
-      "examples": ["Product Descriptions", "Marketing Copy", "Documentation", "Email Templates"]
+      "title": "توليد المحتوى",
+      "description": "إنشاء محتوى عالي الجودة ومقترن بشكل منظم بشكل آلي. إنشاء وصفات المنتجات، والنصوص التسويقية، والتوثيق، وأكثر بتنسيق متسق.",
+      "examples": [
+        "وصف المنتج",
+        "نص التسويق",
+        "التوثيق",
+        "قوالب البريد الإلكتروني"
+      ]
     }
   },
   "text": {
     "hero": {
-      "title": "Text Classification",
-      "subtitle": "Transform unstructured text into actionable categories. Define your classification schema, and {{appName}} ensures every response matches your exact requirements."
+      "title": "التقسيم النصي",
+      "subtitle": "حوّل النص غير المهيكل إلى فئات قابلة للتنفيذ. عيّن مخطط تصنيفك، وتأكد أن {{appName}} من أي استجابة تتماشى تمامًا مع متطلباتك الدقيقة."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "كيف يعمل",
       "step1": {
-        "title": "Define Your Schema",
-        "description": "Specify exactly what classifications you need—categories, confidence scores, multiple labels, or nested structures."
+        "title": "حدد مخططك",
+        "description": "حدد بالضبط التصنيفات التي تحتاجها — الفئات، درجات الثقة، التسميات المتعددة، أو الهياكل المدمجة."
       },
       "step2": {
-        "title": "Send Your Text",
-        "description": "Call the {{appName}} API with your text. We route it to your chosen LLM with optimized prompting."
+        "title": "أرسل نصك",
+        "description": "قم بتحديث واجهة برمجة تطبيقات {{appName}} باستخدام نصك. نقوم بتوجيهه إلى نموذج اللغة المختار لك مع توليد مطالبات محسّنة."
       },
       "step3": {
-        "title": "Get Validated Output",
-        "description": "Receive JSON that matches your schema exactly—guaranteed. No parsing errors, no unexpected formats."
+        "title": "الحصول على مخرجات مُصدَّقة",
+        "description": "استلم بيانات JSON تطابق مخططك بدقة — مضمون. لا أخطاء في التحليل، ولا صيغ غير متوقعة."
       }
     },
     "example": {
-      "title": "Example: Customer Feedback Classification",
-      "schemaTitle": "Your JSON Schema",
-      "outputTitle": "Guaranteed Output",
-      "note": "Every response is validated against your schema before being returned. Invalid outputs are automatically retried."
+      "title": "مثال: تصنيف ملاحظات العملاء",
+      "schemaTitle": "مخطط JSON الخاص بك",
+      "outputTitle": "الإخراج المضمون",
+      "note": "يتم التحقق من كل استجابة وفقًا لملف التصميم الخاص بك قبل إرجاعها. تُعاد المحاولات تلقائيًا للإجابات غير الصالحة."
     },
     "applications": {
-      "title": "Applications",
+      "title": "التطبيقات",
       "sentiment": {
-        "title": "Sentiment Analysis",
-        "description": "Analyze customer feedback, reviews, and social media mentions to understand public perception. Get consistent sentiment scores that integrate directly into your analytics pipeline.",
-        "examples": ["Product reviews", "Customer support tickets", "Social media monitoring", "Survey responses"]
+        "title": "تحليل المشاعر",
+        "description": "قم بتحليل ملاحظات العملاء والمراجعات والمنشورات على وسائل التواصل الاجتماعي لفهم التصور العام للجمهور. احصل على درجات مشاعر متسقة تتكامل مباشرة في نظام تحليلاتك.",
+        "examples": [
+          "مراجعات المنتج",
+          "تذاكر دعم العملاء",
+          "المراقبة على وسائل التواصل الاجتماعي",
+          "استجابات الاستطلاع"
+        ]
       },
       "intent": {
-        "title": "Intent Recognition",
-        "description": "Understand what users want from their messages. Route inquiries to the right department, trigger automated workflows, or provide instant responses based on detected intent.",
-        "examples": ["Chatbot routing", "Email categorization", "Voice assistant commands", "Support ticket triage"]
+        "title": "التعرف على النية",
+        "description": "افهم ما يريده المستخدمون من رسائلهم. وجه الاستفسارات إلى القسم المناسب، أو أطلق مسارات عمل آلية، أو قدّم ردودًا فورية بناءً على النية المكتشفة.",
+        "examples": [
+          "التوجيه إلى روبوت المحادثة",
+          "التقسيم الإلكتروني للبريد",
+          "أوامر مساعد الصوت",
+          "تصنيف تذكرة الدعم"
+        ]
       },
       "topic": {
-        "title": "Topic Detection",
-        "description": "Automatically tag content with relevant topics and categories. Perfect for content management, search optimization, and organizing large document collections.",
-        "examples": ["News categorization", "Document tagging", "Research paper classification", "Content recommendation"]
+        "title": "كشف الموضوع",
+        "description": "قم بتسمية المحتوى تلقائيًا بموضوعات وفئات ذات صلة. مثالي لإدارة المحتوى وتحسين البحث وتنظيم مجموعات كبيرة من الوثائق.",
+        "examples": [
+          "التقسيم الإخباري",
+          "التصنيف الوثائقي",
+          "تصنيف الورقة البحثية",
+          "التوصية بالمحتوى"
+        ]
       },
       "moderation": {
-        "title": "Content Moderation",
-        "description": "Flag inappropriate content, detect spam, and identify policy violations. Get structured classifications that enable automated moderation workflows.",
-        "examples": ["User-generated content", "Comment sections", "Forum posts", "Product listings"]
+        "title": "الرقابة على المحتوى",
+        "description": "علم المحتوى غير المناسب، وقم بكشف الرسائل غير المرغوب فيها، وحدد انتهاكات السياسة. احصل على تصنيفات منظمة تتيح تنفيذ سير عمل تلقائي للرقابة.",
+        "examples": [
+          "المحتوى المُنشأ من المستخدم",
+          "أقسام التعليقات",
+          "مشاركات المنتدى",
+          "قائمة المنتجات"
+        ]
       }
     },
     "cta": {
-      "title": "Start Classifying Text Today",
-      "subtitle": "Create your first text classification endpoint in minutes. No ML expertise required."
+      "title": "ابدأ تصنيف النص اليوم",
+      "subtitle": "أنشئ نقطة نهاية تصنيف النص الأولى الخاصة بك في دقائق. لا يتطلب خبرة في التعلم الآلي."
     }
   },
   "data": {
     "hero": {
-      "title": "Data Extraction",
-      "subtitle": "Turn unstructured documents into clean, structured data. Define your target schema, and {{appName}} extracts exactly the information you need—every time."
+      "title": "استخراج البيانات",
+      "subtitle": "حوّل المستندات غير المنظمة إلى بيانات نظيفة ومنسقة. عيّن هيكلك الهدف، وستستخرج {{appName}} بالضبط المعلومات التي تحتاجها — في كل مرة."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "كيف يعمل",
       "step1": {
-        "title": "Define Your Schema",
-        "description": "Describe the exact data structure you want to extract—nested objects, arrays, typed fields with validation."
+        "title": "حدد مخططك",
+        "description": "صف هيكل البيانات الدقيق الذي ترغب في استخراجه—كائنات متداخلة، مصفوفات، حقول معرفة النوع مع التحقق منها."
       },
       "step2": {
-        "title": "Send Your Document",
-        "description": "Pass document text to the {{appName}} API. We handle the prompting and extraction logic."
+        "title": "أرسل مستندك",
+        "description": "قم بتمرير نص المستند إلى واجهة برمجة تطبيقات {{appName}، ونحن نتولى منطق التحفيز والاستخراج."
       },
       "step3": {
-        "title": "Get Structured Data",
-        "description": "Receive validated JSON matching your schema. Import directly into databases, spreadsheets, or APIs."
+        "title": "الحصول على البيانات الهيكلية",
+        "description": "استلم بيانات JSON معتمدة تتماشى مع هيكلك. استورد مباشرة إلى قواعد البيانات أو الجداول الإلكترونية أو واجهات برمجة التطبيقات."
       }
     },
     "example": {
-      "title": "Example: Invoice Data Extraction",
-      "schemaTitle": "Your JSON Schema",
-      "outputTitle": "Extracted Output",
-      "note": "Complex nested structures are extracted accurately, with proper typing for numbers, dates, and arrays."
+      "title": "مثال: استخراج بيانات الفاتورة",
+      "schemaTitle": "مخطط JSON الخاص بك",
+      "outputTitle": "الإخراج المستخرج",
+      "note": "تُستخرج الهياكل المتشابكة المعقدة بدقة، مع تطبيق التصنيف الصحيح للأرقام والتاريخ والمحادثات."
     },
     "applications": {
-      "title": "Applications",
+      "title": "التطبيقات",
       "invoice": {
-        "title": "Invoice Processing",
-        "description": "Extract vendor details, line items, totals, and tax information from invoices in any format. Feed directly into your accounting system.",
-        "examples": ["AP automation", "Expense tracking", "Audit preparation", "Vendor management"]
+        "title": "معالجة الفاتورة",
+        "description": "استخرج تفاصيل المورد، البنود، المبالغ الإجمالية ومعلومات الضريبة من الفواتير بأي تنسيق. قم بتغذية البيانات مباشرة إلى نظام المحاسبة الخاص بك.",
+        "examples": [
+          "التشغيل الآلي للفوترة",
+          "تتبع المصروفات",
+          "الاستعداد للتدقيق",
+          "إدارة الموردين"
+        ]
       },
       "resume": {
-        "title": "Resume Parsing",
-        "description": "Convert resumes into structured candidate profiles. Extract contact info, work history, education, skills, and certifications consistently.",
-        "examples": ["ATS integration", "Candidate matching", "Skills inventory", "Recruitment analytics"]
+        "title": "تحليل السيرة الذاتية",
+        "description": "حوّل السير الذاتية إلى ملفات شخصية مرتبة للمتقدمين. استخرج معلومات الاتصال، والخبرة الوظيفية، والتعليم، والمهارات، والشهادات بشكل متسق.",
+        "examples": [
+          "التكامل مع ATS",
+          "التوافق بين المرشحين",
+          "قائمة المهارات",
+          "تحليلات التوظيف"
+        ]
       },
       "contract": {
-        "title": "Contract Analysis",
-        "description": "Pull key terms, dates, parties, and obligations from legal documents. Automate contract review and compliance monitoring.",
-        "examples": ["Due diligence", "Risk assessment", "Renewal tracking", "Clause extraction"]
+        "title": "تحليل العقد",
+        "description": "استخراج المصطلحات الرئيسية، والتاريخ، والأطراف، والالتزامات من الوثائق القانونية. أتمتة مراجعة العقود ومراقبة الامتثال.",
+        "examples": [
+          "التدقيق المسبق",
+          "تقييم المخاطر",
+          "تتبع التجديد",
+          "استخراج البند"
+        ]
       },
       "form": {
-        "title": "Form Processing",
-        "description": "Digitize paper forms, applications, and questionnaires. Extract field values regardless of layout variations.",
-        "examples": ["Insurance claims", "Loan applications", "Government forms", "Survey responses"]
+        "title": "معالجة النموذج",
+        "description": "حوّل النماذج الورقية والطلبات والاستبيانات إلى صيغ رقمية. استخرج قيم الحقول بغض النظر عن اختلافات التخطيط.",
+        "examples": [
+          "مطالبات التأمين",
+          "طلبات القروض",
+          "النماذج الحكومية",
+          "استجابات الاستطلاع"
+        ]
       }
     },
     "benefits": {
-      "title": "Why {{appName}} for Data Extraction?",
+      "title": "لماذا {{appName}} لاستخراج البيانات؟",
       "schemaEnforcement": {
-        "title": "Schema Enforcement",
-        "description": "Every extraction matches your exact schema. No missing fields, no unexpected formats."
+        "title": "فرض المخطط",
+        "description": "كل استخراج يتطابق مع مخططك الدقيق. لا توجد حقول مفقودة، ولا صيغ غير متوقعة."
       },
       "formatFlexibility": {
-        "title": "Format Flexibility",
-        "description": "Handle variations in document layouts. The same schema works across different formats."
+        "title": "المرونة في التنسيق",
+        "description": "عالج الاختلافات في تخطيط المستندات. يعمل نفس المخطط عبر أشكال مختلفة."
       },
       "instantIntegration": {
-        "title": "Instant Integration",
-        "description": "Get clean JSON ready for databases, APIs, and spreadsheets without post-processing."
+        "title": "التكامل الفوري",
+        "description": "احصل على JSON نقي جاهزًا لقواعد البيانات وواجهات برمجة التطبيقات والجداول الإلكترونية دون معالجة إضافية."
       }
     },
     "cta": {
-      "title": "Start Extracting Data Today",
-      "subtitle": "Build your first data extraction endpoint in minutes. No ML training required."
+      "title": "ابدأ استخراج البيانات اليوم",
+      "subtitle": "أنشئ نقطة نهاية استخراج البيانات الأولى الخاصة بك في دقائق. لا يتطلب ذلك تدريبًا على التعلم الآلي."
     }
   },
   "content": {
     "hero": {
-      "title": "Content Generation",
-      "subtitle": "Generate high-quality content programmatically with guaranteed structure. Define your content format once, then generate at scale with perfect consistency."
+      "title": "توليد المحتوى",
+      "subtitle": "أنشئ محتوى عالي الجودة بشكل آلي ببنية مضمونة. حدد تنسيق محتواك مرة واحدة، ثم أنشئه بكميات كبيرة مع اتساق مثالي."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "كيف يعمل",
       "step1": {
-        "title": "Define Your Format",
-        "description": "Specify content structure—headlines, body sections, bullet points, metadata, and length constraints."
+        "title": "حدد تنسيقك",
+        "description": "حدد هيكل المحتوى — العناوين الفرعية، والأقسام الرئيسية، والنقاط المتسلسلة، والبيانات الوصفية، وقيود الطول."
       },
       "step2": {
-        "title": "Provide Context",
-        "description": "Send product data, topics, or source material. The LLM generates content tailored to your input."
+        "title": "أعطِ السياق",
+        "description": "أرسل بيانات المنتج أو المواضيع أو المواد المصدريّة. يقوم النموذج اللغوي الكبير بإنشاء محتوى مخصص وفقًا لبياناتك المدخلة."
       },
       "step3": {
-        "title": "Get Formatted Content",
-        "description": "Receive perfectly structured content ready for your CMS, database, or application."
+        "title": "الحصول على المحتوى المنسق",
+        "description": "استلم محتوى منظمًا تمامًا جاهزًا لاستخدامه في نظامك الإداري للمحتوى، قاعدة بياناتك، أو تطبيقك."
       }
     },
     "example": {
-      "title": "Example: Product Description Generation",
-      "schemaTitle": "Your Content Schema",
-      "outputTitle": "Generated Content",
-      "note": "Every piece of content matches your schema constraints—length limits, required fields, and array bounds."
+      "title": "مثال: إنشاء وصف المنتج",
+      "schemaTitle": "مخطط محتواك",
+      "outputTitle": "محتوى تم إنشاؤه",
+      "note": "كل جزء من المحتوى يتطابق مع قيود المخطط الخاص بك—حدود الطول، والحقول المطلوبة، وحدود المصفوفات."
     },
     "applications": {
-      "title": "Applications",
+      "title": "التطبيقات",
       "productDescriptions": {
-        "title": "Product Descriptions",
-        "description": "Generate consistent, compelling product copy at scale. Define structure for features, benefits, specs, and SEO keywords—then generate thousands of descriptions programmatically.",
-        "examples": ["E-commerce listings", "Catalog pages", "Marketplace listings", "Product specs"]
+        "title": "وصف المنتج",
+        "description": "أنشئ نسخًا إعلانية متسقة ومقنعة للمنتج بكميات كبيرة. حدد هيكلًا للميزات والفوائد والمواصفات والكلمات المفتاحية لتحسين محركات البحث، ثم أنشئ آلاف الوصفيات تلقائيًا باستخدام البرمجة.",
+        "examples": [
+          "قائمة المتاجر الإلكترونية",
+          "صفحات الكتالوج",
+          "قائمة متاجر السوق",
+          "مواصفات المنتج"
+        ]
       },
       "marketingCopy": {
-        "title": "Marketing Copy",
-        "description": "Create structured marketing content with consistent formatting. Headlines, body copy, CTAs, and metadata all conform to your brand guidelines.",
-        "examples": ["Ad copy", "Landing pages", "Email campaigns", "Social media posts"]
+        "title": "نص التسويق",
+        "description": "أنشئ محتوى تسويقيًا منظمًا بتنسيق متسق. تتوافق العناوين، النصوص الرئيسية، دعوات التفاعل، والبيانات الوصفية مع إرشادات علامتك التجارية.",
+        "examples": [
+          "نص الإعلان",
+          "صفحات الهبوط",
+          "الحملات البريدية",
+          "منشورات وسائل التواصل الاجتماعي"
+        ]
       },
       "documentation": {
-        "title": "Documentation",
-        "description": "Generate technical documentation with consistent structure. API docs, user guides, and help articles all follow your defined templates.",
-        "examples": ["API documentation", "User guides", "FAQ generation", "Release notes"]
+        "title": "التوثيق",
+        "description": "أنشئ وثائق فنية ببنية متسقة. تُستخدم وثائق واجهة برمجة التطبيقات، والدُّلَّالات للمستخدم، والمواد التعليمية جميعها النماذج المحددة من قبلك.",
+        "examples": [
+          "توثيق واجهة برمجة التطبيقات",
+          "الدُّلَالَاتُ الْمُسْتَخْدَمَةُ",
+          "توليد الأسئلة الشائعة",
+          "ملاحظات الإصدار"
+        ]
       },
       "personalizedContent": {
-        "title": "Personalized Content",
-        "description": "Create individualized content at scale. Generate personalized emails, recommendations, and reports based on user data while maintaining consistent structure.",
-        "examples": ["Personalized emails", "Custom reports", "Recommendations", "Notifications"]
+        "title": "محتوى مخصص",
+        "description": "أنشئ محتوى مخصصًا بكميات كبيرة. أنشئ بريدًا إلكترونيًا شخصيًا، وتوصيات، وتقارير بناءً على بيانات المستخدم مع الحفاظ على هيكل متسق.",
+        "examples": [
+          "البريد الإلكتروني المخصص",
+          "التقارير المخصصة",
+          "التوصيات",
+          "الإشعارات"
+        ]
       }
     },
     "benefits": {
-      "title": "Why {{appName}} for Content Generation?",
+      "title": "لماذا {{appName}} لتصنيع المحتوى؟",
       "lengthControl": {
-        "title": "Length Control",
-        "description": "Set character limits for headlines, descriptions, and body content. Never exceed platform limits."
+        "title": "التحكم في الطول",
+        "description": "حدد حدود الطول للعناوين والوصف والمحتوى الرئيسي. لا تتجاوز حدود المنصة أبدًا."
       },
       "consistentStructure": {
-        "title": "Consistent Structure",
-        "description": "Every piece of content follows your defined format. Perfect for templates and bulk generation."
+        "title": "هيكل متسق",
+        "description": "كل قطعة محتوى تتبع التنسيق المحدد لك. مثالي للقوالب والإنشاء الجماعي."
       },
       "scaleInstantly": {
-        "title": "Scale Instantly",
-        "description": "Generate hundreds of content pieces with a single endpoint. Same quality, fraction of the time."
+        "title": "التوسع فورًا",
+        "description": "أنشئ مئات من قطع المحتوى عبر نقطة نهاية واحدة. ذات الجودة نفسها، وبجزء ضئيل من الوقت."
       }
     },
     "cta": {
-      "title": "Start Generating Content Today",
-      "subtitle": "Create your first content generation endpoint in minutes. Scale from one to thousands instantly."
+      "title": "ابدأ إنشاء المحتوى اليوم",
+      "subtitle": "أنشئ نقطة نهاية لتحرير المحتوى الأولى الخاصة بك في دقائق. قم بالتوسع من واحد إلى آلاف المواقع فورًا."
     }
   }
 }

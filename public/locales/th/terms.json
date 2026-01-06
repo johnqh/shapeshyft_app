@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "เงื่อนไขการให้บริการ - {{appName}}",
+    "description": "อ่านข้อกำหนดและเงื่อนไขในการใช้งานแพลตฟอร์ม API ของ {{appName}"
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "เงื่อนไขการให้บริการ",
+  "lastUpdated": "อัปเดตครั้งสุดท้าย: {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. การยอมรับข้อกำหนด",
+      "content": "การเข้าใช้งานหรือใช้งาน {{appName}} ถือว่าคุณยอมรับข้อกำหนดและเงื่อนไขการให้บริการนี้ หากคุณไม่ยอมรับข้อกำหนดเหล่านี้ โปรดอย่าใช้บริการของเรา"
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. คำอธิบายบริการ",
+      "content": "{{appName}} ให้แพลตฟอร์ม API ที่แปลงผลลัพธ์จากโมเดลภาษาขนาดใหญ่ให้เป็นข้อมูลที่จัดโครงสร้างแล้วโดยใช้การตรวจสอบตาม JSON Schema เราทำหน้าที่เป็นชั้นกลางระหว่างแอปพลิเคชันของคุณกับผู้ให้บริการโมเดลภาษาขนาดใหญ่ต่างๆ"
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. บัญชีผู้ใช้",
+      "description": "เมื่อคุณสร้างบัญชี คุณยอมรับตามข้อกำหนดต่อไปนี้:",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "ให้ข้อมูลที่ถูกต้องและครบถ้วน",
+        "รักษาความปลอดภัยของข้อมูลการเข้าสู่ระบบบัญชีของคุณ",
+        "รับผิดชอบต่อการกระทำทั้งหมดภายใต้บัญชีของคุณ",
+        "แจ้งให้เราทราบทันทีหากมีการเข้าถึงโดยไม่ได้รับอนุญาต"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. การใช้งานที่ยอมรับได้",
+      "description": "คุณตกลงที่จะไม่ใช้ {{appName}} เพื่อ:",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "ฝ่าฝืนกฎหมายหรือข้อบังคับที่เกี่ยวข้องใดๆ",
+        "ละเมิดสิทธิในทรัพย์สินทางปัญญา",
+        "ส่งรหัสที่เป็นอันตรายหรือทำการโจมตี",
+        "พยายามเข้าถึงระบบของเราโดยไม่ได้รับอนุญาต",
+        "ขายต่อหรือแจกจ่ายบริการของเราโดยไม่ได้รับอนุญาต"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. การใช้งาน API และขีดจำกัดการเรียกใช้งาน",
+      "content": "การใช้ API ของคุณอยู่ภายใต้ข้อจำกัดด้านอัตราตามระดับการสมัครสมาชิกของคุณ เราขอสงวนสิทธิ์ในการลดอัตราการเข้าถึงหรือระงับการเข้าถึงหากมีการใช้งานมากเกินไปหรือการใช้งานผิดวัตถุประสงค์"
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. สิทธิในสิ่งประดิษฐ์",
+      "content": "{{appName}} และเนื้อหาต้นฉบับ คุณสมบัติ และการทำงานทั้งหมดถือเป็นสิทธิ์ของ Sudobility และได้รับการคุ้มครองตามกฎหมายลิขสิทธิ์สากล เครื่องหมายการค้า และกฎหมายทรัพย์สินทางปัญญาอื่นๆ ข้อมูลของคุณและผลลัพธ์จาก API ยังคงเป็นของคุณ"
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. ข้อจำกัดความรับผิดชอบ",
+      "content": "{{appName}} จัดทำขึ้น \"ตามสภาพที่เป็น\" โดยไม่มีการรับประกันใดๆ ทั้งสิ้น เราจะไม่รับผิดต่อความเสียหายใดๆ ที่เกิดขึ้นจากการใช้บริการ ไม่ว่าจะเป็นความเสียหายโดยอ้อม ความเสียหายที่เกิดขึ้นโดยบังเอิญ ความเสียหายพิเศษ ความเสียหายที่ตามมา หรือความเสียหายเชิงลงโทษ"
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. การยกเลิก",
+      "content": "เราอาจยุติหรือระงับบัญชีของคุณได้ทุกเมื่อหากคุณฝ่าฝืนเงื่อนไขเหล่านี้ คุณสามารถยกเลิกบัญชีของคุณได้ทุกเมื่อผ่านการตั้งค่าบัญชีของคุณ"
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. การเปลี่ยนแปลงข้อกำหนด",
+      "content": "เราขอสงวนสิทธิ์ในการแก้ไขข้อกำหนดเหล่านี้ได้ทุกเมื่อ เราจะแจ้งให้คุณทราบถึงการเปลี่ยนแปลงสำคัญผ่านอีเมลหรือผ่านบริการ ความใช้งานต่อเนื่องหลังการเปลี่ยนแปลงถือว่าเป็นการยอมรับข้อกำหนดใหม่"
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. ข้อมูลติดต่อ",
+      "description": "หากมีคำถามเกี่ยวกับข้อกำหนดการใช้บริการนี้ โปรดติดต่อเรา:",
+      "email": "อีเมล:"
     }
   }
 }

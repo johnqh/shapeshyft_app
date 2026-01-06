@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "Precios",
+  "subtitle": "Elige el plan que mejor se adapte a tus necesidades",
   "plans": {
     "free": {
-      "name": "Free",
+      "name": "Gratis",
       "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "period": "para siempre",
+      "description": "Perfecto para empezar",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1.000 solicitudes de API/mes",
+        "1 proyecto",
+        "3 puntos finales por proyecto",
+        "Todos los proveedores de LLM",
+        "Análisis básico",
+        "Soporte de la comunidad"
       ],
-      "cta": "Get Started"
+      "cta": "Comenzar"
     },
     "pro": {
       "name": "Pro",
       "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "period": "/mes",
+      "description": "Para equipos y proyectos en crecimiento",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "Solicitudes ilimitadas de la API",
+        "Proyectos ilimitados",
+        "Endpoints ilimitados",
+        "Todos los proveedores de LLM",
+        "Análisis avanzado",
+        "Soporte de prioridad",
+        "Colaboración en equipo",
+        "Dominios personalizados"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "Iniciar prueba gratuita",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "Empresa",
+      "price": "Personalizado",
       "period": "",
-      "description": "For large organizations",
+      "description": "Para grandes organizaciones",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "Todo en Pro",
+        "Infraestructura dedicada",
+        "Garantía de SLA",
+        "SSO y SAML",
+        "Registros de auditoría",
+        "Soporte 24/7",
+        "Integraciones personalizadas",
+        "Opción local"
       ],
-      "cta": "Contact Sales"
+      "cta": "Contactar a Ventas"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Preguntas frecuentes",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "¿Qué se considera una solicitud de API?",
+        "answer": "Cada llamada a su punto final {{appName}} se cuenta como una solicitud, independientemente del proveedor de modelo de lenguaje subyacente utilizado."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "¿Necesito mis propias claves de API para un LLM?",
+        "answer": "Sí, usted proporciona sus propias claves de API para OpenAI, Anthropic, Google o servidores personalizados de modelos de lenguaje. Las almacenamos de forma segura encriptadas."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "¿Puedo cambiar de plan más adelante?",
+        "answer": "Sí, puedes actualizar o cambiar tu plan en cualquier momento. Los cambios surtirán efecto en tu próximo ciclo de facturación."
       }
     ]
   }

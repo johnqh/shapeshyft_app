@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "文件",
+  "subtitle": "了解如何使用 {{appName}} 建立結構化的 AI API",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "了解如何開始使用 {{appName}}。建立專案、設定LLM提供者，並建立您的第一個結構化AI端點。",
+    "concepts": "理解核心概念：端點、JSON 方案、系統內容和組織路徑，用於建立結構化的 AI API。",
+    "apiReference": "完整API參考文件適用於{{appName}}。REST端點、請求格式、回應結構及程式碼範例。",
+    "default": "{{appName}} 文件。了解如何使用 JSON Schema 驗證建立可靠的 AI 驅動 REST API。"
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "如何建立結構化的LLM端點",
+    "description": "逐步指南：使用 {{appName}} 建立您的第一個結構化 AI API 端點",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "建立專案",
+        "text": "從您的儀表板中建立一個新專案，以整理您的端點。"
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "新增LLM提供者",
+        "text": "為 OpenAI、Anthropic、Google Gemini 或自訂語言模型伺服器設定您的 API 金鑰。"
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "定義一個端點",
+        "text": "建立一個端點，包含指示、背景資訊和JSON輸出結構。"
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "測試您的端點",
+        "text": "使用內建測試工具驗證您的端點是否傳回結構化資料。"
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "整合",
+        "text": "從您的應用程式使用簡單的 GET 或 POST 請求呼叫您的端點。"
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "開始使用",
+    "concepts": "核心概念",
+    "apiReference": "API參考"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "開始使用",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "建立專案",
+        "description": "從您的儀表板開始建立新專案。為它命名並可選擇加上描述。"
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "新增提供者",
+        "description": "為 OpenAI、Anthropic、Google Gemini 或自訂語言模型伺服器設定您的 API 金鑰。"
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "定義一個端點",
+        "description": "建立一個端點，包含輸出JSON架構、指示說明和上下文。連結至您的LLM金鑰。"
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "設定您的組織路徑",
+        "description": "在設定中設定自訂的組織路徑，或使用自動產生的預設路徑。"
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "整合",
+        "description": "從您的應用程式使用簡單的 GET 或 POST 請求呼叫您的端點。"
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "核心概念",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "端點",
+      "description": "每個端點都已設定為：",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "輸入結構",
+          "description": "定義輸入資料預期結構的 JSON 模式（可選）"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "輸出結構",
+          "description": "定義LLM回應結構的JSON Schema"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "指示",
+          "description": "系統應根據輸入內容執行的具體指示"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "上下文",
+          "description": "系統上下文/提示，用於引導LLM的行為"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "HTTP 方法",
+          "description": "GET（查詢參數）或 POST（JSON 正文）用於輸入資料"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "輸入結構",
+      "description": "使用 JSON Schema 定義輸入資料的預期結構。當呼叫者將資料傳送至您的端點時，{{appName}} 會在處理前根據您的輸入結構驗證資料。這可確保您的 LLM 接收到格式正確的資料，並針對無效請求提供明確的錯誤訊息。"
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "輸出結構",
+      "description": "使用 JSON Schema 定義 LLM 輸出的結構。{{appName}} 指示 LLM 傳回符合您模式的資料，並驗證回應，若輸出不符合則自動重試。"
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "系統上下文",
+      "description": "提供系統提示以引導LLM的行為。此內容會與每次請求一同包含在您的端點中。"
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "組織路徑",
+      "description": "您的組織路徑用於API URL中。預設為用戶ID的前8個字符，但您可在設定中自訂。"
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "API參考",
+    "description": "透過 REST API 存取您的端點。所有 AI 端點均公開，無需驗證。",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "執行端點",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "執行端點並傳回LLM回應及用量指標。"
       },
       "prompt": {
-        "title": "Get Prompt Only",
+        "title": "僅獲取提示",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "description": "返回生成的提示，而不調用LLM。有利於除錯。"
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "回應格式",
+      "description": "成功的回應包含LLM輸出和使用統計資料：",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "輸出",
+          "description": "LLM提供的結構化回應，符合您的輸出模式"
         },
         {
           "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "description": "使用的輸入令牌數量"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "生成的輸出令牌數量"
         },
         {
           "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "description": "請求延遲（毫秒）"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "用量。預估成本（美分）",
+          "description": "預估成本，單位為美分"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "範例請求",
+      "responseTitle": "範例回應"
     }
   }
 }

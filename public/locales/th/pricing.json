@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "ราคา",
+  "subtitle": "เลือกแผนที่เหมาะสมกับความต้องการของคุณ",
   "plans": {
     "free": {
-      "name": "Free",
+      "name": "ฟรี",
       "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "period": "ตลอดไป",
+      "description": "เหมาะอย่างยิ่งสำหรับการเริ่มต้น",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1,000 คำขอ API/เดือน",
+        "1 โครงการ",
+        "3 จุดสิ้นสุดต่อโครงการ",
+        "ผู้ให้บริการโมเดลภาษาทั้งหมด",
+        "การวิเคราะห์พื้นฐาน",
+        "การสนับสนุนจากชุมชน"
       ],
-      "cta": "Get Started"
+      "cta": "เริ่มต้นใช้งาน"
     },
     "pro": {
       "name": "Pro",
       "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "period": "/เดือน",
+      "description": "สำหรับทีมและโครงการที่กำลังขยายตัว",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "คำขอ API ไม่จำกัด",
+        "โครงการไม่จำกัด",
+        "จุดสิ้นสุดแบบไม่จำกัด",
+        "ผู้ให้บริการโมเดลภาษาทั้งหมด",
+        "การวิเคราะห์ขั้นสูง",
+        "การสนับสนุนด้านความสำคัญ",
+        "การทำงานร่วมกันเป็นทีม",
+        "โดเมนเนมแบบกำหนดเอง"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "เริ่มทดลองใช้แบบโปร",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "องค์กร",
+      "price": "กำหนดเอง",
       "period": "",
-      "description": "For large organizations",
+      "description": "สำหรับองค์กรขนาดใหญ่",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "ทุกอย่างในโพร",
+        "โครงสร้างพื้นฐานเฉพาะทาง",
+        "การรับประกัน SLA",
+        "SSO และ SAML",
+        "บันทึกการตรวจสอบ",
+        "การสนับสนุนตลอด 24 ชั่วโมง",
+        "การผสานระบบแบบกำหนดเอง",
+        "ตัวเลือกแบบติดตั้งภายในองค์กร"
       ],
-      "cta": "Contact Sales"
+      "cta": "ติดต่อฝ่ายขาย"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "คำถามที่พบบ่อย",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "สิ่งใดถือว่าเป็นคำขอ API?",
+        "answer": "แต่ละการเรียกใช้จุดสิ้นสุดของคุณ {{appName}} ถือเป็นคำขอหนึ่งครั้ง ไม่ว่าจะใช้ผู้ให้บริการโมเดลภาษาขนาดใหญ่ (LLM) ตัวใดก็ตาม"
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "ฉันต้องมีคีย์ API ของ LLM ของตัวเองหรือไม่?",
+        "answer": "ใช่ คุณต้องให้คีย์ API ของคุณเองสำหรับ OpenAI, Anthropic, Google หรือเซิร์ฟเวอร์โมเดลภาษาแบบกำหนดเอง เราจะเก็บข้อมูลเหล่านี้อย่างปลอดภัยด้วยการเข้ารหัส"
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "ฉันสามารถเปลี่ยนแผนได้ในภายหลังหรือไม่?",
+        "answer": "ใช่ คุณสามารถอัปเกรดหรือดาวน์เกรดแผนของคุณได้ทุกเมื่อ เปลี่ยนแปลงจะมีผลในรอบบิลถัดไปของคุณ"
       }
     ]
   }

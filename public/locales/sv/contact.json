@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "Kontakta oss - {{appName}}",
+    "description": "Ta kontakt med {{appName}}-teamet. Vi är här för att hjälpa till med frågor om vårt API-plattform."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "Kontakta oss",
+  "subtitle": "Har du frågor? Vi vill gärna höra från dig. Skicka oss ett meddelande och vi svarar så snart som möjligt.",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "E-posta oss",
+    "description": "Det bästa sättet att nå oss är via e-post. Vi svarar vanligtvis inom 24–48 timmar på arbetsdagar.",
+    "support": "Stöd"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "Svars_tid",
+    "description": "Vi strävar efter att svara på alla frågor inom 1–2 arbetsdagar. Vid akuta problem, ange \"URGENT\" i ämnesraden."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "Teknisk support",
+    "description": "För API-problem, fel eller tekniska frågor, inkludera ditt projekt-ID och några relevanta felmeddelanden i din e-post."
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "Dokumentation",
+    "description": "Många vanliga frågor besvaras i vår dokumentation. Kolla där först för snabba lösningar."
   }
 }

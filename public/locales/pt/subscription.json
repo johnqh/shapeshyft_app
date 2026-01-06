@@ -1,100 +1,100 @@
 {
-  "title": "Manage Subscription",
-  "noProducts": "No subscription plans available at this time.",
-  "noProductsForPeriod": "No plans available for this billing period.",
+  "title": "Gerenciar assinatura",
+  "noProducts": "Nenhum plano de assinatura disponível no momento.",
+  "noProductsForPeriod": "Sem planos disponíveis para este período de faturamento.",
   "freeTier": {
-    "title": "Free",
+    "title": "Grátis",
     "price": "$0",
-    "schemaValidation": "JSON Schema-validated outputs",
-    "allProviders": "All LLM providers (OpenAI, Anthropic, Google)",
-    "endpointTesting": "Built-in endpoint testing",
-    "analytics": "Basic usage analytics"
+    "schemaValidation": "Saídas validadas por JSON Schema",
+    "allProviders": "Todos os provedores de LLM (OpenAI, Anthropic, Google)",
+    "endpointTesting": "Teste integrado de endpoints",
+    "analytics": "Análise básica de uso"
   },
   "rateLimits": {
-    "hourly": "{{limit}} requests/hour",
-    "daily": "{{limit}} requests/day",
-    "monthly": "{{limit}} requests/month",
-    "unlimited": "Unlimited",
-    "unlimitedRequests": "Unlimited API requests"
+    "hourly": "{{limit}} solicitações/hora",
+    "daily": "{{limit}} solicitações/dia",
+    "monthly": "{{limit}} solicitações/mês",
+    "unlimited": "Ilimitado",
+    "unlimitedRequests": "Solicitações ilimitadas à API"
   },
   "billingPeriod": {
-    "monthly": "Monthly",
-    "yearly": "Yearly"
+    "monthly": "Mensal",
+    "yearly": "Anualmente"
   },
   "features": {
     "developer": [
-      "1,000 API calls/month",
-      "2 projects",
-      "5 endpoints per project",
-      "Community support"
+      "1.000 chamadas à API/mês",
+      "2 projetos",
+      "5 endpoints por projeto",
+      "Suporte da comunidade"
     ],
     "pro": [
-      "10,000 API calls/month",
-      "10 projects",
-      "Unlimited endpoints",
-      "Priority support",
-      "Advanced analytics"
+      "10.000 chamadas à API por mês",
+      "10 projetos",
+      "Pontos finais ilimitados",
+      "Suporte prioritário",
+      "Análise avançada"
     ],
     "enterprise": [
-      "Unlimited API calls",
-      "Unlimited projects",
-      "Unlimited endpoints",
-      "Dedicated support",
-      "Custom integrations",
-      "SLA guarantee"
+      "Chamadas ilimitadas à API",
+      "Projetos ilimitados",
+      "Pontos finais ilimitados",
+      "Suporte dedicado",
+      "Integrações personalizadas",
+      "Garantia de SLA"
     ]
   },
   "currentStatus": {
-    "label": "Current Status",
-    "active": "Active Subscription",
-    "inactive": "No Active Subscription",
-    "inactiveMessage": "Subscribe to unlock premium features and unlimited usage.",
-    "plan": "Plan",
-    "expires": "Expires",
-    "willRenew": "Auto-Renew",
+    "label": "Status Atual",
+    "active": "Assinatura Ativa",
+    "inactive": "Nenhuma assinatura ativa",
+    "inactiveMessage": "Assine para desbloquear recursos premium e uso ilimitado.",
+    "plan": "Plano",
+    "expires": "Expira",
+    "willRenew": "Renovação automática",
     "premium": "Premium",
-    "monthlyUsage": "Monthly Usage",
-    "dailyUsage": "Daily Usage"
+    "monthlyUsage": "Uso Mensal",
+    "dailyUsage": "Uso Diário"
   },
   "periods": {
-    "month": "/month",
-    "year": "/year",
-    "week": "/week"
+    "month": "/mês",
+    "year": "/ano",
+    "week": "/semana"
   },
   "badges": {
-    "popular": "Most Popular",
-    "saveYearly": "Save with Annual",
-    "currentPlan": "Current Plan",
-    "savePercent": "Save {{percent}}%"
+    "popular": "Mais Popular",
+    "saveYearly": "Salvar com Anual",
+    "currentPlan": "Plano Atual",
+    "savePercent": "Salvar {{percent}}%"
   },
   "buttons": {
-    "subscribe": "Subscribe Now",
-    "purchasing": "Processing...",
-    "restore": "Restore Purchase",
-    "restoring": "Restoring..."
+    "subscribe": "Inscreva-se Agora",
+    "purchasing": "Processando...",
+    "restore": "Restaurar compra",
+    "restoring": "Restaurando..."
   },
   "purchase": {
-    "success": "Subscription activated successfully!",
-    "error": "Failed to complete purchase. Please try again."
+    "success": "Assinatura ativada com sucesso!",
+    "error": "Falha ao concluir a compra. Tente novamente."
   },
   "restore": {
-    "success": "Purchases restored successfully!",
-    "noPurchases": "No previous purchases found.",
-    "error": "Failed to restore purchases. Please try again."
+    "success": "Compras restauradas com sucesso!",
+    "noPurchases": "Nenhuma compra anterior encontrada.",
+    "error": "Falha ao restaurar compras. Tente novamente."
   },
   "trial": {
-    "days_one": "{{count}}-day free trial",
-    "days_other": "{{count}}-day free trial",
-    "weeks_one": "{{count}}-week free trial",
-    "weeks_other": "{{count}}-week free trial",
-    "months_one": "{{count}}-month free trial",
-    "months_other": "{{count}}-month free trial"
+    "days_one": "{{count} dias de teste gratuito",
+    "days_other": "{{count} dias de teste gratuito",
+    "weeks_one": "{{count} semana de teste grátis",
+    "weeks_other": "{{count} semana de teste grátis",
+    "months_one": "{{count}-mês de teste gratuito",
+    "months_other": "{{count}-mês de teste gratuito"
   },
   "intro": {
-    "note": "Then {{price}}"
+    "note": "Então {{price}}"
   },
   "common": {
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Sim",
+    "no": "Não"
   }
 }

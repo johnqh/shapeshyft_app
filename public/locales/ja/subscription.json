@@ -1,100 +1,100 @@
 {
-  "title": "Manage Subscription",
-  "noProducts": "No subscription plans available at this time.",
-  "noProductsForPeriod": "No plans available for this billing period.",
+  "title": "サブスクリプションの管理",
+  "noProducts": "現在、利用可能なサブスクリプションプランはございません。",
+  "noProductsForPeriod": "この請求期間には利用可能なプランがありません。",
   "freeTier": {
-    "title": "Free",
-    "price": "$0",
-    "schemaValidation": "JSON Schema-validated outputs",
-    "allProviders": "All LLM providers (OpenAI, Anthropic, Google)",
-    "endpointTesting": "Built-in endpoint testing",
-    "analytics": "Basic usage analytics"
+    "title": "無料",
+    "price": "0ドル",
+    "schemaValidation": "JSONスキーマ検証済みの出力",
+    "allProviders": "すべてのLLMプロバイダー（OpenAI、Anthropic、Google）",
+    "endpointTesting": "組み込みエンドポイントテスト",
+    "analytics": "基本的な使用状況の分析"
   },
   "rateLimits": {
-    "hourly": "{{limit}} requests/hour",
-    "daily": "{{limit}} requests/day",
-    "monthly": "{{limit}} requests/month",
-    "unlimited": "Unlimited",
-    "unlimitedRequests": "Unlimited API requests"
+    "hourly": "{{limit}} 回/時間",
+    "daily": "{{limit}} 回/日",
+    "monthly": "{{limit}} 回/月",
+    "unlimited": "無制限",
+    "unlimitedRequests": "無制限のAPIリクエスト"
   },
   "billingPeriod": {
-    "monthly": "Monthly",
-    "yearly": "Yearly"
+    "monthly": "月ごと",
+    "yearly": "年間"
   },
   "features": {
     "developer": [
-      "1,000 API calls/month",
-      "2 projects",
-      "5 endpoints per project",
-      "Community support"
+      "1,000回/月のAPI呼び出し",
+      "2つのプロジェクト",
+      "プロジェクトあたり5つのエンドポイント",
+      "コミュニティサポート"
     ],
     "pro": [
-      "10,000 API calls/month",
-      "10 projects",
-      "Unlimited endpoints",
-      "Priority support",
-      "Advanced analytics"
+      "1ヶ月あたり10,000回のAPIコール",
+      "10プロジェクト",
+      "無制限のエンドポイント",
+      "優先サポート",
+      "高度な分析"
     ],
     "enterprise": [
-      "Unlimited API calls",
-      "Unlimited projects",
-      "Unlimited endpoints",
-      "Dedicated support",
-      "Custom integrations",
-      "SLA guarantee"
+      "無制限のAPI呼び出し",
+      "無制限のプロジェクト",
+      "無制限のエンドポイント",
+      "専用サポート",
+      "カスタム統合",
+      "SLA保証"
     ]
   },
   "currentStatus": {
-    "label": "Current Status",
-    "active": "Active Subscription",
-    "inactive": "No Active Subscription",
-    "inactiveMessage": "Subscribe to unlock premium features and unlimited usage.",
-    "plan": "Plan",
-    "expires": "Expires",
-    "willRenew": "Auto-Renew",
-    "premium": "Premium",
-    "monthlyUsage": "Monthly Usage",
-    "dailyUsage": "Daily Usage"
+    "label": "現在の状態",
+    "active": "有効なサブスクリプション",
+    "inactive": "有効なサブスクリプションはありません",
+    "inactiveMessage": "プレミアム機能と無制限の利用を解禁するには購読が必要です。",
+    "plan": "計画",
+    "expires": "有効期限切れ",
+    "willRenew": "自動更新",
+    "premium": "プレミアム",
+    "monthlyUsage": "月間使用量",
+    "dailyUsage": "日常使用"
   },
   "periods": {
-    "month": "/month",
-    "year": "/year",
-    "week": "/week"
+    "month": "/月",
+    "year": "/年",
+    "week": "/週"
   },
   "badges": {
-    "popular": "Most Popular",
-    "saveYearly": "Save with Annual",
-    "currentPlan": "Current Plan",
-    "savePercent": "Save {{percent}}%"
+    "popular": "最も人気のある",
+    "saveYearly": "年間で保存",
+    "currentPlan": "現在のプラン",
+    "savePercent": "{{percent}}% を保存"
   },
   "buttons": {
-    "subscribe": "Subscribe Now",
-    "purchasing": "Processing...",
-    "restore": "Restore Purchase",
-    "restoring": "Restoring..."
+    "subscribe": "今すぐ購読する",
+    "purchasing": "処理中...",
+    "restore": "購入の復元",
+    "restoring": "復元中..."
   },
   "purchase": {
-    "success": "Subscription activated successfully!",
-    "error": "Failed to complete purchase. Please try again."
+    "success": "購読が正常に有効化されました！",
+    "error": "購入を完了できませんでした。もう一度お試しください。"
   },
   "restore": {
-    "success": "Purchases restored successfully!",
-    "noPurchases": "No previous purchases found.",
-    "error": "Failed to restore purchases. Please try again."
+    "success": "購入が正常に復元されました！",
+    "noPurchases": "以前の購入履歴が見つかりません。",
+    "error": "購入の復元に失敗しました。もう一度お試しください。"
   },
   "trial": {
-    "days_one": "{{count}}-day free trial",
-    "days_other": "{{count}}-day free trial",
-    "weeks_one": "{{count}}-week free trial",
-    "weeks_other": "{{count}}-week free trial",
-    "months_one": "{{count}}-month free trial",
-    "months_other": "{{count}}-month free trial"
+    "days_one": "{{count}日間の無料トライアル",
+    "days_other": "{{count}日間の無料トライアル",
+    "weeks_one": "{{count}週間の無料トライアル",
+    "weeks_other": "{{count}週間の無料トライアル",
+    "months_one": "{{count}か月の無料トライアル",
+    "months_other": "{{count}か月の無料トライアル"
   },
   "intro": {
-    "note": "Then {{price}}"
+    "note": "その後 {{price}}"
   },
   "common": {
-    "yes": "Yes",
-    "no": "No"
+    "yes": "はい",
+    "no": "いいえ"
   }
 }

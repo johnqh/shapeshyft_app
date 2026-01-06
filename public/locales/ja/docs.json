@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "ドキュメンテーション",
+  "subtitle": "{{appName}} を使って構造化されたAI APIを構築する方法を学びましょう",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "{{appName} の使い方を学びましょう。プロジェクトを作成し、LLMプロバイダーを設定して、最初の構造化AIエンドポイントを構築します。",
+    "concepts": "コアコンセプトを理解する：構造化されたAI APIを構築するためのエンドポイント、JSONスキーマ、システムコンテキスト、および組織パス。",
+    "apiReference": "{{appName}}の完全なAPIリファレンス。RESTエンドポイント、リクエスト形式、レスポンス構造、およびコード例。",
+    "default": "{{appName}}のドキュメント。JSONスキーマ検証を活用して信頼性の高いAI駆動型REST APIを構築する方法を学びます。"
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "構造化LLMエンドポイントの作成方法",
+    "description": "{{appName}}を用いた最初の構造化AI APIエンドポイントを作成するためのステップバイステップガイド",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "プロジェクトを作成する",
+        "text": "ダッシュボードで新しいプロジェクトを作成して、エンドポイントを整理します。"
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "LLMプロバイダーを追加",
+        "text": "OpenAI、Anthropic、Google Gemini、またはカスタムLMサーバーのAPIキーを設定してください。"
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "エンドポイントを定義する",
+        "text": "エンドポイントを、手順、文脈、およびJSON出力スキーマで作成する。"
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "エンドポイントをテストする",
+        "text": "組み込みのテストツールを使用して、エンドポイントが構造化されたデータを返すことを確認してください。"
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "統合する",
+        "text": "アプリケーションから簡単な GET または POST リクエストを使用して、エンドポイントを呼び出してください。"
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "はじめまして",
+    "concepts": "コアコンセプト",
+    "apiReference": "APIリファレンス"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "スタートガイド",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "プロジェクトを作成する",
+        "description": "ダッシュボードで新しいプロジェクトを作成します。名前を付けて、任意で説明を追加します。"
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "プロバイダーを追加",
+        "description": "OpenAI、Anthropic、Google Gemini、またはカスタムLMサーバーのAPIキーを設定してください。"
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "エンドポイントを定義する",
+        "description": "出力JSONスキーマ、指示、および文脈を含むエンドポイントを作成します。LLMキーに接続します。"
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "組織のパスを設定する",
+        "description": "設定でカスタム組織パスを構成するか、自動生成されたデフォルトパスを使用してください。"
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "統合する",
+        "description": "アプリケーションから簡単な GET または POST リクエストを使用して、エンドポイントを呼び出してください。"
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "コアコンセプト",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "エンドポイント",
+      "description": "各エンドポイントは次のように設定されています：",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "入力スキーマ",
+          "description": "入力データの予期される構造を定義するJSONスキーマ（オプション）"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "出力スキーマ",
+          "description": "LLMの応答の構造を定義するJSONスキーマ"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "手順",
+          "description": "入力に対してLLMが実行すべき具体的な指示"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "文脈",
+          "description": "システムの文脈/プロンプト。LLMの行動をガイドするためのもの"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "HTTPメソッド",
+          "description": "入力データ用に GET（クエリパラメータ）または POST（JSONボディ）"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "入力スキーマ",
+      "description": "JSONスキーマを使用して入力データの期待される構造を定義します。コールャーがエンドポイントにデータを送信する際、{{appName}}がそのデータを入力スキーマに基づいて検証し、処理を行います。これにより、LLMに構造が正しく整ったデータが届き、無効なリクエストに対して明確なエラーメッセージが提供されます。"
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "出力スキーマ",
+      "description": "LLMの出力構造をJSONスキーマを使って定義する。 {{appName}} は、LLMにスキーマに一致するデータを返すよう指示し、応答を検証し、出力が準拠していなければ自動的に再試行する。"
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "システムコンテキスト",
+      "description": "システムプロンプトを提供して、LLMの振る舞いをガイドしてください。このコンテキストは、エンドポイントへのすべてのリクエストに含められます。"
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "組織パス",
+      "description": "組織のパスはAPIのURLで使用されます。デフォルトではユーザーIDの最初の8文字になりますが、設定でカスタマイズできます。"
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "APIリファレンス",
+    "description": "REST API経由でエンドポイントにアクセスします。すべてのAIエンドポイントは公開されており、認証は必要ありません。",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "エンドポイントを実行する",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "エンドポイントを実行し、使用状況メトリクスを含むLLMの応答を返す。"
       },
       "prompt": {
-        "title": "Get Prompt Only",
+        "title": "プロンプトのみを取得",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "description": "LLMを呼び出さずに生成されたプロンプトを返します。デバッグに役立ちます。"
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "応答形式",
+      "description": "成功した応答には、LLMの出力と使用統計が含まれます。",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "出力",
+          "description": "LLMからの構造化された応答で、出力スキーマと一致するもの"
         },
         {
           "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "description": "使用された入力トークン数"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "生成された出力トークン数"
         },
         {
           "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "description": "ミリ秒単位のリクエスト遅延"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "使用量。推定コスト（セント）",
+          "description": "セント単位の推定コスト"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "例のリクエスト",
+      "responseTitle": "例としての応答"
     }
   }
 }

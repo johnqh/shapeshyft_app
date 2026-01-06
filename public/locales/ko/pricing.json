@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "가격 정책",
+  "subtitle": "귀하의 필요에 맞는 플랜을 선택하세요",
   "plans": {
     "free": {
-      "name": "Free",
-      "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "name": "무료",
+      "price": "0달러",
+      "period": "영원히",
+      "description": "시작하기에 완벽함",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "월 1,000회 API 요청",
+        "1개의 프로젝트",
+        "프로젝트당 3개의 엔드포인트",
+        "모든 LLM 공급업체",
+        "기본 분석",
+        "커뮤니티 지원"
       ],
-      "cta": "Get Started"
+      "cta": "시작하기"
     },
     "pro": {
-      "name": "Pro",
-      "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "name": "프로",
+      "price": "29달러",
+      "period": "/월",
+      "description": "성장하는 팀과 프로젝트를 위한",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "무제한 API 요청",
+        "무제한 프로젝트",
+        "무제한 엔드포인트",
+        "모든 LLM 공급업체",
+        "고급 분석",
+        "우선 순위 지원",
+        "팀 협업",
+        "사용자 지정 도메인"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "프로 테스트 시작",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "기업용",
+      "price": "사용자 정의",
       "period": "",
-      "description": "For large organizations",
+      "description": "대규모 기업을 위한",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "프로 모든 기능",
+        "전용 인프라",
+        "SLA 보증",
+        "SSO 및 SAML",
+        "감사 로그",
+        "24시간 지원",
+        "사용자 지정 통합",
+        "현장 설치 옵션"
       ],
-      "cta": "Contact Sales"
+      "cta": "판매 담당자에게 문의하세요"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "자주 묻는 질문",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "API 요청은 무엇을 포함하나요?",
+        "answer": "당신의 {{appName}} 엔드포인트에 대한 각 호출은 사용된 백엔드 LLM 공급자와 관계없이 하나의 요청으로 간주됩니다."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "내 LLM API 키가 필요합니까?",
+        "answer": "예, OpenAI, Anthropic, Google 또는 사용자 정의 LM 서버용 API 키를 직접 제공합니다. 우리는 이를 암호화하여 안전하게 저장합니다."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "나중에 플랜을 변경할 수 있나요?",
+        "answer": "네, 언제든지 구독 플랜을 업그레이드하거나 다운그레이드할 수 있습니다. 변경 사항은 다음 청구 주기에 적용됩니다."
       }
     ]
   }

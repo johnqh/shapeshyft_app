@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "Tarification",
+  "subtitle": "Choisissez le forfait qui correspond à vos besoins",
   "plans": {
     "free": {
-      "name": "Free",
-      "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "name": "Gratuit",
+      "price": "0 $",
+      "period": "à jamais",
+      "description": "Idéal pour commencer",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1 000 requêtes d'API par mois",
+        "1 projet",
+        "3 points d'entrée par projet",
+        "Tous les fournisseurs de LLM",
+        "Analytiques de base",
+        "Support de la communauté"
       ],
-      "cta": "Get Started"
+      "cta": "Commencer"
     },
     "pro": {
       "name": "Pro",
-      "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "price": "29 $",
+      "period": "/mois",
+      "description": "Pour les équipes et projets en croissance",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "Demandes d'API illimitées",
+        "Projets illimités",
+        "Points de terminaison illimités",
+        "Tous les fournisseurs de LLM",
+        "Analyse avancée",
+        "Support prioritaire",
+        "Collaboration d'équipe",
+        "Domaines personnalisés"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "Commencer l'essai gratuit",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "Entreprise",
+      "price": "Personnalisé",
       "period": "",
-      "description": "For large organizations",
+      "description": "Pour les grandes organisations",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "Tout dans Pro",
+        "Infrastructure dédiée",
+        "Garantie SLA",
+        "SSO et SAML",
+        "Journaux d'audit",
+        "Support 24/7",
+        "Intégrations personnalisées",
+        "Option locale"
       ],
-      "cta": "Contact Sales"
+      "cta": "Contactez le service commercial"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Questions fréquemment posées",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "Qu'est-ce qui est considéré comme une requête d'API ?",
+        "answer": "Chaque appel à votre point de terminaison {{appName}} est compté comme une requête, quelle que soit la plateforme LLM utilisée en arrière-plan."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "Ai-je besoin de mes propres clés d'API pour un LLM ?",
+        "answer": "Oui, vous fournissez vos propres clés API pour OpenAI, Anthropic, Google ou des serveurs de modèles linguistiques personnalisés. Nous les stockons de manière sécurisée, chiffrées."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "Puis-je changer de forfait plus tard ?",
+        "answer": "Oui, vous pouvez passer à un autre forfait ou revenir à un forfait inférieur à tout moment. Les modifications prendront effet lors de votre prochain cycle de facturation."
       }
     ]
   }

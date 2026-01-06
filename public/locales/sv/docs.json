@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "Dokumentation",
+  "subtitle": "Lär dig hur du bygger strukturerade AI-apis med {{appName}}",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "Lär dig hur du börjar med {{appName}}. Skapa projekt, konfigurera LLM-leverantörer och bygg ditt första strukturerade AI-slutpunkt.",
+    "concepts": "Förstå grundläggande koncept: slutpunkter, JSON-scheman, systemkontext och organisationsvägar för att bygga strukturerade AI-apis.",
+    "apiReference": "Komplett API-referens för {{appName}. REST-slutpunkter, begäranformat, svarsstrukturer och kodexempel.",
+    "default": "{{appName}} dokumentation. Lär dig bygga pålitliga AI-drivna REST-API:er med JSON Schema-validering."
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "Hur man skapar en strukturerad LLM-slutpunkt",
+    "description": "Steg-för-steg-guide för att skapa ditt första strukturerade AI API-slutpunkt med {{appName}}",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "Skapa ett projekt",
+        "text": "Börja med att skapa ett nytt projekt i ditt instrumentpanel för att organisera dina slutpunkter."
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "Lägg till en LLM-leverantör",
+        "text": "Konfigurera ditt API-nyckel för OpenAI, Anthropic, Google Gemini eller en anpassad LM-server."
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "Definiera ett slutpunkt",
+        "text": "Skapa ett slutpunkt med instruktioner, sammanhang och JSON-utdata schema."
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "Testa ditt slutpunkt",
+        "text": "Använd den inbyggda testverktyget för att verifiera att ditt slutpunkt returnerar strukturerad data."
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "Integrera",
+        "text": "Anropa ditt slutpunkt från din applikation med enkla GET- eller POST-begäranden."
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "Komma igång",
+    "concepts": "Grundläggande koncept",
+    "apiReference": "API-referens"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "Komma igång",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "Skapa ett projekt",
+        "description": "Börja med att skapa ett nytt projekt i ditt instrumentpanel. Ge det ett namn och en valfri beskrivning."
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "Lägg till en leverantör",
+        "description": "Konfigurera ditt API-nyckel för OpenAI, Anthropic, Google Gemini eller en anpassad LM-server."
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "Definiera ett slutpunkt",
+        "description": "Skapa ett slutpunkt med utdatans JSON-schema, instruktioner och sammanhang. Anslut det till din LLM-nyckel."
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "Ställ in din organisationsväg",
+        "description": "Ställ in en anpassad organisationsväg i inställningarna, eller använd din automatiskt genererade standardväg."
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "Integrera",
+        "description": "Anropa ditt slutpunkt från din applikation med enkla GET- eller POST-begäranden."
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "Grundläggande koncept",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "Slutpunkter",
+      "description": "Varje slutpunkt är konfigurerad med:",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "Indata schema",
+          "description": "JSON-schema som definierar den förväntade strukturen för indata (valfritt)"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "Utdata schema",
+          "description": "JSON-schema som definierar strukturen på LLM:s svar"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "Instruktioner",
+          "description": "Specifika instruktioner för vad LLM ska göra med inmatningen"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "Sammanhang",
+          "description": "Systemkontext/prompt för att leda LLM:s beteende"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "HTTP-metod",
+          "description": "GET (frågeparametrar) eller POST (JSON-brödtext) för indata"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "Indata schema",
+      "description": "Definiera den förväntade strukturen för indata med hjälp av JSON Schema. När anropare skickar data till din slutpunkt validerar {{appName}} den mot din indata-schema innan bearbetning. Detta säkerställer att din LLM får välformaterad data och ger tydliga felmeddelanden för ogiltiga begäran."
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "Utdata schema",
+      "description": "Definiera strukturen för LLM-utdata med hjälp av JSON Schema. {{appName}} instruerar LLM att returnera data som matchar ditt schema och validerar svaret, och försöker automatiskt igen om utdata inte följer schemat."
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "Systemkontext",
+      "description": "Ge systemprompt för att leda LLM:s beteende. Denna kontext ingår med varje förfrågan till din slutpunkt."
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "Organisationsväg",
+      "description": "Ditt organisationsväg används i API-URL:er. Som standard är det de första 8 tecknen av ditt användar-ID, men du kan anpassa det i inställningarna."
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "API-referens",
+    "description": "Komma åt dina slutpunkter via REST API. Alla AI-slutpunkter är offentliga och kräver ingen autentisering.",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "Kör slutpunkt",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "Kör slutpunkten och returnerar LLM:s svar med användningsmetriker."
       },
       "prompt": {
-        "title": "Get Prompt Only",
+        "title": "Endast hämta prompt",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "description": "Returnerar det genererade prompt utan att anropa LLM:en. Användbart vid felsökning."
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "Svarsformat",
+      "description": "Successfulla svar innehåller LLM-utdata och användningsstatistik:",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "utmatning",
+          "description": "Den strukturerade svaret från LLM:et som matchar ditt utdataskema"
         },
         {
-          "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "name": "usage.tokens_inkomst",
+          "description": "Antal inmatade token som används"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "Antal utgående token som genererats"
         },
         {
           "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "description": "Svarstid i millisekunder"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "användning.uppskattat_kostnad_cent",
+          "description": "Uppskattad kostnad i cent"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "Exempelbegäran",
+      "responseTitle": "Exempel på svar"
     }
   }
 }

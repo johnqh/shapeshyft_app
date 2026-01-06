@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "聯絡我們 - {{appName}}",
+    "description": "聯絡 {{appName}} 團隊。我們在此為您解答有關我們 API 平台的任何疑問。"
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "聯絡我們",
+  "subtitle": "有問題嗎？我們很樂意聆聽您的聲音。請寄送訊息給我們，我們將盡快回覆。",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "電郵我們",
+    "description": "聯繫我們的最佳方式是通過電子郵件。我們通常在工作日24至48小時內回覆。",
+    "support": "支援"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "回應時間",
+    "description": "我們致力於在1-2個營業日內回覆所有查詢。如有緊急事項，請在郵件主旨中註明「URGENT」。"
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "技術支援",
+    "description": "如遇API問題、錯誤或技術疑問，請在郵件中包含您的專案ID及任何相關的錯誤訊息。"
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "文件說明",
+    "description": "我們的文件中已回答許多常見問題，請先前往查閱以快速獲得解決方案。"
   }
 }

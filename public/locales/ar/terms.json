@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "شروط الخدمة - {{appName}}",
+    "description": "اقرأ شروط الاستخدام لمنصة واجهة برمجة التطبيقات الخاصة بـ {{appName}."
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "شروط الخدمة",
+  "lastUpdated": "تم التحديث الأخير: {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. قبول الشروط",
+      "content": "بالوصول إلى أو استخدام {{appName}}، فإنك توافق على الالتزام بشروط الخدمة هذه. إذا لم توافق على هذه الشروط، يرجى عدم استخدام خدمتنا."
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. وصف الخدمة",
+      "content": "{{appName}} يوفر منصة واجهة برمجة تطبيقات (API) تحوّل مخرجات نماذج اللغة الكبيرة إلى بيانات منظمة باستخدام التحقق من صحة JSON Schema. نعمل كطبقة وسط بين تطبيقاتك وموفري نماذج اللغة الكبيرة المختلفة."
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. حسابات المستخدمين",
+      "description": "عند إنشاء حساب، فإنك توافق على:",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "قدم معلومات دقيقة وشاملة",
+        "الحفاظ على أمان بيانات حسابك",
+        "تَقَبَّل المسؤولية عن جميع الأنشطة التي تتم تحت حسابك",
+        "أبلغنا فورًا عن أي وصول غير مصرح به"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. الاستخدام المقبول",
+      "description": "أنت توافق على عدم استخدام {{appName}} لـ:",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "الانتهاك لأي قوانين أو لوائح سارية",
+        "انتهاك حقوق الملكية الفكرية",
+        "نقل كود ضار أو إجراء هجمات",
+        "محاولة الحصول على وصول غير مصرح به إلى أنظمتنا",
+        "إعادة بيع أو إعادة توزيع خدماتنا دون إذن"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. استخدام واجهة برمجة التطبيقات والحدود الزمنية للاستخدام",
+      "content": "يُخضع استخدامك لواجهة برمجة التطبيقات لحدود السرعة بناءً على مستوى اشتراكك. نحتفظ بالحق في تقليل السرعة أو تعليق الوصول في حال الاستخدام المفرط أو الإساءة."
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. الملكية الفكرية",
+      "content": "{{appName}} ومضمونها الأصلي، وميزاتها ووظائفها، مملوكة لشركة سودوبيليتي ومحفوظة بموجب قوانين حقوق الملكية الفكرية الدولية، بما في ذلك حقوق النشر والعلامة التجارية وغيرها. تبقى بياناتك ونواتج واجهة برمجة التطبيقات (API) ملكك."
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. قيد المسؤولية",
+      "content": "{{appName}} يُقدَّم \"كما هو\" دون أي ضمانات من أي نوع. لن نكون مسؤولين عن أي أضرار غير مباشرة أو عرضية أو خاصة أو تبعية أو تأديبية ناتجة عن استخدامك للخدمة."
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. إنهاء",
+      "content": "قد ننهي أو نعلق حسابك في أي وقت بسبب مخالفة هذه الشروط. يمكنك إلغاء حسابك في أي وقت من خلال إعدادات حسابك."
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. التعديلات على الشروط",
+      "content": "نحتفظ بالحق في تعديل هذه الشروط في أي وقت. وسوف نُبلغك عن أي تغييرات كبيرة عبر البريد الإلكتروني أو من خلال الخدمة. يستمر الاستخدام بعد التغييرات يُعد قبولًا للشروط الجديدة."
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. معلومات الاتصال",
+      "description": "بالنسبة لأسئلة حول these Terms of Service، يُرجى التواصل معنا:",
+      "email": "البريد الإلكتروني:"
     }
   }
 }

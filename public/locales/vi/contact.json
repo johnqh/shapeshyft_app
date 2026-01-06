@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "Liên hệ chúng tôi - {{appName}}",
+    "description": "Liên hệ với đội ngũ {{appName}}. Chúng tôi ở đây để hỗ trợ bạn với bất kỳ câu hỏi nào về nền tảng API của chúng tôi."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "Liên hệ chúng tôi",
+  "subtitle": "Có thắc mắc? Chúng tôi rất mong được nghe từ bạn. Gửi tin nhắn cho chúng tôi và chúng tôi sẽ phản hồi sớm nhất có thể.",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "Gửi email cho chúng tôi",
+    "description": "Cách tốt nhất để liên hệ với chúng tôi là qua email. Chúng tôi thường phản hồi trong vòng 24-48 giờ làm việc.",
+    "support": "Hỗ trợ"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "Thời gian phản hồi",
+    "description": "Chúng tôi nhằm trả lời tất cả các yêu cầu trong vòng 1-2 ngày làm việc. Đối với các vấn đề khẩn cấp, vui lòng ghi chú 'KHẨN CẤP' trong tiêu đề email."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "Hỗ trợ kỹ thuật",
+    "description": "Trong trường hợp có sự cố API, lỗi hoặc câu hỏi kỹ thuật, vui lòng thêm mã dự án của bạn và bất kỳ thông báo lỗi nào liên quan vào email của bạn."
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "Tài liệu hướng dẫn",
+    "description": "Nhiều câu hỏi phổ biến đã được trả lời trong tài liệu của chúng tôi. Hãy kiểm tra tại đó trước để tìm các giải pháp nhanh chóng."
   }
 }

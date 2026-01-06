@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "Chính sách bảo mật - {{appName}}",
+    "description": "Tìm hiểu cách {{appName}} thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn."
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Chính sách bảo mật",
+  "lastUpdated": "Cập nhật lần cuối: {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "Giới thiệu",
+      "content": "Tại {{appName}, chúng tôi coi trọng quyền riêng tư của bạn. Chính sách bảo mật này giải thích cách chúng tôi thu thập, sử dụng, tiết lộ và bảo vệ thông tin của bạn khi bạn sử dụng dịch vụ của chúng tôi."
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "Thông tin Chúng Tôi Thu Thập",
+      "description": "Chúng tôi thu thập thông tin mà bạn cung cấp trực tiếp cho chúng tôi:",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "Thông tin tài khoản (địa chỉ email, tên)",
+        "Dữ liệu sử dụng API và phân tích",
+        "Thông tin thanh toán (được xử lý an toàn bởi nhà cung cấp thanh toán của chúng tôi)",
+        "Các thông điệp bạn gửi cho chúng tôi"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "Làm thế nào chúng tôi sử dụng thông tin của bạn",
+      "description": "Chúng tôi sử dụng thông tin chúng tôi thu thập để:",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "Cung cấp, duy trì và cải thiện các dịch vụ của chúng tôi",
+        "Xử lý các giao dịch và gửi thông tin liên quan",
+        "Gửi thông báo kỹ thuật, bản cập nhật và tin nhắn hỗ trợ",
+        "Trả lời các bình luận, câu hỏi và yêu cầu của bạn",
+        "Theo dõi và phân tích các mẫu sử dụng và xu hướng"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "An toàn dữ liệu",
+      "content": "Chúng tôi thực hiện các biện pháp kỹ thuật và tổ chức phù hợp để bảo vệ thông tin cá nhân của bạn khỏi truy cập trái phép, thay đổi, tiết lộ hoặc phá hủy. Các khóa API được mã hóa khi lưu trữ, và mọi dữ liệu đều được truyền tải qua kết nối an toàn."
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "Giữ lại dữ liệu",
+      "content": "Chúng tôi lưu trữ thông tin cá nhân của bạn trong suốt thời gian tài khoản của bạn còn hoạt động hoặc cần thiết để cung cấp dịch vụ cho bạn. Bạn có thể yêu cầu xóa tài khoản và dữ liệu liên quan bất cứ lúc nào."
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "Quyền của bạn",
+      "description": "Bạn có quyền:",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "Truy cập thông tin cá nhân của bạn",
+        "Sửa dữ liệu không chính xác",
+        "Yêu cầu xóa dữ liệu của bạn",
+        "Xuất dữ liệu của bạn dưới định dạng có thể mang theo",
+        "Từ chối nhận thông tin tiếp thị"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "Cookies và theo dõi",
+      "content": "Chúng tôi sử dụng cookie thiết yếu để duy trì phiên làm việc và cài đặt của bạn. Chúng tôi không sử dụng cookie theo dõi bên thứ ba vì mục đích quảng cáo."
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "Các thay đổi đối với Chính sách này",
+      "content": "Chúng tôi có thể cập nhật Chính sách Bảo mật này từ thời điểm này sang thời điểm khác. Chúng tôi sẽ thông báo cho bạn về bất kỳ thay đổi nào bằng cách đăng Chính sách Bảo mật mới trên trang này và cập nhật ngày 'Cập nhật lần cuối'."
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "Liên hệ chúng tôi",
+      "description": "Nếu bạn có bất kỳ câu hỏi nào về Chính sách Bảo mật này, vui lòng liên hệ với chúng tôi:",
+      "email": "Thư điện tử:"
     }
   }
 }

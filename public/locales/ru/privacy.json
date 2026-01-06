@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "Политика конфиденциальности — {{appName}}",
+    "description": "Узнайте, как {{appName}} собирает, использует и защищает вашу личную информацию."
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Политика конфиденциальности",
+  "lastUpdated": "Последнее обновление: {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "Введение",
+      "content": "В {{appName} мы серьезно относимся к вашей конфиденциальности. В этом Положении о конфиденциальности объясняется, как мы собираем, используем, раскрываем и защищаем вашу информацию при использовании нашего сервиса."
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "Информация, которую мы собираем",
+      "description": "Мы собираем информацию, которую вы предоставляете нам напрямую:",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "Сведения об учетной записи (адрес электронной почты, имя)",
+        "Данные об использовании API и аналитика",
+        "Сведения об оплате (обрабатываются безопасно нашим поставщиком платежей)",
+        "Сообщения, которые вы отправляете нам"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "Как мы используем вашу информацию",
+      "description": "Мы используем собранные нами сведения для:",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "Предоставлять, поддерживать и улучшать наши услуги",
+        "Обрабатывайте транзакции и отправляйте связанную информацию",
+        "Отправлять технические уведомления, обновления и сообщения поддержки",
+        "Отвечайте на свои комментарии, вопросы и запросы",
+        "Мониторинг и анализирование паттернов и тенденций использования"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "Безопасность данных",
+      "content": "Мы принимаем соответствующие технические и организационные меры для защиты вашей личной информации от несанкционированного доступа, изменения, раскрытия или уничтожения. Ключи API шифруются при хранении, а все данные передаются по защищённым соединениям."
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "Хранение данных",
+      "content": "Мы храним ваши персональные данные в течение всего срока активности вашего аккаунта или необходимого для предоставления вам услуг. Вы можете в любое время запросить удаление вашего аккаунта и связанной с ним информации."
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "Ваши права",
+      "description": "У вас есть право:",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "Доступ к вашей личной информации",
+        "Исправьте неточные данные",
+        "Запрос на удаление ваших данных",
+        "Экспортируйте свои данные в переносимом формате",
+        "Отказаться от маркетинговых сообщений"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "Файлы cookie и отслеживание",
+      "content": "Мы используем необходимые файлы cookie для поддержания вашей сессии и предпочтений. Мы не используем сторонние файлы cookie для отслеживания в целях рекламы."
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "Изменения в настоящей Политике",
+      "content": "Мы можем время от времени обновлять настоящую Политику конфиденциальности. Мы уведомим вас о любых изменениях, опубликовав новую Политику конфиденциальности на этой странице и обновив дату «Последнее обновление»."
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "Свяжитесь с нами",
+      "description": "Если у вас есть вопросы по этому Политике конфиденциальности, свяжитесь с нами:",
+      "email": "Почта:"
     }
   }
 }

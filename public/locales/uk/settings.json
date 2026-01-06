@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "Налаштування - {{appName}}",
+    "description": "Налаштуйте свій досвід у {{appName}} за допомогою тем і налаштувань відображення."
   },
-  "title": "Settings",
+  "title": "Налаштування",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "Зовнішній вигляд",
+    "description": "Налаштуйте зовнішній вигляд та відчуття від програми."
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "description": "Choose your preferred color theme."
+    "label": "Тема",
+    "light": "Світло",
+    "dark": "Темний",
+    "system": "Система",
+    "description": "Виберіть бажану тему кольорів."
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
-    "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "label": "Розмір шрифту",
+    "small": "Малий",
+    "medium": "Середній",
+    "large": "Великий",
+    "description": "Налаштуйте розмір тексту для кращої читабельності."
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "Про налаштування",
+    "description": "Ваші налаштування зберігаються автоматично і залишаються доступними між сеансами."
   }
 }

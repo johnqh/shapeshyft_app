@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "隐私政策 - {{appName}}",
+    "description": "了解 {{appName}} 如何收集、使用和保护您的个人信息。"
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "隐私政策",
+  "lastUpdated": "最后更新时间：{{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "简介",
+      "content": "在{{appName}，我们高度重视您的隐私。本隐私政策说明了我们在您使用我们的服务时，如何收集、使用、披露和保护您的信息。"
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "我们收集的信息",
+      "description": "我们收集您直接向我们提供的信息：",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "账户信息（电子邮件地址、姓名）",
+        "API 使用数据和分析",
+        "付款信息（由我们的支付提供商安全处理）",
+        "您发送给我们的通信内容"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "我们如何使用您的信息",
+      "description": "我们收集信息用于：",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "提供、维护并改进我们的服务",
+        "处理交易并发送相关资讯",
+        "发送技术通知、更新和支持消息",
+        "回复您的评论、问题和请求",
+        "监控和分析使用模式及趋势"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "数据安全",
+      "content": "我们实施适当的技术和组织措施，以保护您的个人信息免遭未经授权的访问、更改、披露或破坏。API密钥在静态时经过加密，所有数据均通过安全连接传输。"
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "数据保留",
+      "content": "我们保留您的个人信息，直至您的账户处于活跃状态或为提供服务所必需。您可随时请求删除您的账户及关联数据。"
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "您的权利",
+      "description": "您有权：",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "访问您的个人信息",
+        "更正错误的数据",
+        "请求删除您的数据",
+        "以可移植格式导出您的数据",
+        "退出营销通讯"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "Cookie 和追踪",
+      "content": "我们使用必要Cookie来维持您的会话和偏好设置。我们不会使用第三方跟踪Cookie用于广告目的。"
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "本政策的变更",
+      "content": "我们可能会不定期更新本隐私政策。如进行修改，我们将通过在此页面发布新隐私政策并更新“最后更新”日期的方式通知您。"
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "联系我们",
+      "description": "如果您对本隐私政策有任何疑问，请联系我们：",
+      "email": "电子邮件："
     }
   }
 }

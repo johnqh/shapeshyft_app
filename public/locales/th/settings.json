@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "การตั้งค่า - {{appName}}",
+    "description": "กำหนดประสบการณ์ของคุณกับ {{appName}} ด้วยการตั้งค่าธีมและการแสดงผล"
   },
-  "title": "Settings",
+  "title": "การตั้งค่า",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "รูปลักษณ์",
+    "description": "กำหนดรูปลักษณ์และประสบการณ์การใช้งานของแอปพลิเคชัน"
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "description": "Choose your preferred color theme."
+    "label": "ธีม",
+    "light": "แสง",
+    "dark": "มืด",
+    "system": "ระบบ",
+    "description": "เลือกธีมสีที่คุณชอบ"
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
+    "label": "ขนาดฟอนต์",
+    "small": "เล็ก",
     "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "large": "ใหญ่",
+    "description": "ปรับขนาดข้อความให้เหมาะสมเพื่อความอ่านง่ายยิ่งขึ้น"
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "เกี่ยวกับการตั้งค่า",
+    "description": "การตั้งค่าของคุณจะถูกบันทึกอัตโนมัติและคงอยู่ระหว่างการใช้งานหลายครั้ง"
   }
 }

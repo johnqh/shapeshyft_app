@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "Панель управления",
+  "welcome": "Добро пожаловать обратно, {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "Проекты",
+    "providers": "Поставщики",
+    "analytics": "Аналитика",
+    "budgets": "Бюджеты",
+    "subscription": "Подписка",
+    "rateLimits": "Ограничения скорости",
+    "settings": "Настройки"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "Проекты",
+    "empty": "Пока нет проектов",
+    "emptyDescription": "Создайте свой первый проект, чтобы начать",
+    "create": "Создать проект",
+    "useTemplate": "Используйте шаблон",
+    "notFound": "Проект не найден",
+    "backToProjects": "Вернуться к проектам",
+    "confirmDelete": "Вы уверены, что хотите удалить этот проект?",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} конечная точка(точки)",
+      "created": "Создано {{date}}",
+      "active": "Активный",
+      "inactive": "Неактивный"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
+      "title": "Создать проект",
+      "titleEdit": "Редактировать проект",
+      "projectName": "Название проекта",
       "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "projectNameHint": "Только строчные буквы, цифры и дефисы",
+      "displayName": "Имя отображения",
+      "displayNamePlaceholder": "Мой проект",
+      "description": "Описание",
+      "descriptionPlaceholder": "Что делает этот проект",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "Имя отображения обязательно",
+        "nameTooShort": "Имя должно содержать не менее 2 символов"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Слаг"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "Точки подключения",
+    "empty": "Еще нет конечных точек",
+    "emptyDescription": "Создайте свой первый конечный пункт для этого проекта",
+    "create": "Создать конечную точку",
+    "test": "Тест",
+    "notFound": "Точка назначения не найдена",
+    "backToProject": "Вернуться к проекту",
+    "updated": "Точка назначения успешно обновлена",
+    "confirmDelete": "Вы уверены, что хотите удалить этот конечный пункт?",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "Общий",
+      "input": "Вход",
+      "output": "Вывод",
+      "test": "Тест"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "Метод",
+      "type": "Тип"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "Тип конечной точки",
+      "instructions": "Инструкции",
+      "context": "Контекст системы",
+      "inputSchema": "Схема ввода",
+      "outputSchema": "Схема вывода"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
+      "title": "Создать конечную точку",
+      "titleEdit": "Редактировать конечную точку",
+      "endpointName": "Имя конечной точки",
       "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "displayName": "Имя отображения",
+      "displayNamePlaceholder": "Мой конечный пункт",
+      "instructions": "Инструкции",
+      "instructionsPlaceholder": "Инструкции по выполнению задачи для модели языка",
+      "httpMethod": "HTTP-метод",
+      "llmKey": "Поставщик",
+      "selectKey": "Выберите поставщика",
+      "noKeys": "API-ключи не настроены. Сначала добавьте один.",
+      "context": "Контекст системы",
+      "contextPlaceholder": "Инструкции для модели ИИ (системное сообщение)",
+      "useInputSchema": "Определите схему ввода",
+      "useOutputSchema": "Определите схему вывода",
+      "inputSchema": "Схема ввода",
+      "outputSchema": "Схема вывода",
+      "invalidJson": "Неверный JSON",
+      "create": "Создать конечную точку",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "Имя отображения обязательно",
+        "slugRequired": "Имя конечной точки обязательно",
+        "keyRequired": "Требуется поставщик",
+        "invalidInputSchema": "Неверная схема ввода JSON",
+        "invalidOutputSchema": "Неверная схема вывода JSON"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "Тестовый конечный пункт",
+      "input": "Вход",
+      "generateSample": "Создать образец",
+      "viewPrompt": "Просмотреть запрос",
+      "prompt": "Сгенерированный запрос",
+      "execute": "Выполнить",
+      "executing": "Выполняется...",
+      "response": "Ответ",
+      "success": "Успех",
+      "failed": "Не удалось",
+      "invalidJson": "Неверный входной JSON-файл",
+      "output": "Вывод",
+      "latency": "Задержка",
+      "inputTokens": "Токены ввода",
+      "outputTokens": "Токены вывода",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "Использование",
+        "tokensIn": "Токены в",
+        "tokensOut": "Токены out",
+        "latency": "Задержка",
+        "cost": "Ориентировочная стоимость"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "Поставщики",
+    "empty": "Провайдеры не настроены",
+    "emptyDescription": "Добавьте первого поставщика LLM",
+    "add": "Добавить поставщика",
+    "confirmDelete": "Вы уверены, что хотите удалить этого поставщика?",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "provider": "Поставщик",
+      "status": "Статус",
+      "active": "Активный",
+      "inactive": "Неактивный"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "title": "Добавить ключ API",
+      "titleEdit": "Изменить ключ API",
+      "keyName": "Имя ключа",
+      "keyNamePlaceholder": "Мой ключ OpenAI",
+      "provider": "Поставщик",
+      "apiKey": "Ключ API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "Ваш ключ зашифрован в хранилище",
+      "leaveBlank": "оставьте пустым, чтобы сохранить текущее значение",
+      "endpointUrl": "URL конечной точки",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "Добавить ключ",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "Имя ключа обязательно",
+        "apiKeyRequired": "Требуется ключ API",
+        "endpointRequired": "Необходим URL конечной точки для пользовательского сервера LM"
       }
     },
     "providers": {
       "openai": "OpenAI",
-      "anthropic": "Anthropic",
+      "anthropic": "Компания Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "Сервер пользовательской LM"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "Аналитика",
+    "noData": "Нет данных аналитики",
+    "noDataDescription": "Начните отправлять запросы к API, чтобы увидеть аналитику",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "Сегодня",
+      "week": "Эта неделя",
+      "month": "Этот месяц",
+      "custom": "Пользовательский диапазон"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "Всего запросов",
+      "successRate": "Успешность",
+      "avgLatency": "Средняя задержка",
+      "totalCost": "Общая стоимость",
+      "tokensUsed": "Использованные токены",
+      "inputTokens": "Токены ввода",
+      "outputTokens": "Токены вывода",
+      "requestDistribution": "Распределение запросов",
+      "successful": "Успешный",
+      "failed": "Не удалось",
+      "byEndpoint": "По конечной точке"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "Запросы с течением времени",
+      "byEndpoint": "По конечной точке"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
+    "title": "Шаблоны проектов",
+    "subtitle": "Начните с предварительно настроенного шаблона",
+    "configure": "Настроить шаблон",
+    "projectName": "Название проекта",
     "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
+    "llmKey": "Поставщик",
+    "selectKey": "Выберите поставщика",
+    "noKeys": "Нет доступных ключей API.",
+    "addKeyLink": "Добавьте один первый",
     "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "willCreate": "Это создаст {{count}} конечную точку(точки):",
+    "apply": "Применить шаблон",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "Пожалуйста, заполните все обязательные поля"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "Классификатор текстов",
+      "description": "Классифицируйте текст по категориям"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "Анализатор настроения",
+      "description": "Проанализируйте настроение и эмоции"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "Извлекатель данных",
+      "description": "Извлечение структурированных данных из текста"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "Генератор контента",
+      "description": "Создать краткие содержания и тексты"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "Локализация",
+      "description": "Переведите текст на несколько языков"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "Бюджеты",
+    "empty": "Бюджеты не установлены",
+    "emptyDescription": "Настройте лимиты расходов, чтобы отслеживать стоимость вашего API",
+    "add": "Добавить бюджет",
+    "confirmDelete": "Вы уверены, что хотите удалить этот бюджет?",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "Ежедневно",
+      "weekly": "Еженедельно",
+      "monthly": "Ежемесячный"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "Название бюджета",
+      "namePlaceholder": "Ежемесячный лимит API",
+      "limit": "Лимит расходов",
+      "period": "Период",
+      "add": "Добавить бюджет"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} находится на 75% бюджета",
+      "critical": "{{name}} находится на 90% бюджета",
+      "exceeded": "{{name}} превысил бюджет",
+      "usage": "Текущее использование: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
-    "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "editor": "Редактор схемы",
+    "visual": "Визуал",
+    "json": "Формат JSON",
+    "addProperty": "Добавить свойство",
+    "noProperties": "Свойства не определены. Добавьте одно, чтобы начать.",
+    "required": "Требуется",
+    "descriptionPlaceholder": "Описание свойства (необязательно)",
+    "arrayItemSchema": "Схема элемента массива:",
+    "clickToEditName": "Нажмите, чтобы изменить имя поля",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "string": "Строка",
+      "number": "Число",
+      "integer": "Целое число",
+      "boolean": "Логическое значение",
+      "object": "Объект",
+      "array": "Массив"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "Настройки",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
+      "title": "Организация",
+      "description": "Настройте параметры вашей организации. Путь к организации используется в URL-адресах вашей API.",
+      "name": "Название организации",
+      "namePlaceholder": "Моя организация",
+      "nameHint": "Необязательное отображаемое имя для вашей организации",
+      "path": "Путь организации",
       "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "pathHint": "Используется в URL API: /api/v1/ai/{org_path}/...",
+      "pathTaken": "Этот путь уже выбран",
+      "pathInvalid": "Разрешены только буквы, цифры и подчеркивания",
+      "apiUrlPreview": "Предварительный просмотр URL API:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "Сохранить изменения",
+      "saving": "Сохранение...",
+      "saved": "Настройки успешно сохранены",
+      "error": "Не удалось сохранить настройки"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "Ключ API проекта",
+    "description": "Используйте этот ключ для аутентификации запросов к API на ваши конечные точки. Включите его в качестве параметра запроса (api_key=...) или в виде маркера Bearer в заголовке Authorization.",
+    "createdAt": "Создано",
+    "show": "Показать ключ API",
+    "hide": "Скрыть ключ API",
+    "copy": "Копировать ключ API",
+    "refresh": "Обновить ключ API",
+    "copied": "Скопировано!",
+    "copiedMessage": "Ключ API скопирован в буфер обмена",
+    "refreshed": "Ключ API обновлён",
+    "refreshedMessage": "Ваш ключ API обновлён. Убедитесь, что обновили его в своих приложениях.",
+    "confirmRefreshTitle": "Обновить ключ API?",
+    "confirmRefreshMessage": "Это сделает недействительным текущий ключ API. Все приложения, использующие старый ключ, перестанут работать немедленно.",
+    "confirmRefresh": "Обновить ключ"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "Список разрешений IP",
+    "description": "Ограничьте доступ к конечной точке для определённых IP-адресов. Оставьте поле пустым, чтобы разрешить все IP-адреса.",
+    "allAllowed": "Все IP разрешены",
+    "placeholder": "Введите адрес IPv4 (например, 192.168.1.1)",
+    "add": "Добавить",
+    "removeIp": "Удалите {{ip}}",
+    "invalidIp": "Неверный адрес IPv4",
+    "duplicateIp": "Этот IP-адрес уже есть в списке"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "Ограничения скорости",
+    "loading": "Загрузка...",
+    "error": "Не удалось загрузить ограничения скорости",
+    "retry": "Повторить",
+    "upgradeButton": "План обновления",
+    "currentTier": "Текущий",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "Текущие лимиты",
+      "usageHistory": "История использования"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "Часовой",
+      "daily": "Ежедневно",
+      "monthly": "Ежемесячный"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
+      "title": "Ограничения скорости",
+      "currentUsage": "Текущее использование",
+      "planComparison": "Сравнение планов",
       "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "limit": "ограничение",
+      "unlimited": "Неограниченное",
+      "remaining": "оставшийся"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "История использования",
+      "requests": "Запросы",
+      "noData": "Данные об использовании недоступны за этот период"
     }
   }
 }

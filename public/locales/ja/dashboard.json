@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "ダッシュボード",
+  "welcome": "おかえりなさい、{{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "プロジェクト",
+    "providers": "プロバイダー",
+    "analytics": "アナリティクス",
+    "budgets": "予算",
+    "subscription": "サブスクリプション",
+    "rateLimits": "レート制限",
+    "settings": "設定"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "プロジェクト",
+    "empty": "まだプロジェクトがありません",
+    "emptyDescription": "プロジェクトを作成して、始めましょう",
+    "create": "プロジェクトを作成する",
+    "useTemplate": "テンプレートを使用する",
+    "notFound": "プロジェクトが見つかりません",
+    "backToProjects": "プロジェクトに戻る",
+    "confirmDelete": "このプロジェクトを削除してもよろしいですか？",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} エンドポイント",
+      "created": "作成日 {{date}}",
+      "active": "アクティブ",
+      "inactive": "非アクティブ"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
+      "title": "プロジェクトを作成する",
+      "titleEdit": "プロジェクトの編集",
+      "projectName": "プロジェクト名",
       "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "projectNameHint": "小文字の英字、数字、ハイフンのみ",
+      "displayName": "表示名",
+      "displayNamePlaceholder": "マイプロジェクト",
+      "description": "説明",
+      "descriptionPlaceholder": "このプロジェクトの目的",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "表示名は必須です",
+        "nameTooShort": "名前は2文字以上でなければなりません"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "スラッグ"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "エンドポイント",
+    "empty": "まだエンドポイントはありません",
+    "emptyDescription": "このプロジェクト用に最初のエンドポイントを作成します",
+    "create": "エンドポイントを作成する",
+    "test": "テスト",
+    "notFound": "エンドポイントが見つかりません",
+    "backToProject": "プロジェクトに戻る",
+    "updated": "エンドポイントの更新に成功しました",
+    "confirmDelete": "このエンドポイントを削除してもよろしいですか？",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "一般",
+      "input": "入力",
+      "output": "出力",
+      "test": "テスト"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "メソッド",
+      "type": "タイプ"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "エンドポイントの種類",
+      "instructions": "手順",
+      "context": "システムコンテキスト",
+      "inputSchema": "入力スキーマ",
+      "outputSchema": "出力スキーマ"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
+      "title": "エンドポイントを作成する",
+      "titleEdit": "エンドポイントの編集",
+      "endpointName": "エンドポイント名",
       "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "displayName": "表示名",
+      "displayNamePlaceholder": "マイエンドポイント",
+      "instructions": "手順",
+      "instructionsPlaceholder": "LLMのタスク指示",
+      "httpMethod": "HTTPメソッド",
+      "llmKey": "プロバイダー",
+      "selectKey": "プロバイダーを選択する",
+      "noKeys": "APIキーが設定されていません。最初に追加してください。",
+      "context": "システムコンテキスト",
+      "contextPlaceholder": "LLM用の指示（システムプロンプト）",
+      "useInputSchema": "入力スキーマを定義する",
+      "useOutputSchema": "出力スキーマを定義する",
+      "inputSchema": "入力スキーマ",
+      "outputSchema": "出力スキーマ",
+      "invalidJson": "無効なJSON",
+      "create": "エンドポイントを作成する",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "表示名は必須です",
+        "slugRequired": "エンドポイント名は必須です",
+        "keyRequired": "プロバイダーが必要です",
+        "invalidInputSchema": "無効な入力スキーマのJSON",
+        "invalidOutputSchema": "無効な出力スキーマのJSON"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "テストエンドポイント",
+      "input": "入力",
+      "generateSample": "サンプルを生成",
+      "viewPrompt": "プロンプトを表示",
+      "prompt": "生成されたプロンプト",
+      "execute": "実行",
+      "executing": "実行中...",
+      "response": "応答",
+      "success": "成功",
+      "failed": "失敗しました",
+      "invalidJson": "無効なJSON入力",
+      "output": "出力",
+      "latency": "レイテンシー",
+      "inputTokens": "入力トークン",
+      "outputTokens": "出力トークン",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "使用方法",
+        "tokensIn": "トークンイン",
+        "tokensOut": "出力トークン",
+        "latency": "レイテンシー",
+        "cost": "予想費用"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "プロバイダー",
+    "empty": "プロバイダーが設定されていません",
+    "emptyDescription": "最初のLLMプロバイダーを追加してください",
+    "add": "プロバイダーを追加",
+    "confirmDelete": "このプロバイダーを削除してもよろしいですか？",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "provider": "プロバイダー",
+      "status": "ステータス",
+      "active": "アクティブ",
+      "inactive": "非アクティブ"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
+      "title": "APIキーを追加",
+      "titleEdit": "API キーの編集",
+      "keyName": "キー名",
       "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "provider": "プロバイダー",
+      "apiKey": "APIキー",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "あなたの鍵は、保存時に暗号化されています",
+      "leaveBlank": "現在の状態を保持するには空白のままにしてください",
+      "endpointUrl": "エンドポイントURL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "キーを追加",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "キー名は必須です",
+        "apiKeyRequired": "APIキーが必要です",
+        "endpointRequired": "カスタムLMサーバーにはエンドポイントURLが必要です。"
       }
     },
     "providers": {
       "openai": "OpenAI",
-      "anthropic": "Anthropic",
+      "anthropic": "アントロピック",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "カスタムLMサーバー"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "アナリティクス",
+    "noData": "分析データなし",
+    "noDataDescription": "分析を確認するには、APIリクエストを開始してください",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "今日",
+      "week": "今週",
+      "month": "今月",
+      "custom": "カスタムレンジ"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "合計リクエスト",
+      "successRate": "成功率",
+      "avgLatency": "平均レイテンシ",
+      "totalCost": "合計コスト",
+      "tokensUsed": "使用されたトークン",
+      "inputTokens": "入力トークン",
+      "outputTokens": "出力トークン",
+      "requestDistribution": "リクエストの配布",
+      "successful": "成功した",
+      "failed": "失敗しました",
+      "byEndpoint": "エンドポイントによって"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "時間経過によるリクエスト",
+      "byEndpoint": "エンドポイントによって"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
+    "title": "プロジェクトテンプレート",
+    "subtitle": "事前に設定されたテンプレートから開始",
+    "configure": "テンプレートの設定",
+    "projectName": "プロジェクト名",
     "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "llmKey": "プロバイダー",
+    "selectKey": "プロバイダーを選択する",
+    "noKeys": "利用可能なAPIキーがありません。",
+    "addKeyLink": "1つ追加",
+    "preview": "プレビュー",
+    "willCreate": "これにより、{{count}} のエンドポイントが作成されます：",
+    "apply": "テンプレートを適用",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "すべての必須項目を入力してください"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "テキスト分類器",
+      "description": "テキストをカテゴリに分類する"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "感情分析ツール",
+      "description": "感情と感情を分析する"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "データ抽出ツール",
+      "description": "テキストから構造化データを抽出する"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "コンテンツジェネレーター",
+      "description": "要約とコンテンツを生成する"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "ローカリゼーション",
+      "description": "複数の言語に翻訳する"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "予算",
+    "empty": "予算が設定されていません",
+    "emptyDescription": "支出制限を設定して、APIコストを追跡します",
+    "add": "予算を追加",
+    "confirmDelete": "この予算を削除してもよろしいですか？",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "1日ごと",
+      "weekly": "週次",
+      "monthly": "月ごと"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "予算名",
+      "namePlaceholder": "月間API制限",
+      "limit": "支出制限",
+      "period": "期間",
+      "add": "予算を追加"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} は予算の75%に達しました",
+      "critical": "{{name}} は予算の90%に達しました",
+      "exceeded": "{{name}} が予算を超過しました",
+      "usage": "現在の使用量: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
+    "editor": "スキーマエディタ",
+    "visual": "視覚的",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "プロパティを追加",
+    "noProperties": "プロパティが定義されていません。開始するには1つ追加してください。",
+    "required": "必須",
+    "descriptionPlaceholder": "物件の説明（任意）",
+    "arrayItemSchema": "配列項目のスキーマ：",
+    "clickToEditName": "フィールド名を編集するにはクリックしてください",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "string": "文字列",
+      "number": "番号",
+      "integer": "整数",
+      "boolean": "ブール値",
+      "object": "オブジェクト",
+      "array": "配列"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "設定",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
+      "title": "組織",
+      "description": "組織の設定を構成します。組織パスは、API URL で使用されます。",
+      "name": "団体名",
+      "namePlaceholder": "私の組織",
+      "nameHint": "組織のオプション表示名",
+      "path": "組織パス",
       "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "pathHint": "APIのURLで使用：/api/v1/ai/{org_path}/...",
+      "pathTaken": "この道はすでに取られている",
+      "pathInvalid": "英字、数字、アンダースコアのみ使用可能です",
+      "apiUrlPreview": "API URLプレビュー："
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "変更を保存",
+      "saving": "保存中...",
+      "saved": "設定が正常に保存されました",
+      "error": "設定の保存に失敗しました"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "プロジェクトAPIキー",
+    "description": "このキーを使って、エンドポイントへのAPIリクエストを認証してください。クエリパラメータ（api_key=...）またはAuthorizationヘッダー内のBearerトークンとして含めてください。",
+    "createdAt": "作成済み",
+    "show": "APIキーを表示",
+    "hide": "APIキーを非表示にする",
+    "copy": "APIキーをコピー",
+    "refresh": "APIキーを更新する",
+    "copied": "コピーしました！",
+    "copiedMessage": "APIキーをクリップボードにコピーしました",
+    "refreshed": "APIキーが更新されました",
+    "refreshedMessage": "APIキーが更新されました。アプリケーションで更新してください。",
+    "confirmRefreshTitle": "APIキーを再読み込みしますか？",
+    "confirmRefreshMessage": "この操作により、現在のAPIキーが無効になります。古いキーを使用しているアプリケーションは即座に動作しなくなります。",
+    "confirmRefresh": "リフレッシュキー"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "IP許可リスト",
+    "description": "特定のIPアドレスへのエンドポイントアクセスを制限します。すべてのIPアドレスを許可するには空のままにしてください。",
+    "allAllowed": "すべてのIPアドレスが許可されています",
+    "placeholder": "IPv4アドレスを入力してください（例：192.168.1.1）",
+    "add": "追加する",
+    "removeIp": "{{ip}} を削除",
+    "invalidIp": "無効なIPv4アドレス",
+    "duplicateIp": "このIPはすでにリストにあります"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "レート制限",
+    "loading": "読み込み中...",
+    "error": "レート制限を読み込めませんでした",
+    "retry": "再試行",
+    "upgradeButton": "プランのアップグレード",
+    "currentTier": "現在",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "現在の制限",
+      "usageHistory": "利用履歴"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "時単位",
+      "daily": "1日ごと",
+      "monthly": "月ごと"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "レート制限",
+      "currentUsage": "現在の使用状況",
+      "planComparison": "プラン比較",
+      "used": "使用された",
+      "limit": "制限",
+      "unlimited": "無制限",
+      "remaining": "残り"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "利用履歴",
+      "requests": "リクエスト",
+      "noData": "この期間の利用データは利用できません"
     }
   }
 }

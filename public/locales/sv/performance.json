@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "Prestanda och optimering",
+  "title": "Prestandaövervakning",
+  "description": "Övervaka Core Web Vitals, prestanda för paket och API-svårigheter för att säkerställa optimal användarupplevelse.",
   "quickStats": {
     "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
+    "codeSplitting": "Koduppdelning",
     "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "offlineCache": "Offline-cache",
+    "preloading": "Förinläsning",
+    "routePrefetch": "Sökvägsprefetch",
+    "lcpTarget": "LCP-mål"
   },
   "webVitals": {
     "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "description": "Övervakning av Core Web Vitals-mått i realtid.",
     "lcp": {
-      "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "title": "Största innehållsritning",
+      "description": "Tid att återge det största elementet"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "Första inmatningsfördröjning",
+      "description": "Tid för interaktiv respons"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "Kumulativt layoutförskjutning",
+      "description": "Visuell stabilitetspoäng"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
-    "react": "React:",
+    "title": "Paketoptimering",
+    "description": "Koddelning och lazy loading för minskad initial paketstorlek.",
+    "lazyLoadingStates": "Tillstånd för lazy loading",
+    "componentLoading": "Komponent laddas...",
+    "componentLoaded": "Komponent laddad",
+    "bundleAnalysis": "Paketanalys",
+    "react": "React",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "Användargränssnittskomponenter:",
+    "charts": "Diagram:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "API-prestanda",
+    "description": "Övervaka API:s svarstider och effektiviteten hos cachelagring.",
+    "currentLatency": "Nuvarande API-latens",
+    "averageResponseTime": "Genomsnittlig svarstid",
+    "cacheStatus": "Cache-status",
+    "freshData": "Färsk data",
+    "recentlyFetched": "Nyligen hämtat",
+    "staleData": "Föråldrad data",
+    "needsRefresh": "Behöver uppdateras",
+    "cachingStrategy": "Cachelagringsstrategi"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "Prestandabästa praxis",
+    "doThis": "Gör detta",
+    "avoidThis": "Undvik detta",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "Använd koduppdelning för instrumentpanelens funktioner",
+      "lazyLoading": "Implementera lazy loading för bilder och komponenter",
+      "cacheApi": "Cacha API-svar med TanStack Query",
+      "preloadRoutes": "Ladda förväntade vägar på hover för instant navigering",
+      "monitorVitals": "Övervaka Core Web Vitals i produktion",
+      "serviceWorker": "Använd tjänstevärk för stöd offline"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "Laddar alla komponenter omedelbart vid första sidladdningen",
+      "redundantCalls": "Gör överflödiga API-anrop utan cachelagring",
+      "layoutShifts": "Orsakar layoutförskjutningar med dynamiskt innehåll",
+      "blockingRender": "Använder blockerande rendering för icke-kritiska funktioner",
+      "ignoreNetwork": "Ignorera nätverksförhållanden vid resursinladdning",
+      "noTreeShaking": "Att importera stora bibliotek utan trädskärning"
     }
   }
 }

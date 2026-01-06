@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "Prestazioni e ottimizzazione",
+  "title": "Monitoraggio delle prestazioni",
+  "description": "Monitora i Web Vitals principali, le prestazioni del bundle e la latenza delle API per garantire un'esperienza utente ottimale.",
   "quickStats": {
-    "lazyLoad": "Lazy Load",
+    "lazyLoad": "Caricamento ritardato",
     "codeSplitting": "Code Splitting",
     "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
+    "offlineCache": "Cache offline",
     "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "routePrefetch": "Prefetch della rotta",
+    "lcpTarget": "Obiettivo LCP"
   },
   "webVitals": {
     "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "description": "Monitoraggio in tempo reale delle metriche Core Web Vitals.",
     "lcp": {
       "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "description": "Tempo necessario per disegnare l'elemento più grande"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "Ritardo del primo input",
+      "description": "Tempo di risposta interattiva"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "Spostamento cumulativo del layout",
+      "description": "Punteggio di stabilità visiva"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
-    "react": "React:",
+    "title": "Ottimizzazione del pacchetto",
+    "description": "Divisione del codice e caricamento differito per ridurre le dimensioni del bundle iniziale.",
+    "lazyLoadingStates": "Stati di caricamento ritardato",
+    "componentLoading": "Caricamento componente...",
+    "componentLoaded": "Componente caricato",
+    "bundleAnalysis": "Analisi del pacchetto",
+    "react": "React",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "Componenti interfaccia:",
+    "charts": "Grafici:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "Prestazioni dell'API",
+    "description": "Monitora i tempi di risposta dell'API e l'efficacia della cache.",
+    "currentLatency": "Latenza attuale dell'API",
+    "averageResponseTime": "Tempo medio di risposta",
+    "cacheStatus": "Stato della cache",
+    "freshData": "Dati freschi",
+    "recentlyFetched": "Appena recuperato",
+    "staleData": "Dati obsoleti",
+    "needsRefresh": "Occorre aggiornare",
+    "cachingStrategy": "Strategia di caching"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "Best practice per le prestazioni",
+    "doThis": "Fallo",
+    "avoidThis": "Evita questo",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "Utilizza la suddivisione del codice per le funzionalità del pannello di controllo",
+      "lazyLoading": "Implementa il caricamento lazy per immagini e componenti",
+      "cacheApi": "Memorizza le risposte dell'API con TanStack Query",
+      "preloadRoutes": "Carica in anticipo le rotte al passaggio del mouse per una navigazione istantanea",
+      "monitorVitals": "Monitora i metrici Web Vitals principali in produzione",
+      "serviceWorker": "Utilizza un service worker per il supporto in modalità offline"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "Caricamento di tutti i componenti in modo immediato durante il caricamento iniziale della pagina",
+      "redundantCalls": "Effettuare chiamate API ridondanti senza caching",
+      "layoutShifts": "Causare spostamenti del layout con contenuti dinamici",
+      "blockingRender": "Utilizzo del rendering bloccante per le funzionalità non critiche",
+      "ignoreNetwork": "Ignora delle condizioni di rete per il caricamento delle risorse",
+      "noTreeShaking": "Importare grandi librerie senza tree-shaking"
     }
   }
 }

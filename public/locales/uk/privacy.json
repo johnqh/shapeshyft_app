@@ -1,66 +1,66 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "Політика конфіденційності — {{appName}}",
+    "description": "Дізнайтеся, як {{appName}} збирає, використовує та захищає вашу особисту інформацію."
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Політика конфіденційності",
+  "lastUpdated": "Оновлено: {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "Вступ",
+      "content": "У {{appName} ми серйозно ставимося до вашої приватності. Ця Політика конфіденційності пояснює, як ми збираємо, використовуємо, розкриваємо та захищаємо вашу інформацію під час використання нашого сервісу."
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "Інформація, яку ми збираємо",
+      "description": "Ми збираємо інформацію, яку ви надаєте нам безпосередньо:",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "Інформація про обліковий запис (електронна пошта, ім'я)",
+        "Дані про використання API та аналітика",
+        "Інформація про оплату (обробляється безпечним чином нашим платіжним провайдером)",
+        "Звіти, які ви надсилаєте нам"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "Як ми використовуємо вашу інформацію",
+      "description": "Ми використовуємо зібрану інформацію для:",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "Надавайте, підтримуйте та вдосконалюйте наші послуги",
+        "Виконуйте операції та надсилайте пов’язану інформацію",
+        "Надсилайте технічні повідомлення, оновлення та повідомлення підтримки",
+        "Відповідайте на свої коментарі, запитання та прохання",
+        "Моніторинг і аналіз використання та тенденцій"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "Безпека даних",
+      "content": "Ми вживаємо відповідні технічні та організаційні заходи для захисту вашої особистої інформації від несанкціонованого доступу, зміни, розкриття або знищення. Ключі API шифруються в сполученні, а вся інформація передається через захищені з’єднання."
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "Збереження даних",
+      "content": "Ми зберігаємо вашу особисту інформацію протягом часу, поки ваш обліковий запис активний, або якщо це необхідно для надання вам послуг. Ви можете вимагати видалення свого облікового запису та пов’язаних даних в будь-який час."
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "Ваші права",
+      "description": "У вас є право на:",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "Отримайте доступ до особистої інформації",
+        "Виправте неправильні дані",
+        "Вимога видалення ваших даних",
+        "Експортуйте свої дані у переносному форматі",
+        "Відмовитися від маркетингових повідомлень"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "Cookies і відстеження",
+      "content": "Ми використовуємо необхідні файліки cookie для підтримки вашої сесії та налаштувань. Ми не використовуємо сторонні файліки cookie для цілей реклами."
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "Зміни до цієї політики",
+      "content": "Ми можемо змінювати цей політику конфіденційності з часу на час. Ми повідомимо вас про будь-які зміни, опублікувавши нову політику конфіденційності на цій сторінці та оновивши дату «Останнє оновлення»."
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
+      "title": "Зв'яжіться з нами",
+      "description": "У разі якихось питань щодо цього Політику конфіденційності, будь ласка, зв’яжіться з нами:",
       "email": "Email:"
     }
   }

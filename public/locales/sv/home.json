@@ -1,49 +1,49 @@
 {
   "hero": {
-    "title": "Transform LLM Outputs into Structured APIs",
-    "subtitle": "Define endpoints that use any LLM provider to deliver consistent, schema-validated JSON responses for your applications.",
-    "cta": "Get Started",
-    "ctaSecondary": "View Documentation"
+    "title": "Förvandla LLM-utdata till strukturerade API:er",
+    "subtitle": "Definiera slutpunkter som använder någon LLM-tillgång för att leverera konsekventa, schemavaliderade JSON-svar för dina appar.",
+    "cta": "Börja",
+    "ctaSecondary": "Visa dokumentation"
   },
   "features": {
-    "title": "Why {{appName}}?",
-    "subtitle": "Build reliable AI-powered APIs with confidence",
+    "title": "Varför {{appName}}?",
+    "subtitle": "Bygg pålitliga API:er med AI-stöd med självförtroende",
     "structuredOutput": {
-      "title": "Structured Output",
-      "description": "Define JSON schemas for your API responses. {{appName}} ensures LLM outputs always match your expected format."
+      "title": "Strukturerad utdata",
+      "description": "Definiera JSON-scheman för dina API-svar. {{appName}} säkerställer att LLM-utdata alltid matchar ditt förväntade format."
     },
     "multiProvider": {
-      "title": "Multi-Provider Support",
-      "description": "Use OpenAI, Anthropic, Google Gemini, or your own LM server. Switch providers without changing your code."
+      "title": "Stöd för flera leverantörer",
+      "description": "Använd OpenAI, Anthropic, Google Gemini eller din egen LM-server. Byt leverantörer utan att ändra din kod."
     },
     "analytics": {
-      "title": "Built-in Analytics",
-      "description": "Track token usage, costs, latency, and success rates. Optimize your AI endpoints with real data."
+      "title": "Inbyggd analys",
+      "description": "Spåra tokenanvändning, kostnader, svarstid och framgångsgrad. Optimera dina AI-slutpunkter med verkliga data."
     },
     "easyTesting": {
-      "title": "Easy Testing",
-      "description": "Test your endpoints instantly with our built-in tester. Generate sample inputs and validate responses."
+      "title": "Enkel testning",
+      "description": "Testa dina slutpunkter omedelbart med vår inbyggda tester. Skapa exempelindata och validera svar."
     }
   },
   "useCases": {
-    "title": "Use Cases",
-    "subtitle": "What you can build with {{appName}}",
+    "title": "Användningsområden",
+    "subtitle": "Vad du kan bygga med {{appName}}",
     "classification": {
-      "title": "Text Classification",
-      "description": "Categorize content, detect sentiment, or label data with consistent structured outputs."
+      "title": "Textklassificering",
+      "description": "Kategorisera innehåll, upptäck känsla eller märk data med konsekvent strukturerade utdata."
     },
     "extraction": {
-      "title": "Data Extraction",
-      "description": "Extract entities, parse documents, or structure unstructured text into clean JSON."
+      "title": "Dataextraktion",
+      "description": "Extrahera entiteter, tolka dokument eller strukturera ostrukturerad text till ren JSON."
     },
     "generation": {
-      "title": "Content Generation",
-      "description": "Generate summaries, translations, or custom content with predictable response formats."
+      "title": "Innehållsgenerering",
+      "description": "Skapa sammanfattningar, översättningar eller anpassat innehåll med förutsägbara svarsformat."
     }
   },
   "cta": {
-    "title": "Ready to get started?",
-    "subtitle": "Create your first structured AI endpoint in minutes.",
-    "button": "Start Building"
+    "title": "Klar att börja?",
+    "subtitle": "Skapa ditt första strukturerade AI-slutpunkt på minuter.",
+    "button": "Starta bygga"
   }
 }

@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "ประสิทธิภาพและการปรับแต่ง",
+  "title": "การติดตามผลการดำเนินงาน",
+  "description": "ติดตามดูค่า Core Web Vitals ประสิทธิภาพของบันเดิล และความหน่วงของ API เพื่อให้มั่นใจในประสบการณ์การใช้งานที่ดีที่สุด",
   "quickStats": {
-    "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
+    "lazyLoad": "โหลดแบบด่วน",
+    "codeSplitting": "การแยกโค้ด",
     "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "offlineCache": "แคชแบบออฟไลน์",
+    "preloading": "การโหลดล่วงหน้า",
+    "routePrefetch": "การดึงข้อมูลล่วงหน้าของเส้นทาง",
+    "lcpTarget": "เป้าหมาย LCP"
   },
   "webVitals": {
-    "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "title": "คุณสมบัติหลักของเว็บ (Core Web Vitals)",
+    "description": "การตรวจสอบแบบเรียลไทม์ของดัชนีวัดผล Core Web Vitals",
     "lcp": {
       "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "description": "เวลาที่ใช้ในการแสดงองค์ประกอบใหญ่ที่สุด"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "การหน่วงเวลาการป้อนข้อมูลครั้งแรก",
+      "description": "เวลาตอบสนองการโต้ตอบ"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "การเปลี่ยนแปลงตำแหน่งการจัดเรียงสะสม",
+      "description": "คะแนนความมั่นคงทางภาพ"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
+    "title": "การปรับปรุงชุดอุปกรณ์",
+    "description": "การแยกโค้ดและการโหลดแบบด่วนเพื่อลดขนาดบันเดิลเริ่มต้น",
+    "lazyLoadingStates": "สถานะการโหลดแบบด้อยความเร็ว",
+    "componentLoading": "การโหลดส่วนประกอบ...",
+    "componentLoaded": "คอมโพเนนต์โหลดแล้ว",
+    "bundleAnalysis": "การวิเคราะห์บันเดิล",
     "react": "React:",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "คอมโพเนนต์อินเทอร์เฟซผู้ใช้:",
+    "charts": "แผนภูมิ:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "ประสิทธิภาพของ API",
+    "description": "ติดตามเวลาตอบสนองของ API และประสิทธิภาพการแคช",
+    "currentLatency": "ความหน่วงของ API ปัจจุบัน",
+    "averageResponseTime": "เวลาตอบกลับเฉลี่ย",
+    "cacheStatus": "สถานะแคช",
+    "freshData": "ข้อมูลสด",
+    "recentlyFetched": "ดึงเมื่อไม่นานมานี้",
+    "staleData": "ข้อมูลเก่า",
+    "needsRefresh": "ต้องรีเฟรช",
+    "cachingStrategy": "กลยุทธ์การเก็บข้อมูลชั่วคราว"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "แนวทางปฏิบัติที่ดีที่สุดด้านประสิทธิภาพ",
+    "doThis": "ทำสิ่งนี้",
+    "avoidThis": "หลีกเลี่ยงสิ่งนี้",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "ใช้การแยกโค้ดสำหรับฟีเจอร์แดชบอร์ด",
+      "lazyLoading": "ใช้การโหลดแบบด่วนสำหรับรูปภาพและคอมโพเนนต์",
+      "cacheApi": "เก็บผลตอบกลับ API ไว้ในแคชด้วย TanStack Query",
+      "preloadRoutes": "โหลดเส้นทางล่วงหน้าเมื่อชี้ไปที่เพื่อการนำทางทันที",
+      "monitorVitals": "ติดตามค่า Core Web Vitals ในสภาพแวดล้อมการใช้งานจริง",
+      "serviceWorker": "ใช้ service worker เพื่อรองรับการใช้งานแบบออฟไลน์"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "โหลดคอมโพเนนต์ทั้งหมดทันทีในช่วงการโหลดหน้าแรก",
+      "redundantCalls": "การเรียกใช้ API ซ้ำซ้อนโดยไม่มีการแคช",
+      "layoutShifts": "การก่อให้เกิดการเปลี่ยนแปลงตำแหน่งของหน้าจอเมื่อมีเนื้อหาแบบไดนามิก",
+      "blockingRender": "การใช้การเรนเดอร์แบบบล็อกสำหรับคุณสมบัติที่ไม่สำคัญ",
+      "ignoreNetwork": "ข้ามเงื่อนไขเครือข่ายในการโหลดทรัพยากร",
+      "noTreeShaking": "การนำเข้าไลบรารีขนาดใหญ่โดยไม่มีการตัดแต่งต้นไม้"
     }
   }
 }

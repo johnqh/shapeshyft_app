@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "お問い合わせ - {{appName}}",
+    "description": "{{appName}}チームまでお問い合わせください。APIプラットフォームに関するご質問は、いつでもお気軽にお尋ねください。"
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "お問い合わせ",
+  "subtitle": "質問がありますか？お気軽にお問い合わせください。メッセージを送っていただければ、できるだけ早くお返事します。",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "メールでお問い合わせください",
+    "description": "お問い合わせの最良の方法はメールです。営業日において、通常24〜48時間以内に返信いたします。",
+    "support": "サポート"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "応答時間",
+    "description": "すべてのお問い合わせに対して1〜2営業日以内に返信をいたします。緊急のお問い合わせの場合は、件名に「URGENT」とご記載ください。"
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "技術サポート",
+    "description": "APIの問題、バグ、または技術的な質問がある場合は、メールにプロジェクトIDと関連するエラーメッセージを含めてください。"
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "ドキュメンテーション",
+    "description": "多くの一般的な質問は、ドキュメントで回答されています。すばやい解決策を求める場合は、まずそちらを確認してください。"
   }
 }

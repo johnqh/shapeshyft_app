@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "문의하기 - {{appName}}",
+    "description": "{{appName}} 팀에 문의하세요. 저희는 API 플랫폼에 관한 모든 질문에 도움을 드립니다."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "문의하기",
+  "subtitle": "질문이 있나요? 저희가 귀하의 메시지를 듣는 것을 기쁘게 생각합니다. 메시지를 보내주시면 가능한 한 빨리 답변드리겠습니다.",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "이메일로 문의하기",
+    "description": "문의하시는 가장 좋은 방법은 이메일입니다. 근무일 기준으로 보통 24~48시간 이내에 답변을 드립니다.",
+    "support": "지원"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "응답 시간",
+    "description": "모든 문의에 대해 1~2영업일 이내에 답변드리겠습니다. 급한 문제의 경우, 제목에 'URGENT'를 포함해 주세요."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "기술 지원",
+    "description": "API 문제, 버그 또는 기술적 질문이 있는 경우 이메일에 프로젝트 ID와 관련된 오류 메시지를 포함하세요."
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "문서",
+    "description": "일반적인 질문은 문서에서 대부분 해결할 수 있습니다. 빠른 해결책을 찾기 위해 먼저 문서를 확인하세요."
   }
 }

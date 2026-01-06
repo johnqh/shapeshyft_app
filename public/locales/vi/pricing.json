@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "Giá cả",
+  "subtitle": "Chọn gói phù hợp với nhu cầu của bạn",
   "plans": {
     "free": {
-      "name": "Free",
+      "name": "Miễn phí",
       "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "period": "mãi mãi",
+      "description": "Lý tưởng để bắt đầu",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1.000 yêu cầu API/tháng",
+        "1 dự án",
+        "3 điểm cuối cho mỗi dự án",
+        "Tất cả các nhà cung cấp LLM",
+        "Phân tích cơ bản",
+        "Hỗ trợ cộng đồng"
       ],
-      "cta": "Get Started"
+      "cta": "Bắt đầu"
     },
     "pro": {
       "name": "Pro",
       "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "period": "/tháng",
+      "description": "Đối với các đội ngũ và dự án đang phát triển",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "Yêu cầu API không giới hạn",
+        "Dự án không giới hạn",
+        "Điểm kết nối không giới hạn",
+        "Tất cả các nhà cung cấp LLM",
+        "Phân tích nâng cao",
+        "Hỗ trợ ưu tiên",
+        "Hợp tác nhóm",
+        "Tên miền tùy chỉnh"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "Bắt đầu bản dùng thử Pro",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "Doanh nghiệp",
+      "price": "Tùy chỉnh",
       "period": "",
-      "description": "For large organizations",
+      "description": "Đối với các tổ chức lớn",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "Tất cả trong Pro",
+        "Cơ sở hạ tầng chuyên dụng",
+        "Bảo đảm SLA",
+        "Đăng nhập một lần & SAML",
+        "Nhật ký kiểm toán",
+        "Hỗ trợ 24/7",
+        "Tích hợp tùy chỉnh",
+        "Tùy chọn trên cơ sở hạ tầng của bạn"
       ],
-      "cta": "Contact Sales"
+      "cta": "Liên hệ bán hàng"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Câu hỏi thường gặp",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "Số lượng yêu cầu API được tính như thế nào?",
+        "answer": "Mỗi lần gọi đến điểm cuối {{appName}} của bạn sẽ được tính là một yêu cầu, bất kể nhà cung cấp LLM bên dưới được sử dụng."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "Tôi có cần khóa API LLM riêng không?",
+        "answer": "Có, bạn sẽ cung cấp các khóa API riêng cho OpenAI, Anthropic, Google hoặc máy chủ ngôn ngữ học tùy chỉnh. Chúng tôi lưu trữ chúng một cách an toàn dưới dạng mã hóa."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "Tôi có thể đổi kế hoạch sau này không?",
+        "answer": "Có, bạn có thể nâng cấp hoặc hạ cấp gói của mình bất cứ lúc nào. Các thay đổi sẽ có hiệu lực vào chu kỳ thanh toán tiếp theo của bạn."
       }
     ]
   }

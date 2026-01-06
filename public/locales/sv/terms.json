@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "Användarvillkor - {{appName}}",
+    "description": "Läs villkoren och villkoren för användning av {{appName} s API-plattform."
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Villkor för tjänsten",
+  "lastUpdated": "Senast uppdaterat: {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. Godkännande av villkor",
+      "content": "Genom att använda eller komma åt {{appName}}, godkänner du att bindas av dessa Allmänna villkor. Om du inte godkänner dessa villkor, vänligen använd inte vår tjänst."
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. Beskrivning av tjänsten",
+      "content": "{{appName}} erbjuder en API-plattform som omvandlar LLM-utdata till strukturerad data med hjälp av JSON Schema-validering. Vi fungerar som mellanprogram mellan dina appar och olika LLM-leverantörer."
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. Användarkonton",
+      "description": "När du skapar ett konto godkänner du:",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "Ge korrekt och komplett information",
+        "Säkerhetsförsök för dina kontouppgifter",
+        "Ta ansvar för alla aktiviteter under ditt konto",
+        "Meddela oss omedelbart om någon obehörig åtkomst"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. Tillåtet användning",
+      "description": "Du godkänner inte att använda {{appName}} till:",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "Överträda några tillämpliga lagar eller förordningar",
+        "Skrida på upphovsrätt",
+        "Skicka skadlig kod eller genomföra attacker",
+        "Försök att få olaglig tillgång till våra system",
+        "Sälja om eller distribuera våra tjänster utan tillstånd"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. API-användning och hastighetsbegränsningar",
+      "content": "Ditt användande av API:t är underkänt av hastighetsbegränsningar baserat på din prenumerationsnivå. Vi behåller rätten att bromsa eller upphäva tillgång vid överanvändning eller missbruk."
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. Upphovsrätt",
+      "content": "{{appName}} och dess ursprungliga innehåll, funktioner och funktionalitet ägs av Sudobility och skyddas av internationella upphovsrätts-, varumärkes- och andra immateriella rättighetslagar. Dina data och API-utdata förblir dina."
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. Begränsning av ansvar",
+      "content": "{{appName}} tillhandahålls \"enligt vad den är\" utan några garantier av någon art. Vi skall inte ansvara för några indirekta, tillfälliga, speciella, följd- eller straffskadegärningar som uppstår genom din användning av tjänsten."
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. Avslut",
+      "content": "Vi kan avsluta eller suspendera ditt konto när som helst vid brott mot dessa villkor. Du kan avboka ditt konto när som helst genom dina kontoinställningar."
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. Ändringar av villkor",
+      "content": "Vi behåller rätten att ändra dessa villkor när som helst. Vi meddelar dig om viktiga förändringar via e-post eller genom tjänsten. Fortsatt användning efter förändringar antas vara godkännande av de nya villkoren."
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. Kontaktuppgifter",
+      "description": "För frågor om dessa användarvillkor, kontakta oss:",
+      "email": "E-post:"
     }
   }
 }

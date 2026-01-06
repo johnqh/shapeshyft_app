@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "서비스 이용 약관 - {{appName}}",
+    "description": "{{appName}}의 API 플랫폼 사용에 대한 이용 약관을 읽으세요."
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "서비스 이용 약관",
+  "lastUpdated": "마지막 업데이트: {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. 이용 약관 수락",
+      "content": "{{appName}}을(를) 이용하거나 사용함으로써 귀하는 이 서비스 이용약관에 구속됨을 동의합니다. 이러한 약관에 동의하지 않으시면 당사의 서비스를 사용하지 마십시오."
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. 서비스 설명",
+      "content": "{{appName}}는 JSON 스키마 검증을 사용하여 LLM 출력을 구조화된 데이터로 변환하는 API 플랫폼을 제공합니다. 우리는 귀하의 애플리케이션과 다양한 LLM 공급자 사이의 미들웨어 역할을 합니다."
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. 사용자 계정",
+      "description": "계정을 생성할 때, 다음에 동의하는 것입니다:",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "정확하고 완전한 정보를 제공하십시오",
+        "계정 자격 증명의 보안을 유지하세요",
+        "계정 아래의 모든 활동에 대한 책임을 수용합니다",
+        "모든 무단 접근을 즉시 우리에게 알리십시오"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. 사용자 이용 규칙",
+      "description": "당신은 {{appName}}을 다음 목적에 사용하지 않기로 동의합니다:",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "적용 가능한 법률 또는 규정을 위반하는 행위",
+        "지적 재산권 침해",
+        "악성 코드를 전송하거나 공격을 수행합니다",
+        "당신의 시스템에 무단으로 접근하려는 시도",
+        "허락 없이 당사의 서비스를 재판매하거나 재배포하지 마십시오"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. API 사용 및 요청 제한",
+      "content": "API 사용은 구독 등급에 따라 속도 제한이 적용됩니다. 과도한 사용 또는 오용에 대해 당사는 속도 제한 또는 접근을 중단할 권리를 보유합니다."
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. 지적 재산권",
+      "content": "{{appName}} 및 원본 콘텐츠, 기능 및 기능은 Sudobility에 소유되며 국제 저작권, 상표 및 기타 지적 재산권 법률에 의해 보호됩니다. 귀하의 데이터 및 API 출력물은 귀하의 소유입니다."
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. 책임 제한",
+      "content": "{{appName}}은 어떠한 보증도 없이 '있는 그대로' 제공됩니다. 당사는 서비스 이용으로 인해 발생하는 간접적, 부수적, 특별한, 결과적 또는 징벌적 손해에 대해 책임을 지지 않습니다."
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. 해지",
+      "content": "이 약관을 위반한 경우, 우리는 언제든지 계정을 종료하거나 일시 정지할 수 있습니다. 계정 설정에서 언제든지 계정을 취소할 수 있습니다."
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. 약관 변경",
+      "content": "우리는 언제든지 이 약관을 수정할 권리를 보유합니다. 중대한 변경 사항에 대해서는 이메일 또는 서비스를 통해 알립니다. 변경 사항이 적용된 후 계속 사용하는 것은 새로운 약관을 수락한 것으로 간주됩니다."
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. 연락처 정보",
+      "description": "이 이용약관에 관한 문의사항은 다음으로 연락해 주십시오:",
+      "email": "이메일:"
     }
   }
 }

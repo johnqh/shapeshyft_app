@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "Bảng điều khiển",
+  "welcome": "Chào mừng trở lại, {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "Các dự án",
+    "providers": "Nhà cung cấp",
+    "analytics": "Phân tích dữ liệu",
+    "budgets": "Ngân sách",
+    "subscription": "Đăng ký",
+    "rateLimits": "Giới hạn tỷ lệ",
+    "settings": "Cài đặt"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "Các dự án",
+    "empty": "Chưa có dự án nào yet",
+    "emptyDescription": "Tạo dự án đầu tiên của bạn để bắt đầu",
+    "create": "Tạo dự án",
+    "useTemplate": "Sử dụng mẫu",
+    "notFound": "Dự án không được tìm thấy",
+    "backToProjects": "Quay lại các dự án",
+    "confirmDelete": "Bạn có chắc muốn xóa dự án này không?",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} điểm cuối",
+      "created": "Được tạo ngày {{date}}",
+      "active": "Hoạt động",
+      "inactive": "Không hoạt động"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
-      "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "title": "Tạo dự án",
+      "titleEdit": "Chỉnh sửa Dự án",
+      "projectName": "Tên dự án",
+      "projectNamePlaceholder": "dự án-của-tôi",
+      "projectNameHint": "Chỉ chữ thường, chữ số và gạch nối",
+      "displayName": "Tên hiển thị",
+      "displayNamePlaceholder": "Dự án của tôi",
+      "description": "Mô tả",
+      "descriptionPlaceholder": "Dự án này làm gì",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "Tên hiển thị là bắt buộc",
+        "nameTooShort": "Tên phải có ít nhất 2 ký tự"
       },
       "slugPreview": "Slug"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "Điểm kết nối",
+    "empty": "Chưa có điểm kết nối nào cả",
+    "emptyDescription": "Tạo điểm cuối đầu tiên cho dự án này",
+    "create": "Tạo điểm kết nối",
+    "test": "Thử",
+    "notFound": "Điểm cuối không được tìm thấy",
+    "backToProject": "Quay lại dự án",
+    "updated": "Đã cập nhật điểm cuối thành công",
+    "confirmDelete": "Bạn có chắc muốn xóa điểm cuối này không?",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "Chung",
+      "input": "Nhập",
+      "output": "Kết quả",
+      "test": "Thử"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "Phương pháp",
+      "type": "Loại"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "Loại điểm cuối",
+      "instructions": "Hướng dẫn",
+      "context": "Bối cảnh hệ thống",
+      "inputSchema": "Mẫu đầu vào",
+      "outputSchema": "Mẫu đầu ra"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
+      "title": "Tạo điểm cuối",
+      "titleEdit": "Chỉnh sửa điểm cuối",
+      "endpointName": "Tên điểm cuối",
       "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "displayName": "Tên hiển thị",
+      "displayNamePlaceholder": "Điểm kết thúc của tôi",
+      "instructions": "Hướng dẫn",
+      "instructionsPlaceholder": "Hướng dẫn nhiệm vụ cho LLM",
+      "httpMethod": "Phương thức HTTP",
+      "llmKey": "Nhà cung cấp",
+      "selectKey": "Chọn một nhà cung cấp",
+      "noKeys": "Chưa cấu hình khóa API nào. Vui lòng thêm một khóa trước.",
+      "context": "Bối cảnh hệ thống",
+      "contextPlaceholder": "Hướng dẫn cho LLM (lệnh hệ thống)",
+      "useInputSchema": "Định nghĩa lược đồ đầu vào",
+      "useOutputSchema": "Xác định lược đồ đầu ra",
+      "inputSchema": "Mẫu đầu vào",
+      "outputSchema": "Mẫu đầu ra",
+      "invalidJson": "JSON không hợp lệ",
+      "create": "Tạo điểm cuối",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "Tên hiển thị là bắt buộc",
+        "slugRequired": "Tên điểm cuối là bắt buộc",
+        "keyRequired": "Cung cấp dịch vụ là bắt buộc",
+        "invalidInputSchema": "Cấu trúc JSON đầu vào không hợp lệ",
+        "invalidOutputSchema": "Cấu trúc JSON đầu ra không hợp lệ"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "Điểm kết nối kiểm thử",
+      "input": "Nhập",
+      "generateSample": "Tạo mẫu",
+      "viewPrompt": "Xem lời nhắc",
+      "prompt": "Mã thúc được tạo",
+      "execute": "Thực thi",
+      "executing": "Đang thực thi...",
+      "response": "Phản hồi",
+      "success": "Thành công",
+      "failed": "Thất bại",
+      "invalidJson": "Đầu vào JSON không hợp lệ",
+      "output": "Kết quả",
+      "latency": "Độ trễ",
+      "inputTokens": "Tokens đầu vào",
+      "outputTokens": "Tokens đầu ra",
       "usage": {
-        "title": "Usage",
+        "title": "Cách sử dụng",
         "tokensIn": "Tokens In",
         "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "latency": "Độ trễ",
+        "cost": "Chi phí dự kiến"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "Nhà cung cấp",
+    "empty": "Không có nhà cung cấp nào được cấu hình",
+    "emptyDescription": "Thêm nhà cung cấp LLM đầu tiên của bạn",
+    "add": "Thêm nhà cung cấp",
+    "confirmDelete": "Bạn có chắc muốn xóa nhà cung cấp này không?",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "provider": "Nhà cung cấp",
+      "status": "Trạng thái",
+      "active": "Hoạt động",
+      "inactive": "Không hoạt động"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
-      "apiKey": "API Key",
+      "title": "Thêm khóa API",
+      "titleEdit": "Chỉnh sửa khóa API",
+      "keyName": "Tên khóa",
+      "keyNamePlaceholder": "Khóa OpenAI của tôi",
+      "provider": "Nhà cung cấp",
+      "apiKey": "Khóa API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "Khóa của bạn được mã hóa khi lưu trữ",
+      "leaveBlank": "de để trống để giữ nguyên hiện tại",
+      "endpointUrl": "Địa chỉ URL điểm cuối",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "Thêm khóa",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "Tên khóa là bắt buộc",
+        "apiKeyRequired": "Chìa khóa API là bắt buộc",
+        "endpointRequired": "URL điểm cuối là bắt buộc đối với máy chủ LM tùy chỉnh"
       }
     },
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "Máy chủ LM tùy chỉnh"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "Phân tích dữ liệu",
+    "noData": "Không có dữ liệu phân tích",
+    "noDataDescription": "Bắt đầu gửi các yêu cầu API để xem phân tích",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "Hôm nay",
+      "week": "Tuần này",
+      "month": "Tháng này",
+      "custom": "Khoảng tùy chỉnh"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "Tổng số yêu cầu",
+      "successRate": "Tỷ lệ thành công",
+      "avgLatency": "Độ trễ trung bình",
+      "totalCost": "Tổng chi phí",
+      "tokensUsed": "Số lượng token đã sử dụng",
+      "inputTokens": "Số lượng token đầu vào",
+      "outputTokens": "Tokens đầu ra",
+      "requestDistribution": "Phân phối yêu cầu",
+      "successful": "Thành công",
+      "failed": "Thất bại",
+      "byEndpoint": "Theo điểm cuối"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "Yêu cầu theo thời gian",
+      "byEndpoint": "Theo Điểm cuối"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
-    "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "title": "Mẫu dự án",
+    "subtitle": "Bắt đầu với một mẫu đã được cấu hình trước",
+    "configure": "Cấu hình mẫu",
+    "projectName": "Tên dự án",
+    "projectNamePlaceholder": "dự án-của-tôi",
+    "llmKey": "Nhà cung cấp",
+    "selectKey": "Chọn một nhà cung cấp",
+    "noKeys": "Không có khóa API nào khả dụng.",
+    "addKeyLink": "Thêm một cái đầu tiên",
+    "preview": "Xem trước",
+    "willCreate": "Điều này sẽ tạo ra {{count}} điểm cuối:",
+    "apply": "Áp dụng mẫu",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "Vui lòng điền đầy đủ tất cả các trường bắt buộc"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "Bộ phân loại văn bản",
+      "description": "Phân loại văn bản thành các thể loại"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "Bộ phân tích cảm xúc",
+      "description": "Phân tích cảm xúc và cảm giác"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "Công cụ trích xuất dữ liệu",
+      "description": "Trích xuất dữ liệu có cấu trúc từ văn bản"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "Trình tạo nội dung",
+      "description": "Tạo bản tóm tắt và nội dung"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "Địa phương hóa",
+      "description": "Chuyển đổi văn bản sang nhiều ngôn ngữ"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "Ngân sách",
+    "empty": "Không có ngân sách nào được thiết lập",
+    "emptyDescription": "Thiết lập giới hạn chi tiêu để theo dõi chi phí API của bạn",
+    "add": "Thêm ngân sách",
+    "confirmDelete": "Bạn có chắc muốn xóa ngân sách này không?",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "Hàng ngày",
+      "weekly": "Hàng tuần",
+      "monthly": "Tháng"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "Tên ngân sách",
+      "namePlaceholder": "Giới hạn API hàng tháng",
+      "limit": "Giới hạn chi tiêu",
+      "period": "Khoảng thời gian",
+      "add": "Thêm ngân sách"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} đang ở mức 75% ngân sách",
+      "critical": "{{name}} đang ở mức 90% ngân sách",
+      "exceeded": "{{name}} đã vượt quá ngân sách",
+      "usage": "Sử dụng hiện tại: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
+    "editor": "Trình chỉnh sửa lược đồ",
+    "visual": "Hình ảnh",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "Thêm tài sản",
+    "noProperties": "Không có thuộc tính nào được định nghĩa. Thêm một thuộc tính để bắt đầu.",
+    "required": "Bắt buộc",
+    "descriptionPlaceholder": "Mô tả bất động sản (tùy chọn)",
+    "arrayItemSchema": "Mẫu mục mảng:",
+    "clickToEditName": "Nhấp để chỉnh sửa tên trường",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
+      "string": "Chuỗi",
+      "number": "Số",
+      "integer": "Số nguyên",
       "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "object": "Vật thể",
+      "array": "Mảng"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "Cài đặt",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
-      "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "title": "Tổ chức",
+      "description": "Cấu hình cài đặt tổ chức của bạn. Đường dẫn tổ chức được sử dụng trong URL API của bạn.",
+      "name": "Tên tổ chức",
+      "namePlaceholder": "Tổ chức của tôi",
+      "nameHint": "Tên hiển thị tùy chọn cho tổ chức của bạn",
+      "path": "Đường dẫn tổ chức",
+      "pathPlaceholder": "tổ chức của tôi",
+      "pathHint": "Sử dụng trong URL API: /api/v1/ai/{org_path}/...",
+      "pathTaken": "Đường này đã được đi rồi",
+      "pathInvalid": "Chỉ cho phép chữ cái, chữ số và dấu gạch dưới",
+      "apiUrlPreview": "Xem trước URL API:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "Lưu thay đổi",
+      "saving": "Đang lưu...",
+      "saved": "Cài đặt đã được lưu thành công",
+      "error": "Không thể lưu cài đặt"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "Khóa API dự án",
+    "description": "Sử dụng khóa này để xác thực các yêu cầu API đến điểm cuối của bạn. Chèn nó như một tham số truy vấn (api_key=...) hoặc mã thông báo Bearer trong tiêu đề Authorization.",
+    "createdAt": "Đã tạo",
+    "show": "Hiện khóa API",
+    "hide": "Ẩn khóa API",
+    "copy": "Sao chép khóa API",
+    "refresh": "Làm mới khóa API",
+    "copied": "Đã sao chép!",
+    "copiedMessage": "Khóa API đã được sao chép vào bộ nhớ tạm",
+    "refreshed": "Khóa API đã được cập nhật",
+    "refreshedMessage": "Khóa API của bạn đã được cập nhật. Đảm bảo cập nhật nó trong các ứng dụng của bạn.",
+    "confirmRefreshTitle": "Làm mới khóa API?",
+    "confirmRefreshMessage": "Điều này sẽ vô hiệu hóa khóa API hiện tại. Mọi ứng dụng đang sử dụng khóa cũ sẽ ngừng hoạt động ngay lập tức.",
+    "confirmRefresh": "Khóa làm mới"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "Danh sách cho phép IP",
+    "description": "Hạn chế truy cập điểm cuối đến các địa chỉ IP cụ thể. Để trống để cho phép tất cả các địa chỉ IP.",
+    "allAllowed": "Tất cả địa chỉ IP đều được phép",
+    "placeholder": "Nhập địa chỉ IPv4 (ví dụ: 192.168.1.1)",
+    "add": "Thêm",
+    "removeIp": "Xóa {{ip}}",
+    "invalidIp": "Địa chỉ IPv4 không hợp lệ",
+    "duplicateIp": "Địa chỉ IP này đã có trong danh sách"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "Giới hạn tỷ lệ",
+    "loading": "Đang tải...",
+    "error": "Không thể tải giới hạn tỷ lệ",
+    "retry": "Thử lại",
+    "upgradeButton": "Nâng cấp gói",
+    "currentTier": "Hiện tại",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "Giới hạn hiện tại",
+      "usageHistory": "Lịch sử sử dụng"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "Theo giờ",
+      "daily": "Hàng ngày",
+      "monthly": "Tháng"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "Giới hạn tỷ lệ",
+      "currentUsage": "Sử dụng hiện tại",
+      "planComparison": "So sánh kế hoạch",
+      "used": "đã sử dụng",
+      "limit": "giới hạn",
+      "unlimited": "Vô hạn",
+      "remaining": "còn lại"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "Lịch sử sử dụng",
+      "requests": "Yêu cầu",
+      "noData": "Không có dữ liệu sử dụng nào cho khoảng thời gian này"
     }
   }
 }

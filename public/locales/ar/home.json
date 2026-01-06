@@ -1,49 +1,49 @@
 {
   "hero": {
-    "title": "Transform LLM Outputs into Structured APIs",
-    "subtitle": "Define endpoints that use any LLM provider to deliver consistent, schema-validated JSON responses for your applications.",
-    "cta": "Get Started",
-    "ctaSecondary": "View Documentation"
+    "title": "حوّل إخراجات نموذج اللغة الكبيرة إلى واجهات برمجة تطبيقات منظمة",
+    "subtitle": "حدد نقاط النهاية التي تستخدم أي مزود لنموذج لغوي كبير لتوفير استجابات JSON متسقة ومُختَبَرة من حيث المخطط للتطبيقات الخاصة بك.",
+    "cta": "ابدأ الآن",
+    "ctaSecondary": "عرض الوثائق"
   },
   "features": {
-    "title": "Why {{appName}}?",
-    "subtitle": "Build reliable AI-powered APIs with confidence",
+    "title": "لماذا {{appName}}؟",
+    "subtitle": "ابني واجهات برمجة تطبيقات مدعومة بالذكاء الاصطناعي موثوقة بثقة",
     "structuredOutput": {
-      "title": "Structured Output",
-      "description": "Define JSON schemas for your API responses. {{appName}} ensures LLM outputs always match your expected format."
+      "title": "مخرجات منظمة",
+      "description": "حدد مخططات JSON لاستجابات واجهة برمجة التطبيقات الخاصة بك. {{appName}} يضمن أن تكون إخراجات نموذج اللغة دائمًا مطابقة للتنسيق المتوقع."
     },
     "multiProvider": {
-      "title": "Multi-Provider Support",
-      "description": "Use OpenAI, Anthropic, Google Gemini, or your own LM server. Switch providers without changing your code."
+      "title": "دعم متعدد المزودين",
+      "description": "استخدم OpenAI، أو Anthropic، أو Google Gemini، أو خادم نموذج لغوي خاص بك. غير المزودين دون تعديل كودك."
     },
     "analytics": {
-      "title": "Built-in Analytics",
-      "description": "Track token usage, costs, latency, and success rates. Optimize your AI endpoints with real data."
+      "title": "تحليلات مدمجة",
+      "description": "تتبع استخدام الرموز، التكاليف، التأخير، ومعدلات النجاح. قم بتحسين نقاط نهاية الذكاء الاصطناعي الخاصة بك باستخدام بيانات حقيقية."
     },
     "easyTesting": {
-      "title": "Easy Testing",
-      "description": "Test your endpoints instantly with our built-in tester. Generate sample inputs and validate responses."
+      "title": "الاختبار السهل",
+      "description": "جرّب نقاط نهايةك فورًا باستخدام أداة الفحص المدمجة لدينا. أنشئ مدخلات عينة وتحقق من الاستجابات."
     }
   },
   "useCases": {
-    "title": "Use Cases",
-    "subtitle": "What you can build with {{appName}}",
+    "title": "حالات الاستخدام",
+    "subtitle": "ما يمكنك بناؤه باستخدام {{appName}}",
     "classification": {
-      "title": "Text Classification",
-      "description": "Categorize content, detect sentiment, or label data with consistent structured outputs."
+      "title": "التقسيم النصي",
+      "description": "صنف المحتوى، وقم بكشف المشاعر، أو علّم البيانات بنتائج منظمة ومتسقة."
     },
     "extraction": {
-      "title": "Data Extraction",
-      "description": "Extract entities, parse documents, or structure unstructured text into clean JSON."
+      "title": "استخراج البيانات",
+      "description": "استخراج الكيانات، تحليل المستندات، أو تنسيق النص غير المهيكل إلى JSON نظيف."
     },
     "generation": {
-      "title": "Content Generation",
-      "description": "Generate summaries, translations, or custom content with predictable response formats."
+      "title": "توليد المحتوى",
+      "description": "إنشاء ملخصات، ترجمات، أو محتوى مخصص بتنسيقات استجابة متوقعة"
     }
   },
   "cta": {
-    "title": "Ready to get started?",
-    "subtitle": "Create your first structured AI endpoint in minutes.",
-    "button": "Start Building"
+    "title": "جاهز للبدء؟",
+    "subtitle": "أنشئ أول نقطة نهاية ذكية منظمة في بضع دقائق.",
+    "button": "ابدأ البناء"
   }
 }

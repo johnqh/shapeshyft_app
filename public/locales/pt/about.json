@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "Sobre o {{appName}}",
+    "description": "Saiba mais sobre o {{appName}} - a plataforma que transforma saídas de modelos de linguagem em APIs estruturadas e confiáveis."
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "Sobre o {{appName}}",
+    "subtitle": "Estamos em missão de tornar as APIs de IA confiáveis e previsíveis para desenvolvedores em todo o mundo."
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "Nossa História",
+    "paragraph1": "{{appName}} nasceu de uma frustração simples: o trabalho com saídas de LLM é imprevisível. Todo desenvolvedor que integrado IA em suas aplicações conhece o desafio de analisar respostas de texto não estruturado e lidar com casos extremos.",
+    "paragraph2": "Construímos o {{appName}} para resolver este problema de uma vez por todas. Ao combinar a validação de JSON Schema com engenharia inteligente de prompts, transformamos saídas caóticas de LLM em APIs estruturadas e seguras por tipo, que os desenvolvedores podem confiar."
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "Nossa Missão",
+    "description": "Para capacitar desenvolvedores com ferramentas que tornam a integração com IA tão confiável quanto as APIs tradicionais. Acreditamos que saídas estruturadas não deveriam exigir lógica de análise complexa ou tratamento infinito de erros."
   },
   "values": {
-    "title": "Our Values",
+    "title": "Nossos Valores",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "Primeiro a confiabilidade:",
+      "description": "Suas APIs devem funcionar de forma consistente, todas as vezes."
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "Simplicidade para desenvolvedores:",
+      "description": "Funcionalidade complexa com interfaces simples."
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "Preço Transparente:",
+      "description": "Pague apenas pelo que usa, sem taxas ocultas."
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "Inovação Contínua:",
+      "description": "Sempre melhorando, sempre evoluindo."
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "Pronto para começar?",
+    "description": "Junte-se a desenvolvedores que estão criando aplicativos confiáveis com inteligência artificial com o {{appName}.",
+    "button": "Leia a documentação"
   }
 }

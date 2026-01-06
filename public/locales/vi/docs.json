@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "Tài liệu hướng dẫn",
+  "subtitle": "Học cách xây dựng các API AI có cấu trúc với {{appName}}",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "Tìm hiểu cách bắt đầu với {{appName}}. Tạo các dự án, cấu hình nhà cung cấp LLM và xây dựng điểm cuối AI có cấu trúc đầu tiên của bạn.",
+    "concepts": "Hiểu các khái niệm cốt lõi: điểm kết thúc, lược đồ JSON, ngữ cảnh hệ thống và đường đi tổ chức để xây dựng các API AI có cấu trúc.",
+    "apiReference": "Tài liệu tham khảo đầy đủ về API cho {{appName}. Các điểm cuối REST, định dạng yêu cầu, cấu trúc phản hồi và ví dụ mã nguồn.",
+    "default": "Tài liệu của {{appName}}. Học cách xây dựng các API REST được hỗ trợ bởi trí tuệ nhân tạo, có kiểm tra tính hợp lệ bằng JSON Schema."
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "Làm thế nào để tạo một điểm cuối LLM có cấu trúc",
+    "description": "Hướng dẫn từng bước để tạo điểm cuối API AI có cấu trúc đầu tiên của bạn với {{appName}}",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "Tạo một dự án",
+        "text": "Bắt đầu bằng cách tạo một dự án mới trong bảng điều khiển của bạn để tổ chức các điểm cuối của bạn."
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "Thêm nhà cung cấp LLM",
+        "text": "Cấu hình khóa API của bạn cho OpenAI, Anthropic, Google Gemini hoặc máy chủ LM tùy chỉnh."
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "Định nghĩa một điểm cuối",
+        "text": "Tạo một điểm cuối với hướng dẫn, ngữ cảnh và lược đồ đầu ra JSON."
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "Thử điểm cuối của bạn",
+        "text": "Sử dụng bộ kiểm tra tích hợp để xác minh điểm cuối của bạn trả về dữ liệu có cấu trúc."
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "Tích hợp",
+        "text": "Gọi điểm cuối của bạn từ ứng dụng của bạn bằng các yêu cầu GET hoặc POST đơn giản."
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "Bắt đầu",
+    "concepts": "Các khái niệm cốt lõi",
+    "apiReference": "Tham khảo API"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "Bắt đầu",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "Tạo một dự án",
+        "description": "Bắt đầu bằng cách tạo một dự án mới trong bảng điều khiển của bạn. Đặt tên cho nó và mô tả tùy chọn."
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "Thêm nhà cung cấp",
+        "description": "Cấu hình khóa API của bạn cho OpenAI, Anthropic, Google Gemini hoặc máy chủ LM tùy chỉnh."
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "Định nghĩa một điểm cuối",
+        "description": "Tạo một điểm cuối với lược đồ JSON đầu ra, hướng dẫn và ngữ cảnh. Kết nối nó với khóa LLM của bạn."
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "Đặt đường dẫn tổ chức của bạn",
+        "description": "Thiết lập đường dẫn tổ chức tùy chỉnh trong cài đặt, hoặc sử dụng đường dẫn mặc định được tạo tự động của bạn."
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "Tích hợp",
+        "description": "Gọi điểm cuối của bạn từ ứng dụng của bạn bằng các yêu cầu GET hoặc POST đơn giản."
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "Các khái niệm cốt lõi",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "Điểm kết nối",
+      "description": "Mỗi điểm cuối được cấu hình với:",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "Mẫu đầu vào",
+          "description": "Cấu trúc JSON Schema định nghĩa cấu trúc dữ liệu đầu vào mong đợi (tùy chọn)"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "Mẫu đầu ra",
+          "description": "JSON Schema định nghĩa cấu trúc phản hồi của LLM"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "Hướng dẫn",
+          "description": "Các hướng dẫn cụ thể cho LLM biết phải làm gì với đầu vào"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "Bối cảnh",
+          "description": "Bối cảnh hệ thống/lời nhắc để hướng dẫn hành vi của LLM"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "Phương thức HTTP",
+          "description": "GET (tham số truy vấn) hoặc POST (thân JSON) để dữ liệu đầu vào"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "Mẫu đầu vào",
+      "description": "Xác định cấu trúc dữ liệu đầu vào mong đợi bằng JSON Schema. Khi người gọi gửi dữ liệu đến điểm cuối của bạn, {{appName}} sẽ xác thực dữ liệu đó dựa trên lược đồ đầu vào của bạn trước khi xử lý. Điều này đảm bảo LLM của bạn nhận được dữ liệu được định dạng đúng và cung cấp thông báo lỗi rõ ràng cho các yêu cầu không hợp lệ."
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "Mẫu đầu ra",
+      "description": "Xác định cấu trúc đầu ra của LLM bằng JSON Schema. {{appName}} hướng dẫn LLM trả về dữ liệu phù hợp với lược đồ của bạn và xác minh phản hồi, tự động thử lại nếu đầu ra không đúng định dạng."
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "Bối cảnh hệ thống",
+      "description": "Cung cấp các trình nhắc hệ thống để hướng dẫn hành vi của LLM. Nội dung này được bao gồm trong mỗi yêu cầu gửi đến điểm cuối của bạn."
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "Đường dẫn tổ chức",
+      "description": "Đường dẫn tổ chức của bạn được sử dụng trong các URL API. Mặc định, nó là 8 ký tự đầu tiên của ID người dùng của bạn, nhưng bạn có thể tùy chỉnh trong cài đặt."
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "Tham khảo API",
+    "description": "Truy cập các điểm cuối của bạn thông qua REST API. Tất cả các điểm cuối AI đều công khai và không yêu cầu xác thực.",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "Thực thi điểm cuối",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "Thực thi điểm cuối và trả về phản hồi từ LLM kèm theo các chỉ số sử dụng."
       },
       "prompt": {
-        "title": "Get Prompt Only",
+        "title": "Chỉ lấy lời nhắc",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "description": "Trả về prompt đã được tạo mà không gọi LLM. Hữu ích cho gỡ lỗi."
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "Định dạng phản hồi",
+      "description": "Các phản hồi thành công bao gồm đầu ra của LLM và thống kê sử dụng:",
       "fields": [
         {
           "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "description": "Phản hồi có cấu trúc từ LLM phù hợp với lược đồ đầu ra của bạn"
         },
         {
           "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "description": "Số lượng token đầu vào đã sử dụng"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "Số lượng token đầu ra được sinh ra"
         },
         {
           "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "description": "Độ trễ yêu cầu tính bằng mili giây"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "chi phí dự kiến (đơn vị cent)",
+          "description": "Chi phí ước tính bằng cent"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "Yêu cầu ví dụ",
+      "responseTitle": "Phản hồi ví dụ"
     }
   }
 }

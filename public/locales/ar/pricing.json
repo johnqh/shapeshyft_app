@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "الأسعار",
+  "subtitle": "اختر الخطة التي تلائم احتياجاتك",
   "plans": {
     "free": {
-      "name": "Free",
+      "name": "ال Gratis",
       "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "period": "دائمًا",
+      "description": "مثالي للبدء",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1000 طلبًا للواجهة البرمجية شهريًا",
+        "1 مشروع",
+        "3 نقاط نهاية لكل مشروع",
+        "جميع مزودي نماذج اللغة الكبيرة",
+        "تحليلات أساسية",
+        "الدعم المجتمعي"
       ],
-      "cta": "Get Started"
+      "cta": "ابدأ الآن"
     },
     "pro": {
-      "name": "Pro",
+      "name": "الرقم Pro",
       "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "period": "/شهر",
+      "description": "للفِرق والمشاريع النَّامية",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "طلبات واجهة برمجة التطبيقات غير المحدودة",
+        "مشاريع غير محدودة",
+        "نقاط نهاية غير محدودة",
+        "جميع مزودي نماذج اللغة الكبيرة",
+        "التحليلات المتقدمة",
+        "الدعم المُقدَّم أولاً",
+        "العمل الجماعي للفرق",
+        "النطاقات المخصصة"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "ابدأ التجربة المجانية",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "الشركة الكبرى",
+      "price": "مخصص",
       "period": "",
-      "description": "For large organizations",
+      "description": "للمؤسسات الكبيرة",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
+        "كل شيء في برو",
+        "بنية تحتية مخصصة",
+        "ضمان SLA",
+        "الوصول الفردي وSAML",
+        "سجلات المراجعة",
         "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "التكاملات المخصصة",
+        "الخيار المحلي"
       ],
-      "cta": "Contact Sales"
+      "cta": "الاتصال بقسم المبيعات"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "الأسئلة الشائعة",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "ما الذي يُعد طلبًا لواجهة برمجة التطبيقات؟",
+        "answer": "كل استدعاء ل endpoint الخاص بك {{appName}} يُحسب كطلب واحد، بغض النظر عن مزود نموذج اللغة الكبيرة المستخدم في الخلفية."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "هل أحتاج إلى مفاتيح واجهة برمجة تطبيقات لنموذج لغة خاص بي؟",
+        "answer": "نعم، توفر مفاتيح واجهة برمجة التطبيقات الخاصة بك لـ OpenAI، Anthropic، Google، أو خوادم نموذج لغوي مخصص. نقوم بتخزينها بشكل آمن مشفرة."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "هل يمكنني تغيير الخطة لاحقًا؟",
+        "answer": "نعم، يمكنك ترقية خطة أو تخفيضها في أي وقت. تصبح التغييرات نافذةً في دورة الفوترة التالية."
       }
     ]
   }

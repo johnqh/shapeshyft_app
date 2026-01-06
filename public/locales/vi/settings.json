@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "Cài đặt - {{appName}}",
+    "description": "Tùy chỉnh trải nghiệm của bạn với {{appName}} bằng cài đặt chủ đề và hiển thị."
   },
-  "title": "Settings",
+  "title": "Cài đặt",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "Ngoại hình",
+    "description": "Tùy chỉnh giao diện và cảm giác của ứng dụng."
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "description": "Choose your preferred color theme."
+    "label": "Chủ đề",
+    "light": "Ánh sáng",
+    "dark": "Tối",
+    "system": "Hệ thống",
+    "description": "Chọn chủ đề màu yêu thích của bạn."
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
-    "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "label": "Cỡ chữ",
+    "small": "Nhỏ",
+    "medium": "Trung bình",
+    "large": "Lớn",
+    "description": "Điều chỉnh kích thước văn bản để dễ đọc hơn."
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "Về cài đặt",
+    "description": "Ưa thích của bạn được lưu tự động và sẽ được duy trì giữa các phiên."
   }
 }

@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "Inställningar - {{appName}}",
+    "description": "Anpassa din {{appName}} upplevelse med teman och visningsinställningar."
   },
-  "title": "Settings",
+  "title": "Inställningar",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "Utseende",
+    "description": "Anpassa programmet så det ser och känns som du vill."
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
+    "label": "Tema",
+    "light": "Ljus",
+    "dark": "Mörk",
     "system": "System",
-    "description": "Choose your preferred color theme."
+    "description": "Välj ditt föredragna färgtema."
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
+    "label": "Teckenstorlek",
+    "small": "Liten",
     "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "large": "Stor",
+    "description": "Justera textstorleken för bättre läsbarhet."
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "Om inställningar",
+    "description": "Dina inställningar sparas automatiskt och kvarstår mellan sessioner."
   }
 }

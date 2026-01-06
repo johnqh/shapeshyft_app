@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "Документация",
+  "subtitle": "Научитесь создавать структурированные API для ИИ с помощью {{appName}}",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "Узнайте, как начать работу с {{appName}}. Создавайте проекты, настраивайте поставщиков LLM и создавайте свой первый структурированный конечный пункт ИИ.",
+    "concepts": "Поймите основные концепции: конечные точки, схемы JSON, контекст системы и пути организации для создания структурированных API для ИИ.",
+    "apiReference": "Полная справочная информация по API для {{appName}}. REST-конечные точки, форматы запросов, структуры ответов и примеры кода.",
+    "default": "Документация {{appName}}. Узнайте, как создавать надежные REST API с поддержкой ИИ и валидацией схемы JSON."
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "Как создать структурированный конечный пункт LLM",
+    "description": "Пошаговое руководство по созданию первого конечного пункта API с структурированным ИИ с помощью {{appName}}",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "Создать проект",
+        "text": "Начните с создания нового проекта в панели управления для организации ваших конечных точек."
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "Добавьте поставщика LLM",
+        "text": "Настройте свой ключ API для OpenAI, Anthropic, Google Gemini или для собственного сервера модели."
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "Определите конечную точку",
+        "text": "Создайте конечную точку с инструкциями, контекстом и схемой выходных данных в формате JSON."
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "Проверьте свой конечный пункт",
+        "text": "Используйте встроенный тестер для проверки того, что ваш конечный пункт возвращает структурированные данные."
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "Интегрировать",
+        "text": "Вызовите свой конечный пункт от вашего приложения с помощью простых запросов GET или POST."
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "Начало работы",
+    "concepts": "Основные концепции",
+    "apiReference": "Справочник API"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "Начало работы",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "Создать проект",
+        "description": "Начните с создания нового проекта на панели управления. Дайте ему имя и необязательное описание."
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "Добавить поставщика",
+        "description": "Настройте свой ключ API для OpenAI, Anthropic, Google Gemini или для собственного сервера с моделью."
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "Определите конечную точку",
+        "description": "Создайте конечную точку с схемой выходного JSON, инструкциями и контекстом. Подключите её к вашему ключу LLM."
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "Установите путь вашей организации",
+        "description": "Настройте пользовательский путь организации в настройках или используйте автоматически созданный путь по умолчанию."
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "Интегрировать",
+        "description": "Вызовите свой конечный пункт от вашего приложения с помощью простых запросов GET или POST."
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "Ключевые концепции",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "Точки подключения",
+      "description": "Каждый конечный пункт настроен с:",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "Схема ввода",
+          "description": "JSON-схема, определяющая ожидаемую структуру входных данных (необязательно)"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "Схема вывода",
+          "description": "JSON-схема, определяющая структуру ответа LLM"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "Инструкции",
+          "description": "Конкретные инструкции для того, что LLM должен делать с вводом"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "Контекст",
+          "description": "Контекст системы/подсказка для управления поведением модели ИИ"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "HTTP-метод",
+          "description": "GET (параметры запроса) или POST (тело JSON) для входных данных"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "Схема ввода",
+      "description": "Определите ожидаемую структуру входных данных с помощью JSON Schema. Перед обработкой {{appName}} проверяет данные, отправленные вызывающими, на соответствие вашей схеме ввода. Это гарантирует, что ваш LLM получает корректно структурированные данные и в случае неверных запросов возвращает четкие сообщения об ошибках."
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "Схема вывода",
+      "description": "Определите структуру вывода модели на основе JSON Schema. {{appName}} указывает модели вернуть данные, соответствующие вашей схеме, и проверяет ответ, автоматически повторяя попытку, если вывод не соответствует формату."
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "Контекст системы",
+      "description": "Укажите системные подсказки для управления поведением LLM. Этот контекст включается в каждый запрос к вашему конечному пункту."
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "Путь организации",
+      "description": "Путь вашей организации используется в URL-адресах API. По умолчанию это первые 8 символов вашего идентификатора пользователя, но вы можете настроить его в настройках."
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "Справочник API",
+    "description": "Доступ к вашим конечным точкам через REST API. Все конечные точки ИИ публичны и не требуют аутентификации.",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "Выполнить конечную точку",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "Выполняет конечную точку и возвращает ответ LLM с метриками использования."
       },
       "prompt": {
-        "title": "Get Prompt Only",
+        "title": "Только запрос",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "description": "Возвращает сгенерированный запрос без вызова ЯМ. Полезно для отладки."
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "Формат ответа",
+      "description": "Успешные ответы включают вывод LLM и статистику использования:",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "вывод",
+          "description": "Структурированный ответ от ЯМ, соответствующий вашей схеме вывода"
         },
         {
           "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "description": "Количество использованных токенов ввода"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "Количество сгенерированных токенов вывода"
         },
         {
           "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "description": "Задержка запроса в миллисекундах"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "расходы.оценочная_стоимость_центы",
+          "description": "Оценочная стоимость в центах"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "Пример запроса",
+      "responseTitle": "Пример ответа"
     }
   }
 }

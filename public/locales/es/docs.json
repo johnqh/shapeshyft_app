@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "Documentación",
+  "subtitle": "Aprenda a crear APIs de IA estructuradas con {{appName}}",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "Aprenda cómo empezar con {{appName}}. Cree proyectos, configure proveedores de LLM y cree su primer punto de acceso de IA estructurado.",
+    "concepts": "Entienda los conceptos fundamentales: puntos de conexión, esquemas JSON, contexto del sistema y rutas de organización para crear APIs de IA estructuradas.",
+    "apiReference": "Referencia completa de la API para {{appName}. Puntos finales REST, formatos de solicitud, estructuras de respuesta y ejemplos de código.",
+    "default": "Documentación de {{appName}}. Aprenda a crear APIs REST confiables con inteligencia artificial y validación con JSON Schema."
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "Cómo crear un punto final estructurado para LLM",
+    "description": "Guía paso a paso para crear su primer punto de acceso de API de IA estructurada con {{appName}}",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "Crear un proyecto",
+        "text": "Comience creando un nuevo proyecto en su panel de control para organizar sus puntos de acceso."
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "Agregue un proveedor de LLM",
+        "text": "Configura tu clave de API para OpenAI, Anthropic, Google Gemini o un servidor de LM personalizado."
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "Define un punto final",
+        "text": "Cree una ruta de acceso con instrucciones, contexto y esquema de salida en formato JSON."
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "Pruebe su punto de conexión",
+        "text": "Utilice el probador integrado para verificar que su punto de conexión devuelva datos estructurados."
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "Integrar",
+        "text": "Llame a su punto final desde su aplicación utilizando solicitudes GET o POST simples."
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "Empezando",
+    "concepts": "Conceptos principales",
+    "apiReference": "Referencia de la API"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "Empezando",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "Crear un proyecto",
+        "description": "Comience creando un nuevo proyecto en su panel de control. Asigne un nombre y una descripción opcional."
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "Agregar un proveedor",
+        "description": "Configura tu clave de API para OpenAI, Anthropic, Google Gemini o un servidor de LM personalizado."
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "Define un punto final",
+        "description": "Cree una ruta de acceso con esquema de salida JSON, instrucciones y contexto. Conéctela a su clave de LLM."
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "Establezca la ruta de su organización",
+        "description": "Configura una ruta de organización personalizada en ajustes, o utiliza la ruta predeterminada generada automáticamente."
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "Integrar",
+        "description": "Llame a su punto final desde su aplicación utilizando solicitudes GET o POST simples."
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "Conceptos principales",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "Puntos de conexión",
+      "description": "Cada punto final está configurado con:",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "Esquema de entrada",
+          "description": "Esquema JSON que define la estructura esperada de los datos de entrada (opcional)"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "Esquema de salida",
+          "description": "Esquema JSON que define la estructura de la respuesta de la LLM"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "Instrucciones",
+          "description": "Instrucciones específicas sobre qué debe hacer el modelo de lenguaje con la entrada"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "Contexto",
+          "description": "Contexto del sistema/pregunta para guiar el comportamiento del LLM"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "Método HTTP",
+          "description": "GET (parámetros de consulta) o POST (cuerpo JSON) para datos de entrada"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "Esquema de entrada",
+      "description": "Define la estructura esperada de los datos de entrada utilizando JSON Schema. Cuando los llamadores envíen datos a tu punto final, {{appName}} valida dichos datos según tu esquema de entrada antes de procesarlos. Esto garantiza que tu LLM reciba datos correctamente formados y proporcione mensajes de error claros para solicitudes inválidas."
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "Esquema de salida",
+      "description": "Define la estructura de las salidas de LLM usando JSON Schema. {{appName}} instruye al LLM para que devuelva datos que coincidan con tu esquema y valida la respuesta, reintentando automáticamente si la salida no cumple con el formato."
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "Contexto del sistema",
+      "description": "Proporcione comandos del sistema para guiar el comportamiento de la LLM. Este contexto se incluye con cada solicitud a su punto final."
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "Ruta de organización",
+      "description": "La ruta de tu organización se utiliza en las URL de la API. De forma predeterminada, son los primeros 8 caracteres de tu ID de usuario, pero puedes personalizarla en la configuración."
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "Referencia de la API",
+    "description": "Acceda a sus puntos finales mediante la API REST. Todos los puntos finales de IA son públicos y no requieren autenticación.",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
-        "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "title": "Ejecutar punto final",
+        "get": "GET /api/v1/ia/:orgPath/:projectName/:endpointName",
+        "post": "POST /api/v1/ia/:orgPath/:projectName/:endpointName",
+        "description": "Ejecuta el punto de conexión y devuelve la respuesta de la LLM con métricas de uso."
       },
       "prompt": {
-        "title": "Get Prompt Only",
-        "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "title": "Obtener solo el prompt",
+        "get": "GET /api/v1/ia/:orgPath/:projectName/:endpointName/prompt",
+        "post": "POST /api/v1/ia/:orgPath/:projectName/:endpointName/pregunta",
+        "description": "Devuelve el prompt generado sin llamar al modelo de lenguaje. Útil para depuración."
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "Formato de respuesta",
+      "description": "Las respuestas exitosas incluyen la salida de la LLM y las estadísticas de uso:",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "salida",
+          "description": "La respuesta estructurada de la LLM que coincide con su esquema de salida"
         },
         {
           "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "description": "Número de tokens de entrada utilizados"
         },
         {
           "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "description": "Número de tokens de salida generados"
         },
         {
-          "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "name": "latencia_ms_de_uso",
+          "description": "Latencia de solicitud en milisegundos"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "uso.costo_estimado_centavos",
+          "description": "Coste estimado en centavos"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "Solicitud de ejemplo",
+      "responseTitle": "Respuesta de ejemplo"
     }
   }
 }

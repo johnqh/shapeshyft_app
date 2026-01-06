@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "Điều khoản dịch vụ - {{appName}}",
+    "description": "Đọc các điều khoản và điều kiện sử dụng nền tảng API của {{appName}."
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Điều khoản Dịch vụ",
+  "lastUpdated": "Cập nhật lần cuối: {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. Chấp nhận Điều khoản",
+      "content": "Bằng việc truy cập hoặc sử dụng {{appName}}, bạn đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng dịch vụ của chúng tôi."
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. Mô tả Dịch vụ",
+      "content": "{{appName}} cung cấp một nền tảng API chuyển đổi đầu ra của LLM thành dữ liệu có cấu trúc bằng xác thực JSON Schema. Chúng tôi hoạt động như một lớp trung gian giữa ứng dụng của bạn và các nhà cung cấp LLM khác nhau."
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. Tài khoản người dùng",
+      "description": "Khi bạn tạo tài khoản, bạn đồng ý với:",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "Cung cấp thông tin chính xác và đầy đủ",
+        "Duy trì bảo mật thông tin tài khoản và mật khẩu của bạn",
+        "Chịu trách nhiệm cho tất cả các hoạt động dưới tài khoản của bạn",
+        "Báo cho chúng tôi biết ngay lập tức nếu có bất kỳ truy cập nào không được ủy quyền"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. Sử dụng được chấp nhận",
+      "description": "Bạn đồng ý không sử dụng {{appName}} để:",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "Vi phạm bất kỳ luật pháp hoặc quy định có hiệu lực nào",
+        "Vi phạm quyền sở hữu trí tuệ",
+        "Gửi mã độc hoặc thực hiện các cuộc tấn công",
+        "Thử để truy cập trái phép vào hệ thống của chúng tôi",
+        "Bán lại hoặc phân phối lại dịch vụ của chúng tôi mà không có sự cho phép"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. Sử dụng API và giới hạn tốc độ",
+      "content": "Việc bạn sử dụng API bị giới hạn tốc độ tùy theo hạng tài khoản của bạn. Chúng tôi giữ quyền giảm tốc độ hoặc tạm ngừng truy cập nếu phát hiện sử dụng quá mức hoặc lạm dụng."
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. Sở hữu trí tuệ",
+      "content": "{{appName}} và nội dung gốc, tính năng cũng như chức năng của nó thuộc về Sudobility và được bảo vệ bởi luật bản quyền quốc tế, nhãn hiệu thương mại và các luật sở hữu trí tuệ khác. Dữ liệu và đầu ra API của bạn vẫn thuộc về bạn."
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. Giới hạn trách nhiệm",
+      "content": "{{appName}} được cung cấp \"nguyên trạng\" mà không có bất kỳ bảo đảm nào. Chúng tôi sẽ không chịu trách nhiệm cho bất kỳ thiệt hại gián tiếp, ngẫu nhiên, đặc biệt, hệ quả hoặc hình phạt nào phát sinh từ việc bạn sử dụng dịch vụ."
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. Chấm dứt",
+      "content": "Chúng tôi có thể chấm dứt hoặc tạm ngừng tài khoản của bạn bất cứ lúc nào do vi phạm các điều khoản này. Bạn có thể hủy tài khoản bất cứ lúc nào thông qua cài đặt tài khoản của mình."
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. Những thay đổi đối với Điều khoản",
+      "content": "Chúng tôi giữ quyền sửa đổi các điều khoản này bất cứ lúc nào. Chúng tôi sẽ thông báo cho bạn về những thay đổi quan trọng qua email hoặc thông qua dịch vụ. Việc tiếp tục sử dụng sau khi có thay đổi được coi là chấp nhận các điều khoản mới."
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. Thông tin liên hệ",
+      "description": "Đối với các câu hỏi về Điều khoản Dịch vụ này, vui lòng liên hệ chúng tôi:",
+      "email": "Thư điện tử:"
     }
   }
 }

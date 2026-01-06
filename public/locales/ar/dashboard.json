@@ -1,352 +1,352 @@
 {
-  "title": "Dashboard",
-  "welcome": "Welcome back, {{name}}",
+  "title": "لوحة التحكم",
+  "welcome": "أهلاً بعودتك، {{name}}",
   "navigation": {
-    "projects": "Projects",
-    "providers": "Providers",
-    "analytics": "Analytics",
-    "budgets": "Budgets",
-    "subscription": "Subscription",
-    "rateLimits": "Rate Limits",
-    "settings": "Settings"
+    "projects": "المشاريع",
+    "providers": "المزودون",
+    "analytics": "التحليلات",
+    "budgets": "الميزانيات",
+    "subscription": "الاشتراك",
+    "rateLimits": "حدود المعدل",
+    "settings": "الإعدادات"
   },
   "projects": {
-    "title": "Projects",
-    "empty": "No projects yet",
-    "emptyDescription": "Create your first project to get started",
-    "create": "Create Project",
-    "useTemplate": "Use Template",
-    "notFound": "Project not found",
-    "backToProjects": "Back to projects",
-    "confirmDelete": "Are you sure you want to delete this project?",
+    "title": "المشاريع",
+    "empty": "لا مشاريع بعد",
+    "emptyDescription": "أنشئ مشروعك الأول لبدء العمل",
+    "create": "إنشاء مشروع",
+    "useTemplate": "استخدم القالب",
+    "notFound": "المشروع غير موجود",
+    "backToProjects": "العودة إلى المشاريع",
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا المشروع؟",
     "card": {
-      "endpoints": "{{count}} endpoint(s)",
-      "created": "Created {{date}}",
-      "active": "Active",
-      "inactive": "Inactive"
+      "endpoints": "{{count}} نقطة نهاية",
+      "created": "تم الإنشاء {{date}}",
+      "active": "نشط",
+      "inactive": "غير نشط"
     },
     "form": {
-      "title": "Create Project",
-      "titleEdit": "Edit Project",
-      "projectName": "Project Name",
-      "projectNamePlaceholder": "my-project",
-      "projectNameHint": "Lowercase letters, numbers, and hyphens only",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Project",
-      "description": "Description",
-      "descriptionPlaceholder": "What this project does",
+      "title": "إنشاء مشروع",
+      "titleEdit": "تحرير المشروع",
+      "projectName": "اسم المشروع",
+      "projectNamePlaceholder": "المشروع-الخاص-بى",
+      "projectNameHint": "أحرف صغيرة والأرقام والشرطات فقط",
+      "displayName": "الاسم العرضي",
+      "displayNamePlaceholder": "موقعي",
+      "description": "الوصف",
+      "descriptionPlaceholder": "ما يفعله هذا المشروع",
       "errors": {
-        "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameRequired": "اسم العرض مطلوب",
+        "nameTooShort": "يجب أن يكون الاسم على الأقل 2 أحرف"
       },
       "slugPreview": "Slug"
     }
   },
   "endpoints": {
-    "title": "Endpoints",
-    "empty": "No endpoints yet",
-    "emptyDescription": "Create your first endpoint for this project",
-    "create": "Create Endpoint",
-    "test": "Test",
-    "notFound": "Endpoint not found",
-    "backToProject": "Back to project",
-    "updated": "Endpoint updated successfully",
-    "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "title": "النهايات",
+    "empty": "لا توجد نقاط نهاية بعد",
+    "emptyDescription": "أنشئ نقطة نهاية أولى لهذا المشروع",
+    "create": "إنشاء نقطة نهاية",
+    "test": "الاختبار",
+    "notFound": "النقطة النهائية غير موجودة",
+    "backToProject": "العودة إلى المشروع",
+    "updated": "تم تحديث النقطة النهائية بنجاح",
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الطرف؟",
     "tabs": {
-      "general": "General",
-      "input": "Input",
-      "output": "Output",
-      "test": "Test"
+      "general": "عام",
+      "input": "الإدخال",
+      "output": "الناتج",
+      "test": "التجربة"
     },
     "card": {
-      "method": "Method",
-      "type": "Type"
+      "method": "الطريقة",
+      "type": "النوع"
     },
     "detail": {
-      "type": "Endpoint Type",
-      "instructions": "Instructions",
-      "context": "System Context",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema"
+      "type": "نوع النقطة النهائية",
+      "instructions": "التعليمات",
+      "context": "سياق النظام",
+      "inputSchema": "مخطط الإدخال",
+      "outputSchema": "مخطط المخرجات"
     },
     "form": {
-      "title": "Create Endpoint",
-      "titleEdit": "Edit Endpoint",
-      "endpointName": "Endpoint Name",
-      "endpointNamePlaceholder": "my-endpoint",
-      "displayName": "Display Name",
-      "displayNamePlaceholder": "My Endpoint",
-      "instructions": "Instructions",
-      "instructionsPlaceholder": "Task instructions for the LLM",
-      "httpMethod": "HTTP Method",
-      "llmKey": "Provider",
-      "selectKey": "Select a Provider",
-      "noKeys": "No API keys configured. Add one first.",
-      "context": "System Context",
-      "contextPlaceholder": "Instructions for the LLM (system prompt)",
-      "useInputSchema": "Define input schema",
-      "useOutputSchema": "Define output schema",
-      "inputSchema": "Input Schema",
-      "outputSchema": "Output Schema",
-      "invalidJson": "Invalid JSON",
-      "create": "Create Endpoint",
+      "title": "إنشاء نقطة نهاية",
+      "titleEdit": "تحرير النقطة النهائية",
+      "endpointName": "اسم النقطة النهائية",
+      "endpointNamePlaceholder": "نقطة النهاية الخاصة بي",
+      "displayName": "الاسم العرضي",
+      "displayNamePlaceholder": "عنواني",
+      "instructions": "التعليمات",
+      "instructionsPlaceholder": "تعليمات المهمة لنموذج اللغة",
+      "httpMethod": "طريقة HTTP",
+      "llmKey": "المزود",
+      "selectKey": "اختر مزود خدمة",
+      "noKeys": "لم يتم تهيئة مفاتيح واجهة برمجة التطبيقات. أضف واحدة أولاً.",
+      "context": "سياق النظام",
+      "contextPlaceholder": "تعليمات لنموذج اللغة (رسالة النظام)",
+      "useInputSchema": "حدد مخطط الإدخال",
+      "useOutputSchema": "حدد مخطط الإخراج",
+      "inputSchema": "مخطط الإدخال",
+      "outputSchema": "مخطط المخرجات",
+      "invalidJson": "JSON غير صالح",
+      "create": "إنشاء نقطة نهاية",
       "errors": {
-        "nameRequired": "Display name is required",
-        "slugRequired": "Endpoint name is required",
-        "keyRequired": "Provider is required",
-        "invalidInputSchema": "Invalid input schema JSON",
-        "invalidOutputSchema": "Invalid output schema JSON"
+        "nameRequired": "اسم العرض مطلوب",
+        "slugRequired": "مطلوب اسم النقطة النهائية",
+        "keyRequired": "مُزَوِّد مطلوب",
+        "invalidInputSchema": "مخطط إدخال JSON غير صالح",
+        "invalidOutputSchema": "هيكل مخرجات JSON غير صالح"
       }
     },
     "tester": {
-      "title": "Test Endpoint",
-      "input": "Input",
-      "generateSample": "Generate Sample",
-      "viewPrompt": "View Prompt",
-      "prompt": "Generated Prompt",
-      "execute": "Execute",
-      "executing": "Executing...",
-      "response": "Response",
-      "success": "Success",
-      "failed": "Failed",
-      "invalidJson": "Invalid JSON input",
-      "output": "Output",
-      "latency": "Latency",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
+      "title": "اختبار النقطة النهائية",
+      "input": "الإدخال",
+      "generateSample": "إنشاء عينة",
+      "viewPrompt": "عرض المطالبة",
+      "prompt": "المحرّك المُنتَج",
+      "execute": "تنفيذ",
+      "executing": "جاري التنفيذ...",
+      "response": "الاستجابة",
+      "success": "النجاح",
+      "failed": "فشل",
+      "invalidJson": "إدخال JSON غير صالح",
+      "output": "الناتج",
+      "latency": "التأخير",
+      "inputTokens": "عدد الرموز المدخلة",
+      "outputTokens": "رُموز الإخراج",
       "usage": {
-        "title": "Usage",
-        "tokensIn": "Tokens In",
-        "tokensOut": "Tokens Out",
-        "latency": "Latency",
-        "cost": "Est. Cost"
+        "title": "الاستخدام",
+        "tokensIn": "الرموز في",
+        "tokensOut": "العملات الصادرة",
+        "latency": "التأخير",
+        "cost": "التكلفة المقدرة"
       }
     }
   },
   "keys": {
-    "title": "Providers",
-    "empty": "No providers configured",
-    "emptyDescription": "Add your first LLM provider",
-    "add": "Add Provider",
-    "confirmDelete": "Are you sure you want to delete this provider?",
+    "title": "المزودون",
+    "empty": "لا توجد مزودات مهيأة",
+    "emptyDescription": "أضف مزود LLM الأول لك",
+    "add": "إضافة مزود",
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا المزود؟",
     "card": {
-      "provider": "Provider",
-      "status": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
+      "provider": "المزود",
+      "status": "الحالة",
+      "active": "نشط",
+      "inactive": "غير نشط"
     },
     "form": {
-      "title": "Add API Key",
-      "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
-      "provider": "Provider",
+      "title": "إضافة مفتاح واجهة برمجة التطبيقات",
+      "titleEdit": "تحرير مفتاح واجهة برمجة التطبيقات",
+      "keyName": "اسم المفتاح",
+      "keyNamePlaceholder": "مفتاح OpenAI الخاص بي",
+      "provider": "المزود",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
-      "leaveBlank": "leave blank to keep current",
-      "endpointUrl": "Endpoint URL",
+      "apiKeyHint": "مفتاحك مشفر عند التخزين",
+      "leaveBlank": "اتركه فارغًا للحفاظ على القيم الحالية",
+      "endpointUrl": "عنوان URL للنقطة النهائية",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "إضافة المفتاح",
       "errors": {
-        "nameRequired": "Key name is required",
-        "apiKeyRequired": "API key is required",
-        "endpointRequired": "Endpoint URL is required for custom LM server"
+        "nameRequired": "مطلوب اسم المفتاح",
+        "apiKeyRequired": "مطلوب مفتاح واجهة برمجة التطبيقات",
+        "endpointRequired": "مطلوب عنوان URL لنقطة الانتهاء لخادم نموذج اللغة المخصص"
       }
     },
     "providers": {
       "openai": "OpenAI",
-      "anthropic": "Anthropic",
+      "anthropic": "الشركة أنتروبيك",
       "gemini": "Google Gemini",
-      "llm_server": "Custom LM Server"
+      "llm_server": "Server LM مخصص"
     }
   },
   "analytics": {
-    "title": "Analytics",
-    "noData": "No analytics data",
-    "noDataDescription": "Start making API requests to see analytics",
+    "title": "التحليلات",
+    "noData": "لا توجد بيانات تحليلية",
+    "noDataDescription": "ابدأ إرسال طلبات واجهة برمجة التطبيقات لعرض التحليلات",
     "period": {
-      "today": "Today",
-      "week": "This Week",
-      "month": "This Month",
-      "custom": "Custom Range"
+      "today": "اليوم",
+      "week": "هذا الأسبوع",
+      "month": "هذا الشهر",
+      "custom": "نطاق مخصص"
     },
     "metrics": {
-      "totalRequests": "Total Requests",
-      "successRate": "Success Rate",
-      "avgLatency": "Avg Latency",
-      "totalCost": "Total Cost",
-      "tokensUsed": "Tokens Used",
-      "inputTokens": "Input Tokens",
-      "outputTokens": "Output Tokens",
-      "requestDistribution": "Request Distribution",
-      "successful": "Successful",
-      "failed": "Failed",
-      "byEndpoint": "By Endpoint"
+      "totalRequests": "إجمالي الطلبات",
+      "successRate": "معدل النجاح",
+      "avgLatency": "متوسط زمن الاستجابة",
+      "totalCost": "التكلفة الإجمالية",
+      "tokensUsed": "الرموز المستخدمة",
+      "inputTokens": "عدد الرموز المدخلة",
+      "outputTokens": "رُموز المُخرَج",
+      "requestDistribution": "توزيع الطلب",
+      "successful": "ناجح",
+      "failed": "فشل",
+      "byEndpoint": "بواسطة النقطة النهائية"
     },
     "charts": {
-      "requestsOverTime": "Requests Over Time",
-      "byEndpoint": "By Endpoint"
+      "requestsOverTime": "الطلبات حسب الزمن",
+      "byEndpoint": "بواسطة النقطة النهائية"
     }
   },
   "templates": {
-    "title": "Project Templates",
-    "subtitle": "Start with a pre-configured template",
-    "configure": "Configure Template",
-    "projectName": "Project Name",
-    "projectNamePlaceholder": "my-project",
-    "llmKey": "Provider",
-    "selectKey": "Select a Provider",
-    "noKeys": "No API keys available.",
-    "addKeyLink": "Add one first",
-    "preview": "Preview",
-    "willCreate": "This will create {{count}} endpoint(s):",
-    "apply": "Apply Template",
+    "title": "قوالب المشاريع",
+    "subtitle": "ابدأ بقالب مهيأ مسبقًا",
+    "configure": "تكوين القالب",
+    "projectName": "اسم المشروع",
+    "projectNamePlaceholder": "المشروع-الخاص-بى",
+    "llmKey": "المزود",
+    "selectKey": "اختر مزود خدمة",
+    "noKeys": "لا توجد مفاتيح واجهة برمجة تطبيقات متاحة.",
+    "addKeyLink": "أضف واحدًا أولًا",
+    "preview": "معاينة",
+    "willCreate": "سيتم إنشاء نقطة انتهاء {{count}}:",
+    "apply": "تطبيق القالب",
     "errors": {
-      "fillAllFields": "Please fill all required fields"
+      "fillAllFields": "يرجى ملء جميع الحقول المطلوبة"
     },
     "textClassifier": {
-      "name": "Text Classifier",
-      "description": "Classify text into categories"
+      "name": "Classificateur de texte",
+      "description": "صنف النص إلى فئات"
     },
     "sentimentAnalyzer": {
-      "name": "Sentiment Analyzer",
-      "description": "Analyze sentiment and emotions"
+      "name": "محلل المشاعر",
+      "description": "تحليل المشاعر والانفعالات"
     },
     "dataExtractor": {
-      "name": "Data Extractor",
-      "description": "Extract structured data from text"
+      "name": "مُسْتَخْرِجُ الْمُعْلَمَات",
+      "description": "استخراج البيانات الهيكلية من النص"
     },
     "contentGenerator": {
-      "name": "Content Generator",
-      "description": "Generate summaries and content"
+      "name": "مُنشئ المحتوى",
+      "description": "إنشاء ملخصات ومحتوى"
     },
     "localization": {
-      "name": "Localization",
-      "description": "Translate text to multiple languages"
+      "name": "التوطين",
+      "description": "النص المطلوب ترجمته إلى لغات متعددة"
     }
   },
   "budgets": {
-    "title": "Budgets",
-    "empty": "No budgets set",
-    "emptyDescription": "Set up spending limits to track your API costs",
-    "add": "Add Budget",
-    "confirmDelete": "Are you sure you want to delete this budget?",
+    "title": "الميزانيات",
+    "empty": "لا توجد ميزانيات محددة",
+    "emptyDescription": "قم بإعداد حدود الإنفاق لتتبع تكاليف واجهة برمجة التطبيقات الخاصة بك",
+    "add": "إضافة ميزانية",
+    "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الميزانية؟",
     "periods": {
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "اليومي",
+      "weekly": "الأسبوعية",
+      "monthly": "شهري"
     },
     "form": {
-      "name": "Budget Name",
-      "namePlaceholder": "Monthly API Limit",
-      "limit": "Spending Limit",
-      "period": "Period",
-      "add": "Add Budget"
+      "name": "اسم الميزانية",
+      "namePlaceholder": "الحد الشهري لواجهة برمجة التطبيقات",
+      "limit": "الحد الأقصى للإنفاق",
+      "period": "الفترة",
+      "add": "إضافة ميزانية"
     },
     "alerts": {
-      "warning": "{{name}} is at 75% of budget",
-      "critical": "{{name}} is at 90% of budget",
-      "exceeded": "{{name}} has exceeded budget",
-      "usage": "Current usage: {{percentage}}%"
+      "warning": "{{name}} في 75% من الميزانية",
+      "critical": "{{name}} في 90% من الميزانية",
+      "exceeded": "{{name}} تجاوز الحد المالي",
+      "usage": "الاستخدام الحالي: {{percentage}}%"
     }
   },
   "schema": {
-    "editor": "Schema Editor",
-    "visual": "Visual",
+    "editor": "محرر المخطط",
+    "visual": "المرئي",
     "json": "JSON",
-    "addProperty": "Add Property",
-    "noProperties": "No properties defined. Add one to get started.",
-    "required": "Required",
-    "descriptionPlaceholder": "Property description (optional)",
-    "arrayItemSchema": "Array item schema:",
-    "clickToEditName": "Click to edit field name",
+    "addProperty": "إضافة خاصية",
+    "noProperties": "لم يتم تعريف خصائص. أضف واحدة لبدء العمل.",
+    "required": "مطلوب",
+    "descriptionPlaceholder": "وصف العقار (اختياري)",
+    "arrayItemSchema": "مخطط عنصر المصفوفة:",
+    "clickToEditName": "انقر لتحرير اسم الحقل",
     "types": {
-      "string": "String",
-      "number": "Number",
-      "integer": "Integer",
-      "boolean": "Boolean",
-      "object": "Object",
-      "array": "Array"
+      "string": "السلسلة",
+      "number": "الرقم",
+      "integer": "العدد الصحيح",
+      "boolean": "النوع المنطقي",
+      "object": "الكائن",
+      "array": "المصفوفة"
     }
   },
   "settings": {
-    "title": "Settings",
+    "title": "الإعدادات",
     "organization": {
-      "title": "Organization",
-      "description": "Configure your organization settings. The organization path is used in your API URLs.",
-      "name": "Organization Name",
-      "namePlaceholder": "My Organization",
-      "nameHint": "Optional display name for your organization",
-      "path": "Organization Path",
-      "pathPlaceholder": "my_org",
-      "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
-      "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed",
-      "apiUrlPreview": "API URL Preview:"
+      "title": "المنظمة",
+      "description": "قم بتكوين إعدادات مؤسستك. تُستخدم مسار المؤسسة في عناوين واجهة برمجة التطبيقات الخاصة بك.",
+      "name": "اسم المنظمة",
+      "namePlaceholder": "Organisationi",
+      "nameHint": "الاسم المرئي الاختياري لمؤسستك",
+      "path": "مسار المؤسسة",
+      "pathPlaceholder": "المنظمة الخاصة بي",
+      "pathHint": "تُستخدم في عناوين واجهة برمجة التطبيقات: /api/v1/ai/{org_path}/...",
+      "pathTaken": "تم اتخاذ هذا الطريق مسبقًا",
+      "pathInvalid": "مسموح فقط بالأحرف والأرقام والشرطات السفلية",
+      "apiUrlPreview": "معاينة عنوان واجهة برمجة التطبيقات:"
     },
     "form": {
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saved": "Settings saved successfully",
-      "error": "Failed to save settings"
+      "save": "حفظ التغييرات",
+      "saving": "جارٍ الحفظ...",
+      "saved": "تم حفظ الإعدادات بنجاح",
+      "error": "فشل في حفظ الإعدادات"
     }
   },
   "apiKey": {
-    "title": "Project API Key",
-    "description": "Use this key to authenticate API requests to your endpoints. Include it as a query parameter (api_key=...) or Bearer token in the Authorization header.",
-    "createdAt": "Created",
-    "show": "Show API key",
-    "hide": "Hide API key",
-    "copy": "Copy API key",
-    "refresh": "Refresh API key",
-    "copied": "Copied!",
-    "copiedMessage": "API key copied to clipboard",
-    "refreshed": "API Key Refreshed",
-    "refreshedMessage": "Your API key has been refreshed. Make sure to update it in your applications.",
-    "confirmRefreshTitle": "Refresh API Key?",
-    "confirmRefreshMessage": "This will invalidate the current API key. Any applications using the old key will stop working immediately.",
-    "confirmRefresh": "Refresh Key"
+    "title": "مفتاح واجهة برمجة تطبيقات المشروع",
+    "description": "استخدم هذا المفتاح للتحقق من هوية طلبات واجهة برمجة التطبيقات إلى نقاط النهاية الخاصة بك. أدرجها كمعلمة استعلام (api_key=...) أو كرمز حامل في رأس المصادقة.",
+    "createdAt": "تم الإنشاء",
+    "show": "إظهار مفتاح واجهة برمجة التطبيقات",
+    "hide": "إخفاء مفتاح واجهة برمجة التطبيقات",
+    "copy": "نسخ مفتاح واجهة برمجة التطبيقات",
+    "refresh": "تحديث مفتاح واجهة برمجة التطبيقات",
+    "copied": "تم النسخ!",
+    "copiedMessage": "تم نسخ مفتاح واجهة برمجة التطبيقات إلى الحافظة",
+    "refreshed": "تم تحديث مفتاح واجهة برمجة التطبيقات",
+    "refreshedMessage": "تم تحديث مفتاح واجهة برمجة تطبيقاتك. تأكد من تحديثه في تطبيقاتك.",
+    "confirmRefreshTitle": "تحديث مفتاح واجهة برمجة التطبيقات؟",
+    "confirmRefreshMessage": "سيتم إبطال المفتاح الحالية لواجهة برمجة التطبيقات. أي تطبيقات تستخدم المفتاح القديم ستتوقف عن العمل فورًا.",
+    "confirmRefresh": "تحديث المفتاح"
   },
   "ipAllowlist": {
-    "title": "IP Allowlist",
-    "description": "Restrict endpoint access to specific IP addresses. Leave empty to allow all IPs.",
-    "allAllowed": "All IPs allowed",
-    "placeholder": "Enter IPv4 address (e.g., 192.168.1.1)",
-    "add": "Add",
-    "removeIp": "Remove {{ip}}",
-    "invalidIp": "Invalid IPv4 address",
-    "duplicateIp": "This IP is already in the list"
+    "title": "قائمة السماح بعنوان IP",
+    "description": "قم بتحديد وصول النقطة النهائية إلى عناوين IP محددة. اتركه فارغًا للسماح بجميع عناوين IP.",
+    "allAllowed": "جميع العناوين مسموحة",
+    "placeholder": "أدخل عنوان IPv4 (مثلاً: 192.168.1.1)",
+    "add": "أضف",
+    "removeIp": "احذف {{ip}}",
+    "invalidIp": "عنوان IPv4 غير صالح",
+    "duplicateIp": "هذا عنوان IP موجود بالفعل في القائمة"
   },
   "rateLimits": {
-    "title": "Rate Limits",
-    "loading": "Loading...",
-    "error": "Failed to load rate limits",
-    "retry": "Retry",
-    "upgradeButton": "Upgrade Plan",
-    "currentTier": "Current",
+    "title": "حدود المعدل",
+    "loading": "جاري التحميل...",
+    "error": "فشل في تحميل حدود السرعة",
+    "retry": "إعادة المحاولة",
+    "upgradeButton": "تحديث الخطة",
+    "currentTier": "الحالي",
     "tabs": {
-      "currentLimits": "Current Limits",
-      "usageHistory": "Usage History"
+      "currentLimits": "الحدود الحالية",
+      "usageHistory": "سجل الاستخدام"
     },
     "periods": {
-      "hourly": "Hourly",
-      "daily": "Daily",
-      "monthly": "Monthly"
+      "hourly": "سَاعِيّ",
+      "daily": "اليومي",
+      "monthly": "شهري"
     },
     "usage": {
-      "title": "Rate Limits",
-      "currentUsage": "Current Usage",
-      "planComparison": "Plan Comparison",
-      "used": "used",
-      "limit": "limit",
-      "unlimited": "Unlimited",
-      "remaining": "remaining"
+      "title": "حدود المعدل",
+      "currentUsage": "الاستخدام الحالي",
+      "planComparison": "مقارنة الخطط",
+      "used": "مستخدم",
+      "limit": "الحد",
+      "unlimited": "غير محدود",
+      "remaining": "المتبقي"
     },
     "history": {
-      "title": "Usage History",
-      "requests": "Requests",
-      "noData": "No usage data available for this period"
+      "title": "سجل الاستخدام",
+      "requests": "الطلبات",
+      "noData": "لا توجد بيانات استخدام متاحة للفترة الحالية"
     }
   }
 }

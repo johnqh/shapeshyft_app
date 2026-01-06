@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "Contactez-nous - {{appName}}",
+    "description": "Contactez l'équipe {{appName}}. Nous sommes là pour vous aider avec toutes vos questions concernant notre plateforme API."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "Contactez-nous",
+  "subtitle": "Des questions ? Nous serions heureux de vous lire. Envoyez-nous un message et nous vous répondrons dès que possible.",
   "email": {
     "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
+    "description": "La meilleure façon de nous contacter est par e-mail. Nous répondons généralement dans les 24 à 48 heures ouvrées.",
     "support": "Support"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "Délai de réponse",
+    "description": "Nous nous efforçons de répondre à toutes les demandes dans un délai de 1 à 2 jours ouvrés. Pour les problèmes urgents, veuillez inclure « URGENT » dans l'objet de votre courriel."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "Support technique",
+    "description": "Pour les problèmes liés à l'API, les bogues ou les questions techniques, incluez votre identifiant de projet et tous messages d'erreur pertinents dans votre courriel."
   },
   "docs": {
     "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "description": "De nombreuses questions courantes sont traitées dans notre documentation. Consultez-la en premier lieu pour trouver des solutions rapides."
   }
 }

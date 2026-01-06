@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "定价",
+  "subtitle": "选择适合您需求的计划",
   "plans": {
     "free": {
-      "name": "Free",
+      "name": "免费",
       "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "period": "永远",
+      "description": "非常适合入门",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "每月1,000次API请求",
+        "1 个项目",
+        "每个项目3个端点",
+        "所有大型语言模型提供商",
+        "基础分析",
+        "社区支持"
       ],
-      "cta": "Get Started"
+      "cta": "开始使用"
     },
     "pro": {
       "name": "Pro",
       "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "period": "/月",
+      "description": "适用于不断壮大的团队和项目",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "无限API请求",
+        "无限项目",
+        "无限端点",
+        "所有大型语言模型提供商",
+        "高级分析",
+        "优先支持",
+        "团队协作",
+        "自定义域名"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "开始专业试用",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "企业",
+      "price": "自定义",
       "period": "",
-      "description": "For large organizations",
+      "description": "对于大型组织",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "Pro中的全部内容",
+        "专用基础设施",
+        "服务等级协议保证",
+        "单点登录与SAML",
+        "审计日志",
+        "24/7 客服支持",
+        "自定义集成",
+        "本地部署选项"
       ],
-      "cta": "Contact Sales"
+      "cta": "联系销售"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "常见问题",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "什么算作一个API请求？",
+        "answer": "对您的 {{appName}} 端点的每次调用均计为一次请求，无论底层使用的 LLM 提供商为何。"
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "我需要自己的LLM API密钥吗？",
+        "answer": "是的，您需要为 OpenAI、Anthropic、Google 或自定义 LM 服务器提供自己的 API 密钥。我们会将它们安全地加密存储。"
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "我可以之后更改计划吗？",
+        "answer": "是的，您可以随时升级或降级您的计划。更改将在您的下个计费周期生效。"
       }
     ]
   }

@@ -1,72 +1,72 @@
 {
-  "title": "Pricing",
-  "subtitle": "Choose the plan that fits your needs",
+  "title": "Ценообразование",
+  "subtitle": "Выберите план, который подходит для ваших нужд",
   "plans": {
     "free": {
-      "name": "Free",
-      "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
+      "name": "Бесплатно",
+      "price": "0$",
+      "period": "навсегда",
+      "description": "Идеально подходит для начала",
       "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
+        "1000 запросов к API в месяц",
+        "1 проект",
+        "3 конечные точки на проект",
+        "Все поставщики LLM",
+        "Базовая аналитика",
+        "Поддержка сообщества"
       ],
-      "cta": "Get Started"
+      "cta": "Начать"
     },
     "pro": {
       "name": "Pro",
       "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
+      "period": "/месяц",
+      "description": "Для растущих команд и проектов",
       "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
+        "Неограниченные запросы к API",
+        "Неограниченные проекты",
+        "Неограниченные конечные точки",
+        "Все поставщики LLM",
+        "Расширенный анализ",
+        "Приоритетная поддержка",
+        "Совместная работа в команде",
+        "Пользовательские домены"
       ],
-      "cta": "Start Pro Trial",
+      "cta": "Начать пробную версию Pro",
       "popular": true
     },
     "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
+      "name": "Компания",
+      "price": "Пользовательский",
       "period": "",
-      "description": "For large organizations",
+      "description": "Для крупных организаций",
       "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
+        "Всё в Pro",
+        "Выделенная инфраструктура",
+        "Гарантия SLA",
+        "SSO и SAML",
+        "Журналы аудита",
+        "Поддержка 24/7",
+        "Пользовательские интеграции",
+        "Вариант размещения на предприятии"
       ],
-      "cta": "Contact Sales"
+      "cta": "Связаться со службой продаж"
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
+    "title": "Часто задаваемые вопросы",
     "items": [
       {
-        "question": "What counts as an API request?",
-        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
+        "question": "Что считается запросом к API?",
+        "answer": "Каждый вызов вашего конечного пункта {{appName}} считается одним запросом, независимо от используемого провайдера LLM."
       },
       {
-        "question": "Do I need my own LLM API keys?",
-        "answer": "Yes, you provide your own API keys for OpenAI, Anthropic, Google, or custom LM servers. We securely store them encrypted."
+        "question": "Мне нужны мои собственные ключи API для LLM?",
+        "answer": "Да, вы предоставляете свои собственные ключи API для OpenAI, Anthropic, Google или собственных серверов моделей. Мы безопасно храним их в зашифрованном виде."
       },
       {
-        "question": "Can I change plans later?",
-        "answer": "Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle."
+        "question": "Могу ли я изменить план позже?",
+        "answer": "Да, вы можете в любое время изменить свой план. Изменения вступят в силу в следующем биллинговом цикле."
       }
     ]
   }

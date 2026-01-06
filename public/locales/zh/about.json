@@ -1,43 +1,43 @@
 {
   "seo": {
-    "title": "About {{appName}}",
-    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "关于 {{appName}}",
+    "description": "了解 {{appName}} - 这个将大语言模型输出转换为结构化、可靠API的平台。"
   },
   "hero": {
-    "title": "About {{appName}}",
-    "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
+    "title": "关于 {{appName}}",
+    "subtitle": "我们致力于让全球开发人员都能使用可靠且可预测的AI API。"
   },
   "story": {
-    "title": "Our Story",
-    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "title": "我们的故事",
+    "paragraph1": "{{appName}} 源自一种简单的挫败感：使用大语言模型输出的结果难以预测。每一位将人工智能集成到自己应用中的开发者都深知，解析非结构化文本响应并处理边缘情况是一项挑战。",
+    "paragraph2": "我们构建了{{appName}}，旨在彻底解决这一问题。通过结合JSON Schema验证与智能提示工程，我们将混乱的LLM输出转化为结构化、类型安全的API，开发者可以信赖。"
   },
   "mission": {
-    "title": "Our Mission",
-    "description": "To empower developers with tools that make AI integration as reliable as traditional APIs. We believe structured outputs shouldn't require complex parsing logic or endless error handling."
+    "title": "我们的使命",
+    "description": "赋能开发者，提供使AI集成如同传统API一样可靠工具。我们相信，结构化输出不应需要复杂的解析逻辑或无尽的错误处理。"
   },
   "values": {
-    "title": "Our Values",
+    "title": "我们的价值观",
     "reliability": {
-      "title": "Reliability First:",
-      "description": "Your APIs should work consistently, every time."
+      "title": "可靠性优先：",
+      "description": "您的API应始终如一地正常工作。"
     },
     "simplicity": {
-      "title": "Developer Simplicity:",
-      "description": "Complex functionality with simple interfaces."
+      "title": "开发者简易性：",
+      "description": "复杂的功能，简单的界面。"
     },
     "transparency": {
-      "title": "Transparent Pricing:",
-      "description": "Pay for what you use, no hidden fees."
+      "title": "透明定价：",
+      "description": "按使用量付费，无隐藏费用。"
     },
     "innovation": {
-      "title": "Continuous Innovation:",
-      "description": "Always improving, always evolving."
+      "title": "持续创新：",
+      "description": "不断改进，不断演变。"
     }
   },
   "cta": {
-    "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
-    "button": "Read the Docs"
+    "title": "准备开始了吗？",
+    "description": "加入开发者行列，使用 {{appName} 构建可靠的人工智能应用。",
+    "button": "阅读文档"
   }
 }

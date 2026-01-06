@@ -1,49 +1,49 @@
 {
   "hero": {
-    "title": "Transform LLM Outputs into Structured APIs",
-    "subtitle": "Define endpoints that use any LLM provider to deliver consistent, schema-validated JSON responses for your applications.",
-    "cta": "Get Started",
-    "ctaSecondary": "View Documentation"
+    "title": "将LLM输出转换为结构化API",
+    "subtitle": "定义使用任何大语言模型（LLM）提供商来为您的应用程序提供一致且经过模式验证的JSON响应的端点。",
+    "cta": "开始使用",
+    "ctaSecondary": "查看文档"
   },
   "features": {
-    "title": "Why {{appName}}?",
-    "subtitle": "Build reliable AI-powered APIs with confidence",
+    "title": "为什么是 {{appName}}？",
+    "subtitle": "自信地构建可靠的AI驱动API",
     "structuredOutput": {
-      "title": "Structured Output",
-      "description": "Define JSON schemas for your API responses. {{appName}} ensures LLM outputs always match your expected format."
+      "title": "结构化输出",
+      "description": "为您的API响应定义JSON架构。{{appName}}可确保LLM输出始终符合您期望的格式。"
     },
     "multiProvider": {
-      "title": "Multi-Provider Support",
-      "description": "Use OpenAI, Anthropic, Google Gemini, or your own LM server. Switch providers without changing your code."
+      "title": "多提供方支持",
+      "description": "使用 OpenAI、Anthropic、Google Gemini 或您自己的语言模型服务器。切换提供商无需更改您的代码。"
     },
     "analytics": {
-      "title": "Built-in Analytics",
-      "description": "Track token usage, costs, latency, and success rates. Optimize your AI endpoints with real data."
+      "title": "内置分析工具",
+      "description": "跟踪令牌使用情况、成本、延迟和成功率。利用真实数据优化您的AI端点。"
     },
     "easyTesting": {
-      "title": "Easy Testing",
-      "description": "Test your endpoints instantly with our built-in tester. Generate sample inputs and validate responses."
+      "title": "简易测试",
+      "description": "通过我们内置的测试工具，立即测试您的端点。生成示例输入并验证响应。"
     }
   },
   "useCases": {
-    "title": "Use Cases",
-    "subtitle": "What you can build with {{appName}}",
+    "title": "使用案例",
+    "subtitle": "你可以使用{{appName}}构建什么",
     "classification": {
-      "title": "Text Classification",
-      "description": "Categorize content, detect sentiment, or label data with consistent structured outputs."
+      "title": "文本分类",
+      "description": "对内容进行分类，检测情感，或使用一致的结构化输出对数据进行标注。"
     },
     "extraction": {
-      "title": "Data Extraction",
-      "description": "Extract entities, parse documents, or structure unstructured text into clean JSON."
+      "title": "数据提取",
+      "description": "提取实体，解析文档，或把非结构化文本转化为整洁的JSON。"
     },
     "generation": {
-      "title": "Content Generation",
-      "description": "Generate summaries, translations, or custom content with predictable response formats."
+      "title": "内容生成",
+      "description": "生成摘要、翻译或自定义内容，响应格式可预测"
     }
   },
   "cta": {
-    "title": "Ready to get started?",
-    "subtitle": "Create your first structured AI endpoint in minutes.",
-    "button": "Start Building"
+    "title": "准备好了吗？",
+    "subtitle": "几分钟内创建您的第一个结构化AI端点。",
+    "button": "开始构建"
   }
 }

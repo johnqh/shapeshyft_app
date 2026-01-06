@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "ติดต่อเรา - {{appName}}",
+    "description": "ติดต่อทีม {{appName}} เราอยู่ที่นี่เพื่อช่วยเหลือทุกคำถามเกี่ยวกับแพลตฟอร์ม API ของเรา"
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "ติดต่อเรา",
+  "subtitle": "มีคำถามหรือไม่? เราอยากได้ยินจากคุณ โปรดส่งข้อความมา และเราจะตอบกลับโดยเร็วที่สุด",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "อีเมลถึงเรา",
+    "description": "วิธีที่ดีที่สุดในการติดต่อเราคืออีเมล เราจะตอบกลับภายใน 24-48 ชั่วโมงในวันทำการ",
+    "support": "สนับสนุน"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "เวลาตอบกลับ",
+    "description": "เราตั้งเป้าตอบกลับทุกข้อสอบถามภายใน 1-2 วันทำการ สำหรับปัญหาฉุกเฉิน โปรดระบุคำว่า \"ฉุกเฉิน\" ไว้ในหัวข้ออีเมล"
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "บริการสนับสนุนทางเทคนิค",
+    "description": "หากมีปัญหากับ API ข้อผิดพลาด หรือคำถามด้านเทคนิค โปรดระบุรหัสโปรเจกต์ของคุณและข้อความแสดงข้อผิดพลาดที่เกี่ยวข้องในอีเมลของคุณ"
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "เอกสารประกอบ",
+    "description": "คำถามทั่วไปจำนวนมากได้รับคำตอบในเอกสารประกอบของเรา โปรดตรวจสอบที่นั่นก่อนเพื่อหาวิธีแก้ปัญหาอย่างรวดเร็ว"
   }
 }

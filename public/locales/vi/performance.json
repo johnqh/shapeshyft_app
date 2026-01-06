@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "Hiệu suất và tối ưu hóa",
+  "title": "Theo dõi hiệu suất",
+  "description": "Theo dõi các chỉ số Web Vitals chính, hiệu suất gói tin và độ trễ API để đảm bảo trải nghiệm người dùng tối ưu.",
   "quickStats": {
-    "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
-    "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "lazyLoad": "Tải chậm",
+    "codeSplitting": "Chia mã",
+    "serviceWorker": "Worker dịch vụ",
+    "offlineCache": "Bộ nhớ đệm ngoại tuyến",
+    "preloading": "Tiền tải",
+    "routePrefetch": "Prefetch tuyến đường",
+    "lcpTarget": "Mục tiêu LCP"
   },
   "webVitals": {
     "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "description": "Theo dõi thời gian thực các chỉ số Core Web Vitals.",
     "lcp": {
       "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "description": "Thời gian để hiển thị phần tử lớn nhất"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "Độ trễ đầu tiên khi nhập dữ liệu",
+      "description": "Thời gian phản hồi tương tác"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "Thay đổi bố cục tích lũy",
+      "description": "Điểm ổn định hình ảnh"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
+    "title": "Tối ưu hóa gói",
+    "description": "Chia mã và tải chậm để giảm kích thước gói khởi đầu.",
+    "lazyLoadingStates": "Trạng thái tải chậm",
+    "componentLoading": "Đang tải thành phần...",
+    "componentLoaded": "Thành phần đã được tải",
+    "bundleAnalysis": "Phân tích gói",
     "react": "React:",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "Thành phần giao diện người dùng:",
+    "charts": "Biểu đồ:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "Hiệu suất API",
+    "description": "Theo dõi thời gian phản hồi API và hiệu quả của bộ nhớ đệm.",
+    "currentLatency": "Độ trễ API hiện tại",
+    "averageResponseTime": "Thời gian phản hồi trung bình",
+    "cacheStatus": "Trạng thái bộ nhớ đệm",
+    "freshData": "Dữ liệu mới",
+    "recentlyFetched": "Vừa mới lấy dữ liệu",
+    "staleData": "Dữ liệu cũ kỹ",
+    "needsRefresh": "Cần làm mới",
+    "cachingStrategy": "Chiến lược bộ nhớ đệm"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "Các thực hành tốt nhất về hiệu suất",
+    "doThis": "Làm điều này",
+    "avoidThis": "Tránh điều này",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "Sử dụng chia nhỏ mã cho các tính năng bảng điều khiển",
+      "lazyLoading": "Thực hiện tải chậm hình ảnh và thành phần",
+      "cacheApi": "Lưu trữ phản hồi API bằng TanStack Query",
+      "preloadRoutes": "Tiền tải các tuyến đường khi di chuột qua để điều hướng tức thì",
+      "monitorVitals": "Theo dõi các chỉ số Web Vitals cốt lõi trong môi trường sản xuất",
+      "serviceWorker": "Sử dụng service worker để hỗ trợ chế độ ngoại tuyến"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "Tải tất cả các thành phần một cách chủ động ngay khi trang được tải ban đầu",
+      "redundantCalls": "Gọi API thừa mà không dùng bộ đệm",
+      "layoutShifts": "Gây ra sự dịch chuyển bố cục với nội dung động",
+      "blockingRender": "Sử dụng hiển thị chặn cho các tính năng không quan trọng",
+      "ignoreNetwork": "Bỏ qua điều kiện mạng khi tải tài nguyên",
+      "noTreeShaking": "Nhập các thư viện lớn mà không dùng cây gọt"
     }
   }
 }

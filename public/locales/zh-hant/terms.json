@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "服務條款 - {{appName}}",
+    "description": "閱讀使用 {{appName} 的 API 平台之條款與條件。"
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "服務條款",
+  "lastUpdated": "最後更新： {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. 接受條款",
+      "content": "透過存取或使用{{appName}}，即表示您同意受這些服務條款約束。若您不接受這些條款，請勿使用我們的服務。"
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. 服務描述",
+      "content": "{{appName}} 提供一個 API 平台，透過 JSON Schema 驗證將 LLM 輸出轉換為結構化資料。我們作為您應用程式與各種 LLM 提供商之間的中介。"
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. 使用者帳戶",
+      "description": "當您建立帳戶時，即表示您同意：",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "提供準確且完整的資訊",
+        "維護帳戶憑證的安全",
+        "為帳戶下所有活動承擔責任",
+        "立即通知我們任何未經授權的存取"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. 合理使用",
+      "description": "您同意不將 {{appName}} 用於：",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "違反任何適用的法律或法規",
+        "侵犯智慧財產權",
+        "傳輸惡意程式碼或進行攻擊",
+        "試圖未經授權存取我們的系統",
+        "未經許可，轉售或重新分發我們的服務"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. API 使用和速率限制",
+      "content": "您的API使用將根據訂閱等級受到速率限制。我們保留對過度使用或濫用行為進行限流或暫停訪問的權利。"
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. 知識產權",
+      "content": "{{appName}}及其原始內容、功能和用途歸Sudobility所有，受國際著作權、商標及其他智慧財產權法律保護。您的資料和API輸出仍歸您所有。"
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. 責任限制",
+      "content": "{{appName}} 以「現狀」提供，不附帶任何明示或暗示的保證。我們不對因使用本服務而產生的任何間接、偶然、特殊、後果性或懲罰性損害承擔責任。"
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. 終止",
+      "content": "我們可能因違反這些條款而隨時終止或暫停您的帳戶。您可隨時透過帳戶設定取消您的帳戶。"
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. 條款變更",
+      "content": "我們保有隨時修改這些條款的權利。我們將透過電子郵件或服務通知您重大變更。在變更後繼續使用即表示您接受新的條款。"
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. 聯絡資訊",
+      "description": "如有關於本服務條款的疑問，請與我們聯繫：",
+      "email": "電子郵件："
     }
   }
 }

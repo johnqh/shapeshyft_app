@@ -1,64 +1,64 @@
 {
   "seo": {
-    "title": "Terms of Service - {{appName}}",
-    "description": "Read the terms and conditions for using {{appName}}'s API platform."
+    "title": "利用規約 - {{appName}}",
+    "description": "{{appName}}のAPIプラットフォームを使用するための利用規約を読んでください。"
   },
-  "title": "Terms of Service",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "利用規約",
+  "lastUpdated": "最終更新日: {{date}}",
   "sections": {
     "acceptance": {
-      "title": "1. Acceptance of Terms",
-      "content": "By accessing or using {{appName}}, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+      "title": "1. 利用規約の受諾",
+      "content": "{{appName}}にアクセスまたは使用することにより、これらのサービス利用規約に従うことに同意します。これらの規約に同意しない場合は、当サービスの利用を中止してください。"
     },
     "service": {
-      "title": "2. Description of Service",
-      "content": "{{appName}} provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+      "title": "2. サービスの説明",
+      "content": "{{appName}} は、JSON スキーマ検証を用いて LLM 出力を構造化データに変換する API プラットフォームを提供します。私たちは、お客様のアプリケーションとさまざまな LLM プロバイダーの間のミドルウェアとして機能します。"
     },
     "accounts": {
-      "title": "3. User Accounts",
-      "description": "When you create an account, you agree to:",
+      "title": "3. ユーザーアカウント",
+      "description": "アカウントを作成すると、次の内容に同意したものとみなされます：",
       "items": [
-        "Provide accurate and complete information",
-        "Maintain the security of your account credentials",
-        "Accept responsibility for all activities under your account",
-        "Notify us immediately of any unauthorized access"
+        "正確で完全な情報を提供してください",
+        "アカウントの認証情報を保護してください",
+        "アカウント下のすべての活動に対して責任を負う",
+        "不正なアクセスを直ちに通知してください"
       ]
     },
     "acceptableUse": {
-      "title": "4. Acceptable Use",
-      "description": "You agree not to use {{appName}} to:",
+      "title": "4. 可能な利用",
+      "description": "あなたは、{{appName}}を次の目的で使用しないことに同意します：",
       "items": [
-        "Violate any applicable laws or regulations",
-        "Infringe on intellectual property rights",
-        "Transmit malicious code or conduct attacks",
-        "Attempt to gain unauthorized access to our systems",
-        "Resell or redistribute our services without permission"
+        "適用される法律または規制を違反する",
+        "知的財産権を侵害する",
+        "悪意のあるコードを送信したり攻撃を実行したりする",
+        "当社のシステムへの不正アクセスを試みる",
+        "承認なくして当社のサービスを再販または再配布しないこと"
       ]
     },
     "apiUsage": {
-      "title": "5. API Usage and Rate Limits",
-      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+      "title": "5. APIの利用とレート制限",
+      "content": "APIの利用は、ご契約のサブスクリプションレベルに基づくレート制限の対象となります。過度な利用または不正利用のため、当社はアクセスの制限または一時停止を行う権利を留保します。"
     },
     "ip": {
-      "title": "6. Intellectual Property",
-      "content": "{{appName}} and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+      "title": "6. 知的財産",
+      "content": "{{appName}} およびそのオリジナルコンテンツ、機能、機能性はSudobilityに帰属し、国際的な著作権、商標、その他の知的財産権によって保護されています。あなたのデータおよびAPI出力はすべてあなたに帰属します。"
     },
     "liability": {
-      "title": "7. Limitation of Liability",
-      "content": "{{appName}} is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+      "title": "7. 責任の限定",
+      "content": "{{appName}} は、いかなる種類の保証もなしに「現状のまま」提供されます。当社は、サービスの利用により生じる間接的、偶発的、特別、結果的、懲罰的損害について責任を負いません。"
     },
     "termination": {
-      "title": "8. Termination",
-      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+      "title": "8. 解約",
+      "content": "これらの利用規約に違反した場合、当社はいつでもアカウントの利用を終了または一時停止する場合があります。アカウントは、アカウント設定からいつでもキャンセルできます。"
     },
     "changes": {
-      "title": "9. Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+      "title": "9. 利用規約の変更",
+      "content": "当社は、いつでもこれらの利用規約を変更する権利を留保します。重大な変更については、電子メールまたはサービスを通じてご連絡いたします。変更後の利用を継続することは、新しい利用規約に同意したものとみなされます。"
     },
     "contact": {
-      "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:",
-      "email": "Email:"
+      "title": "10. 連絡先情報",
+      "description": "本利用規約に関するお問い合わせは、以下の方法で当社までお問い合わせください：",
+      "email": "メール："
     }
   }
 }

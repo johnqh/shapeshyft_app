@@ -1,49 +1,49 @@
 {
   "hero": {
-    "title": "Transform LLM Outputs into Structured APIs",
-    "subtitle": "Define endpoints that use any LLM provider to deliver consistent, schema-validated JSON responses for your applications.",
-    "cta": "Get Started",
-    "ctaSecondary": "View Documentation"
+    "title": "Transforme saídas de LLM em APIs estruturadas",
+    "subtitle": "Defina endpoints que utilizem qualquer provedor de LLM para fornecer respostas JSON consistentes e validadas por esquema para suas aplicações.",
+    "cta": "Começar",
+    "ctaSecondary": "Ver Documentação"
   },
   "features": {
-    "title": "Why {{appName}}?",
-    "subtitle": "Build reliable AI-powered APIs with confidence",
+    "title": "Por que {{appName}}?",
+    "subtitle": "Crie APIs com inteligência artificial confiáveis com segurança",
     "structuredOutput": {
-      "title": "Structured Output",
-      "description": "Define JSON schemas for your API responses. {{appName}} ensures LLM outputs always match your expected format."
+      "title": "Saída estruturada",
+      "description": "Defina esquemas JSON para as respostas da sua API. {{appName}} garante que as saídas da LLM correspondam sempre ao formato esperado."
     },
     "multiProvider": {
-      "title": "Multi-Provider Support",
-      "description": "Use OpenAI, Anthropic, Google Gemini, or your own LM server. Switch providers without changing your code."
+      "title": "Suporte a múltiplos provedores",
+      "description": "Use o OpenAI, Anthropic, Google Gemini ou seu próprio servidor de modelo de linguagem. Mude de provedores sem alterar seu código."
     },
     "analytics": {
-      "title": "Built-in Analytics",
-      "description": "Track token usage, costs, latency, and success rates. Optimize your AI endpoints with real data."
+      "title": "Análise integrada",
+      "description": "Monitore o uso de tokens, custos, latência e taxas de sucesso. Otimize seus pontos de extremidade de IA com dados reais."
     },
     "easyTesting": {
-      "title": "Easy Testing",
-      "description": "Test your endpoints instantly with our built-in tester. Generate sample inputs and validate responses."
+      "title": "Testes Fáceis",
+      "description": "Teste seus endpoints instantaneamente com nosso testador integrado. Gere entradas de amostra e valide respostas."
     }
   },
   "useCases": {
-    "title": "Use Cases",
-    "subtitle": "What you can build with {{appName}}",
+    "title": "Casos de uso",
+    "subtitle": "O que você pode criar com o {{appName}}",
     "classification": {
-      "title": "Text Classification",
-      "description": "Categorize content, detect sentiment, or label data with consistent structured outputs."
+      "title": "Classificação de texto",
+      "description": "Classifique o conteúdo, detecte o sentimento ou rotule os dados com saídas estruturadas e consistentes."
     },
     "extraction": {
-      "title": "Data Extraction",
-      "description": "Extract entities, parse documents, or structure unstructured text into clean JSON."
+      "title": "Extração de dados",
+      "description": "Extraia entidades, analise documentos ou estruture texto não estruturado em JSON limpo."
     },
     "generation": {
-      "title": "Content Generation",
-      "description": "Generate summaries, translations, or custom content with predictable response formats."
+      "title": "Geração de Conteúdo",
+      "description": "Gere resumos, traduções ou conteúdo personalizado com formatos de resposta previsíveis."
     }
   },
   "cta": {
-    "title": "Ready to get started?",
-    "subtitle": "Create your first structured AI endpoint in minutes.",
-    "button": "Start Building"
+    "title": "Pronto para começar?",
+    "subtitle": "Crie seu primeiro endpoint de IA estruturado em minutos.",
+    "button": "Comece a construir"
   }
 }

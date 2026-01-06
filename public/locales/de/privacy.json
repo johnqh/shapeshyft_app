@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "Datenschutzbestimmungen - {{appName}}",
+    "description": "Erfahren Sie, wie {{appName}} Ihre persönlichen Daten erhebt, verwendet und schützt."
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "Datenschutzbestimmungen",
+  "lastUpdated": "Zuletzt aktualisiert: {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "Einführung",
+      "content": "Bei {{appName} nehmen wir Ihren Datenschutz ernst. Diese Datenschutzerklärung erläutert, wie wir Ihre Informationen sammeln, verwenden, weitergeben und schützen, wenn Sie unseren Dienst nutzen."
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "von uns erhobene Informationen",
+      "description": "Wir sammeln Informationen, die Sie uns direkt zur Verfügung stellen:",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "Kontoinformationen (E-Mail-Adresse, Name)",
+        "API-Nutzungsdaten und -Analytik",
+        "Zahlungsinformationen (von unserem Zahlungsdienstleister sicher verarbeitet)",
+        "Nachrichten, die Sie an uns senden"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "Wie wir Ihre Informationen verwenden",
+      "description": "Wir verwenden die gesammelten Informationen zu folgenden Zwecken:",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "Stellen, pflegen und verbessern Sie unsere Dienstleistungen",
+        "Transaktionen verarbeiten und damit verbundene Informationen senden",
+        "Senden technischer Benachrichtigungen, Aktualisierungen und Support-Nachrichten",
+        "Antworten Sie auf Ihre Kommentare, Fragen und Anfragen",
+        "Überwachen und analysieren Sie Nutzungsmuster und -trends"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "Datensicherheit",
+      "content": "Wir treffen angemessene technische und organisatorische Maßnahmen, um Ihre persönlichen Daten vor unbefugtem Zugriff, Änderung, Offenlegung oder Zerstörung zu schützen. API-Schlüssel werden verschlüsselt gespeichert, und alle Daten werden über sichere Verbindungen übertragen."
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "Datenspeicherung",
+      "content": "Wir speichern Ihre persönlichen Daten solange Ihr Konto aktiv ist oder um Ihnen die Dienstleistungen zu erbringen. Sie können jederzeit eine Löschung Ihres Kontos und der zugehörigen Daten anfordern."
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "Ihre Rechte",
+      "description": "Sie haben das Recht auf:",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "Greifen Sie auf Ihre persönlichen Daten zu",
+        "Richtige ungenauen Daten",
+        "Löschen Sie Ihre Daten anfordern",
+        "Exportieren Sie Ihre Daten in einem portablen Format",
+        "Abmelden von Marketing-Nachrichten"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "Cookies und Verfolgung",
+      "content": "Wir verwenden notwendige Cookies, um Ihre Sitzung und Einstellungen zu speichern. Wir verwenden keine Cookies von Drittanbietern zu Werbezwecken."
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "Änderungen dieser Richtlinie",
+      "content": "Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Wir werden Sie über Änderungen informieren, indem wir die neue Datenschutzrichtlinie auf dieser Seite veröffentlichen und das „Zuletzt aktualisiert“-Datum aktualisieren."
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "Kontaktieren Sie uns",
+      "description": "Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte:",
+      "email": "E-Mail:"
     }
   }
 }

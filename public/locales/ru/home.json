@@ -1,49 +1,49 @@
 {
   "hero": {
-    "title": "Transform LLM Outputs into Structured APIs",
-    "subtitle": "Define endpoints that use any LLM provider to deliver consistent, schema-validated JSON responses for your applications.",
-    "cta": "Get Started",
-    "ctaSecondary": "View Documentation"
+    "title": "Преобразование выводов LLM в структурированные API",
+    "subtitle": "Определите конечные точки, которые используют любой провайдер LLM для предоставления согласованных ответов в формате JSON с проверкой схемы для ваших приложений.",
+    "cta": "Начать",
+    "ctaSecondary": "Просмотр документации"
   },
   "features": {
-    "title": "Why {{appName}}?",
-    "subtitle": "Build reliable AI-powered APIs with confidence",
+    "title": "Почему {{appName}}?",
+    "subtitle": "Создавайте надежные API с искусственным интеллектом с уверенностью",
     "structuredOutput": {
-      "title": "Structured Output",
-      "description": "Define JSON schemas for your API responses. {{appName}} ensures LLM outputs always match your expected format."
+      "title": "Структурированный вывод",
+      "description": "Определите схемы JSON для ответов вашего API. {{appName}} гарантирует, что вывод LLM всегда соответствует ожидаемому формату."
     },
     "multiProvider": {
-      "title": "Multi-Provider Support",
-      "description": "Use OpenAI, Anthropic, Google Gemini, or your own LM server. Switch providers without changing your code."
+      "title": "Поддержка нескольких провайдеров",
+      "description": "Используйте OpenAI, Anthropic, Google Gemini или свой собственный сервер LM. Переключайтесь между поставщиками, не меняя свой код."
     },
     "analytics": {
-      "title": "Built-in Analytics",
-      "description": "Track token usage, costs, latency, and success rates. Optimize your AI endpoints with real data."
+      "title": "Встроенные аналитические инструменты",
+      "description": "Отслеживайте использование токенов, затраты, задержки и показатели успешности. Оптимизируйте свои конечные точки ИИ с помощью реальных данных."
     },
     "easyTesting": {
-      "title": "Easy Testing",
-      "description": "Test your endpoints instantly with our built-in tester. Generate sample inputs and validate responses."
+      "title": "Простое тестирование",
+      "description": "Немедленно протестируйте свои конечные точки с помощью встроенного тестера. Создайте образцы входных данных и проверьте ответы."
     }
   },
   "useCases": {
-    "title": "Use Cases",
-    "subtitle": "What you can build with {{appName}}",
+    "title": "Сценарии использования",
+    "subtitle": "Что вы можете создать с помощью {{appName}}",
     "classification": {
-      "title": "Text Classification",
-      "description": "Categorize content, detect sentiment, or label data with consistent structured outputs."
+      "title": "Классификация текста",
+      "description": "Категоризируйте контент, определяйте настроение или помечайте данные с согласованными структурированными выводами."
     },
     "extraction": {
-      "title": "Data Extraction",
-      "description": "Extract entities, parse documents, or structure unstructured text into clean JSON."
+      "title": "Извлечение данных",
+      "description": "Извлеките сущности, проанализируйте документы или структурируйте неструктурированный текст в чистый JSON."
     },
     "generation": {
-      "title": "Content Generation",
-      "description": "Generate summaries, translations, or custom content with predictable response formats."
+      "title": "Генерация контента",
+      "description": "Создавайте краткие содержания, переводы или персонализированный контент с предсказуемыми форматами ответов."
     }
   },
   "cta": {
-    "title": "Ready to get started?",
-    "subtitle": "Create your first structured AI endpoint in minutes.",
-    "button": "Start Building"
+    "title": "Готовы начать?",
+    "subtitle": "Создайте свой первый структурированный конечный пункт AI за несколько минут.",
+    "button": "Начните строительство"
   }
 }

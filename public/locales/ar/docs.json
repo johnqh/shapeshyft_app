@@ -1,159 +1,159 @@
 {
-  "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "title": "التوثيق",
+  "subtitle": "تعلم كيفية إنشاء واجهات برمجة تطبيقات ذكاء اصطناعي منظمة باستخدام {{appName}}",
   "seo": {
-    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
-    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
-    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
-    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+    "gettingStarted": "تعرّف على كيفية البدء باستخدام {{appName}}. أنشئ مشاريع، قم بتكوين مزودي LLM، وابنِ أول نقطة نهاية ذكاء اصطناعي منظّمة.",
+    "concepts": "افهم المفاهيم الأساسية: نقاط الانتهاء، ومحاور JSON، والسياق النظامي، ومسارات التنظيم لبناء واجهات برمجة تطبيقات ذكاء اصطناعي منظمة.",
+    "apiReference": "مرجع واجهة برمجة التطبيقات الكامل لـ {{appName}}. نقاط النهاية REST، وأشكال الطلب، وهياكل الاستجابة، وأمثلة التعليمات البرمجية.",
+    "default": "{{appName}} الوثائق. تعلّم كيفية إنشاء واجهات برمجة تطبيقات REST مدعومة بالذكاء الاصطناعي وموثوقة مع التحقق من صحة JSON Schema."
   },
   "howTo": {
-    "name": "How to Create a Structured LLM Endpoint",
-    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "name": "كيفية إنشاء نقطة نهاية LLM منظمة",
+    "description": "دليل خطوة بخطوة لإنشاء نقطة نهاية واجهة برمجة تطبيقات ذكية اصطناعية منظمة لأول مرة باستخدام {{appName}}",
     "steps": {
       "createProject": {
-        "name": "Create a Project",
-        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+        "name": "إنشاء مشروع",
+        "text": "ابدأ بإنشاء مشروع جديد في لوحة التحكم الخاصة بك لتنظيم نقاط نهايةك."
       },
       "addProvider": {
-        "name": "Add an LLM Provider",
-        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "name": "أضف مزودًا لنموذج اللغة الكبير",
+        "text": "قم بتكوين مفتاح واجهة برمجة التطبيقات الخاصة بك لـ OpenAI، أو Anthropic، أو Google Gemini، أو خادم نموذج لغوي مخصص."
       },
       "defineEndpoint": {
-        "name": "Define an Endpoint",
-        "text": "Create an endpoint with instructions, context, and JSON output schema."
+        "name": "عرف نقطة النهاية",
+        "text": "أنشئ نقطة نهاية مع التعليمات والإطار السياقي ونظام مخطط مخرجات JSON."
       },
       "testEndpoint": {
-        "name": "Test Your Endpoint",
-        "text": "Use the built-in tester to verify your endpoint returns structured data."
+        "name": "جرّب نقطة الانتهاء الخاصة بك",
+        "text": "استخدم مُختَبِر التضمين للتحقق من أن نقطة الانتهاء الخاصة بك تُرجع بيانات منظمة."
       },
       "integrate": {
-        "name": "Integrate",
-        "text": "Call your endpoint from your application using simple GET or POST requests."
+        "name": "الدمج",
+        "text": "قم باستدعاء نقطة النهاية الخاصة بك من تطبيقك باستخدام طلبات بسيطة من نوع GET أو POST."
       }
     }
   },
   "nav": {
-    "gettingStarted": "Getting Started",
-    "concepts": "Core Concepts",
-    "apiReference": "API Reference"
+    "gettingStarted": "ابدأ الآن",
+    "concepts": "المفاهيم الأساسية",
+    "apiReference": "مرجع واجهة برمجة التطبيقات"
   },
   "gettingStarted": {
-    "title": "Getting Started",
+    "title": "ابدأ الآن",
     "steps": [
       {
-        "title": "Create a Project",
-        "description": "Start by creating a new project in your dashboard. Give it a name and optional description."
+        "title": "إنشاء مشروع",
+        "description": "ابدأ بإنشاء مشروع جديد في لوحة التحكم الخاصة بك. امنحه اسمًا ووصفًا اختياريًا."
       },
       {
-        "title": "Add a Provider",
-        "description": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+        "title": "أضف مزودًا",
+        "description": "قم بتكوين مفتاح واجهة برمجة التطبيقات الخاصة بك لـ OpenAI، Anthropic، Google Gemini، أو خادم نموذج لغوي مخصص."
       },
       {
-        "title": "Define an Endpoint",
-        "description": "Create an endpoint with output JSON schema, instructions, and context. Connect it to your LLM key."
+        "title": "عرف نقطة النهاية",
+        "description": "أنشئ نقطة نهاية بمواصفات مخرجات JSON، والإرشادات، والسياق. وقم بتوصيلها بمفتاح نموذج اللغة الخاص بك."
       },
       {
-        "title": "Set Your Organization Path",
-        "description": "Configure a custom organization path in settings, or use your auto-generated default path."
+        "title": "حدد مسار مؤسستك",
+        "description": "قم بتكوين مسار منظمة مخصص في الإعدادات، أو استخدم مسارك الافتراضي الذي تم إنشاؤه تلقائيًا."
       },
       {
-        "title": "Integrate",
-        "description": "Call your endpoint from your application using simple GET or POST requests."
+        "title": "الدمج",
+        "description": "قم باستدعاء نقطة النهاية الخاصة بك من تطبيقك باستخدام طلبات بسيطة من نوع GET أو POST."
       }
     ]
   },
   "concepts": {
-    "title": "Core Concepts",
+    "title": "المفاهيم الأساسية",
     "endpoints": {
-      "title": "Endpoints",
-      "description": "Each endpoint is configured with:",
+      "title": "النهايات",
+      "description": "تم تهيئة كل نقطة نهاية بـ:",
       "items": [
         {
-          "name": "Input Schema",
-          "description": "JSON Schema defining the expected structure of input data (optional)"
+          "name": "مخطط الإدخال",
+          "description": "مخطط JSON يُعرّف البنية المتوقعة لبيانات الإدخال (اختياري)"
         },
         {
-          "name": "Output Schema",
-          "description": "JSON Schema defining the structure of the LLM's response"
+          "name": "مخطط الإخراج",
+          "description": "مخطط JSON يُعرّف هيكل استجابة نموذج اللغة الكبير"
         },
         {
-          "name": "Instructions",
-          "description": "Specific instructions for what the LLM should do with the input"
+          "name": "التعليمات",
+          "description": "تعليمات محددة لما يجب أن يقوم به النموذج اللغوي الكبير مع المدخل"
         },
         {
-          "name": "Context",
-          "description": "System context/prompt to guide the LLM's behavior"
+          "name": "السياق",
+          "description": "السياق النظامي/الدَعوة لتوجيه سلوك نموذج اللغة الكبير"
         },
         {
-          "name": "HTTP Method",
-          "description": "GET (query params) or POST (JSON body) for input data"
+          "name": "طريقة HTTP",
+          "description": "GET (معاملات الاستعلام) أو POST (جسم JSON) لبيانات الإدخال"
         }
       ]
     },
     "inputSchema": {
-      "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "title": "مخطط الإدخال",
+      "description": "حدد البنية المتوقعة للبيانات المدخلة باستخدام Schema JSON. عند إرسال المُستدعيين للبيانات إلى نقطة النهاية الخاصة بك، تقوم {{appName}} بتحقق من صحتها وفقًا لملف مدخلاتك قبل المعالجة. يضمن ذلك أن تصل إلى نموذج LLM بيانات منظمة بشكل صحيح، ويُقدِّم رسائل خطأ واضحة للطلبات غير الصالحة."
     },
     "outputSchema": {
-      "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "title": "مخطط الإخراج",
+      "description": "حدد بنية مخرجات نموذج اللغة الكبيرة باستخدام مخطط JSON. {{appName}} يُوجِّه النموذج إلى إرجاع بيانات تتماشى مع مخططك وتحقق من صحتها، مع إعادة المحاولة تلقائيًا إذا لم تكن المخرجات متوافقة."
     },
     "context": {
-      "title": "System Context",
-      "description": "Provide system prompts to guide the LLM's behavior. This context is included with every request to your endpoint."
+      "title": "سياق النظام",
+      "description": "قم بتوفير موجهات نظام لتقود سلوك النموذج الكبير للغة. يُدرج هذا السياق مع كل طلب إلى نقطة اتصالك."
     },
     "organizationPath": {
-      "title": "Organization Path",
-      "description": "Your organization path is used in API URLs. By default, it's the first 8 characters of your user ID, but you can customize it in settings."
+      "title": "مسار المؤسسة",
+      "description": "مسار مؤسستك يستخدم في URLs واجهة برمجة التطبيقات. بشكل افتراضي، هو الأحرف الثمانية الأولى من معرف المستخدم، ولكن يمكنك تخصيصه في الإعدادات."
     }
   },
   "apiReference": {
-    "title": "API Reference",
-    "description": "Access your endpoints via REST API. All AI endpoints are public and don't require authentication.",
+    "title": "مرجع واجهة برمجة التطبيقات",
+    "description": "الوصول إلى نقاط الانتهاء الخاصة بك عبر واجهة برمجة التطبيقات REST. جميع نقاط الانتهاء الخاصة بالذكاء الاصطناعي متاحة للجمهور ولا تتطلب مصادقة.",
     "endpoints": {
       "main": {
-        "title": "Execute Endpoint",
+        "title": "تنفيذ النقطة النهائية",
         "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName",
         "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName",
-        "description": "Executes the endpoint and returns the LLM response with usage metrics."
+        "description": "يُنفّذ النقطة النهائية ويعيد استجابة نموذج اللغة مع مقاييس الاستخدام."
       },
       "prompt": {
-        "title": "Get Prompt Only",
-        "get": "GET /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "post": "POST /api/v1/ai/:orgPath/:projectName/:endpointName/prompt",
-        "description": "Returns the generated prompt without calling the LLM. Useful for debugging."
+        "title": "الحصول على المُدخل فقط",
+        "get": "GET /api/v1/ia/:orgPath/:projectName/:endpointName/prompt",
+        "post": "POST /api/v1/ia/:orgPath/:projectName/:endpointName/prompt",
+        "description": "يُرجع المُطالَب المُنتَج دون استدعاء نموذج لغة كبير. مفيد للتصحيح."
       }
     },
     "response": {
-      "title": "Response Format",
-      "description": "Successful responses include the LLM output and usage statistics:",
+      "title": "تنسيق الاستجابة",
+      "description": "الاستجابات الناجحة تتضمن إخراج نموذج اللغة الكبير والإحصائيات المتعلقة باستخدامه:",
       "fields": [
         {
-          "name": "output",
-          "description": "The structured response from the LLM matching your output schema"
+          "name": "الإخراج",
+          "description": "الاستجابة المنظمة من النموذج اللغوي الكبير تطابق مخطط مخرجاتك"
         },
         {
-          "name": "usage.tokens_input",
-          "description": "Number of input tokens used"
+          "name": "الاستخدام.عدد_الرموز_المدخلة",
+          "description": "عدد الرموز المدخلة المستخدمة"
         },
         {
-          "name": "usage.tokens_output",
-          "description": "Number of output tokens generated"
+          "name": "الاستخدام.عدد_الرموز_الخرج",
+          "description": "عدد الرموز الناتجة في المخرجات"
         },
         {
-          "name": "usage.latency_ms",
-          "description": "Request latency in milliseconds"
+          "name": "الاستخدام.التأخير_مللي_ثانية",
+          "description": "تأخير الطلب بالمللي ثانية"
         },
         {
-          "name": "usage.estimated_cost_cents",
-          "description": "Estimated cost in cents"
+          "name": "الاستخدام.التكلفةالمقدرةسنتات",
+          "description": "التكلفة المقدرة بالسنتات"
         }
       ]
     },
     "example": {
-      "requestTitle": "Example Request",
-      "responseTitle": "Example Response"
+      "requestTitle": "طلب مثال",
+      "responseTitle": "الاستجابة النموذجية"
     }
   }
 }

@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "นโยบายความเป็นส่วนตัว - {{appName}}",
+    "description": "เรียนรู้วิธีที่ {{appName}} รวบรวม ใช้ และคุ้มครองข้อมูลส่วนตัวของคุณ"
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "นโยบายความเป็นส่วนตัว",
+  "lastUpdated": "อัปเดตครั้งสุดท้าย: {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "บทนำ",
+      "content": "ที่ {{appName} เราให้ความสำคัญกับความเป็นส่วนตัวของคุณอย่างยิ่ง นโยบายความเป็นส่วนตัวนี้อธิบายวิธีที่เราเก็บ ใช้ เปิดเผย และคุ้มครองข้อมูลของคุณเมื่อคุณใช้บริการของเรา"
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "ข้อมูลที่เราเก็บรวบรวม",
+      "description": "เราเก็บข้อมูลที่คุณให้ไว้โดยตรงกับเรา:",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "ข้อมูลบัญชี (อีเมล ชื่อ)",
+        "ข้อมูลการใช้งาน API และการวิเคราะห์",
+        "ข้อมูลการชำระเงิน (ถูกประมวลผลอย่างปลอดภัยโดยผู้ให้บริการชำระเงินของเรา)",
+        "การสื่อสารที่คุณส่งถึงเรา"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "วิธีที่เราใช้ข้อมูลของคุณ",
+      "description": "เราใช้ข้อมูลที่เราเก็บรวบรวมเพื่อ:",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "ให้บริการ รักษา และพัฒนาบริการของเรา",
+        "ดำเนินการธุรกรรมและส่งข้อมูลที่เกี่ยวข้อง",
+        "ส่งข้อความแจ้งเตือนทางเทคนิค ข้อมูลอัปเดต และข้อความสนับสนุน",
+        "ตอบกลับความคิดเห็น คำถาม และคำร้องขอของคุณ",
+        "ติดตามและวิเคราะห์รูปแบบการใช้งานและแนวโน้ม"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "ความปลอดภัยของข้อมูล",
+      "content": "เราดำเนินการมาตรการทางเทคนิคและด้านการจัดการที่เหมาะสมเพื่อคุ้มครองข้อมูลส่วนบุคคลของคุณจากการเข้าถึงโดยไม่ได้รับอนุญาต การเปลี่ยนแปลง การเปิดเผย หรือการทำลาย คีย์ API จะถูกเข้ารหัสขณะเก็บไว้ และข้อมูลทั้งหมดจะถูกส่งผ่านการเชื่อมต่อที่ปลอดภัย"
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "การเก็บข้อมูล",
+      "content": "เราเก็บข้อมูลส่วนบุคคลของคุณไว้ตามระยะเวลาที่บัญชีของคุณยังใช้งานอยู่ หรือตามที่จำเป็นเพื่อให้บริการแก่คุณ คุณสามารถขอลบบัญชีของคุณและข้อมูลที่เกี่ยวข้องได้ทุกเมื่อ"
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "สิทธิของคุณ",
+      "description": "คุณมีสิทธิ์ในการ:",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "เข้าถึงข้อมูลส่วนตัวของคุณ",
+        "แก้ไขข้อมูลที่ไม่ถูกต้อง",
+        "ขอการลบข้อมูลของคุณ",
+        "ส่งออกข้อมูลของคุณในรูปแบบที่สามารถพกพาได้",
+        "เลือกไม่รับข้อความการตลาด"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "คุกกี้และการติดตาม",
+      "content": "เราใช้คุกกี้จำเป็นเพื่อรักษาเซสชันและตั้งค่าของคุณ เราไม่ใช้คุกกี้ติดตามจากบุคคลที่สามเพื่อวัตถุประสงค์การโฆษณา"
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "การเปลี่ยนแปลงนโยบายฉบับนี้",
+      "content": "เราอาจอัปเดตนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว เราจะแจ้งให้คุณทราบถึงการเปลี่ยนแปลงใดๆ โดยการโพสต์นโยบายความเป็นส่วนตัวฉบับใหม่ไว้ที่หน้านี้และอัปเดตวันที่ \"อัปเดตล่าสุด\""
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "ติดต่อเรา",
+      "description": "หากคุณมีคำถามเกี่ยวกับนโยบายความเป็นส่วนตัวฉบับนี้ โปรดติดต่อเรา:",
+      "email": "อีเมล:"
     }
   }
 }

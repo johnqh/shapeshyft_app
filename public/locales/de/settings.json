@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "Einstellungen - {{appName}}",
+    "description": "Passen Sie Ihre {{appName}}erfahrung mit Themen- und Anzeigeeinstellungen an."
   },
-  "title": "Settings",
+  "title": "Einstellungen",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "Aussehen",
+    "description": "Passen Sie das Erscheinungsbild der Anwendung an."
   },
   "theme": {
-    "label": "Theme",
+    "label": "Thema",
     "light": "Light",
-    "dark": "Dark",
+    "dark": "Dunkel",
     "system": "System",
-    "description": "Choose your preferred color theme."
+    "description": "Wählen Sie Ihr bevorzugtes Farbthema."
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
-    "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "label": "Schriftgröße",
+    "small": "Klein",
+    "medium": "Mittel",
+    "large": "Groß",
+    "description": "Passen Sie die Textgröße zur besseren Lesbarkeit an."
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "Über Einstellungen",
+    "description": "Ihre Einstellungen werden automatisch gespeichert und bleiben über Sitzungen hinweg erhalten."
   }
 }

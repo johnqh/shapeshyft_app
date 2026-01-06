@@ -1,29 +1,29 @@
 {
   "seo": {
-    "title": "Settings - {{appName}}",
-    "description": "Customize your {{appName}} experience with theme and display settings."
+    "title": "設定 - {{appName}}",
+    "description": "テーマおよび表示設定で、{{appName}}の体験をカスタマイズしてください。"
   },
-  "title": "Settings",
+  "title": "設定",
   "appearance": {
-    "title": "Appearance",
-    "description": "Customize the look and feel of the application."
+    "title": "外見",
+    "description": "アプリケーションの見た目と雰囲気をカスタマイズする。"
   },
   "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "description": "Choose your preferred color theme."
+    "label": "テーマ",
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム",
+    "description": "お好みのカラーテーマを選択してください。"
   },
   "fontSize": {
-    "label": "Font Size",
-    "small": "Small",
-    "medium": "Medium",
-    "large": "Large",
-    "description": "Adjust the text size for better readability."
+    "label": "フォントサイズ",
+    "small": "小さな",
+    "medium": "中程度",
+    "large": "大きな",
+    "description": "読みやすさを高めるために、テキストのサイズを調整してください。"
   },
   "info": {
-    "title": "About Settings",
-    "description": "Your preferences are saved automatically and will persist across sessions."
+    "title": "設定について",
+    "description": "お好みは自動的に保存され、セッション間で保持されます。"
   }
 }

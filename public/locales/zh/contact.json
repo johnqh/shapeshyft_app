@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "联系我们 - {{appName}}",
+    "description": "联系 {{appName}} 团队。我们在这里为您解答关于 API 平台的任何问题。"
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "联系我们",
+  "subtitle": "有问题吗？我们很乐意倾听您的声音。发送消息给我们，我们将尽快回复。",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "发送邮件给我们",
+    "description": "联系我们的最佳方式是通过电子邮件。我们通常在工作日的24至48小时内回复。",
+    "support": "支持"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "响应时间",
+    "description": "我们承诺在1-2个工作日内回复所有咨询。如遇紧急事项，请在邮件主题中注明“URGENT”。"
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "技术支持",
+    "description": "如遇 API 问题、错误或技术疑问，请在邮件中包含您的项目 ID 和任何相关的错误信息。"
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "文档",
+    "description": "我们的文档中已解答了许多常见问题，请先查阅以快速获得解决方案。"
   }
 }

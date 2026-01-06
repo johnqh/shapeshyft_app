@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "プライバシーポリシー - {{appName}}",
+    "description": "{{appName}}が個人情報の収集、利用、保護を行う方法を学びます。"
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "プライバシーポリシー",
+  "lastUpdated": "最終更新日: {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "イントロダクション",
+      "content": "{{appName}では、お客様のプライバシーを真剣に扱っています。このプライバシーポリシーは、当社のサービスをご利用になる際の情報の収集、利用、開示、および保護方法について説明しています。"
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "収集する情報",
+      "description": "あなたが直接私たちに提供する情報を収集しています：",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "アカウント情報（メールアドレス、名前）",
+        "APIの使用データと分析",
+        "お支払い情報（当社の決済プロバイダーにより安全に処理されます）",
+        "あなたが私たちに送る通信"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "お客様の情報の使い方",
+      "description": "私たちが収集する情報を以下の目的で利用します：",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "サービスの提供、維持、改善",
+        "取引を処理し、関連情報を送信する",
+        "技術のお知らせ、アップデート、サポートメッセージを送信する",
+        "コメント、質問、リクエストに応じて対応してください",
+        "使用状況とトレンドをモニタリングおよび分析する"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "データセキュリティ",
+      "content": "当社は、不正アクセス、改ざん、開示、破壊から個人情報を保護するため、適切な技術的および管理的措置を講じています。APIキーは静止状態で暗号化されており、すべてのデータはセキュアな接続経由で送信されます。"
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "データ保持",
+      "content": "アカウントが有効な限り、またはサービス提供に必要な限り、お客様の個人情報を保持します。お客様はいつでもアカウントおよび関連データの削除をリクエストできます。"
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "あなたの権利",
+      "description": "あなたには次の権利があります：",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "個人情報にアクセスする",
+        "不正確なデータを修正する",
+        "データの削除をリクエストする",
+        "ポータブル形式でデータをエクスポートします",
+        "マーケティング連絡先の配信を中止する"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "クッキーとトラッキング",
+      "content": "セッションおよび設定の維持に必須のクッキーを使用しています。広告目的で第三者トラッキングクッキーは使用していません。"
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "本ポリシーの変更",
+      "content": "当社は、時々このプライバシーポリシーを更新する場合があります。変更がある場合は、このページに新しいプライバシーポリシーを掲載し、'最終更新日'を更新してお知らせします。"
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "お問い合わせ",
+      "description": "このプライバシーポリシーについてご質問がある場合は、お問い合わせください：",
+      "email": "メール："
     }
   }
 }

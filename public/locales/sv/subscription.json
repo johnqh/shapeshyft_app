@@ -1,100 +1,100 @@
 {
-  "title": "Manage Subscription",
-  "noProducts": "No subscription plans available at this time.",
-  "noProductsForPeriod": "No plans available for this billing period.",
+  "title": "Hantera prenumeration",
+  "noProducts": "Ingen prenumerationsplan finns tillgänglig just nu.",
+  "noProductsForPeriod": "Inga planer finns tillgängliga för detta faktureringsperiod.",
   "freeTier": {
-    "title": "Free",
+    "title": "Gratis",
     "price": "$0",
-    "schemaValidation": "JSON Schema-validated outputs",
-    "allProviders": "All LLM providers (OpenAI, Anthropic, Google)",
-    "endpointTesting": "Built-in endpoint testing",
-    "analytics": "Basic usage analytics"
+    "schemaValidation": "JSON-schemavaliderade utdata",
+    "allProviders": "Alla LLM-providers (OpenAI, Anthropic, Google)",
+    "endpointTesting": "Inbyggd slutpunktstestning",
+    "analytics": "Grundläggande användningsanalys"
   },
   "rateLimits": {
-    "hourly": "{{limit}} requests/hour",
-    "daily": "{{limit}} requests/day",
-    "monthly": "{{limit}} requests/month",
-    "unlimited": "Unlimited",
-    "unlimitedRequests": "Unlimited API requests"
+    "hourly": "{{limit}} förfrågningar/timme",
+    "daily": "{{limit}} förfrågningar/dag",
+    "monthly": "{{limit}} förfrågningar/månad",
+    "unlimited": "Obegränsat",
+    "unlimitedRequests": "Obegränsade API-begäranden"
   },
   "billingPeriod": {
-    "monthly": "Monthly",
-    "yearly": "Yearly"
+    "monthly": "Månadlig",
+    "yearly": "Årligen"
   },
   "features": {
     "developer": [
-      "1,000 API calls/month",
-      "2 projects",
-      "5 endpoints per project",
-      "Community support"
+      "1 000 API-anrop/månad",
+      "2 projekt",
+      "5 endpoints per projekt",
+      "Community support på svenska"
     ],
     "pro": [
-      "10,000 API calls/month",
-      "10 projects",
-      "Unlimited endpoints",
-      "Priority support",
-      "Advanced analytics"
+      "10 000 API-anrop/månad",
+      "10 projekt",
+      "Obegränsade slutpunkter",
+      "Prioriterad support",
+      "Avancerad analys"
     ],
     "enterprise": [
-      "Unlimited API calls",
-      "Unlimited projects",
-      "Unlimited endpoints",
-      "Dedicated support",
-      "Custom integrations",
-      "SLA guarantee"
+      "Obegränsade API-anrop",
+      "Obegränsade projekt",
+      "Obegränsade slutpunkter",
+      "Specialstöd",
+      "Anpassade integrationer",
+      "SLA-garanti"
     ]
   },
   "currentStatus": {
-    "label": "Current Status",
-    "active": "Active Subscription",
-    "inactive": "No Active Subscription",
-    "inactiveMessage": "Subscribe to unlock premium features and unlimited usage.",
+    "label": "Nuvarande status",
+    "active": "Aktiv prenumeration",
+    "inactive": "Ingen aktiv prenumeration",
+    "inactiveMessage": "Prenumerera för att låsa upp premiumfunktioner och obegränsad användning.",
     "plan": "Plan",
-    "expires": "Expires",
-    "willRenew": "Auto-Renew",
+    "expires": "Utgår",
+    "willRenew": "Automatisk förnyelse",
     "premium": "Premium",
-    "monthlyUsage": "Monthly Usage",
-    "dailyUsage": "Daily Usage"
+    "monthlyUsage": "Månadlig användning",
+    "dailyUsage": "Daglig användning"
   },
   "periods": {
-    "month": "/month",
-    "year": "/year",
-    "week": "/week"
+    "month": "/månad",
+    "year": "/år",
+    "week": "/vecka"
   },
   "badges": {
-    "popular": "Most Popular",
-    "saveYearly": "Save with Annual",
-    "currentPlan": "Current Plan",
-    "savePercent": "Save {{percent}}%"
+    "popular": "Mest populära",
+    "saveYearly": "Spara med årlig",
+    "currentPlan": "Nuvarande plan",
+    "savePercent": "Spara {{percent}}%"
   },
   "buttons": {
-    "subscribe": "Subscribe Now",
-    "purchasing": "Processing...",
-    "restore": "Restore Purchase",
-    "restoring": "Restoring..."
+    "subscribe": "Prenumerera nu",
+    "purchasing": "Bearbetar...",
+    "restore": "Återställ köp",
+    "restoring": "Återställer..."
   },
   "purchase": {
-    "success": "Subscription activated successfully!",
-    "error": "Failed to complete purchase. Please try again."
+    "success": "Prenumerationen har aktiverats!",
+    "error": "Köpet misslyckades. Försök igen."
   },
   "restore": {
-    "success": "Purchases restored successfully!",
-    "noPurchases": "No previous purchases found.",
-    "error": "Failed to restore purchases. Please try again."
+    "success": "Köp återställda framgångsrikt!",
+    "noPurchases": "Inga tidigare köp hittades.",
+    "error": "Kunde inte återställa köp. Försök igen."
   },
   "trial": {
-    "days_one": "{{count}}-day free trial",
-    "days_other": "{{count}}-day free trial",
-    "weeks_one": "{{count}}-week free trial",
-    "weeks_other": "{{count}}-week free trial",
-    "months_one": "{{count}}-month free trial",
-    "months_other": "{{count}}-month free trial"
+    "days_one": "{{count}-dagars gratis provperiod",
+    "days_other": "{{count}-dagars gratis provperiod",
+    "weeks_one": "{{count} veckors gratis provperiod",
+    "weeks_other": "{{count} veckors gratis provperiod",
+    "months_one": "{{count}-månaders gratisprovperiod",
+    "months_other": "{{count}-månaders gratisprovperiod"
   },
   "intro": {
-    "note": "Then {{price}}"
+    "note": "Sedan {{price}}"
   },
   "common": {
-    "yes": "Yes",
-    "no": "No"
+    "yes": "Ja",
+    "no": "Nej"
   }
 }

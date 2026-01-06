@@ -1,75 +1,75 @@
 {
-  "badge": "Performance & Optimization",
-  "title": "Performance Monitoring",
-  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "badge": "Оптимізація та продуктивність",
+  "title": "Моніторинг продуктивності",
+  "description": "Моніторте основні веб-показники, продуктивність пакунків і затримку API, щоб забезпечити оптимальний досвід користувача.",
   "quickStats": {
     "lazyLoad": "Lazy Load",
-    "codeSplitting": "Code Splitting",
-    "serviceWorker": "Service Worker",
-    "offlineCache": "Offline Cache",
-    "preloading": "Preloading",
-    "routePrefetch": "Route Prefetch",
-    "lcpTarget": "LCP Target"
+    "codeSplitting": "Розбиття коду",
+    "serviceWorker": "Сервіс-воркер",
+    "offlineCache": "Офлайн-куш",
+    "preloading": "Попереднє завантаження",
+    "routePrefetch": "Попереднє завантаження маршруту",
+    "lcpTarget": "Ціль LCP"
   },
   "webVitals": {
     "title": "Core Web Vitals",
-    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "description": "Моніторинг метрик Core Web Vitals у реальному часі.",
     "lcp": {
-      "title": "Largest Contentful Paint",
-      "description": "Time to render largest element"
+      "title": "Найбільший вмістовий малюнок",
+      "description": "Час відтворення найбільшого елемента"
     },
     "fid": {
-      "title": "First Input Delay",
-      "description": "Time to interactive response"
+      "title": "Перша затримка введення",
+      "description": "Час на першу взаємодію"
     },
     "cls": {
-      "title": "Cumulative Layout Shift",
-      "description": "Visual stability score"
+      "title": "Зміна загальної розмітки",
+      "description": "Оцінка візуальної стабільності"
     }
   },
   "bundle": {
-    "title": "Bundle Optimization",
-    "description": "Code splitting and lazy loading for reduced initial bundle size.",
-    "lazyLoadingStates": "Lazy Loading States",
-    "componentLoading": "Component loading...",
-    "componentLoaded": "Component loaded",
-    "bundleAnalysis": "Bundle Analysis",
-    "react": "React:",
+    "title": "Оптимізація пакунку",
+    "description": "Розбиття коду та відкладене завантаження для зменшення розміру початкового пакунку.",
+    "lazyLoadingStates": "Стани пізнішого завантаження",
+    "componentLoading": "Завантаження компонента...",
+    "componentLoaded": "Компонент завантажено",
+    "bundleAnalysis": "Аналіз пакетів",
+    "react": "React",
     "firebase": "Firebase:",
-    "uiComponents": "UI Components:",
-    "charts": "Charts:"
+    "uiComponents": "Компоненти інтерфейсу:",
+    "charts": "Графіки:"
   },
   "api": {
-    "title": "API Performance",
-    "description": "Monitor API response times and caching effectiveness.",
-    "currentLatency": "Current API Latency",
-    "averageResponseTime": "Average Response Time",
-    "cacheStatus": "Cache Status",
-    "freshData": "Fresh Data",
-    "recentlyFetched": "Recently fetched",
-    "staleData": "Stale Data",
-    "needsRefresh": "Needs refresh",
-    "cachingStrategy": "Caching Strategy"
+    "title": "Продуктивність API",
+    "description": "Контроль часу відповіді API та ефективності кешування.",
+    "currentLatency": "Поточна затримка API",
+    "averageResponseTime": "Середній час відповіді",
+    "cacheStatus": "Статус кешу",
+    "freshData": "Свіжі дані",
+    "recentlyFetched": "Останній отриманий",
+    "staleData": "Застарілі дані",
+    "needsRefresh": "Потрібна перезавантаження",
+    "cachingStrategy": "Стратегія кешування"
   },
   "bestPractices": {
-    "title": "Performance Best Practices",
-    "doThis": "Do This",
-    "avoidThis": "Avoid This",
+    "title": "Найкращі практики продуктивності",
+    "doThis": "Зроби це",
+    "avoidThis": "Уникайте цього",
     "do": {
-      "codeSplitting": "Use code splitting for dashboard features",
-      "lazyLoading": "Implement lazy loading for images and components",
-      "cacheApi": "Cache API responses with TanStack Query",
-      "preloadRoutes": "Preload routes on hover for instant navigation",
-      "monitorVitals": "Monitor Core Web Vitals in production",
-      "serviceWorker": "Use service worker for offline support"
+      "codeSplitting": "Використовуйте розбиття коду для функцій панелі керування",
+      "lazyLoading": "Реалізуйте лінійне завантаження зображень та компонентів",
+      "cacheApi": "Кешуйте відповіді API за допомогою TanStack Query",
+      "preloadRoutes": "Попереднє завантаження маршрутів при наведенні для миттєвого перейти",
+      "monitorVitals": "Слідкуйте за показниками Core Web Vitals у продуктивному середовищі",
+      "serviceWorker": "Використовуйте службовий робітник для підтримки офлайн-режиму"
     },
     "avoid": {
-      "eagerLoading": "Loading all components eagerly on initial page load",
-      "redundantCalls": "Making redundant API calls without caching",
-      "layoutShifts": "Causing layout shifts with dynamic content",
-      "blockingRender": "Using blocking rendering for non-critical features",
-      "ignoreNetwork": "Ignoring network conditions for resource loading",
-      "noTreeShaking": "Importing large libraries without tree-shaking"
+      "eagerLoading": "Попереднє завантаження всіх компонентів під час першої завантаження сторінки",
+      "redundantCalls": "Зроблення надлишкових викликів API без кешування",
+      "layoutShifts": "Викликає зміщення макету через динамічний контент",
+      "blockingRender": "Використання блокуючого відображення для некритичних функцій",
+      "ignoreNetwork": "Ігнорування умов мережі під час завантаження ресурсів",
+      "noTreeShaking": "Імпортування великих бібліотек без tree-shaking"
     }
   }
 }

@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "Зв'яжіться з нами - {{appName}}",
+    "description": "Зв'яжіться з командою {{appName}. Ми допоможемо вам з будь-якими питаннями щодо нашої API-платформи."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "Зв'яжіться з нами",
+  "subtitle": "Є питання? Ми будемо раді почути від вас. Надішліть нам повідомлення, і ми відповімо якнайшвидше.",
   "email": {
     "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "description": "Найкращий спосіб зв’язатися з нами — електронна пошта. Ми зазвичай відповідаємо протягом 24–48 годин у робочі дні.",
+    "support": "Підтримка"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "Час відповіді",
+    "description": "Ми намагаємося відповісти на всі запитання протягом 1–2 робочих днів. У разі термінових питань, будь ласка, додайте «URGENT» у тему листа."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "Технічна підтримка",
+    "description": "У разі проблем із API, помилок або технічних питань, додайте ідентифікатор свого проекту та будь-які пов’язані повідомлення про помилки до електронного листа."
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "Документація",
+    "description": "Багато поширених питань відповідаються в нашій документації. Перевірте її спочатку для швидких рішень."
   }
 }

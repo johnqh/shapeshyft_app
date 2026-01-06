@@ -1,67 +1,67 @@
 {
   "seo": {
-    "title": "Privacy Policy - {{appName}}",
-    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
+    "title": "隱私政策 - {{appName}}",
+    "description": "了解 {{appName}} 如何收集、使用和保護您的個人資訊。"
   },
-  "title": "Privacy Policy",
-  "lastUpdated": "Last updated: {{date}}",
+  "title": "隱私政策",
+  "lastUpdated": "最後更新： {{date}}",
   "sections": {
     "introduction": {
-      "title": "Introduction",
-      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "title": "介紹",
+      "content": "在{{appName}，我們非常重視您的隱私。本隱私政策說明我們在您使用我們的服務時，如何收集、使用、披露和保護您的資訊。"
     },
     "collection": {
-      "title": "Information We Collect",
-      "description": "We collect information that you provide directly to us:",
+      "title": "我們收集的信息",
+      "description": "我們會收集您直接提供給我們的資訊：",
       "items": [
-        "Account information (email address, name)",
-        "API usage data and analytics",
-        "Payment information (processed securely by our payment provider)",
-        "Communications you send to us"
+        "帳戶資訊（電子郵件地址、姓名）",
+        "API 使用資料與分析",
+        "付款資訊（由我們的付款服務提供商安全處理）",
+        "您發送給我們的通訊內容"
       ]
     },
     "usage": {
-      "title": "How We Use Your Information",
-      "description": "We use the information we collect to:",
+      "title": "我們如何使用您的資訊",
+      "description": "我們收集資訊的目的如下：",
       "items": [
-        "Provide, maintain, and improve our services",
-        "Process transactions and send related information",
-        "Send technical notices, updates, and support messages",
-        "Respond to your comments, questions, and requests",
-        "Monitor and analyze usage patterns and trends"
+        "提供、維護並提升我們的服務",
+        "處理交易並發送相關資訊",
+        "發送技術通知、更新和支援訊息",
+        "回應您的評論、問題和請求",
+        "監控和分析使用模式與趨勢"
       ]
     },
     "security": {
-      "title": "Data Security",
-      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. API keys are encrypted at rest, and all data is transmitted over secure connections."
+      "title": "資料安全",
+      "content": "我們實施適當的技術和組織措施，以保護您的個人資料免遭未經授權的訪問、更改、披露或破壞。API金鑰在靜態時會加密，所有數據均透過安全連接傳輸。"
     },
     "retention": {
-      "title": "Data Retention",
-      "content": "We retain your personal information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time."
+      "title": "資料保留",
+      "content": "我們會保留您的個人資訊，直至您的帳戶處於活躍狀態，或為提供服務所必要。您可隨時請求刪除您的帳戶及相關資料。"
     },
     "rights": {
-      "title": "Your Rights",
-      "description": "You have the right to:",
+      "title": "您的權利",
+      "description": "您有權：",
       "items": [
-        "Access your personal information",
-        "Correct inaccurate data",
-        "Request deletion of your data",
-        "Export your data in a portable format",
-        "Opt out of marketing communications"
+        "存取您的個人資訊",
+        "修正錯誤的資料",
+        "請求刪除您的資料",
+        "以可攜式格式匯出您的資料",
+        "退出市場推廣訊息"
       ]
     },
     "cookies": {
-      "title": "Cookies and Tracking",
-      "content": "We use essential cookies to maintain your session and preferences. We do not use third-party tracking cookies for advertising purposes."
+      "title": "Cookie 和追蹤",
+      "content": "我們使用必要 Cookie 來維持您的會話和偏好設定。我們不會使用第三方追蹤 Cookie 進行廣告目的。"
     },
     "changes": {
-      "title": "Changes to This Policy",
-      "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date."
+      "title": "本政策的變更",
+      "content": "我們可能會不定時更新本隱私權政策。我們將透過在本頁張貼新的隱私權政策並更新「最後更新」日期的方式通知您任何變更。"
     },
     "contact": {
-      "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:",
-      "email": "Email:"
+      "title": "聯絡我們",
+      "description": "如有任何關於本隱私權政策的疑問，請與我們聯繫：",
+      "email": "電子郵件："
     }
   }
 }

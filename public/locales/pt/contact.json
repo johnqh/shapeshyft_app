@@ -1,25 +1,25 @@
 {
   "seo": {
-    "title": "Contact Us - {{appName}}",
-    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
+    "title": "Entre em Contato - {{appName}}",
+    "description": "Entre em contato com a equipe do {{appName}. Estamos aqui para ajudar com quaisquer dúvidas sobre nossa plataforma de API."
   },
-  "title": "Contact Us",
-  "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "title": "Entre em Contato conosco",
+  "subtitle": "Tem dúvidas? Adoraríamos ouvir você. Envie-nos uma mensagem e responderemos o mais breve possível.",
   "email": {
-    "title": "Email Us",
-    "description": "The best way to reach us is via email. We typically respond within 24-48 hours on business days.",
-    "support": "Support"
+    "title": "Envie um e-mail para nós",
+    "description": "A melhor forma de nos alcançar é por e-mail. Respondemos normalmente dentro de 24 a 48 horas nos dias úteis.",
+    "support": "Suporte"
   },
   "responseTime": {
-    "title": "Response Time",
-    "description": "We aim to respond to all inquiries within 1-2 business days. For urgent issues, please include 'URGENT' in your subject line."
+    "title": "Tempo de Resposta",
+    "description": "Objetivamos responder a todas as consultas dentro de 1 a 2 dias úteis. Para questões urgentes, inclua \"URGENTE\" na linha de assunto."
   },
   "support": {
-    "title": "Technical Support",
-    "description": "For API issues, bugs, or technical questions, include your project ID and any relevant error messages in your email."
+    "title": "Suporte Técnico",
+    "description": "Para problemas com a API, erros ou dúvidas técnicas, inclua o ID do seu projeto e qualquer mensagem de erro relevante no seu e-mail."
   },
   "docs": {
-    "title": "Documentation",
-    "description": "Many common questions are answered in our documentation. Check there first for quick solutions."
+    "title": "Documentação",
+    "description": "Muitas perguntas comuns são respondidas em nossa documentação. Verifique lá primeiro para soluções rápidas."
   }
 }
