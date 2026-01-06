@@ -18,7 +18,8 @@
     "test:coverage": "vitest run --coverage",
     "analyze": "node script/performance-monitor.cjs",
     "analyze:bundle": "./script/analyze-bundle.sh",
-    "build:analyze": "bun run build && bun run analyze"
+    "build:analyze": "bun run build && bun run analyze",
+    "localize": "node ../../0xmail/workflows/scripts/localize.cjs ./public/locales && prettier . --write"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",
