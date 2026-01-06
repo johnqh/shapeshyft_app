@@ -15,7 +15,7 @@ interface ShareConfig {
 const DEFAULT_SHARE_CONFIG: ShareConfig = {
   title: `${CONSTANTS.APP_NAME} - Transform LLM Outputs into Structured APIs`,
   description: 'Build reliable AI-powered REST APIs with JSON Schema validation.',
-  hashtags: ['ShapeShyft', 'AI', 'LLM', 'API', 'StructuredOutput'],
+  hashtags: [CONSTANTS.APP_NAME, 'AI', 'LLM', 'API', 'StructuredOutput'],
 };
 
 interface ScreenContainerProps {

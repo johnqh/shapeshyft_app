@@ -1,6 +1,7 @@
 import ScreenContainer from '../../components/layout/ScreenContainer';
 import SEO from '../../components/seo/SEO';
 import LocalizedLink from '../../components/layout/LocalizedLink';
+import { CONSTANTS } from '../../config/constants';
 
 const exampleSchema = `{
   "type": "object",
@@ -83,7 +84,7 @@ function UseCasesContentPage() {
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/use-cases/content"
-        title="Content Generation - Use Cases - ShapeShyft"
+        title={`Content Generation - Use Cases - ${CONSTANTS.APP_NAME}`}
         description="Generate structured content with LLMs. Product descriptions, marketing copy, documentation, and personalized content with guaranteed formatting."
         keywords="content generation, AI copywriting, product descriptions, marketing automation, structured content, LLM content"
       />
@@ -207,7 +208,7 @@ function UseCasesContentPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-8 text-center">
-              Why ShapeShyft for Content Generation?
+              Why {CONSTANTS.APP_NAME} for Content Generation?
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">

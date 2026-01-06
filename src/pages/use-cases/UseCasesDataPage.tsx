@@ -1,6 +1,7 @@
 import ScreenContainer from '../../components/layout/ScreenContainer';
 import SEO from '../../components/seo/SEO';
 import LocalizedLink from '../../components/layout/LocalizedLink';
+import { CONSTANTS } from '../../config/constants';
 
 const exampleSchema = `{
   "type": "object",
@@ -83,7 +84,7 @@ function UseCasesDataPage() {
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/use-cases/data"
-        title="Data Extraction - Use Cases - ShapeShyft"
+        title={`Data Extraction - Use Cases - ${CONSTANTS.APP_NAME}`}
         description="Extract structured data from unstructured documents with LLMs. Invoice processing, resume parsing, contract analysis, and form digitization."
         keywords="data extraction, document processing, invoice OCR, resume parsing, contract analysis, structured data, LLM extraction"
       />
@@ -107,7 +108,7 @@ function UseCasesDataPage() {
             </h1>
             <p className="text-lg sm:text-xl text-theme-text-secondary max-w-3xl">
               Turn unstructured documents into clean, structured data. Define your target schema,
-              and ShapeShyft extracts exactly the information you need—every time.
+              and {CONSTANTS.APP_NAME} extracts exactly the information you need—every time.
             </p>
           </div>
         </section>
@@ -134,7 +135,7 @@ function UseCasesDataPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-theme-text-primary mb-2">Send Your Document</h3>
                 <p className="text-theme-text-secondary">
-                  Pass document text to the ShapeShyft API. We handle the prompting and extraction logic.
+                  Pass document text to the {CONSTANTS.APP_NAME} API. We handle the prompting and extraction logic.
                 </p>
               </div>
               <div className="text-center">
@@ -207,7 +208,7 @@ function UseCasesDataPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-8 text-center">
-              Why ShapeShyft for Data Extraction?
+              Why {CONSTANTS.APP_NAME} for Data Extraction?
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">

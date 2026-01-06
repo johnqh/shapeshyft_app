@@ -121,7 +121,7 @@ function SitemapPage() {
         {
           path: '/docs',
           label: t('links.docs', 'Documentation'),
-          description: t('descriptions.docs', 'Learn how to use ShapeShyft'),
+          description: t('descriptions.docs', `Learn how to use ${CONSTANTS.APP_NAME}`),
         },
         {
           path: '/docs/getting-started',
@@ -173,7 +173,7 @@ function SitemapPage() {
         {
           path: '/about',
           label: t('links.about', 'About'),
-          description: t('descriptions.about', 'About ShapeShyft'),
+          description: t('descriptions.about', `About ${CONSTANTS.APP_NAME}`),
         },
         {
           path: '/contact',
@@ -204,9 +204,9 @@ function SitemapPage() {
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         title={t('seo.title', 'Sitemap')}
-        description={t('seo.description', 'Navigate all pages and features available on ShapeShyft')}
+        description={t('seo.description', `Navigate all pages and features available on ${CONSTANTS.APP_NAME}`)}
         canonical="/sitemap"
-        keywords="sitemap, navigation, ShapeShyft pages"
+        keywords={`sitemap, navigation, ${CONSTANTS.APP_NAME} pages`}
       />
 
       <main className="flex-1 overflow-auto">

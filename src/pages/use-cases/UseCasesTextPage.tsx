@@ -1,6 +1,7 @@
 import ScreenContainer from '../../components/layout/ScreenContainer';
 import SEO from '../../components/seo/SEO';
 import LocalizedLink from '../../components/layout/LocalizedLink';
+import { CONSTANTS } from '../../config/constants';
 
 const exampleSchema = `{
   "type": "object",
@@ -61,7 +62,7 @@ function UseCasesTextPage() {
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/use-cases/text"
-        title="Text Classification - Use Cases - ShapeShyft"
+        title={`Text Classification - Use Cases - ${CONSTANTS.APP_NAME}`}
         description="Automatically categorize text with LLMs and get structured, validated output. Sentiment analysis, intent recognition, topic detection, and content moderation."
         keywords="text classification, sentiment analysis, intent recognition, topic detection, content moderation, NLP, LLM classification"
       />
@@ -85,7 +86,7 @@ function UseCasesTextPage() {
             </h1>
             <p className="text-lg sm:text-xl text-theme-text-secondary max-w-3xl">
               Transform unstructured text into actionable categories. Define your classification schema,
-              and ShapeShyft ensures every response matches your exact requirements.
+              and {CONSTANTS.APP_NAME} ensures every response matches your exact requirements.
             </p>
           </div>
         </section>
@@ -112,7 +113,7 @@ function UseCasesTextPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-theme-text-primary mb-2">Send Your Text</h3>
                 <p className="text-theme-text-secondary">
-                  Call the ShapeShyft API with your text. We route it to your chosen LLM with optimized prompting.
+                  Call the {CONSTANTS.APP_NAME} API with your text. We route it to your chosen LLM with optimized prompting.
                 </p>
               </div>
               <div className="text-center">

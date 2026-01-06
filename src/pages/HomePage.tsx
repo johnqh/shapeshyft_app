@@ -4,6 +4,7 @@ import ScreenContainer from '../components/layout/ScreenContainer';
 import SEO from '../components/seo/SEO';
 import AISearchOptimization from '../components/seo/AISearchOptimization';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { CONSTANTS } from '../config/constants';
 
 function HomePage() {
   const { t } = useTranslation('home');
@@ -28,7 +29,7 @@ function HomePage() {
       />
       <AISearchOptimization
         pageType="landing"
-        pageName="ShapeShyft - Transform LLM Outputs into Structured APIs"
+        pageName={`${CONSTANTS.APP_NAME} - Transform LLM Outputs into Structured APIs`}
         description="Build reliable AI-powered REST APIs with JSON Schema validation. Transform unstructured LLM responses into predictable, type-safe endpoints."
         keywords={['LLM API', 'structured output', 'JSON Schema', 'AI API', 'OpenAI', 'Anthropic', 'REST API']}
         features={[
@@ -52,16 +53,16 @@ function HomePage() {
         ]}
         faqs={[
           {
-            question: 'What is ShapeShyft?',
-            answer: 'ShapeShyft transforms unstructured LLM outputs into reliable, type-safe REST APIs using JSON Schema validation.',
+            question: `What is ${CONSTANTS.APP_NAME}?`,
+            answer: `${CONSTANTS.APP_NAME} transforms unstructured LLM outputs into reliable, type-safe REST APIs using JSON Schema validation.`,
           },
           {
             question: 'Which LLM providers are supported?',
-            answer: 'ShapeShyft supports OpenAI, Anthropic Claude, Google Gemini, and custom LM servers with OpenAI-compatible APIs.',
+            answer: `${CONSTANTS.APP_NAME} supports OpenAI, Anthropic Claude, Google Gemini, and custom LM servers with OpenAI-compatible APIs.`,
           },
           {
             question: 'Is there a free tier?',
-            answer: 'Yes, ShapeShyft offers a free tier with limited requests to get started.',
+            answer: `Yes, ${CONSTANTS.APP_NAME} offers a free tier with limited requests to get started.`,
           },
         ]}
       />

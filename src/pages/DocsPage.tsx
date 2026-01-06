@@ -7,6 +7,7 @@ import SEO from '../components/seo/SEO';
 import AISearchOptimization from '../components/seo/AISearchOptimization';
 import DocsSidebar from '../components/docs/DocsSidebar';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { CONSTANTS } from '../config/constants';
 
 type DocSection = 'getting-started' | 'concepts' | 'api-reference';
 
@@ -59,13 +60,13 @@ function DocsPage() {
   const getSeoDescription = () => {
     switch (currentSection) {
       case 'getting-started':
-        return 'Learn how to get started with ShapeShyft. Create projects, configure LLM providers, and build your first structured AI endpoint.';
+        return `Learn how to get started with ${CONSTANTS.APP_NAME}. Create projects, configure LLM providers, and build your first structured AI endpoint.`;
       case 'concepts':
         return 'Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.';
       case 'api-reference':
-        return 'Complete API reference for ShapeShyft. REST endpoints, request formats, response structures, and code examples.';
+        return `Complete API reference for ${CONSTANTS.APP_NAME}. REST endpoints, request formats, response structures, and code examples.`;
       default:
-        return 'ShapeShyft documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation.';
+        return `${CONSTANTS.APP_NAME} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation.`;
     }
   };
 
@@ -73,7 +74,7 @@ function DocsPage() {
     if (currentSection === 'getting-started') {
       return {
         name: 'How to Create a Structured LLM Endpoint',
-        description: 'Step-by-step guide to creating your first structured AI API endpoint with ShapeShyft',
+        description: `Step-by-step guide to creating your first structured AI API endpoint with ${CONSTANTS.APP_NAME}`,
         steps: [
           { name: 'Create a Project', text: 'Start by creating a new project in your dashboard to organize your endpoints.' },
           { name: 'Add an LLM Provider', text: 'Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server.' },

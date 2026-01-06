@@ -1,6 +1,7 @@
 import ScreenContainer from '../../components/layout/ScreenContainer';
 import SEO from '../../components/seo/SEO';
 import LocalizedLink from '../../components/layout/LocalizedLink';
+import { CONSTANTS } from '../../config/constants';
 
 // Icons for use case cards
 const TextClassificationIcon = () => (
@@ -54,8 +55,8 @@ function UseCasesPage() {
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/use-cases"
-        title="Use Cases - ShapeShyft"
-        description="Discover how ShapeShyft transforms LLM outputs into structured, reliable data. From text classification to data extraction and content generation."
+        title={`Use Cases - ${CONSTANTS.APP_NAME}`}
+        description={`Discover how ${CONSTANTS.APP_NAME} transforms LLM outputs into structured, reliable data. From text classification to data extraction and content generation.`}
         keywords="LLM use cases, structured output, text classification, data extraction, content generation, AI applications"
       />
 
@@ -68,7 +69,7 @@ function UseCasesPage() {
               Build Anything with Structured LLM Output
             </h1>
             <p className="text-lg sm:text-xl text-theme-text-secondary max-w-3xl mx-auto">
-              ShapeShyft transforms unpredictable AI responses into reliable, schema-validated data.
+              {CONSTANTS.APP_NAME} transforms unpredictable AI responses into reliable, schema-validated data.
               Here are some common use cases—but your imagination is the only limit.
             </p>
           </div>
@@ -116,10 +117,10 @@ function UseCasesPage() {
               Your Use Case, Your Rules
             </h2>
             <p className="text-lg text-theme-text-secondary mb-8">
-              While we've highlighted common patterns, ShapeShyft is designed to be completely flexible.
+              While we've highlighted common patterns, {CONSTANTS.APP_NAME} is designed to be completely flexible.
               Define any JSON schema, connect any LLM provider, and build exactly what you need. Whether you're
               creating a chatbot, analyzing research papers, automating workflows, or building something entirely
-              new—if you can describe it in a schema, ShapeShyft can deliver it.
+              new—if you can describe it in a schema, {CONSTANTS.APP_NAME} can deliver it.
             </p>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
@@ -145,7 +146,7 @@ function UseCasesPage() {
               Ready to Build?
             </h2>
             <p className="text-lg text-theme-text-secondary mb-8">
-              Start with our free tier and see how ShapeShyft can transform your AI integration.
+              Start with our free tier and see how {CONSTANTS.APP_NAME} can transform your AI integration.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <LocalizedLink

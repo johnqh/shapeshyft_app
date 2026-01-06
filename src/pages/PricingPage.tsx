@@ -14,6 +14,7 @@ import SEO from '../components/seo/SEO';
 import AISearchOptimization from '../components/seo/AISearchOptimization';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
 import { useApi } from '../hooks/useApi';
+import { CONSTANTS } from '../config/constants';
 
 type BillingPeriod = 'monthly' | 'yearly';
 
@@ -181,19 +182,19 @@ function PricingPage() {
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         title="Pricing"
-        description="ShapeShyft pricing plans. Start free, scale as you grow. Flexible plans for developers, teams, and enterprises building AI-powered APIs."
+        description={`${CONSTANTS.APP_NAME} pricing plans. Start free, scale as you grow. Flexible plans for developers, teams, and enterprises building AI-powered APIs.`}
         canonical="/pricing"
         keywords="LLM API pricing, AI API cost, structured output pricing, API pricing plans"
       />
       <AISearchOptimization
         pageType="pricing"
-        pageName="ShapeShyft Pricing"
+        pageName={`${CONSTANTS.APP_NAME} Pricing`}
         description="Flexible pricing plans for building structured LLM APIs. Start free, scale as you grow."
         keywords={['LLM API pricing', 'AI API cost', 'structured output pricing']}
         faqs={[
           {
             question: 'Is there a free tier?',
-            answer: 'Yes, ShapeShyft offers a free tier with limited requests per month to get started.',
+            answer: `Yes, ${CONSTANTS.APP_NAME} offers a free tier with limited requests per month to get started.`,
           },
           {
             question: 'What payment methods are accepted?',

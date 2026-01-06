@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { CONSTANTS } from '../../config/constants';
 
 interface AISearchOptimizationProps {
   pageType: 'landing' | 'product' | 'documentation' | 'guide' | 'feature' | 'pricing';
@@ -23,7 +24,6 @@ interface AISearchOptimizationProps {
 }
 
 const BASE_URL = 'https://shapeshyft.io';
-const APP_NAME = 'ShapeShyft';
 
 /**
  * AI Search Optimization Component
@@ -45,11 +45,11 @@ export function AISearchOptimization({
   const knowledgeGraphData = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: APP_NAME,
+    name: CONSTANTS.APP_NAME,
     applicationCategory: 'DeveloperApplication',
     operatingSystem: 'Web',
     description:
-      'ShapeShyft transforms unstructured LLM outputs into reliable, type-safe REST APIs using JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.',
+      `${CONSTANTS.APP_NAME} transforms unstructured LLM outputs into reliable, type-safe REST APIs using JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.`,
     url: BASE_URL,
     creator: {
       '@type': 'Organization',
@@ -133,7 +133,7 @@ export function AISearchOptimization({
           '@context': 'https://schema.org',
           '@type': 'ItemList',
           name: 'Use Cases',
-          description: 'Common use cases for ShapeShyft',
+          description: `Common use cases for ${CONSTANTS.APP_NAME}`,
           itemListElement: useCases.map((useCase, index) => ({
             '@type': 'ListItem',
             position: index + 1,
@@ -149,7 +149,7 @@ export function AISearchOptimization({
           '@context': 'https://schema.org',
           '@type': 'ItemList',
           name: 'Benefits',
-          description: 'Key benefits of using ShapeShyft',
+          description: `Key benefits of using ${CONSTANTS.APP_NAME}`,
           itemListElement: benefits.map((benefit, index) => ({
             '@type': 'ListItem',
             position: index + 1,
@@ -177,7 +177,7 @@ export function AISearchOptimization({
     { name: 'ai-keywords', content: keywords.join(', ') },
     {
       name: 'ai-entities',
-      content: 'ShapeShyft, LLM, JSON Schema, REST API, OpenAI, Anthropic, Claude, GPT, Gemini',
+      content: `${CONSTANTS.APP_NAME}, LLM, JSON Schema, REST API, OpenAI, Anthropic, Claude, GPT, Gemini`,
     },
     {
       name: 'ai-topics',
@@ -199,7 +199,7 @@ export function AISearchOptimization({
       <meta name="DC.creator" content="Sudobility" />
       <meta name="DC.subject" content={keywords.join(', ')} />
       <meta name="DC.description" content={description} />
-      <meta name="DC.publisher" content={APP_NAME} />
+      <meta name="DC.publisher" content={CONSTANTS.APP_NAME} />
       <meta name="DC.type" content="Software" />
       <meta name="DC.format" content="text/html" />
 
@@ -222,7 +222,7 @@ export function AISearchOptimization({
       {benefitsData && <script type="application/ld+json">{JSON.stringify(benefitsData)}</script>}
 
       {/* Rich snippets for AI crawlers */}
-      <meta itemProp="name" content="ShapeShyft - Structured LLM Output Platform" />
+      <meta itemProp="name" content={`${CONSTANTS.APP_NAME} - Structured LLM Output Platform`} />
       <meta itemProp="description" content={description} />
       <meta itemProp="applicationCategory" content="Developer Tools, AI, API" />
     </Helmet>

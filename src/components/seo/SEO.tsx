@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { CONSTANTS } from '../../config/constants';
 
 interface SEOProps {
   title?: string;
@@ -12,7 +13,7 @@ interface SEOProps {
 }
 
 const BASE_URL = 'https://shapeshyft.io';
-const DEFAULT_TITLE = 'ShapeShyft - Transform LLM Outputs into Structured APIs';
+const DEFAULT_TITLE = `${CONSTANTS.APP_NAME} - Transform LLM Outputs into Structured APIs`;
 const DEFAULT_DESCRIPTION = 'Build reliable AI-powered REST APIs with JSON Schema validation. Transform unstructured LLM responses into predictable, type-safe endpoints.';
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
@@ -26,7 +27,7 @@ export function SEO({
   noIndex = false,
   structuredData,
 }: SEOProps) {
-  const fullTitle = title ? `${title} | ShapeShyft` : DEFAULT_TITLE;
+  const fullTitle = title ? `${title} | ${CONSTANTS.APP_NAME}` : DEFAULT_TITLE;
   const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : undefined;
 
   return (
