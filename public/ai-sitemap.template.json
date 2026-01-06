@@ -1,23 +1,23 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "ShapeShyft",
-  "alternateName": "ShapeShyft - Structured LLM Output Platform",
-  "url": "https://shapeshyft.ai",
+  "name": "{{VITE_APP_NAME}}",
+  "alternateName": "{{VITE_APP_NAME}} - Structured LLM Output Platform",
+  "url": "https://{{VITE_APP_DOMAIN}}",
   "description": "Transform unstructured LLM outputs into reliable, type-safe REST APIs with JSON Schema validation. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.",
   "publisher": {
     "@type": "Organization",
-    "name": "Sudobility Inc.",
+    "name": "{{VITE_COMPANY_NAME}}",
     "url": "https://sudobility.com"
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://shapeshyft.ai/en/docs?q={search_term_string}",
+    "target": "https://{{VITE_APP_DOMAIN}}/en/docs?q={search_term_string}",
     "query-input": "required name=search_term_string"
   },
   "mainEntity": {
     "@type": "SoftwareApplication",
-    "name": "ShapeShyft",
+    "name": "{{VITE_APP_NAME}}",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web",
     "offers": {
@@ -38,44 +38,44 @@
       "Built-in endpoint testing",
       "Request history and logging"
     ],
-    "screenshot": "https://shapeshyft.ai/screenshot.png",
+    "screenshot": "https://{{VITE_APP_DOMAIN}}/screenshot.png",
     "softwareRequirements": "HTTP client or REST API library"
   },
   "hasPart": [
     {
       "@type": "WebPage",
       "name": "Home",
-      "url": "https://shapeshyft.ai/",
-      "description": "ShapeShyft homepage - Transform LLM outputs into structured APIs",
-      "isPartOf": { "@id": "https://shapeshyft.ai" }
+      "url": "https://{{VITE_APP_DOMAIN}}/",
+      "description": "{{VITE_APP_NAME}} homepage - Transform LLM outputs into structured APIs",
+      "isPartOf": { "@id": "https://{{VITE_APP_DOMAIN}}" }
     },
     {
       "@type": "WebPage",
       "name": "Getting Started",
-      "url": "https://shapeshyft.ai/en/docs/getting-started",
-      "description": "Quick start guide for ShapeShyft - Create your first structured LLM endpoint",
-      "isPartOf": { "@id": "https://shapeshyft.ai" }
+      "url": "https://{{VITE_APP_DOMAIN}}/en/docs/getting-started",
+      "description": "Quick start guide for {{VITE_APP_NAME}} - Create your first structured LLM endpoint",
+      "isPartOf": { "@id": "https://{{VITE_APP_DOMAIN}}" }
     },
     {
       "@type": "WebPage",
       "name": "Core Concepts",
-      "url": "https://shapeshyft.ai/en/docs/concepts",
+      "url": "https://{{VITE_APP_DOMAIN}}/en/docs/concepts",
       "description": "Learn about endpoints, JSON schemas, system context, and organization paths",
-      "isPartOf": { "@id": "https://shapeshyft.ai" }
+      "isPartOf": { "@id": "https://{{VITE_APP_DOMAIN}}" }
     },
     {
       "@type": "WebPage",
       "name": "API Reference",
-      "url": "https://shapeshyft.ai/en/docs/api-reference",
-      "description": "Complete API documentation for ShapeShyft REST endpoints",
-      "isPartOf": { "@id": "https://shapeshyft.ai" }
+      "url": "https://{{VITE_APP_DOMAIN}}/en/docs/api-reference",
+      "description": "Complete API documentation for {{VITE_APP_NAME}} REST endpoints",
+      "isPartOf": { "@id": "https://{{VITE_APP_DOMAIN}}" }
     },
     {
       "@type": "WebPage",
       "name": "Pricing",
-      "url": "https://shapeshyft.ai/en/pricing",
-      "description": "ShapeShyft pricing plans - Free tier, Pro, and Enterprise options",
-      "isPartOf": { "@id": "https://shapeshyft.ai" }
+      "url": "https://{{VITE_APP_DOMAIN}}/en/pricing",
+      "description": "{{VITE_APP_NAME}} pricing plans - Free tier, Pro, and Enterprise options",
+      "isPartOf": { "@id": "https://{{VITE_APP_DOMAIN}}" }
     }
   ],
   "about": {
@@ -121,24 +121,24 @@
   ],
   "faq": [
     {
-      "question": "What is ShapeShyft?",
-      "answer": "ShapeShyft is a platform that transforms unstructured LLM (Large Language Model) outputs into reliable, type-safe REST APIs. You define your output format using JSON Schema, and ShapeShyft ensures the LLM response matches that structure."
+      "question": "What is {{VITE_APP_NAME}}?",
+      "answer": "{{VITE_APP_NAME}} is a platform that transforms unstructured LLM (Large Language Model) outputs into reliable, type-safe REST APIs. You define your output format using JSON Schema, and {{VITE_APP_NAME}} ensures the LLM response matches that structure."
     },
     {
-      "question": "Which LLM providers does ShapeShyft support?",
-      "answer": "ShapeShyft supports OpenAI (GPT-4, GPT-3.5), Anthropic (Claude 3, Claude 2), Google (Gemini Pro, Gemini Ultra), and any custom LM server with an OpenAI-compatible API."
+      "question": "Which LLM providers does {{VITE_APP_NAME}} support?",
+      "answer": "{{VITE_APP_NAME}} supports OpenAI (GPT-4, GPT-3.5), Anthropic (Claude 3, Claude 2), Google (Gemini Pro, Gemini Ultra), and any custom LM server with an OpenAI-compatible API."
     },
     {
       "question": "How does structured output work?",
-      "answer": "You define a JSON Schema for your desired output format. ShapeShyft uses advanced prompt engineering to instruct the LLM to return data matching your schema, then validates the response before returning it to you."
+      "answer": "You define a JSON Schema for your desired output format. {{VITE_APP_NAME}} uses advanced prompt engineering to instruct the LLM to return data matching your schema, then validates the response before returning it to you."
     },
     {
       "question": "Is there a free tier?",
-      "answer": "Yes, ShapeShyft offers a free tier with limited requests. Paid plans are available for higher usage limits, multiple projects, and priority support."
+      "answer": "Yes, {{VITE_APP_NAME}} offers a free tier with limited requests. Paid plans are available for higher usage limits, multiple projects, and priority support."
     },
     {
       "question": "Do I need to handle prompt engineering?",
-      "answer": "No, ShapeShyft handles the prompt engineering for you. You provide the instructions and context for what you want the LLM to do, and ShapeShyft constructs the optimal prompt to get structured output."
+      "answer": "No, {{VITE_APP_NAME}} handles the prompt engineering for you. You provide the instructions and context for what you want the LLM to do, and {{VITE_APP_NAME}} constructs the optimal prompt to get structured output."
     }
   ],
   "technicalSpecs": {
@@ -148,5 +148,5 @@
     "supportedMethods": "GET, POST",
     "responseFormat": "JSON with usage metrics"
   },
-  "lastModified": "2026-01-06"
+  "lastModified": "{{TODAY}}"
 }

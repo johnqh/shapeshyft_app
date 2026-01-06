@@ -1,5 +1,5 @@
-# robots.txt for ShapeShyft
-# https://shapeshyft.ai
+# robots.txt for {{VITE_APP_NAME}}
+# https://{{VITE_APP_DOMAIN}}
 
 # ===========================================
 # Standard Search Engine Crawlers
@@ -132,15 +132,15 @@ Crawl-delay: 5
 # Sitemaps
 # ===========================================
 
-Sitemap: https://shapeshyft.ai/sitemap.xml
-Sitemap: https://shapeshyft.ai/ai-sitemap.json
+Sitemap: https://{{VITE_APP_DOMAIN}}/sitemap.xml
+Sitemap: https://{{VITE_APP_DOMAIN}}/ai-sitemap.json
 
 # ===========================================
 # AI Content Files
 # ===========================================
 
 # LLMs.txt - AI crawler guidance
-# Available at: https://shapeshyft.ai/llms.txt
+# Available at: https://{{VITE_APP_DOMAIN}}/llms.txt
 
 # AI Sitemap - Structured data for AI
-# Available at: https://shapeshyft.ai/ai-sitemap.json
+# Available at: https://{{VITE_APP_DOMAIN}}/ai-sitemap.json

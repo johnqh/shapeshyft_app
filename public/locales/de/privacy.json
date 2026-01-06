@@ -1,14 +1,14 @@
 {
   "seo": {
-    "title": "Privacy Policy - ShapeShyft",
-    "description": "Learn how ShapeShyft collects, uses, and protects your personal information."
+    "title": "Privacy Policy - {{appName}}",
+    "description": "Learn how {{appName}} collects, uses, and protects your personal information."
   },
   "title": "Privacy Policy",
   "lastUpdated": "Last updated: {{date}}",
   "sections": {
     "introduction": {
       "title": "Introduction",
-      "content": "At ShapeShyft, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
+      "content": "At {{appName}}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service."
     },
     "collection": {
       "title": "Information We Collect",

@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Contact Us - ShapeShyft",
-    "description": "Get in touch with the ShapeShyft team. We're here to help with any questions about our API platform."
+    "title": "Contact Us - {{appName}}",
+    "description": "Get in touch with the {{appName}} team. We're here to help with any questions about our API platform."
   },
   "title": "Contact Us",
   "subtitle": "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",

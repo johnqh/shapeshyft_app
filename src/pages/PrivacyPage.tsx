@@ -5,13 +5,14 @@ import { CONSTANTS } from '../config/constants';
 
 function PrivacyPage() {
   const { t } = useTranslation('privacy');
+  const appName = CONSTANTS.APP_NAME;
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/privacy"
-        title={t('seo.title')}
-        description={t('seo.description')}
+        title={t('seo.title', { appName })}
+        description={t('seo.description', { appName })}
       />
 
       <main className="flex-1 overflow-auto">
@@ -30,7 +31,7 @@ function PrivacyPage() {
                 {t('sections.introduction.title')}
               </h2>
               <p className="text-theme-text-secondary">
-                {t('sections.introduction.content')}
+                {t('sections.introduction.content', { appName })}
               </p>
             </section>
 

@@ -6,11 +6,11 @@
     "ctaSecondary": "View Documentation"
   },
   "features": {
-    "title": "Why ShapeShyft?",
+    "title": "Why {{appName}}?",
     "subtitle": "Build reliable AI-powered APIs with confidence",
     "structuredOutput": {
       "title": "Structured Output",
-      "description": "Define JSON schemas for your API responses. ShapeShyft ensures LLM outputs always match your expected format."
+      "description": "Define JSON schemas for your API responses. {{appName}} ensures LLM outputs always match your expected format."
     },
     "multiProvider": {
       "title": "Multi-Provider Support",
@@ -27,7 +27,7 @@
   },
   "useCases": {
     "title": "Use Cases",
-    "subtitle": "What you can build with ShapeShyft",
+    "subtitle": "What you can build with {{appName}}",
     "classification": {
       "title": "Text Classification",
       "description": "Categorize content, detect sentiment, or label data with consistent structured outputs."

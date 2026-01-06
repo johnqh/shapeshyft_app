@@ -41,7 +41,11 @@
       "Bash(pip3 install:*)",
       "WebSearch",
       "WebFetch(domain:community.revenuecat.com)",
-      "WebFetch(domain:www.revenuecat.com)"
+      "WebFetch(domain:www.revenuecat.com)",
+      "Bash(for lang in ar de es fr it ja ko pt ru sv th uk vi zh zh-hant)",
+      "Bash(do cp en/sitemap.json \"$lang/\")",
+      "Bash(done)",
+      "Bash(do cp en/common.json \"$lang/\")"
     ]
   }
 }

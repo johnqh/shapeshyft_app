@@ -10,6 +10,7 @@ function HomePage() {
   const { t } = useTranslation('home');
   const { user, openModal } = useAuthStatus();
   const { navigate } = useLocalizedNavigate();
+  const appName = CONSTANTS.APP_NAME;
 
   const isAuthenticated = !!user;
 
@@ -100,7 +101,7 @@ function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-theme-text-primary mb-4">
-              {t('features.title')}
+              {t('features.title', { appName })}
             </h2>
             <p className="text-lg text-theme-text-secondary">
               {t('features.subtitle')}
@@ -119,7 +120,7 @@ function HomePage() {
                 {t('features.structuredOutput.title')}
               </h3>
               <p className="text-theme-text-secondary text-sm">
-                {t('features.structuredOutput.description')}
+                {t('features.structuredOutput.description', { appName })}
               </p>
             </div>
 
@@ -180,7 +181,7 @@ function HomePage() {
               {t('useCases.title')}
             </h2>
             <p className="text-lg text-theme-text-secondary">
-              {t('useCases.subtitle')}
+              {t('useCases.subtitle', { appName })}
             </p>
           </div>
 

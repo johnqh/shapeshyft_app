@@ -35,6 +35,7 @@ function PricingPage() {
   const { currentSubscription } = useSafeSubscriptionContext();
   const { navigate } = useLocalizedNavigate();
   const { networkClient, baseUrl, token, isReady } = useApi();
+  const appName = CONSTANTS.APP_NAME;
 
   const isAuthenticated = !!user;
   const hasActiveSubscription = currentSubscription?.isActive ?? false;
@@ -296,7 +297,7 @@ function PricingPage() {
           </h2>
 
           <div className="space-y-6">
-            {(t('faq.items', { returnObjects: true }) as { question: string; answer: string }[]).map(
+            {(t('faq.items', { returnObjects: true, appName }) as { question: string; answer: string }[]).map(
               (item, index) => (
                 <div
                   key={index}

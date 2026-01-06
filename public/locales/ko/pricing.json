@@ -58,7 +58,7 @@
     "items": [
       {
         "question": "What counts as an API request?",
-        "answer": "Each call to your ShapeShyft endpoint counts as one request, regardless of the underlying LLM provider used."
+        "answer": "Each call to your {{appName}} endpoint counts as one request, regardless of the underlying LLM provider used."
       },
       {
         "question": "Do I need my own LLM API keys?",

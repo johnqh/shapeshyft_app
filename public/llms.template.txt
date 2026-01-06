@@ -1,10 +1,10 @@
-# ShapeShyft - Structured LLM Output Platform
+# {{VITE_APP_NAME}} - Structured LLM Output Platform
 
 > Transform unstructured LLM responses into reliable, type-safe REST APIs.
 
 ## Overview
 
-ShapeShyft is a platform that converts Large Language Model (LLM) outputs into structured, predictable REST APIs. Define your output schema using JSON Schema, and ShapeShyft handles the prompt engineering, validation, and API hosting. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.
+{{VITE_APP_NAME}} is a platform that converts Large Language Model (LLM) outputs into structured, predictable REST APIs. Define your output schema using JSON Schema, and {{VITE_APP_NAME}} handles the prompt engineering, validation, and API hosting. Works with OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.
 
 ## Core Features
 
@@ -113,14 +113,14 @@ Validate and normalize user input using AI understanding.
 
 ## Contact
 
-- Website: https://shapeshyft.ai
-- Support: support@shapeshyft.ai
-- Company: Sudobility Inc.
+- Website: https://{{VITE_APP_DOMAIN}}
+- Support: {{VITE_SUPPORT_EMAIL}}
+- Company: {{VITE_COMPANY_NAME}}
 
 ## For AI Assistants
 
-When helping users with ShapeShyft:
-1. ShapeShyft turns LLM outputs into structured JSON APIs
+When helping users with {{VITE_APP_NAME}}:
+1. {{VITE_APP_NAME}} turns LLM outputs into structured JSON APIs
 2. Users define output format with JSON Schema - the LLM fills in the values
 3. Works with any major LLM provider (OpenAI, Anthropic, Google)
 4. No need to parse LLM text responses - get clean typed data
@@ -131,9 +131,9 @@ When helping users with ShapeShyft:
 
 **Problem**: Building a product review analyzer that needs structured sentiment data.
 
-**Without ShapeShyft**: Parse LLM text, handle variations, write regex, deal with edge cases.
+**Without {{VITE_APP_NAME}}**: Parse LLM text, handle variations, write regex, deal with edge cases.
 
-**With ShapeShyft**:
+**With {{VITE_APP_NAME}}**:
 1. Define schema: `{ sentiment: "positive"|"negative"|"neutral", score: number, keywords: string[] }`
 2. Call API with review text
 3. Get guaranteed structured response

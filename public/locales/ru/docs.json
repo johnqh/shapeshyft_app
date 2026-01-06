@@ -1,6 +1,6 @@
 {
   "title": "Documentation",
-  "subtitle": "Learn how to build structured AI APIs with ShapeShyft",
+  "subtitle": "Learn how to build structured AI APIs with {{appName}}",
   "nav": {
     "gettingStarted": "Getting Started",
     "concepts": "Core Concepts",
@@ -61,11 +61,11 @@
     },
     "inputSchema": {
       "title": "Input Schema",
-      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, ShapeShyft validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
+      "description": "Define the expected structure of input data using JSON Schema. When callers send data to your endpoint, {{appName}} validates it against your input schema before processing. This ensures your LLM receives well-formed data and provides clear error messages for invalid requests."
     },
     "outputSchema": {
       "title": "Output Schema",
-      "description": "Define the structure of LLM outputs using JSON Schema. ShapeShyft instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
+      "description": "Define the structure of LLM outputs using JSON Schema. {{appName}} instructs the LLM to return data matching your schema and validates the response, automatically retrying if the output doesn't conform."
     },
     "context": {
       "title": "System Context",

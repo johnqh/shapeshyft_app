@@ -123,12 +123,13 @@ function DocsPage() {
 
 function GettingStartedContent() {
   const { t } = useTranslation('docs');
+  const appName = CONSTANTS.APP_NAME;
   const steps = t('gettingStarted.steps', { returnObjects: true }) as { title: string; description: string }[];
 
   return (
     <div className="space-y-8 max-w-3xl">
       <p className="text-theme-text-secondary">
-        {t('subtitle')}
+        {t('subtitle', { appName })}
       </p>
 
       <div className="space-y-4">
@@ -155,6 +156,7 @@ function GettingStartedContent() {
 
 function ConceptsContent() {
   const { t } = useTranslation('docs');
+  const appName = CONSTANTS.APP_NAME;
   const endpointItems = t('concepts.endpoints.items', { returnObjects: true }) as { name: string; description: string }[];
 
   return (
@@ -190,7 +192,7 @@ function ConceptsContent() {
           {t('concepts.inputSchema.title')}
         </h2>
         <p className="text-theme-text-secondary">
-          {t('concepts.inputSchema.description')}
+          {t('concepts.inputSchema.description', { appName })}
         </p>
       </div>
 
@@ -200,7 +202,7 @@ function ConceptsContent() {
           {t('concepts.outputSchema.title')}
         </h2>
         <p className="text-theme-text-secondary">
-          {t('concepts.outputSchema.description')}
+          {t('concepts.outputSchema.description', { appName })}
         </p>
       </div>
 
@@ -308,7 +310,7 @@ function ApiReferenceContent() {
           Example Request
         </h3>
         <pre className="text-sm text-blue-700 dark:text-blue-300 overflow-x-auto">
-{`curl -X POST https://api.shapeshyft.io/api/v1/ai/my-org/my-project/classify \\
+{`curl -X POST https://api.${CONSTANTS.APP_DOMAIN}/api/v1/ai/my-org/my-project/classify \\
   -H "Content-Type: application/json" \\
   -d '{"text": "This is a great product!"}'`}
         </pre>

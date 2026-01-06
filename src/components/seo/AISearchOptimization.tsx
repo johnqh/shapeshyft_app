@@ -23,7 +23,7 @@ interface AISearchOptimizationProps {
   benefits?: string[];
 }
 
-const BASE_URL = 'https://shapeshyft.io';
+const BASE_URL = `https://${import.meta.env.VITE_APP_DOMAIN || 'shapeshyft.ai'}`;
 
 /**
  * AI Search Optimization Component

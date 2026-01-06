@@ -5,13 +5,14 @@ import { CONSTANTS } from '../config/constants';
 
 function ContactPage() {
   const { t } = useTranslation('contact');
+  const appName = CONSTANTS.APP_NAME;
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/contact"
-        title={t('seo.title')}
-        description={t('seo.description')}
+        title={t('seo.title', { appName })}
+        description={t('seo.description', { appName })}
       />
 
       <main className="flex-1 overflow-auto">

@@ -80,6 +80,7 @@ const ChevronRightIcon = ({ className }: { className?: string }) => (
 
 function SitemapPage() {
   const { t } = useTranslation('sitemap');
+  const appName = CONSTANTS.APP_NAME;
 
   // Sort languages by their native name
   const sortedLanguages = useMemo(() => {
@@ -121,7 +122,7 @@ function SitemapPage() {
         {
           path: '/docs',
           label: t('links.docs', 'Documentation'),
-          description: t('descriptions.docs', `Learn how to use ${CONSTANTS.APP_NAME}`),
+          description: t('descriptions.docs', { defaultValue: `Learn how to use ${appName}`, appName }),
         },
         {
           path: '/docs/getting-started',
@@ -173,7 +174,7 @@ function SitemapPage() {
         {
           path: '/about',
           label: t('links.about', 'About'),
-          description: t('descriptions.about', `About ${CONSTANTS.APP_NAME}`),
+          description: t('descriptions.about', { defaultValue: `About ${appName}`, appName }),
         },
         {
           path: '/contact',
@@ -203,10 +204,10 @@ function SitemapPage() {
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
-        title={t('seo.title', 'Sitemap')}
-        description={t('seo.description', `Navigate all pages and features available on ${CONSTANTS.APP_NAME}`)}
+        title={t('seo.title', { defaultValue: `Sitemap - ${appName}`, appName })}
+        description={t('seo.description', { defaultValue: `Navigate all pages and features available on ${appName}`, appName })}
         canonical="/sitemap"
-        keywords={`sitemap, navigation, ${CONSTANTS.APP_NAME} pages`}
+        keywords={`sitemap, navigation, ${appName} pages`}
       />
 
       <main className="flex-1 overflow-auto">
@@ -217,7 +218,7 @@ function SitemapPage() {
               {t('title', 'Sitemap')}
             </h1>
             <p className="text-xl text-theme-text-secondary">
-              {t('subtitle', `Explore all pages and features available on ${CONSTANTS.APP_NAME}`)}
+              {t('subtitle', { defaultValue: `Explore all pages and features available on ${appName}`, appName })}
             </p>
           </div>
 
@@ -228,7 +229,7 @@ function SitemapPage() {
               {t('sections.languages', 'Languages')}
             </h2>
             <p className="text-theme-text-secondary mb-6">
-              {t('languageDescription', `${CONSTANTS.APP_NAME} is available in multiple languages. Select your preferred language:`)}
+              {t('languageDescription', { defaultValue: `${appName} is available in multiple languages. Select your preferred language:`, appName })}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {sortedLanguages.map(lang => (

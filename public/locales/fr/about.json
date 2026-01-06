@@ -1,16 +1,16 @@
 {
   "seo": {
-    "title": "About ShapeShyft",
-    "description": "Learn about ShapeShyft - the platform that transforms LLM outputs into structured, reliable APIs."
+    "title": "About {{appName}}",
+    "description": "Learn about {{appName}} - the platform that transforms LLM outputs into structured, reliable APIs."
   },
   "hero": {
-    "title": "About ShapeShyft",
+    "title": "About {{appName}}",
     "subtitle": "We're on a mission to make AI APIs reliable and predictable for developers everywhere."
   },
   "story": {
     "title": "Our Story",
-    "paragraph1": "ShapeShyft was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
-    "paragraph2": "We built ShapeShyft to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
+    "paragraph1": "{{appName}} was born from a simple frustration: working with LLM outputs is unpredictable. Every developer who has integrated AI into their applications knows the challenge of parsing unstructured text responses and handling edge cases.",
+    "paragraph2": "We built {{appName}} to solve this problem once and for all. By combining JSON Schema validation with intelligent prompt engineering, we transform chaotic LLM outputs into structured, type-safe APIs that developers can rely on."
   },
   "mission": {
     "title": "Our Mission",
@@ -37,7 +37,7 @@
   },
   "cta": {
     "title": "Ready to Get Started?",
-    "description": "Join developers who are building reliable AI-powered applications with ShapeShyft.",
+    "description": "Join developers who are building reliable AI-powered applications with {{appName}}.",
     "button": "Read the Docs"
   }
 }

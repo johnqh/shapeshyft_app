@@ -2,16 +2,18 @@ import { useTranslation } from 'react-i18next';
 import ScreenContainer from '../components/layout/ScreenContainer';
 import SEO from '../components/seo/SEO';
 import LocalizedLink from '../components/layout/LocalizedLink';
+import { CONSTANTS } from '../config/constants';
 
 function AboutPage() {
   const { t } = useTranslation('about');
+  const appName = CONSTANTS.APP_NAME;
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/about"
-        title={t('seo.title')}
-        description={t('seo.description')}
+        title={t('seo.title', { appName })}
+        description={t('seo.description', { appName })}
       />
 
       <main className="flex-1 overflow-auto">
@@ -20,7 +22,7 @@ function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20" />
           <div className="relative max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-theme-text-primary mb-6">
-              {t('hero.title')}
+              {t('hero.title', { appName })}
             </h1>
             <p className="text-lg sm:text-xl text-theme-text-secondary max-w-2xl mx-auto">
               {t('hero.subtitle')}
@@ -36,10 +38,10 @@ function AboutPage() {
             </h2>
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <p className="text-theme-text-secondary mb-6">
-                {t('story.paragraph1')}
+                {t('story.paragraph1', { appName })}
               </p>
               <p className="text-theme-text-secondary mb-6">
-                {t('story.paragraph2')}
+                {t('story.paragraph2', { appName })}
               </p>
             </div>
           </div>
@@ -96,7 +98,7 @@ function AboutPage() {
               {t('cta.title')}
             </h2>
             <p className="text-lg text-theme-text-secondary mb-8">
-              {t('cta.description')}
+              {t('cta.description', { appName })}
             </p>
             <LocalizedLink
               to="/docs"

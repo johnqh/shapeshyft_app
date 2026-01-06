@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Settings - ShapeShyft",
-    "description": "Customize your ShapeShyft experience with theme and display settings."
+    "title": "Settings - {{appName}}",
+    "description": "Customize your {{appName}} experience with theme and display settings."
   },
   "title": "Settings",
   "appearance": {

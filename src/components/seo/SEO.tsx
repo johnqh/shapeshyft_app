@@ -12,7 +12,7 @@ interface SEOProps {
   structuredData?: object;
 }
 
-const BASE_URL = 'https://shapeshyft.io';
+const BASE_URL = `https://${import.meta.env.VITE_APP_DOMAIN || 'shapeshyft.ai'}`;
 const DEFAULT_TITLE = `${CONSTANTS.APP_NAME} - Transform LLM Outputs into Structured APIs`;
 const DEFAULT_DESCRIPTION = 'Build reliable AI-powered REST APIs with JSON Schema validation. Transform unstructured LLM responses into predictable, type-safe endpoints.';
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;

@@ -3,17 +3,19 @@ import ScreenContainer from '../components/layout/ScreenContainer';
 import SEO from '../components/seo/SEO';
 import { useTheme } from '../context/ThemeContext';
 import { Theme, FontSize } from '@sudobility/types';
+import { CONSTANTS } from '../config/constants';
 
 function SettingsPage() {
   const { t } = useTranslation('settings');
   const { theme, fontSize, setTheme, setFontSize } = useTheme();
+  const appName = CONSTANTS.APP_NAME;
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/settings"
-        title={t('seo.title')}
-        description={t('seo.description')}
+        title={t('seo.title', { appName })}
+        description={t('seo.description', { appName })}
       />
 
       <main className="flex-1 overflow-auto">

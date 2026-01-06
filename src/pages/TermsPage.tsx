@@ -5,13 +5,14 @@ import { CONSTANTS } from '../config/constants';
 
 function TermsPage() {
   const { t } = useTranslation('terms');
+  const appName = CONSTANTS.APP_NAME;
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/terms"
-        title={t('seo.title')}
-        description={t('seo.description')}
+        title={t('seo.title', { appName })}
+        description={t('seo.description', { appName })}
       />
 
       <main className="flex-1 overflow-auto">
@@ -30,7 +31,7 @@ function TermsPage() {
                 {t('sections.acceptance.title')}
               </h2>
               <p className="text-theme-text-secondary">
-                {t('sections.acceptance.content')}
+                {t('sections.acceptance.content', { appName })}
               </p>
             </section>
 
@@ -40,7 +41,7 @@ function TermsPage() {
                 {t('sections.service.title')}
               </h2>
               <p className="text-theme-text-secondary">
-                {t('sections.service.content')}
+                {t('sections.service.content', { appName })}
               </p>
             </section>
 
@@ -65,7 +66,7 @@ function TermsPage() {
                 {t('sections.acceptableUse.title')}
               </h2>
               <p className="text-theme-text-secondary mb-4">
-                {t('sections.acceptableUse.description')}
+                {t('sections.acceptableUse.description', { appName })}
               </p>
               <ul className="list-disc list-inside text-theme-text-secondary space-y-2">
                 {(t('sections.acceptableUse.items', { returnObjects: true }) as string[]).map((item, index) => (
@@ -90,7 +91,7 @@ function TermsPage() {
                 {t('sections.ip.title')}
               </h2>
               <p className="text-theme-text-secondary">
-                {t('sections.ip.content')}
+                {t('sections.ip.content', { appName })}
               </p>
             </section>
 
@@ -100,7 +101,7 @@ function TermsPage() {
                 {t('sections.liability.title')}
               </h2>
               <p className="text-theme-text-secondary">
-                {t('sections.liability.content')}
+                {t('sections.liability.content', { appName })}
               </p>
             </section>
 
