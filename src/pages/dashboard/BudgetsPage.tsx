@@ -11,7 +11,7 @@ import { useApi } from '../../hooks/useApi';
 function BudgetsPage() {
   const { t } = useTranslation('dashboard');
   const { success } = useToast();
-  const { networkClient, baseUrl, userId, token } = useApi();
+  const { networkClient, baseUrl, userId, token, testMode } = useApi();
 
   const {
     budgets,
@@ -27,6 +27,7 @@ function BudgetsPage() {
     networkClient,
     userId: userId ?? '',
     token,
+    testMode,
   });
 
   const [showForm, setShowForm] = useState(false);

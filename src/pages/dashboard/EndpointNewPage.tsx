@@ -24,7 +24,7 @@ function EndpointNewPage() {
   const { entitySlug = '', projectId } = useParams<{ entitySlug: string; projectId: string }>();
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const { success } = useToast();
 
   const [displayName, setDisplayName] = useState('');
@@ -45,6 +45,7 @@ function EndpointNewPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 
@@ -53,6 +54,7 @@ function EndpointNewPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     projectId: projectId ?? '',
     autoFetch: isReady && !!projectId && !!entitySlug,
   });

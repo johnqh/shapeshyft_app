@@ -27,7 +27,7 @@ function EndpointDetailPage() {
   }>();
   const { t } = useTranslation('dashboard');
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, token, isReady, isLoading: apiLoading } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady, isLoading: apiLoading } = useApi();
   const { success, error: showError } = useToast();
 
   // Tab state
@@ -64,6 +64,7 @@ function EndpointDetailPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 
@@ -72,6 +73,7 @@ function EndpointDetailPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 
@@ -82,6 +84,7 @@ function EndpointDetailPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     projectId: projectId ?? '',
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
@@ -96,7 +99,7 @@ function EndpointDetailPage() {
     getPrompt,
     generateSampleInput,
     validateInput,
-  } = useEndpointTester(networkClient, baseUrl);
+  } = useEndpointTester(networkClient, baseUrl, testMode);
 
   // Prompt preview state
   const [promptPreview, setPromptPreview] = useState<string | null>(null);

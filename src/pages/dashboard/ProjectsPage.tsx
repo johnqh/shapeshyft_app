@@ -43,7 +43,7 @@ function ProjectsPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { entitySlug = '' } = useParams<{ entitySlug: string }>();
-  const { networkClient, baseUrl, token, isReady, isLoading: apiLoading } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady, isLoading: apiLoading } = useApi();
   const { success } = useToast();
 
   const {
@@ -57,6 +57,7 @@ function ProjectsPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 

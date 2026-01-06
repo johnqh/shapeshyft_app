@@ -1,0 +1,271 @@
+{
+  "seo": {
+    "main": {
+      "title": "Use Cases - {{appName}}",
+      "description": "Discover how {{appName}} transforms LLM outputs into structured, reliable data. From text classification to data extraction and content generation.",
+      "keywords": "LLM use cases, structured output, text classification, data extraction, content generation, AI applications"
+    },
+    "text": {
+      "title": "Text Classification - Use Cases - {{appName}}",
+      "description": "Automatically categorize text with LLMs and get structured, validated output. Sentiment analysis, intent recognition, topic detection, and content moderation.",
+      "keywords": "text classification, sentiment analysis, intent recognition, topic detection, content moderation, NLP, LLM classification"
+    },
+    "data": {
+      "title": "Data Extraction - Use Cases - {{appName}}",
+      "description": "Extract structured data from unstructured documents with LLMs. Invoice processing, resume parsing, contract analysis, and form digitization.",
+      "keywords": "data extraction, document processing, invoice OCR, resume parsing, contract analysis, structured data, LLM extraction"
+    },
+    "content": {
+      "title": "Content Generation - Use Cases - {{appName}}",
+      "description": "Generate structured content with LLMs. Product descriptions, marketing copy, documentation, and personalized content with guaranteed formatting.",
+      "keywords": "content generation, AI copywriting, product descriptions, marketing automation, structured content, LLM content"
+    }
+  },
+  "nav": {
+    "allUseCases": "All Use Cases",
+    "readDocs": "Read the Docs",
+    "viewPricing": "View Pricing",
+    "exploreOther": "Explore Other Use Cases"
+  },
+  "main": {
+    "hero": {
+      "title": "Build Anything with Structured LLM Output",
+      "subtitle": "{{appName}} transforms unpredictable AI responses into reliable, schema-validated data. Here are some common use cases—but your imagination is the only limit."
+    },
+    "flexibility": {
+      "title": "Your Use Case, Your Rules",
+      "description": "While we've highlighted common patterns, {{appName}} is designed to be completely flexible. Define any JSON schema, connect any LLM provider, and build exactly what you need. Whether you're creating a chatbot, analyzing research papers, automating workflows, or building something entirely new—if you can describe it in a schema, {{appName}} can deliver it."
+    },
+    "features": {
+      "customSchemas": {
+        "title": "Custom Schemas",
+        "description": "Define any data structure you need"
+      },
+      "anyProvider": {
+        "title": "Any LLM Provider",
+        "description": "OpenAI, Anthropic, Google & more"
+      },
+      "validatedOutput": {
+        "title": "Validated Output",
+        "description": "Guaranteed schema compliance"
+      },
+      "apiFirst": {
+        "title": "API-First",
+        "description": "Easy integration with any stack"
+      }
+    },
+    "cta": {
+      "title": "Ready to Build?",
+      "subtitle": "Start with our free tier and see how {{appName}} can transform your AI integration."
+    }
+  },
+  "useCases": {
+    "textClassification": {
+      "title": "Text Classification",
+      "description": "Automatically categorize text into predefined labels with high accuracy. Perfect for sentiment analysis, topic detection, intent recognition, and content moderation.",
+      "examples": ["Sentiment Analysis", "Topic Detection", "Intent Recognition", "Content Moderation"]
+    },
+    "dataExtraction": {
+      "title": "Data Extraction",
+      "description": "Extract structured information from unstructured text documents. Transform invoices, contracts, emails, and forms into clean, usable data.",
+      "examples": ["Invoice Processing", "Resume Parsing", "Contract Analysis", "Email Extraction"]
+    },
+    "contentGeneration": {
+      "title": "Content Generation",
+      "description": "Generate high-quality, structured content programmatically. Create product descriptions, marketing copy, documentation, and more with consistent formatting.",
+      "examples": ["Product Descriptions", "Marketing Copy", "Documentation", "Email Templates"]
+    }
+  },
+  "text": {
+    "hero": {
+      "title": "Text Classification",
+      "subtitle": "Transform unstructured text into actionable categories. Define your classification schema, and {{appName}} ensures every response matches your exact requirements."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Define Your Schema",
+        "description": "Specify exactly what classifications you need—categories, confidence scores, multiple labels, or nested structures."
+      },
+      "step2": {
+        "title": "Send Your Text",
+        "description": "Call the {{appName}} API with your text. We route it to your chosen LLM with optimized prompting."
+      },
+      "step3": {
+        "title": "Get Validated Output",
+        "description": "Receive JSON that matches your schema exactly—guaranteed. No parsing errors, no unexpected formats."
+      }
+    },
+    "example": {
+      "title": "Example: Customer Feedback Classification",
+      "schemaTitle": "Your JSON Schema",
+      "outputTitle": "Guaranteed Output",
+      "note": "Every response is validated against your schema before being returned. Invalid outputs are automatically retried."
+    },
+    "applications": {
+      "title": "Applications",
+      "sentiment": {
+        "title": "Sentiment Analysis",
+        "description": "Analyze customer feedback, reviews, and social media mentions to understand public perception. Get consistent sentiment scores that integrate directly into your analytics pipeline.",
+        "examples": ["Product reviews", "Customer support tickets", "Social media monitoring", "Survey responses"]
+      },
+      "intent": {
+        "title": "Intent Recognition",
+        "description": "Understand what users want from their messages. Route inquiries to the right department, trigger automated workflows, or provide instant responses based on detected intent.",
+        "examples": ["Chatbot routing", "Email categorization", "Voice assistant commands", "Support ticket triage"]
+      },
+      "topic": {
+        "title": "Topic Detection",
+        "description": "Automatically tag content with relevant topics and categories. Perfect for content management, search optimization, and organizing large document collections.",
+        "examples": ["News categorization", "Document tagging", "Research paper classification", "Content recommendation"]
+      },
+      "moderation": {
+        "title": "Content Moderation",
+        "description": "Flag inappropriate content, detect spam, and identify policy violations. Get structured classifications that enable automated moderation workflows.",
+        "examples": ["User-generated content", "Comment sections", "Forum posts", "Product listings"]
+      }
+    },
+    "cta": {
+      "title": "Start Classifying Text Today",
+      "subtitle": "Create your first text classification endpoint in minutes. No ML expertise required."
+    }
+  },
+  "data": {
+    "hero": {
+      "title": "Data Extraction",
+      "subtitle": "Turn unstructured documents into clean, structured data. Define your target schema, and {{appName}} extracts exactly the information you need—every time."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Define Your Schema",
+        "description": "Describe the exact data structure you want to extract—nested objects, arrays, typed fields with validation."
+      },
+      "step2": {
+        "title": "Send Your Document",
+        "description": "Pass document text to the {{appName}} API. We handle the prompting and extraction logic."
+      },
+      "step3": {
+        "title": "Get Structured Data",
+        "description": "Receive validated JSON matching your schema. Import directly into databases, spreadsheets, or APIs."
+      }
+    },
+    "example": {
+      "title": "Example: Invoice Data Extraction",
+      "schemaTitle": "Your JSON Schema",
+      "outputTitle": "Extracted Output",
+      "note": "Complex nested structures are extracted accurately, with proper typing for numbers, dates, and arrays."
+    },
+    "applications": {
+      "title": "Applications",
+      "invoice": {
+        "title": "Invoice Processing",
+        "description": "Extract vendor details, line items, totals, and tax information from invoices in any format. Feed directly into your accounting system.",
+        "examples": ["AP automation", "Expense tracking", "Audit preparation", "Vendor management"]
+      },
+      "resume": {
+        "title": "Resume Parsing",
+        "description": "Convert resumes into structured candidate profiles. Extract contact info, work history, education, skills, and certifications consistently.",
+        "examples": ["ATS integration", "Candidate matching", "Skills inventory", "Recruitment analytics"]
+      },
+      "contract": {
+        "title": "Contract Analysis",
+        "description": "Pull key terms, dates, parties, and obligations from legal documents. Automate contract review and compliance monitoring.",
+        "examples": ["Due diligence", "Risk assessment", "Renewal tracking", "Clause extraction"]
+      },
+      "form": {
+        "title": "Form Processing",
+        "description": "Digitize paper forms, applications, and questionnaires. Extract field values regardless of layout variations.",
+        "examples": ["Insurance claims", "Loan applications", "Government forms", "Survey responses"]
+      }
+    },
+    "benefits": {
+      "title": "Why {{appName}} for Data Extraction?",
+      "schemaEnforcement": {
+        "title": "Schema Enforcement",
+        "description": "Every extraction matches your exact schema. No missing fields, no unexpected formats."
+      },
+      "formatFlexibility": {
+        "title": "Format Flexibility",
+        "description": "Handle variations in document layouts. The same schema works across different formats."
+      },
+      "instantIntegration": {
+        "title": "Instant Integration",
+        "description": "Get clean JSON ready for databases, APIs, and spreadsheets without post-processing."
+      }
+    },
+    "cta": {
+      "title": "Start Extracting Data Today",
+      "subtitle": "Build your first data extraction endpoint in minutes. No ML training required."
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "Content Generation",
+      "subtitle": "Generate high-quality content programmatically with guaranteed structure. Define your content format once, then generate at scale with perfect consistency."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Define Your Format",
+        "description": "Specify content structure—headlines, body sections, bullet points, metadata, and length constraints."
+      },
+      "step2": {
+        "title": "Provide Context",
+        "description": "Send product data, topics, or source material. The LLM generates content tailored to your input."
+      },
+      "step3": {
+        "title": "Get Formatted Content",
+        "description": "Receive perfectly structured content ready for your CMS, database, or application."
+      }
+    },
+    "example": {
+      "title": "Example: Product Description Generation",
+      "schemaTitle": "Your Content Schema",
+      "outputTitle": "Generated Content",
+      "note": "Every piece of content matches your schema constraints—length limits, required fields, and array bounds."
+    },
+    "applications": {
+      "title": "Applications",
+      "productDescriptions": {
+        "title": "Product Descriptions",
+        "description": "Generate consistent, compelling product copy at scale. Define structure for features, benefits, specs, and SEO keywords—then generate thousands of descriptions programmatically.",
+        "examples": ["E-commerce listings", "Catalog pages", "Marketplace listings", "Product specs"]
+      },
+      "marketingCopy": {
+        "title": "Marketing Copy",
+        "description": "Create structured marketing content with consistent formatting. Headlines, body copy, CTAs, and metadata all conform to your brand guidelines.",
+        "examples": ["Ad copy", "Landing pages", "Email campaigns", "Social media posts"]
+      },
+      "documentation": {
+        "title": "Documentation",
+        "description": "Generate technical documentation with consistent structure. API docs, user guides, and help articles all follow your defined templates.",
+        "examples": ["API documentation", "User guides", "FAQ generation", "Release notes"]
+      },
+      "personalizedContent": {
+        "title": "Personalized Content",
+        "description": "Create individualized content at scale. Generate personalized emails, recommendations, and reports based on user data while maintaining consistent structure.",
+        "examples": ["Personalized emails", "Custom reports", "Recommendations", "Notifications"]
+      }
+    },
+    "benefits": {
+      "title": "Why {{appName}} for Content Generation?",
+      "lengthControl": {
+        "title": "Length Control",
+        "description": "Set character limits for headlines, descriptions, and body content. Never exceed platform limits."
+      },
+      "consistentStructure": {
+        "title": "Consistent Structure",
+        "description": "Every piece of content follows your defined format. Perfect for templates and bulk generation."
+      },
+      "scaleInstantly": {
+        "title": "Scale Instantly",
+        "description": "Generate hundreds of content pieces with a single endpoint. Same quality, fraction of the time."
+      }
+    },
+    "cta": {
+      "title": "Start Generating Content Today",
+      "subtitle": "Create your first content generation endpoint in minutes. Scale from one to thousands instantly."
+    }
+  }
+}

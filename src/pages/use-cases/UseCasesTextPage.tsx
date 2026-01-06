@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import ScreenContainer from '../../components/layout/ScreenContainer';
 import SEO from '../../components/seo/SEO';
 import LocalizedLink from '../../components/layout/LocalizedLink';
@@ -34,37 +35,40 @@ const exampleOutput = `{
   "urgency": "high"
 }`;
 
-const applications = [
-  {
-    title: 'Sentiment Analysis',
-    description: 'Analyze customer feedback, reviews, and social media mentions to understand public perception. Get consistent sentiment scores that integrate directly into your analytics pipeline.',
-    examples: ['Product reviews', 'Customer support tickets', 'Social media monitoring', 'Survey responses'],
-  },
-  {
-    title: 'Intent Recognition',
-    description: 'Understand what users want from their messages. Route inquiries to the right department, trigger automated workflows, or provide instant responses based on detected intent.',
-    examples: ['Chatbot routing', 'Email categorization', 'Voice assistant commands', 'Support ticket triage'],
-  },
-  {
-    title: 'Topic Detection',
-    description: 'Automatically tag content with relevant topics and categories. Perfect for content management, search optimization, and organizing large document collections.',
-    examples: ['News categorization', 'Document tagging', 'Research paper classification', 'Content recommendation'],
-  },
-  {
-    title: 'Content Moderation',
-    description: 'Flag inappropriate content, detect spam, and identify policy violations. Get structured classifications that enable automated moderation workflows.',
-    examples: ['User-generated content', 'Comment sections', 'Forum posts', 'Product listings'],
-  },
-];
-
 function UseCasesTextPage() {
+  const { t } = useTranslation('useCases');
+  const appName = CONSTANTS.APP_NAME;
+
+  const applications = [
+    {
+      titleKey: 'text.applications.sentiment.title',
+      descriptionKey: 'text.applications.sentiment.description',
+      examplesKey: 'text.applications.sentiment.examples',
+    },
+    {
+      titleKey: 'text.applications.intent.title',
+      descriptionKey: 'text.applications.intent.description',
+      examplesKey: 'text.applications.intent.examples',
+    },
+    {
+      titleKey: 'text.applications.topic.title',
+      descriptionKey: 'text.applications.topic.description',
+      examplesKey: 'text.applications.topic.examples',
+    },
+    {
+      titleKey: 'text.applications.moderation.title',
+      descriptionKey: 'text.applications.moderation.description',
+      examplesKey: 'text.applications.moderation.examples',
+    },
+  ];
+
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/use-cases/text"
-        title={`Text Classification - Use Cases - ${CONSTANTS.APP_NAME}`}
-        description="Automatically categorize text with LLMs and get structured, validated output. Sentiment analysis, intent recognition, topic detection, and content moderation."
-        keywords="text classification, sentiment analysis, intent recognition, topic detection, content moderation, NLP, LLM classification"
+        title={t('seo.text.title', { appName })}
+        description={t('seo.text.description')}
+        keywords={t('seo.text.keywords')}
       />
 
       <main className="flex-1 overflow-auto">
@@ -79,14 +83,13 @@ function UseCasesTextPage() {
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              All Use Cases
+              {t('nav.allUseCases')}
             </LocalizedLink>
             <h1 className="text-4xl sm:text-5xl font-bold text-theme-text-primary mb-6">
-              Text Classification
+              {t('text.hero.title')}
             </h1>
             <p className="text-lg sm:text-xl text-theme-text-secondary max-w-3xl">
-              Transform unstructured text into actionable categories. Define your classification schema,
-              and {CONSTANTS.APP_NAME} ensures every response matches your exact requirements.
+              {t('text.hero.subtitle', { appName })}
             </p>
           </div>
         </section>
@@ -95,34 +98,40 @@ function UseCasesTextPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-8 text-center">
-              How It Works
+              {t('text.howItWorks.title')}
             </h2>
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-xl font-bold text-blue-600 dark:text-blue-400">1</span>
                 </div>
-                <h3 className="text-xl font-semibold text-theme-text-primary mb-2">Define Your Schema</h3>
+                <h3 className="text-xl font-semibold text-theme-text-primary mb-2">
+                  {t('text.howItWorks.step1.title')}
+                </h3>
                 <p className="text-theme-text-secondary">
-                  Specify exactly what classifications you need—categories, confidence scores, multiple labels, or nested structures.
+                  {t('text.howItWorks.step1.description')}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-xl font-bold text-blue-600 dark:text-blue-400">2</span>
                 </div>
-                <h3 className="text-xl font-semibold text-theme-text-primary mb-2">Send Your Text</h3>
+                <h3 className="text-xl font-semibold text-theme-text-primary mb-2">
+                  {t('text.howItWorks.step2.title')}
+                </h3>
                 <p className="text-theme-text-secondary">
-                  Call the {CONSTANTS.APP_NAME} API with your text. We route it to your chosen LLM with optimized prompting.
+                  {t('text.howItWorks.step2.description', { appName })}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-xl font-bold text-blue-600 dark:text-blue-400">3</span>
                 </div>
-                <h3 className="text-xl font-semibold text-theme-text-primary mb-2">Get Validated Output</h3>
+                <h3 className="text-xl font-semibold text-theme-text-primary mb-2">
+                  {t('text.howItWorks.step3.title')}
+                </h3>
                 <p className="text-theme-text-secondary">
-                  Receive JSON that matches your schema exactly—guaranteed. No parsing errors, no unexpected formats.
+                  {t('text.howItWorks.step3.description')}
                 </p>
               </div>
             </div>
@@ -133,22 +142,26 @@ function UseCasesTextPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-8 text-center">
-              Example: Customer Feedback Classification
+              {t('text.example.title')}
             </h2>
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-lg font-semibold text-theme-text-primary mb-4">Your JSON Schema</h3>
+                <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
+                  {t('text.example.schemaTitle')}
+                </h3>
                 <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto text-sm">
                   <code>{exampleSchema}</code>
                 </pre>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-theme-text-primary mb-4">Guaranteed Output</h3>
+                <h3 className="text-lg font-semibold text-theme-text-primary mb-4">
+                  {t('text.example.outputTitle')}
+                </h3>
                 <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto text-sm">
                   <code>{exampleOutput}</code>
                 </pre>
                 <p className="text-sm text-theme-text-secondary mt-4">
-                  Every response is validated against your schema before being returned. Invalid outputs are automatically retried.
+                  {t('text.example.note')}
                 </p>
               </div>
             </div>
@@ -159,25 +172,30 @@ function UseCasesTextPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-8 text-center">
-              Applications
+              {t('text.applications.title')}
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
-              {applications.map((app) => (
-                <div key={app.title} className="bg-theme-bg-secondary rounded-xl p-6 border border-theme-border">
-                  <h3 className="text-xl font-semibold text-theme-text-primary mb-3">{app.title}</h3>
-                  <p className="text-theme-text-secondary mb-4">{app.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {app.examples.map((example) => (
-                      <span
-                        key={example}
-                        className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full"
-                      >
-                        {example}
-                      </span>
-                    ))}
+              {applications.map((app) => {
+                const examples = t(app.examplesKey, { returnObjects: true }) as string[];
+                return (
+                  <div key={app.titleKey} className="bg-theme-bg-secondary rounded-xl p-6 border border-theme-border">
+                    <h3 className="text-xl font-semibold text-theme-text-primary mb-3">
+                      {t(app.titleKey)}
+                    </h3>
+                    <p className="text-theme-text-secondary mb-4">{t(app.descriptionKey)}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {Array.isArray(examples) && examples.map((example) => (
+                        <span
+                          key={example}
+                          className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full"
+                        >
+                          {example}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -186,23 +204,23 @@ function UseCasesTextPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-6">
-              Start Classifying Text Today
+              {t('text.cta.title')}
             </h2>
             <p className="text-lg text-theme-text-secondary mb-8">
-              Create your first text classification endpoint in minutes. No ML expertise required.
+              {t('text.cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <LocalizedLink
                 to="/docs"
                 className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
               >
-                Read the Docs
+                {t('nav.readDocs')}
               </LocalizedLink>
               <LocalizedLink
                 to="/use-cases"
                 className="inline-block px-8 py-3 bg-theme-bg-primary text-theme-text-primary font-semibold rounded-lg border border-theme-border hover:border-blue-300 transition-colors"
               >
-                Explore Other Use Cases
+                {t('nav.exploreOther')}
               </LocalizedLink>
             </div>
           </div>

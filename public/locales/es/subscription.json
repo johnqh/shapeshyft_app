@@ -2,6 +2,21 @@
   "title": "Manage Subscription",
   "noProducts": "No subscription plans available at this time.",
   "noProductsForPeriod": "No plans available for this billing period.",
+  "freeTier": {
+    "title": "Free",
+    "price": "$0",
+    "schemaValidation": "JSON Schema-validated outputs",
+    "allProviders": "All LLM providers (OpenAI, Anthropic, Google)",
+    "endpointTesting": "Built-in endpoint testing",
+    "analytics": "Basic usage analytics"
+  },
+  "rateLimits": {
+    "hourly": "{{limit}} requests/hour",
+    "daily": "{{limit}} requests/day",
+    "monthly": "{{limit}} requests/month",
+    "unlimited": "Unlimited",
+    "unlimitedRequests": "Unlimited API requests"
+  },
   "billingPeriod": {
     "monthly": "Monthly",
     "yearly": "Yearly"
@@ -37,7 +52,9 @@
     "plan": "Plan",
     "expires": "Expires",
     "willRenew": "Auto-Renew",
-    "premium": "Premium"
+    "premium": "Premium",
+    "monthlyUsage": "Monthly Usage",
+    "dailyUsage": "Daily Usage"
   },
   "periods": {
     "month": "/month",
@@ -46,7 +63,9 @@
   },
   "badges": {
     "popular": "Most Popular",
-    "saveYearly": "Save with Annual"
+    "saveYearly": "Save with Annual",
+    "currentPlan": "Current Plan",
+    "savePercent": "Save {{percent}}%"
   },
   "buttons": {
     "subscribe": "Subscribe Now",

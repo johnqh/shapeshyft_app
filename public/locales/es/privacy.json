@@ -60,7 +60,8 @@
     },
     "contact": {
       "title": "Contact Us",
-      "description": "If you have any questions about this Privacy Policy, please contact us:"
+      "description": "If you have any questions about this Privacy Policy, please contact us:",
+      "email": "Email:"
     }
   }
 }

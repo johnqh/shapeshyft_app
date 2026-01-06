@@ -13,6 +13,15 @@ export const CONSTANTS = {
   API_URL: import.meta.env.VITE_SHAPESHYFT_API_URL || 'http://localhost:8787',
   DEV_MODE: import.meta.env.VITE_DEV_MODE === 'true',
 
+  // Testnet/Sandbox Mode
+  TESTNET_ONLY: import.meta.env.VITE_TESTNET_ONLY === 'true',
+
+  // RevenueCat API key (selects sandbox when testnet mode enabled)
+  REVENUECAT_API_KEY:
+    import.meta.env.VITE_TESTNET_ONLY === 'true'
+      ? import.meta.env.VITE_REVENUECAT_API_KEY_SANDBOX || ''
+      : import.meta.env.VITE_REVENUECAT_API_KEY || '',
+
   // Social handles (without @ or full URL)
   TWITTER_HANDLE: import.meta.env.VITE_TWITTER_HANDLE || '',
   DISCORD_INVITE: import.meta.env.VITE_DISCORD_INVITE || '',

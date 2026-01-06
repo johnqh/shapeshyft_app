@@ -20,6 +20,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
 
   const baseUrl = CONSTANTS.API_URL;
   const userId = user?.uid ?? null;
+  const testMode = CONSTANTS.TESTNET_ONLY;
 
   // Fetch token when user changes
   useEffect(() => {
@@ -85,9 +86,10 @@ export function ApiProvider({ children }: ApiProviderProps) {
       token,
       isReady: !!userId && !!token,
       isLoading: authLoading || tokenLoading,
+      testMode,
       refreshToken,
     }),
-    [baseUrl, userId, token, authLoading, tokenLoading, refreshToken]
+    [baseUrl, userId, token, authLoading, tokenLoading, testMode, refreshToken]
   );
 
   return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

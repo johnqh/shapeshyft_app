@@ -16,7 +16,7 @@ function ProjectNewPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { entitySlug = '' } = useParams<{ entitySlug: string }>();
-  const { networkClient, baseUrl, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const { success } = useToast();
 
   const [displayName, setDisplayName] = useState('');
@@ -29,6 +29,7 @@ function ProjectNewPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 

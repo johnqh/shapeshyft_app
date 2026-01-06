@@ -17,7 +17,7 @@ function DashboardPage() {
     projectId: string;
     endpointId: string;
   }>();
-  const { networkClient, baseUrl, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady } = useApi();
 
   // Mobile view state
   const [mobileView, setMobileView] = useState<'navigation' | 'content'>('navigation');
@@ -31,6 +31,7 @@ function DashboardPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 
@@ -39,6 +40,7 @@ function DashboardPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 
@@ -48,6 +50,7 @@ function DashboardPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     projectId: projectId ?? '',
     autoFetch: isReady && !!projectId && !!entitySlug,
   });

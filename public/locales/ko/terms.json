@@ -57,7 +57,8 @@
     },
     "contact": {
       "title": "10. Contact Information",
-      "description": "For questions about these Terms of Service, please contact us:"
+      "description": "For questions about these Terms of Service, please contact us:",
+      "email": "Email:"
     }
   }
 }

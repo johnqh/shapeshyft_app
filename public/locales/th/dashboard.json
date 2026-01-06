@@ -282,7 +282,8 @@
       "pathPlaceholder": "my_org",
       "pathHint": "Used in API URLs: /api/v1/ai/{org_path}/...",
       "pathTaken": "This path is already taken",
-      "pathInvalid": "Only letters, numbers, and underscores allowed"
+      "pathInvalid": "Only letters, numbers, and underscores allowed",
+      "apiUrlPreview": "API URL Preview:"
     },
     "form": {
       "save": "Save Changes",

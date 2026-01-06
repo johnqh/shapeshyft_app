@@ -13,7 +13,7 @@ function TemplatesPage() {
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
   const { entitySlug = '' } = useParams<{ entitySlug: string }>();
-  const { networkClient, baseUrl, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const { success } = useToast();
 
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
@@ -27,6 +27,7 @@ function TemplatesPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 
@@ -35,6 +36,7 @@ function TemplatesPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: false,
   });
 
@@ -68,7 +70,7 @@ function TemplatesPage() {
         }
 
         // Create endpoints using the client
-        const client = new ShapeshyftClient({ networkClient, baseUrl });
+        const client = new ShapeshyftClient({ networkClient, baseUrl, testMode });
         for (const endpointData of result.endpoints) {
           await client.createEndpoint(entitySlug, project.uuid, endpointData, token);
         }

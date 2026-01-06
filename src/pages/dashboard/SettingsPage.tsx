@@ -8,7 +8,7 @@ import { useToast } from '../../hooks/useToast';
 
 function SettingsPage() {
   const { t } = useTranslation('dashboard');
-  const { networkClient, baseUrl, userId, token } = useApi();
+  const { networkClient, baseUrl, userId, token, testMode } = useApi();
   const { success } = useToast();
 
   const { settings, isLoading, error, updateSettings } = useSettingsManager({
@@ -16,6 +16,7 @@ function SettingsPage() {
     networkClient,
     userId: userId ?? '',
     token,
+    testMode,
     autoFetch: true,
   });
 
@@ -170,7 +171,7 @@ function SettingsPage() {
             {/* Preview URL */}
             {organizationPath && !pathError && (
               <div className="mt-3 p-3 bg-theme-bg-secondary rounded-lg">
-                <p className="text-xs text-theme-text-tertiary mb-1">API URL Preview:</p>
+                <p className="text-xs text-theme-text-tertiary mb-1">{t('settings.organization.apiUrlPreview')}</p>
                 <code className="text-sm font-mono text-theme-text-primary">
                   /api/v1/ai/<span className="text-blue-600">{organizationPath}</span>
                   /project-name/endpoint-name

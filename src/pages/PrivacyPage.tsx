@@ -130,7 +130,7 @@ function PrivacyPage() {
               </p>
               <div className="bg-theme-bg-secondary p-4 rounded-lg">
                 <p className="text-theme-text-primary">
-                  Email:{' '}
+                  {t('sections.contact.email')}{' '}
                   <a
                     href={`mailto:${CONSTANTS.SUPPORT_EMAIL}`}
                     className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"

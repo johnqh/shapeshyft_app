@@ -27,7 +27,7 @@ const PACKAGE_ENTITLEMENT_MAP: Record<string, string> = {
 function SubscriptionPage() {
   const { t } = useTranslation('subscription');
   const { success } = useToast();
-  const { networkClient, baseUrl, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const {
     products,
     currentSubscription,
@@ -41,7 +41,7 @@ function SubscriptionPage() {
   const {
     config: rateLimitsConfig,
     refreshConfig: refreshRateLimits,
-  } = useRateLimits(networkClient, baseUrl);
+  } = useRateLimits(networkClient, baseUrl, testMode);
 
   const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>('monthly');
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
@@ -357,8 +357,8 @@ function SubscriptionPage() {
           <SubscriptionTile
             key="free"
             id="free"
-            title="Free"
-            price="$0"
+            title={t('freeTier.title')}
+            price={t('freeTier.price')}
             periodLabel={t('periods.month')}
             features={getFreeTierFeatures()}
             isSelected={!currentSubscription?.isActive && selectedPlan === null}

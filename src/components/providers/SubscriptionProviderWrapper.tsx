@@ -7,8 +7,7 @@ import { useAuthStatus } from '@sudobility/auth-components';
 import { getInfoService } from '@sudobility/di';
 import { InfoType } from '@sudobility/types';
 import { SafeSubscriptionContext } from './SafeSubscriptionContext';
-
-const REVENUECAT_API_KEY = import.meta.env.VITE_REVENUECAT_API_KEY || '';
+import { CONSTANTS } from '../../config/constants';
 
 interface SubscriptionProviderWrapperProps {
   children: ReactNode;
@@ -66,7 +65,7 @@ const handleSubscriptionError = (error: Error) => {
 export function SubscriptionProviderWrapper({ children }: SubscriptionProviderWrapperProps) {
   return (
     <SubscriptionProvider
-      apiKey={REVENUECAT_API_KEY}
+      apiKey={CONSTANTS.REVENUECAT_API_KEY}
       onError={handleSubscriptionError}
     >
       <SafeContextBridge>

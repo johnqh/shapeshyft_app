@@ -57,30 +57,32 @@ function DocsPage() {
     </div>
   );
 
+  const appName = CONSTANTS.APP_NAME;
+
   const getSeoDescription = () => {
     switch (currentSection) {
       case 'getting-started':
-        return `Learn how to get started with ${CONSTANTS.APP_NAME}. Create projects, configure LLM providers, and build your first structured AI endpoint.`;
+        return t('seo.gettingStarted', { appName });
       case 'concepts':
-        return 'Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.';
+        return t('seo.concepts');
       case 'api-reference':
-        return `Complete API reference for ${CONSTANTS.APP_NAME}. REST endpoints, request formats, response structures, and code examples.`;
+        return t('seo.apiReference', { appName });
       default:
-        return `${CONSTANTS.APP_NAME} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation.`;
+        return t('seo.default', { appName });
     }
   };
 
   const getHowTo = () => {
     if (currentSection === 'getting-started') {
       return {
-        name: 'How to Create a Structured LLM Endpoint',
-        description: `Step-by-step guide to creating your first structured AI API endpoint with ${CONSTANTS.APP_NAME}`,
+        name: t('howTo.name'),
+        description: t('howTo.description', { appName }),
         steps: [
-          { name: 'Create a Project', text: 'Start by creating a new project in your dashboard to organize your endpoints.' },
-          { name: 'Add an LLM Provider', text: 'Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server.' },
-          { name: 'Define an Endpoint', text: 'Create an endpoint with instructions, context, and JSON output schema.' },
-          { name: 'Test Your Endpoint', text: 'Use the built-in tester to verify your endpoint returns structured data.' },
-          { name: 'Integrate', text: 'Call your endpoint from your application using simple GET or POST requests.' },
+          { name: t('howTo.steps.createProject.name'), text: t('howTo.steps.createProject.text') },
+          { name: t('howTo.steps.addProvider.name'), text: t('howTo.steps.addProvider.text') },
+          { name: t('howTo.steps.defineEndpoint.name'), text: t('howTo.steps.defineEndpoint.text') },
+          { name: t('howTo.steps.testEndpoint.name'), text: t('howTo.steps.testEndpoint.text') },
+          { name: t('howTo.steps.integrate.name'), text: t('howTo.steps.integrate.text') },
         ],
       };
     }
@@ -307,7 +309,7 @@ function ApiReferenceContent() {
       {/* Example Request */}
       <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
         <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-          Example Request
+          {t('apiReference.example.requestTitle')}
         </h3>
         <pre className="text-sm text-blue-700 dark:text-blue-300 overflow-x-auto">
 {`curl -X POST https://api.${CONSTANTS.APP_DOMAIN}/api/v1/ai/my-org/my-project/classify \\
@@ -319,7 +321,7 @@ function ApiReferenceContent() {
       {/* Example Response */}
       <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
         <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2">
-          Example Response
+          {t('apiReference.example.responseTitle')}
         </h3>
         <pre className="text-sm text-green-700 dark:text-green-300 overflow-x-auto">
 {`{

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import ScreenContainer from '../../components/layout/ScreenContainer';
 import SEO from '../../components/seo/SEO';
 import LocalizedLink from '../../components/layout/LocalizedLink';
@@ -23,41 +24,51 @@ const ContentGenerationIcon = () => (
   </svg>
 );
 
-const useCases = [
-  {
-    id: 'text',
-    title: 'Text Classification',
-    description: 'Automatically categorize text into predefined labels with high accuracy. Perfect for sentiment analysis, topic detection, intent recognition, and content moderation.',
-    icon: TextClassificationIcon,
-    href: '/use-cases/text',
-    examples: ['Sentiment Analysis', 'Topic Detection', 'Intent Recognition', 'Content Moderation'],
-  },
-  {
-    id: 'data',
-    title: 'Data Extraction',
-    description: 'Extract structured information from unstructured text documents. Transform invoices, contracts, emails, and forms into clean, usable data.',
-    icon: DataExtractionIcon,
-    href: '/use-cases/data',
-    examples: ['Invoice Processing', 'Resume Parsing', 'Contract Analysis', 'Email Extraction'],
-  },
-  {
-    id: 'content',
-    title: 'Content Generation',
-    description: 'Generate high-quality, structured content programmatically. Create product descriptions, marketing copy, documentation, and more with consistent formatting.',
-    icon: ContentGenerationIcon,
-    href: '/use-cases/content',
-    examples: ['Product Descriptions', 'Marketing Copy', 'Documentation', 'Email Templates'],
-  },
-];
-
 function UseCasesPage() {
+  const { t } = useTranslation('useCases');
+  const appName = CONSTANTS.APP_NAME;
+
+  const useCases = [
+    {
+      id: 'text',
+      titleKey: 'useCases.textClassification.title',
+      descriptionKey: 'useCases.textClassification.description',
+      icon: TextClassificationIcon,
+      href: '/use-cases/text',
+      examplesKey: 'useCases.textClassification.examples',
+    },
+    {
+      id: 'data',
+      titleKey: 'useCases.dataExtraction.title',
+      descriptionKey: 'useCases.dataExtraction.description',
+      icon: DataExtractionIcon,
+      href: '/use-cases/data',
+      examplesKey: 'useCases.dataExtraction.examples',
+    },
+    {
+      id: 'content',
+      titleKey: 'useCases.contentGeneration.title',
+      descriptionKey: 'useCases.contentGeneration.description',
+      icon: ContentGenerationIcon,
+      href: '/use-cases/content',
+      examplesKey: 'useCases.contentGeneration.examples',
+    },
+  ];
+
+  const features = [
+    { titleKey: 'main.features.customSchemas.title', descriptionKey: 'main.features.customSchemas.description' },
+    { titleKey: 'main.features.anyProvider.title', descriptionKey: 'main.features.anyProvider.description' },
+    { titleKey: 'main.features.validatedOutput.title', descriptionKey: 'main.features.validatedOutput.description' },
+    { titleKey: 'main.features.apiFirst.title', descriptionKey: 'main.features.apiFirst.description' },
+  ];
+
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/use-cases"
-        title={`Use Cases - ${CONSTANTS.APP_NAME}`}
-        description={`Discover how ${CONSTANTS.APP_NAME} transforms LLM outputs into structured, reliable data. From text classification to data extraction and content generation.`}
-        keywords="LLM use cases, structured output, text classification, data extraction, content generation, AI applications"
+        title={t('seo.main.title', { appName })}
+        description={t('seo.main.description', { appName })}
+        keywords={t('seo.main.keywords')}
       />
 
       <main className="flex-1 overflow-auto">
@@ -66,11 +77,10 @@ function UseCasesPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20" />
           <div className="relative max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl font-bold text-theme-text-primary mb-6">
-              Build Anything with Structured LLM Output
+              {t('main.hero.title')}
             </h1>
             <p className="text-lg sm:text-xl text-theme-text-secondary max-w-3xl mx-auto">
-              {CONSTANTS.APP_NAME} transforms unpredictable AI responses into reliable, schema-validated data.
-              Here are some common use cases—but your imagination is the only limit.
+              {t('main.hero.subtitle', { appName })}
             </p>
           </div>
         </section>
@@ -79,33 +89,36 @@ function UseCasesPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
-              {useCases.map((useCase) => (
-                <LocalizedLink
-                  key={useCase.id}
-                  to={useCase.href}
-                  className="group bg-theme-bg-secondary rounded-2xl p-8 border border-theme-border hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg transition-all"
-                >
-                  <div className="text-blue-600 dark:text-blue-400 mb-4">
-                    <useCase.icon />
-                  </div>
-                  <h2 className="text-2xl font-bold text-theme-text-primary mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {useCase.title}
-                  </h2>
-                  <p className="text-theme-text-secondary mb-4">
-                    {useCase.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {useCase.examples.map((example) => (
-                      <span
-                        key={example}
-                        className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
-                      >
-                        {example}
-                      </span>
-                    ))}
-                  </div>
-                </LocalizedLink>
-              ))}
+              {useCases.map((useCase) => {
+                const examples = t(useCase.examplesKey, { returnObjects: true }) as string[];
+                return (
+                  <LocalizedLink
+                    key={useCase.id}
+                    to={useCase.href}
+                    className="group bg-theme-bg-secondary rounded-2xl p-8 border border-theme-border hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg transition-all"
+                  >
+                    <div className="text-blue-600 dark:text-blue-400 mb-4">
+                      <useCase.icon />
+                    </div>
+                    <h2 className="text-2xl font-bold text-theme-text-primary mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {t(useCase.titleKey)}
+                    </h2>
+                    <p className="text-theme-text-secondary mb-4">
+                      {t(useCase.descriptionKey)}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {Array.isArray(examples) && examples.map((example) => (
+                        <span
+                          key={example}
+                          className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
+                        >
+                          {example}
+                        </span>
+                      ))}
+                    </div>
+                  </LocalizedLink>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -114,25 +127,17 @@ function UseCasesPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-6">
-              Your Use Case, Your Rules
+              {t('main.flexibility.title')}
             </h2>
             <p className="text-lg text-theme-text-secondary mb-8">
-              While we've highlighted common patterns, {CONSTANTS.APP_NAME} is designed to be completely flexible.
-              Define any JSON schema, connect any LLM provider, and build exactly what you need. Whether you're
-              creating a chatbot, analyzing research papers, automating workflows, or building something entirely
-              new—if you can describe it in a schema, {CONSTANTS.APP_NAME} can deliver it.
+              {t('main.flexibility.description', { appName })}
             </p>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-              {[
-                { title: 'Custom Schemas', description: 'Define any data structure you need' },
-                { title: 'Any LLM Provider', description: 'OpenAI, Anthropic, Google & more' },
-                { title: 'Validated Output', description: 'Guaranteed schema compliance' },
-                { title: 'API-First', description: 'Easy integration with any stack' },
-              ].map((feature) => (
-                <div key={feature.title} className="bg-theme-bg-primary rounded-xl p-6 border border-theme-border">
-                  <h3 className="font-semibold text-theme-text-primary mb-2">{feature.title}</h3>
-                  <p className="text-sm text-theme-text-secondary">{feature.description}</p>
+              {features.map((feature) => (
+                <div key={feature.titleKey} className="bg-theme-bg-primary rounded-xl p-6 border border-theme-border">
+                  <h3 className="font-semibold text-theme-text-primary mb-2">{t(feature.titleKey)}</h3>
+                  <p className="text-sm text-theme-text-secondary">{t(feature.descriptionKey)}</p>
                 </div>
               ))}
             </div>
@@ -143,23 +148,23 @@ function UseCasesPage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-theme-text-primary mb-6">
-              Ready to Build?
+              {t('main.cta.title')}
             </h2>
             <p className="text-lg text-theme-text-secondary mb-8">
-              Start with our free tier and see how {CONSTANTS.APP_NAME} can transform your AI integration.
+              {t('main.cta.subtitle', { appName })}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <LocalizedLink
                 to="/docs"
                 className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
               >
-                Read the Docs
+                {t('nav.readDocs')}
               </LocalizedLink>
               <LocalizedLink
                 to="/pricing"
                 className="inline-block px-8 py-3 bg-theme-bg-secondary text-theme-text-primary font-semibold rounded-lg border border-theme-border hover:border-blue-300 transition-colors"
               >
-                View Pricing
+                {t('nav.viewPricing')}
               </LocalizedLink>
             </div>
           </div>

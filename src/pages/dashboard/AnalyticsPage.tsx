@@ -19,7 +19,7 @@ const ChartSkeleton = () => (
 
 function AnalyticsPage() {
   const { t } = useTranslation('dashboard');
-  const { networkClient, baseUrl, userId, token, isReady, isLoading: apiLoading } = useApi();
+  const { networkClient, baseUrl, userId, token, testMode, isReady, isLoading: apiLoading } = useApi();
 
   const {
     analytics,
@@ -32,6 +32,7 @@ function AnalyticsPage() {
     networkClient,
     userId: userId ?? '',
     token,
+    testMode,
   });
 
   // Show error via InfoInterface

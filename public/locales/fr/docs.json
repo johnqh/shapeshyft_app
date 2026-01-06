@@ -1,6 +1,38 @@
 {
   "title": "Documentation",
   "subtitle": "Learn how to build structured AI APIs with {{appName}}",
+  "seo": {
+    "gettingStarted": "Learn how to get started with {{appName}}. Create projects, configure LLM providers, and build your first structured AI endpoint.",
+    "concepts": "Understand core concepts: endpoints, JSON schemas, system context, and organization paths for building structured AI APIs.",
+    "apiReference": "Complete API reference for {{appName}}. REST endpoints, request formats, response structures, and code examples.",
+    "default": "{{appName}} documentation. Learn how to build reliable AI-powered REST APIs with JSON Schema validation."
+  },
+  "howTo": {
+    "name": "How to Create a Structured LLM Endpoint",
+    "description": "Step-by-step guide to creating your first structured AI API endpoint with {{appName}}",
+    "steps": {
+      "createProject": {
+        "name": "Create a Project",
+        "text": "Start by creating a new project in your dashboard to organize your endpoints."
+      },
+      "addProvider": {
+        "name": "Add an LLM Provider",
+        "text": "Configure your API key for OpenAI, Anthropic, Google Gemini, or a custom LM server."
+      },
+      "defineEndpoint": {
+        "name": "Define an Endpoint",
+        "text": "Create an endpoint with instructions, context, and JSON output schema."
+      },
+      "testEndpoint": {
+        "name": "Test Your Endpoint",
+        "text": "Use the built-in tester to verify your endpoint returns structured data."
+      },
+      "integrate": {
+        "name": "Integrate",
+        "text": "Call your endpoint from your application using simple GET or POST requests."
+      }
+    }
+  },
   "nav": {
     "gettingStarted": "Getting Started",
     "concepts": "Core Concepts",
@@ -118,6 +150,10 @@
           "description": "Estimated cost in cents"
         }
       ]
+    },
+    "example": {
+      "requestTitle": "Example Request",
+      "responseTitle": "Example Response"
     }
   }
 }

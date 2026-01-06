@@ -1,0 +1,75 @@
+{
+  "badge": "Performance & Optimization",
+  "title": "Performance Monitoring",
+  "description": "Monitor Core Web Vitals, bundle performance, and API latency to ensure optimal user experience.",
+  "quickStats": {
+    "lazyLoad": "Lazy Load",
+    "codeSplitting": "Code Splitting",
+    "serviceWorker": "Service Worker",
+    "offlineCache": "Offline Cache",
+    "preloading": "Preloading",
+    "routePrefetch": "Route Prefetch",
+    "lcpTarget": "LCP Target"
+  },
+  "webVitals": {
+    "title": "Core Web Vitals",
+    "description": "Real-time monitoring of Core Web Vitals metrics.",
+    "lcp": {
+      "title": "Largest Contentful Paint",
+      "description": "Time to render largest element"
+    },
+    "fid": {
+      "title": "First Input Delay",
+      "description": "Time to interactive response"
+    },
+    "cls": {
+      "title": "Cumulative Layout Shift",
+      "description": "Visual stability score"
+    }
+  },
+  "bundle": {
+    "title": "Bundle Optimization",
+    "description": "Code splitting and lazy loading for reduced initial bundle size.",
+    "lazyLoadingStates": "Lazy Loading States",
+    "componentLoading": "Component loading...",
+    "componentLoaded": "Component loaded",
+    "bundleAnalysis": "Bundle Analysis",
+    "react": "React:",
+    "firebase": "Firebase:",
+    "uiComponents": "UI Components:",
+    "charts": "Charts:"
+  },
+  "api": {
+    "title": "API Performance",
+    "description": "Monitor API response times and caching effectiveness.",
+    "currentLatency": "Current API Latency",
+    "averageResponseTime": "Average Response Time",
+    "cacheStatus": "Cache Status",
+    "freshData": "Fresh Data",
+    "recentlyFetched": "Recently fetched",
+    "staleData": "Stale Data",
+    "needsRefresh": "Needs refresh",
+    "cachingStrategy": "Caching Strategy"
+  },
+  "bestPractices": {
+    "title": "Performance Best Practices",
+    "doThis": "Do This",
+    "avoidThis": "Avoid This",
+    "do": {
+      "codeSplitting": "Use code splitting for dashboard features",
+      "lazyLoading": "Implement lazy loading for images and components",
+      "cacheApi": "Cache API responses with TanStack Query",
+      "preloadRoutes": "Preload routes on hover for instant navigation",
+      "monitorVitals": "Monitor Core Web Vitals in production",
+      "serviceWorker": "Use service worker for offline support"
+    },
+    "avoid": {
+      "eagerLoading": "Loading all components eagerly on initial page load",
+      "redundantCalls": "Making redundant API calls without caching",
+      "layoutShifts": "Causing layout shifts with dynamic content",
+      "blockingRender": "Using blocking rendering for non-critical features",
+      "ignoreNetwork": "Ignoring network conditions for resource loading",
+      "noTreeShaking": "Importing large libraries without tree-shaking"
+    }
+  }
+}

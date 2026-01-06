@@ -28,7 +28,7 @@ function ProjectDetailPage() {
   const { entitySlug = '', projectId } = useParams<{ entitySlug: string; projectId: string }>();
   const { t } = useTranslation(['dashboard', 'common']);
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, token, isReady, isLoading: apiLoading } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady, isLoading: apiLoading } = useApi();
   const { success } = useToast();
 
   // Inline editing state for project
@@ -48,6 +48,7 @@ function ProjectDetailPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     autoFetch: isReady && !!entitySlug,
   });
 
@@ -64,6 +65,7 @@ function ProjectDetailPage() {
     networkClient,
     entitySlug,
     token,
+    testMode,
     projectId: projectId ?? '',
     autoFetch: isReady && !!projectId && !!entitySlug,
   });

@@ -8,6 +8,7 @@ export interface ApiContextValue {
   token: string | null;
   isReady: boolean;
   isLoading: boolean;
+  testMode: boolean;
   refreshToken: () => Promise<string | null>;
 }
 
