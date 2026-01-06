@@ -203,6 +203,30 @@ function SubscriptionPage() {
   };
 
   /**
+   * Get rate limit features for the free tier (entitlement: "none")
+   */
+  const getFreeTierFeatures = (): string[] => {
+    if (!rateLimitsConfig?.tiers) return [];
+
+    const freeTier = rateLimitsConfig.tiers.find(tier => tier.entitlement === 'none');
+    if (!freeTier) return [];
+
+    const features: string[] = [];
+
+    if (freeTier.limits.hourly !== null) {
+      features.push(t('rateLimits.hourly', '{{limit}} requests/hour', { limit: formatRateLimit(freeTier.limits.hourly) }));
+    }
+    if (freeTier.limits.daily !== null) {
+      features.push(t('rateLimits.daily', '{{limit}} requests/day', { limit: formatRateLimit(freeTier.limits.daily) }));
+    }
+    if (freeTier.limits.monthly !== null) {
+      features.push(t('rateLimits.monthly', '{{limit}} requests/month', { limit: formatRateLimit(freeTier.limits.monthly) }));
+    }
+
+    return features;
+  };
+
+  /**
    * Calculate yearly savings percentage compared to monthly plan
    * @param yearlyPackageId - The yearly package identifier
    * @returns Savings percentage (e.g., 20 for 20%) or undefined if can't calculate
@@ -321,37 +345,53 @@ function SubscriptionPage() {
           {t('noProductsForPeriod')}
         </div>
       ) : (
-        filteredProducts.map((product) => (
+        <>
+          {/* Free tier tile - shown first */}
           <SubscriptionTile
-            key={product.identifier}
-            id={product.identifier}
-            title={product.title}
-            price={product.priceString}
-            periodLabel={getPeriodLabel(product.period)}
-            features={getProductFeatures(product.identifier)}
-            isSelected={selectedPlan === product.identifier}
-            onSelect={() => setSelectedPlan(product.identifier)}
-            isBestValue={product.identifier.includes('pro')}
-            discountBadge={
-              product.period?.includes('Y')
-                ? (() => {
-                    const savings = getYearlySavingsPercent(product.identifier);
-                    return savings && savings > 0
-                      ? { text: t('badges.savePercent', 'Save {{percent}}%', { percent: savings }), isBestValue: true }
-                      : undefined;
-                  })()
-                : undefined
-            }
-            introPriceNote={
-              product.freeTrialPeriod
-                ? getTrialLabel(product.freeTrialPeriod)
-                : product.introPrice
-                  ? t('intro.note', { price: product.introPrice })
-                  : undefined
-            }
+            key="free"
+            id="free"
+            title={t('plans.free.title', 'Free')}
+            price={t('plans.free.price', '$0')}
+            periodLabel={t('periods.month')}
+            features={getFreeTierFeatures()}
+            isSelected={!currentSubscription?.isActive && selectedPlan === null}
+            onSelect={() => setSelectedPlan(null)}
+            topBadge={!currentSubscription?.isActive ? { text: t('badges.currentPlan', 'Current Plan'), color: 'green' } : undefined}
             disabled={isPurchasing || isRestoring}
           />
-        ))
+          {/* Paid plans */}
+          {filteredProducts.map((product) => (
+            <SubscriptionTile
+              key={product.identifier}
+              id={product.identifier}
+              title={product.title}
+              price={product.priceString}
+              periodLabel={getPeriodLabel(product.period)}
+              features={getProductFeatures(product.identifier)}
+              isSelected={selectedPlan === product.identifier}
+              onSelect={() => setSelectedPlan(product.identifier)}
+              isBestValue={product.identifier.includes('pro')}
+              discountBadge={
+                product.period?.includes('Y')
+                  ? (() => {
+                      const savings = getYearlySavingsPercent(product.identifier);
+                      return savings && savings > 0
+                        ? { text: t('badges.savePercent', 'Save {{percent}}%', { percent: savings }), isBestValue: true }
+                        : undefined;
+                    })()
+                  : undefined
+              }
+              introPriceNote={
+                product.freeTrialPeriod
+                  ? getTrialLabel(product.freeTrialPeriod)
+                  : product.introPrice
+                    ? t('intro.note', { price: product.introPrice })
+                    : undefined
+              }
+              disabled={isPurchasing || isRestoring}
+            />
+          ))}
+        </>
       )}
     </SubscriptionLayout>
   );
