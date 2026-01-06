@@ -31,6 +31,7 @@ const UseCasesPage = lazy(() => import('./pages/use-cases/UseCasesPage'));
 const UseCasesTextPage = lazy(() => import('./pages/use-cases/UseCasesTextPage'));
 const UseCasesDataPage = lazy(() => import('./pages/use-cases/UseCasesDataPage'));
 const UseCasesContentPage = lazy(() => import('./pages/use-cases/UseCasesContentPage'));
+const SitemapPage = lazy(() => import('./pages/SitemapPage'));
 const DashboardPage = lazy(() => import('./pages/dashboard/DashboardPage'));
 const ProjectsPage = lazy(() => import('./pages/dashboard/ProjectsPage'));
 const ProjectNewPage = lazy(() => import('./pages/dashboard/ProjectNewPage'));
@@ -107,6 +108,7 @@ function App() {
                       <Route path="contact" element={<ContactPage />} />
                       <Route path="privacy" element={<PrivacyPage />} />
                       <Route path="terms" element={<TermsPage />} />
+                      <Route path="sitemap" element={<SitemapPage />} />
                       <Route path="settings" element={<AppSettingsPage />} />
 
                       {/* Dashboard redirect - picks default entity */}

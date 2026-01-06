@@ -1,0 +1,29 @@
+{
+  "seo": {
+    "title": "Settings - ShapeShyft",
+    "description": "Customize your ShapeShyft experience with theme and display settings."
+  },
+  "title": "Settings",
+  "appearance": {
+    "title": "Appearance",
+    "description": "Customize the look and feel of the application."
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "description": "Choose your preferred color theme."
+  },
+  "fontSize": {
+    "label": "Font Size",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "description": "Adjust the text size for better readability."
+  },
+  "info": {
+    "title": "About Settings",
+    "description": "Your preferences are saved automatically and will persist across sessions."
+  }
+}

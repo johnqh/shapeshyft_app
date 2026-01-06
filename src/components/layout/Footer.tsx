@@ -90,6 +90,9 @@ function Footer({ variant = 'full' }: FooterProps) {
           <FooterLink>
             <LocalizedLink to="/terms">{t('footer.termsOfService')}</LocalizedLink>
           </FooterLink>
+          <FooterLink>
+            <LocalizedLink to="/sitemap">{t('footer.sitemap')}</LocalizedLink>
+          </FooterLink>
         </FooterLinkSection>
       </FooterGrid>
 

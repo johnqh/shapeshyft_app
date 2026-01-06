@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import {
@@ -142,6 +142,17 @@ function TopBar({ variant = 'default' }: TopBarProps) {
 
   const isAuthenticated = !!user;
 
+  // Sort languages by their native name (same as mail_box)
+  const sortedLanguages = useMemo(() => {
+    return [...SUPPORTED_LANGUAGES]
+      .map(code => ({
+        code,
+        name: LANGUAGE_INFO[code]?.name || code.toUpperCase(),
+        flag: LANGUAGE_INFO[code]?.flag || '🌐',
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, []);
+
   // Extract entitySlug from URL if on dashboard page
   // Path is like /en/dashboard/my-entity/...
   const pathSegments = location.pathname.split('/').filter(Boolean);
@@ -276,18 +287,18 @@ function TopBar({ variant = 'default' }: TopBarProps) {
                       onClick={() => setShowLangMenu(false)}
                     />
                     <div className="absolute right-0 mt-2 w-48 bg-theme-bg-primary border border-theme-border rounded-lg shadow-lg z-50">
-                      {SUPPORTED_LANGUAGES.map(langCode => (
+                      {sortedLanguages.map(lang => (
                         <button
-                          key={langCode}
-                          onClick={() => handleLanguageChange(langCode)}
+                          key={lang.code}
+                          onClick={() => handleLanguageChange(lang.code)}
                           className={`w-full px-4 py-2 text-left text-sm hover:bg-theme-hover-bg transition-colors flex items-center gap-2 ${
-                            langCode === currentLanguage
+                            lang.code === currentLanguage
                               ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
                               : ''
                           }`}
                         >
-                          <span className="text-lg leading-none">{LANGUAGE_INFO[langCode]?.flag}</span>
-                          <span>{LANGUAGE_INFO[langCode]?.name}</span>
+                          <span className="text-lg leading-none">{lang.flag}</span>
+                          <span>{lang.name}</span>
                         </button>
                       ))}
                     </div>

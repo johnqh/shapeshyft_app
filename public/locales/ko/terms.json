@@ -1,0 +1,63 @@
+{
+  "seo": {
+    "title": "Terms of Service - ShapeShyft",
+    "description": "Read the terms and conditions for using ShapeShyft's API platform."
+  },
+  "title": "Terms of Service",
+  "lastUpdated": "Last updated: {{date}}",
+  "sections": {
+    "acceptance": {
+      "title": "1. Acceptance of Terms",
+      "content": "By accessing or using ShapeShyft, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+    },
+    "service": {
+      "title": "2. Description of Service",
+      "content": "ShapeShyft provides an API platform that transforms LLM outputs into structured data using JSON Schema validation. We act as a middleware between your applications and various LLM providers."
+    },
+    "accounts": {
+      "title": "3. User Accounts",
+      "description": "When you create an account, you agree to:",
+      "items": [
+        "Provide accurate and complete information",
+        "Maintain the security of your account credentials",
+        "Accept responsibility for all activities under your account",
+        "Notify us immediately of any unauthorized access"
+      ]
+    },
+    "acceptableUse": {
+      "title": "4. Acceptable Use",
+      "description": "You agree not to use ShapeShyft to:",
+      "items": [
+        "Violate any applicable laws or regulations",
+        "Infringe on intellectual property rights",
+        "Transmit malicious code or conduct attacks",
+        "Attempt to gain unauthorized access to our systems",
+        "Resell or redistribute our services without permission"
+      ]
+    },
+    "apiUsage": {
+      "title": "5. API Usage and Rate Limits",
+      "content": "Your use of the API is subject to rate limits based on your subscription tier. We reserve the right to throttle or suspend access for excessive usage or abuse."
+    },
+    "ip": {
+      "title": "6. Intellectual Property",
+      "content": "ShapeShyft and its original content, features, and functionality are owned by Sudobility and are protected by international copyright, trademark, and other intellectual property laws. Your data and API outputs remain yours."
+    },
+    "liability": {
+      "title": "7. Limitation of Liability",
+      "content": "ShapeShyft is provided 'as is' without warranties of any kind. We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service."
+    },
+    "termination": {
+      "title": "8. Termination",
+      "content": "We may terminate or suspend your account at any time for violations of these terms. You may cancel your account at any time through your account settings."
+    },
+    "changes": {
+      "title": "9. Changes to Terms",
+      "content": "We reserve the right to modify these terms at any time. We will notify you of significant changes via email or through the service. Continued use after changes constitutes acceptance of the new terms."
+    },
+    "contact": {
+      "title": "10. Contact Information",
+      "description": "For questions about these Terms of Service, please contact us:"
+    }
+  }
+}
