@@ -7,9 +7,11 @@ import i18n from './i18n';
 import { ThemeProvider } from './context/ThemeContext';
 import { ApiProvider } from './context/ApiContext';
 import { ToastProvider } from './context/ToastContext';
+import { AnalyticsProvider } from './context/AnalyticsContext';
 import { AuthProviderWrapper } from './components/providers/AuthProviderWrapper';
 import { LazySubscriptionProvider } from './components/providers/LazySubscriptionProvider';
 import ToastContainer from './components/ui/ToastContainer';
+import { PageTracker } from './hooks/usePageTracking';
 import { InfoBanner } from '@sudobility/di_web';
 
 // Lazy load PerformancePanel - only used in dev mode
@@ -85,93 +87,96 @@ function App() {
             <ToastProvider>
               <AuthProviderWrapper>
                 <ApiProvider>
-                  <LazySubscriptionProvider>
-                    <BrowserRouter>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Routes>
-                    {/* Root redirect - detect language */}
-                    <Route path="/" element={<LanguageRedirect />} />
+                  <AnalyticsProvider>
+                    <LazySubscriptionProvider>
+                      <BrowserRouter>
+                        <PageTracker />
+                        <Suspense fallback={<LoadingFallback />}>
+                          <Routes>
+                            {/* Root redirect - detect language */}
+                            <Route path="/" element={<LanguageRedirect />} />
 
-                    {/* Language-prefixed routes */}
-                    <Route path="/:lang" element={<LanguageValidator />}>
-                      {/* Public pages */}
-                      <Route index element={<HomePage />} />
-                      <Route path="login" element={<LoginPage />} />
-                      <Route path="pricing" element={<PricingPage />} />
-                      <Route path="docs" element={<DocsPage />} />
-                      <Route path="docs/:section" element={<DocsPage />} />
-                      <Route path="use-cases" element={<UseCasesPage />} />
-                      <Route path="use-cases/text" element={<UseCasesTextPage />} />
-                      <Route path="use-cases/data" element={<UseCasesDataPage />} />
-                      <Route path="use-cases/content" element={<UseCasesContentPage />} />
-                      <Route path="about" element={<AboutPage />} />
-                      <Route path="contact" element={<ContactPage />} />
-                      <Route path="privacy" element={<PrivacyPage />} />
-                      <Route path="terms" element={<TermsPage />} />
-                      <Route path="sitemap" element={<SitemapPage />} />
-                      <Route path="settings" element={<AppSettingsPage />} />
+                            {/* Language-prefixed routes */}
+                            <Route path="/:lang" element={<LanguageValidator />}>
+                              {/* Public pages */}
+                              <Route index element={<HomePage />} />
+                              <Route path="login" element={<LoginPage />} />
+                              <Route path="pricing" element={<PricingPage />} />
+                              <Route path="docs" element={<DocsPage />} />
+                              <Route path="docs/:section" element={<DocsPage />} />
+                              <Route path="use-cases" element={<UseCasesPage />} />
+                              <Route path="use-cases/text" element={<UseCasesTextPage />} />
+                              <Route path="use-cases/data" element={<UseCasesDataPage />} />
+                              <Route path="use-cases/content" element={<UseCasesContentPage />} />
+                              <Route path="about" element={<AboutPage />} />
+                              <Route path="contact" element={<ContactPage />} />
+                              <Route path="privacy" element={<PrivacyPage />} />
+                              <Route path="terms" element={<TermsPage />} />
+                              <Route path="sitemap" element={<SitemapPage />} />
+                              <Route path="settings" element={<AppSettingsPage />} />
 
-                      {/* Dashboard redirect - picks default entity */}
-                      <Route
-                        path="dashboard"
-                        element={
-                          <ProtectedRoute>
-                            <EntityRedirect />
-                          </ProtectedRoute>
-                        }
-                      />
+                              {/* Dashboard redirect - picks default entity */}
+                              <Route
+                                path="dashboard"
+                                element={
+                                  <ProtectedRoute>
+                                    <EntityRedirect />
+                                  </ProtectedRoute>
+                                }
+                              />
 
-                      {/* Protected dashboard routes with entity slug */}
-                      <Route
-                        path="dashboard/:entitySlug"
-                        element={
-                          <ProtectedRoute>
-                            <DashboardPage />
-                          </ProtectedRoute>
-                        }
-                      >
-                        <Route index element={<ProjectsPage />} />
-                        <Route path="projects" element={<ProjectsPage />} />
-                        <Route path="projects/new" element={<ProjectNewPage />} />
-                        <Route path="projects/templates" element={<TemplatesPage />} />
-                        <Route path="projects/:projectId" element={<ProjectDetailPage />} />
-                        <Route path="projects/:projectId/endpoints/new" element={<EndpointNewPage />} />
-                        <Route
-                          path="projects/:projectId/endpoints/:endpointId"
-                          element={<EndpointDetailPage />}
-                        />
-                        <Route path="providers" element={<KeysPage />} />
-                        <Route path="analytics" element={<AnalyticsPage />} />
-                        <Route path="subscription" element={<SubscriptionPage />} />
-                        <Route path="budgets" element={<BudgetsPage />} />
-                        <Route path="settings" element={<SettingsPage />} />
-                        <Route path="rate-limits" element={<RateLimitsPage />} />
-                        <Route path="workspaces" element={<WorkspacesPage />} />
-                        <Route path="members" element={<MembersPage />} />
-                        <Route path="invitations" element={<InvitationsPage />} />
-                        <Route path="performance" element={<PerformancePage />} />
-                      </Route>
+                              {/* Protected dashboard routes with entity slug */}
+                              <Route
+                                path="dashboard/:entitySlug"
+                                element={
+                                  <ProtectedRoute>
+                                    <DashboardPage />
+                                  </ProtectedRoute>
+                                }
+                              >
+                                <Route index element={<ProjectsPage />} />
+                                <Route path="projects" element={<ProjectsPage />} />
+                                <Route path="projects/new" element={<ProjectNewPage />} />
+                                <Route path="projects/templates" element={<TemplatesPage />} />
+                                <Route path="projects/:projectId" element={<ProjectDetailPage />} />
+                                <Route path="projects/:projectId/endpoints/new" element={<EndpointNewPage />} />
+                                <Route
+                                  path="projects/:projectId/endpoints/:endpointId"
+                                  element={<EndpointDetailPage />}
+                                />
+                                <Route path="providers" element={<KeysPage />} />
+                                <Route path="analytics" element={<AnalyticsPage />} />
+                                <Route path="subscription" element={<SubscriptionPage />} />
+                                <Route path="budgets" element={<BudgetsPage />} />
+                                <Route path="settings" element={<SettingsPage />} />
+                                <Route path="rate-limits" element={<RateLimitsPage />} />
+                                <Route path="workspaces" element={<WorkspacesPage />} />
+                                <Route path="members" element={<MembersPage />} />
+                                <Route path="invitations" element={<InvitationsPage />} />
+                                <Route path="performance" element={<PerformancePage />} />
+                              </Route>
 
-                      {/* Catch-all redirect to home */}
-                      <Route path="*" element={<Navigate to="." replace />} />
-                    </Route>
+                              {/* Catch-all redirect to home */}
+                              <Route path="*" element={<Navigate to="." replace />} />
+                            </Route>
 
-                    {/* Catch-all without language - redirect to language detection */}
-                    <Route path="*" element={<LanguageRedirect />} />
-                  </Routes>
-                  </Suspense>
-                  <ToastContainer />
-                  {/* Floating performance panel - controlled by VITE_SHOW_PERFORMANCE_MONITOR */}
-                  {import.meta.env.VITE_SHOW_PERFORMANCE_MONITOR === 'true' && (
-                    <PerformancePanel
-                      enabled={true}
-                      position="bottom-right"
-                      apiPatterns={PERFORMANCE_API_PATTERNS}
-                    />
-                  )}
-                  <InfoBanner />
-                  </BrowserRouter>
-                  </LazySubscriptionProvider>
+                            {/* Catch-all without language - redirect to language detection */}
+                            <Route path="*" element={<LanguageRedirect />} />
+                          </Routes>
+                        </Suspense>
+                        <ToastContainer />
+                        {/* Floating performance panel - controlled by VITE_SHOW_PERFORMANCE_MONITOR */}
+                        {import.meta.env.VITE_SHOW_PERFORMANCE_MONITOR === 'true' && (
+                          <PerformancePanel
+                            enabled={true}
+                            position="bottom-right"
+                            apiPatterns={PERFORMANCE_API_PATTERNS}
+                          />
+                        )}
+                        <InfoBanner />
+                      </BrowserRouter>
+                    </LazySubscriptionProvider>
+                  </AnalyticsProvider>
                 </ApiProvider>
               </AuthProviderWrapper>
             </ToastProvider>
