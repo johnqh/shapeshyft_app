@@ -1,8 +1,10 @@
+import packageJson from '../../package.json';
+
 // App Constants
 export const CONSTANTS = {
   APP_NAME: import.meta.env.VITE_APP_NAME || 'ShapeShyft',
   COMPANY_NAME: 'Sudobility',
-  APP_VERSION: import.meta.env.VITE_APP_VERSION || '0.0.1',
+  APP_VERSION: packageJson.version,
   API_URL: import.meta.env.VITE_SHAPESHYFT_API_URL || 'http://localhost:8787',
   DEV_MODE: import.meta.env.VITE_DEV_MODE === 'true',
   SUPPORT_EMAIL: 'support@shapeshyft.com',
