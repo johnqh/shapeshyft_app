@@ -1,49 +1,180 @@
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuthStatus } from '@sudobility/auth-components';
+import {
+  SubscriptionTile,
+  SegmentedControl,
+  useSubscriptionContext,
+} from '@sudobility/subscription-components';
+import { type RateLimitTier } from '@sudobility/types';
+import { useRateLimits } from '@sudobility/shapeshyft_client';
 import { useSafeSubscriptionContext } from '../components/providers/SafeSubscriptionContext';
 import ScreenContainer from '../components/layout/ScreenContainer';
 import SEO from '../components/seo/SEO';
 import AISearchOptimization from '../components/seo/AISearchOptimization';
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigate';
+import { useApi } from '../hooks/useApi';
+
+type BillingPeriod = 'monthly' | 'yearly';
+
+// Package ID to entitlement mapping (from RevenueCat configuration)
+const PACKAGE_ENTITLEMENT_MAP: Record<string, string> = {
+  ultra_yearly: 'bandwidth_ultra',
+  ultra_monthly: 'bandwidth_ultra',
+  pro_yearly: 'bandwidth_pro',
+  pro_monthly: 'bandwidth_pro',
+  dev_yearly: 'bandwidth_dev',
+  dev_monthly: 'bandwidth_dev',
+};
 
 function PricingPage() {
   const { t } = useTranslation('pricing');
+  const { t: tSub } = useTranslation('subscription');
   const { user, openModal } = useAuthStatus();
   const { currentSubscription } = useSafeSubscriptionContext();
   const { navigate } = useLocalizedNavigate();
+  const { networkClient, baseUrl, token, isReady } = useApi();
 
   const isAuthenticated = !!user;
   const hasActiveSubscription = currentSubscription?.isActive ?? false;
 
-  const handlePlanClick = (plan: string) => {
-    if (plan === 'enterprise') {
-      // eslint-disable-next-line react-hooks/immutability
-      window.location.href = 'mailto:sales@sudobility.com';
-      return;
-    }
+  const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>('monthly');
 
+  // Try to get products from subscription context (only works when authenticated)
+  let products: ReturnType<typeof useSubscriptionContext>['products'] = [];
+  try {
+    const subContext = useSubscriptionContext();
+    products = subContext.products;
+  } catch {
+    // Not authenticated, products will be empty
+  }
+
+  const { config: rateLimitsConfig, refreshConfig: refreshRateLimits } = useRateLimits(
+    networkClient,
+    baseUrl
+  );
+
+  // Fetch rate limits on mount
+  useEffect(() => {
+    if (isReady && token) {
+      refreshRateLimits(token);
+    }
+  }, [isReady, token, refreshRateLimits]);
+
+  // Filter products by billing period and sort by price
+  const filteredProducts = products
+    .filter(product => {
+      if (!product.period) return false;
+      const isYearly = product.period.includes('Y') || product.period.includes('year');
+      return billingPeriod === 'yearly' ? isYearly : !isYearly;
+    })
+    .sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+
+  const handlePlanClick = (planIdentifier: string) => {
     if (isAuthenticated) {
-      // If user has a subscription, go to subscription management
-      // Otherwise go to dashboard where they can subscribe
-      navigate(hasActiveSubscription ? '/dashboard/subscription' : '/dashboard');
+      // Navigate to subscription page with the plan pre-selected
+      navigate(`/dashboard/subscription?plan=${planIdentifier}`);
     } else {
       openModal();
     }
   };
 
-  const plans = [
-    {
-      key: 'free',
-      popular: false,
-    },
-    {
-      key: 'pro',
-      popular: true,
-    },
-    {
-      key: 'enterprise',
-      popular: false,
-    },
+  const handleFreePlanClick = () => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    } else {
+      openModal();
+    }
+  };
+
+  // Rate limit helpers
+  const formatRateLimit = (limit: number | null): string => {
+    if (limit === null) return tSub('rateLimits.unlimited', 'Unlimited');
+    return limit.toLocaleString();
+  };
+
+  const getRateLimitTierForProduct = (packageId: string): RateLimitTier | undefined => {
+    if (!rateLimitsConfig?.tiers) return undefined;
+    const entitlement = PACKAGE_ENTITLEMENT_MAP[packageId];
+    if (entitlement) {
+      return rateLimitsConfig.tiers.find(tier => tier.entitlement === entitlement);
+    }
+    return rateLimitsConfig.tiers.find(tier => tier.entitlement === 'none');
+  };
+
+  const getRateLimitFeatures = (packageId: string): string[] => {
+    const tier = getRateLimitTierForProduct(packageId);
+    if (!tier) return [];
+    const features: string[] = [];
+    if (tier.limits.hourly !== null) {
+      features.push(tSub('rateLimits.hourly', '{{limit}} requests/hour', { limit: formatRateLimit(tier.limits.hourly) }));
+    }
+    if (tier.limits.daily !== null) {
+      features.push(tSub('rateLimits.daily', '{{limit}} requests/day', { limit: formatRateLimit(tier.limits.daily) }));
+    }
+    if (tier.limits.monthly !== null) {
+      features.push(tSub('rateLimits.monthly', '{{limit}} requests/month', { limit: formatRateLimit(tier.limits.monthly) }));
+    }
+    if (tier.limits.hourly === null && tier.limits.daily === null && tier.limits.monthly === null) {
+      features.push(tSub('rateLimits.unlimitedRequests', 'Unlimited API requests'));
+    }
+    return features;
+  };
+
+  const getFreeTierFeatures = (): string[] => {
+    const benefits = [
+      tSub('freeTier.schemaValidation', 'JSON Schema-validated outputs'),
+      tSub('freeTier.allProviders', 'All LLM providers (OpenAI, Anthropic, Google)'),
+      tSub('freeTier.endpointTesting', 'Built-in endpoint testing'),
+      tSub('freeTier.analytics', 'Basic usage analytics'),
+    ];
+    if (rateLimitsConfig?.tiers) {
+      const freeTier = rateLimitsConfig.tiers.find(tier => tier.entitlement === 'none');
+      if (freeTier) {
+        if (freeTier.limits.hourly !== null) {
+          benefits.push(tSub('rateLimits.hourly', '{{limit}} requests/hour', { limit: formatRateLimit(freeTier.limits.hourly) }));
+        }
+        if (freeTier.limits.daily !== null) {
+          benefits.push(tSub('rateLimits.daily', '{{limit}} requests/day', { limit: formatRateLimit(freeTier.limits.daily) }));
+        }
+        if (freeTier.limits.monthly !== null) {
+          benefits.push(tSub('rateLimits.monthly', '{{limit}} requests/month', { limit: formatRateLimit(freeTier.limits.monthly) }));
+        }
+      }
+    }
+    return benefits;
+  };
+
+  const getPeriodLabel = (period?: string) => {
+    if (!period) return '';
+    if (period.includes('Y') || period.includes('year')) return tSub('periods.year');
+    if (period.includes('M') || period.includes('month')) return tSub('periods.month');
+    if (period.includes('W') || period.includes('week')) return tSub('periods.week');
+    return '';
+  };
+
+  const getYearlySavingsPercent = (yearlyPackageId: string): number | undefined => {
+    const yearlyEntitlement = PACKAGE_ENTITLEMENT_MAP[yearlyPackageId];
+    if (!yearlyEntitlement) return undefined;
+    const yearlyProduct = products.find(p => p.identifier === yearlyPackageId);
+    if (!yearlyProduct) return undefined;
+    const monthlyPackageId = Object.entries(PACKAGE_ENTITLEMENT_MAP).find(
+      ([pkgId, ent]) => ent === yearlyEntitlement && pkgId.includes('monthly')
+    )?.[0];
+    if (!monthlyPackageId) return undefined;
+    const monthlyProduct = products.find(p => p.identifier === monthlyPackageId);
+    if (!monthlyProduct) return undefined;
+    const yearlyPrice = parseFloat(yearlyProduct.price);
+    const monthlyPrice = parseFloat(monthlyProduct.price);
+    if (monthlyPrice <= 0 || yearlyPrice <= 0) return undefined;
+    const annualizedMonthly = monthlyPrice * 12;
+    const savings = ((annualizedMonthly - yearlyPrice) / annualizedMonthly) * 100;
+    return Math.round(savings);
+  };
+
+  const billingPeriodOptions = [
+    { value: 'monthly' as const, label: tSub('billingPeriod.monthly', 'Monthly') },
+    { value: 'yearly' as const, label: tSub('billingPeriod.yearly', 'Yearly') },
   ];
 
   return (
@@ -89,97 +220,67 @@ function PricingPage() {
       {/* Pricing Cards */}
       <section className="pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
-            {plans.map(plan => (
-              <div
-                key={plan.key}
-                className={`relative p-8 rounded-2xl ${
-                  plan.popular
-                    ? 'bg-blue-600 text-white ring-4 ring-blue-600 ring-offset-4 ring-offset-theme-bg-primary'
-                    : 'bg-theme-bg-secondary border border-theme-border'
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-yellow-400 text-yellow-900 text-sm font-semibold rounded-full">
-                    Most Popular
-                  </div>
-                )}
+          {/* Billing Period Selector */}
+          <div className="flex justify-center mb-8">
+            <SegmentedControl
+              options={billingPeriodOptions}
+              value={billingPeriod}
+              onChange={setBillingPeriod}
+            />
+          </div>
 
-                <div className="text-center mb-8">
-                  <h3
-                    className={`text-xl font-semibold mb-2 ${
-                      plan.popular ? 'text-white' : 'text-theme-text-primary'
-                    }`}
-                  >
-                    {t(`plans.${plan.key}.name`)}
-                  </h3>
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span
-                      className={`text-4xl font-bold ${
-                        plan.popular ? 'text-white' : 'text-theme-text-primary'
-                      }`}
-                    >
-                      {t(`plans.${plan.key}.price`)}
-                    </span>
-                    <span
-                      className={
-                        plan.popular ? 'text-blue-100' : 'text-theme-text-secondary'
-                      }
-                    >
-                      {t(`plans.${plan.key}.period`)}
-                    </span>
-                  </div>
-                  <p
-                    className={`mt-2 text-sm ${
-                      plan.popular ? 'text-blue-100' : 'text-theme-text-secondary'
-                    }`}
-                  >
-                    {t(`plans.${plan.key}.description`)}
-                  </p>
-                </div>
+          {/* Subscription Tiles Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+              gap: '1.5rem',
+            }}
+          >
+            {/* Free Tier - no CTA button */}
+            <SubscriptionTile
+              id="free"
+              title="Free"
+              price="$0"
+              periodLabel={tSub('periods.month', '/month')}
+              features={getFreeTierFeatures()}
+              isSelected={false}
+              onSelect={handleFreePlanClick}
+              topBadge={!hasActiveSubscription ? { text: t('badges.currentPlan', 'Current Plan'), color: 'green' } : undefined}
+            />
 
-                <ul className="space-y-4 mb-8">
-                  {(t(`plans.${plan.key}.features`, { returnObjects: true }) as string[]).map(
-                    (feature, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <svg
-                          className={`w-5 h-5 flex-shrink-0 ${
-                            plan.popular ? 'text-blue-200' : 'text-green-500'
-                          }`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        <span
-                          className={`text-sm ${
-                            plan.popular ? 'text-white' : 'text-theme-text-primary'
-                          }`}
-                        >
-                          {feature}
-                        </span>
-                      </li>
-                    )
-                  )}
-                </ul>
-
-                <button
-                  onClick={() => handlePlanClick(plan.key)}
-                  className={`w-full py-3 font-semibold rounded-lg transition-colors ${
-                    plan.popular
-                      ? 'bg-white text-blue-600 hover:bg-gray-100'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
-                  }`}
-                >
-                  {t(`plans.${plan.key}.cta`)}
-                </button>
-              </div>
+            {/* Paid Plans with CTA buttons */}
+            {filteredProducts.map(product => (
+              <SubscriptionTile
+                key={product.identifier}
+                id={product.identifier}
+                title={product.title}
+                price={product.priceString}
+                periodLabel={getPeriodLabel(product.period)}
+                features={getRateLimitFeatures(product.identifier)}
+                isSelected={false}
+                onSelect={() => {}}
+                isBestValue={product.identifier.includes('pro')}
+                topBadge={
+                  product.identifier.includes('pro')
+                    ? { text: t('badges.mostPopular', 'Most Popular'), color: 'yellow' }
+                    : undefined
+                }
+                discountBadge={
+                  product.period?.includes('Y')
+                    ? (() => {
+                        const savings = getYearlySavingsPercent(product.identifier);
+                        return savings && savings > 0
+                          ? { text: tSub('badges.savePercent', 'Save {{percent}}%', { percent: savings }), isBestValue: true }
+                          : undefined;
+                      })()
+                    : undefined
+                }
+                ctaButton={{
+                  label: isAuthenticated ? t('cta.startNow', 'Start Now') : t('cta.signUp', 'Sign Up'),
+                  onClick: () => handlePlanClick(product.identifier),
+                }}
+              />
             ))}
           </div>
         </div>

@@ -203,27 +203,34 @@ function SubscriptionPage() {
   };
 
   /**
-   * Get rate limit features for the free tier (entitlement: "none")
+   * Get features for the free tier including app benefits and rate limits
    */
   const getFreeTierFeatures = (): string[] => {
-    if (!rateLimitsConfig?.tiers) return [];
+    // Core app benefits
+    const benefits = [
+      t('freeTier.schemaValidation', 'JSON Schema-validated outputs'),
+      t('freeTier.allProviders', 'All LLM providers (OpenAI, Anthropic, Google)'),
+      t('freeTier.endpointTesting', 'Built-in endpoint testing'),
+      t('freeTier.analytics', 'Basic usage analytics'),
+    ];
 
-    const freeTier = rateLimitsConfig.tiers.find(tier => tier.entitlement === 'none');
-    if (!freeTier) return [];
-
-    const features: string[] = [];
-
-    if (freeTier.limits.hourly !== null) {
-      features.push(t('rateLimits.hourly', '{{limit}} requests/hour', { limit: formatRateLimit(freeTier.limits.hourly) }));
+    // Add rate limits from API (hourly, daily, monthly order)
+    if (rateLimitsConfig?.tiers) {
+      const freeTier = rateLimitsConfig.tiers.find(tier => tier.entitlement === 'none');
+      if (freeTier) {
+        if (freeTier.limits.hourly !== null) {
+          benefits.push(t('rateLimits.hourly', '{{limit}} requests/hour', { limit: formatRateLimit(freeTier.limits.hourly) }));
+        }
+        if (freeTier.limits.daily !== null) {
+          benefits.push(t('rateLimits.daily', '{{limit}} requests/day', { limit: formatRateLimit(freeTier.limits.daily) }));
+        }
+        if (freeTier.limits.monthly !== null) {
+          benefits.push(t('rateLimits.monthly', '{{limit}} requests/month', { limit: formatRateLimit(freeTier.limits.monthly) }));
+        }
+      }
     }
-    if (freeTier.limits.daily !== null) {
-      features.push(t('rateLimits.daily', '{{limit}} requests/day', { limit: formatRateLimit(freeTier.limits.daily) }));
-    }
-    if (freeTier.limits.monthly !== null) {
-      features.push(t('rateLimits.monthly', '{{limit}} requests/month', { limit: formatRateLimit(freeTier.limits.monthly) }));
-    }
 
-    return features;
+    return benefits;
   };
 
   /**
