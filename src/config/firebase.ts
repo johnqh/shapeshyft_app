@@ -1,52 +1,34 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+/**
+ * @fileoverview Firebase Analytics Configuration
+ *
+ * Auth is now handled by @sudobility/auth_lib.
+ * This file only handles Firebase Analytics.
+ */
+
 import {
   getAnalytics,
   isSupported as isAnalyticsSupported,
   type Analytics,
 } from "firebase/analytics";
-
-// Firebase configuration from environment variables
-const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
-};
-
-// Check if Firebase is configured
-export const isFirebaseConfigured = (): boolean => {
-  const requiredFields = ["apiKey", "authDomain", "projectId", "appId"];
-  return requiredFields.every(
-    (field) => firebaseConfig[field as keyof typeof firebaseConfig],
-  );
-};
+import {
+  getFirebaseApp,
+  getFirebaseConfig,
+  isFirebaseConfigured,
+} from "@sudobility/auth_lib";
 
 // Check if analytics is configured (requires measurementId)
 export const isAnalyticsConfigured = (): boolean => {
-  return isFirebaseConfigured() && !!firebaseConfig.measurementId;
+  return isFirebaseConfigured() && !!getFirebaseConfig()?.measurementId;
 };
 
 // Development mode - disable analytics when not configured
 export const IS_DEVELOPMENT = !isAnalyticsConfigured();
 
-// Initialize Firebase app (avoid duplicate initialization)
-const app = isFirebaseConfigured()
-  ? getApps().length === 0
-    ? initializeApp(firebaseConfig)
-    : getApp()
-  : null;
-
-// Initialize Firebase Auth
-export const auth = app ? getAuth(app) : null;
-
 // Initialize Firebase Analytics (only in browser and when configured)
 let analytics: Analytics | null = null;
 
 const initAnalytics = async (): Promise<Analytics | null> => {
+  const app = getFirebaseApp();
   if (!app || IS_DEVELOPMENT) return null;
 
   try {
@@ -67,6 +49,3 @@ if (typeof window !== "undefined") {
 }
 
 export const getFirebaseAnalytics = (): Analytics | null => analytics;
-
-export { app, analytics };
-export default app;

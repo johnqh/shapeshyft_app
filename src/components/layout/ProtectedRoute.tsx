@@ -16,8 +16,8 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      // Redirect to login page
-      navigate(`/${lang || "en"}/login`, { replace: true });
+      // Redirect to home page
+      navigate(`/${lang || "en"}`, { replace: true });
     }
   }, [isAuthenticated, loading, navigate, lang]);
 

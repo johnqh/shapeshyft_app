@@ -4,7 +4,7 @@
  */
 
 import { EntityClient } from "@sudobility/entity_client";
-import { auth } from "./firebase";
+import { getFirebaseAuth } from "@sudobility/auth_lib";
 import { CONSTANTS } from "./constants";
 
 /**
@@ -12,6 +12,7 @@ import { CONSTANTS } from "./constants";
  * Returns null if not authenticated.
  */
 async function getAuthToken(): Promise<string | null> {
+  const auth = getFirebaseAuth();
   const currentUser = auth?.currentUser;
   if (!currentUser) {
     return null;

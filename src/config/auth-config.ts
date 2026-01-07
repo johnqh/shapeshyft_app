@@ -1,6 +1,6 @@
 import type { AuthTexts, AuthErrorTexts } from "@sudobility/auth-components";
 import type { TFunction } from "i18next";
-import { getFirebaseErrorMessage } from "../utils/auth";
+import { getFirebaseErrorMessage } from "@sudobility/auth_lib";
 
 /**
  * Create auth texts from i18next translations
