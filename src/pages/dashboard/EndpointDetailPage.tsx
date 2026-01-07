@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -19,6 +19,9 @@ import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import SchemaEditor from "../../components/dashboard/SchemaEditor";
+import DetailErrorState from "../../components/dashboard/DetailErrorState";
+import RateLimitPanel from "../../components/dashboard/RateLimitPanel";
+import { isServerError, isRateLimitError } from "../../utils/errorUtils";
 
 // Icons
 const EditIcon = () => (
@@ -118,7 +121,9 @@ function EndpointDetailPage() {
     endpoints,
     isLoading: endpointsLoading,
     updateEndpoint,
-    error: updateError,
+    error: endpointsError,
+    clearError: clearEndpointsError,
+    refresh: refreshEndpoints,
   } = useEndpointsManager({
     baseUrl,
     networkClient,
@@ -174,12 +179,38 @@ function EndpointDetailPage() {
     }
   }, [projectId, isReady, getProjectApiKey]);
 
+  const [isRetrying, setIsRetrying] = useState(false);
+
+  // Handle retry for server errors
+  const handleRetry = useCallback(async () => {
+    setIsRetrying(true);
+    clearEndpointsError();
+    try {
+      await refreshEndpoints();
+    } finally {
+      setIsRetrying(false);
+    }
+  }, [refreshEndpoints, clearEndpointsError]);
+
   // Show test error via InfoInterface
   useEffect(() => {
     if (testError) {
       getInfoService().show(t("common.error"), testError, InfoType.ERROR, 5000);
     }
   }, [testError, t]);
+
+  // Show endpoints error via InfoInterface (only for non-server errors)
+  useEffect(() => {
+    if (endpointsError && !isServerError(endpointsError)) {
+      getInfoService().show(
+        t("common.error"),
+        endpointsError,
+        InfoType.ERROR,
+        5000,
+      );
+      clearEndpointsError();
+    }
+  }, [endpointsError, clearEndpointsError, t]);
 
   // Edit handlers for General tab
   const handleStartEditGeneral = () => {
@@ -214,7 +245,7 @@ function EndpointDetailPage() {
         success(t("endpoints.updated"));
         setIsEditingGeneral(false);
       } else {
-        showError(updateError || t("common.errorOccurred"));
+        showError(endpointsError || t("common.errorOccurred"));
       }
     } catch (err) {
       showError(err instanceof Error ? err.message : t("common.errorOccurred"));
@@ -269,7 +300,7 @@ function EndpointDetailPage() {
         success(t("endpoints.updated"));
         setIsEditingInput(false);
       } else {
-        showError(updateError || t("common.errorOccurred"));
+        showError(endpointsError || t("common.errorOccurred"));
       }
     } catch (err) {
       showError(err instanceof Error ? err.message : t("common.errorOccurred"));
@@ -324,7 +355,7 @@ function EndpointDetailPage() {
         success(t("endpoints.updated"));
         setIsEditingOutput(false);
       } else {
-        showError(updateError || t("common.errorOccurred"));
+        showError(endpointsError || t("common.errorOccurred"));
       }
     } catch (err) {
       showError(err instanceof Error ? err.message : t("common.errorOccurred"));
@@ -411,6 +442,13 @@ function EndpointDetailPage() {
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
+    );
+  }
+
+  // Server error state - show error but keep in detail panel
+  if (endpointsError && isServerError(endpointsError)) {
+    return (
+      <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />
     );
   }
 
@@ -846,9 +884,13 @@ function EndpointDetailPage() {
                 </div>
 
                 {latestResult.error ? (
-                  <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg text-red-600 dark:text-red-400 text-sm">
-                    {latestResult.error}
-                  </div>
+                  isRateLimitError(latestResult.error) ? (
+                    <RateLimitPanel entitySlug={entitySlug} />
+                  ) : (
+                    <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg text-red-600 dark:text-red-400 text-sm">
+                      {latestResult.error}
+                    </div>
+                  )
                 ) : (
                   <pre className="p-3 bg-theme-bg-secondary rounded-lg overflow-auto font-mono text-sm text-green-600 dark:text-green-400 max-h-64">
                     {JSON.stringify(latestResult.output, null, 2)}

@@ -13,6 +13,8 @@ import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import ApiKeySection from "../../components/dashboard/ApiKeySection";
+import DetailErrorState from "../../components/dashboard/DetailErrorState";
+import { isServerError } from "../../utils/errorUtils";
 
 // Icons
 const EndpointIcon = () => (
@@ -93,6 +95,7 @@ function ProjectDetailPage() {
     error,
     deleteEndpoint,
     clearError,
+    refresh: refreshEndpoints,
   } = useEndpointsManager({
     baseUrl,
     networkClient,
@@ -103,9 +106,22 @@ function ProjectDetailPage() {
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
 
-  // Show error via InfoInterface
+  const [isRetrying, setIsRetrying] = useState(false);
+
+  // Handle retry for server errors
+  const handleRetry = useCallback(async () => {
+    setIsRetrying(true);
+    clearError();
+    try {
+      await refreshEndpoints();
+    } finally {
+      setIsRetrying(false);
+    }
+  }, [refreshEndpoints, clearError]);
+
+  // Show error via InfoInterface (only for non-server errors)
   useEffect(() => {
-    if (error) {
+    if (error && !isServerError(error)) {
       getInfoService().show(t("common.error"), error, InfoType.ERROR, 5000);
       clearError();
     }
@@ -185,6 +201,13 @@ function ProjectDetailPage() {
       <div className="flex items-center justify-center py-12">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
+    );
+  }
+
+  // Server error state - show error but keep in detail panel
+  if (error && isServerError(error)) {
+    return (
+      <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />
     );
   }
 

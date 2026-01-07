@@ -1,11 +1,12 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import type { ReactNode } from "react";
-import { networkClient, getInfoService } from "@sudobility/di";
+import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useAuthStatus } from "@sudobility/auth-components";
 import { auth } from "../config/firebase";
 import { CONSTANTS } from "../config/constants";
 import { ApiContext, type ApiContextValue } from "./apiContextDef";
+import { useResilientNetworkClient } from "../hooks/useResilientNetworkClient";
 
 export { ApiContext, type ApiContextValue } from "./apiContextDef";
 
@@ -17,6 +18,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
   const { user, loading: authLoading } = useAuthStatus();
   const [token, setToken] = useState<string | null>(null);
   const [tokenLoading, setTokenLoading] = useState(false);
+  const resilientNetworkClient = useResilientNetworkClient();
 
   const baseUrl = CONSTANTS.API_URL;
   const userId = user?.uid ?? null;
@@ -90,7 +92,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
 
   const value = useMemo<ApiContextValue>(
     () => ({
-      networkClient,
+      networkClient: resilientNetworkClient,
       baseUrl,
       userId,
       token,
@@ -99,7 +101,16 @@ export function ApiProvider({ children }: ApiProviderProps) {
       testMode,
       refreshToken,
     }),
-    [baseUrl, userId, token, authLoading, tokenLoading, testMode, refreshToken],
+    [
+      resilientNetworkClient,
+      baseUrl,
+      userId,
+      token,
+      authLoading,
+      tokenLoading,
+      testMode,
+      refreshToken,
+    ],
   );
 
   return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

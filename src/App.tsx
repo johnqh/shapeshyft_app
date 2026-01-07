@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useMemo } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
@@ -13,6 +13,8 @@ import { LazySubscriptionProvider } from "./components/providers/LazySubscriptio
 import ToastContainer from "./components/ui/ToastContainer";
 import { PageTracker } from "./hooks/usePageTracking";
 import { InfoBanner } from "@sudobility/di_web";
+import { getNetworkService } from "@sudobility/di";
+import { NetworkProvider } from "@sudobility/devops-components";
 
 // Lazy load PerformancePanel - only used in dev mode
 const PerformancePanel = lazy(() =>
@@ -97,17 +99,21 @@ const LoadingFallback = () => (
 const PERFORMANCE_API_PATTERNS = ["/api/"];
 
 function App() {
+  // Get network service inside component (after main.tsx initializes it)
+  const networkService = useMemo(() => getNetworkService(), []);
+
   return (
     <HelmetProvider>
       <I18nextProvider i18n={i18n}>
         <ThemeProvider>
-          <QueryClientProvider client={queryClient}>
-            <ToastProvider>
-              <AuthProviderWrapper>
-                <ApiProvider>
-                  <AnalyticsProvider>
-                    <LazySubscriptionProvider>
-                      <BrowserRouter>
+          <NetworkProvider networkService={networkService}>
+            <QueryClientProvider client={queryClient}>
+              <ToastProvider>
+                <AuthProviderWrapper>
+                  <ApiProvider>
+                    <AnalyticsProvider>
+                      <LazySubscriptionProvider>
+                        <BrowserRouter>
                         <PageTracker />
                         <Suspense fallback={<LoadingFallback />}>
                           <Routes>
@@ -263,12 +269,13 @@ function App() {
                         )}
                         <InfoBanner />
                       </BrowserRouter>
-                    </LazySubscriptionProvider>
-                  </AnalyticsProvider>
-                </ApiProvider>
-              </AuthProviderWrapper>
-            </ToastProvider>
-          </QueryClientProvider>
+                      </LazySubscriptionProvider>
+                    </AnalyticsProvider>
+                  </ApiProvider>
+                </AuthProviderWrapper>
+              </ToastProvider>
+            </QueryClientProvider>
+          </NetworkProvider>
         </ThemeProvider>
       </I18nextProvider>
     </HelmetProvider>

@@ -348,5 +348,17 @@
       "requests": "Requests",
       "noData": "No usage data available for this period"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "Server Unavailable",
+      "message": "We're having trouble connecting to the server. Please try again later.",
+      "retry": "Retry"
+    },
+    "rateLimit": {
+      "title": "Rate Limit Exceeded",
+      "message": "You've reached your plan's rate limit. Upgrade your subscription for higher limits.",
+      "upgradeButton": "Upgrade Plan"
+    }
   }
 }

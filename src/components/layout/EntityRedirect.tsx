@@ -3,10 +3,13 @@
  * @description Redirects to the user's default entity when accessing /dashboard without an entity slug
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEntities } from "@sudobility/entity_client";
 import { entityClient } from "../../config/entityClient";
+import DetailErrorState from "../dashboard/DetailErrorState";
+import { isServerError } from "../../utils/errorUtils";
+import ScreenContainer from "./ScreenContainer";
 
 const LAST_ENTITY_KEY = "shapeshyft_last_entity";
 
@@ -17,7 +20,13 @@ const LAST_ENTITY_KEY = "shapeshyft_last_entity";
 function EntityRedirect() {
   const navigate = useNavigate();
   const { lang } = useParams<{ lang: string }>();
-  const { data: entities, isLoading, error } = useEntities(entityClient);
+  const {
+    data: entities,
+    isLoading,
+    error,
+    refetch,
+  } = useEntities(entityClient);
+  const [isRetrying, setIsRetrying] = useState(false);
 
   useEffect(() => {
     if (isLoading) return;
@@ -51,11 +60,41 @@ function EntityRedirect() {
     }
   }, [entities, isLoading, error, navigate, lang]);
 
+  const handleRetry = async () => {
+    setIsRetrying(true);
+    try {
+      await refetch();
+    } finally {
+      setIsRetrying(false);
+    }
+  };
+
+  // Show error state if there's a server error
+  if (error && isServerError(error)) {
+    return (
+      <ScreenContainer
+        footerVariant="compact"
+        showFooter={true}
+        showBreadcrumbs={true}
+      >
+        <div className="flex-1 flex items-center justify-center min-h-[60vh]">
+          <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />
+        </div>
+      </ScreenContainer>
+    );
+  }
+
   // Show loading spinner while fetching entities
   return (
-    <div className="min-h-screen flex items-center justify-center bg-theme-bg-primary">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-    </div>
+    <ScreenContainer
+      footerVariant="compact"
+      showFooter={true}
+      showBreadcrumbs={true}
+    >
+      <div className="flex-1 flex items-center justify-center min-h-[60vh]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    </ScreenContainer>
   );
 }
 

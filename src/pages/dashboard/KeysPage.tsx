@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useKeysManager } from "@sudobility/shapeshyft_lib";
@@ -9,6 +9,8 @@ import type { LlmApiKeySafe } from "@sudobility/shapeshyft_types";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import KeyForm from "../../components/dashboard/KeyForm";
+import DetailErrorState from "../../components/dashboard/DetailErrorState";
+import { isServerError } from "../../utils/errorUtils";
 
 // Icons
 const KeyIcon = () => (
@@ -93,6 +95,7 @@ function KeysPage() {
     updateKey,
     deleteKey,
     clearError,
+    refresh: refreshKeys,
   } = useKeysManager({
     baseUrl,
     networkClient,
@@ -102,9 +105,22 @@ function KeysPage() {
     autoFetch: isReady && !!entitySlug,
   });
 
-  // Show error via InfoInterface
+  const [isRetrying, setIsRetrying] = useState(false);
+
+  // Handle retry for server errors
+  const handleRetry = useCallback(async () => {
+    setIsRetrying(true);
+    clearError();
+    try {
+      await refreshKeys();
+    } finally {
+      setIsRetrying(false);
+    }
+  }, [refreshKeys, clearError]);
+
+  // Show error via InfoInterface (only for non-server errors)
   useEffect(() => {
-    if (error) {
+    if (error && !isServerError(error)) {
       getInfoService().show(t("common.error"), error, InfoType.ERROR, 5000);
       clearError();
     }
@@ -213,6 +229,11 @@ function KeysPage() {
       </div>
     );
   };
+
+  // Server error state - show error but keep in detail panel
+  if (error && isServerError(error)) {
+    return <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />;
+  }
 
   return (
     <div>

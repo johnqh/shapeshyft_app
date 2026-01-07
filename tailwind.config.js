@@ -6,6 +6,7 @@ export default {
     // Scan installed npm packages for dynamic Tailwind classes
     "./node_modules/@sudobility/components/**/*.{js,jsx,ts,tsx}",
     "./node_modules/@sudobility/design/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/@sudobility/devops-components/**/*.{js,jsx,ts,tsx}",
   ],
   darkMode: "class",
   theme: {

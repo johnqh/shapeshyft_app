@@ -41,6 +41,9 @@ export const CONSTANTS = {
 
   // External pages
   STATUS_PAGE_URL: import.meta.env.VITE_STATUS_PAGE_URL || "",
+  STATUS_PAGE_API_URL: import.meta.env.VITE_STATUS_PAGE_URL
+    ? `${import.meta.env.VITE_STATUS_PAGE_URL}/api/v2/status.json`
+    : "",
 
   // Navigation items
   NAV_ITEMS: [

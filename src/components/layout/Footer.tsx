@@ -12,6 +12,7 @@ import {
   FooterVersion,
   FooterCopyright,
 } from "@sudobility/components";
+import { SystemStatusIndicator, useNetwork } from "@sudobility/devops-components";
 import { CONSTANTS } from "../../config/constants";
 import LocalizedLink from "./LocalizedLink";
 
@@ -22,6 +23,7 @@ interface FooterProps {
 function Footer({ variant = "full" }: FooterProps) {
   const { t } = useTranslation("common");
   const currentYear = String(new Date().getFullYear());
+  const { isOnline } = useNetwork();
 
   if (variant === "compact") {
     return (
@@ -33,6 +35,16 @@ function Footer({ variant = "full" }: FooterProps) {
               year={currentYear}
               companyName={CONSTANTS.COMPANY_NAME}
             />
+            {CONSTANTS.STATUS_PAGE_URL && (
+              <SystemStatusIndicator
+                statusPageUrl={CONSTANTS.STATUS_PAGE_URL}
+                apiEndpoint={CONSTANTS.STATUS_PAGE_API_URL}
+                refreshInterval={60000}
+                size="sm"
+                version={CONSTANTS.APP_VERSION}
+                isNetworkOnline={isOnline}
+              />
+            )}
           </FooterCompactLeft>
           <FooterCompactRight>
             <LocalizedLink
@@ -123,6 +135,16 @@ function Footer({ variant = "full" }: FooterProps) {
           year={currentYear}
           companyName={CONSTANTS.COMPANY_NAME}
         />
+        {CONSTANTS.STATUS_PAGE_URL && (
+          <SystemStatusIndicator
+            statusPageUrl={CONSTANTS.STATUS_PAGE_URL}
+            apiEndpoint={CONSTANTS.STATUS_PAGE_API_URL}
+            refreshInterval={60000}
+            size="sm"
+            version={CONSTANTS.APP_VERSION}
+            isNetworkOnline={isOnline}
+          />
+        )}
       </FooterBottom>
     </FooterContainer>
   );
