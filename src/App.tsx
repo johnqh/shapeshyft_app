@@ -8,6 +8,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { ApiProvider } from "./context/ApiContext";
 import { ToastProvider } from "./context/ToastContext";
 import { AnalyticsProvider } from "./context/AnalyticsContext";
+import { isLanguageSupported } from "./config/constants";
 import { AuthProviderWrapper } from "./components/providers/AuthProviderWrapper";
 import { LazySubscriptionProvider } from "./components/providers/LazySubscriptionProvider";
 import ToastContainer from "./components/ui/ToastContainer";
@@ -72,8 +73,16 @@ const PerformancePage = lazy(() => import("./pages/dashboard/PerformancePage"));
 const LanguageRedirect = lazy(
   () => import("./components/layout/LanguageRedirect"),
 );
-const LanguageValidator = lazy(
-  () => import("./components/layout/LanguageValidator"),
+const LanguageValidator = lazy(() =>
+  import("@sudobility/components").then((mod) => ({
+    default: () => (
+      <mod.LanguageValidator
+        isLanguageSupported={isLanguageSupported}
+        defaultLanguage="en"
+        storageKey="language"
+      />
+    ),
+  })),
 );
 const ProtectedRoute = lazy(() => import("./components/layout/ProtectedRoute"));
 const EntityRedirect = lazy(() => import("./components/layout/EntityRedirect"));

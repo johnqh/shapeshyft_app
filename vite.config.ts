@@ -22,7 +22,7 @@ export default defineConfig({
     target: "es2020",
     cssCodeSplit: true,
     sourcemap: false,
-    chunkSizeWarningLimit: 500,
+    chunkSizeWarningLimit: 750,
     // Only preload direct imports, not lazy-loaded chunks
     modulePreload: {
       resolveDependencies: (_filename, deps) => {
