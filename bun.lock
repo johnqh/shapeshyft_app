@@ -20,7 +20,7 @@
         "@sudobility/entity_pages": "^0.0.5",
         "@sudobility/ratelimit-components": "^1.0.2",
         "@sudobility/ratelimit_client": "^0.0.13",
-        "@sudobility/ratelimit_pages": "^1.0.18",
+        "@sudobility/ratelimit_pages": "^1.0.19",
         "@sudobility/shapeshyft_client": "^0.0.14",
         "@sudobility/shapeshyft_lib": "^0.0.16",
         "@sudobility/shapeshyft_types": "^1.0.13",
@@ -453,7 +453,7 @@
 
     "@sudobility/ratelimit_client": ["@sudobility/ratelimit_client@0.0.13", "", { "peerDependencies": { "@sudobility/types": "^1.9.40", "@tanstack/react-query": ">=5.0.0", "react": ">=18.0.0" } }, "sha512-AhijOcRALjU9pg7jXeTX3h0txXhImLK0cYU0yjV07U/3Uobayrsup1Qx0KIV41zwU0TYg0gIOSOhC6OofkzYNw=="],
 
-    "@sudobility/ratelimit_pages": ["@sudobility/ratelimit_pages@1.0.18", "", { "optionalDependencies": { "@rollup/rollup-linux-x64-gnu": "4.52.5", "@rollup/rollup-linux-x64-musl": "4.52.5" }, "peerDependencies": { "@sudobility/components": "^4.0.109", "@sudobility/design": "^1.1.15", "@sudobility/types": "^1.9.40", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" } }, "sha512-nFChTjxko54fLuSfgEMHaIq9UydXIqwtcJ9MU7brK4TsIs7OSTUkuhcWXfFvocFN9OcJsStdEPX4WxiFMWYMEQ=="],
+    "@sudobility/ratelimit_pages": ["@sudobility/ratelimit_pages@1.0.19", "", { "optionalDependencies": { "@rollup/rollup-linux-x64-gnu": "4.52.5", "@rollup/rollup-linux-x64-musl": "4.52.5" }, "peerDependencies": { "@sudobility/components": "^4.0.110", "@sudobility/design": "^1.1.15", "@sudobility/types": "^1.9.40", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" } }, "sha512-GPwpStklEiKnzG0vO5vAKqncwX9+GVvJxA3UVPksagrDmyN5Ypob3gMDWNmKZfeyyNubFsXm1WoBTdH8Up+QxA=="],
 
     "@sudobility/shapeshyft_client": ["@sudobility/shapeshyft_client@0.0.14", "", { "peerDependencies": { "@sudobility/shapeshyft_types": "^1.0.13", "@sudobility/types": "^1.9.40", "@tanstack/react-query": ">=5.0.0", "react": ">=18.0.0" } }, "sha512-aB7isxhOlRW9LJTDp41tOhjQxdQz3+W8h092o4+BAufIO0uYBh1LMe2qxFPgh03tldTaI94mjcjUz5Empe4dIg=="],
 
