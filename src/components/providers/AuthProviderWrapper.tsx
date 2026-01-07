@@ -29,6 +29,7 @@ export function AuthProviderWrapper({ children }: AuthProviderWrapperProps) {
 
   // If Firebase is not configured, render children without auth
   if (!auth) {
+    console.warn("[AuthProviderWrapper] No auth instance - Firebase not configured");
     return <>{children}</>;
   }
 

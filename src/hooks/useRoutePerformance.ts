@@ -1,36 +1,7 @@
-import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import { reportRouteChange } from "../utils/webVitals";
-
 /**
- * Hook to track route change performance
- * Measures time between route changes and reports to performance monitoring
+ * Route performance hook - re-exported from @sudobility/components
  */
-export const useRoutePerformance = () => {
-  const location = useLocation();
-  const previousLocation = useRef<string | null>(null);
-  const routeStartTime = useRef<number>(0);
+import { useRoutePerformance as useSharedRoutePerformance } from "@sudobility/components";
 
-  useEffect(() => {
-    const currentPath = location.pathname;
-
-    // On first load, just record the path
-    if (!previousLocation.current) {
-      previousLocation.current = currentPath;
-      routeStartTime.current = Date.now();
-      return;
-    }
-
-    // Calculate time since last route change
-    const duration = Date.now() - routeStartTime.current;
-
-    // Report route change performance
-    if (previousLocation.current !== currentPath) {
-      reportRouteChange(previousLocation.current, currentPath, duration);
-
-      // Update refs for next change
-      previousLocation.current = currentPath;
-      routeStartTime.current = Date.now();
-    }
-  }, [location]);
-};
+export const useRoutePerformance = useSharedRoutePerformance;
+export default useRoutePerformance;

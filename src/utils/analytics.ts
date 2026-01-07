@@ -3,17 +3,8 @@
  * Implements privacy-preserving user tracking with hashed user IDs
  */
 
-/**
- * Hash a user ID using SHA-256 for privacy-preserving analytics
- * The hash is one-way and cannot be reversed to the original user ID
- */
-export const hashUserId = async (userId: string): Promise<string> => {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(userId.toLowerCase());
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-};
+// Re-export hashUserId from shared components
+export { hashUserId } from "@sudobility/components";
 
 /**
  * Analytics event names following Firebase best practices
