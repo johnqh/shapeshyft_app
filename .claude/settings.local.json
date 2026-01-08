@@ -50,7 +50,9 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\nrefactor: extract auth logic to @sudobility/auth_lib\n\n- Move Firebase auth initialization to auth_lib\n- Move useResilientNetworkClient to auth_lib as useFirebaseAuthNetworkClient\n- Move Firebase error utilities to auth_lib\n- Update all imports to use auth_lib\n- Simplify firebase.ts to only handle analytics\n- Redirect to home page \\(not login\\) on logout\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(bun update:*)",
       "Bash(bun unlink:*)",
-      "Bash(bunx tsc:*)"
+      "Bash(bunx tsc:*)",
+      "Bash(xargs:*)",
+      "Bash(bun remove:*)"
     ]
   }
 }

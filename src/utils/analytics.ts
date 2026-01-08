@@ -3,8 +3,10 @@
  * Implements privacy-preserving user tracking with hashed user IDs
  */
 
-// Re-export hashUserId from shared components
-export { hashUserId } from "@sudobility/components";
+import { stripLanguagePrefix } from "@sudobility/components";
+
+// Re-export utilities from shared components
+export { hashUserId, stripLanguagePrefix } from "@sudobility/components";
 
 /**
  * Analytics event names following Firebase best practices
@@ -120,7 +122,7 @@ export const PAGE_NAMES: Record<string, string> = {
  */
 export const getPageName = (path: string): string => {
   // Strip language prefix (e.g., /en/about -> /about)
-  const normalizedPath = path.replace(/^\/[a-z]{2}(-[a-z]+)?(?=\/|$)/, "");
+  const normalizedPath = stripLanguagePrefix(path);
 
   // Check for exact match
   if (PAGE_NAMES[normalizedPath]) {
