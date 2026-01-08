@@ -20,6 +20,8 @@ function StubSubscriptionProvider({ children }: { children: ReactNode }) {
 
 interface LazySubscriptionProviderProps {
   children: ReactNode;
+  /** Entity ID to use as RevenueCat subscriber. Optional - can be provided later. */
+  entityId?: string;
 }
 
 /**
@@ -29,6 +31,7 @@ interface LazySubscriptionProviderProps {
  */
 export function LazySubscriptionProvider({
   children,
+  entityId,
 }: LazySubscriptionProviderProps) {
   const { user } = useAuthStatus();
 
@@ -47,7 +50,9 @@ export function LazySubscriptionProvider({
     <Suspense
       fallback={<StubSubscriptionProvider>{children}</StubSubscriptionProvider>}
     >
-      <SubscriptionProviderWrapper>{children}</SubscriptionProviderWrapper>
+      <SubscriptionProviderWrapper entityId={entityId}>
+        {children}
+      </SubscriptionProviderWrapper>
     </Suspense>
   );
 }

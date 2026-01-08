@@ -7,10 +7,13 @@ import {
   useKeysManager,
   useEndpointsManager,
 } from "@sudobility/shapeshyft_lib";
+import { useEntity } from "@sudobility/entity_client";
 import ScreenContainer from "../../components/layout/ScreenContainer";
 import DashboardMasterList from "../../components/dashboard/DashboardMasterList";
 import { useApi } from "../../hooks/useApi";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+import { entityClient } from "../../config/entityClient";
+import { useCurrentEntity } from "../../hooks/useCurrentEntity";
 
 function DashboardPage() {
   const { t } = useTranslation("dashboard");
@@ -26,6 +29,21 @@ function DashboardPage() {
     endpointId: string;
   }>();
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
+
+  // Fetch entity to get entity ID for subscription context
+  const { data: entity } = useEntity(entityClient, entitySlug || null);
+  const { setEntityId } = useCurrentEntity();
+
+  // Update entity ID in context when entity changes
+  useEffect(() => {
+    if (entity?.id) {
+      setEntityId(entity.id);
+    }
+    return () => {
+      // Clear entity ID when leaving dashboard
+      setEntityId(null);
+    };
+  }, [entity?.id, setEntityId]);
 
   // Mobile view state
   const [mobileView, setMobileView] = useState<"navigation" | "content">(

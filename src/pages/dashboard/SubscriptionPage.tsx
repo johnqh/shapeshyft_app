@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   SubscriptionLayout,
@@ -26,6 +27,7 @@ const PACKAGE_ENTITLEMENT_MAP: Record<string, string> = {
 
 function SubscriptionPage() {
   const { t } = useTranslation("subscription");
+  const { entitySlug = "" } = useParams<{ entitySlug: string }>();
   const { success } = useToast();
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const {
@@ -48,10 +50,10 @@ function SubscriptionPage() {
 
   // Fetch rate limits on mount
   useEffect(() => {
-    if (isReady && token) {
-      refreshRateLimits(token);
+    if (isReady && token && entitySlug) {
+      refreshRateLimits(token, entitySlug);
     }
-  }, [isReady, token, refreshRateLimits]);
+  }, [isReady, token, entitySlug, refreshRateLimits]);
 
   // Show error via InfoInterface
   useEffect(() => {

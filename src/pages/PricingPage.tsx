@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuthStatus } from "@sudobility/auth-components";
 import {
@@ -6,14 +6,11 @@ import {
   SegmentedControl,
   useSubscriptionContext,
 } from "@sudobility/subscription-components";
-import { type RateLimitTier } from "@sudobility/types";
-import { useRateLimits } from "@sudobility/shapeshyft_client";
 import { useSafeSubscriptionContext } from "../components/providers/SafeSubscriptionContext";
 import ScreenContainer from "../components/layout/ScreenContainer";
 import SEO from "../components/seo/SEO";
 import AISearchOptimization from "../components/seo/AISearchOptimization";
 import { useLocalizedNavigate } from "../hooks/useLocalizedNavigate";
-import { useApi } from "../hooks/useApi";
 import { CONSTANTS } from "../config/constants";
 
 type BillingPeriod = "monthly" | "yearly";
@@ -34,7 +31,6 @@ function PricingPage() {
   const { user, openModal } = useAuthStatus();
   const { currentSubscription } = useSafeSubscriptionContext();
   const { navigate } = useLocalizedNavigate();
-  const { networkClient, baseUrl, token, isReady } = useApi();
   const appName = CONSTANTS.APP_NAME;
 
   const isAuthenticated = !!user;
@@ -50,16 +46,6 @@ function PricingPage() {
   } catch {
     // Not authenticated, products will be empty
   }
-
-  const { config: rateLimitsConfig, refreshConfig: refreshRateLimits } =
-    useRateLimits(networkClient, baseUrl);
-
-  // Fetch rate limits on mount
-  useEffect(() => {
-    if (isReady && token) {
-      refreshRateLimits(token);
-    }
-  }, [isReady, token, refreshRateLimits]);
 
   // Filter products by billing period and sort by price
   const filteredProducts = products
@@ -88,64 +74,44 @@ function PricingPage() {
     }
   };
 
-  // Rate limit helpers
-  const formatRateLimit = (limit: number | null): string => {
-    if (limit === null) return tSub("rateLimits.unlimited", "Unlimited");
-    return limit.toLocaleString();
-  };
-
-  const getRateLimitTierForProduct = (
-    packageId: string,
-  ): RateLimitTier | undefined => {
-    if (!rateLimitsConfig?.tiers) return undefined;
+  // Static feature lists for pricing page (rate limits shown after sign-in on subscription page)
+  const getProductFeatures = (packageId: string): string[] => {
     const entitlement = PACKAGE_ENTITLEMENT_MAP[packageId];
-    if (entitlement) {
-      return rateLimitsConfig.tiers.find(
-        (tier) => tier.entitlement === entitlement,
-      );
-    }
-    return rateLimitsConfig.tiers.find((tier) => tier.entitlement === "none");
-  };
-
-  const getRateLimitFeatures = (packageId: string): string[] => {
-    const tier = getRateLimitTierForProduct(packageId);
-    if (!tier) return [];
-    const features: string[] = [];
-    if (tier.limits.hourly !== null) {
-      features.push(
-        tSub("rateLimits.hourly", "{{limit}} requests/hour", {
-          limit: formatRateLimit(tier.limits.hourly),
-        }),
-      );
-    }
-    if (tier.limits.daily !== null) {
-      features.push(
-        tSub("rateLimits.daily", "{{limit}} requests/day", {
-          limit: formatRateLimit(tier.limits.daily),
-        }),
-      );
-    }
-    if (tier.limits.monthly !== null) {
-      features.push(
-        tSub("rateLimits.monthly", "{{limit}} requests/month", {
-          limit: formatRateLimit(tier.limits.monthly),
-        }),
-      );
-    }
-    if (
-      tier.limits.hourly === null &&
-      tier.limits.daily === null &&
-      tier.limits.monthly === null
-    ) {
-      features.push(
+    if (entitlement === "bandwidth_ultra") {
+      return [
         tSub("rateLimits.unlimitedRequests", "Unlimited API requests"),
-      );
+        tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
+        tSub(
+          "freeTier.allProviders",
+          "All LLM providers (OpenAI, Anthropic, Google)",
+        ),
+      ];
     }
-    return features;
+    if (entitlement === "bandwidth_pro") {
+      return [
+        t("features.highLimits", "High rate limits"),
+        tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
+        tSub(
+          "freeTier.allProviders",
+          "All LLM providers (OpenAI, Anthropic, Google)",
+        ),
+      ];
+    }
+    if (entitlement === "bandwidth_dev") {
+      return [
+        t("features.increasedLimits", "Increased rate limits"),
+        tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
+        tSub(
+          "freeTier.allProviders",
+          "All LLM providers (OpenAI, Anthropic, Google)",
+        ),
+      ];
+    }
+    return [];
   };
 
   const getFreeTierFeatures = (): string[] => {
-    const benefits = [
+    return [
       tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
       tSub(
         "freeTier.allProviders",
@@ -154,35 +120,6 @@ function PricingPage() {
       tSub("freeTier.endpointTesting", "Built-in endpoint testing"),
       tSub("freeTier.analytics", "Basic usage analytics"),
     ];
-    if (rateLimitsConfig?.tiers) {
-      const freeTier = rateLimitsConfig.tiers.find(
-        (tier) => tier.entitlement === "none",
-      );
-      if (freeTier) {
-        if (freeTier.limits.hourly !== null) {
-          benefits.push(
-            tSub("rateLimits.hourly", "{{limit}} requests/hour", {
-              limit: formatRateLimit(freeTier.limits.hourly),
-            }),
-          );
-        }
-        if (freeTier.limits.daily !== null) {
-          benefits.push(
-            tSub("rateLimits.daily", "{{limit}} requests/day", {
-              limit: formatRateLimit(freeTier.limits.daily),
-            }),
-          );
-        }
-        if (freeTier.limits.monthly !== null) {
-          benefits.push(
-            tSub("rateLimits.monthly", "{{limit}} requests/month", {
-              limit: formatRateLimit(freeTier.limits.monthly),
-            }),
-          );
-        }
-      }
-    }
-    return benefits;
   };
 
   const getPeriodLabel = (period?: string) => {
@@ -323,7 +260,7 @@ function PricingPage() {
                 title={product.title}
                 price={product.priceString}
                 periodLabel={getPeriodLabel(product.period)}
-                features={getRateLimitFeatures(product.identifier)}
+                features={getProductFeatures(product.identifier)}
                 isSelected={false}
                 onSelect={() => {}}
                 isBestValue={product.identifier.includes("pro")}

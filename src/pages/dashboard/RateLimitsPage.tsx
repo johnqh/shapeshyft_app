@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   RateLimitsPage as RateLimitsPageComponent,
@@ -11,6 +12,7 @@ type TabType = "limits" | "history";
 
 function RateLimitsPage() {
   const { t } = useTranslation("dashboard");
+  const { entitySlug = "" } = useParams<{ entitySlug: string }>();
   const { networkClient, baseUrl, token } = useApi();
   const { navigate } = useLocalizedNavigate();
   const [activeTab, setActiveTab] = useState<TabType>("limits");
@@ -53,6 +55,7 @@ function RateLimitsPage() {
           networkClient={networkClient}
           baseUrl={baseUrl}
           token={token}
+          entitySlug={entitySlug}
           onUpgradeClick={handleUpgradeClick}
           upgradeButtonLabel={t("rateLimits.upgradeButton")}
           autoFetch={true}
@@ -80,6 +83,7 @@ function RateLimitsPage() {
           networkClient={networkClient}
           baseUrl={baseUrl}
           token={token}
+          entitySlug={entitySlug}
           autoFetch={true}
           chartHeight={350}
           labels={{

@@ -8,6 +8,8 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { ApiProvider } from "./context/ApiContext";
 import { ToastProvider } from "./context/ToastContext";
 import { AnalyticsProvider } from "./context/AnalyticsContext";
+import { CurrentEntityProvider } from "./context/CurrentEntityContext";
+import { useCurrentEntity } from "./hooks/useCurrentEntity";
 import { isLanguageSupported } from "./config/constants";
 import { AuthProviderWrapper } from "./components/providers/AuthProviderWrapper";
 import { LazySubscriptionProvider } from "./components/providers/LazySubscriptionProvider";
@@ -104,6 +106,20 @@ const LoadingFallback = () => (
   </div>
 );
 
+// Wrapper that reads entity ID from context and passes to subscription provider
+function EntityAwareSubscriptionProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const { entityId } = useCurrentEntity();
+  return (
+    <LazySubscriptionProvider entityId={entityId ?? undefined}>
+      {children}
+    </LazySubscriptionProvider>
+  );
+}
+
 // Stable reference for PerformancePanel to prevent infinite re-renders
 const PERFORMANCE_API_PATTERNS = ["/api/"];
 
@@ -119,10 +135,11 @@ function App() {
             <QueryClientProvider client={queryClient}>
               <ToastProvider>
                 <AuthProviderWrapper>
-                  <ApiProvider>
-                    <AnalyticsProvider>
-                      <LazySubscriptionProvider>
-                        <BrowserRouter>
+                  <CurrentEntityProvider>
+                    <ApiProvider>
+                      <AnalyticsProvider>
+                        <EntityAwareSubscriptionProvider>
+                          <BrowserRouter>
                         <PageTracker />
                         <Suspense fallback={<LoadingFallback />}>
                           <Routes>
@@ -277,10 +294,11 @@ function App() {
                           />
                         )}
                         <InfoBanner />
-                      </BrowserRouter>
-                      </LazySubscriptionProvider>
-                    </AnalyticsProvider>
-                  </ApiProvider>
+                          </BrowserRouter>
+                        </EntityAwareSubscriptionProvider>
+                      </AnalyticsProvider>
+                    </ApiProvider>
+                  </CurrentEntityProvider>
                 </AuthProviderWrapper>
               </ToastProvider>
             </QueryClientProvider>

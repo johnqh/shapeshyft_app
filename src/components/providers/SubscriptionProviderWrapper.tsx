@@ -11,6 +11,8 @@ import { CONSTANTS } from "../../config/constants";
 
 interface SubscriptionProviderWrapperProps {
   children: ReactNode;
+  /** Entity ID to use as RevenueCat subscriber (personal or organizational). Optional - if not provided, subscription won't initialize until set. */
+  entityId?: string;
 }
 
 /**
@@ -25,30 +27,40 @@ function SafeContextBridge({ children }: { children: ReactNode }) {
   );
 }
 
+interface SubscriptionInitializerProps {
+  children: ReactNode;
+  entityId?: string;
+}
+
 /**
- * Inner component that auto-initializes subscription when user is available
+ * Inner component that auto-initializes subscription when entity is available.
+ * Uses entityId as the RevenueCat subscriber ID (subscriptions are per-entity).
  */
-function SubscriptionInitializer({ children }: { children: ReactNode }) {
+function SubscriptionInitializer({
+  children,
+  entityId,
+}: SubscriptionInitializerProps) {
   const { user } = useAuthStatus();
   const { initialize } = useSubscriptionContext();
   const initializedRef = useRef(false);
-  const userIdRef = useRef<string | null>(null);
+  const entityIdRef = useRef<string | null>(null);
 
   useEffect(() => {
-    // Only initialize once per user
-    if (user && !user.isAnonymous && user.uid !== userIdRef.current) {
-      userIdRef.current = user.uid;
+    // Only initialize when user is authenticated and entity is available
+    if (user && !user.isAnonymous && entityId && entityId !== entityIdRef.current) {
+      entityIdRef.current = entityId;
       if (!initializedRef.current) {
         initializedRef.current = true;
-        initialize(user.uid, user.email || undefined);
+        // Use entityId as subscriber ID (subscriptions are per-entity)
+        initialize(entityId, user.email || undefined);
       }
-    } else if (!user || user.isAnonymous) {
-      // Reset when user logs out
+    } else if (!user || user.isAnonymous || !entityId) {
+      // Reset when user logs out or entity changes
       initializedRef.current = false;
-      userIdRef.current = null;
+      entityIdRef.current = null;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Intentionally using specific properties to avoid re-render loops
-  }, [user?.uid, user?.isAnonymous, user?.email, initialize]);
+  }, [user?.uid, user?.isAnonymous, user?.email, entityId, initialize]);
 
   return <>{children}</>;
 }
@@ -65,10 +77,12 @@ const handleSubscriptionError = (error: Error) => {
 
 /**
  * Wrapper component that integrates @sudobility/subscription-components
- * with the app's auth system and auto-initializes when user is available
+ * with the app's auth system and auto-initializes with entity ID.
+ * Subscriptions are per-entity (personal or organizational).
  */
 export function SubscriptionProviderWrapper({
   children,
+  entityId,
 }: SubscriptionProviderWrapperProps) {
   return (
     <SubscriptionProvider
@@ -76,7 +90,9 @@ export function SubscriptionProviderWrapper({
       onError={handleSubscriptionError}
     >
       <SafeContextBridge>
-        <SubscriptionInitializer>{children}</SubscriptionInitializer>
+        <SubscriptionInitializer entityId={entityId}>
+          {children}
+        </SubscriptionInitializer>
       </SafeContextBridge>
     </SubscriptionProvider>
   );
