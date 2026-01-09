@@ -4,12 +4,13 @@ React frontend application for ShapeShyft - an LLM structured output platform.
 
 ## Tech Stack
 
-- **Framework**: React 19 with TypeScript
+- **Language**: TypeScript
+- **Runtime**: Bun
+- **Framework**: React 19
 - **Build**: Vite
 - **Styling**: Tailwind CSS
 - **Routing**: React Router v7
 - **State**: Zustand (via shapeshyft_lib)
-- **Data Fetching**: TanStack Query (via shapeshyft_client)
 - **Auth**: Firebase
 - **i18n**: i18next
 - **Subscriptions**: RevenueCat
@@ -28,23 +29,32 @@ src/
 │   ├── DocsPage.tsx
 │   ├── PricingPage.tsx
 │   └── dashboard/    # Protected dashboard pages
+│       ├── DashboardPage.tsx
+│       ├── ProjectsPage.tsx
+│       ├── EndpointsPage.tsx
+│       ├── KeysPage.tsx
+│       ├── AnalyticsPage.tsx
+│       └── SettingsPage.tsx
 ├── components/
 │   ├── ui/           # Reusable UI components
-│   ├── layout/       # Layout components
+│   ├── layout/       # Layout components (TopBar, Footer, etc.)
 │   ├── dashboard/    # Dashboard-specific components
 │   └── providers/    # Context providers
 ├── context/          # React context definitions
 ├── hooks/            # Custom React hooks
 ├── config/           # App configuration
+│   └── constants.ts  # App constants and env vars
 └── utils/            # Utility functions
 public/
 └── locales/          # i18n translation files
+    ├── en/
+    └── ...
 ```
 
 ## Commands
 
 ```bash
-bun run dev          # Start Vite dev server
+bun run dev          # Start Vite dev server (http://localhost:5173)
 bun run build        # Build for production (tsc + vite)
 bun run preview      # Preview production build
 bun run lint         # Run ESLint
@@ -61,38 +71,96 @@ bun run format       # Format with Prettier
 - `tsconfig.json` - TypeScript config
 - `eslint.config.js` - ESLint flat config
 
-## Key Dependencies
-
-Internal packages:
+## Internal Dependencies
 
 - `@sudobility/shapeshyft_client` - API client hooks
 - `@sudobility/shapeshyft_lib` - Business logic stores
 - `@sudobility/shapeshyft_types` - TypeScript types
 - `@sudobility/components` - Shared UI components
 - `@sudobility/design` - Design tokens
-- `@sudobility/auth-components` - Auth UI
+- `@sudobility/auth_lib` - Auth utilities
+- `@sudobility/auth-components` - Auth UI components
 - `@sudobility/subscription-components` - Subscription UI
+- `@sudobility/entity_client` - Entity management hooks
+- `@sudobility/entity_pages` - Entity management pages
+- `@sudobility/ratelimit_client` - Rate limit hooks
+- `@sudobility/ratelimit_pages` - Rate limit pages
 
-External packages:
+## External Dependencies
 
 - `@tanstack/react-query` - Data fetching
 - `zustand` - State management
 - `react-router-dom` - Routing
 - `recharts` - Charts for analytics
 - `firebase` - Authentication
+- `i18next` - Internationalization
 
 ## Environment Variables
 
 Configure in `.env.local`:
 
-- `VITE_API_URL` - Backend API URL
-- `VITE_FIREBASE_*` - Firebase config
-- `VITE_REVENUECAT_*` - RevenueCat config
+```bash
+# API
+VITE_API_URL=https://api.shapeshyft.com
+
+# Firebase
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
+
+# RevenueCat
+VITE_REVENUECAT_PUBLIC_KEY=
+
+# Social Links (optional)
+VITE_TWITTER_URL=
+VITE_DISCORD_URL=
+VITE_GITHUB_URL=
+```
 
 ## Routing
 
-- `/` - Home page
-- `/login` - Authentication
-- `/pricing` - Subscription plans
-- `/docs` - Documentation
-- `/dashboard/*` - Protected dashboard routes
+| Path | Page | Auth Required |
+|------|------|---------------|
+| `/` | Home | No |
+| `/login` | Login | No |
+| `/pricing` | Pricing | No |
+| `/docs` | Documentation | No |
+| `/dashboard` | Dashboard | Yes |
+| `/dashboard/projects` | Projects | Yes |
+| `/dashboard/projects/:id` | Project Details | Yes |
+| `/dashboard/keys` | API Keys | Yes |
+| `/dashboard/analytics` | Analytics | Yes |
+| `/dashboard/settings` | Settings | Yes |
+
+## Code Patterns
+
+### Protected Routes
+```tsx
+<Route
+  path="/dashboard/*"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout />
+    </ProtectedRoute>
+  }
+/>
+```
+
+### Data Fetching
+```tsx
+// Use hooks from shapeshyft_client
+const { projects, isLoading, refresh } = useProjects(networkClient, baseUrl);
+
+useEffect(() => {
+  if (token) refresh(entitySlug, token);
+}, [token, entitySlug]);
+```
+
+### State Management
+```tsx
+// Use stores from shapeshyft_lib
+const projects = useProjectsStore(state => state.getProjects(entitySlug));
+```
