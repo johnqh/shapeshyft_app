@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useKeysManager } from "@sudobility/shapeshyft_lib";
@@ -6,6 +6,13 @@ import type {
   Endpoint,
   EndpointCreateRequest,
   HttpMethod,
+  LlmProvider,
+} from "@sudobility/shapeshyft_types";
+import {
+  PROVIDER_MODELS,
+  DEFAULT_PROVIDER_MODEL,
+  PROVIDER_ALLOWS_CUSTOM_MODEL,
+  getModelPricing,
 } from "@sudobility/shapeshyft_types";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
@@ -53,6 +60,8 @@ function EndpointForm({
     endpoint?.http_method ?? "POST",
   );
   const [llmKeyId, setLlmKeyId] = useState(endpoint?.llm_key_id ?? "");
+  const [selectedModel, setSelectedModel] = useState<string>("");
+  const [customModel, setCustomModel] = useState<string>("");
   const [context, setContext] = useState(endpoint?.context ?? "");
   const [useInputSchema, setUseInputSchema] = useState(
     !!endpoint?.input_schema,
@@ -80,6 +89,58 @@ function EndpointForm({
     token,
     autoFetch: isReady && !!entitySlug,
   });
+
+  // Get the selected key and its provider
+  const selectedKey = useMemo(
+    () => keys.find((k) => k.uuid === llmKeyId),
+    [keys, llmKeyId]
+  );
+  const provider = selectedKey?.provider as LlmProvider | undefined;
+
+  // Get available models for the selected provider
+  const availableModels = useMemo(() => {
+    if (!provider) return [];
+    return PROVIDER_MODELS[provider] ?? [];
+  }, [provider]);
+
+  // Whether custom model input is allowed
+  const allowsCustomModel = provider
+    ? PROVIDER_ALLOWS_CUSTOM_MODEL[provider]
+    : false;
+
+  // The effective model (selected or custom)
+  const effectiveModel = useMemo(() => {
+    if (allowsCustomModel && customModel.trim()) {
+      return customModel.trim();
+    }
+    return selectedModel || (provider ? DEFAULT_PROVIDER_MODEL[provider] : "");
+  }, [selectedModel, customModel, allowsCustomModel, provider]);
+
+  // Get pricing for the effective model
+  const modelPricing = useMemo(() => {
+    if (!effectiveModel) return null;
+    return getModelPricing(effectiveModel);
+  }, [effectiveModel]);
+
+  // Handle key selection change - update model to default for provider
+  const handleKeyChange = (newKeyId: string) => {
+    setLlmKeyId(newKeyId);
+    const newKey = keys.find((k) => k.uuid === newKeyId);
+    const newProvider = newKey?.provider as LlmProvider | undefined;
+    if (newProvider) {
+      setSelectedModel(DEFAULT_PROVIDER_MODEL[newProvider]);
+      setCustomModel("");
+    } else {
+      setSelectedModel("");
+      setCustomModel("");
+    }
+    if (touched.llmKeyId) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        llmKeyId: validateLlmKeyId(newKeyId),
+      }));
+    }
+  };
 
   // Auto-generate endpoint name from display name
   const generateEndpointName = (name: string) => {
@@ -388,15 +449,7 @@ function EndpointForm({
                   <>
                     <select
                       value={llmKeyId}
-                      onChange={(e) => {
-                        setLlmKeyId(e.target.value);
-                        if (touched.llmKeyId) {
-                          setFieldErrors((prev) => ({
-                            ...prev,
-                            llmKeyId: validateLlmKeyId(e.target.value),
-                          }));
-                        }
-                      }}
+                      onChange={(e) => handleKeyChange(e.target.value)}
                       onBlur={() => handleBlur("llmKeyId")}
                       className={inputClassName("llmKeyId")}
                     >
@@ -411,6 +464,87 @@ function EndpointForm({
                   </>
                 )}
               </div>
+
+              {/* Model Selection */}
+              {provider && (
+                <div>
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.model")}
+                  </label>
+                  <select
+                    value={selectedModel}
+                    onChange={(e) => setSelectedModel(e.target.value)}
+                    className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  >
+                    {availableModels.map((model) => (
+                      <option key={model} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                  </select>
+
+                  {/* Custom model input for llm_server */}
+                  {allowsCustomModel && (
+                    <div className="mt-2">
+                      <input
+                        type="text"
+                        value={customModel}
+                        onChange={(e) => setCustomModel(e.target.value)}
+                        placeholder={t("endpoints.form.customModelPlaceholder")}
+                        className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
+                      />
+                      <p className="mt-1 text-xs text-theme-text-tertiary">
+                        {t("endpoints.form.customModelHint")}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Cost Estimation Display */}
+                  {modelPricing && (
+                    <div className="mt-3 p-3 bg-theme-bg-secondary rounded-lg border border-theme-border">
+                      <div className="flex items-center gap-2 mb-2">
+                        <svg
+                          className="w-4 h-4 text-green-600 dark:text-green-400"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span className="text-sm font-medium text-theme-text-primary">
+                          {t("endpoints.form.costEstimate")}
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <div>
+                          <span className="text-theme-text-tertiary">
+                            {t("endpoints.form.inputCost")}:
+                          </span>
+                          <span className="ml-1 font-mono text-theme-text-primary">
+                            ${(modelPricing.input / 100).toFixed(2)}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-theme-text-tertiary">
+                            {t("endpoints.form.outputCost")}:
+                          </span>
+                          <span className="ml-1 font-mono text-theme-text-primary">
+                            ${(modelPricing.output / 100).toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
+                      <p className="mt-2 text-xs text-theme-text-tertiary">
+                        {t("endpoints.form.costPerMillion")}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Right Column */}
