@@ -148,5 +148,5 @@
     "supportedMethods": "GET, POST",
     "responseFormat": "JSON with usage metrics"
   },
-  "lastModified": "2026-01-08"
+  "lastModified": "2026-01-09"
 }

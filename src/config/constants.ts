@@ -28,15 +28,15 @@ export const CONSTANTS = {
   LINKEDIN_COMPANY: import.meta.env.VITE_LINKEDIN_COMPANY || "",
   GITHUB_ORG: import.meta.env.VITE_GITHUB_ORG || "",
 
-  // Social links (full URLs)
+  // Social links (full URLs) - property names must match SocialLinksConfig from building_blocks
   SOCIAL_LINKS: {
-    twitter: import.meta.env.VITE_TWITTER_URL || "",
-    reddit: import.meta.env.VITE_REDDIT_URL || "",
-    discord: import.meta.env.VITE_DISCORD_URL || "",
-    linkedin: import.meta.env.VITE_LINKEDIN_URL || "",
-    farcaster: import.meta.env.VITE_FARCASTER_URL || "",
-    telegram: import.meta.env.VITE_TELEGRAM_URL || "",
-    github: import.meta.env.VITE_GITHUB_URL || "",
+    twitterUrl: import.meta.env.VITE_TWITTER_URL || "",
+    redditUrl: import.meta.env.VITE_REDDIT_URL || "",
+    discordUrl: import.meta.env.VITE_DISCORD_URL || "",
+    linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || "",
+    farcasterUrl: import.meta.env.VITE_FARCASTER_URL || "",
+    telegramUrl: import.meta.env.VITE_TELEGRAM_URL || "",
+    githubUrl: import.meta.env.VITE_GITHUB_URL || "",
   },
 
   // External pages

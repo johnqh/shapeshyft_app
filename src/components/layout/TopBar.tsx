@@ -1,55 +1,47 @@
-import { useState, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import {
-  TopbarProvider,
-  Topbar,
-  TopbarLeft,
-  TopbarRight,
-  TopbarNavigation,
-  TopbarLogo,
-  TopbarActions,
-  Logo,
-  type TopbarNavItem,
-} from "@sudobility/components";
-import {
-  AuthAction,
-  useAuthStatus,
+  AppTopBarWithFirebaseAuth,
+  type MenuItemConfig,
   type AuthMenuItem,
-} from "@sudobility/auth-components";
-import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+  type AuthActionProps,
+} from '@sudobility/building_blocks';
+import { AuthAction, useAuthStatus } from '@sudobility/auth-components';
+import type { ComponentType } from 'react';
+import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
 import {
   CONSTANTS,
   SUPPORTED_LANGUAGES,
   isLanguageSupported,
-} from "../../config/constants";
-import LocalizedLink from "./LocalizedLink";
+} from '../../config/constants';
+import LocalizedLink from './LocalizedLink';
 
 // Language display names and flags
 const LANGUAGE_INFO: Record<string, { name: string; flag: string }> = {
-  en: { name: "English", flag: "🇺🇸" },
-  ar: { name: "العربية", flag: "🇸🇦" },
-  de: { name: "Deutsch", flag: "🇩🇪" },
-  es: { name: "Español", flag: "🇪🇸" },
-  fr: { name: "Français", flag: "🇫🇷" },
-  it: { name: "Italiano", flag: "🇮🇹" },
-  ja: { name: "日本語", flag: "🇯🇵" },
-  ko: { name: "한국어", flag: "🇰🇷" },
-  pt: { name: "Português", flag: "🇧🇷" },
-  ru: { name: "Русский", flag: "🇷🇺" },
-  sv: { name: "Svenska", flag: "🇸🇪" },
-  th: { name: "ไทย", flag: "🇹🇭" },
-  uk: { name: "Українська", flag: "🇺🇦" },
-  vi: { name: "Tiếng Việt", flag: "🇻🇳" },
-  zh: { name: "简体中文", flag: "🇨🇳" },
-  "zh-hant": { name: "繁體中文", flag: "🇹🇼" },
+  en: { name: 'English', flag: '🇺🇸' },
+  ar: { name: 'العربية', flag: '🇸🇦' },
+  de: { name: 'Deutsch', flag: '🇩🇪' },
+  es: { name: 'Español', flag: '🇪🇸' },
+  fr: { name: 'Français', flag: '🇫🇷' },
+  it: { name: 'Italiano', flag: '🇮🇹' },
+  ja: { name: '日本語', flag: '🇯🇵' },
+  ko: { name: '한국어', flag: '🇰🇷' },
+  pt: { name: 'Português', flag: '🇧🇷' },
+  ru: { name: 'Русский', flag: '🇷🇺' },
+  sv: { name: 'Svenska', flag: '🇸🇪' },
+  th: { name: 'ไทย', flag: '🇹🇭' },
+  uk: { name: 'Українська', flag: '🇺🇦' },
+  vi: { name: 'Tiếng Việt', flag: '🇻🇳' },
+  zh: { name: '简体中文', flag: '🇨🇳' },
+  'zh-hant': { name: '繁體中文', flag: '🇹🇼' },
 };
 
 interface TopBarProps {
-  variant?: "default" | "transparent";
+  variant?: 'default' | 'transparent';
 }
 
-// Icon components for nav items (styled like heroicons/outline)
+// Icon components for nav items
 const LightBulbIcon = ({ className }: { className?: string }) => (
   <svg
     className={className}
@@ -135,387 +127,219 @@ const Cog6ToothIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Menu icons for dropdown (smaller, 16px style)
+// Menu icons for dropdown
 const MenuFolderIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-    />
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
   </svg>
 );
 
 const MenuKeyIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
-    />
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
   </svg>
 );
 
 const MenuChartIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-    />
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
   </svg>
 );
 
 const MenuBudgetIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-    />
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
 const MenuSubscriptionIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-    />
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
   </svg>
 );
 
 const MenuRateLimitsIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M13 10V3L4 14h7v7l9-11h-7z"
-    />
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
   </svg>
 );
 
 const MenuSettingsIcon = () => (
-  <svg
-    className="w-4 h-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
   </svg>
 );
 
-// Custom Link wrapper for TopbarNavigation
+// Link wrapper for TopbarNavigation
 const LinkWrapper = ({
   href,
   children,
-  ...props
+  className,
 }: {
   href: string;
   children: React.ReactNode;
-  [key: string]: unknown;
+  className?: string;
 }) => (
-  <LocalizedLink to={href} {...props}>
+  <LocalizedLink to={href} className={className}>
     {children}
   </LocalizedLink>
 );
 
-function TopBar({ variant = "default" }: TopBarProps) {
-  const { t } = useTranslation("common");
-  const { t: tDashboard } = useTranslation("dashboard");
+function TopBar({ variant = 'default' }: TopBarProps) {
+  const { t } = useTranslation('common');
+  const { t: tDashboard } = useTranslation('dashboard');
   const location = useLocation();
   const { navigate, switchLanguage, currentLanguage } = useLocalizedNavigate();
   const { user } = useAuthStatus();
-  const [showLangMenu, setShowLangMenu] = useState(false);
 
   const isAuthenticated = !!user;
 
-  // Sort languages by their native name (same as mail_box)
-  const sortedLanguages = useMemo(() => {
-    return [...SUPPORTED_LANGUAGES]
-      .map((code) => ({
+  // Build languages list
+  const languages = useMemo(
+    () =>
+      SUPPORTED_LANGUAGES.map(code => ({
         code,
         name: LANGUAGE_INFO[code]?.name || code.toUpperCase(),
-        flag: LANGUAGE_INFO[code]?.flag || "🌐",
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  }, []);
+        flag: LANGUAGE_INFO[code]?.flag || '🌐',
+      })),
+    []
+  );
 
-  // Extract entitySlug from URL if on dashboard page
-  // Path is like /en/dashboard/my-entity/...
-  const pathSegments = location.pathname.split("/").filter(Boolean);
-  const dashboardIndex = pathSegments.indexOf("dashboard");
+  // Extract entitySlug from URL
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+  const dashboardIndex = pathSegments.indexOf('dashboard');
   const entitySlug =
     dashboardIndex >= 0 && pathSegments.length > dashboardIndex + 1
       ? pathSegments[dashboardIndex + 1]
       : null;
 
-  // Build menu items for authenticated user dropdown
-  const menuItems: AuthMenuItem[] = isAuthenticated
-    ? [
-        {
-          id: "projects",
-          label: tDashboard("navigation.projects"),
-          icon: <MenuFolderIcon />,
-          onClick: () =>
-            navigate(
-              entitySlug ? `/dashboard/${entitySlug}/projects` : "/dashboard",
-            ),
-        },
-        {
-          id: "providers",
-          label: tDashboard("navigation.providers"),
-          icon: <MenuKeyIcon />,
-          onClick: () =>
-            navigate(
-              entitySlug ? `/dashboard/${entitySlug}/providers` : "/dashboard",
-            ),
-        },
-        {
-          id: "analytics",
-          label: tDashboard("navigation.analytics"),
-          icon: <MenuChartIcon />,
-          onClick: () =>
-            navigate(
-              entitySlug ? `/dashboard/${entitySlug}/analytics` : "/dashboard",
-            ),
-        },
-        {
-          id: "budgets",
-          label: tDashboard("navigation.budgets"),
-          icon: <MenuBudgetIcon />,
-          onClick: () =>
-            navigate(
-              entitySlug ? `/dashboard/${entitySlug}/budgets` : "/dashboard",
-            ),
-        },
-        {
-          id: "subscription",
-          label: tDashboard("navigation.subscription"),
-          icon: <MenuSubscriptionIcon />,
-          onClick: () =>
-            navigate(
-              entitySlug
-                ? `/dashboard/${entitySlug}/subscription`
-                : "/dashboard",
-            ),
-        },
-        {
-          id: "rate-limits",
-          label: tDashboard("navigation.rateLimits"),
-          icon: <MenuRateLimitsIcon />,
-          onClick: () =>
-            navigate(
-              entitySlug
-                ? `/dashboard/${entitySlug}/rate-limits`
-                : "/dashboard",
-            ),
-        },
-        {
-          id: "settings",
-          label: tDashboard("navigation.settings"),
-          icon: <MenuSettingsIcon />,
-          onClick: () =>
-            navigate(
-              entitySlug ? `/dashboard/${entitySlug}/settings` : "/dashboard",
-            ),
-          dividerAfter: true,
-        },
-      ]
-    : [];
+  // Build authenticated menu items
+  const authenticatedMenuItems: AuthMenuItem[] = useMemo(
+    () =>
+      isAuthenticated
+        ? [
+            {
+              id: 'projects',
+              label: tDashboard('navigation.projects'),
+              icon: <MenuFolderIcon />,
+              onClick: () =>
+                navigate(entitySlug ? `/dashboard/${entitySlug}/projects` : '/dashboard'),
+            },
+            {
+              id: 'providers',
+              label: tDashboard('navigation.providers'),
+              icon: <MenuKeyIcon />,
+              onClick: () =>
+                navigate(entitySlug ? `/dashboard/${entitySlug}/providers` : '/dashboard'),
+            },
+            {
+              id: 'analytics',
+              label: tDashboard('navigation.analytics'),
+              icon: <MenuChartIcon />,
+              onClick: () =>
+                navigate(entitySlug ? `/dashboard/${entitySlug}/analytics` : '/dashboard'),
+            },
+            {
+              id: 'budgets',
+              label: tDashboard('navigation.budgets'),
+              icon: <MenuBudgetIcon />,
+              onClick: () =>
+                navigate(entitySlug ? `/dashboard/${entitySlug}/budgets` : '/dashboard'),
+            },
+            {
+              id: 'subscription',
+              label: tDashboard('navigation.subscription'),
+              icon: <MenuSubscriptionIcon />,
+              onClick: () =>
+                navigate(entitySlug ? `/dashboard/${entitySlug}/subscription` : '/dashboard'),
+            },
+            {
+              id: 'rate-limits',
+              label: tDashboard('navigation.rateLimits'),
+              icon: <MenuRateLimitsIcon />,
+              onClick: () =>
+                navigate(entitySlug ? `/dashboard/${entitySlug}/rate-limits` : '/dashboard'),
+            },
+            {
+              id: 'settings',
+              label: tDashboard('navigation.settings'),
+              icon: <MenuSettingsIcon />,
+              onClick: () =>
+                navigate(entitySlug ? `/dashboard/${entitySlug}/settings` : '/dashboard'),
+              dividerAfter: true,
+            },
+          ]
+        : [],
+    [isAuthenticated, tDashboard, navigate, entitySlug]
+  );
 
-  // Build navigation items (Home removed - users can click logo to go home)
-  const navItems: TopbarNavItem[] = [
-    {
-      id: "use-cases",
-      label: t("navigation.useCases"),
-      icon: LightBulbIcon,
-      href: "/use-cases",
-    },
-    {
-      id: "docs",
-      label: t("navigation.docs"),
-      icon: DocumentTextIcon,
-      href: "/docs",
-    },
-    {
-      id: "pricing",
-      label: t("navigation.pricing"),
-      icon: CurrencyDollarIcon,
-      href: "/pricing",
-    },
-  ];
+  // Build navigation items
+  const menuItems: MenuItemConfig[] = useMemo(() => {
+    const items: MenuItemConfig[] = [
+      {
+        id: 'use-cases',
+        label: t('navigation.useCases'),
+        icon: LightBulbIcon,
+        href: '/use-cases',
+      },
+      {
+        id: 'docs',
+        label: t('navigation.docs'),
+        icon: DocumentTextIcon,
+        href: '/docs',
+      },
+      {
+        id: 'pricing',
+        label: t('navigation.pricing'),
+        icon: CurrencyDollarIcon,
+        href: '/pricing',
+      },
+    ];
 
-  // Add dashboard if authenticated
-  if (isAuthenticated) {
-    navItems.push({
-      id: "dashboard",
-      label: t("navigation.dashboard"),
-      icon: Squares2X2Icon,
-      href: "/dashboard",
+    if (isAuthenticated) {
+      items.push({
+        id: 'dashboard',
+        label: t('navigation.dashboard'),
+        icon: Squares2X2Icon,
+        href: '/dashboard',
+      });
+    }
+
+    items.push({
+      id: 'settings',
+      label: t('navigation.settings'),
+      icon: Cog6ToothIcon,
+      href: '/settings',
     });
-  }
 
-  // Settings always appears last in navigation
-  navItems.push({
-    id: "settings",
-    label: t("navigation.settings"),
-    icon: Cog6ToothIcon,
-    href: "/settings",
-  });
-
-  const handleLogoClick = () => {
-    navigate("/");
-  };
+    return items;
+  }, [t, isAuthenticated]);
 
   const handleLanguageChange = (newLang: string) => {
     if (isLanguageSupported(newLang)) {
       switchLanguage(newLang);
-      setShowLangMenu(false);
     }
   };
 
   return (
-    <>
-      <TopbarProvider
-        variant={variant === "transparent" ? "transparent" : "default"}
-        sticky
-      >
-        <Topbar
-          variant={variant === "transparent" ? "transparent" : "default"}
-          sticky
-          zIndex="highest"
-        >
-          <TopbarLeft>
-            <TopbarNavigation
-              items={navItems}
-              collapseBelow="lg"
-              LinkComponent={LinkWrapper}
-            >
-              <TopbarLogo onClick={handleLogoClick} size="md">
-                <Logo size="md" logoText={CONSTANTS.APP_NAME} />
-              </TopbarLogo>
-            </TopbarNavigation>
-          </TopbarLeft>
-
-          <TopbarRight>
-            <TopbarActions gap="md">
-              {/* Language Selector */}
-              <div className="relative">
-                <button
-                  onClick={() => setShowLangMenu(!showLangMenu)}
-                  className="flex items-center gap-2 px-3 py-2 h-10 rounded-lg hover:bg-theme-hover-bg transition-colors"
-                  aria-label="Select language"
-                >
-                  <span className="text-lg leading-none">
-                    {LANGUAGE_INFO[currentLanguage]?.flag || "🌐"}
-                  </span>
-                  <span className="hidden sm:block text-sm font-medium text-theme-text-secondary">
-                    {LANGUAGE_INFO[currentLanguage]?.name || "English"}
-                  </span>
-                  <svg
-                    className="w-4 h-4 text-theme-text-secondary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-
-                {showLangMenu && (
-                  <>
-                    <div
-                      className="fixed inset-0 z-40"
-                      onClick={() => setShowLangMenu(false)}
-                    />
-                    <div className="absolute right-0 mt-2 w-48 bg-theme-bg-primary border border-theme-border rounded-lg shadow-lg z-50">
-                      {sortedLanguages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => handleLanguageChange(lang.code)}
-                          className={`w-full px-4 py-2 text-left text-sm hover:bg-theme-hover-bg transition-colors flex items-center gap-2 ${
-                            lang.code === currentLanguage
-                              ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
-                              : ""
-                          }`}
-                        >
-                          <span className="text-lg leading-none">
-                            {lang.flag}
-                          </span>
-                          <span>{lang.name}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
-
-              {/* Auth Action (handles login button and user dropdown) */}
-              <AuthAction
-                avatarSize={32}
-                dropdownAlign="right"
-                onLoginClick={() => navigate("/login")}
-                menuItems={menuItems}
-              />
-            </TopbarActions>
-          </TopbarRight>
-        </Topbar>
-      </TopbarProvider>
-    </>
+    <AppTopBarWithFirebaseAuth
+      logo={{
+        src: '/logo.png',
+        appName: CONSTANTS.APP_NAME,
+        onClick: () => navigate('/'),
+      }}
+      menuItems={menuItems}
+      languages={languages}
+      currentLanguage={currentLanguage}
+      onLanguageChange={handleLanguageChange}
+      LinkComponent={LinkWrapper}
+      AuthActionComponent={AuthAction as ComponentType<AuthActionProps>}
+      onLoginClick={() => navigate('/login')}
+      authenticatedMenuItems={authenticatedMenuItems}
+      variant={variant === 'transparent' ? 'default' : 'default'}
+      sticky
+    />
   );
 }
 
