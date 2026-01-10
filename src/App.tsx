@@ -29,7 +29,7 @@ const PerformancePanel = lazy(() =>
 // Lazy load pages for better performance
 const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
-const PricingPage = lazy(() => import("./pages/PricingPage"));
+const PricingPageWrapper = lazy(() => import("./pages/PricingPageWrapper"));
 const DocsPage = lazy(() => import("./pages/DocsPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
@@ -154,7 +154,7 @@ function App() {
                               {/* Public pages */}
                               <Route index element={<HomePage />} />
                               <Route path="login" element={<LoginPage />} />
-                              <Route path="pricing" element={<PricingPage />} />
+                              <Route path="pricing" element={<PricingPageWrapper />} />
                               <Route path="docs" element={<DocsPage />} />
                               <Route
                                 path="docs/:section"

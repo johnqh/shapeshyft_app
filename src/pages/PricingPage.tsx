@@ -1,22 +1,25 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuthStatus } from "@sudobility/auth-components";
 import {
-  SubscriptionTile,
-  SegmentedControl,
-  useSubscriptionContext,
-} from "@sudobility/subscription-components";
+  EntityPricingPage,
+  type PricingPageLabels,
+  type PricingPageFormatters,
+  type PricingProduct,
+  type FAQItem,
+  type EntitlementMap,
+  type EntitlementLevels,
+} from "@sudobility/entity_pages";
 import { useSafeSubscriptionContext } from "../components/providers/SafeSubscriptionContext";
+import { useCurrentEntity } from "../hooks/useCurrentEntity";
 import ScreenContainer from "../components/layout/ScreenContainer";
 import SEO from "../components/seo/SEO";
 import AISearchOptimization from "../components/seo/AISearchOptimization";
 import { useLocalizedNavigate } from "../hooks/useLocalizedNavigate";
+import { useToast } from "../hooks/useToast";
 import { CONSTANTS } from "../config/constants";
 
-type BillingPeriod = "monthly" | "yearly";
-
 // Package ID to entitlement mapping (from RevenueCat configuration)
-const PACKAGE_ENTITLEMENT_MAP: Record<string, string> = {
+const PACKAGE_ENTITLEMENT_MAP: EntitlementMap = {
   ultra_yearly: "bandwidth_ultra",
   ultra_monthly: "bandwidth_ultra",
   pro_yearly: "bandwidth_pro",
@@ -25,42 +28,67 @@ const PACKAGE_ENTITLEMENT_MAP: Record<string, string> = {
   dev_monthly: "bandwidth_dev",
 };
 
+// Entitlement to level mapping (higher = better tier)
+const ENTITLEMENT_LEVELS: EntitlementLevels = {
+  none: 0,
+  bandwidth_dev: 1,
+  bandwidth_pro: 2,
+  bandwidth_ultra: 3,
+};
+
+// LocalStorage key for last used entity (same as EntityRedirect)
+const LAST_ENTITY_KEY = "shapeshyft_last_entity";
+
 function PricingPage() {
   const { t } = useTranslation("pricing");
   const { t: tSub } = useTranslation("subscription");
   const { user, openModal } = useAuthStatus();
-  const { currentSubscription } = useSafeSubscriptionContext();
+  const { products: rawProducts, currentSubscription, purchase } =
+    useSafeSubscriptionContext();
+  const { entityId } = useCurrentEntity();
   const { navigate } = useLocalizedNavigate();
+  const { success, error: showError } = useToast();
   const appName = CONSTANTS.APP_NAME;
 
   const isAuthenticated = !!user;
   const hasActiveSubscription = currentSubscription?.isActive ?? false;
 
-  const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>("monthly");
+  // Get the last used entity slug for navigation
+  const getEntitySlug = (): string | null => {
+    return localStorage.getItem(LAST_ENTITY_KEY);
+  };
 
-  // Try to get products from subscription context (only works when authenticated)
-  let products: ReturnType<typeof useSubscriptionContext>["products"] = [];
-  try {
-    const subContext = useSubscriptionContext();
-    products = subContext.products;
-  } catch {
-    // Not authenticated, products will be empty
-  }
+  // Map products to the format expected by EntityPricingPage
+  const products: PricingProduct[] = rawProducts.map((p) => ({
+    identifier: p.identifier,
+    title: p.title,
+    price: p.price,
+    priceString: p.priceString,
+    period: p.period,
+  }));
 
-  // Filter products by billing period and sort by price
-  const filteredProducts = products
-    .filter((product) => {
-      if (!product.period) return false;
-      const isYearly =
-        product.period.includes("Y") || product.period.includes("year");
-      return billingPeriod === "yearly" ? isYearly : !isYearly;
-    })
-    .sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-
-  const handlePlanClick = (planIdentifier: string) => {
+  const handlePlanClick = async (planIdentifier: string) => {
     if (isAuthenticated) {
-      // Navigate to subscription page with the plan pre-selected
-      navigate(`/dashboard/subscription?plan=${planIdentifier}`);
+      // Directly initiate purchase flow
+      try {
+        const result = await purchase(planIdentifier);
+        if (result) {
+          success(tSub("purchase.success", "Subscription activated successfully!"));
+          // Navigate to dashboard after successful purchase
+          const entitySlug = getEntitySlug();
+          if (entitySlug) {
+            navigate(`/dashboard/${entitySlug}`);
+          } else {
+            navigate("/dashboard");
+          }
+        }
+      } catch (err) {
+        showError(
+          err instanceof Error
+            ? err.message
+            : tSub("purchase.error", "Failed to complete purchase"),
+        );
+      }
     } else {
       openModal();
     }
@@ -68,7 +96,12 @@ function PricingPage() {
 
   const handleFreePlanClick = () => {
     if (isAuthenticated) {
-      navigate("/dashboard");
+      const entitySlug = getEntitySlug();
+      if (entitySlug) {
+        navigate(`/dashboard/${entitySlug}`);
+      } else {
+        navigate("/dashboard");
+      }
     } else {
       openModal();
     }
@@ -110,8 +143,25 @@ function PricingPage() {
     return [];
   };
 
-  const getFreeTierFeatures = (): string[] => {
-    return [
+  // Build labels object from translations
+  const labels: PricingPageLabels = {
+    // Header
+    title: t("title"),
+    subtitle: t("subtitle"),
+
+    // Periods
+    periodYear: tSub("periods.year"),
+    periodMonth: tSub("periods.month"),
+    periodWeek: tSub("periods.week"),
+
+    // Billing period toggle
+    billingMonthly: tSub("billingPeriod.monthly", "Monthly"),
+    billingYearly: tSub("billingPeriod.yearly", "Yearly"),
+
+    // Free tier
+    freeTierTitle: "Free",
+    freeTierPrice: "$0",
+    freeTierFeatures: [
       tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
       tSub(
         "freeTier.allProviders",
@@ -119,53 +169,33 @@ function PricingPage() {
       ),
       tSub("freeTier.endpointTesting", "Built-in endpoint testing"),
       tSub("freeTier.analytics", "Basic usage analytics"),
-    ];
+    ],
+
+    // Badges
+    currentPlanBadge: t("badges.currentPlan", "Current Plan"),
+    mostPopularBadge: t("badges.mostPopular", "Most Popular"),
+
+    // CTA buttons
+    ctaLogIn: t("cta.logIn", "Log in to Continue"),
+    ctaTryFree: t("cta.tryFree", "Try it for Free"),
+    ctaUpgrade: t("cta.upgrade", "Upgrade"),
+
+    // FAQ
+    faqTitle: t("faq.title"),
   };
 
-  const getPeriodLabel = (period?: string) => {
-    if (!period) return "";
-    if (period.includes("Y") || period.includes("year"))
-      return tSub("periods.year");
-    if (period.includes("M") || period.includes("month"))
-      return tSub("periods.month");
-    if (period.includes("W") || period.includes("week"))
-      return tSub("periods.week");
-    return "";
+  // Build formatters object
+  const formatters: PricingPageFormatters = {
+    formatSavePercent: (percent: number) =>
+      tSub("badges.savePercent", "Save {{percent}}%", { percent }),
+    getProductFeatures,
   };
 
-  const getYearlySavingsPercent = (
-    yearlyPackageId: string,
-  ): number | undefined => {
-    const yearlyEntitlement = PACKAGE_ENTITLEMENT_MAP[yearlyPackageId];
-    if (!yearlyEntitlement) return undefined;
-    const yearlyProduct = products.find(
-      (p) => p.identifier === yearlyPackageId,
-    );
-    if (!yearlyProduct) return undefined;
-    const monthlyPackageId = Object.entries(PACKAGE_ENTITLEMENT_MAP).find(
-      ([pkgId, ent]) => ent === yearlyEntitlement && pkgId.includes("monthly"),
-    )?.[0];
-    if (!monthlyPackageId) return undefined;
-    const monthlyProduct = products.find(
-      (p) => p.identifier === monthlyPackageId,
-    );
-    if (!monthlyProduct) return undefined;
-    const yearlyPrice = parseFloat(yearlyProduct.price);
-    const monthlyPrice = parseFloat(monthlyProduct.price);
-    if (monthlyPrice <= 0 || yearlyPrice <= 0) return undefined;
-    const annualizedMonthly = monthlyPrice * 12;
-    const savings =
-      ((annualizedMonthly - yearlyPrice) / annualizedMonthly) * 100;
-    return Math.round(savings);
-  };
-
-  const billingPeriodOptions = [
-    {
-      value: "monthly" as const,
-      label: tSub("billingPeriod.monthly", "Monthly"),
-    },
-    { value: "yearly" as const, label: tSub("billingPeriod.yearly", "Yearly") },
-  ];
+  // Get FAQ items from translations
+  const faqItems: FAQItem[] = t("faq.items", {
+    returnObjects: true,
+    appName,
+  }) as FAQItem[];
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
@@ -201,135 +231,20 @@ function PricingPage() {
           },
         ]}
       />
-      {/* Header */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-theme-text-primary mb-4">
-            {t("title")}
-          </h1>
-          <p className="text-lg text-theme-text-secondary">{t("subtitle")}</p>
-        </div>
-      </section>
-
-      {/* Pricing Cards */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Billing Period Selector */}
-          <div className="flex justify-center mb-8">
-            <SegmentedControl
-              options={billingPeriodOptions}
-              value={billingPeriod}
-              onChange={setBillingPeriod}
-            />
-          </div>
-
-          {/* Subscription Tiles Grid */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-              gap: "1.5rem",
-            }}
-          >
-            {/* Free Tier - no CTA button or radio */}
-            <SubscriptionTile
-              id="free"
-              title="Free"
-              price="$0"
-              periodLabel={tSub("periods.month", "/month")}
-              features={getFreeTierFeatures()}
-              isSelected={false}
-              onSelect={handleFreePlanClick}
-              topBadge={
-                !hasActiveSubscription
-                  ? {
-                      text: t("badges.currentPlan", "Current Plan"),
-                      color: "green",
-                    }
-                  : undefined
-              }
-              hideSelectionIndicator
-            />
-
-            {/* Paid Plans with CTA buttons */}
-            {filteredProducts.map((product) => (
-              <SubscriptionTile
-                key={product.identifier}
-                id={product.identifier}
-                title={product.title}
-                price={product.priceString}
-                periodLabel={getPeriodLabel(product.period)}
-                features={getProductFeatures(product.identifier)}
-                isSelected={false}
-                onSelect={() => {}}
-                isBestValue={product.identifier.includes("pro")}
-                topBadge={
-                  product.identifier.includes("pro")
-                    ? {
-                        text: t("badges.mostPopular", "Most Popular"),
-                        color: "yellow",
-                      }
-                    : undefined
-                }
-                discountBadge={
-                  product.period?.includes("Y")
-                    ? (() => {
-                        const savings = getYearlySavingsPercent(
-                          product.identifier,
-                        );
-                        return savings && savings > 0
-                          ? {
-                              text: tSub(
-                                "badges.savePercent",
-                                "Save {{percent}}%",
-                                { percent: savings },
-                              ),
-                              isBestValue: true,
-                            }
-                          : undefined;
-                      })()
-                    : undefined
-                }
-                ctaButton={{
-                  label: isAuthenticated
-                    ? t("cta.startNow", "Start Now")
-                    : t("cta.signUp", "Sign Up"),
-                  onClick: () => handlePlanClick(product.identifier),
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-theme-text-primary text-center mb-12">
-            {t("faq.title")}
-          </h2>
-
-          <div className="space-y-6">
-            {(
-              t("faq.items", { returnObjects: true, appName }) as {
-                question: string;
-                answer: string;
-              }[]
-            ).map((item, index) => (
-              <div
-                key={index}
-                className="bg-theme-bg-primary p-6 rounded-xl border border-theme-border"
-              >
-                <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
-                  {item.question}
-                </h3>
-                <p className="text-theme-text-secondary">{item.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <EntityPricingPage
+        products={products}
+        isAuthenticated={isAuthenticated}
+        hasActiveSubscription={hasActiveSubscription}
+        currentProductIdentifier={currentSubscription?.productIdentifier}
+        subscriptionUserId={entityId ?? undefined}
+        labels={labels}
+        formatters={formatters}
+        entitlementMap={PACKAGE_ENTITLEMENT_MAP}
+        entitlementLevels={ENTITLEMENT_LEVELS}
+        onPlanClick={handlePlanClick}
+        onFreePlanClick={handleFreePlanClick}
+        faqItems={faqItems}
+      />
     </ScreenContainer>
   );
 }
