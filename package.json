@@ -1,7 +1,7 @@
 {
   "name": "shapeshyft_app",
   "private": true,
-  "version": "0.0.37",
+  "version": "0.0.38",
   "type": "module",
   "scripts": {
     "dev": "bun run process:static && vite",

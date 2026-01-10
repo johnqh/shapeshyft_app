@@ -1,45 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
   <url>
     <loc>https://{{VITE_APP_DOMAIN}}/</loc>
     <lastmod>{{TODAY}}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://{{VITE_APP_DOMAIN}}/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://{{VITE_APP_DOMAIN}}/de" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://{{VITE_APP_DOMAIN}}/es" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://{{VITE_APP_DOMAIN}}/fr" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://{{VITE_APP_DOMAIN}}/ja" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://{{VITE_APP_DOMAIN}}/ko" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://{{VITE_APP_DOMAIN}}/pt" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://{{VITE_APP_DOMAIN}}/zh" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://{{VITE_APP_DOMAIN}}/zh-hant" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://{{VITE_APP_DOMAIN}}/" />
   </url>
+
+  <!-- Pricing page -->
   <url>
-    <loc>https://{{VITE_APP_DOMAIN}}/en</loc>
-    <lastmod>{{TODAY}}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://{{VITE_APP_DOMAIN}}/en/pricing</loc>
+    <loc>https://{{VITE_APP_DOMAIN}}/pricing</loc>
     <lastmod>{{TODAY}}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://{{VITE_APP_DOMAIN}}/pricing" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://{{VITE_APP_DOMAIN}}/de/pricing" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://{{VITE_APP_DOMAIN}}/es/pricing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://{{VITE_APP_DOMAIN}}/fr/pricing" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://{{VITE_APP_DOMAIN}}/ja/pricing" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://{{VITE_APP_DOMAIN}}/ko/pricing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://{{VITE_APP_DOMAIN}}/pt/pricing" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://{{VITE_APP_DOMAIN}}/zh/pricing" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://{{VITE_APP_DOMAIN}}/zh-hant/pricing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://{{VITE_APP_DOMAIN}}/pricing" />
   </url>
+
+  <!-- Documentation - Getting Started -->
   <url>
-    <loc>https://{{VITE_APP_DOMAIN}}/en/docs/getting-started</loc>
+    <loc>https://{{VITE_APP_DOMAIN}}/docs/getting-started</loc>
     <lastmod>{{TODAY}}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://{{VITE_APP_DOMAIN}}/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://{{VITE_APP_DOMAIN}}/de/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://{{VITE_APP_DOMAIN}}/es/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://{{VITE_APP_DOMAIN}}/fr/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://{{VITE_APP_DOMAIN}}/ja/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://{{VITE_APP_DOMAIN}}/ko/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://{{VITE_APP_DOMAIN}}/pt/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://{{VITE_APP_DOMAIN}}/zh/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://{{VITE_APP_DOMAIN}}/zh-hant/docs/getting-started" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://{{VITE_APP_DOMAIN}}/docs/getting-started" />
   </url>
+
+  <!-- Documentation - Concepts -->
   <url>
-    <loc>https://{{VITE_APP_DOMAIN}}/en/docs/concepts</loc>
+    <loc>https://{{VITE_APP_DOMAIN}}/docs/concepts</loc>
     <lastmod>{{TODAY}}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://{{VITE_APP_DOMAIN}}/docs/concepts" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://{{VITE_APP_DOMAIN}}/de/docs/concepts" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://{{VITE_APP_DOMAIN}}/es/docs/concepts" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://{{VITE_APP_DOMAIN}}/fr/docs/concepts" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://{{VITE_APP_DOMAIN}}/docs/concepts" />
   </url>
+
+  <!-- Documentation - API Reference -->
   <url>
-    <loc>https://{{VITE_APP_DOMAIN}}/en/docs/api-reference</loc>
+    <loc>https://{{VITE_APP_DOMAIN}}/docs/api-reference</loc>
     <lastmod>{{TODAY}}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://{{VITE_APP_DOMAIN}}/docs/api-reference" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://{{VITE_APP_DOMAIN}}/de/docs/api-reference" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://{{VITE_APP_DOMAIN}}/es/docs/api-reference" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://{{VITE_APP_DOMAIN}}/fr/docs/api-reference" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://{{VITE_APP_DOMAIN}}/docs/api-reference" />
   </url>
+
+  <!-- About page -->
   <url>
-    <loc>https://{{VITE_APP_DOMAIN}}/en/login</loc>
+    <loc>https://{{VITE_APP_DOMAIN}}/about</loc>
+    <lastmod>{{TODAY}}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://{{VITE_APP_DOMAIN}}/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://{{VITE_APP_DOMAIN}}/about" />
+  </url>
+
+  <!-- Use Cases pages -->
+  <url>
+    <loc>https://{{VITE_APP_DOMAIN}}/use-cases</loc>
+    <lastmod>{{TODAY}}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://{{VITE_APP_DOMAIN}}/use-cases" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://{{VITE_APP_DOMAIN}}/use-cases" />
+  </url>
+
+  <!-- Contact page -->
+  <url>
+    <loc>https://{{VITE_APP_DOMAIN}}/contact</loc>
     <lastmod>{{TODAY}}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+
+  <!-- Login page -->
+  <url>
+    <loc>https://{{VITE_APP_DOMAIN}}/login</loc>
+    <lastmod>{{TODAY}}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://{{VITE_APP_DOMAIN}}/privacy</loc>
+    <lastmod>{{TODAY}}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://{{VITE_APP_DOMAIN}}/terms</loc>
+    <lastmod>{{TODAY}}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

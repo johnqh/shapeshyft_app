@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://firebaseinstallations.googleapis.com" />
+    <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com" />
+    <link rel="dns-prefetch" href="https://securetoken.googleapis.com" />
+
     <!-- Primary Meta Tags -->
     <title>
       {{VITE_APP_NAME}} - Transform LLM Outputs into Structured APIs
@@ -78,24 +86,80 @@
     <!-- Theme color -->
     <meta name="theme-color" content="#3b82f6" />
 
-    <!-- Structured Data - Organization -->
+    <!-- Structured Data - SoftwareApplication with enhanced details -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "{{VITE_APP_NAME}}",
         "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "API Development Tool",
         "operatingSystem": "Web",
-        "description": "Transform LLM outputs into structured REST APIs with JSON Schema validation",
+        "description": "Transform LLM outputs into structured REST APIs with JSON Schema validation. Support for OpenAI, Anthropic Claude, Google Gemini, and custom LM servers.",
         "url": "https://{{VITE_APP_DOMAIN}}",
         "author": {
           "@type": "Organization",
-          "name": "{{VITE_COMPANY_NAME}}"
+          "name": "{{VITE_COMPANY_NAME}}",
+          "url": "https://{{VITE_APP_DOMAIN}}"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{VITE_COMPANY_NAME}}",
+          "url": "https://{{VITE_APP_DOMAIN}}"
         },
         "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+          "@type": "AggregateOffer",
+          "lowPrice": "0",
+          "highPrice": "99",
+          "priceCurrency": "USD",
+          "offerCount": "3"
+        },
+        "featureList": [
+          "JSON Schema validation for LLM outputs",
+          "Multi-provider support (OpenAI, Anthropic, Google, Custom)",
+          "REST API endpoint generation",
+          "Real-time analytics and monitoring",
+          "Rate limiting and budget controls",
+          "Team collaboration features"
+        ],
+        "softwareRequirements": "Modern web browser",
+        "permissions": "API key for LLM providers"
+      }
+    </script>
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "{{VITE_COMPANY_NAME}}",
+        "url": "https://{{VITE_APP_DOMAIN}}",
+        "logo": "https://{{VITE_APP_DOMAIN}}/logo.png",
+        "sameAs": [],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "{{VITE_SUPPORT_EMAIL}}",
+          "contactType": "customer support"
+        }
+      }
+    </script>
+
+    <!-- Structured Data - WebSite with SearchAction -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{VITE_APP_NAME}}",
+        "url": "https://{{VITE_APP_DOMAIN}}",
+        "description": "Transform LLM outputs into structured REST APIs with JSON Schema validation",
+        "inLanguage": ["en", "ar", "de", "es", "fr", "it", "ja", "ko", "pt", "ru", "sv", "th", "uk", "vi", "zh-Hans", "zh-Hant"],
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://{{VITE_APP_DOMAIN}}/docs?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
         }
       }
     </script>
