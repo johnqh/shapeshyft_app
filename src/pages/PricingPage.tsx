@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { useAuthStatus } from "@sudobility/auth-components";
 import {
-  EntityPricingPage,
+  AppPricingPage,
   type PricingPageLabels,
   type PricingPageFormatters,
   type PricingProduct,
   type FAQItem,
   type EntitlementMap,
   type EntitlementLevels,
-} from "@sudobility/entity_pages";
+} from "@sudobility/building_blocks";
 import { useSafeSubscriptionContext } from "../components/providers/SafeSubscriptionContext";
 import { useCurrentEntity } from "../hooks/useCurrentEntity";
 import ScreenContainer from "../components/layout/ScreenContainer";
@@ -58,7 +58,7 @@ function PricingPage() {
     return localStorage.getItem(LAST_ENTITY_KEY);
   };
 
-  // Map products to the format expected by EntityPricingPage
+  // Map products to the format expected by AppPricingPage
   const products: PricingProduct[] = rawProducts.map((p) => ({
     identifier: p.identifier,
     title: p.title,
@@ -231,7 +231,7 @@ function PricingPage() {
           },
         ]}
       />
-      <EntityPricingPage
+      <AppPricingPage
         products={products}
         isAuthenticated={isAuthenticated}
         hasActiveSubscription={hasActiveSubscription}

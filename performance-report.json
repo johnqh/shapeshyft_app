@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-01-03T23:50:48.350Z",
+  "timestamp": "2026-01-10T21:32:27.939Z",
   "criticalPath": {
-    "uncompressed": 189305,
-    "gzip": 28839,
-    "brotli": 24513
+    "uncompressed": 191590,
+    "gzip": 28921,
+    "brotli": 24583
   },
   "totalBundles": {
-    "js": 2715682,
-    "css": 165406
+    "js": 2925325,
+    "css": 168723
   },
   "budgets": {
     "criticalPath": 51200,
@@ -23,12 +23,12 @@
     },
     {
       "type": "warning",
-      "message": "Total JS is large: 2.6MB",
+      "message": "Total JS is large: 2.8MB",
       "suggestion": "Analyze bundle composition and remove unused dependencies"
     },
     {
       "type": "success",
-      "message": "Estimated compression: 84.8% size reduction with gzip"
+      "message": "Estimated compression: 84.9% size reduction with gzip"
     }
   ],
   "scores": {
@@ -36,24 +36,24 @@
   },
   "loadTimes": {
     "Slow 3G": {
-      "gzip": 0.57678,
-      "uncompressed": 3.7861000000000002
+      "gzip": 0.5784199999999999,
+      "uncompressed": 3.8318
     },
     "Fast 3G": {
-      "gzip": 0.144195,
-      "uncompressed": 0.9465250000000001
+      "gzip": 0.14460499999999998,
+      "uncompressed": 0.95795
     },
     "4G": {
-      "gzip": 0.025634666666666667,
-      "uncompressed": 0.16827111111111112
+      "gzip": 0.025707555555555556,
+      "uncompressed": 0.17030222222222222
     },
     "Cable": {
-      "gzip": 0.009228479999999999,
-      "uncompressed": 0.0605776
+      "gzip": 0.00925472,
+      "uncompressed": 0.061308800000000004
     },
     "Fiber": {
-      "gzip": 0.0023071199999999997,
-      "uncompressed": 0.0151444
+      "gzip": 0.00231368,
+      "uncompressed": 0.015327200000000001
     }
   }
 }

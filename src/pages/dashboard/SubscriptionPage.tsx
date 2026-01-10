@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSubscriptionContext } from "@sudobility/subscription-components";
 import {
-  EntitySubscriptionsPage,
+  AppSubscriptionsPage,
   type SubscriptionPageLabels,
   type SubscriptionPageFormatters,
-} from "@sudobility/entity_pages";
+} from "@sudobility/building_blocks";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useRateLimits } from "@sudobility/shapeshyft_client";
@@ -134,7 +134,7 @@ function SubscriptionPage() {
   );
 
   return (
-    <EntitySubscriptionsPage
+    <AppSubscriptionsPage
       subscription={subscriptionContext}
       rateLimitsConfig={rateLimitsConfig}
       subscriptionUserId={entityId ?? undefined}

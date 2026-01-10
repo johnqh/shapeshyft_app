@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  BarChart3,
-  Zap,
-  Globe,
-  Check,
-  AlertTriangle,
-  Rocket,
-  RefreshCw,
-} from "lucide-react";
+  ChartBarIcon,
+  BoltIcon,
+  GlobeAltIcon,
+  CheckIcon,
+  ExclamationTriangleIcon,
+  RocketLaunchIcon,
+  ArrowPathIcon,
+} from "@heroicons/react/24/outline";
 
 type VitalsRating = "good" | "needsImprovement" | "poor";
 
@@ -70,7 +70,7 @@ function PerformancePage() {
       {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full mb-4">
-          <Rocket className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
+          <RocketLaunchIcon className="h-5 w-5 text-green-600 dark:text-green-400 mr-2" />
           <span className="text-green-800 dark:text-green-300 font-semibold">
             {t("badge")}
           </span>
@@ -127,7 +127,7 @@ function PerformancePage() {
         <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
           <div className="p-6 border-b border-theme-border">
             <div className="flex items-center gap-3">
-              <BarChart3 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              <ChartBarIcon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               <h2 className="text-lg font-semibold text-theme-text-primary">
                 {t("webVitals.title")}
               </h2>
@@ -204,7 +204,7 @@ CLS: < 0.1 (good), < 0.25 (needs improvement)`}
         <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
           <div className="p-6 border-b border-theme-border">
             <div className="flex items-center gap-3">
-              <Zap className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
+              <BoltIcon className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
               <h2 className="text-lg font-semibold text-theme-text-primary">
                 {t("bundle.title")}
               </h2>
@@ -222,13 +222,13 @@ CLS: < 0.1 (good), < 0.25 (needs improvement)`}
               <div className="space-y-2">
                 <div className="p-3 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
                   <p className="text-sm text-blue-800 dark:text-blue-200 flex items-center gap-2">
-                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <ArrowPathIcon className="w-4 h-4 animate-spin" />
                     {t("bundle.componentLoading")}
                   </p>
                 </div>
                 <div className="p-3 rounded bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
                   <p className="text-sm text-green-800 dark:text-green-200 flex items-center gap-2">
-                    <Check className="w-4 h-4" />
+                    <CheckIcon className="w-4 h-4" />
                     {t("bundle.componentLoaded")}
                   </p>
                 </div>
@@ -268,7 +268,7 @@ CLS: < 0.1 (good), < 0.25 (needs improvement)`}
       <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
         <div className="p-6 border-b border-theme-border">
           <div className="flex items-center gap-3">
-            <Globe className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
+            <GlobeAltIcon className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
             <h2 className="text-lg font-semibold text-theme-text-primary">
               {t("api.title")}
             </h2>
@@ -346,7 +346,7 @@ Locales: Stale While Revalidate`}
       <div className="bg-theme-bg-primary border border-theme-border rounded-xl overflow-hidden">
         <div className="p-6 border-b border-theme-border">
           <div className="flex items-center gap-3">
-            <Check className="h-6 w-6 text-green-600 dark:text-green-400" />
+            <CheckIcon className="h-6 w-6 text-green-600 dark:text-green-400" />
             <h2 className="text-lg font-semibold text-theme-text-primary">
               {t("bestPractices.title")}
             </h2>
@@ -357,42 +357,42 @@ Locales: Stale While Revalidate`}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 className="font-medium text-theme-text-primary mb-4 flex items-center gap-2">
-                <Check className="h-5 w-5 text-green-500" />
+                <CheckIcon className="h-5 w-5 text-green-500" />
                 {t("bestPractices.doThis")}
               </h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
-                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.do.codeSplitting")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.do.lazyLoading")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.do.cacheApi")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.do.preloadRoutes")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.do.monitorVitals")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.do.serviceWorker")}
                   </span>
@@ -402,42 +402,42 @@ Locales: Stale While Revalidate`}
 
             <div>
               <h4 className="font-medium text-theme-text-primary mb-4 flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-red-500" />
+                <ExclamationTriangleIcon className="h-5 w-5 text-red-500" />
                 {t("bestPractices.avoidThis")}
               </h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.avoid.eagerLoading")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.avoid.redundantCalls")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.avoid.layoutShifts")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.avoid.blockingRender")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.avoid.ignoreNetwork")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                  <ExclamationTriangleIcon className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
                   <span className="text-theme-text-secondary">
                     {t("bestPractices.avoid.noTreeShaking")}
                   </span>

@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { AlertCircle, ArrowUpRight } from "lucide-react";
+import {
+  ExclamationCircleIcon,
+  ArrowTopRightOnSquareIcon,
+} from "@heroicons/react/24/outline";
 
 interface RateLimitPanelProps {
   entitySlug: string;
@@ -18,7 +21,7 @@ function RateLimitPanel({ entitySlug }: RateLimitPanelProps) {
     <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0">
-          <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+          <ExclamationCircleIcon className="w-5 h-5 text-amber-600 dark:text-amber-400" />
         </div>
         <div className="flex-1">
           <h4 className="text-sm font-semibold text-amber-800 dark:text-amber-200 mb-1">
@@ -32,7 +35,7 @@ function RateLimitPanel({ entitySlug }: RateLimitPanelProps) {
             className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-md transition-colors"
           >
             {t("errors.rateLimit.upgradeButton")}
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowTopRightOnSquareIcon className="w-4 h-4" />
           </button>
         </div>
       </div>
