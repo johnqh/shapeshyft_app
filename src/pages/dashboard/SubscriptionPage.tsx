@@ -19,7 +19,7 @@ function SubscriptionPage() {
   const { entitySlug = "" } = useParams<{ entitySlug: string }>();
   const { success } = useToast();
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
-  const { entityId } = useCurrentEntity();
+  const { currentEntityId } = useCurrentEntity();
   const subscriptionContext = useSubscriptionContext();
 
   const { config: rateLimitsConfig, refreshConfig: refreshRateLimits } =
@@ -137,7 +137,7 @@ function SubscriptionPage() {
     <AppSubscriptionsPage
       subscription={subscriptionContext}
       rateLimitsConfig={rateLimitsConfig}
-      subscriptionUserId={entityId ?? undefined}
+      subscriptionUserId={currentEntityId ?? undefined}
       labels={labels}
       formatters={formatters}
       onPurchaseSuccess={handlePurchaseSuccess}

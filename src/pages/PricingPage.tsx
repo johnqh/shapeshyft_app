@@ -36,27 +36,19 @@ const ENTITLEMENT_LEVELS: EntitlementLevels = {
   bandwidth_ultra: 3,
 };
 
-// LocalStorage key for last used entity (same as EntityRedirect)
-const LAST_ENTITY_KEY = "shapeshyft_last_entity";
-
 function PricingPage() {
   const { t } = useTranslation("pricing");
   const { t: tSub } = useTranslation("subscription");
   const { user, openModal } = useAuthStatus();
   const { products: rawProducts, currentSubscription, purchase } =
     useSafeSubscriptionContext();
-  const { entityId } = useCurrentEntity();
+  const { currentEntitySlug, currentEntityId } = useCurrentEntity();
   const { navigate } = useLocalizedNavigate();
   const { success, error: showError } = useToast();
   const appName = CONSTANTS.APP_NAME;
 
   const isAuthenticated = !!user;
   const hasActiveSubscription = currentSubscription?.isActive ?? false;
-
-  // Get the last used entity slug for navigation
-  const getEntitySlug = (): string | null => {
-    return localStorage.getItem(LAST_ENTITY_KEY);
-  };
 
   // Map products to the format expected by AppPricingPage
   const products: PricingProduct[] = rawProducts.map((p) => ({
@@ -75,9 +67,8 @@ function PricingPage() {
         if (result) {
           success(tSub("purchase.success", "Subscription activated successfully!"));
           // Navigate to dashboard after successful purchase
-          const entitySlug = getEntitySlug();
-          if (entitySlug) {
-            navigate(`/dashboard/${entitySlug}`);
+          if (currentEntitySlug) {
+            navigate(`/dashboard/${currentEntitySlug}`);
           } else {
             navigate("/dashboard");
           }
@@ -96,9 +87,8 @@ function PricingPage() {
 
   const handleFreePlanClick = () => {
     if (isAuthenticated) {
-      const entitySlug = getEntitySlug();
-      if (entitySlug) {
-        navigate(`/dashboard/${entitySlug}`);
+      if (currentEntitySlug) {
+        navigate(`/dashboard/${currentEntitySlug}`);
       } else {
         navigate("/dashboard");
       }
@@ -236,7 +226,7 @@ function PricingPage() {
         isAuthenticated={isAuthenticated}
         hasActiveSubscription={hasActiveSubscription}
         currentProductIdentifier={currentSubscription?.productIdentifier}
-        subscriptionUserId={entityId ?? undefined}
+        subscriptionUserId={currentEntityId ?? undefined}
         labels={labels}
         formatters={formatters}
         entitlementMap={PACKAGE_ENTITLEMENT_MAP}

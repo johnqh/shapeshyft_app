@@ -20,11 +20,11 @@ const LoadingFallback = () => (
  * for non-authenticated visitors, allowing them to see pricing.
  */
 export function PricingPageWrapper() {
-  const { entityId } = useCurrentEntity();
+  const { currentEntityId } = useCurrentEntity();
 
   return (
     <Suspense fallback={<LoadingFallback />}>
-      <PricingSubscriptionProvider entityId={entityId ?? undefined}>
+      <PricingSubscriptionProvider entityId={currentEntityId ?? undefined}>
         <PricingPage />
       </PricingSubscriptionProvider>
     </Suspense>

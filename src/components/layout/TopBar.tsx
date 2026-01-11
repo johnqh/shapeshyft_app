@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
 import {
   AppTopBarWithFirebaseAuth,
   type MenuItemConfig,
@@ -10,6 +9,7 @@ import {
 import { AuthAction, useAuthStatus } from '@sudobility/auth-components';
 import type { ComponentType } from 'react';
 import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
+import { useCurrentEntityOptional } from '../../hooks/useCurrentEntity';
 import {
   CONSTANTS,
   SUPPORTED_LANGUAGES,
@@ -189,9 +189,13 @@ const LinkWrapper = ({
 function TopBar({ variant = 'default' }: TopBarProps) {
   const { t } = useTranslation('common');
   const { t: tDashboard } = useTranslation('dashboard');
-  const location = useLocation();
   const { navigate, switchLanguage, currentLanguage } = useLocalizedNavigate();
   const { user } = useAuthStatus();
+
+  // Get the current entity from context - this is set when user logs in
+  // and automatically selects their personal entity
+  const entityContext = useCurrentEntityOptional();
+  const entitySlug = entityContext?.currentEntitySlug ?? null;
 
   const isAuthenticated = !!user;
 
@@ -205,14 +209,6 @@ function TopBar({ variant = 'default' }: TopBarProps) {
       })),
     []
   );
-
-  // Extract entitySlug from URL
-  const pathSegments = location.pathname.split('/').filter(Boolean);
-  const dashboardIndex = pathSegments.indexOf('dashboard');
-  const entitySlug =
-    dashboardIndex >= 0 && pathSegments.length > dashboardIndex + 1
-      ? pathSegments[dashboardIndex + 1]
-      : null;
 
   // Build authenticated menu items
   const authenticatedMenuItems: AuthMenuItem[] = useMemo(

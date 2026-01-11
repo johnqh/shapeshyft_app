@@ -1,21 +1,43 @@
-import { useState, useCallback, useMemo, type ReactNode } from "react";
-import { CurrentEntityContext } from "./currentEntityContextDef";
+/**
+ * @fileoverview Current Entity Context Provider
+ * @description Provides the current entity context using entity_client's provider
+ *
+ * This wraps the entity_client's CurrentEntityProvider and automatically
+ * connects it to the app's authentication state.
+ */
 
-export function CurrentEntityProvider({ children }: { children: ReactNode }) {
-  const [entityId, setEntityIdState] = useState<string | null>(null);
+import { type ReactNode } from "react";
+import { CurrentEntityProvider as EntityClientProvider } from "@sudobility/entity_client";
+import { useAuthStatus } from "@sudobility/auth-components";
+import { entityClient } from "../config/entityClient";
 
-  const setEntityId = useCallback((id: string | null) => {
-    setEntityIdState(id);
-  }, []);
+interface CurrentEntityProviderProps {
+  children: ReactNode;
+}
 
-  const value = useMemo(
-    () => ({ entityId, setEntityId }),
-    [entityId, setEntityId],
-  );
+/**
+ * App-level CurrentEntityProvider that automatically connects to Firebase auth.
+ *
+ * Features:
+ * - Automatically fetches entities when user logs in
+ * - Auto-selects personal entity by default
+ * - Clears entity state on logout
+ * - Persists last selected entity to localStorage
+ */
+export function CurrentEntityProvider({ children }: CurrentEntityProviderProps) {
+  const { user } = useAuthStatus();
+
+  // Map Firebase user to AuthUser interface
+  const authUser = user
+    ? {
+        uid: user.uid,
+        email: user.email,
+      }
+    : null;
 
   return (
-    <CurrentEntityContext.Provider value={value}>
+    <EntityClientProvider client={entityClient} user={authUser}>
       {children}
-    </CurrentEntityContext.Provider>
+    </EntityClientProvider>
   );
 }

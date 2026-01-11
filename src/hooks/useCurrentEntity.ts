@@ -1,15 +1,33 @@
-import { useContext } from "react";
-import {
-  CurrentEntityContext,
-  type CurrentEntityContextValue,
-} from "../context/currentEntityContextDef";
+/**
+ * @fileoverview Current Entity Hook
+ * @description Re-exports useCurrentEntity from entity_client for app-wide use
+ *
+ * This module provides access to the current entity context throughout the app.
+ * The hook returns the currently selected entity, all user's entities, and
+ * methods to select a different entity.
+ *
+ * @example
+ * ```tsx
+ * function DashboardHeader() {
+ *   const { currentEntity, currentEntitySlug, entities, selectEntity } = useCurrentEntity();
+ *
+ *   return (
+ *     <div>
+ *       <h1>{currentEntity?.displayName}</h1>
+ *       <EntitySwitcher
+ *         entities={entities}
+ *         currentSlug={currentEntitySlug}
+ *         onSelect={selectEntity}
+ *       />
+ *     </div>
+ *   );
+ * }
+ * ```
+ */
 
-export function useCurrentEntity(): CurrentEntityContextValue {
-  const context = useContext(CurrentEntityContext);
-  if (!context) {
-    throw new Error(
-      "useCurrentEntity must be used within a CurrentEntityProvider",
-    );
-  }
-  return context;
-}
+// Re-export from entity_client
+export {
+  useCurrentEntity,
+  useCurrentEntityOptional,
+  type CurrentEntityContextValue,
+} from "@sudobility/entity_client";

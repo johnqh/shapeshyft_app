@@ -113,9 +113,9 @@ function EntityAwareSubscriptionProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const { entityId } = useCurrentEntity();
+  const { currentEntityId } = useCurrentEntity();
   return (
-    <LazySubscriptionProvider entityId={entityId ?? undefined}>
+    <LazySubscriptionProvider entityId={currentEntityId ?? undefined}>
       {children}
     </LazySubscriptionProvider>
   );

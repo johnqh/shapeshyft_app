@@ -7,12 +7,10 @@ import {
   useKeysManager,
   useEndpointsManager,
 } from "@sudobility/shapeshyft_lib";
-import { useEntity } from "@sudobility/entity_client";
 import ScreenContainer from "../../components/layout/ScreenContainer";
 import DashboardMasterList from "../../components/dashboard/DashboardMasterList";
 import { useApi } from "../../hooks/useApi";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
-import { entityClient } from "../../config/entityClient";
 import { useCurrentEntity } from "../../hooks/useCurrentEntity";
 
 function DashboardPage() {
@@ -30,20 +28,15 @@ function DashboardPage() {
   }>();
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
 
-  // Fetch entity to get entity ID for subscription context
-  const { data: entity } = useEntity(entityClient, entitySlug || null);
-  const { setEntityId } = useCurrentEntity();
+  // Get current entity from context - the provider handles auto-selection
+  const { selectEntity } = useCurrentEntity();
 
-  // Update entity ID in context when entity changes
+  // Sync URL entity slug with context when navigating directly to a URL
   useEffect(() => {
-    if (entity?.id) {
-      setEntityId(entity.id);
+    if (entitySlug) {
+      selectEntity(entitySlug);
     }
-    return () => {
-      // Clear entity ID when leaving dashboard
-      setEntityId(null);
-    };
-  }, [entity?.id, setEntityId]);
+  }, [entitySlug, selectEntity]);
 
   // Mobile view state
   const [mobileView, setMobileView] = useState<"navigation" | "content">(
