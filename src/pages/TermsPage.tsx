@@ -2,10 +2,77 @@ import { useTranslation } from "react-i18next";
 import ScreenContainer from "../components/layout/ScreenContainer";
 import SEO from "../components/seo/SEO";
 import { CONSTANTS } from "../config/constants";
+import { AppTextPage } from "@sudobility/building_blocks";
+import type { TextPageContent } from "@sudobility/building_blocks";
 
 function TermsPage() {
   const { t } = useTranslation("terms");
   const appName = CONSTANTS.APP_NAME;
+
+  // Build the text content from i18n translations
+  const text: TextPageContent = {
+    title: t("title"),
+    lastUpdated: t("lastUpdated", { date: "{{date}}" }),
+    sections: [
+      // Section 1: Acceptance of Terms
+      {
+        title: t("sections.acceptance.title"),
+        content: t("sections.acceptance.content", { appName }),
+      },
+      // Section 2: Description of Service
+      {
+        title: t("sections.service.title"),
+        content: t("sections.service.content", { appName }),
+      },
+      // Section 3: User Accounts
+      {
+        title: t("sections.accounts.title"),
+        description: t("sections.accounts.description"),
+        items: t("sections.accounts.items", { returnObjects: true }) as string[],
+      },
+      // Section 4: Acceptable Use
+      {
+        title: t("sections.acceptableUse.title"),
+        description: t("sections.acceptableUse.description", { appName }),
+        items: t("sections.acceptableUse.items", { returnObjects: true }) as string[],
+      },
+      // Section 5: API Usage
+      {
+        title: t("sections.apiUsage.title"),
+        content: t("sections.apiUsage.content"),
+      },
+      // Section 6: Intellectual Property
+      {
+        title: t("sections.ip.title"),
+        content: t("sections.ip.content", { appName }),
+      },
+      // Section 7: Limitation of Liability
+      {
+        title: t("sections.liability.title"),
+        content: t("sections.liability.content", { appName }),
+      },
+      // Section 8: Termination
+      {
+        title: t("sections.termination.title"),
+        content: t("sections.termination.content"),
+      },
+      // Section 9: Changes to Terms
+      {
+        title: t("sections.changes.title"),
+        content: t("sections.changes.content"),
+      },
+    ],
+    contact: {
+      title: t("sections.contact.title"),
+      description: t("sections.contact.description"),
+      info: {
+        emailLabel: t("sections.contact.email"),
+        email: CONSTANTS.SUPPORT_EMAIL,
+        websiteLabel: "Website:",
+        websiteUrl: `https://${CONSTANTS.APP_DOMAIN}`,
+      },
+    },
+  };
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
@@ -16,145 +83,10 @@ function TermsPage() {
       />
 
       <main className="flex-1 overflow-auto">
-        <div className="max-w-4xl mx-auto py-12 px-4">
-          <h1 className="text-4xl font-bold text-theme-text-primary mb-4">
-            {t("title")}
-          </h1>
-          <p className="text-theme-text-secondary mb-8">
-            {t("lastUpdated", { date: new Date().toLocaleDateString() })}
-          </p>
-
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            {/* Acceptance of Terms */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.acceptance.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.acceptance.content", { appName })}
-              </p>
-            </section>
-
-            {/* Description of Service */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.service.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.service.content", { appName })}
-              </p>
-            </section>
-
-            {/* User Accounts */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.accounts.title")}
-              </h2>
-              <p className="text-theme-text-secondary mb-4">
-                {t("sections.accounts.description")}
-              </p>
-              <ul className="list-disc list-inside text-theme-text-secondary space-y-2">
-                {(
-                  t("sections.accounts.items", {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            {/* Acceptable Use */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.acceptableUse.title")}
-              </h2>
-              <p className="text-theme-text-secondary mb-4">
-                {t("sections.acceptableUse.description", { appName })}
-              </p>
-              <ul className="list-disc list-inside text-theme-text-secondary space-y-2">
-                {(
-                  t("sections.acceptableUse.items", {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            {/* API Usage */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.apiUsage.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.apiUsage.content")}
-              </p>
-            </section>
-
-            {/* Intellectual Property */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.ip.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.ip.content", { appName })}
-              </p>
-            </section>
-
-            {/* Limitation of Liability */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.liability.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.liability.content", { appName })}
-              </p>
-            </section>
-
-            {/* Termination */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.termination.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.termination.content")}
-              </p>
-            </section>
-
-            {/* Changes to Terms */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.changes.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.changes.content")}
-              </p>
-            </section>
-
-            {/* Contact */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.contact.title")}
-              </h2>
-              <p className="text-theme-text-secondary mb-4">
-                {t("sections.contact.description")}
-              </p>
-              <div className="bg-theme-bg-secondary p-4 rounded-lg">
-                <p className="text-theme-text-primary">
-                  {t("sections.contact.email")}{" "}
-                  <a
-                    href={`mailto:${CONSTANTS.SUPPORT_EMAIL}`}
-                    className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                  >
-                    {CONSTANTS.SUPPORT_EMAIL}
-                  </a>
-                </p>
-              </div>
-            </section>
-          </div>
-        </div>
+        <AppTextPage
+          text={text}
+          lastUpdatedDate={new Date().toLocaleDateString()}
+        />
       </main>
     </ScreenContainer>
   );

@@ -35,6 +35,7 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
+const CookiesPage = lazy(() => import("./pages/CookiesPage"));
 const AppSettingsPage = lazy(() => import("./pages/SettingsPage"));
 const UseCasesPage = lazy(() => import("./pages/use-cases/UseCasesPage"));
 const UseCasesTextPage = lazy(
@@ -180,6 +181,7 @@ function App() {
                               <Route path="contact" element={<ContactPage />} />
                               <Route path="privacy" element={<PrivacyPage />} />
                               <Route path="terms" element={<TermsPage />} />
+                              <Route path="cookies" element={<CookiesPage />} />
                               <Route path="sitemap" element={<SitemapPage />} />
                               <Route
                                 path="settings"

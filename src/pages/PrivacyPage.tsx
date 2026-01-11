@@ -2,10 +2,118 @@ import { useTranslation } from "react-i18next";
 import ScreenContainer from "../components/layout/ScreenContainer";
 import SEO from "../components/seo/SEO";
 import { CONSTANTS } from "../config/constants";
+import { AppTextPage } from "@sudobility/building_blocks";
+import type { TextPageContent } from "@sudobility/building_blocks";
 
 function PrivacyPage() {
   const { t } = useTranslation("privacy");
   const appName = CONSTANTS.APP_NAME;
+
+  // Build the text content from i18n translations
+  const text: TextPageContent = {
+    title: t("title"),
+    lastUpdated: t("lastUpdated", { date: "{{date}}" }),
+    sections: [
+      // Introduction
+      {
+        title: t("sections.introduction.title"),
+        content: t("sections.introduction.content", { appName }),
+      },
+      // Information We Collect
+      {
+        title: t("sections.collection.title"),
+        subsections: [
+          {
+            title: "Information You Provide",
+            items: t("sections.collection.items", { returnObjects: true }) as string[],
+          },
+          {
+            title: "Information Collected Automatically",
+            items: [
+              "Device and browser information",
+              "IP address and location data",
+              "Usage patterns and analytics",
+            ],
+          },
+        ],
+      },
+      // How We Use
+      {
+        title: t("sections.usage.title"),
+        description: t("sections.usage.description"),
+        items: t("sections.usage.items", { returnObjects: true }) as string[],
+      },
+      // Information Sharing
+      {
+        title: "Information Sharing",
+        description: "We may share your information in the following circumstances:",
+        items: [
+          "With service providers who assist in our operations",
+          "When required by law or legal process",
+          "To protect our rights and safety",
+          "With your consent",
+        ],
+      },
+      // Data Security
+      {
+        title: t("sections.security.title"),
+        description: "We implement appropriate security measures:",
+        items: [
+          "Encryption of data in transit and at rest",
+          "Regular security assessments",
+          "Access controls and authentication",
+          "Secure API key management",
+        ],
+      },
+      // Data Retention
+      {
+        title: t("sections.retention.title"),
+        content: t("sections.retention.content"),
+      },
+      // Privacy Rights
+      {
+        title: t("sections.rights.title"),
+        description: t("sections.rights.description"),
+        items: t("sections.rights.items", { returnObjects: true }) as string[],
+      },
+      // International Transfers
+      {
+        title: "International Data Transfers",
+        content: "Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers.",
+      },
+      // Children's Privacy
+      {
+        title: "Children's Privacy",
+        content: "Our service is not intended for children under 13. We do not knowingly collect information from children under 13.",
+      },
+      // Cookies
+      {
+        title: t("sections.cookies.title"),
+        content: t("sections.cookies.content"),
+      },
+      // Changes
+      {
+        title: t("sections.changes.title"),
+        content: t("sections.changes.content"),
+      },
+    ],
+    contact: {
+      title: t("sections.contact.title"),
+      description: t("sections.contact.description"),
+      info: {
+        emailLabel: t("sections.contact.email"),
+        email: CONSTANTS.SUPPORT_EMAIL,
+        websiteLabel: "Website:",
+        websiteUrl: `https://${CONSTANTS.APP_DOMAIN}`,
+        dpoLabel: "Data Protection Officer:",
+        dpoEmail: CONSTANTS.SUPPORT_EMAIL,
+      },
+      gdprNotice: {
+        title: "GDPR Rights",
+        content: "If you are in the European Union, you have additional rights under GDPR including the right to lodge a complaint with a supervisory authority.",
+      },
+    },
+  };
 
   return (
     <ScreenContainer footerVariant="full" showBreadcrumbs>
@@ -16,142 +124,10 @@ function PrivacyPage() {
       />
 
       <main className="flex-1 overflow-auto">
-        <div className="max-w-4xl mx-auto py-12 px-4">
-          <h1 className="text-4xl font-bold text-theme-text-primary mb-4">
-            {t("title")}
-          </h1>
-          <p className="text-theme-text-secondary mb-8">
-            {t("lastUpdated", { date: new Date().toLocaleDateString() })}
-          </p>
-
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            {/* Introduction */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.introduction.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.introduction.content", { appName })}
-              </p>
-            </section>
-
-            {/* Information We Collect */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.collection.title")}
-              </h2>
-              <p className="text-theme-text-secondary mb-4">
-                {t("sections.collection.description")}
-              </p>
-              <ul className="list-disc list-inside text-theme-text-secondary space-y-2">
-                {(
-                  t("sections.collection.items", {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            {/* How We Use Your Information */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.usage.title")}
-              </h2>
-              <p className="text-theme-text-secondary mb-4">
-                {t("sections.usage.description")}
-              </p>
-              <ul className="list-disc list-inside text-theme-text-secondary space-y-2">
-                {(
-                  t("sections.usage.items", { returnObjects: true }) as string[]
-                ).map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            {/* Data Security */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.security.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.security.content")}
-              </p>
-            </section>
-
-            {/* Data Retention */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.retention.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.retention.content")}
-              </p>
-            </section>
-
-            {/* Your Rights */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.rights.title")}
-              </h2>
-              <p className="text-theme-text-secondary mb-4">
-                {t("sections.rights.description")}
-              </p>
-              <ul className="list-disc list-inside text-theme-text-secondary space-y-2">
-                {(
-                  t("sections.rights.items", {
-                    returnObjects: true,
-                  }) as string[]
-                ).map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            {/* Cookies */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.cookies.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.cookies.content")}
-              </p>
-            </section>
-
-            {/* Changes to Policy */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.changes.title")}
-              </h2>
-              <p className="text-theme-text-secondary">
-                {t("sections.changes.content")}
-              </p>
-            </section>
-
-            {/* Contact */}
-            <section className="mb-8">
-              <h2 className="text-2xl font-bold text-theme-text-primary mb-4">
-                {t("sections.contact.title")}
-              </h2>
-              <p className="text-theme-text-secondary mb-4">
-                {t("sections.contact.description")}
-              </p>
-              <div className="bg-theme-bg-secondary p-4 rounded-lg">
-                <p className="text-theme-text-primary">
-                  {t("sections.contact.email")}{" "}
-                  <a
-                    href={`mailto:${CONSTANTS.SUPPORT_EMAIL}`}
-                    className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                  >
-                    {CONSTANTS.SUPPORT_EMAIL}
-                  </a>
-                </p>
-              </div>
-            </section>
-          </div>
-        </div>
+        <AppTextPage
+          text={text}
+          lastUpdatedDate={new Date().toLocaleDateString()}
+        />
       </main>
     </ScreenContainer>
   );
