@@ -8,7 +8,9 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { ApiProvider } from "./context/ApiContext";
 import { ToastProvider } from "./context/ToastContext";
 import { AnalyticsProvider } from "./context/AnalyticsContext";
-import { CurrentEntityProvider } from "./context/CurrentEntityContext";
+import { CurrentEntityProvider } from "@sudobility/entity_client";
+import { useAuthStatus } from "@sudobility/auth-components";
+import { entityClient } from "./config/entityClient";
 import { useCurrentEntity } from "./hooks/useCurrentEntity";
 import { isLanguageSupported } from "./config/constants";
 import { AuthProviderWrapper } from "./components/providers/AuthProviderWrapper";
@@ -107,6 +109,17 @@ const LoadingFallback = () => (
   </div>
 );
 
+// Wrapper that connects CurrentEntityProvider to auth state
+function AuthAwareEntityProvider({ children }: { children: React.ReactNode }) {
+  const { user } = useAuthStatus();
+  const authUser = user ? { uid: user.uid, email: user.email } : null;
+  return (
+    <CurrentEntityProvider client={entityClient} user={authUser}>
+      {children}
+    </CurrentEntityProvider>
+  );
+}
+
 // Wrapper that reads entity ID from context and passes to subscription provider
 function EntityAwareSubscriptionProvider({
   children,
@@ -136,7 +149,7 @@ function App() {
             <QueryClientProvider client={queryClient}>
               <ToastProvider>
                 <AuthProviderWrapper>
-                  <CurrentEntityProvider>
+                  <AuthAwareEntityProvider>
                     <ApiProvider>
                       <AnalyticsProvider>
                         <EntityAwareSubscriptionProvider>
@@ -300,7 +313,7 @@ function App() {
                         </EntityAwareSubscriptionProvider>
                       </AnalyticsProvider>
                     </ApiProvider>
-                  </CurrentEntityProvider>
+                  </AuthAwareEntityProvider>
                 </AuthProviderWrapper>
               </ToastProvider>
             </QueryClientProvider>
