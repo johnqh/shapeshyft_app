@@ -18,6 +18,7 @@ import {
   getSharedSubscriptionFormatters,
   getProductFeatures,
   PACKAGE_ENTITLEMENT_MAP,
+  ENTITLEMENT_LEVELS,
 } from "../../config/subscription-config";
 
 function SubscriptionPage() {
@@ -127,7 +128,8 @@ function SubscriptionPage() {
       subscriptionUserId={currentEntityId ?? undefined}
       labels={labels}
       formatters={formatters}
-      packageEntitlementMap={PACKAGE_ENTITLEMENT_MAP}
+      entitlementMap={PACKAGE_ENTITLEMENT_MAP}
+      entitlementLevels={ENTITLEMENT_LEVELS}
       onPurchaseSuccess={handlePurchaseSuccess}
       onRestoreSuccess={handleRestoreSuccess}
       onError={handleError}
