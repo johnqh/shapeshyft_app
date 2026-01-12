@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthInline, useAuthStatus } from "@sudobility/auth-components";
+import { useAuthStatus } from "@sudobility/auth-components";
+import { getFirebaseAuth } from "@sudobility/auth_lib";
+import { LoginPage as LoginPageComponent } from "@sudobility/building_blocks";
 import { CONSTANTS } from "../config/constants";
 
 function LoginPage() {
   const { user, loading } = useAuthStatus();
   const navigate = useNavigate();
   const { lang } = useParams<{ lang: string }>();
+  const auth = getFirebaseAuth();
 
   // Redirect to dashboard if already authenticated
   useEffect(() => {
@@ -23,24 +26,21 @@ function LoginPage() {
     );
   }
 
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-theme-bg-primary px-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="flex justify-center mb-8">
-          <img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-12" />
-        </div>
-
-        {/* Auth Form */}
-        <div className="bg-theme-bg-secondary rounded-xl p-6 border border-theme-border">
-          <AuthInline
-            onSuccess={() => {
-              navigate(`/${lang || "en"}/dashboard`, { replace: true });
-            }}
-          />
-        </div>
+  if (!auth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-theme-bg-primary">
+        <p className="text-red-600">Firebase not configured</p>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <LoginPageComponent
+      appName={CONSTANTS.APP_NAME}
+      logo={<img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-12" />}
+      auth={auth}
+      onSuccess={() => navigate(`/${lang || "en"}/dashboard`, { replace: true })}
+    />
   );
 }
 
