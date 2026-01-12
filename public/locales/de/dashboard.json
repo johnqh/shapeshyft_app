@@ -138,8 +138,8 @@
     "form": {
       "title": "API-Schlüssel hinzufügen",
       "titleEdit": "API-Schlüssel bearbeiten",
-      "keyName": "Schlüsselname",
-      "keyNamePlaceholder": "Mein OpenAI-Schlüssel",
+      "keyName": "Anbieter-Label",
+      "keyNamePlaceholder": "z.B. Produktion, Entwicklung",
       "provider": "Anbieter",
       "apiKey": "API-Schlüssel",
       "apiKeyPlaceholder": "sk-...",

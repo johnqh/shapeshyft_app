@@ -145,8 +145,8 @@
     "form": {
       "title": "Add API Key",
       "titleEdit": "Edit API Key",
-      "keyName": "Key Name",
-      "keyNamePlaceholder": "My OpenAI Key",
+      "keyName": "Provider Label",
+      "keyNamePlaceholder": "e.g., Production, Development",
       "provider": "Provider",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "sk-...",
@@ -156,7 +156,7 @@
       "endpointUrlPlaceholder": "https://api.example.com/v1",
       "add": "Add Key",
       "errors": {
-        "nameRequired": "Key name is required",
+        "nameRequired": "Provider label is required",
         "apiKeyRequired": "API key is required",
         "endpointRequired": "Endpoint URL is required for custom LM server"
       }

@@ -57,6 +57,8 @@
     "create": "Create",
     "confirm": "Confirm",
     "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied!",
     "back": "Back",
     "next": "Next",
     "submit": "Submit",

@@ -48,7 +48,7 @@
     "label": "Current Status",
     "active": "Active Subscription",
     "inactive": "No Active Subscription",
-    "inactiveMessage": "Subscribe to unlock premium features and unlimited usage.",
+    "inactiveMessage": "Subscribe to unlock premium features and higher usage.",
     "plan": "Plan",
     "expires": "Expires",
     "willRenew": "Auto-Renew",

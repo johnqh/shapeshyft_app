@@ -138,8 +138,8 @@
     "form": {
       "title": "API 키 추가",
       "titleEdit": "API 키 편집",
-      "keyName": "키 이름",
-      "keyNamePlaceholder": "내 OpenAI 키",
+      "keyName": "프로바이더 라벨",
+      "keyNamePlaceholder": "예: 프로덕션, 개발",
       "provider": "공급자",
       "apiKey": "API 키",
       "apiKeyPlaceholder": "sk-...",

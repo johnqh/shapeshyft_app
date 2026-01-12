@@ -138,8 +138,8 @@
     "form": {
       "title": "添加 API 密钥",
       "titleEdit": "编辑 API 密钥",
-      "keyName": "密钥名称",
-      "keyNamePlaceholder": "我的 OpenAI 密钥",
+      "keyName": "提供商标签",
+      "keyNamePlaceholder": "例如：生产环境、开发环境",
       "provider": "提供者",
       "apiKey": "API密钥",
       "apiKeyPlaceholder": "sk-...",

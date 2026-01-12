@@ -13,6 +13,12 @@ import { useRateLimits } from "@sudobility/shapeshyft_client";
 import { useToast } from "../../hooks/useToast";
 import { useApi } from "../../hooks/useApi";
 import { useCurrentEntity } from "../../hooks/useCurrentEntity";
+import {
+  getFreeTierFeatures,
+  getSharedSubscriptionFormatters,
+  getProductFeatures,
+  PACKAGE_ENTITLEMENT_MAP,
+} from "../../config/subscription-config";
 
 function SubscriptionPage() {
   const { t } = useTranslation("subscription");
@@ -97,12 +103,7 @@ function SubscriptionPage() {
       // Free tier
       freeTierTitle: t("freeTier.title"),
       freeTierPrice: t("freeTier.price"),
-      freeTierFeatures: [
-        t("freeTier.schemaValidation", "JSON Schema-validated outputs"),
-        t("freeTier.allProviders", "All LLM providers (OpenAI, Anthropic, Google)"),
-        t("freeTier.endpointTesting", "Built-in endpoint testing"),
-        t("freeTier.analytics", "Basic usage analytics"),
-      ],
+      freeTierFeatures: getFreeTierFeatures(t),
 
       // Badges
       currentPlanBadge: t("badges.currentPlan", "Current Plan"),
@@ -113,22 +114,8 @@ function SubscriptionPage() {
   // Memoize formatters to prevent unnecessary re-renders
   const formatters: SubscriptionPageFormatters = useMemo(
     () => ({
-      formatHourlyLimit: (limit: string) =>
-        t("rateLimits.hourly", "{{limit}} requests/hour", { limit }),
-      formatDailyLimit: (limit: string) =>
-        t("rateLimits.daily", "{{limit}} requests/day", { limit }),
-      formatMonthlyLimit: (limit: string) =>
-        t("rateLimits.monthly", "{{limit}} requests/month", { limit }),
-      formatTrialDays: (count: number) =>
-        t("trial.days", { count }),
-      formatTrialWeeks: (count: number) =>
-        t("trial.weeks", { count }),
-      formatTrialMonths: (count: number) =>
-        t("trial.months", { count }),
-      formatSavePercent: (percent: number) =>
-        t("badges.savePercent", "Save {{percent}}%", { percent }),
-      formatIntroNote: (price: string) =>
-        t("intro.note", { price }),
+      ...getSharedSubscriptionFormatters(t),
+      getProductFeatures: (packageId: string) => getProductFeatures(packageId, t),
     }),
     [t],
   );
@@ -140,6 +127,7 @@ function SubscriptionPage() {
       subscriptionUserId={currentEntityId ?? undefined}
       labels={labels}
       formatters={formatters}
+      packageEntitlementMap={PACKAGE_ENTITLEMENT_MAP}
       onPurchaseSuccess={handlePurchaseSuccess}
       onRestoreSuccess={handleRestoreSuccess}
       onError={handleError}

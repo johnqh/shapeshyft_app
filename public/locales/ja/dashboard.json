@@ -138,8 +138,8 @@
     "form": {
       "title": "APIキーを追加",
       "titleEdit": "API キーの編集",
-      "keyName": "キー名",
-      "keyNamePlaceholder": "My OpenAI Key",
+      "keyName": "プロバイダーラベル",
+      "keyNamePlaceholder": "例：本番、開発",
       "provider": "プロバイダー",
       "apiKey": "APIキー",
       "apiKeyPlaceholder": "sk-...",

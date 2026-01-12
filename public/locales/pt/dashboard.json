@@ -138,8 +138,8 @@
     "form": {
       "title": "Adicionar chave de API",
       "titleEdit": "Editar chave de API",
-      "keyName": "Nome da Chave",
-      "keyNamePlaceholder": "A minha chave do OpenAI",
+      "keyName": "Etiqueta do fornecedor",
+      "keyNamePlaceholder": "ex: Produção, Desenvolvimento",
       "provider": "Provedor",
       "apiKey": "Chave da API",
       "apiKeyPlaceholder": "sk-...",

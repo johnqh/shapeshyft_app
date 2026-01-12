@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import {
   ExclamationCircleIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
+import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 
 interface RateLimitPanelProps {
   entitySlug: string;
@@ -11,7 +11,7 @@ interface RateLimitPanelProps {
 
 function RateLimitPanel({ entitySlug }: RateLimitPanelProps) {
   const { t } = useTranslation("dashboard");
-  const navigate = useNavigate();
+  const { navigate } = useLocalizedNavigate();
 
   const handleUpgrade = () => {
     navigate(`/dashboard/${entitySlug}/subscription`);

@@ -6,8 +6,6 @@ import {
   type PricingPageFormatters,
   type PricingProduct,
   type FAQItem,
-  type EntitlementMap,
-  type EntitlementLevels,
 } from "@sudobility/building_blocks";
 import { useSafeSubscriptionContext } from "../components/providers/SafeSubscriptionContext";
 import { useCurrentEntity } from "../hooks/useCurrentEntity";
@@ -17,24 +15,12 @@ import AISearchOptimization from "../components/seo/AISearchOptimization";
 import { useLocalizedNavigate } from "../hooks/useLocalizedNavigate";
 import { useToast } from "../hooks/useToast";
 import { CONSTANTS } from "../config/constants";
-
-// Package ID to entitlement mapping (from RevenueCat configuration)
-const PACKAGE_ENTITLEMENT_MAP: EntitlementMap = {
-  ultra_yearly: "bandwidth_ultra",
-  ultra_monthly: "bandwidth_ultra",
-  pro_yearly: "bandwidth_pro",
-  pro_monthly: "bandwidth_pro",
-  dev_yearly: "bandwidth_dev",
-  dev_monthly: "bandwidth_dev",
-};
-
-// Entitlement to level mapping (higher = better tier)
-const ENTITLEMENT_LEVELS: EntitlementLevels = {
-  none: 0,
-  bandwidth_dev: 1,
-  bandwidth_pro: 2,
-  bandwidth_ultra: 3,
-};
+import {
+  PACKAGE_ENTITLEMENT_MAP,
+  ENTITLEMENT_LEVELS,
+  getProductFeatures,
+  getFreeTierFeatures,
+} from "../config/subscription-config";
 
 function PricingPage() {
   const { t } = useTranslation("pricing");
@@ -97,40 +83,9 @@ function PricingPage() {
     }
   };
 
-  // Static feature lists for pricing page (rate limits shown after sign-in on subscription page)
-  const getProductFeatures = (packageId: string): string[] => {
-    const entitlement = PACKAGE_ENTITLEMENT_MAP[packageId];
-    if (entitlement === "bandwidth_ultra") {
-      return [
-        tSub("rateLimits.unlimitedRequests", "Unlimited API requests"),
-        tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
-        tSub(
-          "freeTier.allProviders",
-          "All LLM providers (OpenAI, Anthropic, Google)",
-        ),
-      ];
-    }
-    if (entitlement === "bandwidth_pro") {
-      return [
-        t("features.highLimits", "High rate limits"),
-        tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
-        tSub(
-          "freeTier.allProviders",
-          "All LLM providers (OpenAI, Anthropic, Google)",
-        ),
-      ];
-    }
-    if (entitlement === "bandwidth_dev") {
-      return [
-        t("features.increasedLimits", "Increased rate limits"),
-        tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
-        tSub(
-          "freeTier.allProviders",
-          "All LLM providers (OpenAI, Anthropic, Google)",
-        ),
-      ];
-    }
-    return [];
+  // Use shared product features helper
+  const getFeatures = (packageId: string): string[] => {
+    return getProductFeatures(packageId, tSub, t);
   };
 
   // Build labels object from translations
@@ -151,15 +106,7 @@ function PricingPage() {
     // Free tier
     freeTierTitle: "Free",
     freeTierPrice: "$0",
-    freeTierFeatures: [
-      tSub("freeTier.schemaValidation", "JSON Schema-validated outputs"),
-      tSub(
-        "freeTier.allProviders",
-        "All LLM providers (OpenAI, Anthropic, Google)",
-      ),
-      tSub("freeTier.endpointTesting", "Built-in endpoint testing"),
-      tSub("freeTier.analytics", "Basic usage analytics"),
-    ],
+    freeTierFeatures: getFreeTierFeatures(tSub),
 
     // Badges
     currentPlanBadge: t("badges.currentPlan", "Current Plan"),
@@ -178,7 +125,7 @@ function PricingPage() {
   const formatters: PricingPageFormatters = {
     formatSavePercent: (percent: number) =>
       tSub("badges.savePercent", "Save {{percent}}%", { percent }),
-    getProductFeatures,
+    getProductFeatures: getFeatures,
   };
 
   // Get FAQ items from translations
