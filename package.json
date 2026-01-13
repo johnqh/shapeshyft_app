@@ -1,7 +1,7 @@
 {
   "name": "shapeshyft_app",
   "private": true,
-  "version": "0.0.60",
+  "version": "0.0.61",
   "type": "module",
   "scripts": {
     "dev": "bun run process:static && vite",
@@ -35,7 +35,7 @@
     "@sudobility/design": "^1.1.18",
     "@sudobility/devops-components": "^2.0.13",
     "@sudobility/di": "^1.5.18",
-    "@sudobility/di_web": "^0.1.57",
+    "@sudobility/di_web": "^0.1.58",
     "@sudobility/entity-components": "^1.0.4",
     "@sudobility/entity_client": "^0.0.14",
     "@sudobility/entity_pages": "^0.0.24",
