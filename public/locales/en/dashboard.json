@@ -47,6 +47,7 @@
     "empty": "No endpoints yet",
     "emptyDescription": "Create your first endpoint for this project",
     "create": "Create Endpoint",
+    "useTemplate": "Use Template",
     "test": "Test",
     "notFound": "Endpoint not found",
     "backToProject": "Back to project",
@@ -248,6 +249,20 @@
     "imageProcessing": {
       "name": "Image Processing",
       "description": "Transform and edit images using AI"
+    }
+  },
+  "endpointTemplates": {
+    "title": "Endpoint Templates",
+    "subtitle": "Create an endpoint from a pre-configured template",
+    "allCategories": "All",
+    "configure": "Configure Endpoint",
+    "preview": "Preview",
+    "endpointName": "Endpoint Name",
+    "category": "Category",
+    "inputFields": "Input Fields",
+    "create": "Create Endpoint",
+    "errors": {
+      "fillAllFields": "Please select a template and provider"
     }
   },
   "budgets": {

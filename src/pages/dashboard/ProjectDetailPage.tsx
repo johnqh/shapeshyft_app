@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import {
   useProjectsManager,
   useEndpointsManager,
+  useEndpointTemplates,
+  type EndpointTemplateWithCategory,
 } from "@sudobility/shapeshyft_lib";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
@@ -14,6 +16,7 @@ import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import ApiKeySection from "../../components/dashboard/ApiKeySection";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";
+import EndpointTemplateSelector from "../../components/dashboard/EndpointTemplateSelector";
 import { isServerError } from "../../utils/errorUtils";
 
 // Icons
@@ -49,6 +52,22 @@ const PlusIcon = () => (
   </svg>
 );
 
+const TemplateIcon = () => (
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+    />
+  </svg>
+);
+
 function ProjectDetailPage() {
   const { entitySlug = "", projectId } = useParams<{
     entitySlug: string;
@@ -71,6 +90,7 @@ function ProjectDetailPage() {
   const [editDisplayName, setEditDisplayName] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [isSavingProject, setIsSavingProject] = useState(false);
+  const [showTemplateSelector, setShowTemplateSelector] = useState(false);
 
   const {
     projects,
@@ -93,6 +113,7 @@ function ProjectDetailPage() {
     endpoints,
     isLoading: endpointsLoading,
     error,
+    createEndpoint,
     deleteEndpoint,
     clearError,
     refresh: refreshEndpoints,
@@ -105,6 +126,8 @@ function ProjectDetailPage() {
     projectId: projectId ?? "",
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
+
+  const { applyEndpointTemplate } = useEndpointTemplates();
 
   const [isRetrying, setIsRetrying] = useState(false);
 
@@ -176,6 +199,22 @@ function ProjectDetailPage() {
           5000,
         );
       }
+    }
+  };
+
+  const handleApplyEndpointTemplate = async (
+    template: EndpointTemplateWithCategory,
+    llmKeyId: string,
+  ) => {
+    const endpointRequest = applyEndpointTemplate(template, llmKeyId);
+    const newEndpoint = await createEndpoint(endpointRequest);
+    if (newEndpoint) {
+      setShowTemplateSelector(false);
+      success(t("common:toast.success.created"));
+      // Navigate to the new endpoint
+      navigate(
+        `/dashboard/${entitySlug}/projects/${projectId}/endpoints/${newEndpoint.uuid}`,
+      );
     }
   };
 
@@ -398,6 +437,13 @@ function ProjectDetailPage() {
             icon: <PlusIcon />,
             variant: "primary",
           },
+          {
+            id: "template",
+            label: t("endpoints.useTemplate"),
+            onClick: () => setShowTemplateSelector(true),
+            icon: <TemplateIcon />,
+            variant: "secondary",
+          },
         ]}
         emptyMessage={t("endpoints.empty")}
         emptyIcon={
@@ -414,6 +460,14 @@ function ProjectDetailPage() {
         }}
         spacing="md"
       />
+
+      {/* Endpoint Template Selector Modal */}
+      {showTemplateSelector && (
+        <EndpointTemplateSelector
+          onApply={handleApplyEndpointTemplate}
+          onClose={() => setShowTemplateSelector(false)}
+        />
+      )}
     </div>
   );
 }
