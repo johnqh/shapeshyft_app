@@ -5,7 +5,7 @@ import {
   useKeysManager,
   useEndpointsManager,
 } from "@sudobility/shapeshyft_lib";
-import { useProviderModels } from "@sudobility/shapeshyft_client";
+import { useProviders, useProviderModels } from "@sudobility/shapeshyft_client";
 import type { LlmProvider } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
@@ -74,6 +74,15 @@ function EndpointNewPage() {
     projectId: projectId ?? "",
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
+
+  // Fetch providers for display names
+  const { providers } = useProviders(networkClient, baseUrl, testMode);
+
+  // Helper to get provider display name
+  const getProviderName = (providerId: string) => {
+    const providerInfo = providers.find((p) => p.id === providerId);
+    return providerInfo?.name ?? providerId;
+  };
 
   // Get provider from selected key
   const selectedKey = keys.find((k) => k.uuid === llmKeyId);
@@ -378,10 +387,9 @@ function EndpointNewPage() {
                 </p>
               ) : (
                 <>
-                  <select
+                  <Select
                     value={llmKeyId}
-                    onChange={(e) => {
-                      const newKeyId = e.target.value;
+                    onValueChange={(newKeyId: string) => {
                       setLlmKeyId(newKeyId);
                       // Reset model when provider changes
                       const newKey = keys.find((k) => k.uuid === newKeyId);
@@ -397,16 +405,21 @@ function EndpointNewPage() {
                         }));
                       }
                     }}
-                    onBlur={() => handleBlur("llmKeyId")}
-                    className={inputClassName("llmKeyId")}
                   >
-                    <option value="">{t("endpoints.form.selectKey")}</option>
-                    {keys.map((key) => (
-                      <option key={key.uuid} value={key.uuid}>
-                        {key.key_name} ({key.provider})
-                      </option>
-                    ))}
-                  </select>
+                    <SelectTrigger
+                      className={inputClassName("llmKeyId")}
+                      onBlur={() => handleBlur("llmKeyId")}
+                    >
+                      <SelectValue placeholder={t("endpoints.form.selectKey")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {keys.map((key) => (
+                        <SelectItem key={key.uuid} value={key.uuid}>
+                          {key.key_name} ({getProviderName(key.provider)})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   {renderError("llmKeyId")}
                 </>
               )}

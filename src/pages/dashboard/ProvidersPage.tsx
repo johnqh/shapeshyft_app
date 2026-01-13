@@ -2,13 +2,14 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useKeysManager } from "@sudobility/shapeshyft_lib";
+import { useProviders } from "@sudobility/shapeshyft_client";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { ItemList } from "@sudobility/components";
 import type { LlmApiKeySafe, LlmProvider } from "@sudobility/shapeshyft_types";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
-import KeyForm from "../../components/dashboard/KeyForm";
+import ProviderForm from "../../components/dashboard/ProviderForm";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";
 import { isServerError } from "../../utils/errorUtils";
 import { ProviderIcon } from "../../components/ui/ProviderIcon";
@@ -53,7 +54,7 @@ const PROVIDER_COLORS: Record<string, string> = {
   lm_studio: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
 };
 
-function KeysPage() {
+function ProvidersPage() {
   const { t } = useTranslation(["dashboard", "common"]);
   const { entitySlug = "" } = useParams<{ entitySlug: string }>();
   const {
@@ -86,6 +87,15 @@ function KeysPage() {
     testMode,
     autoFetch: isReady && !!entitySlug,
   });
+
+  // Fetch providers for display names
+  const { providers } = useProviders(networkClient, baseUrl, testMode);
+
+  // Helper to get provider display name
+  const getProviderName = (providerId: string) => {
+    const providerInfo = providers.find((p) => p.id === providerId);
+    return providerInfo?.name ?? providerId;
+  };
 
   const [isRetrying, setIsRetrying] = useState(false);
 
@@ -141,7 +151,7 @@ function KeysPage() {
                 {key.key_name}
               </h4>
               <p className="text-sm text-theme-text-tertiary truncate">
-                {t(`keys.providers.${key.provider}`)}
+                {getProviderName(key.provider)}
                 {key.endpoint_url && (
                   <span className="ml-2 font-mono text-xs hidden sm:inline">
                     {key.endpoint_url}
@@ -243,7 +253,7 @@ function KeysPage() {
 
       {/* Add Provider Modal */}
       {showAddModal && (
-        <KeyForm
+        <ProviderForm
           onSubmit={async (data) => {
             try {
               await createKey(data);
@@ -270,7 +280,7 @@ function KeysPage() {
 
       {/* Edit Provider Modal */}
       {editingKey && (
-        <KeyForm
+        <ProviderForm
           existingConfig={keys.find((k) => k.uuid === editingKey)}
           onSubmit={async (data) => {
             try {
@@ -304,4 +314,4 @@ function KeysPage() {
   );
 }
 
-export default KeysPage;
+export default ProvidersPage;

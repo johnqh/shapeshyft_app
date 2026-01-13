@@ -3,6 +3,14 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useKeysManager } from "@sudobility/shapeshyft_lib";
 import type { ProjectTemplate } from "@sudobility/shapeshyft_lib";
+import { useProviders } from "@sudobility/shapeshyft_client";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useApi } from "../../hooks/useApi";
@@ -24,7 +32,16 @@ function TemplateSelector({
 }: TemplateSelectorProps) {
   const { t } = useTranslation("dashboard");
   const { entitySlug = "" } = useParams<{ entitySlug: string }>();
-  const { networkClient, baseUrl, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady } = useApi();
+
+  // Fetch providers for display names
+  const { providers } = useProviders(networkClient, baseUrl, testMode);
+
+  // Helper to get provider display name
+  const getProviderName = (providerId: string) => {
+    const providerInfo = providers.find((p) => p.id === providerId);
+    return providerInfo?.name ?? providerId;
+  };
 
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const [projectName, setProjectName] = useState("");
@@ -202,19 +219,21 @@ function TemplateSelector({
                     </a>
                   </p>
                 ) : (
-                  <select
-                    id="llmKey"
+                  <Select
                     value={selectedKeyId}
-                    onChange={(e) => setSelectedKeyId(e.target.value)}
-                    className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
+                    onValueChange={(value: string) => setSelectedKeyId(value)}
                   >
-                    <option value="">{t("templates.selectKey")}</option>
-                    {keys.map((key) => (
-                      <option key={key.uuid} value={key.uuid}>
-                        {key.key_name} ({key.provider})
-                      </option>
-                    ))}
-                  </select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder={t("templates.selectKey")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {keys.map((key) => (
+                        <SelectItem key={key.uuid} value={key.uuid}>
+                          {key.key_name} ({getProviderName(key.provider)})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 )}
               </div>
 

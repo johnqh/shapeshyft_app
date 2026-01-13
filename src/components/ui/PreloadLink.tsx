@@ -20,7 +20,7 @@ const routeModules: Record<string, () => Promise<unknown>> = {
   "/projects": () => import("../../pages/dashboard/ProjectsPage"),
   "/projects/new": () => import("../../pages/dashboard/ProjectNewPage"),
   "/projects/templates": () => import("../../pages/dashboard/TemplatesPage"),
-  "/providers": () => import("../../pages/dashboard/KeysPage"),
+  "/providers": () => import("../../pages/dashboard/ProvidersPage"),
   "/analytics": () => import("../../pages/dashboard/AnalyticsPage"),
   "/subscription": () => import("../../pages/dashboard/SubscriptionPage"),
   "/budgets": () => import("../../pages/dashboard/BudgetsPage"),

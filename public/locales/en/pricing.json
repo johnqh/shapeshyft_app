@@ -1,6 +1,15 @@
 {
   "title": "Pricing",
   "subtitle": "Choose the plan that fits your needs",
+  "badges": {
+    "currentPlan": "Current Plan",
+    "mostPopular": "Most Popular"
+  },
+  "cta": {
+    "logIn": "Log in to Continue",
+    "tryFree": "Try it for Free",
+    "upgrade": "Upgrade"
+  },
   "plans": {
     "free": {
       "name": "Free",

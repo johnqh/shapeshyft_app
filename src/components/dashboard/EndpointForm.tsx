@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useKeysManager } from "@sudobility/shapeshyft_lib";
-import { useProviderModels } from "@sudobility/shapeshyft_client";
+import { useProviders, useProviderModels } from "@sudobility/shapeshyft_client";
 import type {
   Endpoint,
   EndpointCreateRequest,
@@ -109,6 +109,15 @@ function EndpointForm({
     token,
     autoFetch: isReady && !!entitySlug,
   });
+
+  // Fetch providers for display names
+  const { providers } = useProviders(networkClient, baseUrl, testMode);
+
+  // Helper to get provider display name
+  const getProviderName = (providerId: string) => {
+    const providerInfo = providers.find((p) => p.id === providerId);
+    return providerInfo?.name ?? providerId;
+  };
 
   // Get the selected key and its provider
   const selectedKey = useMemo(
@@ -560,7 +569,7 @@ function EndpointForm({
                               <span className="flex items-center gap-2">
                                 <ProviderIcon provider={key.provider as LlmProvider} size="sm" />
                                 <span>{key.key_name}</span>
-                                <span className="text-theme-text-tertiary">({t(`keys.providers.${key.provider}`)})</span>
+                                <span className="text-theme-text-tertiary">({getProviderName(key.provider)})</span>
                               </span>
                             </SelectItem>
                           ))}

@@ -7,7 +7,7 @@ import {
   useEndpointTester,
   useKeysManager,
 } from "@sudobility/shapeshyft_lib";
-import { useProviderModels } from "@sudobility/shapeshyft_client";
+import { useProviders, useProviderModels } from "@sudobility/shapeshyft_client";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import type { LlmProvider, MediaInputFormat } from "@sudobility/shapeshyft_types";
@@ -138,6 +138,15 @@ function EndpointDetailPage() {
     testMode,
     autoFetch: isReady && !!entitySlug,
   });
+
+  // Fetch providers for display names
+  const { providers } = useProviders(networkClient, baseUrl, testMode);
+
+  // Helper to get provider display name
+  const getProviderName = (providerId: string) => {
+    const providerInfo = providers.find((p) => p.id === providerId);
+    return providerInfo?.name ?? providerId;
+  };
 
   const project = projects.find((p) => p.uuid === projectId);
 
@@ -741,7 +750,7 @@ function EndpointDetailPage() {
                           <span className="flex items-center gap-2">
                             <ProviderIcon provider={key.provider as LlmProvider} size="sm" />
                             <span>{key.key_name}</span>
-                            <span className="text-theme-text-tertiary">({t(`keys.providers.${key.provider}`)})</span>
+                            <span className="text-theme-text-tertiary">({getProviderName(key.provider)})</span>
                           </span>
                         </SelectItem>
                       ))}
@@ -850,7 +859,7 @@ function EndpointDetailPage() {
                     </span>
                     {currentProvider && (
                       <span className="text-theme-text-tertiary">
-                        ({t(`keys.providers.${currentProvider}`)})
+                        ({getProviderName(currentProvider)})
                       </span>
                     )}
                   </div>

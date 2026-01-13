@@ -64,7 +64,7 @@ const EndpointTemplatesPage = lazy(
 const EndpointDetailPage = lazy(
   () => import("./pages/dashboard/EndpointDetailPage"),
 );
-const KeysPage = lazy(() => import("./pages/dashboard/KeysPage"));
+const ProvidersPage = lazy(() => import("./pages/dashboard/ProvidersPage"));
 const AnalyticsPage = lazy(() => import("./pages/dashboard/AnalyticsPage"));
 const SubscriptionPage = lazy(
   () => import("./pages/dashboard/SubscriptionPage"),
@@ -254,7 +254,7 @@ function App() {
                                 />
                                 <Route
                                   path="providers"
-                                  element={<KeysPage />}
+                                  element={<ProvidersPage />}
                                 />
                                 <Route
                                   path="analytics"

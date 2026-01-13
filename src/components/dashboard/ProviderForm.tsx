@@ -8,6 +8,13 @@ import type {
   LlmProvider,
   NetworkClient,
 } from "@sudobility/shapeshyft_types";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 
@@ -301,21 +308,24 @@ function ProviderForm({
             {isLoadingProviders ? (
               <div className="h-10 bg-theme-bg-secondary rounded-lg animate-pulse" />
             ) : (
-              <select
+              <Select
                 value={selectedProvider}
-                onChange={(e) =>
-                  setSelectedProvider(e.target.value as LlmProvider)
+                onValueChange={(value: string) =>
+                  setSelectedProvider(value as LlmProvider)
                 }
                 disabled={isEditing}
-                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none disabled:opacity-50"
-                autoFocus
               >
-                {providerOptions.map((p) => (
-                  <option key={p.value} value={p.value}>
-                    {p.label}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder={t("keys.form.selectProvider")} />
+                </SelectTrigger>
+                <SelectContent>
+                  {providerOptions.map((p) => (
+                    <SelectItem key={p.value} value={p.value}>
+                      {p.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             )}
           </div>
 

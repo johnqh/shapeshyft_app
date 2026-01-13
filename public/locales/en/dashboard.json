@@ -157,13 +157,14 @@
       "keyName": "Provider Label",
       "keyNamePlaceholder": "e.g., Production, Development",
       "provider": "Provider",
+      "selectProvider": "Select a provider",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Your key is encrypted at rest",
       "leaveBlank": "leave blank to keep current",
       "endpointUrl": "Endpoint URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
-      "add": "Add Key",
+      "add": "Add Provider",
       "errors": {
         "nameRequired": "Provider label is required",
         "apiKeyRequired": "API key is required",
@@ -180,7 +181,7 @@
       "xai": "xAI (Grok)",
       "deepseek": "DeepSeek",
       "perplexity": "Perplexity",
-      "llm_server": "Custom LM Server"
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -433,5 +434,39 @@
     "submitUrl": "Add",
     "errorUrlRequired": "Please enter a URL",
     "errorUrlInvalid": "Please enter a valid URL"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "creating": "Creating...",
+    "confirm": "Confirm",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "noResults": "No results found",
+    "tryAgain": "Try Again",
+    "notSet": "Not set",
+    "disabled": "Disabled",
+    "refresh": "Refresh",
+    "remove": "Remove",
+    "dismiss": "Dismiss",
+    "yes": "Yes",
+    "no": "No",
+    "errorOccurred": "An error occurred",
+    "optional": "optional",
+    "goBack": "Go Back",
+    "saved": "Saved",
+    "deleted": "Deleted"
   }
 }

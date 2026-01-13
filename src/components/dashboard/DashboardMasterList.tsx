@@ -3,7 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useParams } from "react-router-dom";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import type { Project, LlmApiKeySafe } from "@sudobility/shapeshyft_types";
+import { useProviders } from "@sudobility/shapeshyft_client";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+import { useApi } from "../../hooks/useApi";
 
 interface CollapsibleSectionProps {
   id: string;
@@ -311,6 +313,16 @@ export function DashboardMasterList({
     entitySlug: string;
     projectId: string;
   }>();
+  const { networkClient, baseUrl, testMode } = useApi();
+
+  // Fetch providers for display names
+  const { providers } = useProviders(networkClient, baseUrl, testMode);
+
+  // Helper to get provider display name
+  const getProviderName = (providerId: string) => {
+    const providerInfo = providers.find((p) => p.id === providerId);
+    return providerInfo?.name ?? providerId;
+  };
 
   // Determine current section from URL
   const pathname = location.pathname;
@@ -373,7 +385,7 @@ export function DashboardMasterList({
           <ChildItem
             key={key.uuid}
             label={key.key_name}
-            sublabel={t(`keys.providers.${key.provider}`)}
+            sublabel={getProviderName(key.provider)}
             isSelected={false}
             onClick={() => handleNavigation("/providers")}
             statusBadge={<StatusBadge isActive={key.is_active ?? false} />}

@@ -6,7 +6,7 @@ import {
   useProjectsManager,
   useProjectTemplates,
 } from "@sudobility/shapeshyft_lib";
-import { ShapeshyftClient, useProviderModels } from "@sudobility/shapeshyft_client";
+import { ShapeshyftClient, useProviders, useProviderModels } from "@sudobility/shapeshyft_client";
 import type { LlmProvider, ModelCapabilities } from "@sudobility/shapeshyft_types";
 import { detectRequiredCapabilities } from "@sudobility/shapeshyft_types";
 import {
@@ -55,6 +55,15 @@ function TemplatesPage() {
   });
 
   const { templates, applyTemplate } = useProjectTemplates();
+
+  // Fetch providers for display names
+  const { providers } = useProviders(networkClient, baseUrl, testMode);
+
+  // Helper to get provider display name
+  const getProviderName = (providerId: string) => {
+    const providerInfo = providers.find((p) => p.id === providerId);
+    return providerInfo?.name ?? providerId;
+  };
 
   const selectedTemplateData = templates.find((t) => t.id === selectedTemplate);
 
@@ -306,11 +315,9 @@ function TemplatesPage() {
                 </button>
               </p>
             ) : (
-              <select
-                id="llmKey"
+              <Select
                 value={selectedKeyId}
-                onChange={(e) => {
-                  const newKeyId = e.target.value;
+                onValueChange={(newKeyId: string) => {
                   setSelectedKeyId(newKeyId);
                   // Reset model when provider changes
                   const newKey = keys.find((k) => k.uuid === newKeyId);
@@ -320,15 +327,18 @@ function TemplatesPage() {
                     setCustomModel("");
                   }
                 }}
-                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
               >
-                <option value="">{t("templates.selectKey")}</option>
-                {keys.map((key) => (
-                  <option key={key.uuid} value={key.uuid}>
-                    {key.key_name} ({key.provider})
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder={t("templates.selectKey")} />
+                </SelectTrigger>
+                <SelectContent>
+                  {keys.map((key) => (
+                    <SelectItem key={key.uuid} value={key.uuid}>
+                      {key.key_name} ({getProviderName(key.provider)})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             )}
           </div>
 
