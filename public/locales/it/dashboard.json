@@ -136,8 +136,6 @@
       "inactive": "Inattivo"
     },
     "form": {
-      "title": "Aggiungi la chiave API",
-      "titleEdit": "Modifica la chiave API",
       "keyName": "Nome chiave",
       "keyNamePlaceholder": "Il mio OpenAI Key",
       "provider": "Fornitore",

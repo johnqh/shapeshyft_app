@@ -9,11 +9,23 @@ import {
 } from "@sudobility/shapeshyft_lib";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
+import type { LlmProvider } from "@sudobility/shapeshyft_types";
+import {
+  PROVIDER_MODELS,
+  DEFAULT_PROVIDER_MODEL,
+  PROVIDER_ALLOWS_CUSTOM_MODEL,
+} from "@sudobility/shapeshyft_types";
 import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+  EditableSelector,
 } from "@sudobility/components";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
@@ -84,6 +96,8 @@ function EndpointDetailPage() {
   const [editInstructions, setEditInstructions] = useState("");
   const [editContext, setEditContext] = useState("");
   const [editLlmKeyId, setEditLlmKeyId] = useState("");
+  const [editModel, setEditModel] = useState("");
+  const [editCustomModel, setEditCustomModel] = useState("");
 
   // Edit form state - Input
   const [editInputSchema, setEditInputSchema] = useState("");
@@ -135,6 +149,40 @@ function EndpointDetailPage() {
   });
 
   const endpoint = endpoints.find((e) => e.uuid === endpointId);
+
+  // Get the selected key and its provider for edit mode
+  const editSelectedKey = useMemo(
+    () => keys.find((k) => k.uuid === editLlmKeyId),
+    [keys, editLlmKeyId]
+  );
+  const editProvider = editSelectedKey?.provider as LlmProvider | undefined;
+
+  // Get available models for the selected provider in edit mode
+  const editAvailableModels = useMemo(() => {
+    if (!editProvider) return [];
+    return PROVIDER_MODELS[editProvider] ?? [];
+  }, [editProvider]);
+
+  // Whether custom model input is allowed in edit mode
+  const editAllowsCustomModel = editProvider
+    ? PROVIDER_ALLOWS_CUSTOM_MODEL[editProvider]
+    : false;
+
+  // The effective model in edit mode
+  const editEffectiveModel = useMemo(() => {
+    if (editAllowsCustomModel && editCustomModel.trim()) {
+      return editCustomModel.trim();
+    }
+    return editModel || (editProvider ? DEFAULT_PROVIDER_MODEL[editProvider] : "");
+  }, [editModel, editCustomModel, editAllowsCustomModel, editProvider]);
+
+  // Get current endpoint's provider and model for display
+  const currentKey = useMemo(
+    () => keys.find((k) => k.uuid === endpoint?.llm_key_id),
+    [keys, endpoint?.llm_key_id]
+  );
+  const currentProvider = currentKey?.provider as LlmProvider | undefined;
+  const currentModel = endpoint?.model || (currentProvider ? DEFAULT_PROVIDER_MODEL[currentProvider] : "");
 
   const {
     testResults,
@@ -219,7 +267,27 @@ function EndpointDetailPage() {
     setEditInstructions(endpoint.instructions ?? "");
     setEditContext(endpoint.context ?? "");
     setEditLlmKeyId(endpoint.llm_key_id);
+    // Initialize model - use endpoint's model or default for provider
+    const key = keys.find((k) => k.uuid === endpoint.llm_key_id);
+    const provider = key?.provider as LlmProvider | undefined;
+    const defaultModel = provider ? DEFAULT_PROVIDER_MODEL[provider] : "";
+    setEditModel(endpoint.model || defaultModel);
+    setEditCustomModel("");
     setIsEditingGeneral(true);
+  };
+
+  // Handle key change in edit mode - reset model to default for new provider
+  const handleEditKeyChange = (newKeyId: string) => {
+    setEditLlmKeyId(newKeyId);
+    const newKey = keys.find((k) => k.uuid === newKeyId);
+    const newProvider = newKey?.provider as LlmProvider | undefined;
+    if (newProvider) {
+      setEditModel(DEFAULT_PROVIDER_MODEL[newProvider]);
+      setEditCustomModel("");
+    } else {
+      setEditModel("");
+      setEditCustomModel("");
+    }
   };
 
   const handleCancelEditGeneral = () => {
@@ -236,6 +304,7 @@ function EndpointDetailPage() {
         instructions: editInstructions.trim() || null,
         http_method: endpoint.http_method,
         llm_key_id: editLlmKeyId,
+        model: editEffectiveModel || null,
         context: editContext.trim() || null,
         input_schema: endpoint.input_schema,
         output_schema: endpoint.output_schema,
@@ -539,17 +608,38 @@ function EndpointDetailPage() {
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
                     {t("endpoints.form.llmKey")}
                   </label>
-                  <select
+                  <Select
                     value={editLlmKeyId}
-                    onChange={(e) => setEditLlmKeyId(e.target.value)}
-                    className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    onValueChange={handleEditKeyChange}
                   >
-                    {keys.map((key) => (
-                      <option key={key.uuid} value={key.uuid}>
-                        {key.key_name} ({t(`keys.providers.${key.provider}`)})
-                      </option>
-                    ))}
-                  </select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {keys.map((key) => (
+                        <SelectItem key={key.uuid} value={key.uuid}>
+                          {key.key_name} ({t(`keys.providers.${key.provider}`)})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                {/* Model Selection */}
+                <div>
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.model")}
+                  </label>
+                  <EditableSelector
+                    options={editAvailableModels.map((model) => ({ value: model }))}
+                    value={editEffectiveModel}
+                    onChange={(value: string) => {
+                      setEditModel(value);
+                      setEditCustomModel("");
+                    }}
+                    disabled={!editProvider}
+                    placeholder={!editProvider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                    inputClassName="font-mono text-sm"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
@@ -609,6 +699,18 @@ function EndpointDetailPage() {
                   <p className="text-theme-text-primary">
                     {keys.find((k) => k.uuid === endpoint.llm_key_id)
                       ?.key_name || endpoint.llm_key_id}
+                  </p>
+                </div>
+                <div className="p-4 bg-theme-bg-secondary rounded-xl">
+                  <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
+                    {t("endpoints.form.model")}
+                  </h4>
+                  <p className="text-theme-text-primary font-mono">
+                    {currentModel || (
+                      <span className="italic text-theme-text-tertiary font-sans">
+                        {t("common.notSet")}
+                      </span>
+                    )}
                   </p>
                 </div>
                 <div className="p-4 bg-theme-bg-secondary rounded-xl">

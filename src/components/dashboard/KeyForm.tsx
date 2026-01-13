@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import type {
   LlmApiKeySafe,
@@ -187,10 +188,10 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
         : "border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent"
     }`;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-theme-bg-primary rounded-xl shadow-xl">
+      <div className="relative w-full h-full sm:h-auto sm:max-w-md bg-theme-bg-primary rounded-none sm:rounded-xl shadow-xl flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-theme-border">
           <h3 className="text-lg font-semibold text-theme-text-primary">
@@ -217,7 +218,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-4 flex-1 overflow-y-auto">
           {/* Provider */}
           <div>
             <label className="block text-sm font-medium text-theme-text-primary mb-1">
@@ -396,7 +397,8 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
           </div>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

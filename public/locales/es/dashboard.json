@@ -136,8 +136,6 @@
       "inactive": "Inactivo"
     },
     "form": {
-      "title": "Agrega la clave de API",
-      "titleEdit": "Editar clave de API",
       "keyName": "Etiqueta del proveedor",
       "keyNamePlaceholder": "ej: Producción, Desarrollo",
       "provider": "Proveedor",

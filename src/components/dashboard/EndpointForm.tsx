@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useKeysManager } from "@sudobility/shapeshyft_lib";
@@ -14,12 +15,26 @@ import {
   PROVIDER_ALLOWS_CUSTOM_MODEL,
   getModelPricing,
 } from "@sudobility/shapeshyft_types";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+  EditableSelector,
+} from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useApi } from "../../hooks/useApi";
 import SchemaEditor from "./SchemaEditor";
 
 const HTTP_METHODS: HttpMethod[] = ["GET", "POST"];
+
+type TabId = "general" | "input" | "output";
 
 interface EndpointFormProps {
   projectId: string;
@@ -49,6 +64,10 @@ function EndpointForm({
 
   const isEditing = !!endpoint;
 
+  // Tab state
+  const [activeTab, setActiveTab] = useState<TabId>("general");
+
+  // Form state
   const [displayName, setDisplayName] = useState(endpoint?.display_name ?? "");
   const [endpointName, setEndpointName] = useState(
     endpoint?.endpoint_name ?? "",
@@ -60,7 +79,7 @@ function EndpointForm({
     endpoint?.http_method ?? "POST",
   );
   const [llmKeyId, setLlmKeyId] = useState(endpoint?.llm_key_id ?? "");
-  const [selectedModel, setSelectedModel] = useState<string>("");
+  const [selectedModel, setSelectedModel] = useState<string>(endpoint?.model ?? "");
   const [customModel, setCustomModel] = useState<string>("");
   const [context, setContext] = useState(endpoint?.context ?? "");
   const [useInputSchema, setUseInputSchema] = useState(
@@ -121,6 +140,54 @@ function EndpointForm({
     if (!effectiveModel) return null;
     return getModelPricing(effectiveModel);
   }, [effectiveModel]);
+
+  // Estimate tokens and cost per request based on schema and context
+  const estimatedCost = useMemo(() => {
+    if (!modelPricing) return null;
+
+    // Estimate input tokens
+    // Base prompt overhead + context + instructions + input schema structure
+    const contextTokens = Math.ceil((context?.length || 0) / 4);
+    const instructionsTokens = Math.ceil((instructions?.length || 0) / 4);
+
+    // Count input schema fields (rough estimate: 20 tokens per field)
+    let inputSchemaTokens = 0;
+    if (useInputSchema) {
+      try {
+        const schema = JSON.parse(inputSchema);
+        const propCount = Object.keys(schema.properties || {}).length;
+        inputSchemaTokens = propCount * 20;
+      } catch {
+        inputSchemaTokens = 50; // Default estimate
+      }
+    }
+
+    // Estimate output tokens from output schema
+    let outputSchemaTokens = 50; // Base estimate
+    if (useOutputSchema) {
+      try {
+        const schema = JSON.parse(outputSchema);
+        const propCount = Object.keys(schema.properties || {}).length;
+        outputSchemaTokens = propCount * 30; // Output tends to be more verbose
+      } catch {
+        outputSchemaTokens = 100;
+      }
+    }
+
+    const estimatedInputTokens = 100 + contextTokens + instructionsTokens + inputSchemaTokens;
+    const estimatedOutputTokens = outputSchemaTokens;
+
+    // Calculate cost (pricing is per million tokens)
+    const inputCost = (estimatedInputTokens / 1_000_000) * modelPricing.input;
+    const outputCost = (estimatedOutputTokens / 1_000_000) * modelPricing.output;
+    const totalCost = inputCost + outputCost;
+
+    return {
+      inputTokens: estimatedInputTokens,
+      outputTokens: estimatedOutputTokens,
+      totalCost,
+    };
+  }, [modelPricing, context, instructions, inputSchema, outputSchema, useInputSchema, useOutputSchema]);
 
   // Handle key selection change - update model to default for provider
   const handleKeyChange = (newKeyId: string) => {
@@ -261,6 +328,14 @@ function EndpointForm({
     });
 
     if (Object.values(errors).some(Boolean)) {
+      // Switch to tab with first error
+      if (errors.displayName || errors.endpointName || errors.llmKeyId) {
+        setActiveTab("general");
+      } else if (errors.inputSchema) {
+        setActiveTab("input");
+      } else if (errors.outputSchema) {
+        setActiveTab("output");
+      }
       return;
     }
 
@@ -271,6 +346,7 @@ function EndpointForm({
         instructions: instructions.trim() || null,
         http_method: httpMethod,
         llm_key_id: llmKeyId,
+        model: effectiveModel || null,
         context: context.trim() || null,
         input_schema: useInputSchema ? JSON.parse(inputSchema) : null,
         output_schema: useOutputSchema ? JSON.parse(outputSchema) : null,
@@ -315,10 +391,10 @@ function EndpointForm({
         : "border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent"
     }`;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4">
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-      <div className="relative w-full max-w-3xl max-h-[90vh] bg-theme-bg-primary rounded-xl shadow-xl overflow-hidden flex flex-col">
+      <div className="relative w-full h-full sm:h-auto sm:max-w-2xl sm:max-h-[90vh] bg-theme-bg-primary rounded-none sm:rounded-xl shadow-xl flex flex-col">
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-theme-border shrink-0">
           <h3 className="text-lg font-semibold text-theme-text-primary">
@@ -346,161 +422,145 @@ function EndpointForm({
           </button>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Left Column */}
-            <div className="space-y-4">
-              {/* Display Name */}
-              <div>
-                <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                  {t("endpoints.form.displayName")}
-                </label>
-                <input
-                  type="text"
-                  value={displayName}
-                  onChange={(e) => handleDisplayNameChange(e.target.value)}
-                  onBlur={() => handleBlur("displayName")}
-                  placeholder={t("endpoints.form.displayNamePlaceholder")}
-                  className={inputClassName("displayName")}
-                />
-                {renderError("displayName")}
-              </div>
+        {/* Tabs Content */}
+        <div className="flex-1 overflow-y-auto p-6">
+          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
+            <TabsList className="mb-6">
+              <TabsTrigger value="general">
+                {t("endpoints.tabs.general")}
+              </TabsTrigger>
+              <TabsTrigger value="input">{t("endpoints.tabs.input")}</TabsTrigger>
+              <TabsTrigger value="output">{t("endpoints.tabs.output")}</TabsTrigger>
+            </TabsList>
 
-              {/* Endpoint Name (slug) */}
-              <div>
-                <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                  {t("endpoints.form.endpointName")}
-                </label>
-                <input
-                  type="text"
-                  value={endpointName}
-                  onChange={(e) => {
-                    const value = e.target.value
-                      .toLowerCase()
-                      .replace(/[^a-z0-9-]/g, "-")
-                      .replace(/-+/g, "-");
-                    setEndpointName(value);
-                    if (touched.endpointName) {
-                      setFieldErrors((prev) => ({
-                        ...prev,
-                        endpointName: validateEndpointName(value),
-                      }));
-                    }
-                  }}
-                  onBlur={() => handleBlur("endpointName")}
-                  placeholder={t("endpoints.form.endpointNamePlaceholder")}
-                  disabled={isEditing}
-                  className={inputClassName(
-                    "endpointName",
-                    "font-mono disabled:opacity-50",
-                  )}
-                />
-                {renderError("endpointName")}
-              </div>
+            {/* General Tab */}
+            <TabsContent value="general">
+              <div className="space-y-4">
+                {/* Display Name */}
+                <div>
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.displayName")}
+                  </label>
+                  <input
+                    type="text"
+                    value={displayName}
+                    onChange={(e) => handleDisplayNameChange(e.target.value)}
+                    onBlur={() => handleBlur("displayName")}
+                    placeholder={t("endpoints.form.displayNamePlaceholder")}
+                    className={inputClassName("displayName")}
+                  />
+                  {renderError("displayName")}
+                </div>
 
-              {/* Instructions */}
-              <div>
-                <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                  {t("endpoints.form.instructions")}{" "}
-                  <span className="text-theme-text-tertiary">
-                    ({t("common.optional")})
-                  </span>
-                </label>
-                <textarea
-                  value={instructions}
-                  onChange={(e) => setInstructions(e.target.value)}
-                  placeholder={t("endpoints.form.instructionsPlaceholder")}
-                  rows={3}
-                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
-                />
-              </div>
+                {/* Endpoint Name (slug) */}
+                <div>
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.endpointName")}
+                  </label>
+                  <input
+                    type="text"
+                    value={endpointName}
+                    onChange={(e) => {
+                      const value = e.target.value
+                        .toLowerCase()
+                        .replace(/[^a-z0-9-]/g, "-")
+                        .replace(/-+/g, "-");
+                      setEndpointName(value);
+                      if (touched.endpointName) {
+                        setFieldErrors((prev) => ({
+                          ...prev,
+                          endpointName: validateEndpointName(value),
+                        }));
+                      }
+                    }}
+                    onBlur={() => handleBlur("endpointName")}
+                    placeholder={t("endpoints.form.endpointNamePlaceholder")}
+                    disabled={isEditing}
+                    className={inputClassName(
+                      "endpointName",
+                      "font-mono disabled:opacity-50",
+                    )}
+                  />
+                  {renderError("endpointName")}
+                </div>
 
-              {/* HTTP Method */}
-              <div>
-                <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                  {t("endpoints.form.httpMethod")}
-                </label>
-                <select
-                  value={httpMethod}
-                  onChange={(e) => setHttpMethod(e.target.value as HttpMethod)}
-                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                >
-                  {HTTP_METHODS.map((method) => (
-                    <option key={method} value={method}>
-                      {method}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* LLM Key */}
-              <div>
-                <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                  {t("endpoints.form.llmKey")}
-                </label>
-                {keysLoading ? (
-                  <div className="h-10 bg-theme-bg-secondary rounded-lg animate-pulse" />
-                ) : keys.length === 0 ? (
-                  <p className="text-sm text-red-600 dark:text-red-400">
-                    {t("endpoints.form.noKeys")}
-                  </p>
-                ) : (
-                  <>
-                    <select
-                      value={llmKeyId}
-                      onChange={(e) => handleKeyChange(e.target.value)}
-                      onBlur={() => handleBlur("llmKeyId")}
-                      className={inputClassName("llmKeyId")}
-                    >
-                      <option value="">{t("endpoints.form.selectKey")}</option>
-                      {keys.map((key) => (
-                        <option key={key.uuid} value={key.uuid}>
-                          {key.key_name} ({key.provider})
-                        </option>
+                {/* HTTP Method */}
+                <div>
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.httpMethod")}
+                  </label>
+                  <Select
+                    value={httpMethod}
+                    onValueChange={(value) => setHttpMethod(value as HttpMethod)}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {HTTP_METHODS.map((method) => (
+                        <SelectItem key={method} value={method}>
+                          {method}
+                        </SelectItem>
                       ))}
-                    </select>
-                    {renderError("llmKeyId")}
-                  </>
-                )}
-              </div>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              {/* Model Selection */}
-              {provider && (
+                {/* LLM Key (Provider) */}
+                <div>
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.llmKey")}
+                  </label>
+                  {keysLoading ? (
+                    <div className="h-10 bg-theme-bg-secondary rounded-lg animate-pulse" />
+                  ) : keys.length === 0 ? (
+                    <p className="text-sm text-red-600 dark:text-red-400">
+                      {t("endpoints.form.noKeys")}
+                    </p>
+                  ) : (
+                    <>
+                      <Select
+                        value={llmKeyId}
+                        onValueChange={handleKeyChange}
+                      >
+                        <SelectTrigger
+                          className={`w-full ${hasError("llmKeyId") ? "border-red-500 focus:ring-red-500/20" : ""}`}
+                          onBlur={() => handleBlur("llmKeyId")}
+                        >
+                          <SelectValue placeholder={t("endpoints.form.selectKey")} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {keys.map((key) => (
+                            <SelectItem key={key.uuid} value={key.uuid}>
+                              {key.key_name} ({key.provider})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      {renderError("llmKeyId")}
+                    </>
+                  )}
+                </div>
+
+                {/* Model Selection */}
                 <div>
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
                     {t("endpoints.form.model")}
                   </label>
-                  <select
-                    value={selectedModel}
-                    onChange={(e) => setSelectedModel(e.target.value)}
-                    className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                  >
-                    {availableModels.map((model) => (
-                      <option key={model} value={model}>
-                        {model}
-                      </option>
-                    ))}
-                  </select>
+                  <EditableSelector
+                    options={availableModels.map((model) => ({ value: model }))}
+                    value={effectiveModel}
+                    onChange={(value: string) => {
+                      setSelectedModel(value);
+                      setCustomModel("");
+                    }}
+                    disabled={!provider}
+                    placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                    inputClassName="font-mono text-sm"
+                  />
 
-                  {/* Custom model input for llm_server */}
-                  {allowsCustomModel && (
-                    <div className="mt-2">
-                      <input
-                        type="text"
-                        value={customModel}
-                        onChange={(e) => setCustomModel(e.target.value)}
-                        placeholder={t("endpoints.form.customModelPlaceholder")}
-                        className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
-                      />
-                      <p className="mt-1 text-xs text-theme-text-tertiary">
-                        {t("endpoints.form.customModelHint")}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Cost Estimation Display */}
-                  {modelPricing && (
+                  {/* Cost Estimation Display - Per request */}
+                  {estimatedCost && (
                     <div className="mt-3 p-3 bg-theme-bg-secondary rounded-lg border border-theme-border">
                       <div className="flex items-center gap-2 mb-2">
                         <svg
@@ -517,134 +577,139 @@ function EndpointForm({
                           />
                         </svg>
                         <span className="text-sm font-medium text-theme-text-primary">
-                          {t("endpoints.form.costEstimate")}
+                          {t("endpoints.form.costPerRequest")}
                         </span>
                       </div>
-                      <div className="grid grid-cols-2 gap-2 text-sm">
-                        <div>
-                          <span className="text-theme-text-tertiary">
-                            {t("endpoints.form.inputCost")}:
-                          </span>
-                          <span className="ml-1 font-mono text-theme-text-primary">
-                            ${(modelPricing.input / 100).toFixed(2)}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-theme-text-tertiary">
-                            {t("endpoints.form.outputCost")}:
-                          </span>
-                          <span className="ml-1 font-mono text-theme-text-primary">
-                            ${(modelPricing.output / 100).toFixed(2)}
-                          </span>
-                        </div>
+                      <div className="text-lg font-semibold text-theme-text-primary font-mono">
+                        ${estimatedCost.totalCost.toFixed(6)}
                       </div>
-                      <p className="mt-2 text-xs text-theme-text-tertiary">
-                        {t("endpoints.form.costPerMillion")}
-                      </p>
+                      <div className="mt-2 text-xs text-theme-text-tertiary">
+                        ~{estimatedCost.inputTokens} {t("endpoints.form.inputTokens")} + ~{estimatedCost.outputTokens} {t("endpoints.form.outputTokens")}
+                      </div>
                     </div>
                   )}
                 </div>
-              )}
-            </div>
 
-            {/* Right Column */}
-            <div className="space-y-4">
-              {/* System Context */}
-              <div>
-                <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                  {t("endpoints.form.context")}
-                </label>
-                <textarea
-                  value={context}
-                  onChange={(e) => setContext(e.target.value)}
-                  placeholder={t("endpoints.form.contextPlaceholder")}
-                  rows={4}
-                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
-                />
-              </div>
-
-              {/* Input Schema Toggle */}
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="useInputSchema"
-                  checked={useInputSchema}
-                  onChange={(e) => setUseInputSchema(e.target.checked)}
-                  className="rounded"
-                />
-                <label
-                  htmlFor="useInputSchema"
-                  className="text-sm font-medium text-theme-text-primary"
-                >
-                  {t("endpoints.form.useInputSchema")}
-                </label>
-              </div>
-
-              {/* Input Schema */}
-              {useInputSchema && (
+                {/* Instructions */}
                 <div>
-                  <label className="block text-sm font-medium text-theme-text-primary mb-2">
-                    {t("endpoints.form.inputSchema")}
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.instructions")}{" "}
+                    <span className="text-theme-text-tertiary">
+                      ({t("common.optional")})
+                    </span>
                   </label>
-                  <SchemaEditor
-                    value={inputSchema}
-                    onChange={(value) => {
-                      setInputSchema(value);
-                      if (touched.inputSchema) {
-                        setFieldErrors((prev) => ({
-                          ...prev,
-                          inputSchema: validateInputSchema(value, true),
-                        }));
-                      }
-                    }}
-                    error={!!hasError("inputSchema")}
+                  <textarea
+                    value={instructions}
+                    onChange={(e) => setInstructions(e.target.value)}
+                    placeholder={t("endpoints.form.instructionsPlaceholder")}
+                    rows={3}
+                    className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
                   />
-                  {renderError("inputSchema")}
                 </div>
-              )}
 
-              {/* Output Schema Toggle */}
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  id="useOutputSchema"
-                  checked={useOutputSchema}
-                  onChange={(e) => setUseOutputSchema(e.target.checked)}
-                  className="rounded"
-                />
-                <label
-                  htmlFor="useOutputSchema"
-                  className="text-sm font-medium text-theme-text-primary"
-                >
-                  {t("endpoints.form.useOutputSchema")}
-                </label>
-              </div>
-
-              {/* Output Schema */}
-              {useOutputSchema && (
+                {/* System Context */}
                 <div>
-                  <label className="block text-sm font-medium text-theme-text-primary mb-2">
-                    {t("endpoints.form.outputSchema")}
+                  <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                    {t("endpoints.form.context")}
                   </label>
-                  <SchemaEditor
-                    value={outputSchema}
-                    onChange={(value) => {
-                      setOutputSchema(value);
-                      if (touched.outputSchema) {
-                        setFieldErrors((prev) => ({
-                          ...prev,
-                          outputSchema: validateOutputSchema(value, true),
-                        }));
-                      }
-                    }}
-                    error={!!hasError("outputSchema")}
+                  <textarea
+                    value={context}
+                    onChange={(e) => setContext(e.target.value)}
+                    placeholder={t("endpoints.form.contextPlaceholder")}
+                    rows={4}
+                    className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
                   />
-                  {renderError("outputSchema")}
                 </div>
-              )}
-            </div>
-          </div>
-        </form>
+              </div>
+            </TabsContent>
+
+            {/* Input Tab */}
+            <TabsContent value="input">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="useInputSchema"
+                    checked={useInputSchema}
+                    onChange={(e) => setUseInputSchema(e.target.checked)}
+                    className="rounded"
+                  />
+                  <label
+                    htmlFor="useInputSchema"
+                    className="text-sm font-medium text-theme-text-primary"
+                  >
+                    {t("endpoints.form.useInputSchema")}
+                  </label>
+                </div>
+
+                {useInputSchema && (
+                  <div>
+                    <label className="block text-sm font-medium text-theme-text-primary mb-2">
+                      {t("endpoints.form.inputSchema")}
+                    </label>
+                    <SchemaEditor
+                      value={inputSchema}
+                      onChange={(value) => {
+                        setInputSchema(value);
+                        if (touched.inputSchema) {
+                          setFieldErrors((prev) => ({
+                            ...prev,
+                            inputSchema: validateInputSchema(value, true),
+                          }));
+                        }
+                      }}
+                      error={!!hasError("inputSchema")}
+                    />
+                    {renderError("inputSchema")}
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+
+            {/* Output Tab */}
+            <TabsContent value="output">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    id="useOutputSchema"
+                    checked={useOutputSchema}
+                    onChange={(e) => setUseOutputSchema(e.target.checked)}
+                    className="rounded"
+                  />
+                  <label
+                    htmlFor="useOutputSchema"
+                    className="text-sm font-medium text-theme-text-primary"
+                  >
+                    {t("endpoints.form.useOutputSchema")}
+                  </label>
+                </div>
+
+                {useOutputSchema && (
+                  <div>
+                    <label className="block text-sm font-medium text-theme-text-primary mb-2">
+                      {t("endpoints.form.outputSchema")}
+                    </label>
+                    <SchemaEditor
+                      value={outputSchema}
+                      onChange={(value) => {
+                        setOutputSchema(value);
+                        if (touched.outputSchema) {
+                          setFieldErrors((prev) => ({
+                            ...prev,
+                            outputSchema: validateOutputSchema(value, true),
+                          }));
+                        }
+                      }}
+                      error={!!hasError("outputSchema")}
+                    />
+                    {renderError("outputSchema")}
+                  </div>
+                )}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
 
         {/* Footer */}
         <div className="flex justify-end gap-3 p-6 border-t border-theme-border shrink-0">
@@ -694,7 +759,8 @@ function EndpointForm({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

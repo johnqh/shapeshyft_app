@@ -136,8 +136,6 @@
       "inactive": "ไม่ใช้งาน"
     },
     "form": {
-      "title": "เพิ่มคีย์ API",
-      "titleEdit": "แก้ไขคีย์ API",
       "keyName": "ชื่อคีย์",
       "keyNamePlaceholder": "คีย์ OpenAI ของฉัน",
       "provider": "ผู้ให้บริการ",

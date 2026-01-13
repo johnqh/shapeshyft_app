@@ -136,8 +136,6 @@
       "inactive": "Неактивний"
     },
     "form": {
-      "title": "Додати ключ API",
-      "titleEdit": "Редагувати ключ API",
       "keyName": "Назва ключа",
       "keyNamePlaceholder": "Мій ключ OpenAI",
       "provider": "Постачальник",

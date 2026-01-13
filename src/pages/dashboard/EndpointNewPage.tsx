@@ -190,6 +190,7 @@ function EndpointNewPage() {
         instructions: instructions.trim() || null,
         http_method: httpMethod,
         llm_key_id: llmKeyId,
+        model: null,
         context: context.trim() || null,
         input_schema: useInputSchema ? JSON.parse(inputSchema) : null,
         output_schema: useOutputSchema ? JSON.parse(outputSchema) : null,

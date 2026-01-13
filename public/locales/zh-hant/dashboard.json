@@ -136,8 +136,6 @@
       "inactive": "未激活"
     },
     "form": {
-      "title": "新增 API 金鑰",
-      "titleEdit": "編輯 API 金鑰",
       "keyName": "提供商標籤",
       "keyNamePlaceholder": "例如：生產環境、開發環境",
       "provider": "提供者",

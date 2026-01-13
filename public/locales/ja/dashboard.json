@@ -136,8 +136,6 @@
       "inactive": "非アクティブ"
     },
     "form": {
-      "title": "APIキーを追加",
-      "titleEdit": "API キーの編集",
       "keyName": "プロバイダーラベル",
       "keyNamePlaceholder": "例：本番、開発",
       "provider": "プロバイダー",

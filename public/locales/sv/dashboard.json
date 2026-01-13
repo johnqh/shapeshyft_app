@@ -136,8 +136,6 @@
       "inactive": "Inaktiv"
     },
     "form": {
-      "title": "Lägg till API-nyckel",
-      "titleEdit": "Redigera API-nyckel",
       "keyName": "Nyckelnamn",
       "keyNamePlaceholder": "Mitt OpenAI-nyckel",
       "provider": "Provider",

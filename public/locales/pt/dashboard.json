@@ -136,8 +136,6 @@
       "inactive": "Inativo"
     },
     "form": {
-      "title": "Adicionar chave de API",
-      "titleEdit": "Editar chave de API",
       "keyName": "Etiqueta do fornecedor",
       "keyNamePlaceholder": "ex: Produção, Desenvolvimento",
       "provider": "Provedor",

@@ -136,8 +136,6 @@
       "inactive": "Không hoạt động"
     },
     "form": {
-      "title": "Thêm khóa API",
-      "titleEdit": "Chỉnh sửa khóa API",
       "keyName": "Tên khóa",
       "keyNamePlaceholder": "Khóa OpenAI của tôi",
       "provider": "Nhà cung cấp",

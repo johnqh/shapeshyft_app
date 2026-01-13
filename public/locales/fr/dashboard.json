@@ -136,8 +136,6 @@
       "inactive": "Inactif"
     },
     "form": {
-      "title": "Ajouter une clé API",
-      "titleEdit": "Modifier la clé API",
       "keyName": "Label du fournisseur",
       "keyNamePlaceholder": "ex: Production, Développement",
       "provider": "Fournisseur",

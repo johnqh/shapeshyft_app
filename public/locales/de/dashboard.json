@@ -136,8 +136,6 @@
       "inactive": "Inaktiv"
     },
     "form": {
-      "title": "API-Schlüssel hinzufügen",
-      "titleEdit": "API-Schlüssel bearbeiten",
       "keyName": "Anbieter-Label",
       "keyNamePlaceholder": "z.B. Produktion, Entwicklung",
       "provider": "Anbieter",
