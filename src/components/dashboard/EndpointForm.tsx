@@ -3,18 +3,12 @@ import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useKeysManager } from "@sudobility/shapeshyft_lib";
+import { useProviderModels } from "@sudobility/shapeshyft_client";
 import type {
   Endpoint,
   EndpointCreateRequest,
   HttpMethod,
   LlmProvider,
-} from "@sudobility/shapeshyft_types";
-import {
-  PROVIDER_MODELS,
-  DEFAULT_PROVIDER_MODEL,
-  PROVIDER_ALLOWS_CUSTOM_MODEL,
-  getModelPricing,
-  getModelCapabilities,
 } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
@@ -67,7 +61,7 @@ function EndpointForm({
 }: EndpointFormProps) {
   const { t } = useTranslation("dashboard");
   const { entitySlug = "" } = useParams<{ entitySlug: string }>();
-  const { networkClient, baseUrl, token, isReady } = useApi();
+  const { networkClient, baseUrl, token, testMode, isReady } = useApi();
 
   const isEditing = !!endpoint;
 
@@ -123,17 +117,19 @@ function EndpointForm({
   );
   const provider = selectedKey?.provider as LlmProvider | undefined;
 
-  // Get available models for the selected provider
-  const availableModels = useMemo(() => {
-    if (!provider) return [];
-    return PROVIDER_MODELS[provider] ?? [];
-  }, [provider]);
+  // Fetch models for the selected provider from the API
+  const { provider: providerConfig, models } = useProviderModels(
+    networkClient,
+    baseUrl,
+    provider ?? null,
+    testMode
+  );
 
   // Build model options with capability icons
   // Blue = input capability, Green = output capability
   const modelOptions = useMemo(() => {
-    return availableModels.map((model) => {
-      const caps = getModelCapabilities(model);
+    return models.map((modelInfo) => {
+      const caps = modelInfo.capabilities;
       const inputIcons: ReactNode[] = [];
       const outputIcons: ReactNode[] = [];
 
@@ -149,33 +145,32 @@ function EndpointForm({
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
-          <span className="font-mono">{model}</span>
+          <span className="font-mono">{modelInfo.id}</span>
           <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
         </span>
-      ) : model;
+      ) : modelInfo.id;
 
-      return { value: model, label, searchLabel: model };
+      return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
-  }, [availableModels]);
+  }, [models]);
 
   // Whether custom model input is allowed
-  const allowsCustomModel = provider
-    ? PROVIDER_ALLOWS_CUSTOM_MODEL[provider]
-    : false;
+  const allowsCustomModel = providerConfig?.allowsCustomModel ?? false;
 
   // The effective model (selected or custom)
   const effectiveModel = useMemo(() => {
     if (allowsCustomModel && customModel.trim()) {
       return customModel.trim();
     }
-    return selectedModel || (provider ? DEFAULT_PROVIDER_MODEL[provider] : "");
-  }, [selectedModel, customModel, allowsCustomModel, provider]);
+    return selectedModel || (providerConfig?.defaultModel ?? "");
+  }, [selectedModel, customModel, allowsCustomModel, providerConfig?.defaultModel]);
 
-  // Get pricing for the effective model
+  // Get pricing for the effective model from models array
   const modelPricing = useMemo(() => {
     if (!effectiveModel) return null;
-    return getModelPricing(effectiveModel);
-  }, [effectiveModel]);
+    const modelInfo = models.find((m) => m.id === effectiveModel);
+    return modelInfo?.pricing ?? null;
+  }, [effectiveModel, models]);
 
   // Estimate tokens and cost per request based on schema and context
   const estimatedCost = useMemo(() => {
@@ -225,18 +220,12 @@ function EndpointForm({
     };
   }, [modelPricing, context, instructions, inputSchema, outputSchema, useInputSchema, useOutputSchema]);
 
-  // Handle key selection change - update model to default for provider
+  // Handle key selection change - reset model selection (default will be set by providerConfig)
   const handleKeyChange = (newKeyId: string) => {
     setLlmKeyId(newKeyId);
-    const newKey = keys.find((k) => k.uuid === newKeyId);
-    const newProvider = newKey?.provider as LlmProvider | undefined;
-    if (newProvider) {
-      setSelectedModel(DEFAULT_PROVIDER_MODEL[newProvider]);
-      setCustomModel("");
-    } else {
-      setSelectedModel("");
-      setCustomModel("");
-    }
+    // Reset model selection - the effectiveModel memo will use providerConfig.defaultModel
+    setSelectedModel("");
+    setCustomModel("");
     if (touched.llmKeyId) {
       setFieldErrors((prev) => ({
         ...prev,

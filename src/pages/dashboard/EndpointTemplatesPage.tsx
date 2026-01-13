@@ -7,15 +7,9 @@ import {
   useEndpointTemplates,
   type EndpointTemplateWithCategory,
 } from "@sudobility/shapeshyft_lib";
-import type { LlmProvider } from "@sudobility/shapeshyft_types";
-import {
-  PROVIDER_MODELS,
-  DEFAULT_PROVIDER_MODEL,
-  PROVIDER_ALLOWS_CUSTOM_MODEL,
-  detectRequiredCapabilities,
-  filterModelsByCapabilities,
-  getModelCapabilities,
-} from "@sudobility/shapeshyft_types";
+import { useProviderModels } from "@sudobility/shapeshyft_client";
+import type { LlmProvider, ModelCapabilities } from "@sudobility/shapeshyft_types";
+import { detectRequiredCapabilities } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
   MicrophoneIcon,
@@ -74,6 +68,14 @@ function EndpointTemplatesPage() {
   const selectedKey = keys.find((k) => k.uuid === selectedKeyId);
   const provider = selectedKey?.provider as LlmProvider | undefined;
 
+  // Fetch models for the selected provider from the API
+  const { provider: providerConfig, models } = useProviderModels(
+    networkClient,
+    baseUrl,
+    provider ?? null,
+    testMode
+  );
+
   // Detect required capabilities from selected template
   const requiredCapabilities = useMemo(() => {
     if (!selectedTemplate) return {};
@@ -83,17 +85,24 @@ function EndpointTemplatesPage() {
     );
   }, [selectedTemplate]);
 
-  // Get available models for the selected provider, filtered by capabilities
-  const availableModels = useMemo(() => {
-    if (!provider) return [];
-    const providerModels = PROVIDER_MODELS[provider] ?? [];
-    return filterModelsByCapabilities(providerModels, requiredCapabilities);
-  }, [provider, requiredCapabilities]);
+  // Filter models by required capabilities
+  const filteredModels = useMemo(() => {
+    if (Object.keys(requiredCapabilities).length === 0) return models;
+    return models.filter((modelInfo) => {
+      const caps = modelInfo.capabilities;
+      for (const [key, required] of Object.entries(requiredCapabilities)) {
+        if (required && !caps[key as keyof ModelCapabilities]) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }, [models, requiredCapabilities]);
 
   // Build model options with capability icons
   const modelOptions = useMemo(() => {
-    return availableModels.map((model) => {
-      const caps = getModelCapabilities(model);
+    return filteredModels.map((modelInfo) => {
+      const caps = modelInfo.capabilities;
       const inputIcons: ReactNode[] = [];
       const outputIcons: ReactNode[] = [];
 
@@ -107,25 +116,25 @@ function EndpointTemplatesPage() {
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
-          <span className="font-mono">{model}</span>
+          <span className="font-mono">{modelInfo.id}</span>
           <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
         </span>
-      ) : model;
+      ) : modelInfo.id;
 
-      return { value: model, label, searchLabel: model };
+      return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
-  }, [availableModels]);
+  }, [filteredModels]);
 
   // Whether custom model input is allowed
-  const allowsCustomModel = provider ? PROVIDER_ALLOWS_CUSTOM_MODEL[provider] : false;
+  const allowsCustomModel = providerConfig?.allowsCustomModel ?? false;
 
   // The effective model (selected or custom)
   const effectiveModel = useMemo(() => {
     if (allowsCustomModel && customModel.trim()) {
       return customModel.trim();
     }
-    return selectedModel || (provider ? DEFAULT_PROVIDER_MODEL[provider] : "");
-  }, [selectedModel, customModel, allowsCustomModel, provider]);
+    return selectedModel || (providerConfig?.defaultModel ?? "");
+  }, [selectedModel, customModel, allowsCustomModel, providerConfig?.defaultModel]);
 
 
   // Filter templates by category

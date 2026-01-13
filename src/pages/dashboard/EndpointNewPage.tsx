@@ -5,13 +5,8 @@ import {
   useKeysManager,
   useEndpointsManager,
 } from "@sudobility/shapeshyft_lib";
+import { useProviderModels } from "@sudobility/shapeshyft_client";
 import type { LlmProvider } from "@sudobility/shapeshyft_types";
-import {
-  PROVIDER_MODELS,
-  DEFAULT_PROVIDER_MODEL,
-  PROVIDER_ALLOWS_CUSTOM_MODEL,
-  getModelCapabilities,
-} from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
   MicrophoneIcon,
@@ -84,16 +79,18 @@ function EndpointNewPage() {
   const selectedKey = keys.find((k) => k.uuid === llmKeyId);
   const provider = selectedKey?.provider as LlmProvider | undefined;
 
-  // Get available models for the selected provider
-  const availableModels = useMemo(() => {
-    if (!provider) return [];
-    return PROVIDER_MODELS[provider] ?? [];
-  }, [provider]);
+  // Fetch models for the selected provider from the API
+  const { provider: providerConfig, models } = useProviderModels(
+    networkClient,
+    baseUrl,
+    provider ?? null,
+    testMode
+  );
 
   // Build model options with capability icons
   const modelOptions = useMemo(() => {
-    return availableModels.map((model) => {
-      const caps = getModelCapabilities(model);
+    return models.map((modelInfo) => {
+      const caps = modelInfo.capabilities;
       const inputIcons: ReactNode[] = [];
       const outputIcons: ReactNode[] = [];
 
@@ -107,25 +104,25 @@ function EndpointNewPage() {
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
-          <span className="font-mono">{model}</span>
+          <span className="font-mono">{modelInfo.id}</span>
           <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
         </span>
-      ) : model;
+      ) : modelInfo.id;
 
-      return { value: model, label, searchLabel: model };
+      return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
-  }, [availableModels]);
+  }, [models]);
 
   // Whether custom model input is allowed
-  const allowsCustomModel = provider ? PROVIDER_ALLOWS_CUSTOM_MODEL[provider] : false;
+  const allowsCustomModel = providerConfig?.allowsCustomModel ?? false;
 
   // The effective model (selected or custom)
   const effectiveModel = useMemo(() => {
     if (allowsCustomModel && customModel.trim()) {
       return customModel.trim();
     }
-    return selectedModel || (provider ? DEFAULT_PROVIDER_MODEL[provider] : "");
-  }, [selectedModel, customModel, allowsCustomModel, provider]);
+    return selectedModel || (providerConfig?.defaultModel ?? "");
+  }, [selectedModel, customModel, allowsCustomModel, providerConfig?.defaultModel]);
 
 
   // Auto-generate endpoint name from display name

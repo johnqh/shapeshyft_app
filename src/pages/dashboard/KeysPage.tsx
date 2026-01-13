@@ -262,6 +262,9 @@ function KeysPage() {
           }}
           onClose={() => setShowAddModal(false)}
           isLoading={isLoading}
+          networkClient={networkClient}
+          baseUrl={baseUrl}
+          testMode={testMode}
         />
       )}
 
@@ -292,6 +295,9 @@ function KeysPage() {
           }}
           onClose={() => setEditingKey(null)}
           isLoading={isLoading}
+          networkClient={networkClient}
+          baseUrl={baseUrl}
+          testMode={testMode}
         />
       )}
     </div>

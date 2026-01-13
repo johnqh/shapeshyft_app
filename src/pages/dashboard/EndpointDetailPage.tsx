@@ -7,17 +7,10 @@ import {
   useEndpointTester,
   useKeysManager,
 } from "@sudobility/shapeshyft_lib";
+import { useProviderModels } from "@sudobility/shapeshyft_client";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
-import type { LlmProvider } from "@sudobility/shapeshyft_types";
-import {
-  PROVIDER_MODELS,
-  DEFAULT_PROVIDER_MODEL,
-  PROVIDER_ALLOWS_CUSTOM_MODEL,
-  getModelCapabilities,
-  getMediaFormats,
-  type MediaInputFormat,
-} from "@sudobility/shapeshyft_types";
+import type { LlmProvider, MediaInputFormat } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
   MicrophoneIcon,
@@ -174,17 +167,19 @@ function EndpointDetailPage() {
   );
   const editProvider = editSelectedKey?.provider as LlmProvider | undefined;
 
-  // Get available models for the selected provider in edit mode
-  const editAvailableModels = useMemo(() => {
-    if (!editProvider) return [];
-    return PROVIDER_MODELS[editProvider] ?? [];
-  }, [editProvider]);
+  // Fetch models for the selected provider from the API (edit mode)
+  const { provider: editProviderConfig, models: editModels } = useProviderModels(
+    networkClient,
+    baseUrl,
+    editProvider ?? null,
+    testMode
+  );
 
   // Build model options with capability icons for edit mode
   // Blue = input capability, Green = output capability
   const editModelOptions = useMemo(() => {
-    return editAvailableModels.map((model) => {
-      const caps = getModelCapabilities(model);
+    return editModels.map((modelInfo) => {
+      const caps = modelInfo.capabilities;
       const inputIcons: ReactNode[] = [];
       const outputIcons: ReactNode[] = [];
 
@@ -200,27 +195,25 @@ function EndpointDetailPage() {
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
-          <span className="font-mono">{model}</span>
+          <span className="font-mono">{modelInfo.id}</span>
           <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
         </span>
-      ) : model;
+      ) : modelInfo.id;
 
-      return { value: model, label, searchLabel: model };
+      return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
-  }, [editAvailableModels]);
+  }, [editModels]);
 
   // Whether custom model input is allowed in edit mode
-  const editAllowsCustomModel = editProvider
-    ? PROVIDER_ALLOWS_CUSTOM_MODEL[editProvider]
-    : false;
+  const editAllowsCustomModel = editProviderConfig?.allowsCustomModel ?? false;
 
   // The effective model in edit mode
   const editEffectiveModel = useMemo(() => {
     if (editAllowsCustomModel && editCustomModel.trim()) {
       return editCustomModel.trim();
     }
-    return editModel || (editProvider ? DEFAULT_PROVIDER_MODEL[editProvider] : "");
-  }, [editModel, editCustomModel, editAllowsCustomModel, editProvider]);
+    return editModel || (editProviderConfig?.defaultModel ?? "");
+  }, [editModel, editCustomModel, editAllowsCustomModel, editProviderConfig?.defaultModel]);
 
   // Get current endpoint's provider and model for display
   const currentKey = useMemo(
@@ -228,11 +221,20 @@ function EndpointDetailPage() {
     [keys, endpoint?.llm_key_id]
   );
   const currentProvider = currentKey?.provider as LlmProvider | undefined;
-  const currentModel = endpoint?.model || (currentProvider ? DEFAULT_PROVIDER_MODEL[currentProvider] : "");
+
+  // Fetch models for the current provider (for display mode)
+  const { provider: currentProviderConfig, models: currentModels } = useProviderModels(
+    networkClient,
+    baseUrl,
+    currentProvider ?? null,
+    testMode
+  );
+  const currentModel = endpoint?.model || (currentProviderConfig?.defaultModel ?? "");
 
   // Render model with capability icons
   const renderModelWithIcons = (model: string) => {
-    const caps = getModelCapabilities(model);
+    const modelInfo = currentModels.find((m) => m.id === model);
+    const caps = modelInfo?.capabilities ?? {};
     const inputIcons: ReactNode[] = [];
     const outputIcons: ReactNode[] = [];
 
@@ -289,14 +291,31 @@ function EndpointDetailPage() {
     const model = endpoint?.model;
     if (!model || !inputMediaFields) return undefined;
 
+    // Find model info from the current provider's models
+    const modelInfo = currentModels.find((m) => m.id === model);
+    const mediaFormats = modelInfo?.capabilities?.mediaFormats;
+
     const formats: Record<string, MediaInputFormat[]> = {};
     for (const [fieldName, mediaType] of Object.entries(inputMediaFields)) {
-      const supported = getMediaFormats(model, mediaType);
+      let supported: MediaInputFormat[] = [];
+      if (mediaFormats) {
+        switch (mediaType) {
+          case "image":
+            supported = mediaFormats.imageFormats ?? [];
+            break;
+          case "audio":
+            supported = mediaFormats.audioFormats ?? [];
+            break;
+          case "video":
+            supported = mediaFormats.videoFormats ?? [];
+            break;
+        }
+      }
       // If model is unknown or no specific formats, default to base64
-      formats[fieldName] = supported && supported.length > 0 ? supported : ["base64"];
+      formats[fieldName] = supported.length > 0 ? supported : ["base64"];
     }
     return formats;
-  }, [endpoint?.model, inputMediaFields]);
+  }, [endpoint?.model, inputMediaFields, currentModels]);
 
   const outputMediaItems = useMemo(
     () =>
@@ -369,27 +388,18 @@ function EndpointDetailPage() {
     setEditInstructions(endpoint.instructions ?? "");
     setEditContext(endpoint.context ?? "");
     setEditLlmKeyId(endpoint.llm_key_id);
-    // Initialize model - use endpoint's model or default for provider
-    const key = keys.find((k) => k.uuid === endpoint.llm_key_id);
-    const provider = key?.provider as LlmProvider | undefined;
-    const defaultModel = provider ? DEFAULT_PROVIDER_MODEL[provider] : "";
-    setEditModel(endpoint.model || defaultModel);
+    // Initialize model - use endpoint's model (default will be provided by editProviderConfig)
+    setEditModel(endpoint.model || "");
     setEditCustomModel("");
     setIsEditingGeneral(true);
   };
 
-  // Handle key change in edit mode - reset model to default for new provider
+  // Handle key change in edit mode - reset model selection
   const handleEditKeyChange = (newKeyId: string) => {
     setEditLlmKeyId(newKeyId);
-    const newKey = keys.find((k) => k.uuid === newKeyId);
-    const newProvider = newKey?.provider as LlmProvider | undefined;
-    if (newProvider) {
-      setEditModel(DEFAULT_PROVIDER_MODEL[newProvider]);
-      setEditCustomModel("");
-    } else {
-      setEditModel("");
-      setEditCustomModel("");
-    }
+    // Reset model selection - the editEffectiveModel memo will use editProviderConfig.defaultModel
+    setEditModel("");
+    setEditCustomModel("");
   };
 
   const handleCancelEditGeneral = () => {

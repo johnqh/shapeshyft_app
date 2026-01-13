@@ -1,20 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
+import { useProviders } from "@sudobility/shapeshyft_client";
 import type {
   LlmApiKeySafe,
   LlmApiKeyCreateRequest,
   LlmProvider,
+  NetworkClient,
 } from "@sudobility/shapeshyft_types";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
-import { PROVIDER_OPTIONS } from "../../config/providers-config";
 
 interface KeyFormProps {
   apiKey?: LlmApiKeySafe;
   onSubmit: (data: LlmApiKeyCreateRequest) => Promise<void>;
   onClose: () => void;
   isLoading?: boolean;
+  networkClient: NetworkClient;
+  baseUrl: string;
+  testMode?: boolean;
 }
 
 interface FieldErrors {
@@ -23,9 +27,21 @@ interface FieldErrors {
   endpointUrl?: string;
 }
 
-function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
+function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl, testMode }: KeyFormProps) {
   const { t } = useTranslation("dashboard");
   const isEditing = !!apiKey;
+
+  // Fetch providers from API
+  const { providers, isLoadingProviders } = useProviders(networkClient, baseUrl, testMode);
+
+  // Build provider options from API data
+  const providerOptions = useMemo(() => {
+    return providers.map((p) => ({
+      value: p.id,
+      label: p.name,
+      requiresEndpointUrl: p.requiresEndpointUrl,
+    }));
+  }, [providers]);
 
   const [keyName, setKeyName] = useState(apiKey?.key_name ?? "");
   const [provider, setProvider] = useState<LlmProvider>(
@@ -36,6 +52,12 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
   const [showApiKey, setShowApiKey] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  // Get whether current provider requires endpoint URL
+  const requiresEndpointUrl = useMemo(() => {
+    const providerConfig = providers.find((p) => p.id === provider);
+    return providerConfig?.requiresEndpointUrl ?? false;
+  }, [providers, provider]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -56,8 +78,9 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
     value: string,
     currentProvider: LlmProvider,
   ): string | undefined => {
-    // API key not required for custom LM server or when editing
-    if (currentProvider === "llm_server" || isEditing) {
+    // API key not required for providers that require endpoint URL (like llm_server) or when editing
+    const providerConfig = providers.find((p) => p.id === currentProvider);
+    if (providerConfig?.requiresEndpointUrl || isEditing) {
       return undefined;
     }
     if (!value.trim()) {
@@ -70,7 +93,8 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
     value: string,
     currentProvider: LlmProvider,
   ): string | undefined => {
-    if (currentProvider === "llm_server" && !value.trim()) {
+    const providerConfig = providers.find((p) => p.id === currentProvider);
+    if (providerConfig?.requiresEndpointUrl && !value.trim()) {
       return t("keys.form.errors.endpointRequired");
     }
     return undefined;
@@ -149,8 +173,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
         key_name: keyName.trim(),
         provider,
         api_key: apiKeyValue.trim() || undefined,
-        endpoint_url:
-          provider === "llm_server" ? endpointUrl.trim() : undefined,
+        endpoint_url: requiresEndpointUrl ? endpointUrl.trim() : undefined,
       });
     } catch (err) {
       getInfoService().show(
@@ -224,19 +247,23 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
             <label className="block text-sm font-medium text-theme-text-primary mb-1">
               {t("keys.form.provider")}
             </label>
-            <select
-              value={provider}
-              onChange={(e) => setProvider(e.target.value as LlmProvider)}
-              disabled={isEditing}
-              className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none disabled:opacity-50"
-              autoFocus
-            >
-              {PROVIDER_OPTIONS.map((p) => (
-                <option key={p.value} value={p.value}>
-                  {p.label}
-                </option>
-              ))}
-            </select>
+            {isLoadingProviders ? (
+              <div className="h-10 bg-theme-bg-secondary rounded-lg animate-pulse" />
+            ) : (
+              <select
+                value={provider}
+                onChange={(e) => setProvider(e.target.value as LlmProvider)}
+                disabled={isEditing}
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none disabled:opacity-50"
+                autoFocus
+              >
+                {providerOptions.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
 
           {/* Key Name */}
@@ -255,8 +282,8 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
             {renderError("keyName")}
           </div>
 
-          {/* Endpoint URL (for llm_server) */}
-          {provider === "llm_server" && (
+          {/* Endpoint URL (for providers that require it) */}
+          {requiresEndpointUrl && (
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-1">
                 {t("keys.form.endpointUrl")}
@@ -275,8 +302,8 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
             </div>
           )}
 
-          {/* API Key (not needed for custom LM server) */}
-          {provider !== "llm_server" && (
+          {/* API Key (not needed for providers that require endpoint URL) */}
+          {!requiresEndpointUrl && (
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-1">
                 {t("keys.form.apiKey")}
