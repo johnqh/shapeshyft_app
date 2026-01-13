@@ -4,8 +4,6 @@ import { useTranslation } from "react-i18next";
 import {
   useProjectsManager,
   useEndpointsManager,
-  useEndpointTemplates,
-  type EndpointTemplateWithCategory,
 } from "@sudobility/shapeshyft_lib";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
@@ -16,7 +14,6 @@ import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import ApiKeySection from "../../components/dashboard/ApiKeySection";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";
-import EndpointTemplateSelector from "../../components/dashboard/EndpointTemplateSelector";
 import { isServerError } from "../../utils/errorUtils";
 
 // Icons
@@ -90,7 +87,6 @@ function ProjectDetailPage() {
   const [editDisplayName, setEditDisplayName] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [isSavingProject, setIsSavingProject] = useState(false);
-  const [showTemplateSelector, setShowTemplateSelector] = useState(false);
 
   const {
     projects,
@@ -113,7 +109,6 @@ function ProjectDetailPage() {
     endpoints,
     isLoading: endpointsLoading,
     error,
-    createEndpoint,
     deleteEndpoint,
     clearError,
     refresh: refreshEndpoints,
@@ -126,8 +121,6 @@ function ProjectDetailPage() {
     projectId: projectId ?? "",
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
-
-  const { applyEndpointTemplate } = useEndpointTemplates();
 
   const [isRetrying, setIsRetrying] = useState(false);
 
@@ -199,22 +192,6 @@ function ProjectDetailPage() {
           5000,
         );
       }
-    }
-  };
-
-  const handleApplyEndpointTemplate = async (
-    template: EndpointTemplateWithCategory,
-    llmKeyId: string,
-  ) => {
-    const endpointRequest = applyEndpointTemplate(template, llmKeyId);
-    const newEndpoint = await createEndpoint(endpointRequest);
-    if (newEndpoint) {
-      setShowTemplateSelector(false);
-      success(t("common:toast.success.created"));
-      // Navigate to the new endpoint
-      navigate(
-        `/dashboard/${entitySlug}/projects/${projectId}/endpoints/${newEndpoint.uuid}`,
-      );
     }
   };
 
@@ -440,7 +417,10 @@ function ProjectDetailPage() {
           {
             id: "template",
             label: t("endpoints.useTemplate"),
-            onClick: () => setShowTemplateSelector(true),
+            onClick: () =>
+              navigate(
+                `/dashboard/${entitySlug}/projects/${projectId}/endpoints/templates`,
+              ),
             icon: <TemplateIcon />,
             variant: "secondary",
           },
@@ -461,13 +441,6 @@ function ProjectDetailPage() {
         spacing="md"
       />
 
-      {/* Endpoint Template Selector Modal */}
-      {showTemplateSelector && (
-        <EndpointTemplateSelector
-          onApply={handleApplyEndpointTemplate}
-          onClose={() => setShowTemplateSelector(false)}
-        />
-      )}
     </div>
   );
 }

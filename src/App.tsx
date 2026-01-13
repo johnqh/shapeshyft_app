@@ -58,6 +58,9 @@ const ProjectDetailPage = lazy(
   () => import("./pages/dashboard/ProjectDetailPage"),
 );
 const EndpointNewPage = lazy(() => import("./pages/dashboard/EndpointNewPage"));
+const EndpointTemplatesPage = lazy(
+  () => import("./pages/dashboard/EndpointTemplatesPage"),
+);
 const EndpointDetailPage = lazy(
   () => import("./pages/dashboard/EndpointDetailPage"),
 );
@@ -236,6 +239,10 @@ function App() {
                                 <Route
                                   path="projects/:projectId"
                                   element={<ProjectDetailPage />}
+                                />
+                                <Route
+                                  path="projects/:projectId/endpoints/templates"
+                                  element={<EndpointTemplatesPage />}
                                 />
                                 <Route
                                   path="projects/:projectId/endpoints/new"
