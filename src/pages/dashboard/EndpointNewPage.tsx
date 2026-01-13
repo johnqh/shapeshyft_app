@@ -1,19 +1,29 @@
-import { useState } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   useKeysManager,
   useEndpointsManager,
 } from "@sudobility/shapeshyft_lib";
-import type { HttpMethod } from "@sudobility/shapeshyft_types";
+import type { LlmProvider } from "@sudobility/shapeshyft_types";
+import {
+  PROVIDER_MODELS,
+  DEFAULT_PROVIDER_MODEL,
+  PROVIDER_ALLOWS_CUSTOM_MODEL,
+  getModelCapabilities,
+} from "@sudobility/shapeshyft_types";
+import {
+  PhotoIcon,
+  MicrophoneIcon,
+  VideoCameraIcon,
+} from "@heroicons/react/24/outline";
+import { EditableSelector, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import SchemaEditor from "../../components/dashboard/SchemaEditor";
-
-const HTTP_METHODS: HttpMethod[] = ["GET", "POST"];
 
 interface FieldErrors {
   displayName?: string;
@@ -36,8 +46,9 @@ function EndpointNewPage() {
   const [displayName, setDisplayName] = useState("");
   const [endpointName, setEndpointName] = useState("");
   const [instructions, setInstructions] = useState("");
-  const [httpMethod, setHttpMethod] = useState<HttpMethod>("POST");
   const [llmKeyId, setLlmKeyId] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
+  const [customModel, setCustomModel] = useState("");
   const [context, setContext] = useState("");
   const [useInputSchema, setUseInputSchema] = useState(false);
   const [useOutputSchema, setUseOutputSchema] = useState(false);
@@ -68,6 +79,54 @@ function EndpointNewPage() {
     projectId: projectId ?? "",
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
+
+  // Get provider from selected key
+  const selectedKey = keys.find((k) => k.uuid === llmKeyId);
+  const provider = selectedKey?.provider as LlmProvider | undefined;
+
+  // Get available models for the selected provider
+  const availableModels = useMemo(() => {
+    if (!provider) return [];
+    return PROVIDER_MODELS[provider] ?? [];
+  }, [provider]);
+
+  // Build model options with capability icons
+  const modelOptions = useMemo(() => {
+    return availableModels.map((model) => {
+      const caps = getModelCapabilities(model);
+      const inputIcons: ReactNode[] = [];
+      const outputIcons: ReactNode[] = [];
+
+      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
+      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
+      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
+      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
+      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+
+      const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
+      const label = hasIcons ? (
+        <span className="flex items-center gap-2">
+          <span className="font-mono">{model}</span>
+          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+        </span>
+      ) : model;
+
+      return { value: model, label, searchLabel: model };
+    });
+  }, [availableModels]);
+
+  // Whether custom model input is allowed
+  const allowsCustomModel = provider ? PROVIDER_ALLOWS_CUSTOM_MODEL[provider] : false;
+
+  // The effective model (selected or custom)
+  const effectiveModel = useMemo(() => {
+    if (allowsCustomModel && customModel.trim()) {
+      return customModel.trim();
+    }
+    return selectedModel || (provider ? DEFAULT_PROVIDER_MODEL[provider] : "");
+  }, [selectedModel, customModel, allowsCustomModel, provider]);
+
 
   // Auto-generate endpoint name from display name
   const generateEndpointName = (name: string) => {
@@ -188,9 +247,9 @@ function EndpointNewPage() {
         endpoint_name: endpointName.trim(),
         display_name: displayName.trim(),
         instructions: instructions.trim() || null,
-        http_method: httpMethod,
+        http_method: "POST",
         llm_key_id: llmKeyId,
-        model: null,
+        model: effectiveModel || null,
         context: context.trim() || null,
         input_schema: useInputSchema ? JSON.parse(inputSchema) : null,
         output_schema: useOutputSchema ? JSON.parse(outputSchema) : null,
@@ -309,24 +368,6 @@ function EndpointNewPage() {
               />
             </div>
 
-            {/* HTTP Method */}
-            <div>
-              <label className="block text-sm font-medium text-theme-text-primary mb-1">
-                {t("endpoints.form.httpMethod")}
-              </label>
-              <select
-                value={httpMethod}
-                onChange={(e) => setHttpMethod(e.target.value as HttpMethod)}
-                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-              >
-                {HTTP_METHODS.map((method) => (
-                  <option key={method} value={method}>
-                    {method}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             {/* LLM Key */}
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-1">
@@ -343,11 +384,19 @@ function EndpointNewPage() {
                   <select
                     value={llmKeyId}
                     onChange={(e) => {
-                      setLlmKeyId(e.target.value);
+                      const newKeyId = e.target.value;
+                      setLlmKeyId(newKeyId);
+                      // Reset model when provider changes
+                      const newKey = keys.find((k) => k.uuid === newKeyId);
+                      const oldKey = keys.find((k) => k.uuid === llmKeyId);
+                      if (newKey?.provider !== oldKey?.provider) {
+                        setSelectedModel("");
+                        setCustomModel("");
+                      }
                       if (touched.llmKeyId) {
                         setFieldErrors((prev) => ({
                           ...prev,
-                          llmKeyId: validateLlmKeyId(e.target.value),
+                          llmKeyId: validateLlmKeyId(newKeyId),
                         }));
                       }
                     }}
@@ -363,6 +412,45 @@ function EndpointNewPage() {
                   </select>
                   {renderError("llmKeyId")}
                 </>
+              )}
+            </div>
+
+            {/* Model Selection */}
+            <div>
+              <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                {t("endpoints.form.model")}
+              </label>
+              {allowsCustomModel ? (
+                <EditableSelector
+                  options={modelOptions}
+                  value={effectiveModel}
+                  onChange={(value: string) => {
+                    setSelectedModel(value);
+                    setCustomModel("");
+                  }}
+                  disabled={!provider}
+                  placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                  inputClassName="font-mono text-sm"
+                />
+              ) : (
+                <Select
+                  value={effectiveModel}
+                  onValueChange={(value: string) => {
+                    setSelectedModel(value);
+                  }}
+                  disabled={!provider}
+                >
+                  <SelectTrigger className="w-full font-mono text-sm">
+                    <SelectValue placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {modelOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               )}
             </div>
           </div>

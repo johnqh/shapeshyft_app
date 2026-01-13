@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, type ReactNode } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -7,6 +7,21 @@ import {
   useEndpointTemplates,
   type EndpointTemplateWithCategory,
 } from "@sudobility/shapeshyft_lib";
+import type { LlmProvider } from "@sudobility/shapeshyft_types";
+import {
+  PROVIDER_MODELS,
+  DEFAULT_PROVIDER_MODEL,
+  PROVIDER_ALLOWS_CUSTOM_MODEL,
+  detectRequiredCapabilities,
+  filterModelsByCapabilities,
+  getModelCapabilities,
+} from "@sudobility/shapeshyft_types";
+import {
+  PhotoIcon,
+  MicrophoneIcon,
+  VideoCameraIcon,
+} from "@heroicons/react/24/outline";
+import { EditableSelector, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
@@ -26,6 +41,8 @@ function EndpointTemplatesPage() {
   const [selectedTemplate, setSelectedTemplate] =
     useState<EndpointTemplateWithCategory | null>(null);
   const [selectedKeyId, setSelectedKeyId] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
+  const [customModel, setCustomModel] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -52,6 +69,64 @@ function EndpointTemplatesPage() {
   const { endpointTemplates, getCategories, applyEndpointTemplate } =
     useEndpointTemplates();
   const categories = getCategories();
+
+  // Get provider from selected key
+  const selectedKey = keys.find((k) => k.uuid === selectedKeyId);
+  const provider = selectedKey?.provider as LlmProvider | undefined;
+
+  // Detect required capabilities from selected template
+  const requiredCapabilities = useMemo(() => {
+    if (!selectedTemplate) return {};
+    return detectRequiredCapabilities(
+      selectedTemplate.input_schema as Record<string, unknown> | null,
+      selectedTemplate.output_schema as Record<string, unknown> | null
+    );
+  }, [selectedTemplate]);
+
+  // Get available models for the selected provider, filtered by capabilities
+  const availableModels = useMemo(() => {
+    if (!provider) return [];
+    const providerModels = PROVIDER_MODELS[provider] ?? [];
+    return filterModelsByCapabilities(providerModels, requiredCapabilities);
+  }, [provider, requiredCapabilities]);
+
+  // Build model options with capability icons
+  const modelOptions = useMemo(() => {
+    return availableModels.map((model) => {
+      const caps = getModelCapabilities(model);
+      const inputIcons: ReactNode[] = [];
+      const outputIcons: ReactNode[] = [];
+
+      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
+      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
+      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
+      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
+      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+
+      const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
+      const label = hasIcons ? (
+        <span className="flex items-center gap-2">
+          <span className="font-mono">{model}</span>
+          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+        </span>
+      ) : model;
+
+      return { value: model, label, searchLabel: model };
+    });
+  }, [availableModels]);
+
+  // Whether custom model input is allowed
+  const allowsCustomModel = provider ? PROVIDER_ALLOWS_CUSTOM_MODEL[provider] : false;
+
+  // The effective model (selected or custom)
+  const effectiveModel = useMemo(() => {
+    if (allowsCustomModel && customModel.trim()) {
+      return customModel.trim();
+    }
+    return selectedModel || (provider ? DEFAULT_PROVIDER_MODEL[provider] : "");
+  }, [selectedModel, customModel, allowsCustomModel, provider]);
+
 
   // Filter templates by category
   const filteredTemplates = selectedCategory
@@ -84,7 +159,10 @@ function EndpointTemplatesPage() {
         selectedTemplate,
         selectedKeyId,
       );
-      const newEndpoint = await createEndpoint(endpointRequest);
+      const newEndpoint = await createEndpoint({
+        ...endpointRequest,
+        model: effectiveModel || null,
+      });
       if (newEndpoint) {
         success(t("common:toast.success.created"));
         navigate(
@@ -213,7 +291,17 @@ function EndpointTemplatesPage() {
               <select
                 id="llmKey"
                 value={selectedKeyId}
-                onChange={(e) => setSelectedKeyId(e.target.value)}
+                onChange={(e) => {
+                  const newKeyId = e.target.value;
+                  setSelectedKeyId(newKeyId);
+                  // Reset model when provider changes
+                  const newKey = keys.find((k) => k.uuid === newKeyId);
+                  const oldKey = keys.find((k) => k.uuid === selectedKeyId);
+                  if (newKey?.provider !== oldKey?.provider) {
+                    setSelectedModel("");
+                    setCustomModel("");
+                  }
+                }}
                 className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
               >
                 <option value="">{t("templates.selectKey")}</option>
@@ -223,6 +311,45 @@ function EndpointTemplatesPage() {
                   </option>
                 ))}
               </select>
+            )}
+          </div>
+
+          {/* Model Selection */}
+          <div>
+            <label className="block text-sm font-medium text-theme-text-primary mb-1">
+              {t("endpoints.form.model")}
+            </label>
+            {allowsCustomModel ? (
+              <EditableSelector
+                options={modelOptions}
+                value={effectiveModel}
+                onChange={(value: string) => {
+                  setSelectedModel(value);
+                  setCustomModel("");
+                }}
+                disabled={!provider}
+                placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                inputClassName="font-mono text-sm"
+              />
+            ) : (
+              <Select
+                value={effectiveModel}
+                onValueChange={(value: string) => {
+                  setSelectedModel(value);
+                }}
+                disabled={!provider}
+              >
+                <SelectTrigger className="w-full font-mono text-sm">
+                  <SelectValue placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  {modelOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             )}
           </div>
 
