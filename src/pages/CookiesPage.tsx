@@ -117,12 +117,10 @@ function CookiesPage() {
         description={t("seo.description", { defaultValue: `Cookie policy for ${appName}. Learn about our privacy-focused approach.`, appName })}
       />
 
-      <main className="flex-1 overflow-auto">
-        <AppTextPage
-          text={text}
-          lastUpdatedDate={new Date().toLocaleDateString()}
-        />
-      </main>
+      <AppTextPage
+        text={text}
+        lastUpdatedDate={new Date().toLocaleDateString()}
+      />
     </ScreenContainer>
   );
 }

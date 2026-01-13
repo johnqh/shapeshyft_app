@@ -250,15 +250,13 @@ function SitemapPage() {
         keywords={`sitemap, navigation, ${appName} pages`}
       />
 
-      <main className="flex-1 overflow-auto">
-        <AppSitemapPage
-          text={text}
-          sections={sections}
-          languages={languageOptions}
-          quickLinks={quickLinks}
-          LinkComponent={LinkWrapper}
-        />
-      </main>
+      <AppSitemapPage
+        text={text}
+        sections={sections}
+        languages={languageOptions}
+        quickLinks={quickLinks}
+        LinkComponent={LinkWrapper}
+      />
     </ScreenContainer>
   );
 }

@@ -82,12 +82,10 @@ function TermsPage() {
         description={t("seo.description", { appName })}
       />
 
-      <main className="flex-1 overflow-auto">
-        <AppTextPage
-          text={text}
-          lastUpdatedDate={new Date().toLocaleDateString()}
-        />
-      </main>
+      <AppTextPage
+        text={text}
+        lastUpdatedDate={new Date().toLocaleDateString()}
+      />
     </ScreenContainer>
   );
 }
