@@ -155,8 +155,7 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Компания Anthropic",
-      "gemini": "Google Gemini",
-      "llm_server": "Сервер пользовательской LM"
+      "gemini": "Google Gemini"
     }
   },
   "analytics": {

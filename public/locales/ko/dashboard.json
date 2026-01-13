@@ -155,8 +155,7 @@
     "providers": {
       "openai": "오픈AI",
       "anthropic": "애너스틱",
-      "gemini": "Google Gemini",
-      "llm_server": "사용자 지정 LM 서버"
+      "gemini": "Google Gemini"
     }
   },
   "analytics": {

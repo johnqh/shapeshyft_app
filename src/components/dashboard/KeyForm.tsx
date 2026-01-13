@@ -11,8 +11,19 @@ import type {
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 
-interface KeyFormProps {
-  apiKey?: LlmApiKeySafe;
+/**
+ * Form for adding/editing LLM Provider configurations.
+ *
+ * Each configuration has:
+ * - label: Display name shown in the UI (e.g., "OpenAI", "My Custom GPT")
+ * - provider: The LLM provider type (openai, anthropic, gemini, etc.)
+ * - apiKeySecret: The actual API key credential (encrypted at rest)
+ * - endpointUrl: Optional custom endpoint (required for lm_studio provider)
+ */
+
+interface ProviderFormProps {
+  /** Existing provider config for editing, undefined for creating new */
+  existingConfig?: LlmApiKeySafe;
   onSubmit: (data: LlmApiKeyCreateRequest) => Promise<void>;
   onClose: () => void;
   isLoading?: boolean;
@@ -22,19 +33,31 @@ interface KeyFormProps {
 }
 
 interface FieldErrors {
-  keyName?: string;
-  apiKey?: string;
+  label?: string;
+  apiKeySecret?: string;
   endpointUrl?: string;
 }
 
-function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl, testMode }: KeyFormProps) {
+function ProviderForm({
+  existingConfig,
+  onSubmit,
+  onClose,
+  isLoading,
+  networkClient,
+  baseUrl,
+  testMode,
+}: ProviderFormProps) {
   const { t } = useTranslation("dashboard");
-  const isEditing = !!apiKey;
+  const isEditing = !!existingConfig;
 
-  // Fetch providers from API
-  const { providers, isLoadingProviders } = useProviders(networkClient, baseUrl, testMode);
+  // Fetch available providers from API
+  const { providers, isLoadingProviders } = useProviders(
+    networkClient,
+    baseUrl,
+    testMode
+  );
 
-  // Build provider options from API data
+  // Build provider dropdown options
   const providerOptions = useMemo(() => {
     return providers.map((p) => ({
       value: p.id,
@@ -43,22 +66,41 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
     }));
   }, [providers]);
 
-  const [keyName, setKeyName] = useState(apiKey?.key_name ?? "");
-  const [provider, setProvider] = useState<LlmProvider>(
-    apiKey?.provider ?? "openai",
+  // Form state
+  const [label, setLabel] = useState(existingConfig?.key_name ?? "");
+  const [labelManuallySet, setLabelManuallySet] = useState(
+    !!existingConfig?.key_name
   );
-  const [apiKeyValue, setApiKeyValue] = useState("");
-  const [endpointUrl, setEndpointUrl] = useState(apiKey?.endpoint_url ?? "");
-  const [showApiKey, setShowApiKey] = useState(false);
+  const [selectedProvider, setSelectedProvider] = useState<LlmProvider>(
+    existingConfig?.provider ?? "openai"
+  );
+  const [apiKeySecret, setApiKeySecret] = useState("");
+  const [endpointUrl, setEndpointUrl] = useState(
+    existingConfig?.endpoint_url ?? ""
+  );
+  const [showApiKeySecret, setShowApiKeySecret] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
-  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>(
+    {}
+  );
 
-  // Get whether current provider requires endpoint URL
+  // Check if selected provider requires a custom endpoint URL
   const requiresEndpointUrl = useMemo(() => {
-    const providerConfig = providers.find((p) => p.id === provider);
-    return providerConfig?.requiresEndpointUrl ?? false;
-  }, [providers, provider]);
+    const config = providers.find((p) => p.id === selectedProvider);
+    return config?.requiresEndpointUrl ?? false;
+  }, [providers, selectedProvider]);
 
+  // Compute effective label: auto-derive from provider name if user hasn't set one
+  const effectiveLabel = useMemo(() => {
+    if (label.trim()) return label;
+    if (!labelManuallySet && providers.length > 0) {
+      const config = providers.find((p) => p.id === selectedProvider);
+      return config?.name ?? "";
+    }
+    return "";
+  }, [label, labelManuallySet, providers, selectedProvider]);
+
+  // Handle escape key to close modal
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -67,20 +109,21 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
     return () => document.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
-  const validateKeyName = (value: string): string | undefined => {
+  // Validation functions
+  const validateLabel = (value: string): string | undefined => {
     if (!value.trim()) {
       return t("keys.form.errors.nameRequired");
     }
     return undefined;
   };
 
-  const validateApiKey = (
+  const validateApiKeySecret = (
     value: string,
-    currentProvider: LlmProvider,
+    provider: LlmProvider
   ): string | undefined => {
-    // API key not required for providers that require endpoint URL (like llm_server) or when editing
-    const providerConfig = providers.find((p) => p.id === currentProvider);
-    if (providerConfig?.requiresEndpointUrl || isEditing) {
+    // API key not required for endpoint-based providers (like lm_studio) or when editing
+    const config = providers.find((p) => p.id === provider);
+    if (config?.requiresEndpointUrl || isEditing) {
       return undefined;
     }
     if (!value.trim()) {
@@ -91,78 +134,82 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
 
   const validateEndpointUrl = (
     value: string,
-    currentProvider: LlmProvider,
+    provider: LlmProvider
   ): string | undefined => {
-    const providerConfig = providers.find((p) => p.id === currentProvider);
-    if (providerConfig?.requiresEndpointUrl && !value.trim()) {
+    const config = providers.find((p) => p.id === provider);
+    if (config?.requiresEndpointUrl && !value.trim()) {
       return t("keys.form.errors.endpointRequired");
     }
     return undefined;
   };
 
+  // Field blur handler - validates on blur
   const handleBlur = (field: string) => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
+    setTouchedFields((prev) => ({ ...prev, [field]: true }));
 
     let error: string | undefined;
     switch (field) {
-      case "keyName":
-        error = validateKeyName(keyName);
+      case "label":
+        error = validateLabel(effectiveLabel);
         break;
-      case "apiKey":
-        error = validateApiKey(apiKeyValue, provider);
+      case "apiKeySecret":
+        error = validateApiKeySecret(apiKeySecret, selectedProvider);
         break;
       case "endpointUrl":
-        error = validateEndpointUrl(endpointUrl, provider);
+        error = validateEndpointUrl(endpointUrl, selectedProvider);
         break;
     }
 
     setFieldErrors((prev) => ({ ...prev, [field]: error }));
   };
 
+  // Field change handler
   const handleFieldChange = (field: string, value: string) => {
     switch (field) {
-      case "keyName":
-        setKeyName(value);
-        if (touched.keyName) {
+      case "label":
+        setLabel(value);
+        setLabelManuallySet(true);
+        if (touchedFields.label) {
           setFieldErrors((prev) => ({
             ...prev,
-            keyName: validateKeyName(value),
+            label: validateLabel(value),
           }));
         }
         break;
-      case "apiKey":
-        setApiKeyValue(value);
-        if (touched.apiKey) {
+      case "apiKeySecret":
+        setApiKeySecret(value);
+        if (touchedFields.apiKeySecret) {
           setFieldErrors((prev) => ({
             ...prev,
-            apiKey: validateApiKey(value, provider),
+            apiKeySecret: validateApiKeySecret(value, selectedProvider),
           }));
         }
         break;
       case "endpointUrl":
         setEndpointUrl(value);
-        if (touched.endpointUrl) {
+        if (touchedFields.endpointUrl) {
           setFieldErrors((prev) => ({
             ...prev,
-            endpointUrl: validateEndpointUrl(value, provider),
+            endpointUrl: validateEndpointUrl(value, selectedProvider),
           }));
         }
         break;
     }
   };
 
+  // Form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate all fields
     const errors: FieldErrors = {
-      keyName: validateKeyName(keyName),
-      apiKey: validateApiKey(apiKeyValue, provider),
-      endpointUrl: validateEndpointUrl(endpointUrl, provider),
+      label: validateLabel(effectiveLabel),
+      apiKeySecret: validateApiKeySecret(apiKeySecret, selectedProvider),
+      endpointUrl: validateEndpointUrl(endpointUrl, selectedProvider),
     };
 
     setFieldErrors(errors);
-    setTouched({ keyName: true, apiKey: true, endpointUrl: true });
+    setTouchedFields({ label: true, apiKeySecret: true, endpointUrl: true });
 
     if (Object.values(errors).some(Boolean)) {
       return;
@@ -170,9 +217,9 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
 
     try {
       await onSubmit({
-        key_name: keyName.trim(),
-        provider,
-        api_key: apiKeyValue.trim() || undefined,
+        key_name: effectiveLabel.trim(),
+        provider: selectedProvider,
+        api_key: apiKeySecret.trim() || undefined,
         endpoint_url: requiresEndpointUrl ? endpointUrl.trim() : undefined,
       });
     } catch (err) {
@@ -180,13 +227,14 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
         t("common.error"),
         err instanceof Error ? err.message : t("common.errorOccurred"),
         InfoType.ERROR,
-        5000,
+        5000
       );
     }
   };
 
+  // UI helpers
   const hasError = (field: keyof FieldErrors) =>
-    touched[field] && fieldErrors[field];
+    touchedFields[field] && fieldErrors[field];
 
   const renderError = (field: keyof FieldErrors) => {
     if (!hasError(field)) return null;
@@ -241,8 +289,11 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4 flex-1 overflow-y-auto">
-          {/* Provider */}
+        <form
+          onSubmit={handleSubmit}
+          className="p-6 space-y-4 flex-1 overflow-y-auto"
+        >
+          {/* Provider Selection */}
           <div>
             <label className="block text-sm font-medium text-theme-text-primary mb-1">
               {t("keys.form.provider")}
@@ -251,8 +302,10 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
               <div className="h-10 bg-theme-bg-secondary rounded-lg animate-pulse" />
             ) : (
               <select
-                value={provider}
-                onChange={(e) => setProvider(e.target.value as LlmProvider)}
+                value={selectedProvider}
+                onChange={(e) =>
+                  setSelectedProvider(e.target.value as LlmProvider)
+                }
                 disabled={isEditing}
                 className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none disabled:opacity-50"
                 autoFocus
@@ -266,20 +319,20 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
             )}
           </div>
 
-          {/* Key Name */}
+          {/* Label (Display Name) */}
           <div>
             <label className="block text-sm font-medium text-theme-text-primary mb-1">
               {t("keys.form.keyName")}
             </label>
             <input
               type="text"
-              value={keyName}
-              onChange={(e) => handleFieldChange("keyName", e.target.value)}
-              onBlur={() => handleBlur("keyName")}
+              value={effectiveLabel}
+              onChange={(e) => handleFieldChange("label", e.target.value)}
+              onBlur={() => handleBlur("label")}
               placeholder={t("keys.form.keyNamePlaceholder")}
-              className={inputClassName("keyName")}
+              className={inputClassName("label")}
             />
-            {renderError("keyName")}
+            {renderError("label")}
           </div>
 
           {/* Endpoint URL (for providers that require it) */}
@@ -302,7 +355,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
             </div>
           )}
 
-          {/* API Key (not needed for providers that require endpoint URL) */}
+          {/* API Key Secret (not needed for endpoint-based providers) */}
           {!requiresEndpointUrl && (
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-1">
@@ -315,26 +368,28 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
               </label>
               <div className="relative">
                 <input
-                  type={showApiKey ? "text" : "password"}
-                  value={apiKeyValue}
-                  onChange={(e) => handleFieldChange("apiKey", e.target.value)}
-                  onBlur={() => handleBlur("apiKey")}
+                  type={showApiKeySecret ? "text" : "password"}
+                  value={apiKeySecret}
+                  onChange={(e) =>
+                    handleFieldChange("apiKeySecret", e.target.value)
+                  }
+                  onBlur={() => handleBlur("apiKeySecret")}
                   placeholder={
                     isEditing
                       ? "••••••••••••••••"
                       : t("keys.form.apiKeyPlaceholder")
                   }
                   className={inputClassName(
-                    "apiKey",
-                    "pr-10 font-mono text-sm",
+                    "apiKeySecret",
+                    "pr-10 font-mono text-sm"
                   )}
                 />
                 <button
                   type="button"
-                  onClick={() => setShowApiKey(!showApiKey)}
+                  onClick={() => setShowApiKeySecret(!showApiKeySecret)}
                   className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-theme-hover-bg rounded"
                 >
-                  {showApiKey ? (
+                  {showApiKeySecret ? (
                     <svg
                       className="w-5 h-5 text-theme-text-tertiary"
                       fill="none"
@@ -371,8 +426,8 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
                   )}
                 </button>
               </div>
-              {renderError("apiKey")}
-              {!hasError("apiKey") && (
+              {renderError("apiKeySecret")}
+              {!hasError("apiKeySecret") && (
                 <p className="mt-1 text-xs text-theme-text-tertiary">
                   {t("keys.form.apiKeyHint")}
                 </p>
@@ -392,7 +447,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
             </button>
             <button
               type="submit"
-              disabled={isLoading || !keyName.trim()}
+              disabled={isLoading || !effectiveLabel.trim()}
               className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
@@ -429,4 +484,8 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading, networkClient, baseUrl,
   );
 }
 
-export default KeyForm;
+// Export with legacy name for backwards compatibility
+export default ProviderForm;
+
+// Also export with new name for future use
+export { ProviderForm };

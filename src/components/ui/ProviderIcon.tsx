@@ -125,7 +125,7 @@ export function ProviderIcon({
       return <AnthropicIcon className={combinedClass} />;
     case "gemini":
       return <GeminiIcon className={combinedClass} />;
-    case "llm_server":
+    case "lm_studio":
       return <LMStudioIcon className={combinedClass} />;
     default:
       return <DefaultIcon className={combinedClass} />;

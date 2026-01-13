@@ -155,8 +155,7 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
-      "gemini": "Google Gemini",
-      "llm_server": "自訂LM伺服器"
+      "gemini": "Google Gemini"
     }
   },
   "analytics": {

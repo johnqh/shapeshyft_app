@@ -339,9 +339,9 @@ Modal form for adding/editing LLM API keys.
 **Required fields:**
 
 - `key_name` (user-facing name)
-- `provider` (dropdown: openai, anthropic, gemini, llm_server)
+- `provider` (dropdown: openai, anthropic, gemini, lm_studio)
 - `api_key` (password field - only required on create)
-- `endpoint_url` (only for llm_server provider)
+- `endpoint_url` (only for lm_studio provider)
 
 **Features:**
 
@@ -530,8 +530,8 @@ interface LlmApiKeySafe {
   uuid: string;
   user_id: string;
   key_name: string;
-  provider: "openai" | "anthropic" | "gemini" | "llm_server";
-  endpoint_url: string | null; // only for llm_server
+  provider: "openai" | "anthropic" | "gemini" | "lm_studio";
+  endpoint_url: string | null; // only for lm_studio
   has_api_key: boolean;
   is_active: boolean;
   created_at: string;

@@ -84,7 +84,7 @@ function DashboardPage() {
 
     if (pathname.includes("/endpoints/") && endpointId) {
       const endpoint = endpoints.find((e) => e.uuid === endpointId);
-      return endpoint?.display_name ?? t("endpoints.detail");
+      return endpoint?.display_name ?? t("endpoints.detailTitle");
     }
     if (pathname.includes("/projects/templates")) {
       return t("templates.title");

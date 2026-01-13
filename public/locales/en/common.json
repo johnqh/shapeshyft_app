@@ -55,6 +55,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "create": "Create",
+    "creating": "Creating...",
     "confirm": "Confirm",
     "close": "Close",
     "copy": "Copy",
@@ -69,10 +70,15 @@
     "notSet": "Not set",
     "disabled": "Disabled",
     "refresh": "Refresh",
+    "remove": "Remove",
+    "dismiss": "Dismiss",
     "yes": "Yes",
     "no": "No",
     "errorOccurred": "An error occurred",
-    "optional": "optional"
+    "optional": "optional",
+    "goBack": "Go Back",
+    "saved": "Saved",
+    "deleted": "Deleted"
   },
   "toast": {
     "success": {

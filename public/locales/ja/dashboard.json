@@ -155,8 +155,7 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "アントロピック",
-      "gemini": "Google Gemini",
-      "llm_server": "カスタムLMサーバー"
+      "gemini": "Google Gemini"
     }
   },
   "analytics": {

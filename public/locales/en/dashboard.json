@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "Projects",
+    "detail": "Project",
     "empty": "No projects yet",
     "emptyDescription": "Create your first project to get started",
     "create": "Create Project",
@@ -39,11 +40,13 @@
         "nameRequired": "Display name is required",
         "nameTooShort": "Name must be at least 2 characters"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Slug",
+      "create": "Create Project"
     }
   },
   "endpoints": {
     "title": "Endpoints",
+    "detailTitle": "Endpoint",
     "empty": "No endpoints yet",
     "emptyDescription": "Create your first endpoint for this project",
     "create": "Create Endpoint",
@@ -171,6 +174,12 @@
       "openai": "OpenAI",
       "anthropic": "Anthropic",
       "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "Perplexity",
       "llm_server": "Custom LM Server"
     }
   },
@@ -289,6 +298,9 @@
       "exceeded": "{{name}} has exceeded budget",
       "usage": "Current usage: {{percentage}}%"
     }
+  },
+  "subscription": {
+    "title": "Subscription"
   },
   "schema": {
     "editor": "Schema Editor",

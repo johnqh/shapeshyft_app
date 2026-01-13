@@ -50,7 +50,7 @@ const PROVIDER_COLORS: Record<string, string> = {
   openai: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
   anthropic: "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400",
   gemini: "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400",
-  llm_server: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
+  lm_studio: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
 };
 
 function KeysPage() {
@@ -241,7 +241,7 @@ function KeysPage() {
         spacing="md"
       />
 
-      {/* Add Key Modal */}
+      {/* Add Provider Modal */}
       {showAddModal && (
         <KeyForm
           onSubmit={async (data) => {
@@ -268,10 +268,10 @@ function KeysPage() {
         />
       )}
 
-      {/* Edit Key Modal */}
+      {/* Edit Provider Modal */}
       {editingKey && (
         <KeyForm
-          apiKey={keys.find((k) => k.uuid === editingKey)}
+          existingConfig={keys.find((k) => k.uuid === editingKey)}
           onSubmit={async (data) => {
             try {
               await updateKey(editingKey, {

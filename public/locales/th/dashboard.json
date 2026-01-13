@@ -155,8 +155,7 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "บริษัท Anthropic",
-      "gemini": "Google Gemini",
-      "llm_server": "เซิร์ฟเวอร์ LM แบบกำหนดเอง"
+      "gemini": "Google Gemini"
     }
   },
   "analytics": {
