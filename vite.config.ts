@@ -13,6 +13,11 @@ export default defineConfig({
       // Ensure all packages use the same React instance
       react: path.resolve(__dirname, "node_modules/react"),
       "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
+      // Help Vite resolve peer dependencies from nested packages
+      "@revenuecat/purchases-js": path.resolve(
+        __dirname,
+        "node_modules/@revenuecat/purchases-js",
+      ),
     },
   },
   optimizeDeps: {

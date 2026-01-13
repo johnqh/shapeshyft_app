@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Section } from "@sudobility/components";
 import ScreenContainer from "../../components/layout/ScreenContainer";
 import SEO from "../../components/seo/SEO";
 import LocalizedLink from "../../components/layout/LocalizedLink";
@@ -117,115 +118,115 @@ function UseCasesPage() {
         keywords={t("seo.main.keywords")}
       />
 
-      <main className="flex-1 overflow-auto">
-        {/* Hero Section */}
-        <section className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20" />
-          <div className="relative max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold text-theme-text-primary mb-6">
-              {t("main.hero.title")}
-            </h1>
-            <p className="text-lg sm:text-xl text-theme-text-secondary max-w-3xl mx-auto">
-              {t("main.hero.subtitle", { appName })}
-            </p>
-          </div>
-        </section>
+      {/* Hero Section */}
+      <Section
+        spacing="3xl"
+        background="gradient"
+        maxWidth="4xl"
+        className="relative overflow-hidden"
+      >
+        <div className="text-center">
+          <h1 className="text-4xl sm:text-5xl font-bold text-theme-text-primary mb-6">
+            {t("main.hero.title")}
+          </h1>
+          <p className="text-lg sm:text-xl text-theme-text-secondary max-w-3xl mx-auto">
+            {t("main.hero.subtitle", { appName })}
+          </p>
+        </div>
+      </Section>
 
-        {/* Use Cases Grid */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8">
-              {useCases.map((useCase) => {
-                const examples = t(useCase.examplesKey, {
-                  returnObjects: true,
-                }) as string[];
-                return (
-                  <LocalizedLink
-                    key={useCase.id}
-                    to={useCase.href}
-                    className="group bg-theme-bg-secondary rounded-2xl p-8 border border-theme-border hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg transition-all"
-                  >
-                    <div className="text-blue-600 dark:text-blue-400 mb-4">
-                      <useCase.icon />
-                    </div>
-                    <h2 className="text-2xl font-bold text-theme-text-primary mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {t(useCase.titleKey)}
-                    </h2>
-                    <p className="text-theme-text-secondary mb-4">
-                      {t(useCase.descriptionKey)}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {Array.isArray(examples) &&
-                        examples.map((example) => (
-                          <span
-                            key={example}
-                            className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
-                          >
-                            {example}
-                          </span>
-                        ))}
-                    </div>
-                  </LocalizedLink>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Unlimited Possibilities Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-theme-text-primary mb-6">
-              {t("main.flexibility.title")}
-            </h2>
-            <p className="text-lg text-theme-text-secondary mb-8">
-              {t("main.flexibility.description", { appName })}
-            </p>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-              {features.map((feature) => (
-                <div
-                  key={feature.titleKey}
-                  className="bg-theme-bg-primary rounded-xl p-6 border border-theme-border"
-                >
-                  <h3 className="font-semibold text-theme-text-primary mb-2">
-                    {t(feature.titleKey)}
-                  </h3>
-                  <p className="text-sm text-theme-text-secondary">
-                    {t(feature.descriptionKey)}
-                  </p>
+      {/* Use Cases Grid */}
+      <Section spacing="3xl" maxWidth="6xl">
+        <div className="grid md:grid-cols-3 gap-8">
+          {useCases.map((useCase) => {
+            const examples = t(useCase.examplesKey, {
+              returnObjects: true,
+            }) as string[];
+            return (
+              <LocalizedLink
+                key={useCase.id}
+                to={useCase.href}
+                className="group bg-theme-bg-secondary rounded-2xl p-8 border border-theme-border hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-lg transition-all"
+              >
+                <div className="text-blue-600 dark:text-blue-400 mb-4">
+                  <useCase.icon />
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+                <h2 className="text-2xl font-bold text-theme-text-primary mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {t(useCase.titleKey)}
+                </h2>
+                <p className="text-theme-text-secondary mb-4">
+                  {t(useCase.descriptionKey)}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {Array.isArray(examples) &&
+                    examples.map((example) => (
+                      <span
+                        key={example}
+                        className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
+                      >
+                        {example}
+                      </span>
+                    ))}
+                </div>
+              </LocalizedLink>
+            );
+          })}
+        </div>
+      </Section>
 
-        {/* CTA Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-theme-text-primary mb-6">
-              {t("main.cta.title")}
-            </h2>
-            <p className="text-lg text-theme-text-secondary mb-8">
-              {t("main.cta.subtitle", { appName })}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <LocalizedLink
-                to="/docs"
-                className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+      {/* Unlimited Possibilities Section */}
+      <Section spacing="3xl" background="surface" maxWidth="4xl">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-theme-text-primary mb-6">
+            {t("main.flexibility.title")}
+          </h2>
+          <p className="text-lg text-theme-text-secondary mb-8">
+            {t("main.flexibility.description", { appName })}
+          </p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            {features.map((feature) => (
+              <div
+                key={feature.titleKey}
+                className="bg-theme-bg-primary rounded-xl p-6 border border-theme-border"
               >
-                {t("nav.readDocs")}
-              </LocalizedLink>
-              <LocalizedLink
-                to="/pricing"
-                className="inline-block px-8 py-3 bg-theme-bg-secondary text-theme-text-primary font-semibold rounded-lg border border-theme-border hover:border-blue-300 transition-colors"
-              >
-                {t("nav.viewPricing")}
-              </LocalizedLink>
-            </div>
+                <h3 className="font-semibold text-theme-text-primary mb-2">
+                  {t(feature.titleKey)}
+                </h3>
+                <p className="text-sm text-theme-text-secondary">
+                  {t(feature.descriptionKey)}
+                </p>
+              </div>
+            ))}
           </div>
-        </section>
-      </main>
+        </div>
+      </Section>
+
+      {/* CTA Section */}
+      <Section spacing="3xl" maxWidth="4xl">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-theme-text-primary mb-6">
+            {t("main.cta.title")}
+          </h2>
+          <p className="text-lg text-theme-text-secondary mb-8">
+            {t("main.cta.subtitle", { appName })}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <LocalizedLink
+              to="/docs"
+              className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              {t("nav.readDocs")}
+            </LocalizedLink>
+            <LocalizedLink
+              to="/pricing"
+              className="inline-block px-8 py-3 bg-theme-bg-secondary text-theme-text-primary font-semibold rounded-lg border border-theme-border hover:border-blue-300 transition-colors"
+            >
+              {t("nav.viewPricing")}
+            </LocalizedLink>
+          </div>
+        </div>
+      </Section>
     </ScreenContainer>
   );
 }

@@ -7,13 +7,7 @@ import type {
 } from "@sudobility/shapeshyft_types";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
-
-const PROVIDERS: { value: LlmProvider; label: string }[] = [
-  { value: "openai", label: "OpenAI" },
-  { value: "anthropic", label: "Anthropic (Claude)" },
-  { value: "gemini", label: "Google Gemini" },
-  { value: "llm_server", label: "Custom LM Server" },
-];
+import { PROVIDER_OPTIONS } from "../../config/providers-config";
 
 interface KeyFormProps {
   apiKey?: LlmApiKeySafe;
@@ -236,7 +230,7 @@ function KeyForm({ apiKey, onSubmit, onClose, isLoading }: KeyFormProps) {
               className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none disabled:opacity-50"
               autoFocus
             >
-              {PROVIDERS.map((p) => (
+              {PROVIDER_OPTIONS.map((p) => (
                 <option key={p.value} value={p.value}>
                   {p.label}
                 </option>

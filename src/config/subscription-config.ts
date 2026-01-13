@@ -60,7 +60,6 @@ export const getFreeTierFeatures = (t: TFunction): string[] => [
 export const getProductFeatures = (
   packageId: string,
   tSub: TFunction,
-  _tPricing?: TFunction,
 ): string[] => {
   const entitlement = PACKAGE_ENTITLEMENT_MAP[packageId];
 

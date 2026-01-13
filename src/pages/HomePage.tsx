@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useAuthStatus } from "@sudobility/auth-components";
+import { Section } from "@sudobility/components";
 import ScreenContainer from "../components/layout/ScreenContainer";
 import SEO from "../components/seo/SEO";
 import AISearchOptimization from "../components/seo/AISearchOptimization";
@@ -76,9 +77,13 @@ function HomePage() {
         ]}
       />
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20" />
-        <div className="relative max-w-4xl mx-auto text-center">
+      <Section
+        spacing="4xl"
+        background="gradient-primary"
+        maxWidth="4xl"
+        className="relative overflow-hidden"
+      >
+        <div className="text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-theme-text-primary mb-6">
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
               {t("hero.title")}
@@ -102,176 +107,172 @@ function HomePage() {
             </button>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-theme-text-primary mb-4">
-              {t("features.title", { appName })}
-            </h2>
-            <p className="text-lg text-theme-text-secondary">
-              {t("features.subtitle")}
+      <Section spacing="4xl" maxWidth="6xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-theme-text-primary mb-4">
+            {t("features.title", { appName })}
+          </h2>
+          <p className="text-lg text-theme-text-secondary">
+            {t("features.subtitle")}
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Structured Output */}
+          <div className="p-6 bg-theme-bg-secondary rounded-xl">
+            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+              <svg
+                className="w-6 h-6 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
+              {t("features.structuredOutput.title")}
+            </h3>
+            <p className="text-theme-text-secondary text-sm">
+              {t("features.structuredOutput.description", { appName })}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Structured Output */}
-            <div className="p-6 bg-theme-bg-secondary rounded-xl">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
-                {t("features.structuredOutput.title")}
-              </h3>
-              <p className="text-theme-text-secondary text-sm">
-                {t("features.structuredOutput.description", { appName })}
-              </p>
+          {/* Multi-Provider */}
+          <div className="p-6 bg-theme-bg-secondary rounded-xl">
+            <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
+              <svg
+                className="w-6 h-6 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
             </div>
+            <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
+              {t("features.multiProvider.title")}
+            </h3>
+            <p className="text-theme-text-secondary text-sm">
+              {t("features.multiProvider.description")}
+            </p>
+          </div>
 
-            {/* Multi-Provider */}
-            <div className="p-6 bg-theme-bg-secondary rounded-xl">
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
-                {t("features.multiProvider.title")}
-              </h3>
-              <p className="text-theme-text-secondary text-sm">
-                {t("features.multiProvider.description")}
-              </p>
+          {/* Analytics */}
+          <div className="p-6 bg-theme-bg-secondary rounded-xl">
+            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
+              <svg
+                className="w-6 h-6 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                />
+              </svg>
             </div>
+            <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
+              {t("features.analytics.title")}
+            </h3>
+            <p className="text-theme-text-secondary text-sm">
+              {t("features.analytics.description")}
+            </p>
+          </div>
 
-            {/* Analytics */}
-            <div className="p-6 bg-theme-bg-secondary rounded-xl">
-              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-purple-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
-                {t("features.analytics.title")}
-              </h3>
-              <p className="text-theme-text-secondary text-sm">
-                {t("features.analytics.description")}
-              </p>
+          {/* Easy Testing */}
+          <div className="p-6 bg-theme-bg-secondary rounded-xl">
+            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center mb-4">
+              <svg
+                className="w-6 h-6 text-orange-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
             </div>
-
-            {/* Easy Testing */}
-            <div className="p-6 bg-theme-bg-secondary rounded-xl">
-              <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-orange-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
-                {t("features.easyTesting.title")}
-              </h3>
-              <p className="text-theme-text-secondary text-sm">
-                {t("features.easyTesting.description")}
-              </p>
-            </div>
+            <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
+              {t("features.easyTesting.title")}
+            </h3>
+            <p className="text-theme-text-secondary text-sm">
+              {t("features.easyTesting.description")}
+            </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Use Cases Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-theme-bg-secondary">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-theme-text-primary mb-4">
-              {t("useCases.title")}
-            </h2>
-            <p className="text-lg text-theme-text-secondary">
-              {t("useCases.subtitle", { appName })}
+      <Section spacing="4xl" background="surface" maxWidth="6xl">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-theme-text-primary mb-4">
+            {t("useCases.title")}
+          </h2>
+          <p className="text-lg text-theme-text-secondary">
+            {t("useCases.subtitle", { appName })}
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="bg-theme-bg-primary p-8 rounded-xl border border-theme-border">
+            <h3 className="text-xl font-semibold text-theme-text-primary mb-3">
+              {t("useCases.classification.title")}
+            </h3>
+            <p className="text-theme-text-secondary">
+              {t("useCases.classification.description")}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-theme-bg-primary p-8 rounded-xl border border-theme-border">
-              <h3 className="text-xl font-semibold text-theme-text-primary mb-3">
-                {t("useCases.classification.title")}
-              </h3>
-              <p className="text-theme-text-secondary">
-                {t("useCases.classification.description")}
-              </p>
-            </div>
+          <div className="bg-theme-bg-primary p-8 rounded-xl border border-theme-border">
+            <h3 className="text-xl font-semibold text-theme-text-primary mb-3">
+              {t("useCases.extraction.title")}
+            </h3>
+            <p className="text-theme-text-secondary">
+              {t("useCases.extraction.description")}
+            </p>
+          </div>
 
-            <div className="bg-theme-bg-primary p-8 rounded-xl border border-theme-border">
-              <h3 className="text-xl font-semibold text-theme-text-primary mb-3">
-                {t("useCases.extraction.title")}
-              </h3>
-              <p className="text-theme-text-secondary">
-                {t("useCases.extraction.description")}
-              </p>
-            </div>
-
-            <div className="bg-theme-bg-primary p-8 rounded-xl border border-theme-border">
-              <h3 className="text-xl font-semibold text-theme-text-primary mb-3">
-                {t("useCases.generation.title")}
-              </h3>
-              <p className="text-theme-text-secondary">
-                {t("useCases.generation.description")}
-              </p>
-            </div>
+          <div className="bg-theme-bg-primary p-8 rounded-xl border border-theme-border">
+            <h3 className="text-xl font-semibold text-theme-text-primary mb-3">
+              {t("useCases.generation.title")}
+            </h3>
+            <p className="text-theme-text-secondary">
+              {t("useCases.generation.description")}
+            </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+      <Section spacing="4xl" maxWidth="4xl">
+        <div className="text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-theme-text-primary mb-4">
             {t("cta.title")}
           </h2>
@@ -285,7 +286,7 @@ function HomePage() {
             {t("cta.button")}
           </button>
         </div>
-      </section>
+      </Section>
     </ScreenContainer>
   );
 }

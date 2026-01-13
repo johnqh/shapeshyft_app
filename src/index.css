@@ -96,3 +96,11 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Utility for max-width container - matches topbar/footer width */
+/* Note: No padding here - pages/sections add their own px-4 sm:px-6 lg:px-8 to match topbar */
+.container-app {
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+}

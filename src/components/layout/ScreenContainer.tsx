@@ -43,17 +43,22 @@ function ScreenContainer({
   return (
     <LayoutProvider mode="standard">
       <div className="min-h-screen flex flex-col bg-theme-bg-primary">
-        <TopBar variant={topbarVariant} />
+        {/* Sticky header containing topbar and breadcrumbs */}
+        <div className="sticky top-0 z-40">
+          <TopBar variant={topbarVariant} />
 
-        {(showBreadcrumbs || effectiveShareConfig) &&
-          breadcrumbItems.length > 0 && (
-            <BreadcrumbSection
-              items={breadcrumbItems}
-              shareConfig={effectiveShareConfig}
-            />
-          )}
+          {(showBreadcrumbs || effectiveShareConfig) &&
+            breadcrumbItems.length > 0 && (
+              <BreadcrumbSection
+                items={breadcrumbItems}
+                shareConfig={effectiveShareConfig}
+              />
+            )}
+        </div>
 
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <div className="container-app">{children}</div>
+        </main>
 
         {showFooter && <Footer variant={footerVariant} />}
       </div>

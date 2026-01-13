@@ -85,7 +85,7 @@ function PricingPage() {
 
   // Use shared product features helper
   const getFeatures = (packageId: string): string[] => {
-    return getProductFeatures(packageId, tSub, t);
+    return getProductFeatures(packageId, tSub);
   };
 
   // Build labels object from translations
