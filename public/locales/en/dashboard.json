@@ -236,6 +236,18 @@
     "localization": {
       "name": "Localization",
       "description": "Translate text to multiple languages"
+    },
+    "imageRecognition": {
+      "name": "Image Recognition",
+      "description": "Analyze and describe images using vision models"
+    },
+    "imageGeneration": {
+      "name": "Image Generation",
+      "description": "Generate images from text descriptions"
+    },
+    "imageProcessing": {
+      "name": "Image Processing",
+      "description": "Transform and edit images using AI"
     }
   },
   "budgets": {
@@ -273,13 +285,18 @@
     "descriptionPlaceholder": "Property description (optional)",
     "arrayItemSchema": "Array item schema:",
     "clickToEditName": "Click to edit field name",
+    "basicTypes": "Basic Types",
+    "mediaTypes": "Media Types",
     "types": {
       "string": "String",
       "number": "Number",
       "integer": "Integer",
       "boolean": "Boolean",
       "object": "Object",
-      "array": "Array"
+      "array": "Array",
+      "image": "Image",
+      "audio": "Audio",
+      "video": "Video"
     }
   },
   "settings": {
@@ -372,5 +389,22 @@
       "message": "You've reached your plan's rate limit. Upgrade your subscription for higher limits.",
       "upgradeButton": "Upgrade Plan"
     }
+  },
+  "media": {
+    "uploadTitle": "Media Input",
+    "dropOrClick": "Drop {{type}} here or click to browse",
+    "maxSize": "Max {{size}}",
+    "errorSize": "File too large. Maximum size is {{max}}",
+    "errorType": "Invalid file type for {{type}}",
+    "download": "Download",
+    "clickToExpand": "Click to expand",
+    "outputTitle": "Media Output",
+    "modeFile": "Upload",
+    "modeUrl": "URL",
+    "urlPlaceholder": "Enter {{type}} URL...",
+    "urlHint": "Enter a publicly accessible URL for the {{type}}",
+    "submitUrl": "Add",
+    "errorUrlRequired": "Please enter a URL",
+    "errorUrlInvalid": "Please enter a valid URL"
   }
 }

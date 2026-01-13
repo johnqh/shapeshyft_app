@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,13 @@ import {
   DEFAULT_PROVIDER_MODEL,
   PROVIDER_ALLOWS_CUSTOM_MODEL,
   getModelPricing,
+  getModelCapabilities,
 } from "@sudobility/shapeshyft_types";
+import {
+  PhotoIcon,
+  MicrophoneIcon,
+  VideoCameraIcon,
+} from "@heroicons/react/24/outline";
 import {
   Tabs,
   TabsList,
@@ -31,6 +37,7 @@ import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useApi } from "../../hooks/useApi";
 import SchemaEditor from "./SchemaEditor";
+import { ProviderIcon } from "../ui/ProviderIcon";
 
 const HTTP_METHODS: HttpMethod[] = ["GET", "POST"];
 
@@ -122,12 +129,33 @@ function EndpointForm({
     return PROVIDER_MODELS[provider] ?? [];
   }, [provider]);
 
-  // Build model options
+  // Build model options with capability icons
+  // Blue = input capability, Green = output capability
   const modelOptions = useMemo(() => {
-    return availableModels.map((model) => ({
-      value: model,
-      label: model,
-    }));
+    return availableModels.map((model) => {
+      const caps = getModelCapabilities(model);
+      const inputIcons: ReactNode[] = [];
+      const outputIcons: ReactNode[] = [];
+
+      // Input capabilities (blue)
+      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
+      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
+      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+      // Output capabilities (green)
+      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
+      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
+      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+
+      const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
+      const label = hasIcons ? (
+        <span className="flex items-center gap-2">
+          <span className="font-mono">{model}</span>
+          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+        </span>
+      ) : model;
+
+      return { value: model, label, searchLabel: model };
+    });
   }, [availableModels]);
 
   // Whether custom model input is allowed
@@ -540,7 +568,11 @@ function EndpointForm({
                         <SelectContent>
                           {keys.map((key) => (
                             <SelectItem key={key.uuid} value={key.uuid}>
-                              {key.key_name} ({key.provider})
+                              <span className="flex items-center gap-2">
+                                <ProviderIcon provider={key.provider as LlmProvider} size="sm" />
+                                <span>{key.key_name}</span>
+                                <span className="text-theme-text-tertiary">({t(`keys.providers.${key.provider}`)})</span>
+                              </span>
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -555,17 +587,38 @@ function EndpointForm({
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
                     {t("endpoints.form.model")}
                   </label>
-                  <EditableSelector
-                    options={modelOptions}
-                    value={effectiveModel}
-                    onChange={(value: string) => {
-                      setSelectedModel(value);
-                      setCustomModel("");
-                    }}
-                    disabled={!provider}
-                    placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
-                    inputClassName="font-mono text-sm"
-                  />
+                  {allowsCustomModel ? (
+                    <EditableSelector
+                      options={modelOptions}
+                      value={effectiveModel}
+                      onChange={(value: string) => {
+                        setSelectedModel(value);
+                        setCustomModel("");
+                      }}
+                      disabled={!provider}
+                      placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                      inputClassName="font-mono text-sm"
+                    />
+                  ) : (
+                    <Select
+                      value={effectiveModel}
+                      onValueChange={(value: string) => {
+                        setSelectedModel(value);
+                      }}
+                      disabled={!provider}
+                    >
+                      <SelectTrigger className="w-full font-mono text-sm">
+                        <SelectValue placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {modelOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
 
                   {/* Cost Estimation Display - Per request */}
                   {estimatedCost && (

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback, type ReactNode } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,7 +14,15 @@ import {
   PROVIDER_MODELS,
   DEFAULT_PROVIDER_MODEL,
   PROVIDER_ALLOWS_CUSTOM_MODEL,
+  getModelCapabilities,
+  getMediaFormats,
+  type MediaInputFormat,
 } from "@sudobility/shapeshyft_types";
+import {
+  PhotoIcon,
+  MicrophoneIcon,
+  VideoCameraIcon,
+} from "@heroicons/react/24/outline";
 import {
   Tabs,
   TabsList,
@@ -34,6 +42,14 @@ import SchemaEditor from "../../components/dashboard/SchemaEditor";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";
 import RateLimitPanel from "../../components/dashboard/RateLimitPanel";
 import { isServerError, isRateLimitError } from "../../utils/errorUtils";
+import { ProviderIcon } from "../../components/ui/ProviderIcon";
+import { MediaUploadArea } from "../../components/ui/MediaUploadArea";
+import { MediaDisplay } from "../../components/ui/MediaDisplay";
+import {
+  extractMediaFields,
+  extractMediaFromOutput,
+  mergeMediaIntoInput,
+} from "../../utils/schemaUtils";
 
 // Icons
 const EditIcon = () => (
@@ -83,6 +99,7 @@ function EndpointDetailPage() {
   const [testInput, setTestInput] = useState("");
   const [inputError, setInputError] = useState<string | null>(null);
   const [projectApiKey, setProjectApiKey] = useState<string | null>(null);
+  const [mediaFiles, setMediaFiles] = useState<Record<string, string>>({});
   const initializedRef = useRef(false);
 
   // Separate edit states for each section
@@ -163,12 +180,33 @@ function EndpointDetailPage() {
     return PROVIDER_MODELS[editProvider] ?? [];
   }, [editProvider]);
 
-  // Build model options for edit mode
+  // Build model options with capability icons for edit mode
+  // Blue = input capability, Green = output capability
   const editModelOptions = useMemo(() => {
-    return editAvailableModels.map((model) => ({
-      value: model,
-      label: model,
-    }));
+    return editAvailableModels.map((model) => {
+      const caps = getModelCapabilities(model);
+      const inputIcons: ReactNode[] = [];
+      const outputIcons: ReactNode[] = [];
+
+      // Input capabilities (blue)
+      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
+      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
+      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+      // Output capabilities (green)
+      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
+      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
+      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+
+      const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
+      const label = hasIcons ? (
+        <span className="flex items-center gap-2">
+          <span className="font-mono">{model}</span>
+          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+        </span>
+      ) : model;
+
+      return { value: model, label, searchLabel: model };
+    });
   }, [editAvailableModels]);
 
   // Whether custom model input is allowed in edit mode
@@ -192,6 +230,31 @@ function EndpointDetailPage() {
   const currentProvider = currentKey?.provider as LlmProvider | undefined;
   const currentModel = endpoint?.model || (currentProvider ? DEFAULT_PROVIDER_MODEL[currentProvider] : "");
 
+  // Render model with capability icons
+  const renderModelWithIcons = (model: string) => {
+    const caps = getModelCapabilities(model);
+    const inputIcons: ReactNode[] = [];
+    const outputIcons: ReactNode[] = [];
+
+    // Input capabilities (blue)
+    if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
+    if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
+    if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+    // Output capabilities (green)
+    if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
+    if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
+    if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+
+    const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
+
+    return (
+      <span className="flex items-center gap-2">
+        <span className="font-mono">{model}</span>
+        {hasIcons && <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>}
+      </span>
+    );
+  };
+
   const {
     testResults,
     isLoading: isTesting,
@@ -214,6 +277,37 @@ function EndpointDetailPage() {
         .sort((a, b) => b.timestamp - a.timestamp)[0],
     [testResults, endpointId],
   );
+
+  // Extract media fields from input and output schemas
+  const inputMediaFields = useMemo(
+    () => extractMediaFields(endpoint?.input_schema ?? null),
+    [endpoint?.input_schema],
+  );
+
+  // Compute supported formats for each media field based on model capabilities
+  const mediaSupportedFormats = useMemo(() => {
+    const model = endpoint?.model;
+    if (!model || !inputMediaFields) return undefined;
+
+    const formats: Record<string, MediaInputFormat[]> = {};
+    for (const [fieldName, mediaType] of Object.entries(inputMediaFields)) {
+      const supported = getMediaFormats(model, mediaType);
+      // If model is unknown or no specific formats, default to base64
+      formats[fieldName] = supported && supported.length > 0 ? supported : ["base64"];
+    }
+    return formats;
+  }, [endpoint?.model, inputMediaFields]);
+
+  const outputMediaItems = useMemo(
+    () =>
+      latestResult?.success && latestResult?.output
+        ? extractMediaFromOutput(endpoint?.output_schema ?? null, latestResult.output)
+        : [],
+    [endpoint?.output_schema, latestResult],
+  );
+
+  const hasInputMedia = Object.keys(inputMediaFields).length > 0;
+  const hasOutputMedia = outputMediaItems.length > 0;
 
   // Initialize test input with sample when endpoint loads (only once)
   useEffect(() => {
@@ -493,7 +587,15 @@ function EndpointDetailPage() {
       return;
     }
 
-    const validation = validateInput(parsedInput, endpoint.input_schema);
+    // Merge media files into the input
+    const finalInput = hasInputMedia
+      ? mergeMediaIntoInput(
+          parsedInput as Record<string, unknown>,
+          mediaFiles,
+        )
+      : parsedInput;
+
+    const validation = validateInput(finalInput, endpoint.input_schema);
     if (!validation.valid) {
       setInputError(validation.errors.join(", "));
       return;
@@ -503,7 +605,7 @@ function EndpointDetailPage() {
       entitySlug,
       project.project_name,
       endpoint,
-      parsedInput,
+      finalInput,
       projectApiKey ?? undefined,
     );
     if (result?.success) {
@@ -626,7 +728,11 @@ function EndpointDetailPage() {
                     <SelectContent>
                       {keys.map((key) => (
                         <SelectItem key={key.uuid} value={key.uuid}>
-                          {key.key_name} ({t(`keys.providers.${key.provider}`)})
+                          <span className="flex items-center gap-2">
+                            <ProviderIcon provider={key.provider as LlmProvider} size="sm" />
+                            <span>{key.key_name}</span>
+                            <span className="text-theme-text-tertiary">({t(`keys.providers.${key.provider}`)})</span>
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -637,17 +743,38 @@ function EndpointDetailPage() {
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
                     {t("endpoints.form.model")}
                   </label>
-                  <EditableSelector
-                    options={editModelOptions}
-                    value={editEffectiveModel}
-                    onChange={(value: string) => {
-                      setEditModel(value);
-                      setEditCustomModel("");
-                    }}
-                    disabled={!editProvider}
-                    placeholder={!editProvider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
-                    inputClassName="font-mono text-sm"
-                  />
+                  {editAllowsCustomModel ? (
+                    <EditableSelector
+                      options={editModelOptions}
+                      value={editEffectiveModel}
+                      onChange={(value: string) => {
+                        setEditModel(value);
+                        setEditCustomModel("");
+                      }}
+                      disabled={!editProvider}
+                      placeholder={!editProvider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                      inputClassName="font-mono text-sm"
+                    />
+                  ) : (
+                    <Select
+                      value={editEffectiveModel}
+                      onValueChange={(value: string) => {
+                        setEditModel(value);
+                      }}
+                      disabled={!editProvider}
+                    >
+                      <SelectTrigger className="w-full font-mono text-sm">
+                        <SelectValue placeholder={!editProvider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {editModelOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-theme-text-primary mb-1">
@@ -704,22 +831,33 @@ function EndpointDetailPage() {
                   <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
                     {t("endpoints.form.llmKey")}
                   </h4>
-                  <p className="text-theme-text-primary">
-                    {keys.find((k) => k.uuid === endpoint.llm_key_id)
-                      ?.key_name || endpoint.llm_key_id}
-                  </p>
+                  <div className="flex items-center gap-2 text-theme-text-primary">
+                    {currentProvider && (
+                      <ProviderIcon provider={currentProvider} size="sm" />
+                    )}
+                    <span>
+                      {currentKey?.key_name || endpoint.llm_key_id}
+                    </span>
+                    {currentProvider && (
+                      <span className="text-theme-text-tertiary">
+                        ({t(`keys.providers.${currentProvider}`)})
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="p-4 bg-theme-bg-secondary rounded-xl">
                   <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
                     {t("endpoints.form.model")}
                   </h4>
-                  <p className="text-theme-text-primary font-mono">
-                    {currentModel || (
-                      <span className="italic text-theme-text-tertiary font-sans">
+                  <div className="text-theme-text-primary">
+                    {currentModel ? (
+                      renderModelWithIcons(currentModel)
+                    ) : (
+                      <span className="italic text-theme-text-tertiary">
                         {t("common.notSet")}
                       </span>
                     )}
-                  </p>
+                  </div>
                 </div>
                 <div className="p-4 bg-theme-bg-secondary rounded-xl">
                   <h4 className="text-sm font-medium text-theme-text-tertiary mb-1">
@@ -903,10 +1041,26 @@ function EndpointDetailPage() {
               {t("endpoints.tester.title")}
             </h3>
 
+            {/* Media Upload Area (if input schema has media fields) */}
+            {hasInputMedia && (
+              <MediaUploadArea
+                mediaFields={inputMediaFields}
+                onFilesChange={setMediaFiles}
+                uploadedFiles={mediaFiles}
+                disabled={isTesting}
+                supportedFormats={mediaSupportedFormats}
+              />
+            )}
+
             {/* Input */}
             <div>
               <label className="block text-sm font-medium text-theme-text-primary mb-2">
                 {t("endpoints.tester.input")}
+                {hasInputMedia && (
+                  <span className="text-theme-text-tertiary font-normal ml-2">
+                    (non-media fields)
+                  </span>
+                )}
               </label>
               <textarea
                 value={testInput}
@@ -914,7 +1068,7 @@ function EndpointDetailPage() {
                   setTestInput(e.target.value);
                   setInputError(null);
                 }}
-                rows={8}
+                rows={hasInputMedia ? 4 : 8}
                 className={`w-full px-3 py-2 bg-theme-bg-primary border rounded-lg font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${
                   inputError ? "border-red-500" : "border-theme-border"
                 }`}
@@ -1026,9 +1180,20 @@ function EndpointDetailPage() {
                     </div>
                   )
                 ) : (
-                  <pre className="p-3 bg-theme-bg-secondary rounded-lg overflow-auto font-mono text-sm text-green-600 dark:text-green-400 max-h-64">
-                    {JSON.stringify(latestResult.output, null, 2)}
-                  </pre>
+                  <>
+                    {/* Media Output Display */}
+                    {hasOutputMedia && (
+                      <MediaDisplay
+                        items={outputMediaItems}
+                        title={t("media.outputTitle")}
+                      />
+                    )}
+
+                    {/* JSON Output (for non-media or mixed outputs) */}
+                    <pre className="p-3 bg-theme-bg-secondary rounded-lg overflow-auto font-mono text-sm text-green-600 dark:text-green-400 max-h-64">
+                      {JSON.stringify(latestResult.output, null, 2)}
+                    </pre>
+                  </>
                 )}
 
                 {/* Metrics */}

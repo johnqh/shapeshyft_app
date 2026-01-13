@@ -5,12 +5,13 @@ import { useKeysManager } from "@sudobility/shapeshyft_lib";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { ItemList } from "@sudobility/components";
-import type { LlmApiKeySafe } from "@sudobility/shapeshyft_types";
+import type { LlmApiKeySafe, LlmProvider } from "@sudobility/shapeshyft_types";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import KeyForm from "../../components/dashboard/KeyForm";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";
 import { isServerError } from "../../utils/errorUtils";
+import { ProviderIcon } from "../../components/ui/ProviderIcon";
 
 // Icons
 const KeyIcon = () => (
@@ -45,30 +46,11 @@ const PlusIcon = () => (
   </svg>
 );
 
-const PROVIDER_ICONS: Record<
-  string,
-  { bg: string; text: string; abbr: string }
-> = {
-  openai: {
-    bg: "bg-green-100 dark:bg-green-900/30",
-    text: "text-green-700 dark:text-green-400",
-    abbr: "OAI",
-  },
-  anthropic: {
-    bg: "bg-orange-100 dark:bg-orange-900/30",
-    text: "text-orange-700 dark:text-orange-400",
-    abbr: "CL",
-  },
-  gemini: {
-    bg: "bg-blue-100 dark:bg-blue-900/30",
-    text: "text-blue-700 dark:text-blue-400",
-    abbr: "GEM",
-  },
-  llm_server: {
-    bg: "bg-purple-100 dark:bg-purple-900/30",
-    text: "text-purple-700 dark:text-purple-400",
-    abbr: "LLM",
-  },
+const PROVIDER_COLORS: Record<string, string> = {
+  openai: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
+  anthropic: "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400",
+  gemini: "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400",
+  llm_server: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
 };
 
 function KeysPage() {
@@ -143,22 +125,16 @@ function KeysPage() {
   };
 
   const renderKeyItem = (key: LlmApiKeySafe) => {
-    const provider = PROVIDER_ICONS[key.provider] ?? {
-      bg: "bg-gray-100 dark:bg-gray-800",
-      text: "text-gray-600 dark:text-gray-400",
-      abbr: "?",
-    };
+    const colorClass = PROVIDER_COLORS[key.provider] ?? "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400";
 
     return (
       <div className="p-4 bg-theme-bg-secondary rounded-xl border border-theme-border group">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
           <div className="flex items-center gap-4 min-w-0">
             <div
-              className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${provider.bg}`}
+              className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${colorClass}`}
             >
-              <span className={`text-xs font-bold ${provider.text}`}>
-                {provider.abbr}
-              </span>
+              <ProviderIcon provider={key.provider as LlmProvider} size="lg" />
             </div>
             <div className="min-w-0">
               <h4 className="font-medium text-theme-text-primary truncate">

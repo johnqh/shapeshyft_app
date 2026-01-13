@@ -9,12 +9,50 @@ type JsonSchemaType =
   | "object"
   | "array";
 
+// Extended type for display purposes (includes media pseudo-types)
+type PropertyDisplayType = JsonSchemaType | "image" | "audio" | "video";
+
 interface JsonSchemaProperty {
   type: JsonSchemaType;
   description?: string;
   items?: JsonSchemaProperty;
   properties?: Record<string, JsonSchemaProperty>;
   required?: string[];
+  // Media type support
+  format?: string;
+  contentMediaType?: string;
+}
+
+// Helper to detect if a property is a media type
+function getDisplayType(property: JsonSchemaProperty): PropertyDisplayType {
+  if (
+    property.type === "string" &&
+    property.format === "binary" &&
+    property.contentMediaType
+  ) {
+    if (property.contentMediaType.startsWith("image/")) return "image";
+    if (property.contentMediaType.startsWith("audio/")) return "audio";
+    if (property.contentMediaType.startsWith("video/")) return "video";
+  }
+  return property.type;
+}
+
+// Helper to create a media property schema
+function createMediaProperty(
+  mediaType: "image" | "audio" | "video",
+  description?: string,
+): JsonSchemaProperty {
+  const mediaTypes: Record<string, string> = {
+    image: "image/*",
+    audio: "audio/*",
+    video: "video/*",
+  };
+  return {
+    type: "string",
+    format: "binary",
+    contentMediaType: mediaTypes[mediaType],
+    description,
+  };
 }
 
 interface JsonSchema {
@@ -49,7 +87,13 @@ function PropertyEditor({
   const [editingName, setEditingName] = useState(false);
   const [tempName, setTempName] = useState(name);
 
-  const handleTypeChange = (newType: JsonSchemaType) => {
+  const handleTypeChange = (newType: PropertyDisplayType) => {
+    // Handle media types
+    if (newType === "image" || newType === "audio" || newType === "video") {
+      onUpdate(name, createMediaProperty(newType, property.description));
+      return;
+    }
+
     const updated: JsonSchemaProperty = {
       type: newType,
       description: property.description,
@@ -62,6 +106,9 @@ function PropertyEditor({
     }
     onUpdate(name, updated);
   };
+
+  // Get the display type for the current property
+  const displayType = getDisplayType(property);
 
   const handleDescriptionChange = (description: string) => {
     onUpdate(name, { ...property, description: description || undefined });
@@ -214,16 +261,23 @@ function PropertyEditor({
 
         {/* Type Selector */}
         <select
-          value={property.type}
-          onChange={(e) => handleTypeChange(e.target.value as JsonSchemaType)}
+          value={displayType}
+          onChange={(e) => handleTypeChange(e.target.value as PropertyDisplayType)}
           className="px-2 py-1 text-sm border border-theme-border rounded bg-theme-bg-primary"
         >
-          <option value="string">string</option>
-          <option value="number">number</option>
-          <option value="integer">integer</option>
-          <option value="boolean">boolean</option>
-          <option value="object">object</option>
-          <option value="array">array</option>
+          <optgroup label={t("schema.basicTypes")}>
+            <option value="string">string</option>
+            <option value="number">number</option>
+            <option value="integer">integer</option>
+            <option value="boolean">boolean</option>
+            <option value="object">object</option>
+            <option value="array">array</option>
+          </optgroup>
+          <optgroup label={t("schema.mediaTypes")}>
+            <option value="image">image</option>
+            <option value="audio">audio</option>
+            <option value="video">video</option>
+          </optgroup>
         </select>
 
         {/* Array Item Type */}
