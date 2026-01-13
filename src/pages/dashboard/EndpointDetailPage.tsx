@@ -163,6 +163,14 @@ function EndpointDetailPage() {
     return PROVIDER_MODELS[editProvider] ?? [];
   }, [editProvider]);
 
+  // Build model options for edit mode
+  const editModelOptions = useMemo(() => {
+    return editAvailableModels.map((model) => ({
+      value: model,
+      label: model,
+    }));
+  }, [editAvailableModels]);
+
   // Whether custom model input is allowed in edit mode
   const editAllowsCustomModel = editProvider
     ? PROVIDER_ALLOWS_CUSTOM_MODEL[editProvider]
@@ -630,7 +638,7 @@ function EndpointDetailPage() {
                     {t("endpoints.form.model")}
                   </label>
                   <EditableSelector
-                    options={editAvailableModels.map((model) => ({ value: model }))}
+                    options={editModelOptions}
                     value={editEffectiveModel}
                     onChange={(value: string) => {
                       setEditModel(value);

@@ -122,6 +122,14 @@ function EndpointForm({
     return PROVIDER_MODELS[provider] ?? [];
   }, [provider]);
 
+  // Build model options
+  const modelOptions = useMemo(() => {
+    return availableModels.map((model) => ({
+      value: model,
+      label: model,
+    }));
+  }, [availableModels]);
+
   // Whether custom model input is allowed
   const allowsCustomModel = provider
     ? PROVIDER_ALLOWS_CUSTOM_MODEL[provider]
@@ -548,7 +556,7 @@ function EndpointForm({
                     {t("endpoints.form.model")}
                   </label>
                   <EditableSelector
-                    options={availableModels.map((model) => ({ value: model }))}
+                    options={modelOptions}
                     value={effectiveModel}
                     onChange={(value: string) => {
                       setSelectedModel(value);

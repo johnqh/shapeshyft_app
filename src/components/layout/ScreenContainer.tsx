@@ -56,9 +56,7 @@ function ScreenContainer({
             )}
         </div>
 
-        <main className="flex-1">
-          <div className="container-app">{children}</div>
-        </main>
+        <main className="flex-1">{children}</main>
 
         {showFooter && <Footer variant={footerVariant} />}
       </div>
