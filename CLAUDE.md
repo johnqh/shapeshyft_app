@@ -97,27 +97,49 @@ bun run format       # Format with Prettier
 
 ## Environment Variables
 
-Configure in `.env.local`:
+Configure in `.env.local` (see `.env.example` for full documentation):
 
 ```bash
-# API
-VITE_API_URL=https://api.shapeshyft.com
-
-# Firebase
+# Firebase Configuration
 VITE_FIREBASE_API_KEY=
 VITE_FIREBASE_AUTH_DOMAIN=
 VITE_FIREBASE_PROJECT_ID=
 VITE_FIREBASE_STORAGE_BUCKET=
 VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
+VITE_FIREBASE_MEASUREMENT_ID=
 
-# RevenueCat
-VITE_REVENUECAT_PUBLIC_KEY=
+# RevenueCat (subscriptions)
+VITE_REVENUECAT_API_KEY=
+VITE_REVENUECAT_API_KEY_SANDBOX=
 
-# Social Links (optional)
+# API Configuration
+VITE_SHAPESHYFT_API_URL=https://api.shapeshyft.ai
+
+# Branding
+VITE_APP_NAME=ShapeShyft
+VITE_APP_DOMAIN=shapeshyft.ai
+VITE_COMPANY_NAME=
+VITE_SUPPORT_EMAIL=
+VITE_TWITTER_HANDLE=
+VITE_DISCORD_INVITE=
+VITE_LINKEDIN_COMPANY=
+VITE_GITHUB_ORG=
+
+# Social Media Links (full URLs)
 VITE_TWITTER_URL=
+VITE_REDDIT_URL=
 VITE_DISCORD_URL=
+VITE_LINKEDIN_URL=
+VITE_FARCASTER_URL=
+VITE_TELEGRAM_URL=
 VITE_GITHUB_URL=
+VITE_STATUS_PAGE_URL=
+
+# Feature Flags
+VITE_DEV_MODE=true
+VITE_TESTNET_ONLY=false
+VITE_SHOW_PERFORMANCE_MONITOR=false
 ```
 
 ## Routing
