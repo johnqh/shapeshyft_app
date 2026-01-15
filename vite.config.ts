@@ -45,96 +45,32 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Split vendor libraries into separate chunks
           if (id.includes("node_modules")) {
-            // Core React - must be in single chunk to avoid initialization errors
+            // React core - must be first and in single chunk
             if (
               id.includes("node_modules/react/") ||
               id.includes("node_modules/react-dom/") ||
+              id.includes("node_modules/react-is/") ||
               id.includes("node_modules/scheduler/")
             ) {
               return "vendor-react";
             }
-            // React utilities (small, can be separate)
-            if (id.includes("node_modules/react-is/")) {
-              return "vendor-react";
-            }
-            if (id.includes("react-router")) {
+            // React Router
+            if (id.includes("node_modules/react-router")) {
               return "vendor-router";
             }
-            // Firebase - loaded only when auth needed
+            // Firebase - large, auth only
             if (id.includes("firebase")) {
               return "vendor-firebase";
             }
-            // i18n
-            if (id.includes("i18next")) {
-              return "vendor-i18n";
-            }
-            // TanStack Query
-            if (id.includes("@tanstack")) {
-              return "vendor-query";
-            }
-            // Sudobility packages split by type
-            if (id.includes("@sudobility/auth-components")) {
-              return "vendor-auth";
-            }
-            if (id.includes("@sudobility/subscription-components")) {
-              return "vendor-subscription";
-            }
-            if (
-              id.includes("@sudobility/components") ||
-              id.includes("@sudobility/design")
-            ) {
-              return "vendor-ui";
-            }
-            if (id.includes("@sudobility/shapeshyft_client")) {
-              return "vendor-client";
-            }
-            if (id.includes("@sudobility/shapeshyft_lib")) {
-              return "vendor-lib";
-            }
-            if (
-              id.includes("@sudobility/ratelimit_client") ||
-              id.includes("@sudobility/ratelimit_components")
-            ) {
-              return "vendor-ratelimit";
-            }
-            if (id.includes("@sudobility")) {
-              return "vendor-sudobility-misc";
-            }
-            // State management
-            if (id.includes("zustand")) {
-              return "vendor-zustand";
-            }
-            // RevenueCat - lazy loaded
+            // RevenueCat - large, lazy loaded
             if (id.includes("revenuecat") || id.includes("purchases")) {
               return "vendor-revenuecat";
             }
-            // Charts - only used on analytics page
-            if (id.includes("recharts") || id.includes("d3")) {
-              return "vendor-charts";
-            }
-            // Helmet for SEO
-            if (id.includes("react-helmet")) {
-              return "vendor-helmet";
-            }
+            // NOTE: i18n and @tanstack not chunked - they depend on React
           }
-
-          // Split dashboard pages into separate chunks
-          if (id.includes("src/pages/dashboard/")) {
-            const pageName = id.match(/dashboard\/(\w+)Page/)?.[1];
-            if (pageName) {
-              return `page-${pageName.toLowerCase()}`;
-            }
-          }
-
-          // Split public pages
-          if (id.includes("src/pages/") && !id.includes("dashboard")) {
-            const pageName = id.match(/pages\/(\w+)Page/)?.[1];
-            if (pageName) {
-              return `page-${pageName.toLowerCase()}`;
-            }
-          }
+          // NOTE: @sudobility packages, charts, helmet are NOT manually chunked
+          // to let Rollup handle shared dependencies naturally
         },
       },
     },
