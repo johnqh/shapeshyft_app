@@ -1,7 +1,7 @@
 {
   "name": "shapeshyft_app",
   "private": true,
-  "version": "0.0.73",
+  "version": "0.0.74",
   "type": "module",
   "scripts": {
     "dev": "bun run process:static && vite",
@@ -29,7 +29,7 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@revenuecat/purchases-js": "^1.22.1",
     "@sudobility/auth-components": "^1.0.6",
-    "@sudobility/auth_lib": "^0.0.6",
+    "@sudobility/auth_lib": "^0.0.9",
     "@sudobility/building_blocks": "^0.0.47",
     "@sudobility/components": "^4.0.156",
     "@sudobility/design": "^1.1.18",

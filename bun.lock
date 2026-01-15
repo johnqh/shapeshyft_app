@@ -11,7 +11,7 @@
         "@radix-ui/react-tabs": "^1.1.13",
         "@revenuecat/purchases-js": "^1.22.1",
         "@sudobility/auth-components": "^1.0.6",
-        "@sudobility/auth_lib": "^0.0.6",
+        "@sudobility/auth_lib": "^0.0.9",
         "@sudobility/building_blocks": "^0.0.47",
         "@sudobility/components": "^4.0.156",
         "@sudobility/design": "^1.1.18",
@@ -435,7 +435,7 @@
 
     "@sudobility/auth-components": ["@sudobility/auth-components@1.0.6", "", { "optionalDependencies": { "@rollup/rollup-linux-x64-gnu": "4.52.5", "@rollup/rollup-linux-x64-musl": "4.52.5" }, "peerDependencies": { "@heroicons/react": "^2.2.0", "@sudobility/components": "^4.0.156", "@sudobility/design": "^1.1.18", "firebase": "^10.0.0 || ^11.0.0 || ^12.0.0", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" } }, "sha512-2ERywkZqIKwidCh4o7ofmDnhd0QLvoELN67THY0knyKpuETPS5RII7FuzxjdfqsKC4z57Rrcwjn+K3ceHBN80A=="],
 
-    "@sudobility/auth_lib": ["@sudobility/auth_lib@0.0.6", "", { "peerDependencies": { "@sudobility/di": "^1.5.18", "@sudobility/types": "^1.9.44", "firebase": "^12.7.0", "react": "^19.2.3" } }, "sha512-KV0WIw1KH3FFoVP6ctEdKyiJSPXPJWgSWX70otfdqLaRDCwC85DMMWyjhUKsTiqySJzr917mI1uwGlvbk7j/Kg=="],
+    "@sudobility/auth_lib": ["@sudobility/auth_lib@0.0.9", "", { "peerDependencies": { "@sudobility/di": "^1.5.18", "@sudobility/types": "^1.9.44", "firebase": "^12.7.0", "react": "^19.2.3" } }, "sha512-Mck0aoScOnRi7q7Gage5W2MErODtxNb1WISFlOP1qnkCTC4yJ/8aWWpJXYjLeIFkS+GlJpAy/l4Mw/hI8ZitGA=="],
 
     "@sudobility/building_blocks": ["@sudobility/building_blocks@0.0.47", "", { "peerDependencies": { "@heroicons/react": "^2.0.0", "@sudobility/components": "^4.0.156", "@sudobility/design": "^1.1.18", "class-variance-authority": "^0.7.0", "clsx": "^2.0.0", "firebase": "^11.0.0 || ^12.0.0", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0", "tailwind-merge": "^2.0.0 || ^3.0.0" }, "optionalPeers": ["firebase"] }, "sha512-Gg9C3HGbFsL/GUuQnwuOv/uGGowBJAB0fluv6ubCmwU49VsXOOIqeBbfyBIDlBNRG5C9DzgUVPfhMfJ7T9pVfg=="],
 
