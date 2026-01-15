@@ -11,7 +11,6 @@ export const CONSTANTS = {
 
   // API
   API_URL: import.meta.env.VITE_SHAPESHYFT_API_URL || "http://localhost:8787",
-  DEV_MODE: import.meta.env.VITE_DEV_MODE === "true",
 
   // Testnet/Sandbox Mode
   TESTNET_ONLY: import.meta.env.VITE_TESTNET_ONLY === "true",
