@@ -130,6 +130,7 @@
       "latency": "Latency",
       "inputTokens": "Input Tokens",
       "outputTokens": "Output Tokens",
+      "estimatedCost": "Est. Cost",
       "usage": {
         "title": "Usage",
         "tokensIn": "Tokens In",
@@ -427,6 +428,7 @@
     "download": "Download",
     "clickToExpand": "Click to expand",
     "outputTitle": "Media Output",
+    "generatedTitle": "Generated Media",
     "modeFile": "Upload",
     "modeUrl": "URL",
     "urlPlaceholder": "Enter {{type}} URL...",

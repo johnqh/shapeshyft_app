@@ -20,13 +20,10 @@ import { PageTracker } from "./hooks/usePageTracking";
 import { InfoBanner } from "@sudobility/di_web";
 import { getNetworkService } from "@sudobility/di";
 import { NetworkProvider } from "@sudobility/devops-components";
-
-// Lazy load PerformancePanel - only used in dev mode
-const PerformancePanel = lazy(() =>
-  import("@sudobility/components").then((mod) => ({
-    default: mod.PerformancePanel,
-  })),
-);
+import {
+  PerformancePanel,
+  LanguageValidator,
+} from "@sudobility/components";
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -80,17 +77,6 @@ const PerformancePage = lazy(() => import("./pages/dashboard/PerformancePage"));
 // Layout components
 const LanguageRedirect = lazy(
   () => import("./components/layout/LanguageRedirect"),
-);
-const LanguageValidator = lazy(() =>
-  import("@sudobility/components").then((mod) => ({
-    default: () => (
-      <mod.LanguageValidator
-        isLanguageSupported={isLanguageSupported}
-        defaultLanguage="en"
-        storageKey="language"
-      />
-    ),
-  })),
 );
 const ProtectedRoute = lazy(() => import("./components/layout/ProtectedRoute"));
 const EntityRedirect = lazy(() => import("./components/layout/EntityRedirect"));
@@ -169,7 +155,13 @@ function App() {
                                 {/* Language-prefixed routes */}
                                 <Route
                                   path="/:lang"
-                                  element={<LanguageValidator />}
+                                  element={
+                                    <LanguageValidator
+                                      isLanguageSupported={isLanguageSupported}
+                                      defaultLanguage="en"
+                                      storageKey="language"
+                                    />
+                                  }
                                 >
                                   {/* Public pages */}
                                   <Route index element={<HomePage />} />

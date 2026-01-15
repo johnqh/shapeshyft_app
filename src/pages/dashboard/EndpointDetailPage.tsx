@@ -18,9 +18,11 @@ import { useProviders, useProviderModels } from "@sudobility/shapeshyft_client";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import type {
+  GeneratedMedia,
   LlmProvider,
   MediaInputFormat,
 } from "@sudobility/shapeshyft_types";
+import { estimateCost, formatCost } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
   MicrophoneIcon,
@@ -394,8 +396,48 @@ function EndpointDetailPage() {
     [endpoint?.output_schema, latestResult],
   );
 
+  // Convert generated media (from LLM output like GPT-4o audio, Imagen images) to display format
+  const generatedMediaItems = useMemo(() => {
+    const media = latestResult?.generatedMedia;
+    if (!media || media.length === 0) return [];
+
+    return media.map((item: GeneratedMedia, index: number) => {
+      // Build data URL if it's base64 without prefix
+      const data = item.data.startsWith("data:")
+        ? item.data
+        : `data:${item.mimeType};base64,${item.data}`;
+
+      return {
+        fieldName: `${item.type}_${index + 1}`,
+        type: item.type,
+        data,
+      };
+    });
+  }, [latestResult?.generatedMedia]);
+
   const hasInputMedia = Object.keys(inputMediaFields).length > 0;
   const hasOutputMedia = outputMediaItems.length > 0;
+  const hasGeneratedMedia = generatedMediaItems.length > 0;
+
+  // Calculate estimated cost for the latest test result
+  const estimatedCostDisplay = useMemo(() => {
+    if (!latestResult?.success || !latestResult.tokensInput || !latestResult.tokensOutput) {
+      return null;
+    }
+
+    const modelInfo = currentModels.find((m) => m.id === currentModel);
+    if (!modelInfo?.pricing) {
+      return null;
+    }
+
+    const costCents = estimateCost(
+      modelInfo.pricing,
+      latestResult.tokensInput,
+      latestResult.tokensOutput
+    );
+
+    return formatCost(costCents);
+  }, [latestResult, currentModels, currentModel]);
 
   // Initialize test input with sample when endpoint loads (only once)
   useEffect(() => {
@@ -1268,7 +1310,15 @@ function EndpointDetailPage() {
                   )
                 ) : (
                   <>
-                    {/* Media Output Display */}
+                    {/* Generated Media Display (from LLM like GPT-4o audio, Imagen images) */}
+                    {hasGeneratedMedia && (
+                      <MediaDisplay
+                        items={generatedMediaItems}
+                        title={t("media.generatedTitle")}
+                      />
+                    )}
+
+                    {/* Schema-defined Media Output Display */}
                     {hasOutputMedia && (
                       <MediaDisplay
                         items={outputMediaItems}
@@ -1313,6 +1363,16 @@ function EndpointDetailPage() {
                         </p>
                         <p className="font-semibold text-theme-text-primary">
                           {latestResult.tokensOutput}
+                        </p>
+                      </div>
+                    )}
+                    {estimatedCostDisplay && (
+                      <div className="text-center p-3 bg-theme-bg-secondary rounded-lg">
+                        <p className="text-xs text-theme-text-tertiary">
+                          {t("endpoints.tester.estimatedCost")}
+                        </p>
+                        <p className="font-semibold text-theme-text-primary">
+                          {estimatedCostDisplay}
                         </p>
                       </div>
                     )}
