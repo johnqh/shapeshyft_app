@@ -9,6 +9,7 @@ export default defineConfig({
     port: 5203,
   },
   resolve: {
+    dedupe: ["react", "react-dom", "@tanstack/react-query"],
     alias: {
       // Ensure all packages use the same React instance
       react: path.resolve(__dirname, "node_modules/react"),
@@ -46,12 +47,16 @@ export default defineConfig({
         manualChunks(id) {
           // Split vendor libraries into separate chunks
           if (id.includes("node_modules")) {
-            // Core React - loaded on every page
+            // Core React - must be in single chunk to avoid initialization errors
             if (
-              id.includes("/react/") ||
-              id.includes("react-dom") ||
-              id.includes("scheduler")
+              id.includes("node_modules/react/") ||
+              id.includes("node_modules/react-dom/") ||
+              id.includes("node_modules/scheduler/")
             ) {
+              return "vendor-react";
+            }
+            // React utilities (small, can be separate)
+            if (id.includes("node_modules/react-is/")) {
               return "vendor-react";
             }
             if (id.includes("react-router")) {
