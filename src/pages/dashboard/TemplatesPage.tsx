@@ -5,16 +5,10 @@ import {
   useKeysManager,
   useProjectsManager,
   useProjectTemplates,
+  useProviderModelsManager,
 } from "@sudobility/shapeshyft_lib";
-import {
-  ShapeshyftClient,
-  useProviders,
-  useProviderModels,
-} from "@sudobility/shapeshyft_client";
-import type {
-  LlmProvider,
-  ModelCapabilities,
-} from "@sudobility/shapeshyft_types";
+import { ShapeshyftClient, useProviders } from "@sudobility/shapeshyft_client";
+import type { LlmProvider, ModelCapabilities } from "@sudobility/shapeshyft_types";
 import { detectRequiredCapabilities } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
@@ -85,14 +79,6 @@ function TemplatesPage() {
   const selectedKey = keys.find((k) => k.uuid === selectedKeyId);
   const provider = selectedKey?.provider as LlmProvider | undefined;
 
-  // Fetch models for the selected provider from the API
-  const { provider: providerConfig, models } = useProviderModels(
-    networkClient,
-    baseUrl,
-    provider ?? null,
-    testMode,
-  );
-
   // Detect required capabilities from template endpoints
   const requiredCapabilities = useMemo(() => {
     if (!selectedTemplateData) return {};
@@ -108,19 +94,18 @@ function TemplatesPage() {
     return combined;
   }, [selectedTemplateData]);
 
-  // Filter models by required capabilities
-  const filteredModels = useMemo(() => {
-    if (Object.keys(requiredCapabilities).length === 0) return models;
-    return models.filter((modelInfo) => {
-      const caps = modelInfo.capabilities;
-      for (const [key, required] of Object.entries(requiredCapabilities)) {
-        if (required && !caps[key as keyof ModelCapabilities]) {
-          return false;
-        }
-      }
-      return true;
-    });
-  }, [models, requiredCapabilities]);
+  // Fetch and filter models for the selected provider using the lib hook
+  const {
+    models: filteredModels,
+    allowsCustomModel,
+    defaultModel,
+  } = useProviderModelsManager({
+    networkClient,
+    baseUrl,
+    provider: provider ?? null,
+    requiredCapabilities,
+    testMode,
+  });
 
   // Build model options with capability icons
   const modelOptions = useMemo(() => {
@@ -171,21 +156,13 @@ function TemplatesPage() {
     });
   }, [filteredModels]);
 
-  // Whether custom model input is allowed
-  const allowsCustomModel = providerConfig?.allowsCustomModel ?? false;
-
   // The effective model (selected or custom)
   const effectiveModel = useMemo(() => {
     if (allowsCustomModel && customModel.trim()) {
       return customModel.trim();
     }
-    return selectedModel || (providerConfig?.defaultModel ?? "");
-  }, [
-    selectedModel,
-    customModel,
-    allowsCustomModel,
-    providerConfig?.defaultModel,
-  ]);
+    return selectedModel || (defaultModel ?? "");
+  }, [selectedModel, customModel, allowsCustomModel, defaultModel]);
 
   // Auto-fill project name when template is selected
   useEffect(() => {

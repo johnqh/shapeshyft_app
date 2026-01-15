@@ -1,7 +1,7 @@
 {
   "name": "shapeshyft_app",
   "private": true,
-  "version": "0.0.71",
+  "version": "0.0.72",
   "type": "module",
   "scripts": {
     "dev": "bun run process:static && vite",
@@ -42,9 +42,9 @@
     "@sudobility/ratelimit-components": "^1.0.6",
     "@sudobility/ratelimit_client": "^0.0.21",
     "@sudobility/ratelimit_pages": "^1.0.48",
-    "@sudobility/shapeshyft_client": "^0.0.33",
-    "@sudobility/shapeshyft_lib": "^0.0.38",
-    "@sudobility/shapeshyft_types": "^1.0.29",
+    "@sudobility/shapeshyft_client": "^0.0.35",
+    "@sudobility/shapeshyft_lib": "^0.0.41",
+    "@sudobility/shapeshyft_types": "^1.0.30",
     "@sudobility/subscription-components": "^1.0.20",
     "@sudobility/types": "^1.9.44",
     "@tanstack/react-query": "^5.90.5",
