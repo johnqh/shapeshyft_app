@@ -704,6 +704,7 @@ function EndpointDetailPage() {
 
     setInputError(null);
     setPromptPreview(null); // Clear prompt preview
+    setHideResultBefore(Date.now()); // Clear previous results
 
     let parsedInput: unknown;
     try {
@@ -794,13 +795,19 @@ function EndpointDetailPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
-        <TabsList className="mb-6">
-          <TabsTrigger value="general">
+        <TabsList className="mb-6 w-full">
+          <TabsTrigger value="general" className="flex-1">
             {t("endpoints.tabs.general")}
           </TabsTrigger>
-          <TabsTrigger value="input">{t("endpoints.tabs.input")}</TabsTrigger>
-          <TabsTrigger value="output">{t("endpoints.tabs.output")}</TabsTrigger>
-          <TabsTrigger value="test">{t("endpoints.tabs.test")}</TabsTrigger>
+          <TabsTrigger value="input" className="flex-1">
+            {t("endpoints.tabs.input")}
+          </TabsTrigger>
+          <TabsTrigger value="output" className="flex-1">
+            {t("endpoints.tabs.output")}
+          </TabsTrigger>
+          <TabsTrigger value="test" className="flex-1">
+            {t("endpoints.tabs.test")}
+          </TabsTrigger>
         </TabsList>
 
         {/* General Tab */}
@@ -921,7 +928,7 @@ function EndpointDetailPage() {
                     onChange={(e) => setEditInstructions(e.target.value)}
                     rows={3}
                     placeholder={t("endpoints.form.instructionsPlaceholder")}
-                    className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                    className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
                   />
                 </div>
                 <div>
@@ -933,7 +940,7 @@ function EndpointDetailPage() {
                     onChange={(e) => setEditContext(e.target.value)}
                     rows={6}
                     placeholder={t("endpoints.form.contextPlaceholder")}
-                    className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                    className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
                   />
                 </div>
                 <div className="flex gap-3 justify-end">

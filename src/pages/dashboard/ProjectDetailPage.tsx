@@ -271,7 +271,7 @@ function ProjectDetailPage() {
                 value={editDescription}
                 onChange={(e) => setEditDescription(e.target.value)}
                 rows={2}
-                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
               />
             </div>
             <div className="flex justify-end gap-2">

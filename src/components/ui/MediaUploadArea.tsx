@@ -382,7 +382,7 @@ export function MediaUploadArea({
 
                   {mediaType === "image" && (
                     <img
-                      src={isUrlValue ? currentValue : preview?.preview}
+                      src={isUrlValue ? currentValue : (preview?.preview || currentValue)}
                       alt={fieldName}
                       className="max-h-32 rounded object-contain mx-auto"
                     />
@@ -390,7 +390,7 @@ export function MediaUploadArea({
 
                   {mediaType === "audio" && (
                     <audio
-                      src={isUrlValue ? currentValue : preview?.preview}
+                      src={isUrlValue ? currentValue : (preview?.preview || currentValue)}
                       controls
                       className="w-full"
                     />
@@ -398,7 +398,7 @@ export function MediaUploadArea({
 
                   {mediaType === "video" && (
                     <video
-                      src={isUrlValue ? currentValue : preview?.preview}
+                      src={isUrlValue ? currentValue : (preview?.preview || currentValue)}
                       controls
                       className="max-h-32 rounded mx-auto"
                     />

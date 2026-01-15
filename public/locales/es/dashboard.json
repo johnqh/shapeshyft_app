@@ -130,6 +130,7 @@
       "latency": "Latencia",
       "inputTokens": "Tokens de entrada",
       "outputTokens": "Tokens de salida",
+      "estimatedCost": "Costo estimado",
       "usage": {
         "title": "Uso",
         "tokensIn": "Tokens En",
@@ -225,6 +226,7 @@
     "preview": "Vista previa",
     "willCreate": "Esto creará un endpoint o endpoints:",
     "apply": "Aplicar plantilla",
+    "comingSoon": "Próximamente",
     "errors": {
       "fillAllFields": "Complete todos los campos obligatorios"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "Reconocimiento de imágenes",
       "description": "Analiza y describe imágenes utilizando modelos de visión"
+    },
+    "audioTranscription": {
+      "name": "Transcripción de audio",
+      "description": "Transcribir audio a texto con extracción estructurada"
     },
     "imageGeneration": {
       "name": "Generación de imágenes",
@@ -347,6 +353,35 @@
       "saving": "Guardando...",
       "saved": "Ajustes guardados correctamente",
       "error": "No se pudieron guardar la configuración"
+    },
+    "storage": {
+      "title": "Almacenamiento en la nube",
+      "description": "Configura el almacenamiento en la nube para los archivos de medios generados (imágenes, audio, video).",
+      "configured": "Configurado",
+      "provider": "Proveedor de almacenamiento",
+      "bucket": "Nombre del cubo",
+      "prefix": "Prefijo de ruta",
+      "prefixHint": "Prefijo opcional para los archivos cargados (por ejemplo, generated-media/)",
+      "gcsCredentials": "Credenciales de Google Cloud Storage",
+      "gcsCredentialsHint": "Pegue el contenido de su archivo JSON de clave de cuenta de servicio de GCP",
+      "serviceAccountJson": "Cuenta de servicio JSON",
+      "s3Credentials": "Credenciales de Amazon S3",
+      "region": "Región de AWS",
+      "accessKeyId": "ID de clave de acceso",
+      "secretAccessKey": "Clave de acceso secreta",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "Deje en blanco para mantener las credenciales existentes",
+      "credentialsRequired": "Se requieren credenciales",
+      "invalidJson": "Formato JSON no válido",
+      "invalidType": "El JSON debe tener tipo 'service_account'",
+      "missingField": "Campo requerido faltante: {{field}}",
+      "configure": "Configurar almacenamiento",
+      "update": "Actualizar almacenamiento",
+      "remove": "Eliminar almacenamiento",
+      "saved": "Configuración de almacenamiento guardada",
+      "saveError": "Error al guardar la configuración de almacenamiento",
+      "deleteError": "Error al eliminar la configuración de almacenamiento",
+      "confirmDelete": "¿Está seguro de que desea eliminar la configuración de almacenamiento? Los medios generados ya no se cargarán en el almacenamiento en la nube."
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "Descargar",
     "clickToExpand": "Haga clic para ampliar",
     "outputTitle": "Salida de medios",
+    "generatedTitle": "Medios generados",
     "modeFile": "Subir",
     "modeUrl": "URL",
     "urlPlaceholder": "Introduzca la URL de {{type}}...",

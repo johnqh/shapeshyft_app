@@ -204,7 +204,7 @@ function ProjectForm({
               onChange={(e) => setDescription(e.target.value)}
               placeholder={t("projects.form.descriptionPlaceholder")}
               rows={3}
-              className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow resize-none"
+              className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow resize-y"
             />
           </div>
 

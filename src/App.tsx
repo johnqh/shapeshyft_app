@@ -12,7 +12,7 @@ import { CurrentEntityProvider } from "@sudobility/entity_client";
 import { useAuthStatus } from "@sudobility/auth-components";
 import { entityClient } from "./config/entityClient";
 import { useCurrentEntity } from "./hooks/useCurrentEntity";
-import { isLanguageSupported } from "./config/constants";
+import { isLanguageSupported, CONSTANTS } from "./config/constants";
 import { AuthProviderWrapper } from "./components/providers/AuthProviderWrapper";
 import { LazySubscriptionProvider } from "./components/providers/LazySubscriptionProvider";
 import ToastContainer from "./components/ui/ToastContainer";
@@ -266,18 +266,22 @@ function App() {
                                       path="providers"
                                       element={<ProvidersPage />}
                                     />
-                                    <Route
-                                      path="analytics"
-                                      element={<AnalyticsPage />}
-                                    />
+                                    {CONSTANTS.DEV_MODE && (
+                                      <Route
+                                        path="analytics"
+                                        element={<AnalyticsPage />}
+                                      />
+                                    )}
                                     <Route
                                       path="subscription"
                                       element={<SubscriptionPage />}
                                     />
-                                    <Route
-                                      path="budgets"
-                                      element={<BudgetsPage />}
-                                    />
+                                    {CONSTANTS.DEV_MODE && (
+                                      <Route
+                                        path="budgets"
+                                        element={<BudgetsPage />}
+                                      />
+                                    )}
                                     <Route
                                       path="settings"
                                       element={<SettingsPage />}

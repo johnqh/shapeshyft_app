@@ -130,6 +130,7 @@
       "latency": "Fördröjning",
       "inputTokens": "Indata-tokenar",
       "outputTokens": "Utmatningstokens",
+      "estimatedCost": "Uppskattad kostnad",
       "usage": {
         "title": "Användning",
         "tokensIn": "Tokenar In",
@@ -225,6 +226,7 @@
     "preview": "Förhandsgranska",
     "willCreate": "Detta kommer att skapa {{count}} slutpunkt(er):",
     "apply": "Använd mall",
+    "comingSoon": "Kommer snart",
     "errors": {
       "fillAllFields": "Fyll i alla obligatoriska fält"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "Bildigenkänning",
       "description": "Analysera och beskriv bilder med hjälp av visuella modeller"
+    },
+    "audioTranscription": {
+      "name": "Ljudinspelning",
+      "description": "Transkribera ljud till text med strukturerad extraktion"
     },
     "imageGeneration": {
       "name": "Bildgenerering",
@@ -347,6 +353,35 @@
       "saving": "Sparar...",
       "saved": "Inställningarna sparades framgångsrikt",
       "error": "Det gick inte att spara inställningarna"
+    },
+    "storage": {
+      "title": "molnlagring",
+      "description": "Konfigurera molnlagring för genererade mediefiler (bilder, ljud, video).",
+      "configured": "Konfigurerad",
+      "provider": "Lagringsleverantör",
+      "bucket": "Bucket Name",
+      "prefix": "Vägprefix",
+      "prefixHint": "Valfri prefix för uppladdade filer (t.ex. generated-media/)",
+      "gcsCredentials": "Google Cloud Storage-autentiseringsuppgifter",
+      "gcsCredentialsHint": "Klistra in innehållet i din GCP-tjänstkontots JSON-nyckelfil",
+      "serviceAccountJson": "Service Account JSON",
+      "s3Credentials": "Amazon S3-autentiseringsuppgifter",
+      "region": "AWS-område",
+      "accessKeyId": "Åtkomstnyckel-ID",
+      "secretAccessKey": "Hemlig åtkomstnyckel",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "Lämna tomt för att behålla befintliga autentiseringsuppgifter",
+      "credentialsRequired": "Autentiseringsuppgifter krävs",
+      "invalidJson": "Ogiltig JSON-format",
+      "invalidType": "JSON måste ha typen 'service_account'",
+      "missingField": "Saknad obligatorisk fält: {{field}}",
+      "configure": "Konfigurera lagring",
+      "update": "Uppdatera lagring",
+      "remove": "Ta bort lagring",
+      "saved": "Lagringsskonfiguration sparad",
+      "saveError": "Det gick inte att spara lagringskonfigurationen",
+      "deleteError": "Det gick inte att ta bort lagringskonfigurationen",
+      "confirmDelete": "Är du säker på att du vill ta bort lagringskonfigurationen? Genererad media kommer inte längre att laddas upp till molnlagring."
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "Ladda ner",
     "clickToExpand": "Klicka för att visa mer",
     "outputTitle": "Mediautgång",
+    "generatedTitle": "Genererad media",
     "modeFile": "Ladda upp",
     "modeUrl": "URL",
     "urlPlaceholder": "Ange {{type}} URL...",

@@ -130,6 +130,7 @@
       "latency": "التأخير",
       "inputTokens": "عدد الرموز المدخلة",
       "outputTokens": "رُموز الإخراج",
+      "estimatedCost": "التكلفة التقريبية",
       "usage": {
         "title": "الاستخدام",
         "tokensIn": "الرموز في",
@@ -225,6 +226,7 @@
     "preview": "معاينة",
     "willCreate": "سيتم إنشاء نقطة انتهاء {{count}}:",
     "apply": "تطبيق القالب",
+    "comingSoon": "قريباً",
     "errors": {
       "fillAllFields": "يرجى ملء جميع الحقول المطلوبة"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "التعرف على الصور",
       "description": "تحليل الصور ووصفها باستخدام نماذج الرؤية"
+    },
+    "audioTranscription": {
+      "name": "الكتابة الصوتية",
+      "description": "تحويل الصوت إلى نص مع استخراج منظم"
     },
     "imageGeneration": {
       "name": "إنشاء الصور",
@@ -347,6 +353,35 @@
       "saving": "جارٍ الحفظ...",
       "saved": "تم حفظ الإعدادات بنجاح",
       "error": "فشل في حفظ الإعدادات"
+    },
+    "storage": {
+      "title": "التخزين السحابي",
+      "description": "قم بتكوين التخزين السحابي لملفات الوسائط المُنشأة (الصور، الصوت، الفيديو).",
+      "configured": "تم التهيئة",
+      "provider": "مُزود التخزين",
+      "bucket": "اسم الدلو",
+      "prefix": "بادئة المسار",
+      "prefixHint": "بادئة اختيارية للملفات المرفوعة (مثل: generated-media/)",
+      "gcsCredentials": "بيانات اعتماد Google Cloud Storage",
+      "gcsCredentialsHint": "قم بلصق محتويات ملف مفتاح حساب الخدمة الخاص بك في GCP",
+      "serviceAccountJson": "حساب الخدمة JSON",
+      "s3Credentials": "بيانات الاعتماد الخاصة بـ Amazon S3",
+      "region": "منطقة AWS",
+      "accessKeyId": "معرّف مفتاح الوصول",
+      "secretAccessKey": "مفتاح الوصول السري",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "اترك فارغًا للحفاظ على بيانات الاعتماد الحالية",
+      "credentialsRequired": "مطلوب بيانات الاعتماد",
+      "invalidJson": "تنسيق JSON غير صالح",
+      "invalidType": "يجب أن يكون نوع JSON 'service_account'",
+      "missingField": "حقل مطلوب مفقود: {{field}}",
+      "configure": "تكوين التخزين",
+      "update": "تحديث التخزين",
+      "remove": "إزالة التخزين",
+      "saved": "تم حفظ تكوين التخزين",
+      "saveError": "فشل في حفظ تكوين التخزين",
+      "deleteError": "فشل في حذف تكوين التخزين",
+      "confirmDelete": "هل أنت متأكد من أنك تريد إزالة تكوين التخزين؟ لن يتم رفع الوسائط المولدة إلى التخزين السحابي بعد الآن."
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "تحميل",
     "clickToExpand": "انقر للتوسع",
     "outputTitle": "إخراج الوسائط",
+    "generatedTitle": "الوسائط المُنشأة",
     "modeFile": "تحميل",
     "modeUrl": "URL",
     "urlPlaceholder": "أدخل عنوان URL لـ {{type}}...",

@@ -130,6 +130,7 @@
       "latency": "Latenza",
       "inputTokens": "Token di input",
       "outputTokens": "Token di output",
+      "estimatedCost": "Costo stimato",
       "usage": {
         "title": "Utilizzo",
         "tokensIn": "Token In",
@@ -225,6 +226,7 @@
     "preview": "Anteprima",
     "willCreate": "Questo creerà {{count}} endpoint:",
     "apply": "Applica modello",
+    "comingSoon": "Prossimamente",
     "errors": {
       "fillAllFields": "Compila tutti i campi obbligatori"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "Riconoscimento immagini",
       "description": "Analizza e descrivi immagini utilizzando modelli di visione"
+    },
+    "audioTranscription": {
+      "name": "Trascrizione audio",
+      "description": "Trascribi l'audio in testo con estrazione strutturata"
     },
     "imageGeneration": {
       "name": "Generazione immagini",
@@ -347,6 +353,35 @@
       "saving": "Salvataggio...",
       "saved": "Impostazioni salvate correttamente",
       "error": "Impossibile salvare le impostazioni"
+    },
+    "storage": {
+      "title": "Archiviazione cloud",
+      "description": "Configura lo storage cloud per i file multimediali generati (immagini, audio, video).",
+      "configured": "Configurato",
+      "provider": "Fornitore di archiviazione",
+      "bucket": "Nome del contenitore",
+      "prefix": "Prefisso del percorso",
+      "prefixHint": "Prefisso opzionale per i file caricati (ad esempio, generated-media/)",
+      "gcsCredentials": "Credenziali di Google Cloud Storage",
+      "gcsCredentialsHint": "Incolla il contenuto del file della chiave JSON dell'account di servizio di GCP",
+      "serviceAccountJson": "Account di servizio JSON",
+      "s3Credentials": "Credenziali Amazon S3",
+      "region": "Regione AWS",
+      "accessKeyId": "ID della chiave di accesso",
+      "secretAccessKey": "Chiave di accesso segreta",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "Lasciare vuoto per mantenere le credenziali esistenti",
+      "credentialsRequired": "Sono necessarie le credenziali",
+      "invalidJson": "Formato JSON non valido",
+      "invalidType": "Il JSON deve avere tipo 'service_account'",
+      "missingField": "Campo obbligatorio mancante: {{field}}",
+      "configure": "Configura Archiviazione",
+      "update": "Aggiorna archiviazione",
+      "remove": "Rimuovi Archiviazione",
+      "saved": "Configurazione di archiviazione salvata",
+      "saveError": "Impossibile salvare la configurazione di archiviazione",
+      "deleteError": "Impossibile eliminare la configurazione di archiviazione",
+      "confirmDelete": "Sei sicuro di voler rimuovere la configurazione di archiviazione? I media generati non verranno più caricati nel cloud."
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "Scarica",
     "clickToExpand": "Clicca per espandere",
     "outputTitle": "Uscita media",
+    "generatedTitle": "Media generati",
     "modeFile": "Carica",
     "modeUrl": "URL",
     "urlPlaceholder": "Inserisci l'URL {{type}}...",

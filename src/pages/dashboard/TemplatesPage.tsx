@@ -28,6 +28,7 @@ import { InfoType } from "@sudobility/types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
+import { CONSTANTS } from "../../config/constants";
 
 function TemplatesPage() {
   const { t } = useTranslation(["dashboard", "common"]);
@@ -62,7 +63,16 @@ function TemplatesPage() {
     autoFetch: false,
   });
 
-  const { templates, applyTemplate } = useProjectTemplates();
+  const { templates: allTemplates, applyTemplate } = useProjectTemplates();
+
+  // Filter out image-related templates unless DEV_MODE is enabled
+  const IMAGE_TEMPLATE_IDS = ["image-recognition", "image-generation", "image-processing"];
+  const templates = useMemo(() => {
+    if (CONSTANTS.DEV_MODE) {
+      return allTemplates;
+    }
+    return allTemplates.filter((t) => !IMAGE_TEMPLATE_IDS.includes(t.id));
+  }, [allTemplates]);
 
   // Fetch providers for display names
   const { providers } = useProviders(networkClient, baseUrl, testMode);

@@ -130,6 +130,7 @@
       "latency": "Verzögerung",
       "inputTokens": "Eingabewörter",
       "outputTokens": "Ausgabetoken",
+      "estimatedCost": "Geschätzte Kosten",
       "usage": {
         "title": "Verwendung",
         "tokensIn": "Tokens In",
@@ -225,6 +226,7 @@
     "preview": "Vorschau",
     "willCreate": "Dadurch werden {{count}} Endpunkt(e) erstellt:",
     "apply": "Vorlage anwenden",
+    "comingSoon": "Bald verfügbar",
     "errors": {
       "fillAllFields": "Bitte füllen Sie alle erforderlichen Felder aus"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "Bilderkennung",
       "description": "Bilder mithilfe von Vision-Modellen analysieren und beschreiben"
+    },
+    "audioTranscription": {
+      "name": "Audioaufzeichnung",
+      "description": "Audio in Text mit strukturierter Extraktion umwandeln"
     },
     "imageGeneration": {
       "name": "Bildgenerierung",
@@ -347,6 +353,35 @@
       "saving": "Speichern...",
       "saved": "Einstellungen erfolgreich gespeichert",
       "error": "Fehler beim Speichern der Einstellungen"
+    },
+    "storage": {
+      "title": "Cloud-Speicherung",
+      "description": "Konfigurieren Sie den Cloud-Speicher für generierte Medienfiles (Bilder, Audio, Video).",
+      "configured": "Konfiguriert",
+      "provider": "Speicheranbieter",
+      "bucket": "Bucket-Name",
+      "prefix": "Pfadpräfix",
+      "prefixHint": "Optionaler Präfix für hochgeladene Dateien (z. B. generated-media/)",
+      "gcsCredentials": "Google Cloud Storage-Anmeldeinformationen",
+      "gcsCredentialsHint": "Fügen Sie den Inhalt Ihrer GCP-Dienstkonten-JSON-Schlüsseldatei ein",
+      "serviceAccountJson": "Service-Konto JSON",
+      "s3Credentials": "Amazon S3-Anmeldeinformationen",
+      "region": "AWS-Region",
+      "accessKeyId": "Zugriffsschlüssel-ID",
+      "secretAccessKey": "Geheimer Zugriffsschlüssel",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "Leer lassen, um vorhandene Anmeldeinformationen beizubehalten",
+      "credentialsRequired": "Anmeldeinformationen sind erforderlich",
+      "invalidJson": "Ungültiges JSON-Format",
+      "invalidType": "JSON muss den Typ 'service_account' haben",
+      "missingField": "Fehlendes erforderliches Feld: {{field}}",
+      "configure": "Speicher konfigurieren",
+      "update": "Speicher aktualisieren",
+      "remove": "Speicher entfernen",
+      "saved": "Speicherkonfiguration gespeichert",
+      "saveError": "Speicherkonfiguration konnte nicht gespeichert werden",
+      "deleteError": "Fehler beim Löschen der Speicherkonfiguration",
+      "confirmDelete": "Sind Sie sicher, dass Sie die Speicherkonfiguration entfernen möchten? Generierte Medien werden nicht mehr in den Cloud-Speicher hochgeladen."
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "Herunterladen",
     "clickToExpand": "Klicken zum Erweitern",
     "outputTitle": "Mediawiedergabe",
+    "generatedTitle": "Generierte Medien",
     "modeFile": "Hochladen",
     "modeUrl": "URL",
     "urlPlaceholder": "Geben Sie die URL von {{type}} ein...",

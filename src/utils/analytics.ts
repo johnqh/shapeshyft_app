@@ -9,6 +9,63 @@ import { stripLanguagePrefix } from "@sudobility/components";
 export { hashUserId, stripLanguagePrefix } from "@sudobility/components";
 
 /**
+ * UUID regex pattern for matching UUIDs in paths
+ */
+const UUID_PATTERN = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
+
+/**
+ * Entity slug pattern - alphanumeric strings that appear after /dashboard/
+ * These are typically 8 character slugs like "mvz596xl"
+ */
+const ENTITY_SLUG_PATTERN = /^[a-z0-9]{6,12}$/i;
+
+/**
+ * Strip IDs from a URL path for privacy-preserving analytics tracking.
+ * Removes entity slugs and UUIDs while preserving the route structure.
+ *
+ * Example:
+ * Input:  /en/dashboard/mvz596xl/projects/fe4d5725-2f5d-4806-9f9e-ff47deb271f3/endpoints/24106242-0a99-4b0e-be3d-be8b03f9451b
+ * Output: /en/dashboard/projects/endpoints
+ */
+export const sanitizePathForTracking = (path: string): string => {
+  // Split path into segments
+  const segments = path.split("/").filter(Boolean);
+
+  // Known route segments that should be kept
+  const knownRoutes = new Set([
+    "en", "ar", "de", "es", "fr", "it", "ja", "ko", "pt", "ru", "sv", "th", "uk", "vi", "zh", "zh-hant", // languages
+    "dashboard", "projects", "endpoints", "providers", "analytics", "budgets",
+    "subscription", "settings", "rate-limits", "templates", "new", "performance",
+    "login", "pricing", "docs", "about", "privacy", "terms", "contact",
+    "use-cases", "text", "data", "content", "sitemap",
+  ]);
+
+  // Filter segments
+  const filteredSegments = segments.filter((segment) => {
+    // Keep known routes
+    if (knownRoutes.has(segment.toLowerCase())) {
+      return true;
+    }
+
+    // Remove UUIDs
+    if (UUID_PATTERN.test(segment)) {
+      UUID_PATTERN.lastIndex = 0; // Reset regex state
+      return false;
+    }
+
+    // Remove entity slugs (alphanumeric strings that look like IDs)
+    if (ENTITY_SLUG_PATTERN.test(segment)) {
+      return false;
+    }
+
+    // Keep other segments (e.g., page names)
+    return true;
+  });
+
+  return "/" + filteredSegments.join("/");
+};
+
+/**
  * Analytics event names following Firebase best practices
  */
 export const AnalyticsEvents = {

@@ -6,6 +6,7 @@ import type { Project, LlmApiKeySafe } from "@sudobility/shapeshyft_types";
 import { useProviders } from "@sudobility/shapeshyft_client";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
+import { CONSTANTS } from "../../config/constants";
 
 interface CollapsibleSectionProps {
   id: string;
@@ -396,23 +397,27 @@ export function DashboardMasterList({
       {/* Divider */}
       <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
 
-      {/* Analytics */}
-      <CollapsibleSection
-        id="analytics"
-        title={t("navigation.analytics")}
-        icon={<ChartIcon />}
-        isSelected={isAnalyticsSection}
-        onSelect={() => handleNavigation("/analytics")}
-      />
+      {/* Analytics - dev mode only */}
+      {CONSTANTS.DEV_MODE && (
+        <CollapsibleSection
+          id="analytics"
+          title={t("navigation.analytics")}
+          icon={<ChartIcon />}
+          isSelected={isAnalyticsSection}
+          onSelect={() => handleNavigation("/analytics")}
+        />
+      )}
 
-      {/* Budgets */}
-      <CollapsibleSection
-        id="budgets"
-        title={t("navigation.budgets")}
-        icon={<BudgetIcon />}
-        isSelected={isBudgetsSection}
-        onSelect={() => handleNavigation("/budgets")}
-      />
+      {/* Budgets - dev mode only */}
+      {CONSTANTS.DEV_MODE && (
+        <CollapsibleSection
+          id="budgets"
+          title={t("navigation.budgets")}
+          icon={<BudgetIcon />}
+          isSelected={isBudgetsSection}
+          onSelect={() => handleNavigation("/budgets")}
+        />
+      )}
 
       {/* Subscription */}
       <CollapsibleSection

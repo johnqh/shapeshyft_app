@@ -404,7 +404,7 @@ function EndpointNewPage() {
                 onChange={(e) => setInstructions(e.target.value)}
                 placeholder={t("endpoints.form.instructionsPlaceholder")}
                 rows={3}
-                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
               />
             </div>
 
@@ -523,7 +523,7 @@ function EndpointNewPage() {
                 onChange={(e) => setContext(e.target.value)}
                 placeholder={t("endpoints.form.contextPlaceholder")}
                 rows={4}
-                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
               />
             </div>
 

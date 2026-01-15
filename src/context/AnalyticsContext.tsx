@@ -12,6 +12,7 @@ import { analytics, IS_DEVELOPMENT } from "../config/firebase";
 import {
   hashUserId,
   AnalyticsEvents,
+  sanitizePathForTracking,
   type AnalyticsEvent,
   type AnalyticsEventParams,
 } from "../utils/analytics";
@@ -80,13 +81,16 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
 
   /**
    * Track a page view
+   * Sanitizes the path to remove IDs (entity slugs, UUIDs) for privacy
    */
   const trackPageView = useCallback(
     (pagePath: string, pageTitle?: string) => {
+      // Sanitize path to remove IDs before tracking
+      const sanitizedPath = sanitizePathForTracking(pagePath);
       trackEvent({
         event: AnalyticsEvents.PAGE_VIEW,
         parameters: {
-          page_path: pagePath,
+          page_path: sanitizedPath,
           page_title: pageTitle,
         },
       });

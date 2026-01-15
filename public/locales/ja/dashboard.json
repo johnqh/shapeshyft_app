@@ -130,6 +130,7 @@
       "latency": "レイテンシー",
       "inputTokens": "入力トークン",
       "outputTokens": "出力トークン",
+      "estimatedCost": "推定費用",
       "usage": {
         "title": "使用方法",
         "tokensIn": "トークンイン",
@@ -225,6 +226,7 @@
     "preview": "プレビュー",
     "willCreate": "これにより、{{count}} のエンドポイントが作成されます：",
     "apply": "テンプレートを適用",
+    "comingSoon": "まもなく登場",
     "errors": {
       "fillAllFields": "すべての必須項目を入力してください"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "画像認識",
       "description": "ビジョンモデルを用いて画像を分析し、記述する"
+    },
+    "audioTranscription": {
+      "name": "音声転写",
+      "description": "音声をテキストに変換し、構造化された抽出を行う"
     },
     "imageGeneration": {
       "name": "画像生成",
@@ -347,6 +353,35 @@
       "saving": "保存中...",
       "saved": "設定が正常に保存されました",
       "error": "設定の保存に失敗しました"
+    },
+    "storage": {
+      "title": "クラウドストレージ",
+      "description": "生成されたメディアファイル（画像、音声、動画）のクラウドストレージを設定する。",
+      "configured": "設定済み",
+      "provider": "ストレージプロバイダー",
+      "bucket": "バケット名",
+      "prefix": "パス接頭辞",
+      "prefixHint": "アップロードされたファイルのオプション接頭辞（例：generated-media/）",
+      "gcsCredentials": "Google Cloud Storageの認証情報",
+      "gcsCredentialsHint": "GCPサービスアカウントのJSONキー ファイルの内容を貼り付けてください",
+      "serviceAccountJson": "サービスアカウントのJSON",
+      "s3Credentials": "Amazon S3の資格情報",
+      "region": "AWSリージョン",
+      "accessKeyId": "アクセスキーID",
+      "secretAccessKey": "シークレットアクセスキー",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "空のままにすると、既存の資格情報を保持します",
+      "credentialsRequired": "認証情報が必要です",
+      "invalidJson": "無効なJSON形式",
+      "invalidType": "JSONは型 'service_account' でなければなりません",
+      "missingField": "必須フィールドが欠けています: {{field}}",
+      "configure": "ストレージを設定する",
+      "update": "ストレージを更新する",
+      "remove": "ストレージを削除する",
+      "saved": "ストレージ設定が保存されました",
+      "saveError": "ストレージ設定の保存に失敗しました",
+      "deleteError": "ストレージ設定の削除に失敗しました",
+      "confirmDelete": "ストレージ設定を削除してもよろしいですか？生成されたメディアはもはやクラウドストレージにアップロードされなくなります。"
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "ダウンロード",
     "clickToExpand": "クリックして展開",
     "outputTitle": "メディア出力",
+    "generatedTitle": "生成されたメディア",
     "modeFile": "アップロード",
     "modeUrl": "URL",
     "urlPlaceholder": "{{type}}のURLを入力してください...",

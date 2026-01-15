@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { LayoutProvider } from "@sudobility/components";
 import { AppBreadcrumbs } from "@sudobility/building_blocks";
 import TopBar from "./TopBar";
@@ -37,6 +38,7 @@ function ScreenContainer({
   showBreadcrumbs = false,
   shareConfig,
 }: ScreenContainerProps) {
+  const { t } = useTranslation("common");
   const { items: breadcrumbItems } = useBreadcrumbs();
   const effectiveShareConfig =
     shareConfig === false ? undefined : (shareConfig ?? DEFAULT_SHARE_CONFIG);
@@ -55,7 +57,10 @@ function ScreenContainer({
                 shareConfig={effectiveShareConfig}
                 talkToFounder={
                   CONSTANTS.MEET_FOUNDER_URL
-                    ? { meetingUrl: CONSTANTS.MEET_FOUNDER_URL }
+                    ? {
+                        meetingUrl: CONSTANTS.MEET_FOUNDER_URL,
+                        buttonText: t("talkToFounder"),
+                      }
                     : undefined
                 }
               />

@@ -25,7 +25,7 @@ export function ApiProvider({ children }: ApiProviderProps) {
 
   const baseUrl = CONSTANTS.API_URL;
   const userId = user?.uid ?? null;
-  const testMode = CONSTANTS.TESTNET_ONLY;
+  const testMode = CONSTANTS.DEV_MODE;
 
   // Fetch token when user changes
   useEffect(() => {
