@@ -47,7 +47,11 @@ export default defineConfig({
           // Split vendor libraries into separate chunks
           if (id.includes("node_modules")) {
             // Core React - loaded on every page
-            if (id.includes("react-dom") || id.includes("scheduler")) {
+            if (
+              id.includes("/react/") ||
+              id.includes("react-dom") ||
+              id.includes("scheduler")
+            ) {
               return "vendor-react";
             }
             if (id.includes("react-router")) {
