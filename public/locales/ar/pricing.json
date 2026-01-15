@@ -1,6 +1,15 @@
 {
   "title": "الأسعار",
   "subtitle": "اختر الخطة التي تلائم احتياجاتك",
+  "badges": {
+    "currentPlan": "الخطة الحالية",
+    "mostPopular": "الأكثر شعبية"
+  },
+  "cta": {
+    "logIn": "تسجيل الدخول للمتابعة",
+    "tryFree": "جربه مجانًا",
+    "upgrade": "تحديث"
+  },
   "plans": {
     "free": {
       "name": "ال Gratis",

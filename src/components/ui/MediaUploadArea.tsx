@@ -42,7 +42,13 @@ const SIZE_LIMITS: Record<MediaType, number> = {
 
 // Accepted MIME types
 const ACCEPTED_TYPES: Record<MediaType, string[]> = {
-  image: ["image/jpeg", "image/png", "image/gif", "image/webp", "image/svg+xml"],
+  image: [
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "image/webp",
+    "image/svg+xml",
+  ],
   audio: ["audio/mpeg", "audio/wav", "audio/ogg", "audio/webm", "audio/mp4"],
   video: ["video/mp4", "video/webm", "video/ogg", "video/quicktime"],
 };
@@ -85,7 +91,7 @@ export function MediaUploadArea({
       const formats = supportedFormats?.[fieldName];
       return formats?.includes("url") ?? false;
     },
-    [supportedFormats]
+    [supportedFormats],
   );
 
   // Get current input mode for a field (default to "file" for base64/file, "url" if only URL is supported)
@@ -94,12 +100,17 @@ export function MediaUploadArea({
       if (inputModes[fieldName]) return inputModes[fieldName];
       const formats = supportedFormats?.[fieldName];
       // If only URL is supported (no base64 or file), default to URL mode
-      if (formats && formats.includes("url") && !formats.includes("base64") && !formats.includes("file")) {
+      if (
+        formats &&
+        formats.includes("url") &&
+        !formats.includes("base64") &&
+        !formats.includes("file")
+      ) {
         return "url";
       }
       return "file";
     },
-    [inputModes, supportedFormats]
+    [inputModes, supportedFormats],
   );
 
   // Set input mode for a field
@@ -108,19 +119,19 @@ export function MediaUploadArea({
   }, []);
 
   // Handle URL input change
-  const handleUrlChange = useCallback(
-    (fieldName: string, url: string) => {
-      setUrlInputs((prev) => ({ ...prev, [fieldName]: url }));
-    },
-    []
-  );
+  const handleUrlChange = useCallback((fieldName: string, url: string) => {
+    setUrlInputs((prev) => ({ ...prev, [fieldName]: url }));
+  }, []);
 
   // Submit URL
   const handleUrlSubmit = useCallback(
     (fieldName: string) => {
       const url = urlInputs[fieldName]?.trim();
       if (!url) {
-        setErrors((prev) => ({ ...prev, [fieldName]: t("media.errorUrlRequired") }));
+        setErrors((prev) => ({
+          ...prev,
+          [fieldName]: t("media.errorUrlRequired"),
+        }));
         return;
       }
 
@@ -128,7 +139,10 @@ export function MediaUploadArea({
       try {
         new URL(url);
       } catch {
-        setErrors((prev) => ({ ...prev, [fieldName]: t("media.errorUrlInvalid") }));
+        setErrors((prev) => ({
+          ...prev,
+          [fieldName]: t("media.errorUrlInvalid"),
+        }));
         return;
       }
 
@@ -140,7 +154,7 @@ export function MediaUploadArea({
       });
       onFilesChange({ ...uploadedFiles, [fieldName]: url });
     },
-    [urlInputs, uploadedFiles, onFilesChange, t]
+    [urlInputs, uploadedFiles, onFilesChange, t],
   );
 
   const fieldEntries = Object.entries(mediaFields);
@@ -231,7 +245,11 @@ export function MediaUploadArea({
   }, []);
 
   const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, fieldName: string, mediaType: MediaType) => {
+    (
+      e: React.ChangeEvent<HTMLInputElement>,
+      fieldName: string,
+      mediaType: MediaType,
+    ) => {
       const files = e.target.files;
       if (files && files.length > 0) {
         handleFile(files[0], fieldName, mediaType);
@@ -315,9 +333,10 @@ export function MediaUploadArea({
                       disabled={disabled}
                       className={`
                         flex items-center gap-1 px-2 py-1 text-xs rounded transition-colors
-                        ${currentMode === "file"
-                          ? "bg-theme-bg-primary text-theme-text-primary shadow-sm"
-                          : "text-theme-text-tertiary hover:text-theme-text-secondary"
+                        ${
+                          currentMode === "file"
+                            ? "bg-theme-bg-primary text-theme-text-primary shadow-sm"
+                            : "text-theme-text-tertiary hover:text-theme-text-secondary"
                         }
                         disabled:opacity-50
                       `}
@@ -332,9 +351,10 @@ export function MediaUploadArea({
                       disabled={disabled}
                       className={`
                         flex items-center gap-1 px-2 py-1 text-xs rounded transition-colors
-                        ${currentMode === "url"
-                          ? "bg-theme-bg-primary text-theme-text-primary shadow-sm"
-                          : "text-theme-text-tertiary hover:text-theme-text-secondary"
+                        ${
+                          currentMode === "url"
+                            ? "bg-theme-bg-primary text-theme-text-primary shadow-sm"
+                            : "text-theme-text-tertiary hover:text-theme-text-secondary"
                         }
                         disabled:opacity-50
                       `}
@@ -391,7 +411,8 @@ export function MediaUploadArea({
                         {currentValue}
                       </span>
                     ) : (
-                      preview && `${preview.file.name} (${formatFileSize(preview.file.size)})`
+                      preview &&
+                      `${preview.file.name} (${formatFileSize(preview.file.size)})`
                     )}
                   </p>
                 </div>
@@ -402,7 +423,9 @@ export function MediaUploadArea({
                     <input
                       type="url"
                       value={urlInputs[fieldName] || ""}
-                      onChange={(e) => handleUrlChange(fieldName, e.target.value)}
+                      onChange={(e) =>
+                        handleUrlChange(fieldName, e.target.value)
+                      }
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
                           e.preventDefault();
@@ -410,7 +433,9 @@ export function MediaUploadArea({
                         }
                       }}
                       disabled={disabled}
-                      placeholder={t("media.urlPlaceholder", { type: mediaType })}
+                      placeholder={t("media.urlPlaceholder", {
+                        type: mediaType,
+                      })}
                       className={`
                         flex-1 px-3 py-2 text-sm rounded-lg border
                         bg-theme-bg-primary text-theme-text-primary
@@ -439,7 +464,9 @@ export function MediaUploadArea({
                   onDrop={(e) => handleDrop(e, fieldName, mediaType)}
                   onDragOver={(e) => handleDragOver(e, fieldName)}
                   onDragLeave={handleDragLeave}
-                  onClick={() => !disabled && fileInputRefs.current[fieldName]?.click()}
+                  onClick={() =>
+                    !disabled && fileInputRefs.current[fieldName]?.click()
+                  }
                   className={`
                     border-2 border-dashed rounded-lg p-6 text-center cursor-pointer
                     transition-colors
@@ -453,7 +480,9 @@ export function MediaUploadArea({
                   `}
                 >
                   <input
-                    ref={(el) => { fileInputRefs.current[fieldName] = el; }}
+                    ref={(el) => {
+                      fileInputRefs.current[fieldName] = el;
+                    }}
                     type="file"
                     accept={ACCEPTED_TYPES[mediaType].join(",")}
                     onChange={(e) => handleInputChange(e, fieldName, mediaType)}
@@ -467,14 +496,18 @@ export function MediaUploadArea({
                       {t("media.dropOrClick", { type: mediaType })}
                     </span>
                     <span className="text-xs">
-                      {t("media.maxSize", { size: formatFileSize(SIZE_LIMITS[mediaType]) })}
+                      {t("media.maxSize", {
+                        size: formatFileSize(SIZE_LIMITS[mediaType]),
+                      })}
                     </span>
                   </div>
                 </div>
               )}
 
               {error && (
-                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  {error}
+                </p>
               )}
             </div>
           );

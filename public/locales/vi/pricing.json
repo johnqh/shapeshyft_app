@@ -1,6 +1,15 @@
 {
   "title": "Giá cả",
   "subtitle": "Chọn gói phù hợp với nhu cầu của bạn",
+  "badges": {
+    "currentPlan": "Gói hiện tại",
+    "mostPopular": "Thịnh hành nhất"
+  },
+  "cta": {
+    "logIn": "Đăng nhập để tiếp tục",
+    "tryFree": "Thử miễn phí",
+    "upgrade": "Nâng cấp"
+  },
   "plans": {
     "free": {
       "name": "Miễn phí",

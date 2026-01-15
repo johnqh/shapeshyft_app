@@ -39,7 +39,9 @@ function LoginPage() {
       appName={CONSTANTS.APP_NAME}
       logo={<img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-12" />}
       auth={auth}
-      onSuccess={() => navigate(`/${lang || "en"}/dashboard`, { replace: true })}
+      onSuccess={() =>
+        navigate(`/${lang || "en"}/dashboard`, { replace: true })
+      }
     />
   );
 }

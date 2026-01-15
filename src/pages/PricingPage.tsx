@@ -26,8 +26,11 @@ function PricingPage() {
   const { t } = useTranslation("pricing");
   const { t: tSub } = useTranslation("subscription");
   const { user, openModal } = useAuthStatus();
-  const { products: rawProducts, currentSubscription, purchase } =
-    useSafeSubscriptionContext();
+  const {
+    products: rawProducts,
+    currentSubscription,
+    purchase,
+  } = useSafeSubscriptionContext();
   const { currentEntitySlug, currentEntityId } = useCurrentEntity();
   const { navigate } = useLocalizedNavigate();
   const { success, error: showError } = useToast();
@@ -51,7 +54,9 @@ function PricingPage() {
       try {
         const result = await purchase(planIdentifier);
         if (result) {
-          success(tSub("purchase.success", "Subscription activated successfully!"));
+          success(
+            tSub("purchase.success", "Subscription activated successfully!"),
+          );
           // Navigate to dashboard after successful purchase
           if (currentEntitySlug) {
             navigate(`/dashboard/${currentEntitySlug}`);

@@ -144,22 +144,23 @@ VITE_SHOW_PERFORMANCE_MONITOR=false
 
 ## Routing
 
-| Path | Page | Auth Required |
-|------|------|---------------|
-| `/` | Home | No |
-| `/login` | Login | No |
-| `/pricing` | Pricing | No |
-| `/docs` | Documentation | No |
-| `/dashboard` | Dashboard | Yes |
-| `/dashboard/projects` | Projects | Yes |
-| `/dashboard/projects/:id` | Project Details | Yes |
-| `/dashboard/keys` | API Keys | Yes |
-| `/dashboard/analytics` | Analytics | Yes |
-| `/dashboard/settings` | Settings | Yes |
+| Path                      | Page            | Auth Required |
+| ------------------------- | --------------- | ------------- |
+| `/`                       | Home            | No            |
+| `/login`                  | Login           | No            |
+| `/pricing`                | Pricing         | No            |
+| `/docs`                   | Documentation   | No            |
+| `/dashboard`              | Dashboard       | Yes           |
+| `/dashboard/projects`     | Projects        | Yes           |
+| `/dashboard/projects/:id` | Project Details | Yes           |
+| `/dashboard/keys`         | API Keys        | Yes           |
+| `/dashboard/analytics`    | Analytics       | Yes           |
+| `/dashboard/settings`     | Settings        | Yes           |
 
 ## Code Patterns
 
 ### Protected Routes
+
 ```tsx
 <Route
   path="/dashboard/*"
@@ -172,6 +173,7 @@ VITE_SHOW_PERFORMANCE_MONITOR=false
 ```
 
 ### Data Fetching
+
 ```tsx
 // Use hooks from shapeshyft_client
 const { projects, isLoading, refresh } = useProjects(networkClient, baseUrl);
@@ -182,7 +184,8 @@ useEffect(() => {
 ```
 
 ### State Management
+
 ```tsx
 // Use stores from shapeshyft_lib
-const projects = useProjectsStore(state => state.getProjects(entitySlug));
+const projects = useProjectsStore((state) => state.getProjects(entitySlug));
 ```

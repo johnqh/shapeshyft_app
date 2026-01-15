@@ -133,7 +133,10 @@ export const getSharedSubscriptionLabels = (t: TFunction) => ({
 
   // Rate limits
   unlimited: t("rateLimits.unlimited", "Unlimited"),
-  unlimitedRequests: t("rateLimits.unlimitedRequests", "Unlimited API requests"),
+  unlimitedRequests: t(
+    "rateLimits.unlimitedRequests",
+    "Unlimited API requests",
+  ),
 
   // Free tier
   freeTierTitle: t("freeTier.title", "Free"),

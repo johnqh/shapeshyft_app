@@ -95,6 +95,7 @@
   },
   "common": {
     "yes": "Ja",
-    "no": "Nein"
+    "no": "Nein",
+    "error": "Fehler"
   }
 }

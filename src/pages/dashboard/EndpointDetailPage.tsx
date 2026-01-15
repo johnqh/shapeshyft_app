@@ -1,4 +1,11 @@
-import { useState, useMemo, useEffect, useRef, useCallback, type ReactNode } from "react";
+import {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+  type ReactNode,
+} from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -10,7 +17,10 @@ import {
 import { useProviders, useProviderModels } from "@sudobility/shapeshyft_client";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
-import type { LlmProvider, MediaInputFormat } from "@sudobility/shapeshyft_types";
+import type {
+  LlmProvider,
+  MediaInputFormat,
+} from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
   MicrophoneIcon,
@@ -172,17 +182,13 @@ function EndpointDetailPage() {
   // Get the selected key and its provider for edit mode
   const editSelectedKey = useMemo(
     () => keys.find((k) => k.uuid === editLlmKeyId),
-    [keys, editLlmKeyId]
+    [keys, editLlmKeyId],
   );
   const editProvider = editSelectedKey?.provider as LlmProvider | undefined;
 
   // Fetch models for the selected provider from the API (edit mode)
-  const { provider: editProviderConfig, models: editModels } = useProviderModels(
-    networkClient,
-    baseUrl,
-    editProvider ?? null,
-    testMode
-  );
+  const { provider: editProviderConfig, models: editModels } =
+    useProviderModels(networkClient, baseUrl, editProvider ?? null, testMode);
 
   // Build model options with capability icons for edit mode
   // Blue = input capability, Green = output capability
@@ -193,21 +199,44 @@ function EndpointDetailPage() {
       const outputIcons: ReactNode[] = [];
 
       // Input capabilities (blue)
-      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
-      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
-      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+      if (caps.visionInput)
+        inputIcons.push(
+          <PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.audioInput)
+        inputIcons.push(
+          <MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.videoInput)
+        inputIcons.push(
+          <VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />,
+        );
       // Output capabilities (green)
-      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
-      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
-      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+      if (caps.imageOutput)
+        outputIcons.push(
+          <PhotoIcon key="io" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.audioOutput)
+        outputIcons.push(
+          <MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.videoOutput)
+        outputIcons.push(
+          <VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />,
+        );
 
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
           <span className="font-mono">{modelInfo.id}</span>
-          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+          <span className="flex items-center gap-1">
+            {inputIcons}
+            {outputIcons}
+          </span>
         </span>
-      ) : modelInfo.id;
+      ) : (
+        modelInfo.id
+      );
 
       return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
@@ -222,23 +251,30 @@ function EndpointDetailPage() {
       return editCustomModel.trim();
     }
     return editModel || (editProviderConfig?.defaultModel ?? "");
-  }, [editModel, editCustomModel, editAllowsCustomModel, editProviderConfig?.defaultModel]);
+  }, [
+    editModel,
+    editCustomModel,
+    editAllowsCustomModel,
+    editProviderConfig?.defaultModel,
+  ]);
 
   // Get current endpoint's provider and model for display
   const currentKey = useMemo(
     () => keys.find((k) => k.uuid === endpoint?.llm_key_id),
-    [keys, endpoint?.llm_key_id]
+    [keys, endpoint?.llm_key_id],
   );
   const currentProvider = currentKey?.provider as LlmProvider | undefined;
 
   // Fetch models for the current provider (for display mode)
-  const { provider: currentProviderConfig, models: currentModels } = useProviderModels(
-    networkClient,
-    baseUrl,
-    currentProvider ?? null,
-    testMode
-  );
-  const currentModel = endpoint?.model || (currentProviderConfig?.defaultModel ?? "");
+  const { provider: currentProviderConfig, models: currentModels } =
+    useProviderModels(
+      networkClient,
+      baseUrl,
+      currentProvider ?? null,
+      testMode,
+    );
+  const currentModel =
+    endpoint?.model || (currentProviderConfig?.defaultModel ?? "");
 
   // Render model with capability icons
   const renderModelWithIcons = (model: string) => {
@@ -248,20 +284,41 @@ function EndpointDetailPage() {
     const outputIcons: ReactNode[] = [];
 
     // Input capabilities (blue)
-    if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
-    if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
-    if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+    if (caps.visionInput)
+      inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
+    if (caps.audioInput)
+      inputIcons.push(
+        <MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />,
+      );
+    if (caps.videoInput)
+      inputIcons.push(
+        <VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />,
+      );
     // Output capabilities (green)
-    if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
-    if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
-    if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+    if (caps.imageOutput)
+      outputIcons.push(
+        <PhotoIcon key="io" className="w-4 h-4 text-green-500" />,
+      );
+    if (caps.audioOutput)
+      outputIcons.push(
+        <MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />,
+      );
+    if (caps.videoOutput)
+      outputIcons.push(
+        <VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />,
+      );
 
     const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
 
     return (
       <span className="flex items-center gap-2">
         <span className="font-mono">{model}</span>
-        {hasIcons && <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>}
+        {hasIcons && (
+          <span className="flex items-center gap-1">
+            {inputIcons}
+            {outputIcons}
+          </span>
+        )}
       </span>
     );
   };
@@ -329,7 +386,10 @@ function EndpointDetailPage() {
   const outputMediaItems = useMemo(
     () =>
       latestResult?.success && latestResult?.output
-        ? extractMediaFromOutput(endpoint?.output_schema ?? null, latestResult.output)
+        ? extractMediaFromOutput(
+            endpoint?.output_schema ?? null,
+            latestResult.output,
+          )
         : [],
     [endpoint?.output_schema, latestResult],
   );
@@ -608,10 +668,7 @@ function EndpointDetailPage() {
 
     // Merge media files into the input
     const finalInput = hasInputMedia
-      ? mergeMediaIntoInput(
-          parsedInput as Record<string, unknown>,
-          mediaFiles,
-        )
+      ? mergeMediaIntoInput(parsedInput as Record<string, unknown>, mediaFiles)
       : parsedInput;
 
     const validation = validateInput(finalInput, endpoint.input_schema);
@@ -645,9 +702,7 @@ function EndpointDetailPage() {
 
   // Server error state - show error but keep in detail panel
   if (endpointsError && isServerError(endpointsError)) {
-    return (
-      <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />
-    );
+    return <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />;
   }
 
   // Not found
@@ -748,9 +803,14 @@ function EndpointDetailPage() {
                       {keys.map((key) => (
                         <SelectItem key={key.uuid} value={key.uuid}>
                           <span className="flex items-center gap-2">
-                            <ProviderIcon provider={key.provider as LlmProvider} size="sm" />
+                            <ProviderIcon
+                              provider={key.provider as LlmProvider}
+                              size="sm"
+                            />
                             <span>{key.key_name}</span>
-                            <span className="text-theme-text-tertiary">({getProviderName(key.provider)})</span>
+                            <span className="text-theme-text-tertiary">
+                              ({getProviderName(key.provider)})
+                            </span>
                           </span>
                         </SelectItem>
                       ))}
@@ -771,7 +831,11 @@ function EndpointDetailPage() {
                         setEditCustomModel("");
                       }}
                       disabled={!editProvider}
-                      placeholder={!editProvider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                      placeholder={
+                        !editProvider
+                          ? t("endpoints.form.selectModel")
+                          : t("endpoints.form.modelPlaceholder")
+                      }
                       inputClassName="font-mono text-sm"
                     />
                   ) : (
@@ -783,7 +847,13 @@ function EndpointDetailPage() {
                       disabled={!editProvider}
                     >
                       <SelectTrigger className="w-full font-mono text-sm">
-                        <SelectValue placeholder={!editProvider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                        <SelectValue
+                          placeholder={
+                            !editProvider
+                              ? t("endpoints.form.selectModel")
+                              : t("endpoints.form.modelPlaceholder")
+                          }
+                        />
                       </SelectTrigger>
                       <SelectContent>
                         {editModelOptions.map((option) => (
@@ -854,9 +924,7 @@ function EndpointDetailPage() {
                     {currentProvider && (
                       <ProviderIcon provider={currentProvider} size="sm" />
                     )}
-                    <span>
-                      {currentKey?.key_name || endpoint.llm_key_id}
-                    </span>
+                    <span>{currentKey?.key_name || endpoint.llm_key_id}</span>
                     {currentProvider && (
                       <span className="text-theme-text-tertiary">
                         ({getProviderName(currentProvider)})

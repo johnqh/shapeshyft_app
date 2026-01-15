@@ -55,8 +55,11 @@
     "delete": "Ta bort",
     "edit": "Redigera",
     "create": "Skapa",
+    "creating": "Skapar...",
     "confirm": "Bekräfta",
     "close": "Stäng",
+    "copy": "Kopiera",
+    "copied": "Kopierat!",
     "back": "Tillbaka",
     "next": "Nästa",
     "submit": "Skicka",
@@ -67,10 +70,15 @@
     "notSet": "Inte inställt",
     "disabled": "Inaktiverad",
     "refresh": "Uppdatera",
+    "remove": "Ta bort",
+    "dismiss": "Avvisa",
     "yes": "Ja",
     "no": "Nej",
     "errorOccurred": "Ett fel uppstod",
-    "optional": "valfritt"
+    "optional": "valfritt",
+    "goBack": "Gå tillbaka",
+    "saved": "Sparat",
+    "deleted": "Raderad"
   },
   "toast": {
     "success": {

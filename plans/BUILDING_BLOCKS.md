@@ -12,9 +12,11 @@ Create a shared component library for higher-level UI building blocks used acros
 ## Components to Create
 
 ### 1. AppTopBar (Base)
+
 Base topbar with render prop for auth section.
 
 **Props:**
+
 - `logo: { src: string, appName: string, onClick?: () => void }`
 - `menuItems: { id, label, icon: ComponentType, href }[]`
 - `languages?: LanguageConfig[]` (defaults to 16 built-in)
@@ -25,16 +27,20 @@ Base topbar with render prop for auth section.
 - `collapseBelow?: 'sm' | 'md' | 'lg' | 'xl'`
 
 ### 2. AppTopBarWithFirebaseAuth
+
 Wraps AppTopBar with Firebase auth via `@sudobility/auth-components`.
 
 **Additional Props:**
+
 - `authenticatedMenuItems?: AuthMenuItem[]`
 - `loginButtonVariant?: 'primary' | 'secondary' | 'outline' | 'ghost'`
 
 ### 3. AppTopBarWithWallet
+
 Wraps AppTopBar with wallet connection via `@sudobility/web3-components`.
 
 **Additional Props:**
+
 - `isConnected: boolean`
 - `walletAddress?: string`
 - `authStatus?: AuthStatus`
@@ -44,9 +50,11 @@ Wraps AppTopBar with wallet connection via `@sudobility/web3-components`.
 - `walletMenuItems?: WalletMenuItem[]`
 
 ### 4. AppBreadcrumbs
+
 Breadcrumbs with social share and "Talk to Founder" button.
 
 **Props:**
+
 - `items: { label, href?, current? }[]`
 - `shareConfig?: { title, description, hashtags, onBeforeShare? }`
 - `talkToFounder?: { meetingUrl: string, buttonText?: string, icon?: ComponentType }`
@@ -55,9 +63,11 @@ Breadcrumbs with social share and "Talk to Founder" button.
 **Note:** Always renders at `max-w-7xl` width.
 
 ### 5. AppFooterForHomePage (Full)
+
 Extensive footer for home/landing pages.
 
 **Props:**
+
 - `logo: { src?, appName }`
 - `linkSections: { title, links: { label, href }[] }[]`
 - `socialLinks?: { twitterUrl?, discordUrl?, githubUrl?, ... }`
@@ -68,9 +78,11 @@ Extensive footer for home/landing pages.
 - `description?: string`
 
 ### 6. AppFooter (Compact)
+
 Simplified sticky footer for app pages.
 
 **Props:**
+
 - `version?: string`
 - `copyrightYear?: string`
 - `companyName: string`
@@ -79,9 +91,11 @@ Simplified sticky footer for app pages.
 - `sticky?: boolean`
 
 ### 7. AppPageLayout
+
 Layout wrapper combining all blocks.
 
 **Props:**
+
 - `topBar: ReactNode`
 - `breadcrumbs?: AppBreadcrumbsProps`
 - `footer?: ReactNode`
@@ -134,22 +148,22 @@ Layout wrapper combining all blocks.
 
 ```typescript
 export const DEFAULT_LANGUAGES = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-  { code: 'ja', name: '日本語', flag: '🇯🇵' },
-  { code: 'ko', name: '한국어', flag: '🇰🇷' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'sv', name: 'Svenska', flag: '🇸🇪' },
-  { code: 'th', name: 'ไทย', flag: '🇹🇭' },
-  { code: 'uk', name: 'Українська', flag: '🇺🇦' },
-  { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳' },
-  { code: 'zh', name: '简体中文', flag: '🇨🇳' },
-  { code: 'zh-hant', name: '繁體中文', flag: '🇹🇼' },
+  { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "ar", name: "العربية", flag: "🇸🇦" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "it", name: "Italiano", flag: "🇮🇹" },
+  { code: "ja", name: "日本語", flag: "🇯🇵" },
+  { code: "ko", name: "한국어", flag: "🇰🇷" },
+  { code: "pt", name: "Português", flag: "🇵🇹" },
+  { code: "ru", name: "Русский", flag: "🇷🇺" },
+  { code: "sv", name: "Svenska", flag: "🇸🇪" },
+  { code: "th", name: "ไทย", flag: "🇹🇭" },
+  { code: "uk", name: "Українська", flag: "🇺🇦" },
+  { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
+  { code: "zh", name: "简体中文", flag: "🇨🇳" },
+  { code: "zh-hant", name: "繁體中文", flag: "🇹🇼" },
 ];
 ```
 
@@ -197,15 +211,15 @@ export const DEFAULT_LANGUAGES = [
 
 ## Reference Files
 
-| Component | Source Reference |
-|-----------|-----------------|
-| TopBar | `/Users/johnhuang/0xmail/mail_box/src/components/TopBar.tsx` |
-| Language Selector | `/Users/johnhuang/0xmail/mail_box/src/components/LanguageSelector.tsx` |
-| Footer | `/Users/johnhuang/0xmail/mail_box/src/components/Footer.tsx` |
-| Breadcrumbs | `/Users/johnhuang/0xmail/mail_box/src/hooks/useBreadcrumbs.ts` |
-| Firebase Auth | `/Users/johnhuang/shapeshyft/shapeshyft_app/src/components/layout/TopBar.tsx` |
-| Wallet Menu | `/Users/johnhuang/0xmail/mail_box/src/components/ConnectedWalletMenu.tsx` |
-| Page Layout | `/Users/johnhuang/0xmail/mail_box/src/components/layout/standard-page-layout.tsx` |
+| Component         | Source Reference                                                                  |
+| ----------------- | --------------------------------------------------------------------------------- |
+| TopBar            | `/Users/johnhuang/0xmail/mail_box/src/components/TopBar.tsx`                      |
+| Language Selector | `/Users/johnhuang/0xmail/mail_box/src/components/LanguageSelector.tsx`            |
+| Footer            | `/Users/johnhuang/0xmail/mail_box/src/components/Footer.tsx`                      |
+| Breadcrumbs       | `/Users/johnhuang/0xmail/mail_box/src/hooks/useBreadcrumbs.ts`                    |
+| Firebase Auth     | `/Users/johnhuang/shapeshyft/shapeshyft_app/src/components/layout/TopBar.tsx`     |
+| Wallet Menu       | `/Users/johnhuang/0xmail/mail_box/src/components/ConnectedWalletMenu.tsx`         |
+| Page Layout       | `/Users/johnhuang/0xmail/mail_box/src/components/layout/standard-page-layout.tsx` |
 
 ---
 
@@ -263,6 +277,7 @@ export const DEFAULT_LANGUAGES = [
 ## Future Migration (After Verification)
 
 After building_blocks is verified:
+
 1. Update mail_box to use building_blocks
 2. Update shapeshyft_app to use building_blocks
 3. Update sudojo_app to use building_blocks

@@ -26,7 +26,9 @@ vi.mock("@sudobility/components", async () => {
     resolvedTheme: string;
   }
 
-  const ThemeContext = React.createContext<ThemeContextType | undefined>(undefined);
+  const ThemeContext = React.createContext<ThemeContextType | undefined>(
+    undefined,
+  );
 
   const useThemeMock = () => {
     const context = React.useContext(ThemeContext);
@@ -72,8 +74,10 @@ vi.mock("@sudobility/components", async () => {
 
     return React.createElement(
       ThemeContext.Provider,
-      { value: { theme, fontSize, setTheme, setFontSize, resolvedTheme: theme } },
-      children
+      {
+        value: { theme, fontSize, setTheme, setFontSize, resolvedTheme: theme },
+      },
+      children,
     );
   };
 

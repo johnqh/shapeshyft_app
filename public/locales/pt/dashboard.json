@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "Projetos",
+    "detail": "Projeto",
     "empty": "Ainda não há projetos",
     "emptyDescription": "Crie seu primeiro projeto para começar",
     "create": "Criar Projeto",
@@ -39,14 +40,17 @@
         "nameRequired": "O nome de exibição é obrigatório",
         "nameTooShort": "O nome deve ter pelo menos 2 caracteres"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Slug",
+      "create": "Criar Projeto"
     }
   },
   "endpoints": {
     "title": "Pontos de extremidade",
+    "detailTitle": "Ponto de acesso",
     "empty": "Ainda não há endpoints",
     "emptyDescription": "Crie seu primeiro endpoint para este projeto",
     "create": "Criar Endpoint",
+    "useTemplate": "Use o modelo",
     "test": "Teste",
     "notFound": "Endpoint não encontrado",
     "backToProject": "Voltar para o projeto",
@@ -82,6 +86,18 @@
       "llmKey": "Fornecedor",
       "selectKey": "Selecione um provedor",
       "noKeys": "Nenhuma chave de API configurada. Adicione uma primeiro.",
+      "model": "Modelo",
+      "selectModel": "Selecione um provedor primeiro",
+      "customModelPlaceholder": "Ou insira um nome personalizado para o modelo...",
+      "customModelHint": "Você pode digitar qualquer nome de modelo compatível com seu servidor LLM",
+      "costEstimate": "Estimativa de Custos",
+      "costPerRequest": "Custo estimado por solicitação",
+      "inputTokens": "tokens de entrada",
+      "outputTokens": "tokens de saída",
+      "inputCost": "Entrada",
+      "outputCost": "Saída",
+      "costPerMillion": "Custo por 1 milhão de tokens (em USD)",
+      "modelPlaceholder": "Insira ou selecione o modelo...",
       "context": "Contexto do sistema",
       "contextPlaceholder": "Instruções para o LLM (prompt do sistema)",
       "useInputSchema": "Defina o esquema de entrada",
@@ -136,9 +152,12 @@
       "inactive": "Inativo"
     },
     "form": {
+      "title": "Adicionar provedor",
+      "titleEdit": "Editar Provedor",
       "keyName": "Etiqueta do fornecedor",
       "keyNamePlaceholder": "ex: Produção, Desenvolvimento",
       "provider": "Provedor",
+      "selectProvider": "Selecione um provedor",
       "apiKey": "Chave da API",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Sua chave está criptografada em repouso",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "Perplexidade",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "Localização",
       "description": "Traduza o texto para múltiplos idiomas"
+    },
+    "imageRecognition": {
+      "name": "Reconhecimento de Imagens",
+      "description": "Analise e descreva imagens usando modelos de visão"
+    },
+    "imageGeneration": {
+      "name": "Geração de imagem",
+      "description": "Gerar imagens a partir de descrições de texto"
+    },
+    "imageProcessing": {
+      "name": "Processamento de Imagens",
+      "description": "Transforme e edite imagens usando IA"
+    }
+  },
+  "endpointTemplates": {
+    "title": "Modelos de ponto de extremidade",
+    "subtitle": "Crie um ponto de acesso a partir de uma modelo pré-configurado",
+    "allCategories": "Tudo",
+    "configure": "Configure o ponto de extremidade",
+    "preview": "Pré-visualização",
+    "endpointName": "Nome do ponto de extremidade",
+    "category": "Categoria",
+    "inputFields": "Campos de Entrada",
+    "create": "Criar Ponto de Acesso",
+    "errors": {
+      "fillAllFields": "Selecione um modelo e um provedor"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "Uso atual: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "Assinatura"
+  },
   "schema": {
     "editor": "Editor de Esquema",
     "visual": "Visual",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "Descrição da propriedade (opcional)",
     "arrayItemSchema": "Esquema do item de matriz:",
     "clickToEditName": "Clique para editar o nome do campo",
+    "basicTypes": "Tipos Básicos",
+    "mediaTypes": "Tipos de mídia",
     "types": {
       "string": "String",
       "number": "Número",
       "integer": "Inteiro",
       "boolean": "Booleano",
       "object": "Objeto",
-      "array": "Array"
+      "array": "Array",
+      "image": "Imagem",
+      "audio": "Áudio",
+      "video": "Vídeo"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "Solicitações",
       "noData": "Nenhum dado de uso disponível para este período"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "Servidor Indisponível",
+      "message": "Estamos tendo problemas para nos conectar ao servidor. Tente novamente mais tarde.",
+      "retry": "Retry"
+    },
+    "rateLimit": {
+      "title": "Limite de Taxa Excedido",
+      "message": "Você atingiu o limite de taxa do seu plano. Atualize sua assinatura para obter limites mais altos.",
+      "upgradeButton": "Atualizar Plano"
+    }
+  },
+  "media": {
+    "uploadTitle": "Entrada de mídia",
+    "dropOrClick": "Arraste {{type}} aqui ou clique para navegar",
+    "maxSize": "Max {{size}}",
+    "errorSize": "Arquivo muito grande. O tamanho máximo é {{max}}",
+    "errorType": "Tipo de arquivo inválido para {{type}}",
+    "download": "Baixar",
+    "clickToExpand": "Clique para expandir",
+    "outputTitle": "Saída de mídia",
+    "modeFile": "Carregar",
+    "modeUrl": "URL",
+    "urlPlaceholder": "Insira a URL {{type}}...",
+    "urlHint": "Insira uma URL acessível publicamente para o {{type}",
+    "submitUrl": "Adicionar",
+    "errorUrlRequired": "Por favor, insira uma URL",
+    "errorUrlInvalid": "Por favor, insira uma URL válida"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "save": "Guardar",
+    "saving": "Salvando...",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "creating": "Criando...",
+    "confirm": "Confirmar",
+    "close": "Fechar",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "back": "Voltar",
+    "next": "Seguinte",
+    "submit": "Enviar",
+    "search": "Pesquisar",
+    "filter": "Filtrar",
+    "noResults": "Nenhum resultado encontrado",
+    "tryAgain": "Tente Novamente",
+    "notSet": "Não definido",
+    "disabled": "Desativado",
+    "refresh": "Atualizar",
+    "remove": "Remover",
+    "dismiss": "Rejeitar",
+    "yes": "Sim",
+    "no": "Não",
+    "errorOccurred": "Ocorreu um erro",
+    "optional": "opcional",
+    "goBack": "Voltar",
+    "saved": "Guardado",
+    "deleted": "Excluído"
   }
 }

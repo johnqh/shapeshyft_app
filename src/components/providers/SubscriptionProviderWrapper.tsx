@@ -47,7 +47,12 @@ function SubscriptionInitializer({
 
   useEffect(() => {
     // Only initialize when user is authenticated and entity is available
-    if (user && !user.isAnonymous && entityId && entityId !== entityIdRef.current) {
+    if (
+      user &&
+      !user.isAnonymous &&
+      entityId &&
+      entityId !== entityIdRef.current
+    ) {
       entityIdRef.current = entityId;
       if (!initializedRef.current) {
         initializedRef.current = true;

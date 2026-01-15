@@ -1,6 +1,15 @@
 {
   "title": "Prezzi",
   "subtitle": "Scegli il piano che più si adatta alle tue esigenze",
+  "badges": {
+    "currentPlan": "Piano corrente",
+    "mostPopular": "Più popolare"
+  },
+  "cta": {
+    "logIn": "Accedi per continuare",
+    "tryFree": "Provalo gratis",
+    "upgrade": "Aggiorna"
+  },
   "plans": {
     "free": {
       "name": "Gratuito",

@@ -11,12 +11,16 @@ function CookiesPage() {
 
   const text: TextPageContent = {
     title: t("title", "Cookie Policy"),
-    lastUpdated: t("lastUpdated", { date: "{{date}}", defaultValue: "Last updated: {{date}}" }),
+    lastUpdated: t("lastUpdated", {
+      date: "{{date}}",
+      defaultValue: "Last updated: {{date}}",
+    }),
     sections: [
       {
         title: t("sections.whatAreCookies.title", "What Are Cookies"),
         content: t("sections.whatAreCookies.content", {
-          defaultValue: "Cookies are small text files that websites store on your device to remember information about your visit. They are widely used to make websites work efficiently and provide information to site owners.",
+          defaultValue:
+            "Cookies are small text files that websites store on your device to remember information about your visit. They are widely used to make websites work efficiently and provide information to site owners.",
         }),
       },
       {
@@ -50,7 +54,10 @@ function CookiesPage() {
             }) as string[],
           },
           {
-            title: t("sections.whatWeUse.sessionStorage.title", "Session Storage"),
+            title: t(
+              "sections.whatWeUse.sessionStorage.title",
+              "Session Storage",
+            ),
             items: t("sections.whatWeUse.sessionStorage.items", {
               returnObjects: true,
               defaultValue: [
@@ -64,7 +71,8 @@ function CookiesPage() {
       {
         title: t("sections.thirdParty.title", "Third-Party Services"),
         description: t("sections.thirdParty.description", {
-          defaultValue: "We use essential third-party services that may use their own cookies:",
+          defaultValue:
+            "We use essential third-party services that may use their own cookies:",
         }),
         items: t("sections.thirdParty.items", {
           returnObjects: true,
@@ -93,13 +101,17 @@ function CookiesPage() {
       {
         title: t("sections.changes.title", "Changes to This Policy"),
         content: t("sections.changes.content", {
-          defaultValue: "We may update this Cookie Policy from time to time. We will notify you of any changes by posting the new policy on this page.",
+          defaultValue:
+            "We may update this Cookie Policy from time to time. We will notify you of any changes by posting the new policy on this page.",
         }),
       },
     ],
     contact: {
       title: t("sections.contact.title", "Questions"),
-      description: t("sections.contact.description", "If you have questions about our cookie practices, please contact us:"),
+      description: t(
+        "sections.contact.description",
+        "If you have questions about our cookie practices, please contact us:",
+      ),
       info: {
         emailLabel: "Email:",
         email: CONSTANTS.SUPPORT_EMAIL,
@@ -113,8 +125,14 @@ function CookiesPage() {
     <ScreenContainer footerVariant="full" showBreadcrumbs>
       <SEO
         canonical="/cookies"
-        title={t("seo.title", { defaultValue: `Cookie Policy - ${appName}`, appName })}
-        description={t("seo.description", { defaultValue: `Cookie policy for ${appName}. Learn about our privacy-focused approach.`, appName })}
+        title={t("seo.title", {
+          defaultValue: `Cookie Policy - ${appName}`,
+          appName,
+        })}
+        description={t("seo.description", {
+          defaultValue: `Cookie policy for ${appName}. Learn about our privacy-focused approach.`,
+          appName,
+        })}
       />
 
       <AppTextPage

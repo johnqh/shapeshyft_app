@@ -25,7 +25,9 @@ function SettingsPage() {
         onThemeChange={(value) => setTheme(value as Theme)}
         onFontSizeChange={(value) => setFontSize(value as FontSize)}
         t={(key, fallback) => t(key, { defaultValue: fallback })}
-        appearanceT={(key, fallback) => t(`appearance.${key}`, { defaultValue: fallback })}
+        appearanceT={(key, fallback) =>
+          t(`appearance.${key}`, { defaultValue: fallback })
+        }
         showAppearanceInfoBox={true}
       />
     </ScreenContainer>

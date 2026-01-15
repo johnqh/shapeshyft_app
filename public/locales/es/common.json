@@ -55,8 +55,11 @@
     "delete": "Eliminar",
     "edit": "Editar",
     "create": "Crear",
+    "creating": "Creando...",
     "confirm": "Confirmar",
     "close": "Cerrar",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
     "back": "Atrás",
     "next": "Siguiente",
     "submit": "Enviar",
@@ -67,10 +70,15 @@
     "notSet": "No establecido",
     "disabled": "Deshabilitado",
     "refresh": "Actualizar",
+    "remove": "Eliminar",
+    "dismiss": "Descartar",
     "yes": "Sí",
     "no": "No",
     "errorOccurred": "Ocurrió un error",
-    "optional": "opcional"
+    "optional": "opcional",
+    "goBack": "Volver",
+    "saved": "Guardado",
+    "deleted": "Eliminado"
   },
   "toast": {
     "success": {

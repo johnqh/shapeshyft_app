@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "โครงการ",
+    "detail": "โครงการ",
     "empty": "ยังไม่มีโครงการใดๆ",
     "emptyDescription": "สร้างโปรเจกต์แรกของคุณเพื่อเริ่มต้น",
     "create": "สร้างโปรเจกต์",
@@ -39,14 +40,17 @@
         "nameRequired": "ต้องระบุชื่อแสดง",
         "nameTooShort": "ชื่อต้องมีอย่างน้อย 2 ตัวอักษร"
       },
-      "slugPreview": "สแล็ก"
+      "slugPreview": "สแล็ก",
+      "create": "สร้างโปรเจกต์"
     }
   },
   "endpoints": {
     "title": "จุดสิ้นสุด",
+    "detailTitle": "จุดสิ้นสุด",
     "empty": "ยังไม่มีจุดสิ้นสุด (endpoint) อยู่เลย",
     "emptyDescription": "สร้างจุดสิ้นสุดแรกของโปรเจกต์นี้",
     "create": "สร้างจุดสิ้นสุด",
+    "useTemplate": "ใช้เทมเพลต",
     "test": "ทดสอบ",
     "notFound": "ไม่พบจุดสิ้นสุด",
     "backToProject": "กลับไปที่โครงการ",
@@ -82,6 +86,18 @@
       "llmKey": "ผู้ให้บริการ",
       "selectKey": "เลือกผู้ให้บริการ",
       "noKeys": "ไม่มีคีย์ API ที่ตั้งค่าไว้ โปรดเพิ่มคีย์ก่อน",
+      "model": "โมเดล",
+      "selectModel": "เลือกผู้ให้บริการก่อน",
+      "customModelPlaceholder": "หรือป้อนชื่อโมเดลกำหนดเอง...",
+      "customModelHint": "คุณสามารถ键พิมพ์ชื่อโมเดลใดก็ได้ที่รองรับโดยเซิร์ฟเวอร์ LLM ของคุณ",
+      "costEstimate": "ประมาณการค่าใช้จ่าย",
+      "costPerRequest": "ค่าใช้จ่ายประมาณต่อการร้องขอ",
+      "inputTokens": "โทเก็นอินพุต",
+      "outputTokens": "โทเคนเอาต์พุต",
+      "inputCost": "ป้อนข้อมูล",
+      "outputCost": "ผลลัพธ์",
+      "costPerMillion": "ต้นทุนต่อ 1 ล้านโทเกน (ในหน่วยดอลลาร์สหรัฐ)",
+      "modelPlaceholder": "ป้อนหรือเลือกโมเดล...",
       "context": "บริบทของระบบ",
       "contextPlaceholder": "คำชี้แจงสำหรับโมเดลภาษา (คำสั่งระบบ)",
       "useInputSchema": "กำหนดโครงสร้างอินพุต",
@@ -136,9 +152,12 @@
       "inactive": "ไม่ใช้งาน"
     },
     "form": {
+      "title": "เพิ่มผู้ให้บริการ",
+      "titleEdit": "แก้ไขผู้ให้บริการ",
       "keyName": "ชื่อคีย์",
       "keyNamePlaceholder": "คีย์ OpenAI ของฉัน",
       "provider": "ผู้ให้บริการ",
+      "selectProvider": "เลือกผู้ให้บริการ",
       "apiKey": "คีย์ API",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "กุญแจของคุณถูกเข้ารหัสไว้ขณะเก็บรักษา",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "บริษัท Anthropic",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "Perplexity",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "การแปลภาษาท้องถิ่น",
       "description": "แปลข้อความเป็นหลายภาษา"
+    },
+    "imageRecognition": {
+      "name": "การรู้จำภาพ",
+      "description": "วิเคราะห์และอธิบายภาพโดยใช้โมเดลการรับรู้ภาพ"
+    },
+    "imageGeneration": {
+      "name": "การสร้างภาพ",
+      "description": "สร้างภาพจากคำอธิบายข้อความ"
+    },
+    "imageProcessing": {
+      "name": "การประมวลผลภาพ",
+      "description": "แปลงและแก้ไขภาพด้วยปัญญาประดิษฐ์"
+    }
+  },
+  "endpointTemplates": {
+    "title": "เทมเพลตเอนด์พออยน์",
+    "subtitle": "สร้างจุดสิ้นสุดจากเทมเพลตที่ตั้งค่าไว้ล่วงหน้า",
+    "allCategories": "ทั้งหมด",
+    "configure": "ตั้งค่าจุดสิ้นสุด",
+    "preview": "ตัวอย่าง",
+    "endpointName": "ชื่อจุดสิ้นสุด",
+    "category": "หมวดหมู่",
+    "inputFields": "ช่องกรอกข้อมูล",
+    "create": "สร้างจุดสิ้นสุด",
+    "errors": {
+      "fillAllFields": "โปรดเลือกเทมเพลตและผู้ให้บริการ"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "การใช้งานปัจจุบัน: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "การสมัครสมาชิก"
+  },
   "schema": {
     "editor": "ตัวแก้ไขสคีมา",
     "visual": "ภาพเห็น",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "คำอธิบายสินค้า (ไม่บังคับ)",
     "arrayItemSchema": "สคีมของรายการอาร์เรย์:",
     "clickToEditName": "คลิกเพื่อแก้ไขชื่อฟิลด์",
+    "basicTypes": "ประเภทพื้นฐาน",
+    "mediaTypes": "ประเภทสื่อ",
     "types": {
       "string": "สตริง",
       "number": "จำนวน",
       "integer": "จำนวนเต็ม",
       "boolean": "บูลีน",
       "object": "วัตถุ",
-      "array": "อาร์เรย์"
+      "array": "อาร์เรย์",
+      "image": "ภาพ",
+      "audio": "เสียง",
+      "video": "วิดีโอ"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "คำขอ",
       "noData": "ไม่มีข้อมูลการใช้งานสำหรับช่วงเวลานี้"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "เซิร์ฟเวอร์ไม่พร้อมใช้งาน",
+      "message": "เราไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ โปรดลองอีกครั้งในภายหลัง",
+      "retry": "ลองอีกครั้ง"
+    },
+    "rateLimit": {
+      "title": "เกินขีดจำกัดการเรียกใช้งาน",
+      "message": "คุณได้ถึงขีดจำกัดอัตราของแผนแล้ว โปรดอัปเกรดการสมัครสมาชิกเพื่อเพิ่มขีดจำกัด",
+      "upgradeButton": "อัปเกรดแผน"
+    }
+  },
+  "media": {
+    "uploadTitle": "สื่อป้อนข้อมูล",
+    "dropOrClick": "วาง {{type}} ที่นี่ หรือคลิกเพื่อเลือกไฟล์",
+    "maxSize": "Max {{size}}",
+    "errorSize": "ไฟล์มีขนาดใหญ่เกินไป ขนาดสูงสุดคือ {{max}}",
+    "errorType": "ประเภทไฟล์ไม่ถูกต้องสำหรับ {{type}}",
+    "download": "ดาวน์โหลด",
+    "clickToExpand": "คลิกเพื่อขยาย",
+    "outputTitle": "สื่อออกอากาศ",
+    "modeFile": "อัปโหลด",
+    "modeUrl": "URL",
+    "urlPlaceholder": "ป้อน URL ของ {{type}}...",
+    "urlHint": "ป้อน URL ที่สามารถเข้าถึงได้โดยสาธารณะสำหรับ {{type}}",
+    "submitUrl": "เพิ่ม",
+    "errorUrlRequired": "โปรดป้อน URL",
+    "errorUrlInvalid": "กรุณาป้อน URL ที่ถูกต้อง"
+  },
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "ข้อผิดพลาด",
+    "save": "บันทึก",
+    "saving": "กำลังบันทึก...",
+    "cancel": "ยกเลิก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "create": "สร้าง",
+    "creating": "กำลังสร้าง...",
+    "confirm": "ยืนยัน",
+    "close": "ปิด",
+    "copy": "คัดลอก",
+    "copied": "คัดลอกแล้ว!",
+    "back": "ย้อนกลับ",
+    "next": "ถัดไป",
+    "submit": "ส่ง",
+    "search": "ค้นหา",
+    "filter": "ตัวกรอง",
+    "noResults": "ไม่พบผลลัพธ์",
+    "tryAgain": "ลองอีกครั้ง",
+    "notSet": "ไม่ได้ตั้งค่า",
+    "disabled": "ปิดใช้งาน",
+    "refresh": "รีเฟรช",
+    "remove": "ลบ",
+    "dismiss": "ปิดการแจ้งเตือน",
+    "yes": "ใช่",
+    "no": "ไม่",
+    "errorOccurred": "เกิดข้อผิดพลาดขึ้น",
+    "optional": "ตามความสมัครใจ",
+    "goBack": "กลับไป",
+    "saved": "บันทึกแล้ว",
+    "deleted": "ถูกลบ"
   }
 }

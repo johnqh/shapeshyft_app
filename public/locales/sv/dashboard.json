@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "Projekt",
+    "detail": "Projekt",
     "empty": "Inga projekt ännu",
     "emptyDescription": "Skapa ditt första projekt för att komma igång",
     "create": "Skapa projekt",
@@ -39,14 +40,17 @@
         "nameRequired": "Visningsnamn krävs",
         "nameTooShort": "Namnet måste vara minst 2 tecken"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Slug",
+      "create": "Skapa projekt"
     }
   },
   "endpoints": {
     "title": "Slutpunkter",
+    "detailTitle": "Slutpunkt",
     "empty": "Inga slutpunkter ännu",
     "emptyDescription": "Skapa ditt första slutpunkt för detta projekt",
     "create": "Skapa slutpunkt",
+    "useTemplate": "Använd mall",
     "test": "Test",
     "notFound": "Slutpunkt hittades inte",
     "backToProject": "Tillbaka till projektet",
@@ -82,6 +86,18 @@
       "llmKey": "Provider",
       "selectKey": "Välj en leverantör",
       "noKeys": "Ingen API-nyckel konfigurerad. Lägg till en först.",
+      "model": "Modell",
+      "selectModel": "Välj först en leverantör",
+      "customModelPlaceholder": "Eller ange anpassat modellnamn...",
+      "customModelHint": "Du kan skriva namnet på vilken modell som helst som stöds av din LLM-server",
+      "costEstimate": "Kostnadsuppskattning",
+      "costPerRequest": "Uppskattad kostnad per förfrågan",
+      "inputTokens": "indata-tokenar",
+      "outputTokens": "utdata-tokenar",
+      "inputCost": "Indata",
+      "outputCost": "Utmatning",
+      "costPerMillion": "Kostnad per 1M token (i USD)",
+      "modelPlaceholder": "Ange eller välj modell...",
       "context": "Systemkontext",
       "contextPlaceholder": "Anvisningar för LLM (systemprompt)",
       "useInputSchema": "Definiera inmatningsschema",
@@ -136,9 +152,12 @@
       "inactive": "Inaktiv"
     },
     "form": {
+      "title": "Lägg till leverantör",
+      "titleEdit": "Redigera leverantör",
       "keyName": "Nyckelnamn",
       "keyNamePlaceholder": "Mitt OpenAI-nyckel",
       "provider": "Provider",
+      "selectProvider": "Välj en leverantör",
       "apiKey": "API-nyckel",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Din nyckel är krypterad i vila",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Företaget Anthropic",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "Perplexitet",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "Platsanpassning",
       "description": "Översätt text till flera språk"
+    },
+    "imageRecognition": {
+      "name": "Bildigenkänning",
+      "description": "Analysera och beskriv bilder med hjälp av visuella modeller"
+    },
+    "imageGeneration": {
+      "name": "Bildgenerering",
+      "description": "Skapa bilder från textbeskrivningar"
+    },
+    "imageProcessing": {
+      "name": "Bildbehandling",
+      "description": "Transformera och redigera bilder med hjälp av AI"
+    }
+  },
+  "endpointTemplates": {
+    "title": "Slutpunktsmallar",
+    "subtitle": "Skapa ett slutpunkt från ett förkonfigurerat mall",
+    "allCategories": "Allt",
+    "configure": "Konfigurera slutpunkt",
+    "preview": "Förhandsgranska",
+    "endpointName": "Slutpunktens namn",
+    "category": "Kategori",
+    "inputFields": "Indatafält",
+    "create": "Skapa slutpunkt",
+    "errors": {
+      "fillAllFields": "Välj ett mall- och leverantörsval"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "Nuvarande användning: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "Prenumeration"
+  },
   "schema": {
     "editor": "Schema Editor",
     "visual": "Visuell",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "Egendomsbeskrivning (valfritt)",
     "arrayItemSchema": "Arrayelementsschema:",
     "clickToEditName": "Klicka för att redigera fältnamn",
+    "basicTypes": "Grundläggande typer",
+    "mediaTypes": "Mediatyper",
     "types": {
       "string": "Sträng",
       "number": "Nummer",
       "integer": "Heltal",
       "boolean": "Boolean",
       "object": "Objekt",
-      "array": "Array"
+      "array": "Array",
+      "image": "Bild",
+      "audio": "Ljud",
+      "video": "Videon"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "Förfrågningar",
       "noData": "Ingen användningsdata finns tillgänglig för denna period"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "Servern är inte tillgänglig",
+      "message": "Det uppstod problem med att ansluta till servern. Försök igen senare.",
+      "retry": "Försök igen"
+    },
+    "rateLimit": {
+      "title": "För många anrop – begränsning av hastighet överskriden",
+      "message": "Du har nått din plans hastighetsbegränsning. Uppgradera din prenumeration för högre gränser.",
+      "upgradeButton": "Uppgradera plan"
+    }
+  },
+  "media": {
+    "uploadTitle": "Mediaindata",
+    "dropOrClick": "Dra {{type}} hit eller klicka för att bläddra",
+    "maxSize": "Max {{size}}",
+    "errorSize": "Filen är för stor. Maximal storlek är {{max}}",
+    "errorType": "Fel filtyp för {{type}}",
+    "download": "Ladda ner",
+    "clickToExpand": "Klicka för att visa mer",
+    "outputTitle": "Mediautgång",
+    "modeFile": "Ladda upp",
+    "modeUrl": "URL",
+    "urlPlaceholder": "Ange {{type}} URL...",
+    "urlHint": "Ange en offentligt tillgänglig URL för {{type}}",
+    "submitUrl": "Lägg till",
+    "errorUrlRequired": "Ange en URL",
+    "errorUrlInvalid": "Ange en giltig URL"
+  },
+  "common": {
+    "loading": "Läser in...",
+    "error": "Fel",
+    "save": "Spara",
+    "saving": "Sparar...",
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "create": "Skapa",
+    "creating": "Skapar...",
+    "confirm": "Bekräfta",
+    "close": "Stäng",
+    "copy": "Kopiera",
+    "copied": "Kopierat!",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "submit": "Skicka",
+    "search": "Sök",
+    "filter": "Filter",
+    "noResults": "Inga resultat hittades",
+    "tryAgain": "Försök igen",
+    "notSet": "Inte inställt",
+    "disabled": "Inaktiverad",
+    "refresh": "Uppdatera",
+    "remove": "Ta bort",
+    "dismiss": "Avvisa",
+    "yes": "Ja",
+    "no": "Nej",
+    "errorOccurred": "Ett fel uppstod",
+    "optional": "valfritt",
+    "goBack": "Gå tillbaka",
+    "saved": "Sparat",
+    "deleted": "Raderad"
   }
 }

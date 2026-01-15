@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "المشاريع",
+    "detail": "المشروع",
     "empty": "لا مشاريع بعد",
     "emptyDescription": "أنشئ مشروعك الأول لبدء العمل",
     "create": "إنشاء مشروع",
@@ -39,14 +40,17 @@
         "nameRequired": "اسم العرض مطلوب",
         "nameTooShort": "يجب أن يكون الاسم على الأقل 2 أحرف"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Slug",
+      "create": "إنشاء مشروع"
     }
   },
   "endpoints": {
     "title": "النهايات",
+    "detailTitle": "النقطة النهائية",
     "empty": "لا توجد نقاط نهاية بعد",
     "emptyDescription": "أنشئ نقطة نهاية أولى لهذا المشروع",
     "create": "إنشاء نقطة نهاية",
+    "useTemplate": "استخدم القالب",
     "test": "الاختبار",
     "notFound": "النقطة النهائية غير موجودة",
     "backToProject": "العودة إلى المشروع",
@@ -82,6 +86,18 @@
       "llmKey": "المزود",
       "selectKey": "اختر مزود خدمة",
       "noKeys": "لم يتم تهيئة مفاتيح واجهة برمجة التطبيقات. أضف واحدة أولاً.",
+      "model": "النموذج",
+      "selectModel": "حدد مزودًا أولاً",
+      "customModelPlaceholder": "أو أدخل اسم نموذج مخصص...",
+      "customModelHint": "يمكنك كتابة أي اسم نموذج مدعوم بواسطة خادم نموذج اللغة الخاص بك",
+      "costEstimate": "التقدير المالي",
+      "costPerRequest": "التكلفة المقدرة لكل طلب",
+      "inputTokens": "رُموز الإدخال",
+      "outputTokens": "رُموز الإخراج",
+      "inputCost": "المدخل",
+      "outputCost": "الناتج",
+      "costPerMillion": "التكلفة لكل مليون رمز (بالدولار الأمريكي)",
+      "modelPlaceholder": "أدخل أو اختر النموذج...",
       "context": "سياق النظام",
       "contextPlaceholder": "تعليمات لنموذج اللغة (رسالة النظام)",
       "useInputSchema": "حدد مخطط الإدخال",
@@ -136,9 +152,12 @@
       "inactive": "غير نشط"
     },
     "form": {
+      "title": "إضافة مزود",
+      "titleEdit": "تحرير المزود",
       "keyName": "اسم المفتاح",
       "keyNamePlaceholder": "مفتاح OpenAI الخاص بي",
       "provider": "المزود",
+      "selectProvider": "اختر مزود خدمة",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "مفتاحك مشفر عند التخزين",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "الشركة أنتروبيك",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "الذكاء الاصطناعي ميسترال",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "الارتباك",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "التوطين",
       "description": "النص المطلوب ترجمته إلى لغات متعددة"
+    },
+    "imageRecognition": {
+      "name": "التعرف على الصور",
+      "description": "تحليل الصور ووصفها باستخدام نماذج الرؤية"
+    },
+    "imageGeneration": {
+      "name": "إنشاء الصور",
+      "description": "إنشاء صور من وصفات نصية"
+    },
+    "imageProcessing": {
+      "name": "معالجة الصور",
+      "description": "قم بتحويل الصور وتحريرها باستخدام الذكاء الاصطناعي"
+    }
+  },
+  "endpointTemplates": {
+    "title": "قوالب النهاية",
+    "subtitle": "إنشاء نقطة نهاية من نموذج مسبق التهيئة",
+    "allCategories": "الكل",
+    "configure": "تكوين النقطة النهائية",
+    "preview": "معاينة",
+    "endpointName": "اسم النقطة النهائية",
+    "category": "الفئة",
+    "inputFields": "حقول الإدخال",
+    "create": "إنشاء نقطة نهاية",
+    "errors": {
+      "fillAllFields": "يرجى اختيار قالب ومزود"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "الاستخدام الحالي: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "الاشتراك"
+  },
   "schema": {
     "editor": "محرر المخطط",
     "visual": "المرئي",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "وصف العقار (اختياري)",
     "arrayItemSchema": "مخطط عنصر المصفوفة:",
     "clickToEditName": "انقر لتحرير اسم الحقل",
+    "basicTypes": "الأنواع الأساسية",
+    "mediaTypes": "أنواع الوسائط",
     "types": {
       "string": "السلسلة",
       "number": "الرقم",
       "integer": "العدد الصحيح",
       "boolean": "النوع المنطقي",
       "object": "الكائن",
-      "array": "المصفوفة"
+      "array": "المصفوفة",
+      "image": "الصورة",
+      "audio": "الصوت",
+      "video": "الفيديو"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "الطلبات",
       "noData": "لا توجد بيانات استخدام متاحة للفترة الحالية"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "الخادم غير متاح",
+      "message": "نحن نواجه صعوبة في الاتصال بالخادم. يرجى المحاولة مرة أخرى لاحقًا.",
+      "retry": "إعادة المحاولة"
+    },
+    "rateLimit": {
+      "title": "تم تجاوز الحد الأقصى للسرعة",
+      "message": "لقد وصلت إلى حد السرعة المحدد في خطتك. قم بترقية اشتراكك للحصول على حدود أعلى.",
+      "upgradeButton": "تحديث الخطة"
+    }
+  },
+  "media": {
+    "uploadTitle": "إدخال الوسائط",
+    "dropOrClick": "افرِغ {{type}} هنا أو انقر لتصفح",
+    "maxSize": "الحد الأقصى {{size}}",
+    "errorSize": "الملف كبير جدًا. الحد الأقصى للحجم هو {{max}}",
+    "errorType": "نوع الملف غير صالح لـ {{type}}",
+    "download": "تحميل",
+    "clickToExpand": "انقر للتوسع",
+    "outputTitle": "إخراج الوسائط",
+    "modeFile": "تحميل",
+    "modeUrl": "URL",
+    "urlPlaceholder": "أدخل عنوان URL لـ {{type}}...",
+    "urlHint": "أدخل عنوان URL عامًا يمكن الوصول إليه لـ {{type}}",
+    "submitUrl": "أضف",
+    "errorUrlRequired": "الرجاء إدخال عنوان URL",
+    "errorUrlInvalid": "الرجاء إدخال عنوان URL صالح"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "الخطأ",
+    "save": "حفظ",
+    "saving": "جاري الحفظ...",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تحرير",
+    "create": "إنشاء",
+    "creating": "جاري الإنشاء...",
+    "confirm": "تأكيد",
+    "close": "أغْلِق",
+    "copy": "نسخ",
+    "copied": "تم النسخ!",
+    "back": "العودة",
+    "next": "التالي",
+    "submit": "إرسال",
+    "search": "البحث",
+    "filter": "التصفية",
+    "noResults": "لم يتم العثور على نتائج",
+    "tryAgain": "جرب مرة أخرى",
+    "notSet": "غير محدد",
+    "disabled": "معطل",
+    "refresh": "تحديث",
+    "remove": "إزالة",
+    "dismiss": "إغفال",
+    "yes": "نعم",
+    "no": "لا",
+    "errorOccurred": "حدث خطأ",
+    "optional": "اختياري",
+    "goBack": "العودة",
+    "saved": "المحفوظ",
+    "deleted": "محذوف"
   }
 }

@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "プロジェクト",
+    "detail": "プロジェクト",
     "empty": "まだプロジェクトがありません",
     "emptyDescription": "プロジェクトを作成して、始めましょう",
     "create": "プロジェクトを作成する",
@@ -39,14 +40,17 @@
         "nameRequired": "表示名は必須です",
         "nameTooShort": "名前は2文字以上でなければなりません"
       },
-      "slugPreview": "スラッグ"
+      "slugPreview": "スラッグ",
+      "create": "プロジェクトを作成する"
     }
   },
   "endpoints": {
     "title": "エンドポイント",
+    "detailTitle": "エンドポイント",
     "empty": "まだエンドポイントはありません",
     "emptyDescription": "このプロジェクト用に最初のエンドポイントを作成します",
     "create": "エンドポイントを作成する",
+    "useTemplate": "テンプレートを使用する",
     "test": "テスト",
     "notFound": "エンドポイントが見つかりません",
     "backToProject": "プロジェクトに戻る",
@@ -82,6 +86,18 @@
       "llmKey": "プロバイダー",
       "selectKey": "プロバイダーを選択する",
       "noKeys": "APIキーが設定されていません。最初に追加してください。",
+      "model": "モデル",
+      "selectModel": "最初にプロバイダーを選択してください",
+      "customModelPlaceholder": "またはカスタムモデル名を入力...",
+      "customModelHint": "あなたのLLMサーバーでサポートされている任意のモデル名を入力できます",
+      "costEstimate": "費用見積もり",
+      "costPerRequest": "1回のリクエストあたりの推定コスト",
+      "inputTokens": "入力トークン",
+      "outputTokens": "出力トークン",
+      "inputCost": "入力",
+      "outputCost": "出力",
+      "costPerMillion": "100万トークンあたりのコスト（米ドル）",
+      "modelPlaceholder": "モデルを入力するか選択してください...",
       "context": "システムコンテキスト",
       "contextPlaceholder": "LLM用の指示（システムプロンプト）",
       "useInputSchema": "入力スキーマを定義する",
@@ -136,9 +152,12 @@
       "inactive": "非アクティブ"
     },
     "form": {
+      "title": "プロバイダーを追加",
+      "titleEdit": "プロバイダの編集",
       "keyName": "プロバイダーラベル",
       "keyNamePlaceholder": "例：本番、開発",
       "provider": "プロバイダー",
+      "selectProvider": "プロバイダーを選択してください",
       "apiKey": "APIキー",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "あなたの鍵は、保存時に暗号化されています",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "アントロピック",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "ミストラルAI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI（Grok）",
+      "deepseek": "DeepSeek",
+      "perplexity": "perplexityの日本語訳",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "ローカリゼーション",
       "description": "複数の言語に翻訳する"
+    },
+    "imageRecognition": {
+      "name": "画像認識",
+      "description": "ビジョンモデルを用いて画像を分析し、記述する"
+    },
+    "imageGeneration": {
+      "name": "画像生成",
+      "description": "テキスト記述から画像を生成する"
+    },
+    "imageProcessing": {
+      "name": "画像処理",
+      "description": "AIを使って画像を変換および編集する"
+    }
+  },
+  "endpointTemplates": {
+    "title": "エンドポイントテンプレート",
+    "subtitle": "事前に設定されたテンプレートからエンドポイントを作成する",
+    "allCategories": "すべて",
+    "configure": "エンドポイントを設定する",
+    "preview": "プレビュー",
+    "endpointName": "エンドポイント名",
+    "category": "カテゴリ",
+    "inputFields": "入力フィールド",
+    "create": "エンドポイントを作成する",
+    "errors": {
+      "fillAllFields": "テンプレートとプロバイダーを選択してください"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "現在の使用量: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "サブスクリプション"
+  },
   "schema": {
     "editor": "スキーマエディタ",
     "visual": "視覚的",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "物件の説明（任意）",
     "arrayItemSchema": "配列項目のスキーマ：",
     "clickToEditName": "フィールド名を編集するにはクリックしてください",
+    "basicTypes": "基本型",
+    "mediaTypes": "メディアタイプ",
     "types": {
       "string": "文字列",
       "number": "番号",
       "integer": "整数",
       "boolean": "ブール値",
       "object": "オブジェクト",
-      "array": "配列"
+      "array": "配列",
+      "image": "画像",
+      "audio": "オーディオ",
+      "video": "動画"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "リクエスト",
       "noData": "この期間の利用データは利用できません"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "サーバーが利用できません",
+      "message": "サーバーへの接続に問題が発生しました。後で再試行してください。",
+      "retry": "再試行"
+    },
+    "rateLimit": {
+      "title": "レート制限を超えました",
+      "message": "プランのレート制限に達しました。より高い制限を希望する場合は、サブスクリプションのアップグレードをご検討ください。",
+      "upgradeButton": "プランのアップグレード"
+    }
+  },
+  "media": {
+    "uploadTitle": "メディア入力",
+    "dropOrClick": "ここに {{type}} をドロップするか、クリックして参照してください",
+    "maxSize": "Max {{size}}",
+    "errorSize": "ファイルが大きすぎます。最大サイズは {{max}} です。",
+    "errorType": "{{type} には無効なファイルタイプです",
+    "download": "ダウンロード",
+    "clickToExpand": "クリックして展開",
+    "outputTitle": "メディア出力",
+    "modeFile": "アップロード",
+    "modeUrl": "URL",
+    "urlPlaceholder": "{{type}}のURLを入力してください...",
+    "urlHint": "{{type}} の公開されている URL を入力してください",
+    "submitUrl": "追加する",
+    "errorUrlRequired": "URLを入力してください",
+    "errorUrlInvalid": "有効なURLを入力してください"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "save": "保存",
+    "saving": "保存中...",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "create": "作成する",
+    "creating": "作成中...",
+    "confirm": "確認",
+    "close": "閉じる",
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "back": "戻る",
+    "next": "次へ",
+    "submit": "送信",
+    "search": "検索",
+    "filter": "フィルター",
+    "noResults": "該当する結果が見つかりませんでした",
+    "tryAgain": "もう一度試してください",
+    "notSet": "未設定",
+    "disabled": "無効化された",
+    "refresh": "更新",
+    "remove": "削除",
+    "dismiss": "無視する",
+    "yes": "はい",
+    "no": "いいえ",
+    "errorOccurred": "エラーが発生しました",
+    "optional": "オプション",
+    "goBack": "戻る",
+    "saved": "保存済み",
+    "deleted": "削除されました"
   }
 }

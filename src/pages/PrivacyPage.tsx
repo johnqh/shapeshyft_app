@@ -25,7 +25,9 @@ function PrivacyPage() {
         subsections: [
           {
             title: "Information You Provide",
-            items: t("sections.collection.items", { returnObjects: true }) as string[],
+            items: t("sections.collection.items", {
+              returnObjects: true,
+            }) as string[],
           },
           {
             title: "Information Collected Automatically",
@@ -46,7 +48,8 @@ function PrivacyPage() {
       // Information Sharing
       {
         title: "Information Sharing",
-        description: "We may share your information in the following circumstances:",
+        description:
+          "We may share your information in the following circumstances:",
         items: [
           "With service providers who assist in our operations",
           "When required by law or legal process",
@@ -79,12 +82,14 @@ function PrivacyPage() {
       // International Transfers
       {
         title: "International Data Transfers",
-        content: "Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers.",
+        content:
+          "Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers.",
       },
       // Children's Privacy
       {
         title: "Children's Privacy",
-        content: "Our service is not intended for children under 13. We do not knowingly collect information from children under 13.",
+        content:
+          "Our service is not intended for children under 13. We do not knowingly collect information from children under 13.",
       },
       // Cookies
       {
@@ -110,7 +115,8 @@ function PrivacyPage() {
       },
       gdprNotice: {
         title: "GDPR Rights",
-        content: "If you are in the European Union, you have additional rights under GDPR including the right to lodge a complaint with a supervisory authority.",
+        content:
+          "If you are in the European Union, you have additional rights under GDPR including the right to lodge a complaint with a supervisory authority.",
       },
     },
   };

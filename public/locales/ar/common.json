@@ -55,8 +55,11 @@
     "delete": "حذف",
     "edit": "تحرير",
     "create": "إنشاء",
+    "creating": "جاري الإنشاء...",
     "confirm": "تأكيد",
     "close": "أغْلِق",
+    "copy": "نسخ",
+    "copied": "تم النسخ!",
     "back": "العودة",
     "next": "التالي",
     "submit": "إرسال",
@@ -67,10 +70,15 @@
     "notSet": "غير محدد",
     "disabled": "معطل",
     "refresh": "تحديث",
+    "remove": "حذف",
+    "dismiss": "إغفال",
     "yes": "نعم",
     "no": "لا",
     "errorOccurred": "حدث خطأ",
-    "optional": "اختياري"
+    "optional": "اختياري",
+    "goBack": "العودة",
+    "saved": "المحفوظ",
+    "deleted": "محذوف"
   },
   "toast": {
     "success": {

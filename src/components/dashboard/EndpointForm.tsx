@@ -80,7 +80,9 @@ function EndpointForm({
     endpoint?.http_method ?? "POST",
   );
   const [llmKeyId, setLlmKeyId] = useState(endpoint?.llm_key_id ?? "");
-  const [selectedModel, setSelectedModel] = useState<string>(endpoint?.model ?? "");
+  const [selectedModel, setSelectedModel] = useState<string>(
+    endpoint?.model ?? "",
+  );
   const [customModel, setCustomModel] = useState<string>("");
   const [context, setContext] = useState(endpoint?.context ?? "");
   const [useInputSchema, setUseInputSchema] = useState(
@@ -122,7 +124,7 @@ function EndpointForm({
   // Get the selected key and its provider
   const selectedKey = useMemo(
     () => keys.find((k) => k.uuid === llmKeyId),
-    [keys, llmKeyId]
+    [keys, llmKeyId],
   );
   const provider = selectedKey?.provider as LlmProvider | undefined;
 
@@ -131,7 +133,7 @@ function EndpointForm({
     networkClient,
     baseUrl,
     provider ?? null,
-    testMode
+    testMode,
   );
 
   // Build model options with capability icons
@@ -143,21 +145,44 @@ function EndpointForm({
       const outputIcons: ReactNode[] = [];
 
       // Input capabilities (blue)
-      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
-      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
-      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
+      if (caps.visionInput)
+        inputIcons.push(
+          <PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.audioInput)
+        inputIcons.push(
+          <MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.videoInput)
+        inputIcons.push(
+          <VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />,
+        );
       // Output capabilities (green)
-      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
-      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
-      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+      if (caps.imageOutput)
+        outputIcons.push(
+          <PhotoIcon key="io" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.audioOutput)
+        outputIcons.push(
+          <MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.videoOutput)
+        outputIcons.push(
+          <VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />,
+        );
 
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
           <span className="font-mono">{modelInfo.id}</span>
-          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+          <span className="flex items-center gap-1">
+            {inputIcons}
+            {outputIcons}
+          </span>
         </span>
-      ) : modelInfo.id;
+      ) : (
+        modelInfo.id
+      );
 
       return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
@@ -172,7 +197,12 @@ function EndpointForm({
       return customModel.trim();
     }
     return selectedModel || (providerConfig?.defaultModel ?? "");
-  }, [selectedModel, customModel, allowsCustomModel, providerConfig?.defaultModel]);
+  }, [
+    selectedModel,
+    customModel,
+    allowsCustomModel,
+    providerConfig?.defaultModel,
+  ]);
 
   // Get pricing for the effective model from models array
   const modelPricing = useMemo(() => {
@@ -214,12 +244,14 @@ function EndpointForm({
       }
     }
 
-    const estimatedInputTokens = 100 + contextTokens + instructionsTokens + inputSchemaTokens;
+    const estimatedInputTokens =
+      100 + contextTokens + instructionsTokens + inputSchemaTokens;
     const estimatedOutputTokens = outputSchemaTokens;
 
     // Calculate cost (pricing is per million tokens)
     const inputCost = (estimatedInputTokens / 1_000_000) * modelPricing.input;
-    const outputCost = (estimatedOutputTokens / 1_000_000) * modelPricing.output;
+    const outputCost =
+      (estimatedOutputTokens / 1_000_000) * modelPricing.output;
     const totalCost = inputCost + outputCost;
 
     return {
@@ -227,7 +259,15 @@ function EndpointForm({
       outputTokens: estimatedOutputTokens,
       totalCost,
     };
-  }, [modelPricing, context, instructions, inputSchema, outputSchema, useInputSchema, useOutputSchema]);
+  }, [
+    modelPricing,
+    context,
+    instructions,
+    inputSchema,
+    outputSchema,
+    useInputSchema,
+    useOutputSchema,
+  ]);
 
   // Handle key selection change - reset model selection (default will be set by providerConfig)
   const handleKeyChange = (newKeyId: string) => {
@@ -458,13 +498,20 @@ function EndpointForm({
 
         {/* Tabs Content */}
         <div className="flex-1 overflow-y-auto p-6">
-          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
+          <Tabs
+            value={activeTab}
+            onValueChange={(v) => setActiveTab(v as TabId)}
+          >
             <TabsList className="mb-6">
               <TabsTrigger value="general">
                 {t("endpoints.tabs.general")}
               </TabsTrigger>
-              <TabsTrigger value="input">{t("endpoints.tabs.input")}</TabsTrigger>
-              <TabsTrigger value="output">{t("endpoints.tabs.output")}</TabsTrigger>
+              <TabsTrigger value="input">
+                {t("endpoints.tabs.input")}
+              </TabsTrigger>
+              <TabsTrigger value="output">
+                {t("endpoints.tabs.output")}
+              </TabsTrigger>
             </TabsList>
 
             {/* General Tab */}
@@ -525,7 +572,9 @@ function EndpointForm({
                   </label>
                   <Select
                     value={httpMethod}
-                    onValueChange={(value) => setHttpMethod(value as HttpMethod)}
+                    onValueChange={(value) =>
+                      setHttpMethod(value as HttpMethod)
+                    }
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue />
@@ -553,23 +602,27 @@ function EndpointForm({
                     </p>
                   ) : (
                     <>
-                      <Select
-                        value={llmKeyId}
-                        onValueChange={handleKeyChange}
-                      >
+                      <Select value={llmKeyId} onValueChange={handleKeyChange}>
                         <SelectTrigger
                           className={`w-full ${hasError("llmKeyId") ? "border-red-500 focus:ring-red-500/20" : ""}`}
                           onBlur={() => handleBlur("llmKeyId")}
                         >
-                          <SelectValue placeholder={t("endpoints.form.selectKey")} />
+                          <SelectValue
+                            placeholder={t("endpoints.form.selectKey")}
+                          />
                         </SelectTrigger>
                         <SelectContent>
                           {keys.map((key) => (
                             <SelectItem key={key.uuid} value={key.uuid}>
                               <span className="flex items-center gap-2">
-                                <ProviderIcon provider={key.provider as LlmProvider} size="sm" />
+                                <ProviderIcon
+                                  provider={key.provider as LlmProvider}
+                                  size="sm"
+                                />
                                 <span>{key.key_name}</span>
-                                <span className="text-theme-text-tertiary">({getProviderName(key.provider)})</span>
+                                <span className="text-theme-text-tertiary">
+                                  ({getProviderName(key.provider)})
+                                </span>
                               </span>
                             </SelectItem>
                           ))}
@@ -594,7 +647,11 @@ function EndpointForm({
                         setCustomModel("");
                       }}
                       disabled={!provider}
-                      placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                      placeholder={
+                        !provider
+                          ? t("endpoints.form.selectModel")
+                          : t("endpoints.form.modelPlaceholder")
+                      }
                       inputClassName="font-mono text-sm"
                     />
                   ) : (
@@ -606,7 +663,13 @@ function EndpointForm({
                       disabled={!provider}
                     >
                       <SelectTrigger className="w-full font-mono text-sm">
-                        <SelectValue placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                        <SelectValue
+                          placeholder={
+                            !provider
+                              ? t("endpoints.form.selectModel")
+                              : t("endpoints.form.modelPlaceholder")
+                          }
+                        />
                       </SelectTrigger>
                       <SelectContent>
                         {modelOptions.map((option) => (
@@ -643,7 +706,10 @@ function EndpointForm({
                         ${estimatedCost.totalCost.toFixed(6)}
                       </div>
                       <div className="mt-2 text-xs text-theme-text-tertiary">
-                        ~{estimatedCost.inputTokens} {t("endpoints.form.inputTokens")} + ~{estimatedCost.outputTokens} {t("endpoints.form.outputTokens")}
+                        ~{estimatedCost.inputTokens}{" "}
+                        {t("endpoints.form.inputTokens")} + ~
+                        {estimatedCost.outputTokens}{" "}
+                        {t("endpoints.form.outputTokens")}
                       </div>
                     </div>
                   )}
@@ -819,7 +885,7 @@ function EndpointForm({
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }
 

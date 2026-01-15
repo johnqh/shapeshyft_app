@@ -1,6 +1,15 @@
 {
   "title": "Tarification",
   "subtitle": "Choisissez le forfait qui correspond à vos besoins",
+  "badges": {
+    "currentPlan": "Abonnement actuel",
+    "mostPopular": "Le plus populaire"
+  },
+  "cta": {
+    "logIn": "Se connecter pour continuer",
+    "tryFree": "Essayez gratuitement",
+    "upgrade": "Mettre à niveau"
+  },
   "plans": {
     "free": {
       "name": "Gratuit",

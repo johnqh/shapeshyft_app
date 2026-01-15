@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "Проекты",
+    "detail": "Проект",
     "empty": "Пока нет проектов",
     "emptyDescription": "Создайте свой первый проект, чтобы начать",
     "create": "Создать проект",
@@ -39,14 +40,17 @@
         "nameRequired": "Имя отображения обязательно",
         "nameTooShort": "Имя должно содержать не менее 2 символов"
       },
-      "slugPreview": "Слаг"
+      "slugPreview": "Слаг",
+      "create": "Создать проект"
     }
   },
   "endpoints": {
     "title": "Точки подключения",
+    "detailTitle": "Конечная точка",
     "empty": "Еще нет конечных точек",
     "emptyDescription": "Создайте свой первый конечный пункт для этого проекта",
     "create": "Создать конечную точку",
+    "useTemplate": "Используйте шаблон",
     "test": "Тест",
     "notFound": "Точка назначения не найдена",
     "backToProject": "Вернуться к проекту",
@@ -82,6 +86,18 @@
       "llmKey": "Поставщик",
       "selectKey": "Выберите поставщика",
       "noKeys": "API-ключи не настроены. Сначала добавьте один.",
+      "model": "Модель",
+      "selectModel": "Сначала выберите поставщика",
+      "customModelPlaceholder": "Или введите имя пользовательской модели...",
+      "customModelHint": "Вы можете ввести любое имя модели, поддерживаемой вашим сервером LLM",
+      "costEstimate": "Оценка стоимости",
+      "costPerRequest": "Ориентировочная стоимость на запрос",
+      "inputTokens": "токены ввода",
+      "outputTokens": "токены вывода",
+      "inputCost": "Вход",
+      "outputCost": "Вывод",
+      "costPerMillion": "Стоимость за 1 млн токенов (в USD)",
+      "modelPlaceholder": "Введите или выберите модель...",
       "context": "Контекст системы",
       "contextPlaceholder": "Инструкции для модели ИИ (системное сообщение)",
       "useInputSchema": "Определите схему ввода",
@@ -136,9 +152,12 @@
       "inactive": "Неактивный"
     },
     "form": {
+      "title": "Добавить поставщика",
+      "titleEdit": "Редактировать поставщика",
       "keyName": "Имя ключа",
       "keyNamePlaceholder": "Мой ключ OpenAI",
       "provider": "Поставщик",
+      "selectProvider": "Выберите поставщика",
       "apiKey": "Ключ API",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Ваш ключ зашифрован в хранилище",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Компания Anthropic",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Кохер",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "Перплексия",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "Локализация",
       "description": "Переведите текст на несколько языков"
+    },
+    "imageRecognition": {
+      "name": "Распознавание изображений",
+      "description": "Анализируйте и описывайте изображения с помощью моделей зрения"
+    },
+    "imageGeneration": {
+      "name": "Генерация изображений",
+      "description": "Генерация изображений по текстовым описаниям"
+    },
+    "imageProcessing": {
+      "name": "Обработка изображений",
+      "description": "Преобразуйте и редактируйте изображения с помощью ИИ"
+    }
+  },
+  "endpointTemplates": {
+    "title": "Шаблоны конечных точек",
+    "subtitle": "Создайте конечную точку из предварительно настроенного шаблона",
+    "allCategories": "Все",
+    "configure": "Настроить конечную точку",
+    "preview": "Preview",
+    "endpointName": "Имя конечной точки",
+    "category": "Категория",
+    "inputFields": "Поля ввода",
+    "create": "Создать конечную точку",
+    "errors": {
+      "fillAllFields": "Пожалуйста, выберите шаблон и поставщика"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "Текущее использование: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "Подписка"
+  },
   "schema": {
     "editor": "Редактор схемы",
     "visual": "Визуал",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "Описание свойства (необязательно)",
     "arrayItemSchema": "Схема элемента массива:",
     "clickToEditName": "Нажмите, чтобы изменить имя поля",
+    "basicTypes": "Базовые типы",
+    "mediaTypes": "Типы медиа",
     "types": {
       "string": "Строка",
       "number": "Число",
       "integer": "Целое число",
       "boolean": "Логическое значение",
       "object": "Объект",
-      "array": "Массив"
+      "array": "Массив",
+      "image": "Изображение",
+      "audio": "Аудио",
+      "video": "Видео"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "Запросы",
       "noData": "Данные об использовании недоступны за этот период"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "Сервер недоступен",
+      "message": "У нас возникли проблемы с подключением к серверу. Пожалуйста, попробуйте позже.",
+      "retry": "Повторить"
+    },
+    "rateLimit": {
+      "title": "Превышен лимит запросов",
+      "message": "Достигнут лимит скорости вашего плана. Обновите подписку для увеличения лимитов.",
+      "upgradeButton": "Обновить план"
+    }
+  },
+  "media": {
+    "uploadTitle": "Ввод медиа",
+    "dropOrClick": "Перетащите {{type}} сюда или нажмите, чтобы выбрать",
+    "maxSize": "Max {{size}}",
+    "errorSize": "Файл слишком большой. Максимальный размер — {{max}}",
+    "errorType": "Недопустимый тип файла для {{type}}",
+    "download": "Скачать",
+    "clickToExpand": "Нажмите, чтобы раскрыть",
+    "outputTitle": "Медиа вывод",
+    "modeFile": "Загрузить",
+    "modeUrl": "URL",
+    "urlPlaceholder": "Введите URL-адрес {{type}}...",
+    "urlHint": "Введите публично доступный URL для {{type}}",
+    "submitUrl": "Добавить",
+    "errorUrlRequired": "Пожалуйста, введите URL",
+    "errorUrlInvalid": "Пожалуйста, введите допустимый URL"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "save": "Сохранить",
+    "saving": "Сохранение...",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Edit",
+    "create": "Создать",
+    "creating": "Создание...",
+    "confirm": "Подтвердить",
+    "close": "Закрыть",
+    "copy": "Копировать",
+    "copied": "Скопировано!",
+    "back": "Назад",
+    "next": "Далее",
+    "submit": "Отправить",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "noResults": "Результаты не найдены",
+    "tryAgain": "Попробуйте ещё раз",
+    "notSet": "Не установлено",
+    "disabled": "Отключено",
+    "refresh": "Обновить",
+    "remove": "Удалить",
+    "dismiss": "Отклонить",
+    "yes": "Да",
+    "no": "Нет",
+    "errorOccurred": "Произошла ошибка",
+    "optional": "необязательный",
+    "goBack": "Вернуться назад",
+    "saved": "Сохранено",
+    "deleted": "Удалено"
   }
 }

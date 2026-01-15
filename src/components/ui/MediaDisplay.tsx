@@ -188,7 +188,11 @@ export function MediaDisplay({ items, title }: MediaDisplayProps) {
 
             {item.type === "video" && (
               <div className="space-y-2">
-                <video src={item.data} controls className="max-h-48 rounded mx-auto" />
+                <video
+                  src={item.data}
+                  controls
+                  className="max-h-48 rounded mx-auto"
+                />
                 <button
                   type="button"
                   onClick={() => handleDownload(item)}

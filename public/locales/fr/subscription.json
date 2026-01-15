@@ -95,6 +95,7 @@
   },
   "common": {
     "yes": "Oui",
-    "no": "Non"
+    "no": "Non",
+    "error": "Erreur"
   }
 }

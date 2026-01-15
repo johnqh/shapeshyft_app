@@ -55,8 +55,11 @@
     "delete": "삭제",
     "edit": "수정",
     "create": "만들기",
+    "creating": "생성 중...",
     "confirm": "확인",
     "close": "닫기",
+    "copy": "복사",
+    "copied": "복사됨!",
     "back": "뒤로",
     "next": "다음",
     "submit": "제출",
@@ -67,10 +70,15 @@
     "notSet": "설정되지 않음",
     "disabled": "비활성화됨",
     "refresh": "새로 고침",
+    "remove": "제거",
+    "dismiss": "닫기",
     "yes": "예",
     "no": "아니요",
     "errorOccurred": "오류가 발생했습니다",
-    "optional": "선택사항"
+    "optional": "선택사항",
+    "goBack": "뒤로 가기",
+    "saved": "저장됨",
+    "deleted": "삭제됨"
   },
   "toast": {
     "success": {

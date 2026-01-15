@@ -28,13 +28,17 @@ function TermsPage() {
       {
         title: t("sections.accounts.title"),
         description: t("sections.accounts.description"),
-        items: t("sections.accounts.items", { returnObjects: true }) as string[],
+        items: t("sections.accounts.items", {
+          returnObjects: true,
+        }) as string[],
       },
       // Section 4: Acceptable Use
       {
         title: t("sections.acceptableUse.title"),
         description: t("sections.acceptableUse.description", { appName }),
-        items: t("sections.acceptableUse.items", { returnObjects: true }) as string[],
+        items: t("sections.acceptableUse.items", {
+          returnObjects: true,
+        }) as string[],
       },
       // Section 5: API Usage
       {

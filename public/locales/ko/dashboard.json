@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "프로젝트",
+    "detail": "프로젝트",
     "empty": "아직 프로젝트가 없습니다",
     "emptyDescription": "프로젝트를 시작하려면 첫 번째 프로젝트를 생성하세요",
     "create": "프로젝트 생성",
@@ -39,14 +40,17 @@
         "nameRequired": "표시 이름은 필수 항목입니다",
         "nameTooShort": "이름은 최소 2자 이상이어야 합니다"
       },
-      "slugPreview": "슬러그"
+      "slugPreview": "슬러그",
+      "create": "프로젝트 생성"
     }
   },
   "endpoints": {
     "title": "엔드포인트",
+    "detailTitle": "엔드포인트",
     "empty": "아직 엔드포인트가 없습니다",
     "emptyDescription": "이 프로젝트용 첫 번째 엔드포인트를 생성하세요",
     "create": "엔드포인트 생성",
+    "useTemplate": "템플릿 사용",
     "test": "테스트",
     "notFound": "엔드포인트를 찾을 수 없습니다",
     "backToProject": "프로젝트로 돌아가기",
@@ -82,6 +86,18 @@
       "llmKey": "공급자",
       "selectKey": "공급자 선택",
       "noKeys": "API 키가 설정되지 않았습니다. 먼저 하나를 추가하세요.",
+      "model": "모델",
+      "selectModel": "먼저 공급자를 선택하세요",
+      "customModelPlaceholder": "또는 사용자 정의 모델 이름 입력...",
+      "customModelHint": "당신은 LLM 서버에서 지원하는 모델 이름을 입력할 수 있습니다.",
+      "costEstimate": "비용 추정",
+      "costPerRequest": "요청당 예상 비용",
+      "inputTokens": "입력 토큰",
+      "outputTokens": "출력 토큰",
+      "inputCost": "입력",
+      "outputCost": "출력",
+      "costPerMillion": "100만 토큰당 비용(미국 달러 기준)",
+      "modelPlaceholder": "모델을 입력하거나 선택하세요...",
       "context": "시스템 컨텍스트",
       "contextPlaceholder": "LLM의 지침(시스템 프롬프트)",
       "useInputSchema": "입력 스키마 정의",
@@ -136,9 +152,12 @@
       "inactive": "비활성"
     },
     "form": {
+      "title": "공급자 추가",
+      "titleEdit": "공급자 편집",
       "keyName": "프로바이더 라벨",
       "keyNamePlaceholder": "예: 프로덕션, 개발",
       "provider": "공급자",
+      "selectProvider": "공급자 선택",
       "apiKey": "API 키",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "귀하의 키는 저장 중 암호화되어 있습니다",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "오픈AI",
       "anthropic": "애너스틱",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "미스트랄 AI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "퍼플렉시티",
+      "lm_studio": "LM 스튜디오"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "현지화",
       "description": "다양한 언어로 텍스트를 번역하세요"
+    },
+    "imageRecognition": {
+      "name": "이미지 인식",
+      "description": "시각 모델을 사용하여 이미지를 분석하고 설명하기"
+    },
+    "imageGeneration": {
+      "name": "이미지 생성",
+      "description": "텍스트 설명에서 이미지를 생성하세요"
+    },
+    "imageProcessing": {
+      "name": "이미지 처리",
+      "description": "AI를 사용하여 이미지를 변환하고 편집하세요"
+    }
+  },
+  "endpointTemplates": {
+    "title": "엔드포인트 템플릿",
+    "subtitle": "사전 구성된 템플릿에서 엔드포인트를 생성합니다",
+    "allCategories": "모든",
+    "configure": "엔드포인트 구성",
+    "preview": "미리보기",
+    "endpointName": "엔드포인트 이름",
+    "category": "카테고리",
+    "inputFields": "입력 필드",
+    "create": "엔드포인트 생성",
+    "errors": {
+      "fillAllFields": "템플릿과 공급자를 선택해 주세요"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "현재 사용량: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "구독"
+  },
   "schema": {
     "editor": "스키마 편집기",
     "visual": "시각적",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "부동산 설명 (선택 사항)",
     "arrayItemSchema": "배열 항목 스키마:",
     "clickToEditName": "필드 이름을 편집하려면 클릭하세요",
+    "basicTypes": "기본 타입",
+    "mediaTypes": "미디어 유형",
     "types": {
       "string": "문자열",
       "number": "숫자",
       "integer": "정수",
       "boolean": "논리형",
       "object": "개체",
-      "array": "배열"
+      "array": "배열",
+      "image": "이미지",
+      "audio": "오디오",
+      "video": "비디오"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "요청",
       "noData": "이 기간 동안 사용 데이터가 사용할 수 없습니다"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "서버 사용 불가",
+      "message": "서버에 연결하는 데 문제가 있습니다. 나중에 다시 시도해 주세요.",
+      "retry": "다시 시도하세요"
+    },
+    "rateLimit": {
+      "title": "요청 빈도 초과",
+      "message": "구독 플랜의 요청 제한에 도달했습니다. 더 높은 제한을 원하시면 구독을 업그레이드하세요.",
+      "upgradeButton": "플랜 업그레이드"
+    }
+  },
+  "media": {
+    "uploadTitle": "미디어 입력",
+    "dropOrClick": "여기서 {{type}}을 드롭하거나 클릭하여 탐색하세요",
+    "maxSize": "Max {{size}}",
+    "errorSize": "파일 크기가 큽니다. 최대 크기는 {{max}}입니다.",
+    "errorType": "{{type}} 유형에 대한 유효하지 않은 파일 형식",
+    "download": "다운로드",
+    "clickToExpand": "클릭하여 확장하기",
+    "outputTitle": "미디어 출력",
+    "modeFile": "업로드",
+    "modeUrl": "URL",
+    "urlPlaceholder": "{{type}} URL을 입력하세요...",
+    "urlHint": "공개적으로 접근 가능한 URL을 입력하세요. {{type}",
+    "submitUrl": "추가하기",
+    "errorUrlRequired": "URL을 입력하세요",
+    "errorUrlInvalid": "올바른 URL을 입력해 주세요"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류",
+    "save": "저장",
+    "saving": "저장 중...",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "편집",
+    "create": "생성하기",
+    "creating": "생성 중...",
+    "confirm": "확인",
+    "close": "닫기",
+    "copy": "복사",
+    "copied": "복사됨!",
+    "back": "뒤로",
+    "next": "다음",
+    "submit": "제출",
+    "search": "검색",
+    "filter": "필터",
+    "noResults": "결과가 없습니다",
+    "tryAgain": "다시 시도하세요",
+    "notSet": "설정되지 않음",
+    "disabled": "비활성화됨",
+    "refresh": "새로 고침",
+    "remove": "제거",
+    "dismiss": "닫기",
+    "yes": "예",
+    "no": "아니요",
+    "errorOccurred": "오류가 발생했습니다",
+    "optional": "선택사항",
+    "goBack": "뒤로 가기",
+    "saved": "저장됨",
+    "deleted": "삭제됨"
   }
 }

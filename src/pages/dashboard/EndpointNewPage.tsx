@@ -12,7 +12,14 @@ import {
   MicrophoneIcon,
   VideoCameraIcon,
 } from "@heroicons/react/24/outline";
-import { EditableSelector, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@sudobility/components";
+import {
+  EditableSelector,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
@@ -93,7 +100,7 @@ function EndpointNewPage() {
     networkClient,
     baseUrl,
     provider ?? null,
-    testMode
+    testMode,
   );
 
   // Build model options with capability icons
@@ -103,20 +110,43 @@ function EndpointNewPage() {
       const inputIcons: ReactNode[] = [];
       const outputIcons: ReactNode[] = [];
 
-      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
-      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
-      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
-      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
-      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
-      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+      if (caps.visionInput)
+        inputIcons.push(
+          <PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.audioInput)
+        inputIcons.push(
+          <MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.videoInput)
+        inputIcons.push(
+          <VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.imageOutput)
+        outputIcons.push(
+          <PhotoIcon key="io" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.audioOutput)
+        outputIcons.push(
+          <MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.videoOutput)
+        outputIcons.push(
+          <VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />,
+        );
 
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
           <span className="font-mono">{modelInfo.id}</span>
-          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+          <span className="flex items-center gap-1">
+            {inputIcons}
+            {outputIcons}
+          </span>
         </span>
-      ) : modelInfo.id;
+      ) : (
+        modelInfo.id
+      );
 
       return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
@@ -131,8 +161,12 @@ function EndpointNewPage() {
       return customModel.trim();
     }
     return selectedModel || (providerConfig?.defaultModel ?? "");
-  }, [selectedModel, customModel, allowsCustomModel, providerConfig?.defaultModel]);
-
+  }, [
+    selectedModel,
+    customModel,
+    allowsCustomModel,
+    providerConfig?.defaultModel,
+  ]);
 
   // Auto-generate endpoint name from display name
   const generateEndpointName = (name: string) => {
@@ -410,7 +444,9 @@ function EndpointNewPage() {
                       className={inputClassName("llmKeyId")}
                       onBlur={() => handleBlur("llmKeyId")}
                     >
-                      <SelectValue placeholder={t("endpoints.form.selectKey")} />
+                      <SelectValue
+                        placeholder={t("endpoints.form.selectKey")}
+                      />
                     </SelectTrigger>
                     <SelectContent>
                       {keys.map((key) => (
@@ -439,7 +475,11 @@ function EndpointNewPage() {
                     setCustomModel("");
                   }}
                   disabled={!provider}
-                  placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                  placeholder={
+                    !provider
+                      ? t("endpoints.form.selectModel")
+                      : t("endpoints.form.modelPlaceholder")
+                  }
                   inputClassName="font-mono text-sm"
                 />
               ) : (
@@ -451,7 +491,13 @@ function EndpointNewPage() {
                   disabled={!provider}
                 >
                   <SelectTrigger className="w-full font-mono text-sm">
-                    <SelectValue placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                    <SelectValue
+                      placeholder={
+                        !provider
+                          ? t("endpoints.form.selectModel")
+                          : t("endpoints.form.modelPlaceholder")
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {modelOptions.map((option) => (

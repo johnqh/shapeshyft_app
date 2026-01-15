@@ -1,6 +1,15 @@
 {
   "title": "定价",
   "subtitle": "选择适合您需求的计划",
+  "badges": {
+    "currentPlan": "当前计划",
+    "mostPopular": "最热门"
+  },
+  "cta": {
+    "logIn": "登录以继续",
+    "tryFree": "免费试用",
+    "upgrade": "升级"
+  },
   "plans": {
     "free": {
       "name": "免费",

@@ -95,6 +95,7 @@
   },
   "common": {
     "yes": "Có",
-    "no": "Không"
+    "no": "Không",
+    "error": "Lỗi"
   }
 }

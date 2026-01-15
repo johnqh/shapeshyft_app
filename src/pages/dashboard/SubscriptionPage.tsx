@@ -75,7 +75,10 @@ function SubscriptionPage() {
 
       // Rate limits
       unlimited: t("rateLimits.unlimited", "Unlimited"),
-      unlimitedRequests: t("rateLimits.unlimitedRequests", "Unlimited API requests"),
+      unlimitedRequests: t(
+        "rateLimits.unlimitedRequests",
+        "Unlimited API requests",
+      ),
 
       // Current status
       currentStatusLabel: t("currentStatus.label"),
@@ -116,7 +119,8 @@ function SubscriptionPage() {
   const formatters: SubscriptionPageFormatters = useMemo(
     () => ({
       ...getSharedSubscriptionFormatters(t),
-      getProductFeatures: (packageId: string) => getProductFeatures(packageId, t),
+      getProductFeatures: (packageId: string) =>
+        getProductFeatures(packageId, t),
     }),
     [t],
   );

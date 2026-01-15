@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "Các dự án",
+    "detail": "Dự án",
     "empty": "Chưa có dự án nào yet",
     "emptyDescription": "Tạo dự án đầu tiên của bạn để bắt đầu",
     "create": "Tạo dự án",
@@ -39,14 +40,17 @@
         "nameRequired": "Tên hiển thị là bắt buộc",
         "nameTooShort": "Tên phải có ít nhất 2 ký tự"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Slug",
+      "create": "Tạo dự án"
     }
   },
   "endpoints": {
     "title": "Điểm kết nối",
+    "detailTitle": "Điểm kết thúc",
     "empty": "Chưa có điểm kết nối nào cả",
     "emptyDescription": "Tạo điểm cuối đầu tiên cho dự án này",
     "create": "Tạo điểm kết nối",
+    "useTemplate": "Sử dụng mẫu",
     "test": "Thử",
     "notFound": "Điểm cuối không được tìm thấy",
     "backToProject": "Quay lại dự án",
@@ -82,6 +86,18 @@
       "llmKey": "Nhà cung cấp",
       "selectKey": "Chọn một nhà cung cấp",
       "noKeys": "Chưa cấu hình khóa API nào. Vui lòng thêm một khóa trước.",
+      "model": "Mô hình",
+      "selectModel": "Chọn nhà cung cấp trước",
+      "customModelPlaceholder": "Hoặc nhập tên mô hình tùy chỉnh...",
+      "customModelHint": "Bạn có thể nhập bất kỳ tên mô hình nào được hỗ trợ bởi máy chủ LLM của bạn",
+      "costEstimate": "Ước tính chi phí",
+      "costPerRequest": "Chi phí ước tính mỗi yêu cầu",
+      "inputTokens": "tokens đầu vào",
+      "outputTokens": "tokens đầu ra",
+      "inputCost": "Nhập",
+      "outputCost": "Kết quả",
+      "costPerMillion": "Chi phí trên mỗi 1 triệu token (đơn vị USD)",
+      "modelPlaceholder": "Nhập hoặc chọn mô hình...",
       "context": "Bối cảnh hệ thống",
       "contextPlaceholder": "Hướng dẫn cho LLM (lệnh hệ thống)",
       "useInputSchema": "Định nghĩa lược đồ đầu vào",
@@ -136,9 +152,12 @@
       "inactive": "Không hoạt động"
     },
     "form": {
+      "title": "Thêm nhà cung cấp",
+      "titleEdit": "Chỉnh sửa nhà cung cấp",
       "keyName": "Tên khóa",
       "keyNamePlaceholder": "Khóa OpenAI của tôi",
       "provider": "Nhà cung cấp",
+      "selectProvider": "Chọn một nhà cung cấp",
       "apiKey": "Khóa API",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Khóa của bạn được mã hóa khi lưu trữ",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "Perplexity",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "Địa phương hóa",
       "description": "Chuyển đổi văn bản sang nhiều ngôn ngữ"
+    },
+    "imageRecognition": {
+      "name": "Nhận diện hình ảnh",
+      "description": "Phân tích và mô tả hình ảnh bằng các mô hình thị giác"
+    },
+    "imageGeneration": {
+      "name": "Tạo ảnh",
+      "description": "Tạo hình ảnh từ mô tả văn bản"
+    },
+    "imageProcessing": {
+      "name": "Xử lý ảnh",
+      "description": "Chuyển đổi và chỉnh sửa hình ảnh bằng trí tuệ nhân tạo"
+    }
+  },
+  "endpointTemplates": {
+    "title": "Mẫu điểm kết thúc",
+    "subtitle": "Tạo một điểm cuối từ một mẫu đã được cấu hình trước",
+    "allCategories": "Tất cả",
+    "configure": "Cấu hình điểm cuối",
+    "preview": "Xem trước",
+    "endpointName": "Tên điểm cuối",
+    "category": "Thể loại",
+    "inputFields": "Các trường nhập liệu",
+    "create": "Tạo điểm cuối",
+    "errors": {
+      "fillAllFields": "Vui lòng chọn một mẫu và nhà cung cấp"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "Sử dụng hiện tại: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "Đăng ký"
+  },
   "schema": {
     "editor": "Trình chỉnh sửa lược đồ",
     "visual": "Hình ảnh",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "Mô tả bất động sản (tùy chọn)",
     "arrayItemSchema": "Mẫu mục mảng:",
     "clickToEditName": "Nhấp để chỉnh sửa tên trường",
+    "basicTypes": "Kiểu cơ bản",
+    "mediaTypes": "Loại phương tiện",
     "types": {
       "string": "Chuỗi",
       "number": "Số",
       "integer": "Số nguyên",
       "boolean": "Boolean",
       "object": "Vật thể",
-      "array": "Mảng"
+      "array": "Mảng",
+      "image": "Hình ảnh",
+      "audio": "Âm than",
+      "video": "Video"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "Yêu cầu",
       "noData": "Không có dữ liệu sử dụng nào cho khoảng thời gian này"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "Máy chủ không khả dụng",
+      "message": "Chúng tôi đang gặp khó khăn khi kết nối đến máy chủ. Vui lòng thử lại sau.",
+      "retry": "Thử lại"
+    },
+    "rateLimit": {
+      "title": "Vượt quá giới hạn tỷ lệ",
+      "message": "Bạn đã đạt đến giới hạn tốc độ của gói plan của mình. Nâng cấp gói đăng ký để được tăng giới hạn.",
+      "upgradeButton": "Nâng cấp gói"
+    }
+  },
+  "media": {
+    "uploadTitle": "Nhập phương tiện",
+    "dropOrClick": "Thả {{type}} ở đây hoặc nhấp để duyệt",
+    "maxSize": "Max {{size}}",
+    "errorSize": "Tập tin quá lớn. Kích thước tối đa là {{max}}",
+    "errorType": "Loại tệp không hợp lệ cho {{type}}",
+    "download": "Tải xuống",
+    "clickToExpand": "Bấm để mở rộng",
+    "outputTitle": "Đầu ra phương tiện",
+    "modeFile": "Tải lên",
+    "modeUrl": "URL",
+    "urlPlaceholder": "Nhập URL {{type}}...",
+    "urlHint": "Nhập một địa chỉ URL truy cập công khai cho {{type}}",
+    "submitUrl": "Thêm",
+    "errorUrlRequired": "Vui lòng nhập một địa chỉ URL",
+    "errorUrlInvalid": "Vui lòng nhập một địa chỉ URL hợp lệ"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "save": "Lưu",
+    "saving": "Đang lưu...",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Sửa đổi",
+    "create": "Tạo",
+    "creating": "Đang tạo...",
+    "confirm": "Xác nhận",
+    "close": "Đóng",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "submit": "Gửi",
+    "search": "Tìm kiếm",
+    "filter": "Bộ lọc",
+    "noResults": "Không tìm thấy kết quả",
+    "tryAgain": "Thử Lại",
+    "notSet": "Chưa thiết lập",
+    "disabled": "Vô hiệu hóa",
+    "refresh": "Làm mới",
+    "remove": "Gỡ bỏ",
+    "dismiss": "Bỏ qua",
+    "yes": "Có",
+    "no": "Không",
+    "errorOccurred": "Đã xảy ra lỗi",
+    "optional": "tùy chọn",
+    "goBack": "Quay lại",
+    "saved": "Đã lưu",
+    "deleted": "Đã xóa"
   }
 }

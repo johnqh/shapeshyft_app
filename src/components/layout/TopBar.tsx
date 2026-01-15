@@ -1,44 +1,44 @@
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   AppTopBarWithFirebaseAuth,
   type MenuItemConfig,
   type AuthMenuItem,
   type AuthActionProps,
-} from '@sudobility/building_blocks';
-import { AuthAction, useAuthStatus } from '@sudobility/auth-components';
-import type { ComponentType } from 'react';
-import { useLocalizedNavigate } from '../../hooks/useLocalizedNavigate';
-import { useCurrentEntityOptional } from '../../hooks/useCurrentEntity';
+} from "@sudobility/building_blocks";
+import { AuthAction, useAuthStatus } from "@sudobility/auth-components";
+import type { ComponentType } from "react";
+import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
+import { useCurrentEntityOptional } from "../../hooks/useCurrentEntity";
 import {
   CONSTANTS,
   SUPPORTED_LANGUAGES,
   isLanguageSupported,
-} from '../../config/constants';
-import LocalizedLink from './LocalizedLink';
+} from "../../config/constants";
+import LocalizedLink from "./LocalizedLink";
 
 // Language display names and flags
 const LANGUAGE_INFO: Record<string, { name: string; flag: string }> = {
-  en: { name: 'English', flag: '🇺🇸' },
-  ar: { name: 'العربية', flag: '🇸🇦' },
-  de: { name: 'Deutsch', flag: '🇩🇪' },
-  es: { name: 'Español', flag: '🇪🇸' },
-  fr: { name: 'Français', flag: '🇫🇷' },
-  it: { name: 'Italiano', flag: '🇮🇹' },
-  ja: { name: '日本語', flag: '🇯🇵' },
-  ko: { name: '한국어', flag: '🇰🇷' },
-  pt: { name: 'Português', flag: '🇧🇷' },
-  ru: { name: 'Русский', flag: '🇷🇺' },
-  sv: { name: 'Svenska', flag: '🇸🇪' },
-  th: { name: 'ไทย', flag: '🇹🇭' },
-  uk: { name: 'Українська', flag: '🇺🇦' },
-  vi: { name: 'Tiếng Việt', flag: '🇻🇳' },
-  zh: { name: '简体中文', flag: '🇨🇳' },
-  'zh-hant': { name: '繁體中文', flag: '🇹🇼' },
+  en: { name: "English", flag: "🇺🇸" },
+  ar: { name: "العربية", flag: "🇸🇦" },
+  de: { name: "Deutsch", flag: "🇩🇪" },
+  es: { name: "Español", flag: "🇪🇸" },
+  fr: { name: "Français", flag: "🇫🇷" },
+  it: { name: "Italiano", flag: "🇮🇹" },
+  ja: { name: "日本語", flag: "🇯🇵" },
+  ko: { name: "한국어", flag: "🇰🇷" },
+  pt: { name: "Português", flag: "🇧🇷" },
+  ru: { name: "Русский", flag: "🇷🇺" },
+  sv: { name: "Svenska", flag: "🇸🇪" },
+  th: { name: "ไทย", flag: "🇹🇭" },
+  uk: { name: "Українська", flag: "🇺🇦" },
+  vi: { name: "Tiếng Việt", flag: "🇻🇳" },
+  zh: { name: "简体中文", flag: "🇨🇳" },
+  "zh-hant": { name: "繁體中文", flag: "🇹🇼" },
 };
 
 interface TopBarProps {
-  variant?: 'default' | 'transparent';
+  variant?: "default" | "transparent";
 }
 
 // Icon components for nav items
@@ -129,45 +129,119 @@ const Cog6ToothIcon = ({ className }: { className?: string }) => (
 
 // Menu icons for dropdown
 const MenuFolderIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+    />
   </svg>
 );
 
 const MenuKeyIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+    />
   </svg>
 );
 
 const MenuChartIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+    />
   </svg>
 );
 
 const MenuBudgetIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
   </svg>
 );
 
 const MenuSubscriptionIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+    />
   </svg>
 );
 
 const MenuRateLimitsIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M13 10V3L4 14h7v7l9-11h-7z"
+    />
   </svg>
 );
 
 const MenuSettingsIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+    />
   </svg>
 );
 
@@ -186,9 +260,9 @@ const LinkWrapper = ({
   </LocalizedLink>
 );
 
-function TopBar({ variant = 'default' }: TopBarProps) {
-  const { t } = useTranslation('common');
-  const { t: tDashboard } = useTranslation('dashboard');
+function TopBar({ variant = "default" }: TopBarProps) {
+  const { t } = useTranslation("common");
+  const { t: tDashboard } = useTranslation("dashboard");
   const { navigate, switchLanguage, currentLanguage } = useLocalizedNavigate();
   const { user } = useAuthStatus();
 
@@ -202,12 +276,12 @@ function TopBar({ variant = 'default' }: TopBarProps) {
   // Build languages list
   const languages = useMemo(
     () =>
-      SUPPORTED_LANGUAGES.map(code => ({
+      SUPPORTED_LANGUAGES.map((code) => ({
         code,
         name: LANGUAGE_INFO[code]?.name || code.toUpperCase(),
-        flag: LANGUAGE_INFO[code]?.flag || '🌐',
+        flag: LANGUAGE_INFO[code]?.flag || "🌐",
       })),
-    []
+    [],
   );
 
   // Build authenticated menu items
@@ -216,97 +290,125 @@ function TopBar({ variant = 'default' }: TopBarProps) {
       isAuthenticated
         ? [
             {
-              id: 'projects',
-              label: tDashboard('navigation.projects'),
+              id: "projects",
+              label: tDashboard("navigation.projects"),
               icon: <MenuFolderIcon />,
               onClick: () =>
-                navigate(entitySlug ? `/dashboard/${entitySlug}/projects` : '/dashboard'),
+                navigate(
+                  entitySlug
+                    ? `/dashboard/${entitySlug}/projects`
+                    : "/dashboard",
+                ),
             },
             {
-              id: 'providers',
-              label: tDashboard('navigation.providers'),
+              id: "providers",
+              label: tDashboard("navigation.providers"),
               icon: <MenuKeyIcon />,
               onClick: () =>
-                navigate(entitySlug ? `/dashboard/${entitySlug}/providers` : '/dashboard'),
+                navigate(
+                  entitySlug
+                    ? `/dashboard/${entitySlug}/providers`
+                    : "/dashboard",
+                ),
             },
             {
-              id: 'analytics',
-              label: tDashboard('navigation.analytics'),
+              id: "analytics",
+              label: tDashboard("navigation.analytics"),
               icon: <MenuChartIcon />,
               onClick: () =>
-                navigate(entitySlug ? `/dashboard/${entitySlug}/analytics` : '/dashboard'),
+                navigate(
+                  entitySlug
+                    ? `/dashboard/${entitySlug}/analytics`
+                    : "/dashboard",
+                ),
             },
             {
-              id: 'budgets',
-              label: tDashboard('navigation.budgets'),
+              id: "budgets",
+              label: tDashboard("navigation.budgets"),
               icon: <MenuBudgetIcon />,
               onClick: () =>
-                navigate(entitySlug ? `/dashboard/${entitySlug}/budgets` : '/dashboard'),
+                navigate(
+                  entitySlug
+                    ? `/dashboard/${entitySlug}/budgets`
+                    : "/dashboard",
+                ),
             },
             {
-              id: 'subscription',
-              label: tDashboard('navigation.subscription'),
+              id: "subscription",
+              label: tDashboard("navigation.subscription"),
               icon: <MenuSubscriptionIcon />,
               onClick: () =>
-                navigate(entitySlug ? `/dashboard/${entitySlug}/subscription` : '/dashboard'),
+                navigate(
+                  entitySlug
+                    ? `/dashboard/${entitySlug}/subscription`
+                    : "/dashboard",
+                ),
             },
             {
-              id: 'rate-limits',
-              label: tDashboard('navigation.rateLimits'),
+              id: "rate-limits",
+              label: tDashboard("navigation.rateLimits"),
               icon: <MenuRateLimitsIcon />,
               onClick: () =>
-                navigate(entitySlug ? `/dashboard/${entitySlug}/rate-limits` : '/dashboard'),
+                navigate(
+                  entitySlug
+                    ? `/dashboard/${entitySlug}/rate-limits`
+                    : "/dashboard",
+                ),
             },
             {
-              id: 'settings',
-              label: tDashboard('navigation.settings'),
+              id: "settings",
+              label: tDashboard("navigation.settings"),
               icon: <MenuSettingsIcon />,
               onClick: () =>
-                navigate(entitySlug ? `/dashboard/${entitySlug}/settings` : '/dashboard'),
+                navigate(
+                  entitySlug
+                    ? `/dashboard/${entitySlug}/settings`
+                    : "/dashboard",
+                ),
               dividerAfter: true,
             },
           ]
         : [],
-    [isAuthenticated, tDashboard, navigate, entitySlug]
+    [isAuthenticated, tDashboard, navigate, entitySlug],
   );
 
   // Build navigation items
   const menuItems: MenuItemConfig[] = useMemo(() => {
     const items: MenuItemConfig[] = [
       {
-        id: 'use-cases',
-        label: t('navigation.useCases'),
+        id: "use-cases",
+        label: t("navigation.useCases"),
         icon: LightBulbIcon,
-        href: '/use-cases',
+        href: "/use-cases",
       },
       {
-        id: 'docs',
-        label: t('navigation.docs'),
+        id: "docs",
+        label: t("navigation.docs"),
         icon: DocumentTextIcon,
-        href: '/docs',
+        href: "/docs",
       },
       {
-        id: 'pricing',
-        label: t('navigation.pricing'),
+        id: "pricing",
+        label: t("navigation.pricing"),
         icon: CurrencyDollarIcon,
-        href: '/pricing',
+        href: "/pricing",
       },
     ];
 
     if (isAuthenticated) {
       items.push({
-        id: 'dashboard',
-        label: t('navigation.dashboard'),
+        id: "dashboard",
+        label: t("navigation.dashboard"),
         icon: Squares2X2Icon,
-        href: '/dashboard',
+        href: "/dashboard",
       });
     }
 
     items.push({
-      id: 'settings',
-      label: t('navigation.settings'),
+      id: "settings",
+      label: t("navigation.settings"),
       icon: Cog6ToothIcon,
-      href: '/settings',
+      href: "/settings",
     });
 
     return items;
@@ -321,9 +423,9 @@ function TopBar({ variant = 'default' }: TopBarProps) {
   return (
     <AppTopBarWithFirebaseAuth
       logo={{
-        src: '/logo.png',
+        src: "/logo.png",
         appName: CONSTANTS.APP_NAME,
-        onClick: () => navigate('/'),
+        onClick: () => navigate("/"),
       }}
       menuItems={menuItems}
       languages={languages}
@@ -331,9 +433,9 @@ function TopBar({ variant = 'default' }: TopBarProps) {
       onLanguageChange={handleLanguageChange}
       LinkComponent={LinkWrapper}
       AuthActionComponent={AuthAction as ComponentType<AuthActionProps>}
-      onLoginClick={() => navigate('/login')}
+      onLoginClick={() => navigate("/login")}
       authenticatedMenuItems={authenticatedMenuItems}
-      variant={variant === 'transparent' ? 'default' : 'default'}
+      variant={variant === "transparent" ? "default" : "default"}
       sticky
     />
   );

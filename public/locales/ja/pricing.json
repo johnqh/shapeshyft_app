@@ -1,6 +1,15 @@
 {
   "title": "価格設定",
   "subtitle": "ご要望に合ったプランを選択してください",
+  "badges": {
+    "currentPlan": "現在のプラン",
+    "mostPopular": "最も人気のある"
+  },
+  "cta": {
+    "logIn": "続行するにはログインしてください",
+    "tryFree": "無料でお試しください",
+    "upgrade": "アップグレード"
+  },
   "plans": {
     "free": {
       "name": "無料",

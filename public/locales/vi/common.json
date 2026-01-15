@@ -55,8 +55,11 @@
     "delete": "Xóa",
     "edit": "Sửa đổi",
     "create": "Tạo",
+    "creating": "Đang tạo...",
     "confirm": "Xác nhận",
     "close": "Đóng",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
     "back": "Quay lại",
     "next": "Tiếp theo",
     "submit": "Gửi",
@@ -67,10 +70,15 @@
     "notSet": "Chưa thiết lập",
     "disabled": "Vô hiệu hóa",
     "refresh": "Làm mới",
+    "remove": "Gỡ bỏ",
+    "dismiss": "Bỏ qua",
     "yes": "Có",
     "no": "Không",
     "errorOccurred": "Đã xảy ra lỗi",
-    "optional": "tùy chọn"
+    "optional": "tùy chọn",
+    "goBack": "Quay lại",
+    "saved": "Đã lưu",
+    "deleted": "Đã xóa"
   },
   "toast": {
     "success": {

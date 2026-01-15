@@ -48,10 +48,13 @@ const PlusIcon = () => (
 );
 
 const PROVIDER_COLORS: Record<string, string> = {
-  openai: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  anthropic: "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400",
+  openai:
+    "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
+  anthropic:
+    "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400",
   gemini: "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400",
-  lm_studio: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
+  lm_studio:
+    "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
 };
 
 function ProvidersPage() {
@@ -135,7 +138,9 @@ function ProvidersPage() {
   };
 
   const renderKeyItem = (key: LlmApiKeySafe) => {
-    const colorClass = PROVIDER_COLORS[key.provider] ?? "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400";
+    const colorClass =
+      PROVIDER_COLORS[key.provider] ??
+      "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400";
 
     return (
       <div className="p-4 bg-theme-bg-secondary rounded-xl border border-theme-border group">

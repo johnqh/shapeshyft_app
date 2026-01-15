@@ -66,7 +66,8 @@ export function extractMediaFromOutput(
   data: unknown,
 ): Array<{ fieldName: string; type: MediaType; data: string }> {
   const mediaFields = extractMediaFields(schema);
-  const results: Array<{ fieldName: string; type: MediaType; data: string }> = [];
+  const results: Array<{ fieldName: string; type: MediaType; data: string }> =
+    [];
 
   if (!data || typeof data !== "object") {
     return results;
@@ -97,7 +98,9 @@ export function getNonMediaFields(schema: JsonSchema | null): string[] {
   }
 
   const mediaFields = extractMediaFields(schema);
-  return Object.keys(schema.properties).filter((name) => !(name in mediaFields));
+  return Object.keys(schema.properties).filter(
+    (name) => !(name in mediaFields),
+  );
 }
 
 /**

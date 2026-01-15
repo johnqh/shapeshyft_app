@@ -1,6 +1,15 @@
 {
   "title": "Prissättning",
   "subtitle": "Välj det plan som passar dina behov",
+  "badges": {
+    "currentPlan": "Nuvarande plan",
+    "mostPopular": "Mest populära"
+  },
+  "cta": {
+    "logIn": "Logga in för att fortsätta",
+    "tryFree": "Prova det gratis",
+    "upgrade": "Uppgradera"
+  },
   "plans": {
     "free": {
       "name": "Gratis",

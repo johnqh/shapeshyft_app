@@ -222,9 +222,7 @@ function ProjectDetailPage() {
 
   // Server error state - show error but keep in detail panel
   if (error && isServerError(error)) {
-    return (
-      <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />
-    );
+    return <DetailErrorState onRetry={handleRetry} isRetrying={isRetrying} />;
   }
 
   // Project not found
@@ -440,7 +438,6 @@ function ProjectDetailPage() {
         }}
         spacing="md"
       />
-
     </div>
   );
 }

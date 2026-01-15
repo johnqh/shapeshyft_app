@@ -8,14 +8,24 @@ import {
   type EndpointTemplateWithCategory,
 } from "@sudobility/shapeshyft_lib";
 import { useProviders, useProviderModels } from "@sudobility/shapeshyft_client";
-import type { LlmProvider, ModelCapabilities } from "@sudobility/shapeshyft_types";
+import type {
+  LlmProvider,
+  ModelCapabilities,
+} from "@sudobility/shapeshyft_types";
 import { detectRequiredCapabilities } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
   MicrophoneIcon,
   VideoCameraIcon,
 } from "@heroicons/react/24/outline";
-import { EditableSelector, Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@sudobility/components";
+import {
+  EditableSelector,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
@@ -82,7 +92,7 @@ function EndpointTemplatesPage() {
     networkClient,
     baseUrl,
     provider ?? null,
-    testMode
+    testMode,
   );
 
   // Detect required capabilities from selected template
@@ -90,7 +100,7 @@ function EndpointTemplatesPage() {
     if (!selectedTemplate) return {};
     return detectRequiredCapabilities(
       selectedTemplate.input_schema as Record<string, unknown> | null,
-      selectedTemplate.output_schema as Record<string, unknown> | null
+      selectedTemplate.output_schema as Record<string, unknown> | null,
     );
   }, [selectedTemplate]);
 
@@ -115,20 +125,43 @@ function EndpointTemplatesPage() {
       const inputIcons: ReactNode[] = [];
       const outputIcons: ReactNode[] = [];
 
-      if (caps.visionInput) inputIcons.push(<PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />);
-      if (caps.audioInput) inputIcons.push(<MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />);
-      if (caps.videoInput) inputIcons.push(<VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />);
-      if (caps.imageOutput) outputIcons.push(<PhotoIcon key="io" className="w-4 h-4 text-green-500" />);
-      if (caps.audioOutput) outputIcons.push(<MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />);
-      if (caps.videoOutput) outputIcons.push(<VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />);
+      if (caps.visionInput)
+        inputIcons.push(
+          <PhotoIcon key="vi" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.audioInput)
+        inputIcons.push(
+          <MicrophoneIcon key="ai" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.videoInput)
+        inputIcons.push(
+          <VideoCameraIcon key="vdi" className="w-4 h-4 text-blue-500" />,
+        );
+      if (caps.imageOutput)
+        outputIcons.push(
+          <PhotoIcon key="io" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.audioOutput)
+        outputIcons.push(
+          <MicrophoneIcon key="ao" className="w-4 h-4 text-green-500" />,
+        );
+      if (caps.videoOutput)
+        outputIcons.push(
+          <VideoCameraIcon key="vdo" className="w-4 h-4 text-green-500" />,
+        );
 
       const hasIcons = inputIcons.length > 0 || outputIcons.length > 0;
       const label = hasIcons ? (
         <span className="flex items-center gap-2">
           <span className="font-mono">{modelInfo.id}</span>
-          <span className="flex items-center gap-1">{inputIcons}{outputIcons}</span>
+          <span className="flex items-center gap-1">
+            {inputIcons}
+            {outputIcons}
+          </span>
         </span>
-      ) : modelInfo.id;
+      ) : (
+        modelInfo.id
+      );
 
       return { value: modelInfo.id, label, searchLabel: modelInfo.id };
     });
@@ -143,8 +176,12 @@ function EndpointTemplatesPage() {
       return customModel.trim();
     }
     return selectedModel || (providerConfig?.defaultModel ?? "");
-  }, [selectedModel, customModel, allowsCustomModel, providerConfig?.defaultModel]);
-
+  }, [
+    selectedModel,
+    customModel,
+    allowsCustomModel,
+    providerConfig?.defaultModel,
+  ]);
 
   // Filter templates by category
   const filteredTemplates = selectedCategory
@@ -297,9 +334,7 @@ function EndpointTemplatesPage() {
               <p className="text-sm text-theme-text-secondary">
                 {t("templates.noKeys")}{" "}
                 <button
-                  onClick={() =>
-                    navigate(`/dashboard/${entitySlug}/providers`)
-                  }
+                  onClick={() => navigate(`/dashboard/${entitySlug}/providers`)}
                   className="text-blue-600 hover:underline"
                 >
                   {t("templates.addKeyLink")}
@@ -347,7 +382,11 @@ function EndpointTemplatesPage() {
                   setCustomModel("");
                 }}
                 disabled={!provider}
-                placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")}
+                placeholder={
+                  !provider
+                    ? t("endpoints.form.selectModel")
+                    : t("endpoints.form.modelPlaceholder")
+                }
                 inputClassName="font-mono text-sm"
               />
             ) : (
@@ -359,7 +398,13 @@ function EndpointTemplatesPage() {
                 disabled={!provider}
               >
                 <SelectTrigger className="w-full font-mono text-sm">
-                  <SelectValue placeholder={!provider ? t("endpoints.form.selectModel") : t("endpoints.form.modelPlaceholder")} />
+                  <SelectValue
+                    placeholder={
+                      !provider
+                        ? t("endpoints.form.selectModel")
+                        : t("endpoints.form.modelPlaceholder")
+                    }
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {modelOptions.map((option) => (
@@ -401,12 +446,8 @@ function EndpointTemplatesPage() {
                   </span>
                   <div className="mt-1 flex flex-wrap gap-1">
                     {Object.keys(
-                      (
-                        selectedTemplate.input_schema as Record<
-                          string,
-                          unknown
-                        >
-                      )?.properties || {},
+                      (selectedTemplate.input_schema as Record<string, unknown>)
+                        ?.properties || {},
                     ).map((field) => (
                       <span
                         key={field}

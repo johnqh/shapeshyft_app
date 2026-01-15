@@ -61,7 +61,7 @@ function ProviderForm({
   const { providers, isLoadingProviders } = useProviders(
     networkClient,
     baseUrl,
-    testMode
+    testMode,
   );
 
   // Build provider dropdown options
@@ -76,19 +76,19 @@ function ProviderForm({
   // Form state
   const [label, setLabel] = useState(existingConfig?.key_name ?? "");
   const [labelManuallySet, setLabelManuallySet] = useState(
-    !!existingConfig?.key_name
+    !!existingConfig?.key_name,
   );
   const [selectedProvider, setSelectedProvider] = useState<LlmProvider>(
-    existingConfig?.provider ?? "openai"
+    existingConfig?.provider ?? "openai",
   );
   const [apiKeySecret, setApiKeySecret] = useState("");
   const [endpointUrl, setEndpointUrl] = useState(
-    existingConfig?.endpoint_url ?? ""
+    existingConfig?.endpoint_url ?? "",
   );
   const [showApiKeySecret, setShowApiKeySecret] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>(
-    {}
+    {},
   );
 
   // Check if selected provider requires a custom endpoint URL
@@ -126,7 +126,7 @@ function ProviderForm({
 
   const validateApiKeySecret = (
     value: string,
-    provider: LlmProvider
+    provider: LlmProvider,
   ): string | undefined => {
     // API key not required for endpoint-based providers (like lm_studio) or when editing
     const config = providers.find((p) => p.id === provider);
@@ -141,7 +141,7 @@ function ProviderForm({
 
   const validateEndpointUrl = (
     value: string,
-    provider: LlmProvider
+    provider: LlmProvider,
   ): string | undefined => {
     const config = providers.find((p) => p.id === provider);
     if (config?.requiresEndpointUrl && !value.trim()) {
@@ -234,7 +234,7 @@ function ProviderForm({
         t("common.error"),
         err instanceof Error ? err.message : t("common.errorOccurred"),
         InfoType.ERROR,
-        5000
+        5000,
       );
     }
   };
@@ -391,7 +391,7 @@ function ProviderForm({
                   }
                   className={inputClassName(
                     "apiKeySecret",
-                    "pr-10 font-mono text-sm"
+                    "pr-10 font-mono text-sm",
                   )}
                 />
                 <button
@@ -490,7 +490,7 @@ function ProviderForm({
         </form>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }
 

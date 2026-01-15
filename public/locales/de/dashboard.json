@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "Projekte",
+    "detail": "Projekt",
     "empty": "Noch keine Projekte",
     "emptyDescription": "Erstellen Sie Ihr erstes Projekt, um loszulegen",
     "create": "Projekt erstellen",
@@ -39,14 +40,17 @@
         "nameRequired": "Der Anzeigename ist erforderlich",
         "nameTooShort": "Der Name muss mindestens 2 Zeichen lang sein"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Slug",
+      "create": "Projekt erstellen"
     }
   },
   "endpoints": {
     "title": "Endpunkte",
+    "detailTitle": "Endpunkt",
     "empty": "Noch keine Endpunkte",
     "emptyDescription": "Erstellen Sie Ihren ersten Endpunkt für dieses Projekt",
     "create": "Endpoint erstellen",
+    "useTemplate": "Vorlage verwenden",
     "test": "Test",
     "notFound": "Endpunkt nicht gefunden",
     "backToProject": "Zurück zum Projekt",
@@ -82,6 +86,18 @@
       "llmKey": "Anbieter",
       "selectKey": "Anbieter auswählen",
       "noKeys": "Es sind keine API-Schlüssel konfiguriert. Fügen Sie zunächst einen hinzu.",
+      "model": "Modell",
+      "selectModel": "Wählen Sie zuerst einen Anbieter aus",
+      "customModelPlaceholder": "Oder geben Sie einen benutzerdefinierten Modellnamen ein...",
+      "customModelHint": "Sie können einen beliebigen Modellnamen eingeben, der von Ihrem LLM-Server unterstützt wird",
+      "costEstimate": "Kostenvoranschlag",
+      "costPerRequest": "Geschätzter Kosten pro Anfrage",
+      "inputTokens": "Eingabetoken",
+      "outputTokens": "Ausgabetoken",
+      "inputCost": "Eingabe",
+      "outputCost": "Ausgabe",
+      "costPerMillion": "Kosten pro 1 M Token (in USD)",
+      "modelPlaceholder": "Modell eingeben oder auswählen...",
       "context": "Systemkontext",
       "contextPlaceholder": "Anweisungen für das LLM (Systemprompt)",
       "useInputSchema": "Eingabeschema definieren",
@@ -136,9 +152,12 @@
       "inactive": "Inaktiv"
     },
     "form": {
+      "title": "Anbieter hinzufügen",
+      "titleEdit": "Anbieter bearbeiten",
       "keyName": "Anbieter-Label",
       "keyNamePlaceholder": "z.B. Produktion, Entwicklung",
       "provider": "Anbieter",
+      "selectProvider": "Wählen Sie einen Anbieter",
       "apiKey": "API-Schlüssel",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "Ihr Schlüssel ist ruhend verschlüsselt",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Die Firma Anthropic",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Die Firma Cohere",
+      "groq": "Groq",
+      "xai": "xAI (Grok)",
+      "deepseek": "DeepSeek",
+      "perplexity": "Perplexity",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "Lokalisierung",
       "description": "Übersetzen Sie den Text in mehrere Sprachen"
+    },
+    "imageRecognition": {
+      "name": "Bilderkennung",
+      "description": "Bilder mithilfe von Vision-Modellen analysieren und beschreiben"
+    },
+    "imageGeneration": {
+      "name": "Bildgenerierung",
+      "description": "Bilder aus Textbeschreibungen generieren"
+    },
+    "imageProcessing": {
+      "name": "Bildverarbeitung",
+      "description": "Bildern mithilfe von KI verändern und bearbeiten"
+    }
+  },
+  "endpointTemplates": {
+    "title": "Endpunktvorlagen",
+    "subtitle": "Erstellen Sie einen Endpunkt aus einer vorkonfigurierten Vorlage",
+    "allCategories": "Alles",
+    "configure": "Endpoint konfigurieren",
+    "preview": "Vorschau",
+    "endpointName": "Endpunktname",
+    "category": "Kategorie",
+    "inputFields": "Eingabefelder",
+    "create": "Endpoint erstellen",
+    "errors": {
+      "fillAllFields": "Bitte wählen Sie eine Vorlage und einen Anbieter aus"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "Aktueller Verbrauch: {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "Abonnement"
+  },
   "schema": {
     "editor": "Schema-Editor",
     "visual": "Visual",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "Eigenschaftsbeschreibung (optional)",
     "arrayItemSchema": "Array-Element-Schema:",
     "clickToEditName": "Klicken Sie zum Bearbeiten des Feldnamens",
+    "basicTypes": "Grundtypen",
+    "mediaTypes": "Mediatypen",
     "types": {
       "string": "String",
       "number": "Die Zahl",
       "integer": "Ganzzahl",
       "boolean": "Boolean",
       "object": "Objekt",
-      "array": "Array"
+      "array": "Array",
+      "image": "Image",
+      "audio": "Audio",
+      "video": "Video"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "Anfragen",
       "noData": "Keine Nutzungsdaten für diesen Zeitraum verfügbar"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "Server nicht erreichbar",
+      "message": "Bei der Verbindung zum Server treten Probleme auf. Bitte versuchen Sie es später erneut.",
+      "retry": "Wiederholen"
+    },
+    "rateLimit": {
+      "title": "Rate Limit überschritten",
+      "message": "Sie haben die Rate-Limit Ihres Plans erreicht. Aktualisieren Sie Ihr Abonnement für höhere Limits.",
+      "upgradeButton": "Plan aktualisieren"
+    }
+  },
+  "media": {
+    "uploadTitle": "Medieneingabe",
+    "dropOrClick": "Ziehen Sie hier {{type}} ab oder klicken Sie zum Durchsuchen",
+    "maxSize": "Max {{size}}",
+    "errorSize": "Datei zu groß. Maximale Größe ist {{max}}",
+    "errorType": "Ungültiger Dateityp für {{type}}",
+    "download": "Herunterladen",
+    "clickToExpand": "Klicken zum Erweitern",
+    "outputTitle": "Mediawiedergabe",
+    "modeFile": "Hochladen",
+    "modeUrl": "URL",
+    "urlPlaceholder": "Geben Sie die URL von {{type}} ein...",
+    "urlHint": "Geben Sie eine öffentlich zugängliche URL für die {{type}} ein",
+    "submitUrl": "Add",
+    "errorUrlRequired": "Bitte geben Sie eine URL ein",
+    "errorUrlInvalid": "Bitte geben Sie eine gültige URL ein"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler",
+    "save": "Speichern",
+    "saving": "Speichern...",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "creating": "Erstellen...",
+    "confirm": "Bestätigen",
+    "close": "Schließen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "back": "Zurück",
+    "next": "Nächste",
+    "submit": "Einreichen",
+    "search": "Suche",
+    "filter": "Filter",
+    "noResults": "Keine Ergebnisse gefunden",
+    "tryAgain": "Nochmal versuchen",
+    "notSet": "Nicht festgelegt",
+    "disabled": "Deaktiviert",
+    "refresh": "Aktualisieren",
+    "remove": "Entfernen",
+    "dismiss": "Ablehnen",
+    "yes": "Ja",
+    "no": "Nein",
+    "errorOccurred": "Ein Fehler ist aufgetreten",
+    "optional": "optional",
+    "goBack": "Zurück gehen",
+    "saved": "Gespeichert",
+    "deleted": "Gelöscht"
   }
 }

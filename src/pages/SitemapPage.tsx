@@ -46,7 +46,11 @@ const LinkWrapper: React.FC<LinkComponentProps & { language?: string }> = ({
 }) => {
   if (language) {
     return (
-      <LocalizedLink to={href} className={className} language={language as SupportedLanguage}>
+      <LocalizedLink
+        to={href}
+        className={className}
+        language={language as SupportedLanguage}
+      >
         {children}
       </LocalizedLink>
     );

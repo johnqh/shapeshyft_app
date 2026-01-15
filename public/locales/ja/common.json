@@ -55,8 +55,11 @@
     "delete": "削除",
     "edit": "編集",
     "create": "作成する",
+    "creating": "作成中...",
     "confirm": "確認",
     "close": "閉じる",
+    "copy": "コピー",
+    "copied": "コピーしました！",
     "back": "戻る",
     "next": "次へ",
     "submit": "送信",
@@ -67,10 +70,15 @@
     "notSet": "未設定",
     "disabled": "無効化された",
     "refresh": "更新",
+    "remove": "削除",
+    "dismiss": "却下",
     "yes": "はい",
     "no": "いいえ",
     "errorOccurred": "エラーが発生しました",
-    "optional": "オプション"
+    "optional": "オプション",
+    "goBack": "戻る",
+    "saved": "保存済み",
+    "deleted": "削除されました"
   },
   "toast": {
     "success": {

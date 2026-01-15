@@ -262,7 +262,9 @@ function PropertyEditor({
         {/* Type Selector */}
         <select
           value={displayType}
-          onChange={(e) => handleTypeChange(e.target.value as PropertyDisplayType)}
+          onChange={(e) =>
+            handleTypeChange(e.target.value as PropertyDisplayType)
+          }
           className="px-2 py-1 text-sm border border-theme-border rounded bg-theme-bg-primary"
         >
           <optgroup label={t("schema.basicTypes")}>

@@ -12,6 +12,7 @@
   },
   "projects": {
     "title": "專案",
+    "detail": "專案",
     "empty": "暫無專案",
     "emptyDescription": "建立您的第一個專案以開始",
     "create": "建立專案",
@@ -39,14 +40,17 @@
         "nameRequired": "顯示名稱是必需的",
         "nameTooShort": "名稱必須至少2個字符"
       },
-      "slugPreview": "Slug"
+      "slugPreview": "Slug",
+      "create": "建立專案"
     }
   },
   "endpoints": {
     "title": "端點",
+    "detailTitle": "端點",
     "empty": "尚無端點",
     "emptyDescription": "為此專案建立您的第一個端點",
     "create": "建立端點",
+    "useTemplate": "使用範本",
     "test": "測試",
     "notFound": "找不到端點",
     "backToProject": "返回專案",
@@ -82,6 +86,18 @@
       "llmKey": "提供者",
       "selectKey": "選擇提供者",
       "noKeys": "尚未設定API金鑰。請先新增一個。",
+      "model": "模型",
+      "selectModel": "請先選擇一個提供者",
+      "customModelPlaceholder": "或輸入自訂模型名稱...",
+      "customModelHint": "您可以輸入您的LLM伺服器支援的任何模型名稱",
+      "costEstimate": "成本估算",
+      "costPerRequest": "每次請求的預估成本",
+      "inputTokens": "輸入令牌",
+      "outputTokens": "輸出標記符",
+      "inputCost": "輸入",
+      "outputCost": "輸出",
+      "costPerMillion": "每100萬個標記的費用（美元）",
+      "modelPlaceholder": "輸入或選擇模型...",
       "context": "系統上下文",
       "contextPlaceholder": "系統提示（系統指令）",
       "useInputSchema": "定義輸入結構",
@@ -136,9 +152,12 @@
       "inactive": "未激活"
     },
     "form": {
+      "title": "新增提供者",
+      "titleEdit": "編輯提供者",
       "keyName": "提供商標籤",
       "keyNamePlaceholder": "例如：生產環境、開發環境",
       "provider": "提供者",
+      "selectProvider": "選擇提供者",
       "apiKey": "API金鑰",
       "apiKeyPlaceholder": "sk-...",
       "apiKeyHint": "您的金鑰已加密儲存",
@@ -155,7 +174,14 @@
     "providers": {
       "openai": "OpenAI",
       "anthropic": "Anthropic",
-      "gemini": "Google Gemini"
+      "gemini": "Google Gemini",
+      "mistral": "Mistral AI",
+      "cohere": "Cohere",
+      "groq": "Groq",
+      "xai": "xAI（Grok）",
+      "deepseek": "DeepSeek",
+      "perplexity": "困惑",
+      "lm_studio": "LM Studio"
     }
   },
   "analytics": {
@@ -221,6 +247,32 @@
     "localization": {
       "name": "地區化",
       "description": "將文字翻譯成多種語言"
+    },
+    "imageRecognition": {
+      "name": "影像辨識",
+      "description": "使用視覺模型分析並描述圖片"
+    },
+    "imageGeneration": {
+      "name": "圖像生成",
+      "description": "從文字描述生成圖片"
+    },
+    "imageProcessing": {
+      "name": "影像處理",
+      "description": "使用AI轉換和編輯圖片"
+    }
+  },
+  "endpointTemplates": {
+    "title": "端點範本",
+    "subtitle": "從預設範本建立端點",
+    "allCategories": "全部",
+    "configure": "設定端點",
+    "preview": "預覽",
+    "endpointName": "端點名稱",
+    "category": "類別",
+    "inputFields": "輸入欄位",
+    "create": "建立端點",
+    "errors": {
+      "fillAllFields": "請選擇一個範本和提供者"
     }
   },
   "budgets": {
@@ -248,6 +300,9 @@
       "usage": "目前用量： {{percentage}}%"
     }
   },
+  "subscription": {
+    "title": "訂閱"
+  },
   "schema": {
     "editor": "結構編輯器",
     "visual": "視覺",
@@ -258,13 +313,18 @@
     "descriptionPlaceholder": "物業描述（可選）",
     "arrayItemSchema": "陣列項目結構：",
     "clickToEditName": "點擊以編輯欄位名稱",
+    "basicTypes": "基本類型",
+    "mediaTypes": "媒體類型",
     "types": {
       "string": "字串",
       "number": "數字",
       "integer": "整數",
       "boolean": "布林值",
       "object": "物件",
-      "array": "陣列"
+      "array": "陣列",
+      "image": "圖片",
+      "audio": "音訊",
+      "video": "影片"
     }
   },
   "settings": {
@@ -345,5 +405,68 @@
       "requests": "請求",
       "noData": "此期間無可用使用資料"
     }
+  },
+  "errors": {
+    "serverDown": {
+      "title": "伺服器不可用",
+      "message": "我們無法連接到伺服器，請稍後再試。",
+      "retry": "重試"
+    },
+    "rateLimit": {
+      "title": "超出速率限制",
+      "message": "您已達到計畫的速率限制。升級訂閱以獲得更高的限制。",
+      "upgradeButton": "升級方案"
+    }
+  },
+  "media": {
+    "uploadTitle": "媒體輸入",
+    "dropOrClick": "將 {{type}} 放在此處，或點擊瀏覽",
+    "maxSize": "最大 {{size}}",
+    "errorSize": "檔案太大。最大尺寸為 {{max}}",
+    "errorType": "不支援的檔案類型為 {{type}",
+    "download": "下載",
+    "clickToExpand": "點擊展開",
+    "outputTitle": "媒體輸出",
+    "modeFile": "上傳",
+    "modeUrl": "URL",
+    "urlPlaceholder": "輸入 {{type}} URL...",
+    "urlHint": "輸入一個可公開存取的URL給{{type}}",
+    "submitUrl": "新增",
+    "errorUrlRequired": "請輸入一個網址",
+    "errorUrlInvalid": "請輸入有效的網址"
+  },
+  "common": {
+    "loading": "載入中...",
+    "error": "錯誤",
+    "save": "儲存",
+    "saving": "儲存中...",
+    "cancel": "取消",
+    "delete": "刪除",
+    "edit": "編輯",
+    "create": "建立",
+    "creating": "建立中...",
+    "confirm": "確認",
+    "close": "關閉",
+    "copy": "複製",
+    "copied": "已複製！",
+    "back": "返回",
+    "next": "下一頁",
+    "submit": "提交",
+    "search": "搜尋",
+    "filter": "篩選",
+    "noResults": "未找到結果",
+    "tryAgain": "再試一次",
+    "notSet": "未設定",
+    "disabled": "已停用",
+    "refresh": "重新整理",
+    "remove": "移除",
+    "dismiss": "取消",
+    "yes": "是",
+    "no": "沒有",
+    "errorOccurred": "發生錯誤",
+    "optional": "可選的",
+    "goBack": "返回",
+    "saved": "已儲存",
+    "deleted": "已刪除"
   }
 }

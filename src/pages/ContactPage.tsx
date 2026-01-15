@@ -116,9 +116,7 @@ function ContactPage() {
             <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
               {t("docs.title")}
             </h3>
-            <p className="text-theme-text-secondary">
-              {t("docs.description")}
-            </p>
+            <p className="text-theme-text-secondary">{t("docs.description")}</p>
           </div>
         </div>
       </Section>
