@@ -254,16 +254,26 @@ function TemplatesPage() {
         {templates.map((template) => (
           <button
             key={template.id}
-            onClick={() => setSelectedTemplate(template.id)}
+            onClick={() => !template.requiresV2 && setSelectedTemplate(template.id)}
+            disabled={template.requiresV2}
             className={`p-4 text-left rounded-xl border-2 transition-all ${
-              selectedTemplate === template.id
-                ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                : "border-theme-border hover:border-blue-300"
+              template.requiresV2
+                ? "border-theme-border opacity-60 cursor-not-allowed"
+                : selectedTemplate === template.id
+                  ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                  : "border-theme-border hover:border-blue-300"
             }`}
           >
-            <h4 className="font-semibold text-theme-text-primary mb-1">
-              {template.name}
-            </h4>
+            <div className="flex items-center justify-between mb-1">
+              <h4 className="font-semibold text-theme-text-primary">
+                {template.name}
+              </h4>
+              {template.requiresV2 && (
+                <span className="text-xs px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full">
+                  {t("templates.comingSoon")}
+                </span>
+              )}
+            </div>
             <p className="text-sm text-theme-text-secondary mb-2">
               {template.description}
             </p>

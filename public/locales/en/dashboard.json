@@ -226,6 +226,7 @@
     "preview": "Preview",
     "willCreate": "This will create {{count}} endpoint(s):",
     "apply": "Apply Template",
+    "comingSoon": "Coming Soon",
     "errors": {
       "fillAllFields": "Please fill all required fields"
     },
@@ -252,6 +253,10 @@
     "imageRecognition": {
       "name": "Image Recognition",
       "description": "Analyze and describe images using vision models"
+    },
+    "audioTranscription": {
+      "name": "Audio Transcription",
+      "description": "Transcribe audio to text with structured extraction"
     },
     "imageGeneration": {
       "name": "Image Generation",
