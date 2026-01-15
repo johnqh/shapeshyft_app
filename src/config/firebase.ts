@@ -3,11 +3,16 @@
  *
  * Auth is now handled by @sudobility/auth_lib.
  * This file only handles Firebase Analytics.
+ *
+ * Provides a singleton analytics service that can be called directly
+ * without needing React context or callbacks.
  */
 
 import {
   getAnalytics,
-  isSupported as isAnalyticsSupported,
+  logEvent,
+  setUserId,
+  setUserProperties,
   type Analytics,
 } from "firebase/analytics";
 import {
@@ -24,28 +29,106 @@ export const isAnalyticsConfigured = (): boolean => {
 // Development mode - disable analytics when not configured
 export const IS_DEVELOPMENT = !isAnalyticsConfigured();
 
-// Initialize Firebase Analytics (only in browser and when configured)
-let analytics: Analytics | null = null;
+// Initialize Firebase Analytics at module load time
+let analytics: Analytics | undefined = undefined;
 
-const initAnalytics = async (): Promise<Analytics | null> => {
-  const app = getFirebaseApp();
-  if (!app || IS_DEVELOPMENT) return null;
-
+if (typeof window !== "undefined" && !IS_DEVELOPMENT) {
   try {
-    const supported = await isAnalyticsSupported();
-    if (supported) {
+    const app = getFirebaseApp();
+    if (app) {
       analytics = getAnalytics(app);
-      return analytics;
     }
-  } catch {
-    // Analytics not supported in this environment
+  } catch (error) {
+    console.error("Error initializing Firebase Analytics:", error);
   }
-  return null;
-};
-
-// Initialize analytics immediately
-if (typeof window !== "undefined") {
-  initAnalytics();
 }
 
-export const getFirebaseAnalytics = (): Analytics | null => analytics;
+// Export analytics instance directly
+export { analytics };
+
+// Export configured status
+export const isConfigured = isFirebaseConfigured();
+
+// ============================================================================
+// Analytics Service Singleton - Call directly without context
+// ============================================================================
+
+export interface AnalyticsEventParams {
+  [key: string]: unknown;
+}
+
+/**
+ * Analytics service singleton - call directly from anywhere
+ * Usage: analyticsService.trackEvent('button_click', { button_name: 'submit' })
+ */
+export const analyticsService = {
+  /**
+   * Track a custom event
+   */
+  trackEvent(eventName: string, params?: AnalyticsEventParams): void {
+    if (IS_DEVELOPMENT || !analytics) return;
+    logEvent(analytics, eventName, {
+      ...params,
+      timestamp: Date.now(),
+    });
+  },
+
+  /**
+   * Track a page view
+   */
+  trackPageView(pagePath: string, pageTitle?: string): void {
+    if (IS_DEVELOPMENT || !analytics) return;
+    logEvent(analytics, "page_view", {
+      page_path: pagePath,
+      page_title: pageTitle,
+      timestamp: Date.now(),
+    });
+  },
+
+  /**
+   * Track a button click
+   */
+  trackButtonClick(buttonName: string, params?: AnalyticsEventParams): void {
+    if (IS_DEVELOPMENT || !analytics) return;
+    logEvent(analytics, "button_click", {
+      button_name: buttonName,
+      ...params,
+      timestamp: Date.now(),
+    });
+  },
+
+  /**
+   * Track an error
+   */
+  trackError(errorMessage: string, errorCode?: string): void {
+    if (IS_DEVELOPMENT || !analytics) return;
+    logEvent(analytics, "error_occurred", {
+      error_message: errorMessage,
+      error_code: errorCode,
+      timestamp: Date.now(),
+    });
+  },
+
+  /**
+   * Set the user ID (hashed for privacy)
+   */
+  setUserId(userId: string): void {
+    if (IS_DEVELOPMENT || !analytics) return;
+    setUserId(analytics, userId);
+  },
+
+  /**
+   * Set user properties
+   */
+  setUserProperties(properties: Record<string, string>): void {
+    if (IS_DEVELOPMENT || !analytics) return;
+    setUserProperties(analytics, properties);
+  },
+
+  /**
+   * Check if analytics is enabled
+   */
+  isEnabled(): boolean {
+    return !IS_DEVELOPMENT && !!analytics;
+  },
+};

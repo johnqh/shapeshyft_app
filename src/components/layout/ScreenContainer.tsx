@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { BreadcrumbSection, LayoutProvider } from "@sudobility/components";
+import { LayoutProvider } from "@sudobility/components";
+import { AppBreadcrumbs } from "@sudobility/building_blocks";
 import TopBar from "./TopBar";
 import Footer from "./Footer";
 import { useBreadcrumbs } from "../../hooks/useBreadcrumbs";
@@ -49,9 +50,14 @@ function ScreenContainer({
 
           {(showBreadcrumbs || effectiveShareConfig) &&
             breadcrumbItems.length > 0 && (
-              <BreadcrumbSection
+              <AppBreadcrumbs
                 items={breadcrumbItems}
                 shareConfig={effectiveShareConfig}
+                talkToFounder={
+                  CONSTANTS.MEET_FOUNDER_URL
+                    ? { meetingUrl: CONSTANTS.MEET_FOUNDER_URL }
+                    : undefined
+                }
               />
             )}
         </div>

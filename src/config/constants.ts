@@ -44,6 +44,9 @@ export const CONSTANTS = {
     ? `${import.meta.env.VITE_STATUS_PAGE_URL}/api/v2/status.json`
     : "",
 
+  // Founder meeting link (e.g., Cal.com, Calendly)
+  MEET_FOUNDER_URL: import.meta.env.VITE_MEET_FOUNDER_URL || "",
+
   // Navigation items
   NAV_ITEMS: [
     { label: "home", href: "/" },

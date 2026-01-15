@@ -2,22 +2,13 @@
  * Analytics Context Provider
  * Provides Firebase Analytics tracking throughout the app
  * Uses hashed user IDs for privacy-preserving analytics
+ *
+ * Pattern follows mail_box: Import analytics instance directly from firebase.ts
  */
 
-import {
-  useCallback,
-  useEffect,
-  useState,
-  useMemo,
-  type ReactNode,
-} from "react";
-import {
-  logEvent,
-  setUserId,
-  setUserProperties,
-  type Analytics,
-} from "firebase/analytics";
-import { getFirebaseAnalytics, IS_DEVELOPMENT } from "../config/firebase";
+import { useCallback, useEffect, useState, useMemo, type ReactNode } from "react";
+import { logEvent, setUserId, setUserProperties } from "firebase/analytics";
+import { analytics, IS_DEVELOPMENT } from "../config/firebase";
 import {
   hashUserId,
   AnalyticsEvents,
@@ -41,20 +32,7 @@ interface AnalyticsProviderProps {
 
 export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
   const { userId, testMode } = useApi();
-  const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [userHash, setUserHash] = useState<string | null>(null);
-
-  // Initialize analytics
-  useEffect(() => {
-    const initAnalytics = () => {
-      const analyticsInstance = getFirebaseAnalytics();
-      setAnalytics(analyticsInstance);
-    };
-
-    // Small delay to ensure Firebase is initialized
-    const timer = setTimeout(initAnalytics, 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Hash user ID when it changes
   useEffect(() => {
@@ -77,7 +55,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
     };
 
     updateUserHash();
-  }, [userId, analytics, testMode]);
+  }, [userId, testMode]);
 
   /**
    * Track an analytics event
@@ -97,7 +75,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
 
       logEvent(analytics, event.event as string, parameters);
     },
-    [analytics, userHash, testMode],
+    [userHash, testMode],
   );
 
   /**
@@ -151,16 +129,13 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
   /**
    * Set a user property
    */
-  const setUserProperty = useCallback(
-    (name: string, value: string) => {
-      if (IS_DEVELOPMENT || !analytics) {
-        return;
-      }
+  const setUserProperty = useCallback((name: string, value: string) => {
+    if (IS_DEVELOPMENT || !analytics) {
+      return;
+    }
 
-      setUserProperties(analytics, { [name]: value });
-    },
-    [analytics],
-  );
+    setUserProperties(analytics, { [name]: value });
+  }, []);
 
   const value = useMemo<AnalyticsContextValue>(
     () => ({
@@ -178,7 +153,6 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
       trackButtonClick,
       trackError,
       setUserProperty,
-      analytics,
       userHash,
     ],
   );
