@@ -308,7 +308,7 @@ export function MediaUploadArea({
       <label className="block text-sm font-medium text-theme-text-primary mb-2">
         {t("media.uploadTitle")}
       </label>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="flex flex-col gap-4">
         {fieldEntries.map(([fieldName, mediaType]) => {
           const preview = previews[fieldName];
           const error = errors[fieldName];

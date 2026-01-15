@@ -339,13 +339,16 @@ function EndpointDetailPage() {
   const [promptPreview, setPromptPreview] = useState<string | null>(null);
   const [isLoadingPrompt, setIsLoadingPrompt] = useState(false);
 
-  // Get the latest test result for this endpoint
+  // Track when to hide results (for clearing previous results on Prompt click)
+  const [hideResultBefore, setHideResultBefore] = useState(0);
+
+  // Get the latest test result for this endpoint (filtered by hideResultBefore)
   const latestResult = useMemo(
     () =>
       testResults
-        .filter((r) => r.endpointId === endpointId)
+        .filter((r) => r.endpointId === endpointId && r.timestamp > hideResultBefore)
         .sort((a, b) => b.timestamp - a.timestamp)[0],
-    [testResults, endpointId],
+    [testResults, endpointId, hideResultBefore],
   );
 
   // Extract media fields from input and output schemas
@@ -669,6 +672,7 @@ function EndpointDetailPage() {
 
     setInputError(null);
     setPromptPreview(null);
+    setHideResultBefore(Date.now()); // Clear previous test results
 
     let parsedInput: unknown;
     try {
@@ -699,6 +703,7 @@ function EndpointDetailPage() {
     if (!endpoint || !project) return;
 
     setInputError(null);
+    setPromptPreview(null); // Clear prompt preview
 
     let parsedInput: unknown;
     try {
