@@ -104,3 +104,89 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ===========================================
+   RTL (Right-to-Left) Language Support
+   Supports: Arabic (ar), Hebrew (he), Farsi (fa), Urdu (ur)
+   =========================================== */
+
+/* Base RTL text direction */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Flip flex layouts for RTL */
+html[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* Flip margins and paddings in RTL */
+html[dir="rtl"] .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* Navigation and menu alignment for RTL */
+html[dir="rtl"] nav {
+  direction: rtl;
+}
+
+/* Form elements RTL support */
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  text-align: right;
+}
+
+/* Code blocks should remain LTR even in RTL context */
+html[dir="rtl"] pre,
+html[dir="rtl"] code,
+html[dir="rtl"] .code-block {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Keep numbers and technical content LTR */
+html[dir="rtl"] .ltr-content {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Flip icons that indicate direction */
+html[dir="rtl"] .icon-directional {
+  transform: scaleX(-1);
+}
+
+/* Flip chevrons and arrows in RTL */
+html[dir="rtl"] [class*="chevron-right"],
+html[dir="rtl"] [class*="arrow-right"] {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] [class*="chevron-left"],
+html[dir="rtl"] [class*="arrow-left"] {
+  transform: scaleX(-1);
+}
+
+/* Breadcrumb separator direction */
+html[dir="rtl"] .breadcrumb-separator {
+  transform: scaleX(-1);
+}
+
+/* Tables remain LTR for data consistency */
+html[dir="rtl"] table {
+  direction: ltr;
+}
+
+/* JSON/Code displays stay LTR */
+html[dir="rtl"] .json-display,
+html[dir="rtl"] .schema-editor {
+  direction: ltr;
+  text-align: left;
+}

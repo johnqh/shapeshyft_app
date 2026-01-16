@@ -17,6 +17,7 @@ import { AuthProviderWrapper } from "./components/providers/AuthProviderWrapper"
 import { LazySubscriptionProvider } from "./components/providers/LazySubscriptionProvider";
 import ToastContainer from "./components/ui/ToastContainer";
 import { PageTracker } from "./hooks/usePageTracking";
+import { useDocumentLanguage } from "./hooks/useDocumentLanguage";
 import { InfoBanner } from "@sudobility/di_web";
 import { getNetworkService } from "@sudobility/di";
 import { NetworkProvider } from "@sudobility/devops-components";
@@ -120,6 +121,12 @@ function EntityAwareSubscriptionProvider({
   );
 }
 
+// Component that syncs document language attributes (html lang and dir)
+function DocumentLanguageSync({ children }: { children: React.ReactNode }) {
+  useDocumentLanguage();
+  return <>{children}</>;
+}
+
 // Stable reference for PerformancePanel to prevent infinite re-renders
 const PERFORMANCE_API_PATTERNS = ["/api/"];
 
@@ -130,8 +137,9 @@ function App() {
   return (
     <HelmetProvider>
       <I18nextProvider i18n={i18n}>
-        <ThemeProvider>
-          <NetworkProvider networkService={networkService}>
+        <DocumentLanguageSync>
+          <ThemeProvider>
+            <NetworkProvider networkService={networkService}>
             <QueryClientProvider client={queryClient}>
               <ToastProvider>
                 <AuthProviderWrapper>
@@ -338,8 +346,9 @@ function App() {
                 </AuthProviderWrapper>
               </ToastProvider>
             </QueryClientProvider>
-          </NetworkProvider>
-        </ThemeProvider>
+            </NetworkProvider>
+          </ThemeProvider>
+        </DocumentLanguageSync>
       </I18nextProvider>
     </HelmetProvider>
   );

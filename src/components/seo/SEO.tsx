@@ -11,9 +11,13 @@ interface SEOProps {
   title?: string;
   description?: string;
   keywords?: string;
+  /** Localized keywords - will be merged with base keywords */
+  localizedKeywords?: Record<string, string>;
   canonical?: string;
   ogType?: "website" | "article" | "product";
   ogImage?: string;
+  /** Language-specific og:image URLs */
+  localizedOgImages?: Record<string, string>;
   noIndex?: boolean;
   structuredData?: object;
   /** Breadcrumb items for BreadcrumbList structured data */
@@ -24,6 +28,8 @@ interface SEOProps {
     dateModified?: string;
     author?: string;
   };
+  /** Include Organization schema (recommended for homepage) */
+  includeOrganization?: boolean;
 }
 
 const BASE_URL = `https://${import.meta.env.VITE_APP_DOMAIN || "shapeshyft.ai"}`;
@@ -56,18 +62,29 @@ export function SEO({
   title,
   description = DEFAULT_DESCRIPTION,
   keywords,
+  localizedKeywords,
   canonical,
   ogType = "website",
   ogImage = DEFAULT_IMAGE,
+  localizedOgImages,
   noIndex = false,
   structuredData,
   breadcrumbs,
   article,
+  includeOrganization = false,
 }: SEOProps) {
   const { i18n } = useTranslation();
   const currentLang = i18n.language || "en";
   const fullTitle = title ? `${title} | ${CONSTANTS.APP_NAME}` : DEFAULT_TITLE;
   const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : undefined;
+
+  // Get localized keywords if available, otherwise use base keywords
+  const effectiveKeywords =
+    localizedKeywords?.[currentLang] || localizedKeywords?.en || keywords;
+
+  // Get localized og:image if available
+  const effectiveOgImage =
+    localizedOgImages?.[currentLang] || localizedOgImages?.en || ogImage;
 
   // Generate hreflang URLs for all supported languages
   const getLocalizedUrl = (lang: string, path: string) => {
@@ -114,15 +131,55 @@ export function SEO({
       }
     : null;
 
+  // Build Organization structured data
+  const organizationStructuredData = includeOrganization
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": `${BASE_URL}/#organization`,
+        name: CONSTANTS.APP_NAME,
+        url: BASE_URL,
+        logo: {
+          "@type": "ImageObject",
+          url: `${BASE_URL}/logo.png`,
+          width: 512,
+          height: 512,
+        },
+        description: DEFAULT_DESCRIPTION,
+        foundingDate: "2024",
+        founder: {
+          "@type": "Organization",
+          name: CONSTANTS.COMPANY_NAME,
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: import.meta.env.VITE_SUPPORT_EMAIL || "support@shapeshyft.ai",
+          availableLanguage: SUPPORTED_LANGUAGES.map((lang) =>
+            lang === "zh" ? "Chinese" : lang === "zh-hant" ? "Chinese" : lang,
+          ),
+        },
+        sameAs: [
+          import.meta.env.VITE_TWITTER_URL,
+          import.meta.env.VITE_LINKEDIN_URL,
+          import.meta.env.VITE_GITHUB_URL,
+        ].filter(Boolean),
+        knowsLanguage: SUPPORTED_LANGUAGES,
+      }
+    : null;
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
+      {effectiveKeywords && <meta name="keywords" content={effectiveKeywords} />}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+      {/* Language Meta Tags for SEO */}
+      <meta httpEquiv="content-language" content={currentLang} />
 
       {/* Hreflang Links for International SEO */}
       {canonical &&
@@ -147,7 +204,7 @@ export function SEO({
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={effectiveOgImage} />
       <meta property="og:site_name" content={CONSTANTS.APP_NAME} />
       <meta
         property="og:locale"
@@ -169,7 +226,7 @@ export function SEO({
       {canonicalUrl && <meta property="twitter:url" content={canonicalUrl} />}
       <meta property="twitter:title" content={fullTitle} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={ogImage} />
+      <meta property="twitter:image" content={effectiveOgImage} />
 
       {/* Custom Structured Data */}
       {structuredData && (
@@ -189,6 +246,13 @@ export function SEO({
       {articleStructuredData && (
         <script type="application/ld+json">
           {JSON.stringify(articleStructuredData)}
+        </script>
+      )}
+
+      {/* Organization Structured Data */}
+      {organizationStructuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(organizationStructuredData)}
         </script>
       )}
     </Helmet>
