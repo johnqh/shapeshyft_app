@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "Vad detta projekt gör",
       "errors": {
         "nameRequired": "Visningsnamn krävs",
-        "nameTooShort": "Namnet måste vara minst 2 tecken"
+        "nameTooShort": "Namnet måste vara minst 2 tecken",
+        "nameExists": "Ett projekt med detta namn finns redan"
       },
       "slugPreview": "Slug",
       "create": "Skapa projekt"
@@ -51,16 +52,26 @@
     "emptyDescription": "Skapa ditt första slutpunkt för detta projekt",
     "create": "Skapa slutpunkt",
     "useTemplate": "Använd mall",
-    "test": "Test",
+    "playground": "Spelplan",
     "notFound": "Slutpunkt hittades inte",
     "backToProject": "Tillbaka till projektet",
     "updated": "Slutpunkt uppdaterad成功",
     "confirmDelete": "Vill du verkligen ta bort denna slutpunkt?",
+    "duplicate": "Duplicera",
+    "duplicated": "Slutpunkt har kopierats framgångsrikt",
+    "duplicateModal": {
+      "title": "Duplicera slutpunkt",
+      "description": "Ange ett namn för den nya slutpunkten. Alla andra inställningar kopieras från den ursprungliga.",
+      "endpointName": "Ny slutpunktens namn",
+      "endpointNamePlaceholder": "min-nya-slutpunkt",
+      "cancel": "Avbryt",
+      "duplicate": "Duplicera"
+    },
     "tabs": {
       "general": "Allmän",
       "input": "Indata",
       "output": "Utdata",
-      "test": "Test"
+      "playground": "Spelplan"
     },
     "card": {
       "method": "Metod",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "Visningsnamn krävs",
         "slugRequired": "Slutpunktens namn krävs",
+        "slugExists": "En slutpunkt med detta namn finns redan i det här projektet",
         "keyRequired": "Leverantör krävs",
         "invalidInputSchema": "Ogiltig inmatningsschema i JSON",
         "invalidOutputSchema": "Felaktigt utdataformat JSON"
@@ -161,7 +173,7 @@
       "selectProvider": "Välj en leverantör",
       "apiKey": "API-nyckel",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Din nyckel är krypterad i vila",
+      "apiKeyHint": "Din nyckel är krypterad",
       "leaveBlank": "lämna tomt för att behålla nuvarande",
       "endpointUrl": "Slutpunktens URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

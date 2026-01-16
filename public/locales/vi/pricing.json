@@ -10,58 +10,6 @@
     "tryFree": "Thử miễn phí",
     "upgrade": "Nâng cấp"
   },
-  "plans": {
-    "free": {
-      "name": "Miễn phí",
-      "price": "$0",
-      "period": "mãi mãi",
-      "description": "Lý tưởng để bắt đầu",
-      "features": [
-        "1.000 yêu cầu API/tháng",
-        "1 dự án",
-        "3 điểm cuối cho mỗi dự án",
-        "Tất cả các nhà cung cấp LLM",
-        "Phân tích cơ bản",
-        "Hỗ trợ cộng đồng"
-      ],
-      "cta": "Bắt đầu"
-    },
-    "pro": {
-      "name": "Pro",
-      "price": "$29",
-      "period": "/tháng",
-      "description": "Đối với các đội ngũ và dự án đang phát triển",
-      "features": [
-        "Yêu cầu API không giới hạn",
-        "Dự án không giới hạn",
-        "Điểm kết nối không giới hạn",
-        "Tất cả các nhà cung cấp LLM",
-        "Phân tích nâng cao",
-        "Hỗ trợ ưu tiên",
-        "Hợp tác nhóm",
-        "Tên miền tùy chỉnh"
-      ],
-      "cta": "Bắt đầu bản dùng thử Pro",
-      "popular": true
-    },
-    "enterprise": {
-      "name": "Doanh nghiệp",
-      "price": "Tùy chỉnh",
-      "period": "",
-      "description": "Đối với các tổ chức lớn",
-      "features": [
-        "Tất cả trong Pro",
-        "Cơ sở hạ tầng chuyên dụng",
-        "Bảo đảm SLA",
-        "Đăng nhập một lần & SAML",
-        "Nhật ký kiểm toán",
-        "Hỗ trợ 24/7",
-        "Tích hợp tùy chỉnh",
-        "Tùy chọn trên cơ sở hạ tầng của bạn"
-      ],
-      "cta": "Liên hệ bán hàng"
-    }
-  },
   "faq": {
     "title": "Câu hỏi thường gặp",
     "items": [

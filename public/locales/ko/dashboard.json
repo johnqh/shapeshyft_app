@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "이 프로젝트가 하는 일",
       "errors": {
         "nameRequired": "표시 이름은 필수 항목입니다",
-        "nameTooShort": "이름은 최소 2자 이상이어야 합니다"
+        "nameTooShort": "이름은 최소 2자 이상이어야 합니다",
+        "nameExists": "이 이름을 가진 프로젝트가 이미 존재합니다"
       },
       "slugPreview": "슬러그",
       "create": "프로젝트 생성"
@@ -51,16 +52,26 @@
     "emptyDescription": "이 프로젝트용 첫 번째 엔드포인트를 생성하세요",
     "create": "엔드포인트 생성",
     "useTemplate": "템플릿 사용",
-    "test": "테스트",
+    "playground": "플레이그라운드",
     "notFound": "엔드포인트를 찾을 수 없습니다",
     "backToProject": "프로젝트로 돌아가기",
     "updated": "엔드포인트가 성공적으로 업데이트되었습니다",
     "confirmDelete": "이 엔드포인트를 삭제하시겠습니까?",
+    "duplicate": "중복",
+    "duplicated": "엔드포인트가 성공적으로 중복되었습니다.",
+    "duplicateModal": {
+      "title": "중복 엔드포인트",
+      "description": "새 엔드포인트의 이름을 입력하세요. 다른 모든 설정은 원본에서 복사됩니다.",
+      "endpointName": "새 엔드포인트 이름",
+      "endpointNamePlaceholder": "내-새-엔드포인트",
+      "cancel": "취소",
+      "duplicate": "중복"
+    },
     "tabs": {
       "general": "일반",
       "input": "입력",
       "output": "출력",
-      "test": "테스트"
+      "playground": "플레이그라운드"
     },
     "card": {
       "method": "방법",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "표시 이름은 필수 항목입니다",
         "slugRequired": "엔드포인트 이름이 필요합니다",
+        "slugExists": "이 이름을 가진 엔드포인트는 이미 이 프로젝트에 존재합니다.",
         "keyRequired": "공급자가 필요합니다",
         "invalidInputSchema": "잘못된 입력 스키마 JSON",
         "invalidOutputSchema": "잘못된 출력 스키마 JSON"
@@ -161,7 +173,7 @@
       "selectProvider": "공급자 선택",
       "apiKey": "API 키",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "귀하의 키는 저장 중 암호화되어 있습니다",
+      "apiKeyHint": "당신의 키는 암호화되어 있습니다.",
       "leaveBlank": "현재 설정을 유지하려면 공백으로 두세요",
       "endpointUrl": "엔드포인트 URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

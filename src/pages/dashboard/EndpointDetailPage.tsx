@@ -6,7 +6,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   useProjectsManager,
@@ -73,7 +73,7 @@ const EditIcon = () => (
   </svg>
 );
 
-type TabId = "general" | "input" | "output" | "test";
+type TabId = "general" | "input" | "output" | "playground";
 
 function EndpointDetailPage() {
   const {
@@ -96,9 +96,20 @@ function EndpointDetailPage() {
     isLoading: apiLoading,
   } = useApi();
   const { success, error: showError } = useToast();
+  const [searchParams] = useSearchParams();
 
-  // Tab state
-  const [activeTab, setActiveTab] = useState<TabId>("general");
+  // Tab state - initialize from URL param if present
+  const getInitialTab = (): TabId => {
+    const tabParam = searchParams.get("tab");
+    if (
+      tabParam &&
+      ["general", "input", "output", "playground"].includes(tabParam)
+    ) {
+      return tabParam as TabId;
+    }
+    return "general";
+  };
+  const [activeTab, setActiveTab] = useState<TabId>(getInitialTab);
 
   // Test state
   const [testInput, setTestInput] = useState("");
@@ -811,8 +822,8 @@ function EndpointDetailPage() {
           <TabsTrigger value="output" className="flex-1">
             {t("endpoints.tabs.output")}
           </TabsTrigger>
-          <TabsTrigger value="test" className="flex-1">
-            {t("endpoints.tabs.test")}
+          <TabsTrigger value="playground" className="flex-1">
+            {t("endpoints.tabs.playground")}
           </TabsTrigger>
         </TabsList>
 
@@ -1182,7 +1193,7 @@ function EndpointDetailPage() {
         </TabsContent>
 
         {/* Test Tab */}
-        <TabsContent value="test">
+        <TabsContent value="playground">
           <div className="space-y-6">
             <h3 className="text-lg font-semibold text-theme-text-primary">
               {t("endpoints.tester.title")}

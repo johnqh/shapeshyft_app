@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "Cosa fa questo progetto",
       "errors": {
         "nameRequired": "Il nome visualizzato è obbligatorio",
-        "nameTooShort": "Il nome deve contenere almeno 2 caratteri"
+        "nameTooShort": "Il nome deve contenere almeno 2 caratteri",
+        "nameExists": "Un progetto con questo nome esiste già"
       },
       "slugPreview": "Slug",
       "create": "Crea progetto"
@@ -51,16 +52,26 @@
     "emptyDescription": "Crea il tuo primo endpoint per questo progetto",
     "create": "Crea Endpoint",
     "useTemplate": "Usa il modello",
-    "test": "Test",
+    "playground": "Playground",
     "notFound": "Endpoint non trovato",
     "backToProject": "Torna al progetto",
     "updated": "Endpoint aggiornato con successo",
     "confirmDelete": "Sei sicuro di voler eliminare questo endpoint?",
+    "duplicate": "Duplicare",
+    "duplicated": "Endpoint duplicato con successo",
+    "duplicateModal": {
+      "title": "Endpoint duplicato",
+      "description": "Inserisci un nome per il nuovo endpoint. Tutte le altre impostazioni verranno copiate da quello originale.",
+      "endpointName": "Nuovo nome dell'endpoint",
+      "endpointNamePlaceholder": "il-mio-nuovo-punto-di-connessione",
+      "cancel": "Annulla",
+      "duplicate": "Duplicare"
+    },
     "tabs": {
       "general": "Generale",
       "input": "Input",
       "output": "Output",
-      "test": "Test"
+      "playground": "Playground"
     },
     "card": {
       "method": "Metodo",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "Il nome visualizzato è obbligatorio",
         "slugRequired": "Il nome dell'endpoint è obbligatorio",
+        "slugExists": "Un endpoint con questo nome esiste già in questo progetto",
         "keyRequired": "Il provider è obbligatorio",
         "invalidInputSchema": "Schema JSON di input non valido",
         "invalidOutputSchema": "Schema JSON di output non valido"
@@ -161,7 +173,7 @@
       "selectProvider": "Seleziona un provider",
       "apiKey": "Chiave API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "La tua chiave è crittografata in modo permanente",
+      "apiKeyHint": "La tua chiave è crittografata",
       "leaveBlank": "lascia vuoto per mantenere quello corrente",
       "endpointUrl": "URL dell'endpoint",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "このプロジェクトの目的",
       "errors": {
         "nameRequired": "表示名は必須です",
-        "nameTooShort": "名前は2文字以上でなければなりません"
+        "nameTooShort": "名前は2文字以上でなければなりません",
+        "nameExists": "この名前のプロジェクトはすでに存在します"
       },
       "slugPreview": "スラッグ",
       "create": "プロジェクトを作成する"
@@ -51,16 +52,26 @@
     "emptyDescription": "このプロジェクト用に最初のエンドポイントを作成します",
     "create": "エンドポイントを作成する",
     "useTemplate": "テンプレートを使用する",
-    "test": "テスト",
+    "playground": "プレイグラウンド",
     "notFound": "エンドポイントが見つかりません",
     "backToProject": "プロジェクトに戻る",
     "updated": "エンドポイントの更新に成功しました",
     "confirmDelete": "このエンドポイントを削除してもよろしいですか？",
+    "duplicate": "複製",
+    "duplicated": "エンドポイントの複製に成功しました",
+    "duplicateModal": {
+      "title": "重複エンドポイント",
+      "description": "新しいエンドポイントの名前を入力してください。他の設定はすべて元のものからコピーされます。",
+      "endpointName": "新しいエンドポイント名",
+      "endpointNamePlaceholder": "my-new-endpoint",
+      "cancel": "キャンセル",
+      "duplicate": "複製"
+    },
     "tabs": {
       "general": "一般",
       "input": "入力",
       "output": "出力",
-      "test": "テスト"
+      "playground": "プレイグラウンド"
     },
     "card": {
       "method": "メソッド",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "表示名は必須です",
         "slugRequired": "エンドポイント名は必須です",
+        "slugExists": "この名前のエンドポイントは、このプロジェクトに既に存在します",
         "keyRequired": "プロバイダーが必要です",
         "invalidInputSchema": "無効な入力スキーマのJSON",
         "invalidOutputSchema": "無効な出力スキーマのJSON"
@@ -161,7 +173,7 @@
       "selectProvider": "プロバイダーを選択してください",
       "apiKey": "APIキー",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "あなたの鍵は、保存時に暗号化されています",
+      "apiKeyHint": "あなたの鍵は暗号化されています",
       "leaveBlank": "現在の状態を保持するには空白のままにしてください",
       "endpointUrl": "エンドポイントURL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

@@ -10,58 +10,6 @@
     "tryFree": "Prova det gratis",
     "upgrade": "Uppgradera"
   },
-  "plans": {
-    "free": {
-      "name": "Gratis",
-      "price": "$0",
-      "period": "för alltid",
-      "description": "Perfekt för att komma igång",
-      "features": [
-        "1 000 API-förfrågningar/månad",
-        "1 projekt",
-        "3 slutpunkter per projekt",
-        "Alla LLM-providers",
-        "Grundläggande analys",
-        "Community support på svenska"
-      ],
-      "cta": "Börja"
-    },
-    "pro": {
-      "name": "Pro",
-      "price": "29 dollar",
-      "period": "/månad",
-      "description": "För växande team och projekt",
-      "features": [
-        "Obegränsade API-begäranden",
-        "Obegränsade projekt",
-        "Obegränsade slutpunkter",
-        "Alla LLM-providers",
-        "Avancerad analys",
-        "Prioriterad support",
-        "Team samarbete",
-        "Anpassade domäner"
-      ],
-      "cta": "Starta provperiod",
-      "popular": true
-    },
-    "enterprise": {
-      "name": "Företag",
-      "price": "Anpassad",
-      "period": "",
-      "description": "För stora organisationer",
-      "features": [
-        "Allt i Pro",
-        "Dedikerad infrastruktur",
-        "SLA-garanti",
-        "SSO & SAML",
-        "Åtkomstloggar",
-        "24/7-support",
-        "Anpassade integrationer",
-        "Alternativ för egen drift"
-      ],
-      "cta": "Kontakta sales"
-    }
-  },
   "faq": {
     "title": "Vanliga frågor",
     "items": [

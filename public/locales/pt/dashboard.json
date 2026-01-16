@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "O que este projeto faz",
       "errors": {
         "nameRequired": "O nome de exibição é obrigatório",
-        "nameTooShort": "O nome deve ter pelo menos 2 caracteres"
+        "nameTooShort": "O nome deve ter pelo menos 2 caracteres",
+        "nameExists": "Um projeto com este nome já existe"
       },
       "slugPreview": "Slug",
       "create": "Criar Projeto"
@@ -51,16 +52,26 @@
     "emptyDescription": "Crie seu primeiro endpoint para este projeto",
     "create": "Criar Endpoint",
     "useTemplate": "Use o modelo",
-    "test": "Teste",
+    "playground": "Playground",
     "notFound": "Endpoint não encontrado",
     "backToProject": "Voltar para o projeto",
     "updated": "Endpoint atualizado com sucesso",
     "confirmDelete": "Você tem certeza de que deseja excluir esta extremidade?",
+    "duplicate": "Duplicar",
+    "duplicated": "Ponto de extremidade duplicado com sucesso",
+    "duplicateModal": {
+      "title": "Endpoint duplicado",
+      "description": "Insira um nome para o novo ponto de extremidade. Todas as outras configurações serão copiadas do original.",
+      "endpointName": "Novo Nome de Ponto de Acesso",
+      "endpointNamePlaceholder": "meu-novo-ponto-de-acesso",
+      "cancel": "Cancelar",
+      "duplicate": "Duplicar"
+    },
     "tabs": {
       "general": "Geral",
       "input": "Entrada",
       "output": "Saída",
-      "test": "Teste"
+      "playground": "Playground"
     },
     "card": {
       "method": "Método",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "O nome de exibição é obrigatório",
         "slugRequired": "O nome do ponto de extremidade é obrigatório",
+        "slugExists": "Um endpoint com este nome já existe neste projeto",
         "keyRequired": "O provedor é obrigatório",
         "invalidInputSchema": "Esquema JSON de entrada inválido",
         "invalidOutputSchema": "Esquema JSON de saída inválido"
@@ -161,7 +173,7 @@
       "selectProvider": "Selecione um provedor",
       "apiKey": "Chave da API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Sua chave está criptografada em repouso",
+      "apiKeyHint": "Sua chave está criptografada",
       "leaveBlank": "deixe em branco para manter o atual",
       "endpointUrl": "URL do ponto de extremidade",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

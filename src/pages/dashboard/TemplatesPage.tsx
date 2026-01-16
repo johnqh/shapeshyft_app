@@ -64,14 +64,25 @@ function TemplatesPage() {
     autoFetch: isReady && !!entitySlug,
   });
 
-  const { createProject } = useProjectsManager({
+  const { projects, createProject } = useProjectsManager({
     baseUrl,
     networkClient,
     entitySlug,
     token,
     testMode,
-    autoFetch: false,
+    autoFetch: isReady && !!entitySlug,
   });
+
+  // Get existing project names for duplicate checking
+  const existingProjectNames = projects.map((p) => p.project_name);
+
+  // Check if project name already exists
+  const projectNameExists = (name: string): boolean => {
+    if (!name) return false;
+    return existingProjectNames.some(
+      (existing) => existing.toLowerCase() === name.toLowerCase(),
+    );
+  };
 
   const { templates: allTemplates, applyTemplate } = useProjectTemplates();
 
@@ -197,6 +208,17 @@ function TemplatesPage() {
       getInfoService().show(
         t("common.error"),
         t("templates.errors.fillAllFields"),
+        InfoType.ERROR,
+        5000,
+      );
+      return;
+    }
+
+    // Check for duplicate project name
+    if (projectNameExists(projectName.trim())) {
+      getInfoService().show(
+        t("common.error"),
+        t("projects.form.errors.nameExists"),
         InfoType.ERROR,
         5000,
       );

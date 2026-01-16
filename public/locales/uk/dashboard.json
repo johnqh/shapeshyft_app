@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "Що робить цей проект",
       "errors": {
         "nameRequired": "Обов’язково вказати ім’я для відображення",
-        "nameTooShort": "Ім'я має містити не менше 2 символів"
+        "nameTooShort": "Ім'я має містити не менше 2 символів",
+        "nameExists": "Проект з такою назвою вже існує"
       },
       "slugPreview": "Слаг",
       "create": "Створити проект"
@@ -51,16 +52,26 @@
     "emptyDescription": "Створіть перший endpoint для цього проекту",
     "create": "Створити точку входу",
     "useTemplate": "Використовуй шаблон",
-    "test": "Тест",
+    "playground": "Гра",
     "notFound": "Точка приєднання не знайдена",
     "backToProject": "Назад до проекту",
     "updated": "Точка приєднання успішно оновлена",
     "confirmDelete": "Ви впевнені, що хочете видалити цей кінцевий пункт?",
+    "duplicate": "Дублювати",
+    "duplicated": "Точка призначення успішно дублюється",
+    "duplicateModal": {
+      "title": "Дублювання кінцевої точки",
+      "description": "Введіть ім'я для нового кінцевого вузла. Усі інші налаштування будуть скопійовані з оригіналу.",
+      "endpointName": "Нова назва кінцевої точки",
+      "endpointNamePlaceholder": "мій-новий-ендпоінт",
+      "cancel": "Скасувати",
+      "duplicate": "Дублювати"
+    },
     "tabs": {
       "general": "Загальний",
       "input": "Введіть",
       "output": "Вивід",
-      "test": "Тест"
+      "playground": "Гра"
     },
     "card": {
       "method": "Метод",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "Обов’язково вказати ім’я для відображення",
         "slugRequired": "Необхідно вказати ім'я кінцевої точки",
+        "slugExists": "У цьому проекті вже існує кінцева точка з такою назвою",
         "keyRequired": "Постачальник необхідний",
         "invalidInputSchema": "Невірна схема вхідних даних JSON",
         "invalidOutputSchema": "Невірна схема виводу JSON"
@@ -161,7 +173,7 @@
       "selectProvider": "Виберіть постачальника",
       "apiKey": "Ключ API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Ваш ключ зашифровано на носії",
+      "apiKeyHint": "Ваш ключ зашифровано",
       "leaveBlank": "залиште порожнім, щоб залишити поточне",
       "endpointUrl": "URL точки входа",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

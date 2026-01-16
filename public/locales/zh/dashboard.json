@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "该项目的作用",
       "errors": {
         "nameRequired": "显示名称是必需的",
-        "nameTooShort": "名称必须至少为2个字符"
+        "nameTooShort": "名称必须至少为2个字符",
+        "nameExists": "此名称的项目已存在"
       },
       "slugPreview": "Slug",
       "create": "创建项目"
@@ -51,16 +52,26 @@
     "emptyDescription": "为此项目创建您的第一个端点",
     "create": "创建端点",
     "useTemplate": "使用模板",
-    "test": "测试",
+    "playground": "游乐场",
     "notFound": "未找到端点",
     "backToProject": "返回项目",
     "updated": "端点更新成功",
     "confirmDelete": "您确定要删除这个端点吗？",
+    "duplicate": "重复",
+    "duplicated": "端点已成功复制",
+    "duplicateModal": {
+      "title": "重复端点",
+      "description": "为新端点输入一个名称。所有其他设置将从原始设置中复制。",
+      "endpointName": "新的端点名称",
+      "endpointNamePlaceholder": "my-new-endpoint",
+      "cancel": "取消",
+      "duplicate": "重复"
+    },
     "tabs": {
       "general": "通用",
       "input": "输入",
       "output": "输出",
-      "test": "测试"
+      "playground": "游乐场"
     },
     "card": {
       "method": "方法",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "显示名称是必需的",
         "slugRequired": "端点名称是必需的",
+        "slugExists": "此项目中已存在同名的端点",
         "keyRequired": "需要提供方",
         "invalidInputSchema": "无效的输入模式JSON",
         "invalidOutputSchema": "无效的输出模式JSON"
@@ -161,7 +173,7 @@
       "selectProvider": "选择一个提供方",
       "apiKey": "API密钥",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "您的密钥在静态时已加密",
+      "apiKeyHint": "您的密钥已加密",
       "leaveBlank": "留空以保留当前设置",
       "endpointUrl": "端点URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

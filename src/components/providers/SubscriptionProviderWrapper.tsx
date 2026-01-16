@@ -89,9 +89,13 @@ export function SubscriptionProviderWrapper({
   children,
   entityId,
 }: SubscriptionProviderWrapperProps) {
+  const { user } = useAuthStatus();
+  const userEmail = user?.email || undefined;
+
   return (
     <SubscriptionProvider
       apiKey={CONSTANTS.REVENUECAT_API_KEY}
+      userEmail={userEmail}
       onError={handleSubscriptionError}
     >
       <SafeContextBridge>

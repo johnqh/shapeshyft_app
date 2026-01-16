@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "Dự án này làm gì",
       "errors": {
         "nameRequired": "Tên hiển thị là bắt buộc",
-        "nameTooShort": "Tên phải có ít nhất 2 ký tự"
+        "nameTooShort": "Tên phải có ít nhất 2 ký tự",
+        "nameExists": "Một dự án với tên này đã tồn tại"
       },
       "slugPreview": "Slug",
       "create": "Tạo dự án"
@@ -51,16 +52,26 @@
     "emptyDescription": "Tạo điểm cuối đầu tiên cho dự án này",
     "create": "Tạo điểm kết nối",
     "useTemplate": "Sử dụng mẫu",
-    "test": "Thử",
+    "playground": "Khu vui chơi",
     "notFound": "Điểm cuối không được tìm thấy",
     "backToProject": "Quay lại dự án",
     "updated": "Đã cập nhật điểm cuối thành công",
     "confirmDelete": "Bạn có chắc muốn xóa điểm cuối này không?",
+    "duplicate": "Sao chép",
+    "duplicated": "Đã sao chép endpoint thành công",
+    "duplicateModal": {
+      "title": "Điểm cuối bị trùng lặp",
+      "description": "Nhập tên cho điểm cuối mới. Tất cả các cài đặt khác sẽ được sao chép từ bản gốc.",
+      "endpointName": "Tên điểm cuối mới",
+      "endpointNamePlaceholder": "my-new-endpoint",
+      "cancel": "Hủy bỏ",
+      "duplicate": "Sao chép"
+    },
     "tabs": {
       "general": "Chung",
       "input": "Nhập",
       "output": "Kết quả",
-      "test": "Thử"
+      "playground": "Khu vực chơi"
     },
     "card": {
       "method": "Phương pháp",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "Tên hiển thị là bắt buộc",
         "slugRequired": "Tên điểm cuối là bắt buộc",
+        "slugExists": "Một điểm cuối với tên này đã tồn tại trong dự án này",
         "keyRequired": "Cung cấp dịch vụ là bắt buộc",
         "invalidInputSchema": "Cấu trúc JSON đầu vào không hợp lệ",
         "invalidOutputSchema": "Cấu trúc JSON đầu ra không hợp lệ"
@@ -161,7 +173,7 @@
       "selectProvider": "Chọn một nhà cung cấp",
       "apiKey": "Khóa API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Khóa của bạn được mã hóa khi lưu trữ",
+      "apiKeyHint": "Khóa của bạn đã được mã hóa",
       "leaveBlank": "de để trống để giữ nguyên hiện tại",
       "endpointUrl": "Địa chỉ URL điểm cuối",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

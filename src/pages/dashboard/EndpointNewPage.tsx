@@ -72,7 +72,7 @@ function EndpointNewPage() {
     autoFetch: isReady && !!entitySlug,
   });
 
-  const { createEndpoint, isLoading } = useEndpointsManager({
+  const { endpoints, createEndpoint, isLoading } = useEndpointsManager({
     baseUrl,
     networkClient,
     entitySlug,
@@ -81,6 +81,17 @@ function EndpointNewPage() {
     projectId: projectId ?? "",
     autoFetch: isReady && !!projectId && !!entitySlug,
   });
+
+  // Get existing endpoint names for duplicate checking
+  const existingEndpointNames = endpoints.map((e) => e.endpoint_name);
+
+  // Check if endpoint name already exists
+  const endpointNameExists = (name: string): boolean => {
+    if (!name) return false;
+    return existingEndpointNames.some(
+      (existing) => existing.toLowerCase() === name.toLowerCase(),
+    );
+  };
 
   // Fetch providers for display names
   const { providers } = useProviders(networkClient, baseUrl, testMode);
@@ -206,6 +217,9 @@ function EndpointNewPage() {
 
   const validateEndpointName = (value: string): string | undefined => {
     if (!value.trim()) return t("endpoints.form.errors.slugRequired");
+    if (endpointNameExists(value.trim())) {
+      return t("endpoints.form.errors.slugExists");
+    }
     return undefined;
   };
 

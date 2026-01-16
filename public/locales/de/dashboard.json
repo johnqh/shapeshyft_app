@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "Was dieses Projekt tut",
       "errors": {
         "nameRequired": "Der Anzeigename ist erforderlich",
-        "nameTooShort": "Der Name muss mindestens 2 Zeichen lang sein"
+        "nameTooShort": "Der Name muss mindestens 2 Zeichen lang sein",
+        "nameExists": "Ein Projekt mit diesem Namen existiert bereits"
       },
       "slugPreview": "Slug",
       "create": "Projekt erstellen"
@@ -51,16 +52,26 @@
     "emptyDescription": "Erstellen Sie Ihren ersten Endpunkt für dieses Projekt",
     "create": "Endpoint erstellen",
     "useTemplate": "Vorlage verwenden",
-    "test": "Test",
+    "playground": "Spielplatz",
     "notFound": "Endpunkt nicht gefunden",
     "backToProject": "Zurück zum Projekt",
     "updated": "Endpunkt erfolgreich aktualisiert",
     "confirmDelete": "Möchten Sie diesen Endpunkt wirklich löschen?",
+    "duplicate": "Duplizieren",
+    "duplicated": "Endpunkt erfolgreich dupliziert",
+    "duplicateModal": {
+      "title": "Duplizieren Sie den Endpunkt",
+      "description": "Geben Sie einen Namen für den neuen Endpunkt ein. Alle anderen Einstellungen werden aus dem ursprünglichen kopiert.",
+      "endpointName": "Neuer Endpunktname",
+      "endpointNamePlaceholder": "mein-neuer-endpunkt",
+      "cancel": "Abbrechen",
+      "duplicate": "Duplizieren"
+    },
     "tabs": {
       "general": "Allgemein",
       "input": "Eingabe",
       "output": "Ausgabe",
-      "test": "Test"
+      "playground": "Spielplatz"
     },
     "card": {
       "method": "Methode",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "Der Anzeigename ist erforderlich",
         "slugRequired": "Der Endpunktname ist erforderlich",
+        "slugExists": "Ein Endpunkt mit diesem Namen existiert bereits in diesem Projekt",
         "keyRequired": "Anbieter ist erforderlich",
         "invalidInputSchema": "Ungültiges Eingabeschema JSON",
         "invalidOutputSchema": "Ungültiges Ausgabeschema JSON"
@@ -161,7 +173,7 @@
       "selectProvider": "Wählen Sie einen Anbieter",
       "apiKey": "API-Schlüssel",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Ihr Schlüssel ist ruhend verschlüsselt",
+      "apiKeyHint": "Ihr Schlüssel ist verschlüsselt",
       "leaveBlank": "leer lassen, um aktuellen Wert beizubehalten",
       "endpointUrl": "Endpoint-URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "สิ่งที่โครงการนี้ทำ",
       "errors": {
         "nameRequired": "ต้องระบุชื่อแสดง",
-        "nameTooShort": "ชื่อต้องมีอย่างน้อย 2 ตัวอักษร"
+        "nameTooShort": "ชื่อต้องมีอย่างน้อย 2 ตัวอักษร",
+        "nameExists": "โครงการที่มีชื่อนี้อยู่แล้ว"
       },
       "slugPreview": "สแล็ก",
       "create": "สร้างโปรเจกต์"
@@ -51,16 +52,26 @@
     "emptyDescription": "สร้างจุดสิ้นสุดแรกของโปรเจกต์นี้",
     "create": "สร้างจุดสิ้นสุด",
     "useTemplate": "ใช้เทมเพลต",
-    "test": "ทดสอบ",
+    "playground": "สนามเด็กเล่น",
     "notFound": "ไม่พบจุดสิ้นสุด",
     "backToProject": "กลับไปที่โครงการ",
     "updated": "อัปเดตจุดสิ้นสุดสำเร็จแล้ว",
     "confirmDelete": "คุณแน่ใจหรือว่าต้องการลบจุดสิ้นสุดนี้?",
+    "duplicate": "ซ้ำ",
+    "duplicated": "จุดสิ้นสุดถูกคัดลอกสำเร็จแล้ว",
+    "duplicateModal": {
+      "title": "จุดสิ้นสุดที่ซ้ำ",
+      "description": "ป้อนชื่อสำหรับจุดสิ้นสุดใหม่ ค่าตั้งค่าอื่น ๆ จะถูกคัดลอกจากจุดสิ้นสุดเดิม",
+      "endpointName": "ชื่อจุดสิ้นสุดใหม่",
+      "endpointNamePlaceholder": "my-new-endpoint",
+      "cancel": "ยกเลิก",
+      "duplicate": "ซ้ำ"
+    },
     "tabs": {
       "general": "ทั่วไป",
       "input": "ป้อนข้อมูล",
       "output": "ผลลัพธ์",
-      "test": "ทดสอบ"
+      "playground": "สนามเด็กเล่น"
     },
     "card": {
       "method": "วิธีการ",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "ต้องระบุชื่อแสดง",
         "slugRequired": "ต้องระบุชื่อจุดสิ้นสุด",
+        "slugExists": "จุดสิ้นสุดที่มีชื่อนี้มีอยู่แล้วในโปรเจกต์นี้",
         "keyRequired": "ต้องมีผู้ให้บริการ",
         "invalidInputSchema": "รูปแบบข้อมูลนำเข้า JSON ไม่ถูกต้อง",
         "invalidOutputSchema": "รูปแบบ JSON ของผลลัพธ์ไม่ถูกต้อง"
@@ -161,7 +173,7 @@
       "selectProvider": "เลือกผู้ให้บริการ",
       "apiKey": "คีย์ API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "กุญแจของคุณถูกเข้ารหัสไว้ขณะเก็บรักษา",
+      "apiKeyHint": "กุญแจของคุณถูกเข้ารหัสแล้ว",
       "leaveBlank": "ปล่อยว่างเพื่อคงค่าเดิม",
       "endpointUrl": "URL จุดสิ้นสุด",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

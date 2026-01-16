@@ -24,7 +24,7 @@ function ProjectNewPage() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-  const { createProject, isLoading } = useProjectsManager({
+  const { projects, createProject, isLoading } = useProjectsManager({
     baseUrl,
     networkClient,
     entitySlug,
@@ -39,12 +39,31 @@ function ProjectNewPage() {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
+  // Get existing project names for duplicate checking
+  const existingProjectNames = projects.map((p) => p.project_name);
+
+  // Check if project name already exists
+  const projectNameExists = (slug: string): boolean => {
+    if (!slug) return false;
+    return existingProjectNames.some(
+      (name) => name.toLowerCase() === slug.toLowerCase(),
+    );
+  };
+
   const validateDisplayName = (value: string): string | undefined => {
     if (!value.trim()) {
       return t("projects.form.errors.nameRequired");
     }
     if (value.trim().length < 2) {
       return t("projects.form.errors.nameTooShort");
+    }
+    // Check for duplicate project name (based on generated slug)
+    const slug = value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    if (projectNameExists(slug)) {
+      return t("projects.form.errors.nameExists");
     }
     return undefined;
   };

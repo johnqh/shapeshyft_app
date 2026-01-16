@@ -58,15 +58,26 @@ function EndpointTemplatesPage() {
     autoFetch: isReady && !!entitySlug,
   });
 
-  const { createEndpoint } = useEndpointsManager({
+  const { endpoints, createEndpoint } = useEndpointsManager({
     baseUrl,
     networkClient,
     entitySlug,
     token,
     testMode,
     projectId,
-    autoFetch: false,
+    autoFetch: isReady && !!projectId && !!entitySlug,
   });
+
+  // Get existing endpoint names for duplicate checking
+  const existingEndpointNames = endpoints.map((e) => e.endpoint_name);
+
+  // Check if endpoint name already exists
+  const endpointNameExists = (name: string): boolean => {
+    if (!name) return false;
+    return existingEndpointNames.some(
+      (existing) => existing.toLowerCase() === name.toLowerCase(),
+    );
+  };
 
   const { endpointTemplates, getCategories, applyEndpointTemplate } =
     useEndpointTemplates();
@@ -181,6 +192,17 @@ function EndpointTemplatesPage() {
       getInfoService().show(
         t("common.error"),
         t("endpointTemplates.errors.fillAllFields"),
+        InfoType.ERROR,
+        5000,
+      );
+      return;
+    }
+
+    // Check for duplicate endpoint name
+    if (endpointNameExists(selectedTemplate.endpoint_name)) {
+      getInfoService().show(
+        t("common.error"),
+        t("endpoints.form.errors.slugExists"),
         InfoType.ERROR,
         5000,
       );

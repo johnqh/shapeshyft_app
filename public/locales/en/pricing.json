@@ -10,58 +10,6 @@
     "tryFree": "Try it for Free",
     "upgrade": "Upgrade"
   },
-  "plans": {
-    "free": {
-      "name": "Free",
-      "price": "$0",
-      "period": "forever",
-      "description": "Perfect for getting started",
-      "features": [
-        "1,000 API requests/month",
-        "1 project",
-        "3 endpoints per project",
-        "All LLM providers",
-        "Basic analytics",
-        "Community support"
-      ],
-      "cta": "Get Started"
-    },
-    "pro": {
-      "name": "Pro",
-      "price": "$29",
-      "period": "/month",
-      "description": "For growing teams and projects",
-      "features": [
-        "Unlimited API requests",
-        "Unlimited projects",
-        "Unlimited endpoints",
-        "All LLM providers",
-        "Advanced analytics",
-        "Priority support",
-        "Team collaboration",
-        "Custom domains"
-      ],
-      "cta": "Start Pro Trial",
-      "popular": true
-    },
-    "enterprise": {
-      "name": "Enterprise",
-      "price": "Custom",
-      "period": "",
-      "description": "For large organizations",
-      "features": [
-        "Everything in Pro",
-        "Dedicated infrastructure",
-        "SLA guarantee",
-        "SSO & SAML",
-        "Audit logs",
-        "24/7 support",
-        "Custom integrations",
-        "On-premise option"
-      ],
-      "cta": "Contact Sales"
-    }
-  },
   "faq": {
     "title": "Frequently Asked Questions",
     "items": [

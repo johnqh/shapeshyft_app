@@ -6,6 +6,7 @@ import { InfoType } from "@sudobility/types";
 
 interface ProjectFormProps {
   project?: Project;
+  existingProjectNames?: string[];
   onSubmit: (data: {
     display_name: string;
     description?: string;
@@ -20,6 +21,7 @@ interface FieldErrors {
 
 function ProjectForm({
   project,
+  existingProjectNames = [],
   onSubmit,
   onClose,
   isLoading,
@@ -38,6 +40,18 @@ function ProjectForm({
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
+  // Check if project name already exists (case-insensitive, compare slugs)
+  const projectNameExists = (slug: string): boolean => {
+    if (!slug) return false;
+    // When editing, exclude the current project's name from the check
+    const namesToCheck = isEditing
+      ? existingProjectNames.filter((name) => name !== project?.project_name)
+      : existingProjectNames;
+    return namesToCheck.some(
+      (name) => name.toLowerCase() === slug.toLowerCase(),
+    );
+  };
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -52,6 +66,14 @@ function ProjectForm({
     }
     if (value.trim().length < 2) {
       return t("projects.form.errors.nameTooShort");
+    }
+    // Check for duplicate project name (based on generated slug)
+    const slug = value
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+    if (projectNameExists(slug)) {
+      return t("projects.form.errors.nameExists");
     }
     return undefined;
   };

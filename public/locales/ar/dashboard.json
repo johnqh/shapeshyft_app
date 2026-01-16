@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "ما يفعله هذا المشروع",
       "errors": {
         "nameRequired": "اسم العرض مطلوب",
-        "nameTooShort": "يجب أن يكون الاسم على الأقل 2 أحرف"
+        "nameTooShort": "يجب أن يكون الاسم على الأقل 2 أحرف",
+        "nameExists": "مشروع بهذا الاسم موجود بالفعل"
       },
       "slugPreview": "Slug",
       "create": "إنشاء مشروع"
@@ -51,16 +52,26 @@
     "emptyDescription": "أنشئ نقطة نهاية أولى لهذا المشروع",
     "create": "إنشاء نقطة نهاية",
     "useTemplate": "استخدم القالب",
-    "test": "الاختبار",
+    "playground": "مَلعب",
     "notFound": "النقطة النهائية غير موجودة",
     "backToProject": "العودة إلى المشروع",
     "updated": "تم تحديث النقطة النهائية بنجاح",
     "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا الطرف؟",
+    "duplicate": "Duplicate",
+    "duplicated": "تم تكرار النقطة النهائية بنجاح",
+    "duplicateModal": {
+      "title": "نقطة نهاية مكررة",
+      "description": "أدخل اسمًا للنقطة النهائية الجديدة. سيتم نسخ جميع الإعدادات الأخرى من الأصل.",
+      "endpointName": "اسم النقطة الطرفية الجديدة",
+      "endpointNamePlaceholder": "نقطة الاتصال الجديدة الخاصة بي",
+      "cancel": "إلغاء",
+      "duplicate": "Duplicate"
+    },
     "tabs": {
       "general": "عام",
       "input": "الإدخال",
       "output": "الناتج",
-      "test": "التجربة"
+      "playground": "مَلعب"
     },
     "card": {
       "method": "الطريقة",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "اسم العرض مطلوب",
         "slugRequired": "مطلوب اسم النقطة النهائية",
+        "slugExists": "نقطة انتهاء ذات هذا الاسم موجودة بالفعل في هذا المشروع",
         "keyRequired": "مُزَوِّد مطلوب",
         "invalidInputSchema": "مخطط إدخال JSON غير صالح",
         "invalidOutputSchema": "هيكل مخرجات JSON غير صالح"
@@ -161,7 +173,7 @@
       "selectProvider": "اختر مزود خدمة",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "مفتاحك مشفر عند التخزين",
+      "apiKeyHint": "مفتاحك مشفر",
       "leaveBlank": "اتركه فارغًا للحفاظ على القيم الحالية",
       "endpointUrl": "عنوان URL للنقطة النهائية",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

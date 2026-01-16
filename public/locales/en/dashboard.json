@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "What this project does",
       "errors": {
         "nameRequired": "Display name is required",
-        "nameTooShort": "Name must be at least 2 characters"
+        "nameTooShort": "Name must be at least 2 characters",
+        "nameExists": "A project with this name already exists"
       },
       "slugPreview": "Slug",
       "create": "Create Project"
@@ -51,16 +52,26 @@
     "emptyDescription": "Create your first endpoint for this project",
     "create": "Create Endpoint",
     "useTemplate": "Use Template",
-    "test": "Test",
+    "playground": "Playground",
     "notFound": "Endpoint not found",
     "backToProject": "Back to project",
     "updated": "Endpoint updated successfully",
     "confirmDelete": "Are you sure you want to delete this endpoint?",
+    "duplicate": "Duplicate",
+    "duplicated": "Endpoint duplicated successfully",
+    "duplicateModal": {
+      "title": "Duplicate Endpoint",
+      "description": "Enter a name for the new endpoint. All other settings will be copied from the original.",
+      "endpointName": "New Endpoint Name",
+      "endpointNamePlaceholder": "my-new-endpoint",
+      "cancel": "Cancel",
+      "duplicate": "Duplicate"
+    },
     "tabs": {
       "general": "General",
       "input": "Input",
       "output": "Output",
-      "test": "Test"
+      "playground": "Playground"
     },
     "card": {
       "method": "Method",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "Display name is required",
         "slugRequired": "Endpoint name is required",
+        "slugExists": "An endpoint with this name already exists in this project",
         "keyRequired": "Provider is required",
         "invalidInputSchema": "Invalid input schema JSON",
         "invalidOutputSchema": "Invalid output schema JSON"
@@ -161,7 +173,7 @@
       "selectProvider": "Select a provider",
       "apiKey": "API Key",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Your key is encrypted at rest",
+      "apiKeyHint": "Your key is encrypted",
       "leaveBlank": "leave blank to keep current",
       "endpointUrl": "Endpoint URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

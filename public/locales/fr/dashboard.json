@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "Ce que fait ce projet",
       "errors": {
         "nameRequired": "Le nom d'affichage est obligatoire",
-        "nameTooShort": "Le nom doit comporter au moins 2 caractères"
+        "nameTooShort": "Le nom doit comporter au moins 2 caractères",
+        "nameExists": "Un projet avec ce nom existe déjà"
       },
       "slugPreview": "Slug",
       "create": "Créer un projet"
@@ -51,16 +52,26 @@
     "emptyDescription": "Créez votre premier point de terminaison pour ce projet",
     "create": "Créer un point de terminaison",
     "useTemplate": "Utilisez le modèle",
-    "test": "Test",
+    "playground": "Aire de jeux",
     "notFound": "Point de terminaison introuvable",
     "backToProject": "Retour au projet",
     "updated": "Point de terminaison mis à jour avec succès",
     "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette fin de connexion ?",
+    "duplicate": "Dupliquer",
+    "duplicated": "Point de terminaison dupliqué avec succès",
+    "duplicateModal": {
+      "title": "Point de terminaison en double",
+      "description": "Entrez un nom pour le nouveau point de terminaison. Tous les autres paramètres seront copiés à partir de l'original.",
+      "endpointName": "Nouveau nom de point de terminaison",
+      "endpointNamePlaceholder": "mon-nouveau-point-de-fin",
+      "cancel": "Annuler",
+      "duplicate": "Dupliquer"
+    },
     "tabs": {
       "general": "Général",
       "input": "Entrée",
       "output": "Sortie",
-      "test": "Test"
+      "playground": "Aire de jeux"
     },
     "card": {
       "method": "Méthode",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "Le nom d'affichage est obligatoire",
         "slugRequired": "Le nom de point de terminaison est obligatoire",
+        "slugExists": "Un point de terminaison avec ce nom existe déjà dans ce projet",
         "keyRequired": "Le fournisseur est requis",
         "invalidInputSchema": "Schéma JSON d'entrée non valide",
         "invalidOutputSchema": "Schéma JSON de sortie non valide"
@@ -161,7 +173,7 @@
       "selectProvider": "Sélectionnez un fournisseur",
       "apiKey": "Clé API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Votre clé est chiffrée au repos",
+      "apiKeyHint": "Votre clé est chiffrée",
       "leaveBlank": "laissez vide pour conserver le courant",
       "endpointUrl": "URL du point de terminaison",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

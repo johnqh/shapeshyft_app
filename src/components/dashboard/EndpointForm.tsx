@@ -40,6 +40,7 @@ type TabId = "general" | "input" | "output";
 interface EndpointFormProps {
   projectId: string;
   endpoint?: Endpoint;
+  existingEndpointNames?: string[];
   onSubmit: (data: EndpointCreateRequest) => Promise<void>;
   onClose: () => void;
   isLoading?: boolean;
@@ -55,6 +56,7 @@ interface FieldErrors {
 
 function EndpointForm({
   endpoint,
+  existingEndpointNames = [],
   onSubmit,
   onClose,
   isLoading,
@@ -64,6 +66,18 @@ function EndpointForm({
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
 
   const isEditing = !!endpoint;
+
+  // Check if endpoint name already exists
+  const endpointNameExists = (name: string): boolean => {
+    if (!name) return false;
+    // When editing, exclude the current endpoint's name from the check
+    const namesToCheck = isEditing
+      ? existingEndpointNames.filter((n) => n !== endpoint?.endpoint_name)
+      : existingEndpointNames;
+    return namesToCheck.some(
+      (existing) => existing.toLowerCase() === name.toLowerCase(),
+    );
+  };
 
   // Tab state
   const [activeTab, setActiveTab] = useState<TabId>("general");
@@ -329,6 +343,9 @@ function EndpointForm({
 
   const validateEndpointName = (value: string): string | undefined => {
     if (!value.trim()) return t("endpoints.form.errors.slugRequired");
+    if (endpointNameExists(value.trim())) {
+      return t("endpoints.form.errors.slugExists");
+    }
     return undefined;
   };
 

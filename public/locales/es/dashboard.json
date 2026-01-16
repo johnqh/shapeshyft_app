@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "Qué hace este proyecto",
       "errors": {
         "nameRequired": "El nombre para mostrar es obligatorio",
-        "nameTooShort": "El nombre debe tener al menos 2 caracteres"
+        "nameTooShort": "El nombre debe tener al menos 2 caracteres",
+        "nameExists": "Un proyecto con este nombre ya existe"
       },
       "slugPreview": "Slug",
       "create": "Crear proyecto"
@@ -51,16 +52,26 @@
     "emptyDescription": "Cree su primer punto de acceso para este proyecto",
     "create": "Crear punto de conexión",
     "useTemplate": "Usar plantilla",
-    "test": "Prueba",
+    "playground": "Playground",
     "notFound": "Endpoint no encontrado",
     "backToProject": "Volver al proyecto",
     "updated": "Endpoint actualizado correctamente",
     "confirmDelete": "¿Estás seguro de que quieres eliminar este punto final?",
+    "duplicate": "Duplicar",
+    "duplicated": "Endpoint duplicado correctamente",
+    "duplicateModal": {
+      "title": "Punto de conexión duplicado",
+      "description": "Ingrese un nombre para el nuevo punto de conexión. Todos los demás ajustes se copiarán del original.",
+      "endpointName": "Nuevo nombre de punto de acceso",
+      "endpointNamePlaceholder": "mi-nuevo-punto-de-acceso",
+      "cancel": "Cancelar",
+      "duplicate": "Duplicar"
+    },
     "tabs": {
       "general": "General",
       "input": "Entrada",
       "output": "Salida",
-      "test": "Prueba"
+      "playground": "Playground"
     },
     "card": {
       "method": "Método",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "El nombre para mostrar es obligatorio",
         "slugRequired": "Se requiere el nombre del punto final",
+        "slugExists": "Un punto de conexión con este nombre ya existe en este proyecto",
         "keyRequired": "Se requiere proveedor",
         "invalidInputSchema": "Esquema de entrada JSON no válido",
         "invalidOutputSchema": "Esquema JSON de salida no válido"
@@ -161,7 +173,7 @@
       "selectProvider": "Selecciona un proveedor",
       "apiKey": "Clave de API",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "Su clave está cifrada en reposo",
+      "apiKeyHint": "Tu clave está encriptada",
       "leaveBlank": "deje en blanco para mantener el actual",
       "endpointUrl": "URL del punto final",
       "endpointUrlPlaceholder": "https://api.example.com/v1",

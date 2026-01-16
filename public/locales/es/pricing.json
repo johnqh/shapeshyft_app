@@ -10,58 +10,6 @@
     "tryFree": "Pruebe gratis",
     "upgrade": "Actualizar"
   },
-  "plans": {
-    "free": {
-      "name": "Gratis",
-      "price": "$0",
-      "period": "para siempre",
-      "description": "Perfecto para empezar",
-      "features": [
-        "1.000 solicitudes de API/mes",
-        "1 proyecto",
-        "3 puntos finales por proyecto",
-        "Todos los proveedores de LLM",
-        "Análisis básico",
-        "Soporte de la comunidad"
-      ],
-      "cta": "Comenzar"
-    },
-    "pro": {
-      "name": "Pro",
-      "price": "$29",
-      "period": "/mes",
-      "description": "Para equipos y proyectos en crecimiento",
-      "features": [
-        "Solicitudes ilimitadas de la API",
-        "Proyectos ilimitados",
-        "Endpoints ilimitados",
-        "Todos los proveedores de LLM",
-        "Análisis avanzado",
-        "Soporte de prioridad",
-        "Colaboración en equipo",
-        "Dominios personalizados"
-      ],
-      "cta": "Iniciar prueba gratuita",
-      "popular": true
-    },
-    "enterprise": {
-      "name": "Empresa",
-      "price": "Personalizado",
-      "period": "",
-      "description": "Para grandes organizaciones",
-      "features": [
-        "Todo en Pro",
-        "Infraestructura dedicada",
-        "Garantía de SLA",
-        "SSO y SAML",
-        "Registros de auditoría",
-        "Soporte 24/7",
-        "Integraciones personalizadas",
-        "Opción local"
-      ],
-      "cta": "Contactar a Ventas"
-    }
-  },
   "faq": {
     "title": "Preguntas frecuentes",
     "items": [

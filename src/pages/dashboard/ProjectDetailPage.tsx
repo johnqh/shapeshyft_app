@@ -8,7 +8,10 @@ import {
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { ItemList } from "@sudobility/components";
-import type { Endpoint } from "@sudobility/shapeshyft_types";
+import type {
+  Endpoint,
+  EndpointCreateRequest,
+} from "@sudobility/shapeshyft_types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
@@ -65,6 +68,32 @@ const TemplateIcon = () => (
   </svg>
 );
 
+const DuplicateIcon = () => (
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+    />
+  </svg>
+);
+
+/**
+ * Convert a display name to a valid endpoint name (slug)
+ */
+const toEndpointName = (name: string): string => {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+};
+
 function ProjectDetailPage() {
   const { entitySlug = "", projectId } = useParams<{
     entitySlug: string;
@@ -88,6 +117,13 @@ function ProjectDetailPage() {
   const [editDescription, setEditDescription] = useState("");
   const [isSavingProject, setIsSavingProject] = useState(false);
 
+  // Duplicate endpoint modal state
+  const [duplicateModalOpen, setDuplicateModalOpen] = useState(false);
+  const [endpointToDuplicate, setEndpointToDuplicate] =
+    useState<Endpoint | null>(null);
+  const [duplicateEndpointName, setDuplicateEndpointName] = useState("");
+  const [isDuplicating, setIsDuplicating] = useState(false);
+
   const {
     projects,
     isLoading: projectsLoading,
@@ -109,6 +145,7 @@ function ProjectDetailPage() {
     endpoints,
     isLoading: endpointsLoading,
     error,
+    createEndpoint,
     deleteEndpoint,
     clearError,
     refresh: refreshEndpoints,
@@ -192,6 +229,52 @@ function ProjectDetailPage() {
           5000,
         );
       }
+    }
+  };
+
+  const handleOpenDuplicateModal = (endpoint: Endpoint) => {
+    setEndpointToDuplicate(endpoint);
+    setDuplicateEndpointName(endpoint.display_name + " (Copy)");
+    setDuplicateModalOpen(true);
+  };
+
+  const handleCloseDuplicateModal = () => {
+    setDuplicateModalOpen(false);
+    setEndpointToDuplicate(null);
+    setDuplicateEndpointName("");
+  };
+
+  const handleDuplicateEndpoint = async () => {
+    if (!endpointToDuplicate || !duplicateEndpointName.trim()) return;
+
+    setIsDuplicating(true);
+    try {
+      const endpointName = toEndpointName(duplicateEndpointName.trim());
+      const request: EndpointCreateRequest = {
+        endpoint_name: endpointName,
+        display_name: duplicateEndpointName.trim(),
+        http_method: endpointToDuplicate.http_method,
+        llm_key_id: endpointToDuplicate.llm_key_id,
+        model: endpointToDuplicate.model,
+        input_schema: endpointToDuplicate.input_schema,
+        output_schema: endpointToDuplicate.output_schema,
+        instructions: endpointToDuplicate.instructions,
+        // Use empty string instead of null (API rejects null for context)
+        context: endpointToDuplicate.context || "",
+      };
+
+      await createEndpoint(request);
+      success(t("endpoints.duplicated"));
+      handleCloseDuplicateModal();
+    } catch (err) {
+      getInfoService().show(
+        t("common.error"),
+        err instanceof Error ? err.message : t("common:toast.error.generic"),
+        InfoType.ERROR,
+        5000,
+      );
+    } finally {
+      setIsDuplicating(false);
     }
   };
 
@@ -361,9 +444,16 @@ function ProjectDetailPage() {
               </div>
               <div className="flex items-center justify-end gap-4 ml-11 sm:ml-0">
                 <div
-                  className="sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+                  className="flex gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
                   onClick={(e) => e.stopPropagation()}
                 >
+                  <button
+                    onClick={() => handleOpenDuplicateModal(endpoint)}
+                    className="p-1 hover:bg-theme-hover-bg rounded"
+                    title={t("endpoints.duplicate")}
+                  >
+                    <DuplicateIcon />
+                  </button>
                   <button
                     onClick={() => handleDeleteEndpoint(endpoint.uuid)}
                     className="p-1 hover:bg-red-100 dark:hover:bg-red-900/30 rounded"
@@ -388,12 +478,12 @@ function ProjectDetailPage() {
                   onClick={(e) => {
                     e.stopPropagation();
                     navigate(
-                      `/dashboard/${entitySlug}/projects/${projectId}/endpoints/${endpoint.uuid}`,
+                      `/dashboard/${entitySlug}/projects/${projectId}/endpoints/${endpoint.uuid}?tab=playground`,
                     );
                   }}
                   className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
                 >
-                  {t("endpoints.test")}
+                  {t("endpoints.playground")}
                 </button>
               </div>
             </div>
@@ -438,6 +528,60 @@ function ProjectDetailPage() {
         }}
         spacing="md"
       />
+
+      {/* Duplicate Endpoint Modal */}
+      {duplicateModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-theme-bg-primary rounded-xl shadow-xl max-w-md w-full p-6">
+            <h3 className="text-lg font-semibold text-theme-text-primary mb-2">
+              {t("endpoints.duplicateModal.title")}
+            </h3>
+            <p className="text-sm text-theme-text-secondary mb-4">
+              {t("endpoints.duplicateModal.description")}
+            </p>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-theme-text-primary mb-1">
+                {t("endpoints.duplicateModal.endpointName")}
+              </label>
+              <input
+                type="text"
+                value={duplicateEndpointName}
+                onChange={(e) => setDuplicateEndpointName(e.target.value)}
+                placeholder={t(
+                  "endpoints.duplicateModal.endpointNamePlaceholder",
+                )}
+                className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                autoFocus
+              />
+              {duplicateEndpointName && (
+                <p className="mt-1 text-xs text-theme-text-tertiary font-mono">
+                  {toEndpointName(duplicateEndpointName)}
+                </p>
+              )}
+            </div>
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={handleCloseDuplicateModal}
+                disabled={isDuplicating}
+                className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors disabled:opacity-50"
+              >
+                {t("endpoints.duplicateModal.cancel")}
+              </button>
+              <button
+                onClick={handleDuplicateEndpoint}
+                disabled={isDuplicating || !duplicateEndpointName.trim()}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              >
+                {isDuplicating
+                  ? t("common.loading")
+                  : t("endpoints.duplicateModal.duplicate")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

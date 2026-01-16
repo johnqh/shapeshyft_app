@@ -38,7 +38,8 @@
       "descriptionPlaceholder": "這個項目做什麼",
       "errors": {
         "nameRequired": "顯示名稱是必需的",
-        "nameTooShort": "名稱必須至少2個字符"
+        "nameTooShort": "名稱必須至少2個字符",
+        "nameExists": "此名稱的專案已存在"
       },
       "slugPreview": "Slug",
       "create": "建立專案"
@@ -51,16 +52,26 @@
     "emptyDescription": "為此專案建立您的第一個端點",
     "create": "建立端點",
     "useTemplate": "使用範本",
-    "test": "測試",
+    "playground": "遊樂場",
     "notFound": "找不到端點",
     "backToProject": "返回專案",
     "updated": "端點已成功更新",
     "confirmDelete": "您確定要刪除這個端點嗎？",
+    "duplicate": "重複",
+    "duplicated": "端點已成功複製",
+    "duplicateModal": {
+      "title": "重複的端點",
+      "description": "為新的端點輸入名稱。其他所有設定將從原始設定複製。",
+      "endpointName": "新的端點名稱",
+      "endpointNamePlaceholder": "my-new-endpoint",
+      "cancel": "取消",
+      "duplicate": "重複"
+    },
     "tabs": {
       "general": "一般",
       "input": "輸入",
       "output": "輸出",
-      "test": "測試"
+      "playground": "遊樂場"
     },
     "card": {
       "method": "方法",
@@ -109,6 +120,7 @@
       "errors": {
         "nameRequired": "顯示名稱是必需的",
         "slugRequired": "Endpoint 名稱是必需的",
+        "slugExists": "此專案中已存在同名的端點",
         "keyRequired": "必須提供提供者",
         "invalidInputSchema": "無效的輸入結構JSON",
         "invalidOutputSchema": "無效的輸出結構JSON"
@@ -161,7 +173,7 @@
       "selectProvider": "選擇提供者",
       "apiKey": "API金鑰",
       "apiKeyPlaceholder": "sk-...",
-      "apiKeyHint": "您的金鑰已加密儲存",
+      "apiKeyHint": "您的密鑰已加密",
       "leaveBlank": "留空以保留目前設定",
       "endpointUrl": "端點URL",
       "endpointUrlPlaceholder": "https://api.example.com/v1",
