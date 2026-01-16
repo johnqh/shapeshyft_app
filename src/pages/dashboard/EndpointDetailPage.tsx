@@ -346,7 +346,9 @@ function EndpointDetailPage() {
   const latestResult = useMemo(
     () =>
       testResults
-        .filter((r) => r.endpointId === endpointId && r.timestamp > hideResultBefore)
+        .filter(
+          (r) => r.endpointId === endpointId && r.timestamp > hideResultBefore,
+        )
         .sort((a, b) => b.timestamp - a.timestamp)[0],
     [testResults, endpointId, hideResultBefore],
   );
@@ -424,7 +426,11 @@ function EndpointDetailPage() {
 
   // Calculate estimated cost for the latest test result
   const estimatedCostDisplay = useMemo(() => {
-    if (!latestResult?.success || !latestResult.tokensInput || !latestResult.tokensOutput) {
+    if (
+      !latestResult?.success ||
+      !latestResult.tokensInput ||
+      !latestResult.tokensOutput
+    ) {
       return null;
     }
 
@@ -436,7 +442,7 @@ function EndpointDetailPage() {
     const costCents = estimateCost(
       modelInfo.pricing,
       latestResult.tokensInput,
-      latestResult.tokensOutput
+      latestResult.tokensOutput,
     );
 
     return formatCost(costCents);

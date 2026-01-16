@@ -130,6 +130,7 @@
       "latency": "延迟",
       "inputTokens": "输入令牌",
       "outputTokens": "输出令牌",
+      "estimatedCost": "预计费用",
       "usage": {
         "title": "使用",
         "tokensIn": "代币收入",
@@ -225,6 +226,7 @@
     "preview": "预览",
     "willCreate": "这将创建 {{count}} 个端点：",
     "apply": "应用模板",
+    "comingSoon": "即将推出",
     "errors": {
       "fillAllFields": "请填写所有必填字段"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "图像识别",
       "description": "使用视觉模型分析并描述图像"
+    },
+    "audioTranscription": {
+      "name": "音频转录",
+      "description": "将音频转录为文本并进行结构化提取"
     },
     "imageGeneration": {
       "name": "图像生成",
@@ -347,6 +353,35 @@
       "saving": "保存中...",
       "saved": "设置已成功保存",
       "error": "保存设置失败"
+    },
+    "storage": {
+      "title": "云存储",
+      "description": "为生成的媒体文件（图像、音频、视频）配置云存储。",
+      "configured": "已配置",
+      "provider": "存储提供商",
+      "bucket": "存储桶名称",
+      "prefix": "路径前缀",
+      "prefixHint": "上传文件的可选前缀（例如：generated-media/）",
+      "gcsCredentials": "Google Cloud Storage 凭据",
+      "gcsCredentialsHint": "粘贴您的 GCP 服务账户 JSON 密钥文件的内容",
+      "serviceAccountJson": "服务账户 JSON",
+      "s3Credentials": "Amazon S3 凭据",
+      "region": "AWS 区域",
+      "accessKeyId": "访问密钥 ID",
+      "secretAccessKey": "秘密访问密钥",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "留空以保留现有凭据",
+      "credentialsRequired": "需要凭据",
+      "invalidJson": "无效的 JSON 格式",
+      "invalidType": "JSON 必须具有类型 'service_account'",
+      "missingField": "缺少必填字段：{{field}}",
+      "configure": "配置存储",
+      "update": "更新存储",
+      "remove": "删除存储",
+      "saved": "存储配置已保存",
+      "saveError": "保存存储配置失败",
+      "deleteError": "删除存储配置失败",
+      "confirmDelete": "您确定要移除存储配置吗？生成的媒体将不再上传到云存储。"
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "下载",
     "clickToExpand": "点击展开",
     "outputTitle": "媒体输出",
+    "generatedTitle": "生成媒体",
     "modeFile": "上传",
     "modeUrl": "URL",
     "urlPlaceholder": "输入 {{type}} URL...",

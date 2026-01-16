@@ -11,7 +11,8 @@ export { hashUserId, stripLanguagePrefix } from "@sudobility/components";
 /**
  * UUID regex pattern for matching UUIDs in paths
  */
-const UUID_PATTERN = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
+const UUID_PATTERN =
+  /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
 
 /**
  * Entity slug pattern - alphanumeric strings that appear after /dashboard/
@@ -33,11 +34,46 @@ export const sanitizePathForTracking = (path: string): string => {
 
   // Known route segments that should be kept
   const knownRoutes = new Set([
-    "en", "ar", "de", "es", "fr", "it", "ja", "ko", "pt", "ru", "sv", "th", "uk", "vi", "zh", "zh-hant", // languages
-    "dashboard", "projects", "endpoints", "providers", "analytics", "budgets",
-    "subscription", "settings", "rate-limits", "templates", "new", "performance",
-    "login", "pricing", "docs", "about", "privacy", "terms", "contact",
-    "use-cases", "text", "data", "content", "sitemap",
+    "en",
+    "ar",
+    "de",
+    "es",
+    "fr",
+    "it",
+    "ja",
+    "ko",
+    "pt",
+    "ru",
+    "sv",
+    "th",
+    "uk",
+    "vi",
+    "zh",
+    "zh-hant", // languages
+    "dashboard",
+    "projects",
+    "endpoints",
+    "providers",
+    "analytics",
+    "budgets",
+    "subscription",
+    "settings",
+    "rate-limits",
+    "templates",
+    "new",
+    "performance",
+    "login",
+    "pricing",
+    "docs",
+    "about",
+    "privacy",
+    "terms",
+    "contact",
+    "use-cases",
+    "text",
+    "data",
+    "content",
+    "sitemap",
   ]);
 
   // Filter segments

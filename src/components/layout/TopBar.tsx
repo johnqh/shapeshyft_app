@@ -401,7 +401,8 @@ function TopBar({ variant = "default" }: TopBarProps) {
         label: t("navigation.dashboard"),
         icon: Squares2X2Icon,
         href: "/dashboard",
-        className: "!text-blue-600 dark:!text-blue-400 hover:!text-blue-700 dark:hover:!text-blue-300",
+        className:
+          "!text-blue-600 dark:!text-blue-400 hover:!text-blue-700 dark:hover:!text-blue-300",
       });
     }
 

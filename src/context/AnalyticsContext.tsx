@@ -6,7 +6,13 @@
  * Pattern follows mail_box: Import analytics instance directly from firebase.ts
  */
 
-import { useCallback, useEffect, useState, useMemo, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+  type ReactNode,
+} from "react";
 import { logEvent, setUserId, setUserProperties } from "firebase/analytics";
 import { analytics, IS_DEVELOPMENT } from "../config/firebase";
 import {

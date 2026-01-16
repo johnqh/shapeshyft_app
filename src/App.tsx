@@ -20,10 +20,7 @@ import { PageTracker } from "./hooks/usePageTracking";
 import { InfoBanner } from "@sudobility/di_web";
 import { getNetworkService } from "@sudobility/di";
 import { NetworkProvider } from "@sudobility/devops-components";
-import {
-  PerformancePanel,
-  LanguageValidator,
-} from "@sudobility/components";
+import { PerformancePanel, LanguageValidator } from "@sudobility/components";
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import("./pages/HomePage"));

@@ -130,6 +130,7 @@
       "latency": "Độ trễ",
       "inputTokens": "Tokens đầu vào",
       "outputTokens": "Tokens đầu ra",
+      "estimatedCost": "Chi phí ước tính",
       "usage": {
         "title": "Cách sử dụng",
         "tokensIn": "Tokens In",
@@ -225,6 +226,7 @@
     "preview": "Xem trước",
     "willCreate": "Điều này sẽ tạo ra {{count}} điểm cuối:",
     "apply": "Áp dụng mẫu",
+    "comingSoon": "Sắp ra mắt",
     "errors": {
       "fillAllFields": "Vui lòng điền đầy đủ tất cả các trường bắt buộc"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "Nhận diện hình ảnh",
       "description": "Phân tích và mô tả hình ảnh bằng các mô hình thị giác"
+    },
+    "audioTranscription": {
+      "name": "Chuyển đổi âm thanh thành văn bản",
+      "description": "Chuyển đổi âm thanh thành văn bản với trích xuất có cấu trúc"
     },
     "imageGeneration": {
       "name": "Tạo ảnh",
@@ -347,6 +353,35 @@
       "saving": "Đang lưu...",
       "saved": "Cài đặt đã được lưu thành công",
       "error": "Không thể lưu cài đặt"
+    },
+    "storage": {
+      "title": "Lưu trữ đám mây",
+      "description": "Cấu hình lưu trữ đám mây cho các tệp phương tiện được tạo (hình ảnh, âm thanh, video).",
+      "configured": "Đã cấu hình",
+      "provider": "Nhà cung cấp lưu trữ",
+      "bucket": "Tên thùng chứa",
+      "prefix": "Tiền tố đường dẫn",
+      "prefixHint": "Tiền tố tùy chọn cho các tệp được tải lên (ví dụ: generated-media/)",
+      "gcsCredentials": "Google Cloud Storage Credentials",
+      "gcsCredentialsHint": "Dán nội dung tệp khóa JSON tài khoản dịch vụ GCP của bạn",
+      "serviceAccountJson": "Tài khoản dịch vụ JSON",
+      "s3Credentials": "Thông tin đăng nhập Amazon S3",
+      "region": "Khu vực AWS",
+      "accessKeyId": "ID Khóa truy cập",
+      "secretAccessKey": "Khóa truy cập bí mật",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "Để trống để giữ nguyên thông tin đăng nhập hiện tại",
+      "credentialsRequired": "Các thông tin đăng nhập là bắt buộc",
+      "invalidJson": "Định dạng JSON không hợp lệ",
+      "invalidType": "JSON phải có kiểu 'service_account'",
+      "missingField": "Thiếu trường bắt buộc: {{field}}",
+      "configure": "Cấu hình Lưu trữ",
+      "update": "Cập nhật Lưu trữ",
+      "remove": "Xóa Lưu trữ",
+      "saved": "Cấu hình lưu trữ đã được lưu",
+      "saveError": "Không thể lưu cấu hình lưu trữ",
+      "deleteError": "Không thể xóa cấu hình lưu trữ",
+      "confirmDelete": "Bạn có chắc chắn muốn xóa cấu hình lưu trữ không? Các phương tiện được tạo sẽ không còn được tải lên kho lưu trữ đám mây."
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "Tải xuống",
     "clickToExpand": "Bấm để mở rộng",
     "outputTitle": "Đầu ra phương tiện",
+    "generatedTitle": "Media được tạo ra",
     "modeFile": "Tải lên",
     "modeUrl": "URL",
     "urlPlaceholder": "Nhập URL {{type}}...",

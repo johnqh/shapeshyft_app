@@ -8,7 +8,10 @@ import {
   useProviderModelsManager,
 } from "@sudobility/shapeshyft_lib";
 import { ShapeshyftClient, useProviders } from "@sudobility/shapeshyft_client";
-import type { LlmProvider, ModelCapabilities } from "@sudobility/shapeshyft_types";
+import type {
+  LlmProvider,
+  ModelCapabilities,
+} from "@sudobility/shapeshyft_types";
 import { detectRequiredCapabilities } from "@sudobility/shapeshyft_types";
 import {
   PhotoIcon,
@@ -29,6 +32,13 @@ import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useApi } from "../../hooks/useApi";
 import { useToast } from "../../hooks/useToast";
 import { CONSTANTS } from "../../config/constants";
+
+// Image-related template IDs to filter out unless DEV_MODE is enabled
+const IMAGE_TEMPLATE_IDS = [
+  "image-recognition",
+  "image-generation",
+  "image-processing",
+];
 
 function TemplatesPage() {
   const { t } = useTranslation(["dashboard", "common"]);
@@ -66,7 +76,6 @@ function TemplatesPage() {
   const { templates: allTemplates, applyTemplate } = useProjectTemplates();
 
   // Filter out image-related templates unless DEV_MODE is enabled
-  const IMAGE_TEMPLATE_IDS = ["image-recognition", "image-generation", "image-processing"];
   const templates = useMemo(() => {
     if (CONSTANTS.DEV_MODE) {
       return allTemplates;
@@ -264,7 +273,9 @@ function TemplatesPage() {
         {templates.map((template) => (
           <button
             key={template.id}
-            onClick={() => !template.requiresV2 && setSelectedTemplate(template.id)}
+            onClick={() =>
+              !template.requiresV2 && setSelectedTemplate(template.id)
+            }
             disabled={template.requiresV2}
             className={`p-4 text-left rounded-xl border-2 transition-all ${
               template.requiresV2

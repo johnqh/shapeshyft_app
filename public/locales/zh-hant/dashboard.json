@@ -130,6 +130,7 @@
       "latency": "延遲",
       "inputTokens": "輸入令牌",
       "outputTokens": "輸出令牌",
+      "estimatedCost": "預估成本",
       "usage": {
         "title": "使用方法",
         "tokensIn": "代幣在",
@@ -225,6 +226,7 @@
     "preview": "預覽",
     "willCreate": "這將建立 {{count}} 個端點：",
     "apply": "套用範本",
+    "comingSoon": "即將推出",
     "errors": {
       "fillAllFields": "請填寫所有必要欄位"
     },
@@ -251,6 +253,10 @@
     "imageRecognition": {
       "name": "影像辨識",
       "description": "使用視覺模型分析並描述圖片"
+    },
+    "audioTranscription": {
+      "name": "音頻轉錄",
+      "description": "將音訊轉錄為文字並進行結構化提取"
     },
     "imageGeneration": {
       "name": "圖像生成",
@@ -347,6 +353,35 @@
       "saving": "儲存中...",
       "saved": "設定已成功儲存",
       "error": "無法儲存設定"
+    },
+    "storage": {
+      "title": "雲端儲存",
+      "description": "為產生的媒體檔案（圖片、音頻、視訊）設定雲端儲存空間。",
+      "configured": "已設定",
+      "provider": "儲存提供者",
+      "bucket": "儲存桶名稱",
+      "prefix": "路徑前置詞",
+      "prefixHint": "上傳檔案的可選前置詞（例如：generated-media/）",
+      "gcsCredentials": "Google Cloud Storage 憑證",
+      "gcsCredentialsHint": "貼上您的 GCP 服務帳戶 JSON 金鑰檔案內容",
+      "serviceAccountJson": "服務帳戶 JSON",
+      "s3Credentials": "Amazon S3 憑證",
+      "region": "AWS 區域",
+      "accessKeyId": "存取金鑰 ID",
+      "secretAccessKey": "秘密訪問金鑰",
+      "credentialsHidden": "••••••••••••",
+      "leaveEmptyToKeep": "留空以保留現有憑證",
+      "credentialsRequired": "需要憑證",
+      "invalidJson": "無效的 JSON 格式",
+      "invalidType": "JSON 必須具有類型 'service_account'",
+      "missingField": "缺少必要欄位：{{field}}",
+      "configure": "設定儲存空間",
+      "update": "更新儲存空間",
+      "remove": "移除儲存空間",
+      "saved": "儲存設定已儲存",
+      "saveError": "儲存設定失敗",
+      "deleteError": "刪除儲存設定失敗",
+      "confirmDelete": "您確定要移除儲存設定嗎？產生的媒體將不再上傳至雲端儲存。"
     }
   },
   "apiKey": {
@@ -427,6 +462,7 @@
     "download": "下載",
     "clickToExpand": "點擊展開",
     "outputTitle": "媒體輸出",
+    "generatedTitle": "生成的媒體",
     "modeFile": "上傳",
     "modeUrl": "URL",
     "urlPlaceholder": "輸入 {{type}} URL...",
