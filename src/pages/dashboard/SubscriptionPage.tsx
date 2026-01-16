@@ -7,6 +7,7 @@ import {
   type SubscriptionPageLabels,
   type SubscriptionPageFormatters,
 } from "@sudobility/building_blocks";
+import { useAuthStatus } from "@sudobility/auth-components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useRateLimits } from "@sudobility/shapeshyft_client";
@@ -93,7 +94,9 @@ function SubscriptionPage() {
   const { success } = useToast();
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const { currentEntityId } = useCurrentEntity();
+  const { user } = useAuthStatus();
   const subscriptionContext = useSubscriptionContext();
+  const userEmail = user?.email || undefined;
 
   const { config: rateLimitsConfig, refreshConfig: refreshRateLimits } =
     useRateLimits(networkClient, baseUrl, testMode);
@@ -198,6 +201,7 @@ function SubscriptionPage() {
         subscription={subscriptionContext}
         rateLimitsConfig={rateLimitsConfig}
         subscriptionUserId={currentEntityId ?? undefined}
+        userEmail={userEmail}
         labels={labels}
         formatters={formatters}
         entitlementMap={PACKAGE_ENTITLEMENT_MAP}
