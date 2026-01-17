@@ -16,11 +16,10 @@ import { useLocalizedNavigate } from "../hooks/useLocalizedNavigate";
 import { useToast } from "../hooks/useToast";
 import { CONSTANTS } from "../config/constants";
 import {
-  PACKAGE_ENTITLEMENT_MAP,
-  ENTITLEMENT_LEVELS,
   getProductFeatures,
   getFreeTierFeatures,
 } from "../config/subscription-config";
+import { refreshSubscription } from "@sudobility/subscription_lib";
 
 function PricingPage() {
   const { t } = useTranslation("pricing");
@@ -54,6 +53,8 @@ function PricingPage() {
       try {
         const result = await purchase(planIdentifier);
         if (result) {
+          // Refresh subscription_lib data to sync state
+          await refreshSubscription();
           success(
             tSub("purchase.success", "Subscription activated successfully!"),
           );
@@ -181,11 +182,10 @@ function PricingPage() {
         subscriptionUserId={currentEntityId ?? undefined}
         labels={labels}
         formatters={formatters}
-        entitlementMap={PACKAGE_ENTITLEMENT_MAP}
-        entitlementLevels={ENTITLEMENT_LEVELS}
         onPlanClick={handlePlanClick}
         onFreePlanClick={handleFreePlanClick}
         faqItems={faqItems}
+        offerId="api"
       />
     </ScreenContainer>
   );

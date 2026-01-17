@@ -1,29 +1,16 @@
 import type { TFunction } from "i18next";
-import type {
-  EntitlementMap,
-  EntitlementLevels,
-} from "@sudobility/building_blocks";
 
 /**
  * Package ID to entitlement mapping (from RevenueCat configuration)
+ * Used by getProductFeatures to determine which rate limits to display.
  */
-export const PACKAGE_ENTITLEMENT_MAP: EntitlementMap = {
+const PACKAGE_ENTITLEMENT_MAP: Record<string, string> = {
   ultra_yearly: "bandwidth_ultra",
   ultra_monthly: "bandwidth_ultra",
   pro_yearly: "bandwidth_pro",
   pro_monthly: "bandwidth_pro",
   dev_yearly: "bandwidth_dev",
   dev_monthly: "bandwidth_dev",
-};
-
-/**
- * Entitlement to level mapping (higher = better tier)
- */
-export const ENTITLEMENT_LEVELS: EntitlementLevels = {
-  none: 0,
-  bandwidth_dev: 1,
-  bandwidth_pro: 2,
-  bandwidth_ultra: 3,
 };
 
 /**

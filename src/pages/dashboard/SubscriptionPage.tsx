@@ -17,9 +17,8 @@ import {
   getFreeTierFeatures,
   getSharedSubscriptionFormatters,
   getProductFeatures,
-  PACKAGE_ENTITLEMENT_MAP,
-  ENTITLEMENT_LEVELS,
 } from "../../config/subscription-config";
+import { refreshSubscription } from "@sudobility/subscription_lib";
 
 function SubscriptionPage() {
   const { t } = useTranslation("subscription");
@@ -39,11 +38,15 @@ function SubscriptionPage() {
     }
   }, [isReady, token, entitySlug, refreshRateLimits]);
 
-  const handlePurchaseSuccess = () => {
+  const handlePurchaseSuccess = async () => {
+    // Refresh subscription_lib data to sync state
+    await refreshSubscription();
     success(t("purchase.success"));
   };
 
-  const handleRestoreSuccess = () => {
+  const handleRestoreSuccess = async () => {
+    // Refresh subscription_lib data to sync state
+    await refreshSubscription();
     success(t("restore.success"));
   };
 
@@ -132,12 +135,11 @@ function SubscriptionPage() {
       subscriptionUserId={currentEntityId ?? undefined}
       labels={labels}
       formatters={formatters}
-      entitlementMap={PACKAGE_ENTITLEMENT_MAP}
-      entitlementLevels={ENTITLEMENT_LEVELS}
       onPurchaseSuccess={handlePurchaseSuccess}
       onRestoreSuccess={handleRestoreSuccess}
       onError={handleError}
       onWarning={handleWarning}
+      offerId="api"
     />
   );
 }

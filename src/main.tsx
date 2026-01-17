@@ -9,6 +9,11 @@ import {
 } from "@sudobility/di";
 import { initializeInfoService } from "@sudobility/di_web";
 import { initializeFirebaseAuth } from "@sudobility/auth_lib";
+import { initializeSubscription } from "@sudobility/subscription_lib";
+import {
+  configureRevenueCatAdapter,
+  createRevenueCatAdapter,
+} from "./config/subscription-adapter";
 
 initializeStorageService();
 initializeNetworkService();
@@ -25,6 +30,17 @@ initializeFirebaseAuth({
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
   },
+});
+
+// Initialize Subscription
+configureRevenueCatAdapter(
+  import.meta.env.MODE === "production"
+    ? import.meta.env.VITE_REVENUECAT_API_KEY
+    : import.meta.env.VITE_REVENUECAT_API_KEY_SANDBOX
+);
+initializeSubscription({
+  adapter: createRevenueCatAdapter(),
+  freeTier: { packageId: "free", name: "Free" },
 });
 
 // Initialize i18n
