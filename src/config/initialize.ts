@@ -9,11 +9,11 @@ import {
 } from "@sudobility/di";
 import { initializeInfoService } from "@sudobility/di_web";
 import { initializeFirebaseAuth } from "@sudobility/auth_lib";
-import { initializeSubscription } from "@sudobility/subscription_lib";
 import {
+  initializeSubscription,
   configureRevenueCatAdapter,
   createRevenueCatAdapter,
-} from "./subscription-adapter";
+} from "@sudobility/subscription_lib";
 import { registerServiceWorker } from "../utils/serviceWorker";
 import { initWebVitals } from "../utils/webVitals";
 import { initializeI18n } from "../i18n";

@@ -113,6 +113,8 @@ function SubscriptionPage() {
       // Buttons
       buttonSubscribe: t("buttons.subscribe"),
       buttonPurchasing: t("buttons.purchasing"),
+      buttonUpgrade: t("buttons.upgrade", "Upgrade Now"),
+      buttonUpgrading: t("buttons.upgrading", "Upgrading..."),
       buttonRestore: t("buttons.restore"),
       buttonRestoring: t("buttons.restoring"),
 

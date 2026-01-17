@@ -16,8 +16,8 @@ import { InfoType } from "@sudobility/types";
 import {
   setRevenueCatUser,
   clearRevenueCatUser,
-} from "../../config/subscription-adapter";
-import { refreshSubscription } from "@sudobility/subscription_lib";
+  refreshSubscription,
+} from "@sudobility/subscription_lib";
 import { SafeSubscriptionContext } from "./SafeSubscriptionContext";
 import { CONSTANTS } from "../../config/constants";
 
