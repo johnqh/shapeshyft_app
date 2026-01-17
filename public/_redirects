@@ -1,0 +1,5 @@
+# Redirects for ShapeShyft
+# Works with Cloudflare Pages, Netlify, and other static hosts
+
+# Fix common sitemap typo
+/sitemaps.xml /sitemap.xml 301

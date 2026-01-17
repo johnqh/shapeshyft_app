@@ -4,7 +4,6 @@ import {
   AppPricingPage,
   type PricingPageLabels,
   type PricingPageFormatters,
-  type PricingProduct,
   type FAQItem,
 } from "@sudobility/building_blocks";
 import { useSafeSubscriptionContext } from "../components/providers/SafeSubscriptionContext";
@@ -25,27 +24,13 @@ function PricingPage() {
   const { t } = useTranslation("pricing");
   const { t: tSub } = useTranslation("subscription");
   const { user, openModal } = useAuthStatus();
-  const {
-    products: rawProducts,
-    currentSubscription,
-    purchase,
-  } = useSafeSubscriptionContext();
-  const { currentEntitySlug, currentEntityId } = useCurrentEntity();
+  const { purchase } = useSafeSubscriptionContext();
+  const { currentEntitySlug } = useCurrentEntity();
   const { navigate } = useLocalizedNavigate();
   const { success, error: showError } = useToast();
   const appName = CONSTANTS.APP_NAME;
 
   const isAuthenticated = !!user;
-  const hasActiveSubscription = currentSubscription?.isActive ?? false;
-
-  // Map products to the format expected by AppPricingPage
-  const products: PricingProduct[] = rawProducts.map((p) => ({
-    identifier: p.identifier,
-    title: p.title,
-    price: p.price,
-    priceString: p.priceString,
-    period: p.period,
-  }));
 
   const handlePlanClick = async (planIdentifier: string) => {
     if (isAuthenticated) {
@@ -175,11 +160,7 @@ function PricingPage() {
         ]}
       />
       <AppPricingPage
-        products={products}
         isAuthenticated={isAuthenticated}
-        hasActiveSubscription={hasActiveSubscription}
-        currentProductIdentifier={currentSubscription?.productIdentifier}
-        subscriptionUserId={currentEntityId ?? undefined}
         labels={labels}
         formatters={formatters}
         onPlanClick={handlePlanClick}

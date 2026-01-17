@@ -30,56 +30,69 @@ const detectLanguageFromPath = (): string => {
   return "en";
 };
 
-i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    lng: detectLanguageFromPath(),
-    fallbackLng: {
-      zh: ["zh", "en"],
-      "zh-hant": ["zh-hant", "zh", "en"],
-      default: ["en"],
-    },
-    initImmediate: false, // Don't block - load async
-    supportedLngs: [...SUPPORTED_LANGUAGES],
-    debug: false,
-    nonExplicitSupportedLngs: true,
+let initialized = false;
 
-    interpolation: {
-      escapeValue: false,
-    },
+/**
+ * Initialize i18n with all plugins and configuration.
+ * Safe to call multiple times - will only initialize once.
+ */
+export function initializeI18n(): void {
+  if (initialized) {
+    return;
+  }
+  initialized = true;
 
-    backend: {
-      loadPath: `/locales/{{lng}}/{{ns}}.json`,
-    },
+  i18n
+    .use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      lng: detectLanguageFromPath(),
+      fallbackLng: {
+        zh: ["zh", "en"],
+        "zh-hant": ["zh-hant", "zh", "en"],
+        default: ["en"],
+      },
+      initImmediate: false, // Don't block - load async
+      supportedLngs: [...SUPPORTED_LANGUAGES],
+      debug: false,
+      nonExplicitSupportedLngs: true,
 
-    detection: {
-      order: ["path", "localStorage", "navigator"],
-      caches: ["localStorage"],
-      lookupLocalStorage: "language",
-      lookupFromPathIndex: 0,
-    },
+      interpolation: {
+        escapeValue: false,
+      },
 
-    load: "languageOnly",
-    preload: [],
-    cleanCode: false,
-    lowerCaseLng: false,
+      backend: {
+        loadPath: `/locales/{{lng}}/{{ns}}.json`,
+      },
 
-    defaultNS: "common",
-    ns: [
-      "common",
-      "home",
-      "pricing",
-      "docs",
-      "dashboard",
-      "auth",
-      "about",
-      "contact",
-      "privacy",
-      "terms",
-      "settings",
-    ],
-  });
+      detection: {
+        order: ["path", "localStorage", "navigator"],
+        caches: ["localStorage"],
+        lookupLocalStorage: "language",
+        lookupFromPathIndex: 0,
+      },
+
+      load: "languageOnly",
+      preload: [],
+      cleanCode: false,
+      lowerCaseLng: false,
+
+      defaultNS: "common",
+      ns: [
+        "common",
+        "home",
+        "pricing",
+        "docs",
+        "dashboard",
+        "auth",
+        "about",
+        "contact",
+        "privacy",
+        "terms",
+        "settings",
+      ],
+    });
+}
 
 export default i18n;

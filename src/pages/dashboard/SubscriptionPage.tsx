@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSubscriptionContext } from "@sudobility/subscription-components";
@@ -26,7 +26,7 @@ function SubscriptionPage() {
   const { success } = useToast();
   const { networkClient, baseUrl, token, testMode, isReady } = useApi();
   const { currentEntityId } = useCurrentEntity();
-  const subscriptionContext = useSubscriptionContext();
+  const { purchase, restore } = useSubscriptionContext();
 
   const { config: rateLimitsConfig, refreshConfig: refreshRateLimits } =
     useRateLimits(networkClient, baseUrl, testMode);
@@ -37,6 +37,19 @@ function SubscriptionPage() {
       refreshRateLimits(token, entitySlug);
     }
   }, [isReady, token, entitySlug, refreshRateLimits]);
+
+  // Purchase handler - wraps the subscription context purchase
+  const handlePurchase = useCallback(
+    async (packageId: string): Promise<boolean> => {
+      return purchase(packageId, currentEntityId ?? undefined);
+    },
+    [purchase, currentEntityId],
+  );
+
+  // Restore handler - wraps the subscription context restore
+  const handleRestore = useCallback(async (): Promise<boolean> => {
+    return restore(currentEntityId ?? undefined);
+  }, [restore, currentEntityId]);
 
   const handlePurchaseSuccess = async () => {
     // Refresh subscription_lib data to sync state
@@ -130,16 +143,16 @@ function SubscriptionPage() {
 
   return (
     <AppSubscriptionsPage
-      subscription={subscriptionContext}
+      offerId="api"
       rateLimitsConfig={rateLimitsConfig}
-      subscriptionUserId={currentEntityId ?? undefined}
       labels={labels}
       formatters={formatters}
+      onPurchase={handlePurchase}
+      onRestore={handleRestore}
       onPurchaseSuccess={handlePurchaseSuccess}
       onRestoreSuccess={handleRestoreSuccess}
       onError={handleError}
       onWarning={handleWarning}
-      offerId="api"
     />
   );
 }

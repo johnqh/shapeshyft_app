@@ -25,9 +25,43 @@ let apiKey: string | null = null;
 /**
  * Configure the RevenueCat adapter with API key.
  * Call this in main.tsx before initializing subscription_lib.
+ * RevenueCat SDK is lazily loaded when first needed.
  */
 export function configureRevenueCatAdapter(revenueCatApiKey: string): void {
   apiKey = revenueCatApiKey;
+}
+
+/**
+ * Get or create an anonymous user ID for RevenueCat.
+ * RevenueCat web SDK requires a user ID, so we generate one for anonymous users.
+ */
+function getAnonymousUserId(): string {
+  const STORAGE_KEY = "rc_anonymous_user_id";
+  let anonId = localStorage.getItem(STORAGE_KEY);
+  if (!anonId) {
+    anonId = `anon_${crypto.randomUUID()}`;
+    localStorage.setItem(STORAGE_KEY, anonId);
+  }
+  return anonId;
+}
+
+/**
+ * Lazily initialize RevenueCat SDK when first needed.
+ * Uses anonymous user ID if no user is logged in.
+ */
+async function ensureInitialized(): Promise<Purchases> {
+  if (!apiKey) {
+    throw new Error("RevenueCat not configured");
+  }
+
+  if (!purchasesInstance) {
+    const SDK = await import("@revenuecat/purchases-js");
+    // Use current user ID or anonymous ID - RevenueCat web SDK requires a user ID
+    const userId = currentUserId || getAnonymousUserId();
+    purchasesInstance = SDK.Purchases.configure({ apiKey, appUserId: userId });
+  }
+
+  return purchasesInstance;
 }
 
 /**
@@ -96,14 +130,24 @@ export function hasRevenueCatUser(): boolean {
  */
 export function createRevenueCatAdapter(): SubscriptionAdapter {
   return {
-    async getOfferings(): Promise<AdapterOfferings> {
-      // If no user configured, return empty (offerings require configured SDK)
-      if (!purchasesInstance) {
-        return { all: {}, current: null };
+    async setUserId(userId: string | undefined, email?: string): Promise<void> {
+      if (userId) {
+        await setRevenueCatUser(userId, email);
+      } else {
+        clearRevenueCatUser();
       }
+    },
 
+    async getOfferings(): Promise<AdapterOfferings> {
       try {
-        const offerings = await purchasesInstance.getOfferings();
+        const purchases = await ensureInitialized();
+        const offerings = await purchases.getOfferings();
+
+        console.log('[subscription-adapter] Raw offerings from RevenueCat:', {
+          allKeys: Object.keys(offerings.all),
+          currentIdentifier: offerings.current?.identifier,
+          currentPackageCount: offerings.current?.availablePackages.length,
+        });
 
         const convertPackage = (pkg: Package) => ({
           identifier: pkg.identifier,
@@ -198,13 +242,9 @@ export function createRevenueCatAdapter(): SubscriptionAdapter {
     },
 
     async getCustomerInfo(): Promise<AdapterCustomerInfo> {
-      // No user = no subscription
-      if (!purchasesInstance) {
-        return { activeSubscriptions: [], entitlements: { active: {} } };
-      }
-
       try {
-        const customerInfo = await purchasesInstance.getCustomerInfo();
+        const purchases = await ensureInitialized();
+        const customerInfo = await purchases.getCustomerInfo();
 
         const active: AdapterCustomerInfo["entitlements"]["active"] = {};
 
@@ -232,12 +272,10 @@ export function createRevenueCatAdapter(): SubscriptionAdapter {
     async purchase(
       params: AdapterPurchaseParams
     ): Promise<AdapterPurchaseResult> {
-      if (!purchasesInstance) {
-        throw new Error("User not logged in");
-      }
+      const purchases = await ensureInitialized();
 
       // Find the package across all offerings
-      const offerings = await purchasesInstance.getOfferings();
+      const offerings = await purchases.getOfferings();
       let packageToPurchase: Package | undefined;
 
       for (const offering of Object.values(offerings.all)) {
@@ -251,7 +289,7 @@ export function createRevenueCatAdapter(): SubscriptionAdapter {
         throw new Error(`Package not found: ${params.packageId}`);
       }
 
-      const result = await purchasesInstance.purchase({
+      const result = await purchases.purchase({
         rcPackage: packageToPurchase,
       });
 

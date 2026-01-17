@@ -17,6 +17,7 @@ import {
   setRevenueCatUser,
   clearRevenueCatUser,
 } from "../../config/subscription-adapter";
+import { refreshSubscription } from "@sudobility/subscription_lib";
 import { SafeSubscriptionContext } from "./SafeSubscriptionContext";
 import { CONSTANTS } from "../../config/constants";
 
@@ -50,7 +51,10 @@ function SubscriptionBridge({
       entityIdRef.current = entityId;
       // Set user for both subscription-components and subscription_lib
       context.initialize(entityId, user.email || undefined);
-      setRevenueCatUser(entityId, user.email || undefined);
+      setRevenueCatUser(entityId, user.email || undefined).then(() => {
+        // Refresh subscription_lib data after user is set so hooks get fresh data
+        refreshSubscription();
+      });
     } else if (!shouldSetUser && entityIdRef.current) {
       entityIdRef.current = null;
       clearRevenueCatUser();
