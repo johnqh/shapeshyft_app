@@ -15,8 +15,8 @@ import {
 } from "react";
 import { logEvent, setUserId, setUserProperties } from "firebase/analytics";
 import { analytics, IS_DEVELOPMENT } from "../config/firebase";
+import { hashUserId } from "@sudobility/components";
 import {
-  hashUserId,
   AnalyticsEvents,
   sanitizePathForTracking,
   type AnalyticsEvent,

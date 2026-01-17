@@ -15,9 +15,9 @@ const LoadingFallback = () => (
 );
 
 /**
- * Wrapper for PricingPage that ensures subscription products are loaded.
- * Uses PricingSubscriptionProvider which initializes with anonymous user
- * for non-authenticated visitors, allowing them to see pricing.
+ * Wrapper for PricingPage that ensures subscription context is available.
+ * Uses PricingSubscriptionProvider which loads subscription data only for
+ * authenticated users with an entityId.
  */
 export function PricingPageWrapper() {
   const { currentEntityId } = useCurrentEntity();

@@ -5,9 +5,6 @@
 
 import { stripLanguagePrefix } from "@sudobility/components";
 
-// Re-export utilities from shared components
-export { hashUserId, stripLanguagePrefix } from "@sudobility/components";
-
 /**
  * UUID regex pattern for matching UUIDs in paths
  */

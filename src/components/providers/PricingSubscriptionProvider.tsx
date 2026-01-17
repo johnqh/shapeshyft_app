@@ -7,9 +7,6 @@ import { useAuthStatus } from "@sudobility/auth-components";
 import { SafeSubscriptionContext } from "./SafeSubscriptionContext";
 import { CONSTANTS } from "../../config/constants";
 
-// Anonymous user ID for fetching products when not authenticated
-const ANONYMOUS_USER_ID = "anonymous_pricing_viewer";
-
 interface PricingSubscriptionProviderProps {
   children: ReactNode;
   /** Entity ID for authenticated users */
@@ -34,20 +31,20 @@ interface InitializerProps {
 }
 
 /**
- * Initializes subscription with entityId for authenticated users,
- * or anonymous ID for non-authenticated users (to fetch products).
+ * Initializes subscription with entityId for authenticated users.
+ * Non-authenticated users will have undefined subscriberId, which means
+ * RevenueCat will return empty offerings (no pricing data).
  */
 function PricingInitializer({ children, entityId }: InitializerProps) {
   const { user } = useAuthStatus();
   const { initialize } = useSubscriptionContext();
-  const subscriberIdRef = useRef<string | null>(null);
+  const subscriberIdRef = useRef<string | undefined>(undefined);
 
   const isAuthenticated = user && !user.isAnonymous;
 
   useEffect(() => {
-    // Use entityId for authenticated users, anonymous ID for others
-    const subscriberId =
-      isAuthenticated && entityId ? entityId : ANONYMOUS_USER_ID;
+    // Only use entityId for authenticated users, undefined for others
+    const subscriberId = isAuthenticated && entityId ? entityId : undefined;
     const email = isAuthenticated ? user?.email || undefined : undefined;
 
     // Initialize if subscriber changed
@@ -63,8 +60,8 @@ function PricingInitializer({ children, entityId }: InitializerProps) {
 
 /**
  * Subscription provider specifically for the Pricing page.
- * Loads RevenueCat SDK and initializes with anonymous user for non-authenticated users,
- * allowing them to see product pricing.
+ * Loads RevenueCat SDK. Only authenticated users with entityId will have
+ * subscription data loaded. Non-authenticated users will see empty offerings.
  */
 export function PricingSubscriptionProvider({
   children,
