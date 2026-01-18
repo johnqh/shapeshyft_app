@@ -23,6 +23,8 @@ BASE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 # before dependent packages can fetch the new version from npm.
 PROJECTS=(
     "../subscription_service:0"
+    "../auth_service:0"
+    "../auth_lib:0"
     "../entity_service:0"
     "../entity_client:0"
     "../ratelimit_service:0"
@@ -31,7 +33,6 @@ PROJECTS=(
     "../entity_pages:0"
     "../ratelimit_pages:0"
     "../shapeshyft_api:0"
-    "../auth_lib:0"
     "../shapeshyft_client:60"
     "../shapeshyft_lib:60"
     "../shapeshyft_app:0"
