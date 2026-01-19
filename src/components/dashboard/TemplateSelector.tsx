@@ -21,6 +21,7 @@ interface TemplateSelectorProps {
     templateId: string,
     projectName: string,
     llmKeyId: string,
+    displayName: string,
   ) => Promise<void>;
   onClose: () => void;
 }
@@ -44,7 +45,10 @@ function TemplateSelector({
   };
 
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [displayName, setDisplayName] = useState("");
   const [projectName, setProjectName] = useState("");
+  const [projectNameManuallyEdited, setProjectNameManuallyEdited] =
+    useState(false);
   const [selectedKeyId, setSelectedKeyId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -66,17 +70,53 @@ function TemplateSelector({
     return () => document.removeEventListener("keydown", handleEscape);
   }, [onClose]);
 
-  // Auto-fill project name when template is selected
+  // Auto-fill display name and project name when template is selected
   useEffect(() => {
-    if (selectedTemplateData && !projectName) {
+    if (selectedTemplateData) {
+      // Only auto-fill if display name is empty (new template selection)
+      if (!displayName) {
+        setDisplayName(selectedTemplateData.name);
+        setProjectName(
+          selectedTemplateData.name
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, ""),
+        );
+        setProjectNameManuallyEdited(false);
+      }
+    }
+  }, [selectedTemplateData, displayName]);
+
+  // Auto-derive project name from display name (unless manually edited)
+  const handleDisplayNameChange = (value: string) => {
+    setDisplayName(value);
+    if (!projectNameManuallyEdited) {
       setProjectName(
-        selectedTemplateData.name.toLowerCase().replace(/\s+/g, "-"),
+        value
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, ""),
       );
     }
-  }, [selectedTemplateData, projectName]);
+  };
+
+  // Handle manual project name changes
+  const handleProjectNameChange = (value: string) => {
+    const sanitized = value
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, "-")
+      .replace(/-+/g, "-");
+    setProjectName(sanitized);
+    setProjectNameManuallyEdited(true);
+  };
 
   const handleApply = async () => {
-    if (!selectedTemplate || !projectName.trim() || !selectedKeyId) {
+    if (
+      !selectedTemplate ||
+      !displayName.trim() ||
+      !projectName.trim() ||
+      !selectedKeyId
+    ) {
       getInfoService().show(
         t("common.error"),
         t("templates.errors.fillAllFields"),
@@ -89,7 +129,12 @@ function TemplateSelector({
     setIsLoading(true);
 
     try {
-      await onApply(selectedTemplate, projectName.trim(), selectedKeyId);
+      await onApply(
+        selectedTemplate,
+        projectName.trim(),
+        selectedKeyId,
+        displayName.trim(),
+      );
     } catch (err) {
       getInfoService().show(
         t("common.error"),
@@ -173,7 +218,25 @@ function TemplateSelector({
                 {t("templates.configure")}
               </h4>
 
-              {/* Project Name */}
+              {/* Display Name */}
+              <div>
+                <label
+                  htmlFor="displayName"
+                  className="block text-sm font-medium text-theme-text-primary mb-1"
+                >
+                  {t("projects.form.displayName")}
+                </label>
+                <input
+                  id="displayName"
+                  type="text"
+                  value={displayName}
+                  onChange={(e) => handleDisplayNameChange(e.target.value)}
+                  placeholder={t("projects.form.displayNamePlaceholder")}
+                  className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
+                />
+              </div>
+
+              {/* Project Name (slug) */}
               <div>
                 <label
                   htmlFor="projectName"
@@ -185,17 +248,13 @@ function TemplateSelector({
                   id="projectName"
                   type="text"
                   value={projectName}
-                  onChange={(e) =>
-                    setProjectName(
-                      e.target.value
-                        .toLowerCase()
-                        .replace(/[^a-z0-9-]/g, "-")
-                        .replace(/-+/g, "-"),
-                    )
-                  }
+                  onChange={(e) => handleProjectNameChange(e.target.value)}
                   placeholder={t("templates.projectNamePlaceholder")}
                   className="w-full px-3 py-2 border border-theme-border rounded-lg bg-theme-bg-primary focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow font-mono"
                 />
+                <p className="mt-1 text-xs text-theme-text-tertiary">
+                  {t("templates.projectNameHint")}
+                </p>
               </div>
 
               {/* LLM Key Selection */}
@@ -283,6 +342,7 @@ function TemplateSelector({
             disabled={
               isLoading ||
               !selectedTemplate ||
+              !displayName.trim() ||
               !projectName.trim() ||
               !selectedKeyId
             }

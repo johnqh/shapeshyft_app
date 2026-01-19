@@ -7,7 +7,6 @@ import i18n from "./i18n";
 import { ThemeProvider } from "./context/ThemeContext";
 import { ApiProvider } from "./context/ApiContext";
 import { ToastProvider } from "./context/ToastContext";
-import { AnalyticsProvider } from "./context/AnalyticsContext";
 import { CurrentEntityProvider } from "@sudobility/entity_client";
 import { useAuthStatus } from "@sudobility/auth-components";
 import { entityClient } from "./config/entityClient";
@@ -145,7 +144,6 @@ function App() {
                 <AuthProviderWrapper>
                   <AuthAwareEntityProvider>
                     <ApiProvider>
-                      <AnalyticsProvider>
                         <EntityAwareSubscriptionProvider>
                           <BrowserRouter>
                             <PageTracker />
@@ -340,7 +338,6 @@ function App() {
                             <InfoBanner />
                           </BrowserRouter>
                         </EntityAwareSubscriptionProvider>
-                      </AnalyticsProvider>
                     </ApiProvider>
                   </AuthAwareEntityProvider>
                 </AuthProviderWrapper>

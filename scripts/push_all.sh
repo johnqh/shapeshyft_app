@@ -24,7 +24,6 @@ BASE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 PROJECTS=(
     "../subscription_service:0"
     "../auth_service:0"
-    "../auth_lib:0"
     "../entity_service:0"
     "../entity_client:0"
     "../ratelimit_service:0"

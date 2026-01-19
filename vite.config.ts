@@ -9,7 +9,7 @@ export default defineConfig({
     port: 5203,
   },
   resolve: {
-    dedupe: ["react", "react-dom", "@tanstack/react-query"],
+    dedupe: ["react", "react-dom", "@tanstack/react-query", "react-helmet-async"],
     alias: {
       // Ensure all packages use the same React instance
       react: path.resolve(__dirname, "node_modules/react"),
@@ -18,6 +18,10 @@ export default defineConfig({
       "@revenuecat/purchases-js": path.resolve(
         __dirname,
         "node_modules/@revenuecat/purchases-js",
+      ),
+      "react-helmet-async": path.resolve(
+        __dirname,
+        "node_modules/react-helmet-async",
       ),
     },
   },
@@ -67,7 +71,14 @@ export default defineConfig({
             if (id.includes("revenuecat") || id.includes("purchases")) {
               return "vendor-revenuecat";
             }
-            // NOTE: i18n and @tanstack not chunked - they depend on React
+            // i18n libraries
+            if (id.includes("i18next")) {
+              return "vendor-i18n";
+            }
+            // TanStack Query
+            if (id.includes("@tanstack")) {
+              return "vendor-tanstack";
+            }
           }
           // NOTE: @sudobility packages, charts, helmet are NOT manually chunked
           // to let Rollup handle shared dependencies naturally

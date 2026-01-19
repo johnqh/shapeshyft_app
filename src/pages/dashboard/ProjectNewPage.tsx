@@ -10,6 +10,7 @@ import { useToast } from "../../hooks/useToast";
 
 interface FieldErrors {
   displayName?: string;
+  projectName?: string;
 }
 
 function ProjectNewPage() {
@@ -20,6 +21,9 @@ function ProjectNewPage() {
   const { success } = useToast();
 
   const [displayName, setDisplayName] = useState("");
+  const [projectName, setProjectName] = useState("");
+  const [projectNameManuallyEdited, setProjectNameManuallyEdited] =
+    useState(false);
   const [description, setDescription] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -32,12 +36,6 @@ function ProjectNewPage() {
     testMode,
     autoFetch: isReady && !!entitySlug,
   });
-
-  // Generate slug preview
-  const slugPreview = displayName
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
 
   // Get existing project names for duplicate checking
   const existingProjectNames = projects.map((p) => p.project_name);
@@ -57,23 +55,56 @@ function ProjectNewPage() {
     if (value.trim().length < 2) {
       return t("projects.form.errors.nameTooShort");
     }
-    // Check for duplicate project name (based on generated slug)
-    const slug = value
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-    if (projectNameExists(slug)) {
+    return undefined;
+  };
+
+  const validateProjectName = (value: string): string | undefined => {
+    if (!value.trim()) {
+      return t("projects.form.errors.slugRequired");
+    }
+    if (projectNameExists(value.trim())) {
       return t("projects.form.errors.nameExists");
     }
     return undefined;
   };
 
+  // Auto-derive project name from display name (unless manually edited)
   const handleDisplayNameChange = (value: string) => {
     setDisplayName(value);
+    // Auto-derive project name if not manually edited
+    if (!projectNameManuallyEdited) {
+      const derived = value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      setProjectName(derived);
+      if (touched.projectName) {
+        setFieldErrors((prev) => ({
+          ...prev,
+          projectName: validateProjectName(derived),
+        }));
+      }
+    }
     if (touched.displayName) {
       setFieldErrors((prev) => ({
         ...prev,
         displayName: validateDisplayName(value),
+      }));
+    }
+  };
+
+  // Handle manual project name changes
+  const handleProjectNameChange = (value: string) => {
+    const sanitized = value
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, "-")
+      .replace(/-+/g, "-");
+    setProjectName(sanitized);
+    setProjectNameManuallyEdited(true);
+    if (touched.projectName) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        projectName: validateProjectName(sanitized),
       }));
     }
   };
@@ -86,30 +117,34 @@ function ProjectNewPage() {
     }));
   };
 
+  const handleProjectNameBlur = () => {
+    setTouched((prev) => ({ ...prev, projectName: true }));
+    setFieldErrors((prev) => ({
+      ...prev,
+      projectName: validateProjectName(projectName),
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate all fields
     const errors: FieldErrors = {
       displayName: validateDisplayName(displayName),
+      projectName: validateProjectName(projectName),
     };
 
     setFieldErrors(errors);
-    setTouched({ displayName: true });
+    setTouched({ displayName: true, projectName: true });
 
     // Check if there are any errors
     if (Object.values(errors).some(Boolean)) {
       return;
     }
 
-    const projectName = displayName
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-
     try {
       const project = await createProject({
-        project_name: projectName,
+        project_name: projectName.trim(),
         display_name: displayName.trim(),
         description: description.trim() || null,
       });
@@ -161,7 +196,7 @@ function ProjectNewPage() {
             }`}
             autoFocus
           />
-          {hasError("displayName") ? (
+          {hasError("displayName") && (
             <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -172,12 +207,46 @@ function ProjectNewPage() {
               </svg>
               {fieldErrors.displayName}
             </p>
-          ) : slugPreview ? (
-            <p className="mt-1 text-xs text-theme-text-tertiary">
-              {t("projects.form.slugPreview")}:{" "}
-              <code className="font-mono">{slugPreview}</code>
+          )}
+        </div>
+
+        {/* Project Name (slug) */}
+        <div>
+          <label
+            htmlFor="projectName"
+            className="block text-sm font-medium text-theme-text-primary mb-1"
+          >
+            {t("projects.form.projectName")}
+          </label>
+          <input
+            id="projectName"
+            type="text"
+            value={projectName}
+            onChange={(e) => handleProjectNameChange(e.target.value)}
+            onBlur={handleProjectNameBlur}
+            placeholder={t("projects.form.projectNamePlaceholder")}
+            className={`w-full px-3 py-2 border rounded-lg bg-theme-bg-primary outline-none transition-all font-mono ${
+              hasError("projectName")
+                ? "border-red-500 focus:ring-2 focus:ring-red-500/20"
+                : "border-theme-border focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            }`}
+          />
+          {hasError("projectName") ? (
+            <p className="mt-1 text-xs text-red-600 dark:text-red-400 flex items-center gap-1">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              {fieldErrors.projectName}
             </p>
-          ) : null}
+          ) : (
+            <p className="mt-1 text-xs text-theme-text-tertiary">
+              {t("projects.form.projectNameHint")}
+            </p>
+          )}
         </div>
 
         {/* Description */}
@@ -213,7 +282,7 @@ function ProjectNewPage() {
           </button>
           <button
             type="submit"
-            disabled={isLoading || !displayName.trim()}
+            disabled={isLoading || !displayName.trim() || !projectName.trim()}
             className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (

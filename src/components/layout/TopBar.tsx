@@ -7,9 +7,11 @@ import {
   type AuthActionProps,
 } from "@sudobility/building_blocks";
 import { AuthAction, useAuthStatus } from "@sudobility/auth-components";
+import { useSiteAdmin } from "@sudobility/auth_lib";
 import type { ComponentType } from "react";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useCurrentEntityOptional } from "../../hooks/useCurrentEntity";
+import { useApi } from "../../hooks/useApi";
 import {
   CONSTANTS,
   SUPPORTED_LANGUAGES,
@@ -265,6 +267,7 @@ function TopBar({ variant = "default" }: TopBarProps) {
   const { t: tDashboard } = useTranslation("dashboard");
   const { navigate, switchLanguage, currentLanguage } = useLocalizedNavigate();
   const { user } = useAuthStatus();
+  const { networkClient, baseUrl, token } = useApi();
 
   // Get the current entity from context - this is set when user logs in
   // and automatically selects their personal entity
@@ -272,6 +275,14 @@ function TopBar({ variant = "default" }: TopBarProps) {
   const entitySlug = entityContext?.currentEntitySlug ?? null;
 
   const isAuthenticated = !!user;
+
+  // Check if user is a site admin
+  const { isSiteAdmin } = useSiteAdmin({
+    networkClient,
+    baseUrl,
+    userId: user?.uid,
+    token: token ?? undefined,
+  });
 
   // Build languages list
   const languages = useMemo(
@@ -422,8 +433,14 @@ function TopBar({ variant = "default" }: TopBarProps) {
     }
   };
 
+  // Site admin indicator - subtle gold/amber shade for both themes
+  const siteAdminClassName = isSiteAdmin
+    ? "bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-800/50"
+    : "";
+
   return (
     <AppTopBarWithFirebaseAuth
+      className={siteAdminClassName}
       logo={{
         src: "/logo.png",
         appName: CONSTANTS.APP_NAME,

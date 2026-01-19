@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "Display name is required",
         "nameTooShort": "Name must be at least 2 characters",
-        "nameExists": "A project with this name already exists"
+        "nameExists": "A project with this name already exists",
+        "slugRequired": "Project name is required"
       },
       "slugPreview": "Slug",
       "create": "Create Project"
@@ -231,6 +232,7 @@
     "configure": "Configure Template",
     "projectName": "Project Name",
     "projectNamePlaceholder": "my-project",
+    "projectNameHint": "Lowercase letters, numbers, and hyphens only",
     "llmKey": "Provider",
     "selectKey": "Select a Provider",
     "noKeys": "No API keys available.",
