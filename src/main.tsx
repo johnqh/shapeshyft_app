@@ -5,15 +5,16 @@ import "./index.css";
 // Initialize all services BEFORE importing App
 import { initializeApp } from "./config/initialize";
 
-initializeApp();
+// Wait for initialization to complete before rendering
+initializeApp().then(async () => {
+  // Import App AFTER initialization completes
+  const { default: App } = await import("./App");
 
-// Import App AFTER initialization
-import App from "./App";
-
-// Render React app
-const root = document.getElementById("root")!;
-createRoot(root).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+  // Render React app
+  const root = document.getElementById("root")!;
+  createRoot(root).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+});
