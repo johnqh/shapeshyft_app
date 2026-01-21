@@ -69,12 +69,12 @@ export function PricingSubscriptionProvider({
 }: PricingSubscriptionProviderProps) {
   const { user } = useAuthStatus();
   const userEmail = user?.email || undefined;
+  const apiKey = CONSTANTS.DEV_MODE
+    ? CONSTANTS.REVENUECAT_API_KEY_SANDBOX
+    : CONSTANTS.REVENUECAT_API_KEY;
 
   return (
-    <SubscriptionProvider
-      apiKey={CONSTANTS.REVENUECAT_API_KEY}
-      userEmail={userEmail}
-    >
+    <SubscriptionProvider apiKey={apiKey} userEmail={userEmail}>
       <SafeContextBridge>
         <PricingInitializer entityId={entityId}>{children}</PricingInitializer>
       </SafeContextBridge>

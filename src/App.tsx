@@ -198,6 +198,8 @@ function App() {
     <SudobilityAppWithFirebaseAuthAndEntities
       apiUrl={CONSTANTS.API_URL}
       testMode={CONSTANTS.DEV_MODE}
+      revenueCatApiKey={CONSTANTS.REVENUECAT_API_KEY}
+      revenueCatApiKeySandbox={CONSTANTS.REVENUECAT_API_KEY_SANDBOX}
     >
       <AppRoutes />
     </SudobilityAppWithFirebaseAuthAndEntities>

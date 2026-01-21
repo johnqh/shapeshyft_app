@@ -9,11 +9,26 @@ export default defineConfig({
     port: 5203,
   },
   resolve: {
-    dedupe: ["react", "react-dom", "@tanstack/react-query", "react-helmet-async"],
+    dedupe: [
+      "react",
+      "react-dom",
+      "@tanstack/react-query",
+      "react-helmet-async",
+      "@sudobility/subscription-components",
+      "@sudobility/auth-components",
+      "@sudobility/entity_client",
+      "@sudobility/components",
+      "@sudobility/building_blocks",
+    ],
     alias: {
       // Ensure all packages use the same React instance
       react: path.resolve(__dirname, "node_modules/react"),
       "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
+      // Ensure all packages use the same subscription-components instance
+      "@sudobility/subscription-components": path.resolve(
+        __dirname,
+        "node_modules/@sudobility/subscription-components",
+      ),
       // Help Vite resolve peer dependencies from nested packages
       "@revenuecat/purchases-js": path.resolve(
         __dirname,
@@ -26,7 +41,11 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["react", "react-dom"],
+    include: [
+      "react",
+      "react-dom",
+      "@sudobility/subscription-components",
+    ],
   },
   build: {
     target: "es2020",

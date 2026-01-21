@@ -15,11 +15,10 @@ export const CONSTANTS = {
   // Testnet/Sandbox Mode
   DEV_MODE: import.meta.env.VITE_DEV_MODE === "true",
 
-  // RevenueCat API key (selects sandbox when testnet mode enabled)
-  REVENUECAT_API_KEY:
-    import.meta.env.VITE_DEV_MODE === "true"
-      ? import.meta.env.VITE_REVENUECAT_API_KEY_SANDBOX || ""
-      : import.meta.env.VITE_REVENUECAT_API_KEY || "",
+  // RevenueCat API keys
+  REVENUECAT_API_KEY: import.meta.env.VITE_REVENUECAT_API_KEY || "",
+  REVENUECAT_API_KEY_SANDBOX:
+    import.meta.env.VITE_REVENUECAT_API_KEY_SANDBOX || "",
 
   // Social handles (without @ or full URL)
   TWITTER_HANDLE: import.meta.env.VITE_TWITTER_HANDLE || "",
