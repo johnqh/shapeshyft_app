@@ -195,7 +195,10 @@ function AppRoutes() {
 
 function App() {
   return (
-    <SudobilityAppWithFirebaseAuthAndEntities testMode={CONSTANTS.DEV_MODE}>
+    <SudobilityAppWithFirebaseAuthAndEntities
+      apiUrl={CONSTANTS.API_URL}
+      testMode={CONSTANTS.DEV_MODE}
+    >
       <AppRoutes />
     </SudobilityAppWithFirebaseAuthAndEntities>
   );
