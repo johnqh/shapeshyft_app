@@ -11,7 +11,7 @@ import { useSiteAdmin } from "@sudobility/auth_lib";
 import type { ComponentType } from "react";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useCurrentEntityOptional } from "../../hooks/useCurrentEntity";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import {
   CONSTANTS,
   SUPPORTED_LANGUAGES,

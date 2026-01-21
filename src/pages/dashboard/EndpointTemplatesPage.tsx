@@ -27,7 +27,7 @@ import {
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useToast } from "../../hooks/useToast";
 
 function EndpointTemplatesPage() {

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useAnalyticsManager } from "@sudobility/shapeshyft_lib";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 
 // Lazy load chart components to defer recharts (~360KB) until needed
 const RequestDistributionChart = lazy(

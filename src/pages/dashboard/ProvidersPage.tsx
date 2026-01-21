@@ -7,7 +7,7 @@ import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { ItemList } from "@sudobility/components";
 import type { LlmApiKeySafe, LlmProvider } from "@sudobility/shapeshyft_types";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useToast } from "../../hooks/useToast";
 import ProviderForm from "../../components/dashboard/ProviderForm";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";

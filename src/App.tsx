@@ -1,26 +1,9 @@
-import { Suspense, lazy, useMemo } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HelmetProvider } from "react-helmet-async";
-import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n";
-import { ThemeProvider } from "./context/ThemeContext";
-import { ApiProvider } from "./context/ApiContext";
-import { ToastProvider } from "./context/ToastContext";
-import { CurrentEntityProvider } from "@sudobility/entity_client";
-import { useAuthStatus } from "@sudobility/auth-components";
-import { entityClient } from "./config/entityClient";
-import { useCurrentEntity } from "./hooks/useCurrentEntity";
-import { isLanguageSupported, CONSTANTS } from "./config/constants";
-import { AuthProviderWrapper } from "./components/providers/AuthProviderWrapper";
-import { LazySubscriptionProvider } from "./components/providers/LazySubscriptionProvider";
-import ToastContainer from "./components/ui/ToastContainer";
-import { PageTracker } from "./hooks/usePageTracking";
-import { useDocumentLanguage } from "./hooks/useDocumentLanguage";
-import { InfoBanner } from "@sudobility/di_web";
-import { getNetworkService } from "@sudobility/di";
-import { NetworkProvider } from "@sudobility/devops-components";
+import { Suspense, lazy, type ReactNode } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { SudobilityAppWithFirebaseAuthAndEntities } from "@sudobility/building_blocks/firebase";
 import { PerformancePanel, LanguageValidator } from "@sudobility/components";
+import { isLanguageSupported, CONSTANTS } from "./config/constants";
+import { useDocumentLanguage } from "./hooks/useDocumentLanguage";
 
 // Lazy load pages for better performance
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -78,16 +61,6 @@ const LanguageRedirect = lazy(
 const ProtectedRoute = lazy(() => import("./components/layout/ProtectedRoute"));
 const EntityRedirect = lazy(() => import("./components/layout/EntityRedirect"));
 
-// Create React Query client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
 // Loading fallback
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-theme-bg-primary">
@@ -95,33 +68,8 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Wrapper that connects CurrentEntityProvider to auth state
-function AuthAwareEntityProvider({ children }: { children: React.ReactNode }) {
-  const { user } = useAuthStatus();
-  const authUser = user ? { uid: user.uid, email: user.email } : null;
-  return (
-    <CurrentEntityProvider client={entityClient} user={authUser}>
-      {children}
-    </CurrentEntityProvider>
-  );
-}
-
-// Wrapper that reads entity ID from context and passes to subscription provider
-function EntityAwareSubscriptionProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { currentEntityId } = useCurrentEntity();
-  return (
-    <LazySubscriptionProvider entityId={currentEntityId ?? undefined}>
-      {children}
-    </LazySubscriptionProvider>
-  );
-}
-
 // Component that syncs document language attributes (html lang and dir)
-function DocumentLanguageSync({ children }: { children: React.ReactNode }) {
+function DocumentLanguageSync({ children }: { children: ReactNode }) {
   useDocumentLanguage();
   return <>{children}</>;
 }
@@ -129,225 +77,127 @@ function DocumentLanguageSync({ children }: { children: React.ReactNode }) {
 // Stable reference for PerformancePanel to prevent infinite re-renders
 const PERFORMANCE_API_PATTERNS = ["/api/"];
 
-function App() {
-  // Get network service inside component (after main.tsx initializes it)
-  const networkService = useMemo(() => getNetworkService(), []);
-
+// Performance panel component
+function PerformancePanelComponent() {
+  if (import.meta.env.VITE_SHOW_PERFORMANCE_MONITOR !== "true") {
+    return null;
+  }
   return (
-    <HelmetProvider>
-      <I18nextProvider i18n={i18n}>
-        <DocumentLanguageSync>
-          <ThemeProvider>
-            <NetworkProvider networkService={networkService}>
-            <QueryClientProvider client={queryClient}>
-              <ToastProvider>
-                <AuthProviderWrapper>
-                  <AuthAwareEntityProvider>
-                    <ApiProvider>
-                        <EntityAwareSubscriptionProvider>
-                          <BrowserRouter>
-                            <PageTracker />
-                            <Suspense fallback={<LoadingFallback />}>
-                              <Routes>
-                                {/* Root redirect - detect language */}
-                                <Route
-                                  path="/"
-                                  element={<LanguageRedirect />}
-                                />
+    <PerformancePanel
+      enabled={true}
+      position="bottom-right"
+      apiPatterns={PERFORMANCE_API_PATTERNS}
+    />
+  );
+}
 
-                                {/* Language-prefixed routes */}
-                                <Route
-                                  path="/:lang"
-                                  element={
-                                    <LanguageValidator
-                                      isLanguageSupported={isLanguageSupported}
-                                      defaultLanguage="en"
-                                      storageKey="language"
-                                    />
-                                  }
-                                >
-                                  {/* Public pages */}
-                                  <Route index element={<HomePage />} />
-                                  <Route path="login" element={<LoginPage />} />
-                                  <Route
-                                    path="pricing"
-                                    element={<PricingPageWrapper />}
-                                  />
-                                  <Route path="docs" element={<DocsPage />} />
-                                  <Route
-                                    path="docs/:section"
-                                    element={<DocsPage />}
-                                  />
-                                  <Route
-                                    path="use-cases"
-                                    element={<UseCasesPage />}
-                                  />
-                                  <Route
-                                    path="use-cases/text"
-                                    element={<UseCasesTextPage />}
-                                  />
-                                  <Route
-                                    path="use-cases/data"
-                                    element={<UseCasesDataPage />}
-                                  />
-                                  <Route
-                                    path="use-cases/content"
-                                    element={<UseCasesContentPage />}
-                                  />
-                                  <Route path="about" element={<AboutPage />} />
-                                  <Route
-                                    path="contact"
-                                    element={<ContactPage />}
-                                  />
-                                  <Route
-                                    path="privacy"
-                                    element={<PrivacyPage />}
-                                  />
-                                  <Route path="terms" element={<TermsPage />} />
-                                  <Route
-                                    path="cookies"
-                                    element={<CookiesPage />}
-                                  />
-                                  <Route
-                                    path="sitemap"
-                                    element={<SitemapPage />}
-                                  />
-                                  <Route
-                                    path="settings"
-                                    element={<AppSettingsPage />}
-                                  />
+function AppRoutes() {
+  return (
+    <DocumentLanguageSync>
+      <Suspense fallback={<LoadingFallback />}>
+        <Routes>
+          {/* Root redirect - detect language */}
+          <Route path="/" element={<LanguageRedirect />} />
 
-                                  {/* Dashboard redirect - picks default entity */}
-                                  <Route
-                                    path="dashboard"
-                                    element={
-                                      <ProtectedRoute>
-                                        <EntityRedirect />
-                                      </ProtectedRoute>
-                                    }
-                                  />
+          {/* Language-prefixed routes */}
+          <Route
+            path="/:lang"
+            element={
+              <LanguageValidator
+                isLanguageSupported={isLanguageSupported}
+                defaultLanguage="en"
+                storageKey="language"
+              />
+            }
+          >
+            {/* Public pages */}
+            <Route index element={<HomePage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="pricing" element={<PricingPageWrapper />} />
+            <Route path="docs" element={<DocsPage />} />
+            <Route path="docs/:section" element={<DocsPage />} />
+            <Route path="use-cases" element={<UseCasesPage />} />
+            <Route path="use-cases/text" element={<UseCasesTextPage />} />
+            <Route path="use-cases/data" element={<UseCasesDataPage />} />
+            <Route path="use-cases/content" element={<UseCasesContentPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="contact" element={<ContactPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="terms" element={<TermsPage />} />
+            <Route path="cookies" element={<CookiesPage />} />
+            <Route path="sitemap" element={<SitemapPage />} />
+            <Route path="settings" element={<AppSettingsPage />} />
 
-                                  {/* Protected dashboard routes with entity slug */}
-                                  <Route
-                                    path="dashboard/:entitySlug"
-                                    element={
-                                      <ProtectedRoute>
-                                        <DashboardPage />
-                                      </ProtectedRoute>
-                                    }
-                                  >
-                                    <Route index element={<ProjectsPage />} />
-                                    <Route
-                                      path="projects"
-                                      element={<ProjectsPage />}
-                                    />
-                                    <Route
-                                      path="projects/new"
-                                      element={<ProjectNewPage />}
-                                    />
-                                    <Route
-                                      path="projects/templates"
-                                      element={<TemplatesPage />}
-                                    />
-                                    <Route
-                                      path="projects/:projectId"
-                                      element={<ProjectDetailPage />}
-                                    />
-                                    <Route
-                                      path="projects/:projectId/endpoints/templates"
-                                      element={<EndpointTemplatesPage />}
-                                    />
-                                    <Route
-                                      path="projects/:projectId/endpoints/new"
-                                      element={<EndpointNewPage />}
-                                    />
-                                    <Route
-                                      path="projects/:projectId/endpoints/:endpointId"
-                                      element={<EndpointDetailPage />}
-                                    />
-                                    <Route
-                                      path="providers"
-                                      element={<ProvidersPage />}
-                                    />
-                                    {CONSTANTS.DEV_MODE && (
-                                      <Route
-                                        path="analytics"
-                                        element={<AnalyticsPage />}
-                                      />
-                                    )}
-                                    <Route
-                                      path="subscription"
-                                      element={<SubscriptionPage />}
-                                    />
-                                    {CONSTANTS.DEV_MODE && (
-                                      <Route
-                                        path="budgets"
-                                        element={<BudgetsPage />}
-                                      />
-                                    )}
-                                    <Route
-                                      path="settings"
-                                      element={<SettingsPage />}
-                                    />
-                                    <Route
-                                      path="rate-limits"
-                                      element={<RateLimitsPage />}
-                                    />
-                                    <Route
-                                      path="workspaces"
-                                      element={<WorkspacesPage />}
-                                    />
-                                    <Route
-                                      path="members"
-                                      element={<MembersPage />}
-                                    />
-                                    <Route
-                                      path="invitations"
-                                      element={<InvitationsPage />}
-                                    />
-                                    <Route
-                                      path="performance"
-                                      element={<PerformancePage />}
-                                    />
-                                  </Route>
+            {/* Dashboard redirect - picks default entity */}
+            <Route
+              path="dashboard"
+              element={
+                <ProtectedRoute>
+                  <EntityRedirect />
+                </ProtectedRoute>
+              }
+            />
 
-                                  {/* Catch-all redirect to home */}
-                                  <Route
-                                    path="*"
-                                    element={<Navigate to="." replace />}
-                                  />
-                                </Route>
+            {/* Protected dashboard routes with entity slug */}
+            <Route
+              path="dashboard/:entitySlug"
+              element={
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<ProjectsPage />} />
+              <Route path="projects" element={<ProjectsPage />} />
+              <Route path="projects/new" element={<ProjectNewPage />} />
+              <Route path="projects/templates" element={<TemplatesPage />} />
+              <Route path="projects/:projectId" element={<ProjectDetailPage />} />
+              <Route
+                path="projects/:projectId/endpoints/templates"
+                element={<EndpointTemplatesPage />}
+              />
+              <Route
+                path="projects/:projectId/endpoints/new"
+                element={<EndpointNewPage />}
+              />
+              <Route
+                path="projects/:projectId/endpoints/:endpointId"
+                element={<EndpointDetailPage />}
+              />
+              <Route path="providers" element={<ProvidersPage />} />
+              {CONSTANTS.DEV_MODE && (
+                <Route path="analytics" element={<AnalyticsPage />} />
+              )}
+              <Route path="subscription" element={<SubscriptionPage />} />
+              {CONSTANTS.DEV_MODE && (
+                <Route path="budgets" element={<BudgetsPage />} />
+              )}
+              <Route path="settings" element={<SettingsPage />} />
+              <Route path="rate-limits" element={<RateLimitsPage />} />
+              <Route path="workspaces" element={<WorkspacesPage />} />
+              <Route path="members" element={<MembersPage />} />
+              <Route path="invitations" element={<InvitationsPage />} />
+              <Route path="performance" element={<PerformancePage />} />
+            </Route>
 
-                                {/* Catch-all without language - redirect to language detection */}
-                                <Route
-                                  path="*"
-                                  element={<LanguageRedirect />}
-                                />
-                              </Routes>
-                            </Suspense>
-                            <ToastContainer />
-                            {/* Floating performance panel - controlled by VITE_SHOW_PERFORMANCE_MONITOR */}
-                            {import.meta.env.VITE_SHOW_PERFORMANCE_MONITOR ===
-                              "true" && (
-                              <PerformancePanel
-                                enabled={true}
-                                position="bottom-right"
-                                apiPatterns={PERFORMANCE_API_PATTERNS}
-                              />
-                            )}
-                            <InfoBanner />
-                          </BrowserRouter>
-                        </EntityAwareSubscriptionProvider>
-                    </ApiProvider>
-                  </AuthAwareEntityProvider>
-                </AuthProviderWrapper>
-              </ToastProvider>
-            </QueryClientProvider>
-            </NetworkProvider>
-          </ThemeProvider>
-        </DocumentLanguageSync>
-      </I18nextProvider>
-    </HelmetProvider>
+            {/* Catch-all redirect to home */}
+            <Route path="*" element={<Navigate to="." replace />} />
+          </Route>
+
+          {/* Catch-all without language - redirect to language detection */}
+          <Route path="*" element={<LanguageRedirect />} />
+        </Routes>
+        <PerformancePanelComponent />
+      </Suspense>
+    </DocumentLanguageSync>
+  );
+}
+
+function App() {
+  return (
+    <SudobilityAppWithFirebaseAuthAndEntities testMode={CONSTANTS.DEV_MODE}>
+      <AppRoutes />
+    </SudobilityAppWithFirebaseAuthAndEntities>
   );
 }
 

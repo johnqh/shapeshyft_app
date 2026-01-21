@@ -4,6 +4,7 @@ import { useAuthStatus } from "@sudobility/auth-components";
 import { getFirebaseAuth } from "@sudobility/auth_lib";
 import { LoginPage as LoginPageComponent } from "@sudobility/building_blocks";
 import { CONSTANTS } from "../config/constants";
+import SEO from "../components/seo/SEO";
 
 function LoginPage() {
   const { user, loading } = useAuthStatus();
@@ -35,14 +36,17 @@ function LoginPage() {
   }
 
   return (
-    <LoginPageComponent
-      appName={CONSTANTS.APP_NAME}
-      logo={<img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-12" />}
-      auth={auth}
-      onSuccess={() =>
-        navigate(`/${lang || "en"}/dashboard`, { replace: true })
-      }
-    />
+    <>
+      <SEO noIndex={true} />
+      <LoginPageComponent
+        appName={CONSTANTS.APP_NAME}
+        logo={<img src="/logo.png" alt={CONSTANTS.APP_NAME} className="h-12" />}
+        auth={auth}
+        onSuccess={() =>
+          navigate(`/${lang || "en"}/dashboard`, { replace: true })
+        }
+      />
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ import type {
   StorageProvider,
   StorageConfigCreateRequest,
 } from "@sudobility/shapeshyft_types";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useToast } from "../../hooks/useToast";
 
 function SettingsPage() {

@@ -13,7 +13,7 @@ import {
   BudgetAlerts,
 } from "../../components/dashboard/budgets";
 import { useToast } from "../../hooks/useToast";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 
 function BudgetsPage() {
   const { t } = useTranslation("dashboard");

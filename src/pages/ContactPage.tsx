@@ -14,6 +14,7 @@ function ContactPage() {
         canonical="/contact"
         title={t("seo.title", { appName })}
         description={t("seo.description", { appName })}
+        keywords="contact ShapeShyft, support, help, customer service, API support, technical support"
       />
 
       <Section spacing="2xl" maxWidth="4xl">

@@ -76,7 +76,11 @@ export function SEO({
   const { i18n } = useTranslation();
   const currentLang = i18n.language || "en";
   const fullTitle = title ? `${title} | ${CONSTANTS.APP_NAME}` : DEFAULT_TITLE;
-  const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : undefined;
+
+  // Build canonical URL with language prefix and normalized trailing slash
+  const canonicalUrl = canonical
+    ? `${BASE_URL}/${currentLang}${canonical === "/" ? "" : canonical.replace(/\/$/, "")}`
+    : undefined;
 
   // Get localized keywords if available, otherwise use base keywords
   const effectiveKeywords =
@@ -87,11 +91,11 @@ export function SEO({
     localizedOgImages?.[currentLang] || localizedOgImages?.en || ogImage;
 
   // Generate hreflang URLs for all supported languages
+  // All pages include language prefix (including English) to match actual routing
   const getLocalizedUrl = (lang: string, path: string) => {
-    if (lang === "en") {
-      return `${BASE_URL}${path}`;
-    }
-    return `${BASE_URL}/${lang}${path}`;
+    // Normalize path: remove trailing slashes except for root
+    const normalizedPath = path === "/" ? "" : path.replace(/\/$/, "");
+    return `${BASE_URL}/${lang}${normalizedPath}`;
   };
 
   // Build BreadcrumbList structured data

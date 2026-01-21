@@ -5,7 +5,7 @@ import {
   RateLimitsPage as RateLimitsPageComponent,
   RateLimitHistoryPage,
 } from "@sudobility/ratelimit_pages";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 
 type TabType = "limits" | "history";

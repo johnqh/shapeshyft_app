@@ -29,7 +29,7 @@ import {
 } from "@sudobility/components";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import SchemaEditor from "./SchemaEditor";
 import { ProviderIcon } from "../ui/ProviderIcon";
 

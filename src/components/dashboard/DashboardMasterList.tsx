@@ -5,7 +5,7 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import type { Project, LlmApiKeySafe } from "@sudobility/shapeshyft_types";
 import { useProviders } from "@sudobility/shapeshyft_client";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { CONSTANTS } from "../../config/constants";
 
 interface CollapsibleSectionProps {

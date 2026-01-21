@@ -25,7 +25,6 @@ PROJECTS=(
     "../subscription_service:0"
     "../auth_service:0"
     "../entity_service:0"
-    "../entity_client:0"
     "../ratelimit_service:0"
     "../ratelimit_client:0"
     "../shapeshyft_types:60"

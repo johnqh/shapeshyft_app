@@ -15,6 +15,7 @@ function AboutPage() {
         canonical="/about"
         title={t("seo.title", { appName })}
         description={t("seo.description", { appName })}
+        keywords="about ShapeShyft, LLM API company, structured output platform, AI API service, company mission"
       />
 
       {/* Hero Section */}

@@ -84,6 +84,7 @@ function TermsPage() {
         canonical="/terms"
         title={t("seo.title", { appName })}
         description={t("seo.description", { appName })}
+        keywords="terms of service, ShapeShyft terms, API terms, user agreement, service agreement"
       />
 
       <AppTextPage

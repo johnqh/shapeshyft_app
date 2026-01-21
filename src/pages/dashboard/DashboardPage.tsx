@@ -9,7 +9,8 @@ import {
 } from "@sudobility/shapeshyft_lib";
 import ScreenContainer from "../../components/layout/ScreenContainer";
 import DashboardMasterList from "../../components/dashboard/DashboardMasterList";
-import { useApi } from "../../hooks/useApi";
+import SEO from "../../components/seo/SEO";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
 import { useCurrentEntity } from "../../hooks/useCurrentEntity";
 
@@ -166,6 +167,7 @@ function DashboardPage() {
       showFooter={true}
       showBreadcrumbs={true}
     >
+      <SEO noIndex={true} />
       <main className="flex-1">
         <MasterDetailLayout
           masterTitle={t("title")}

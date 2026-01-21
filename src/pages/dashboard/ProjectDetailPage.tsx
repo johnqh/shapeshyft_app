@@ -13,7 +13,7 @@ import type {
   EndpointCreateRequest,
 } from "@sudobility/shapeshyft_types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useToast } from "../../hooks/useToast";
 import ApiKeySection from "../../components/dashboard/ApiKeySection";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";

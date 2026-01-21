@@ -17,6 +17,7 @@ function SettingsPage() {
         canonical="/settings"
         title={t("seo.title", { appName })}
         description={t("seo.description", { appName })}
+        keywords="ShapeShyft settings, preferences, theme, language settings, appearance settings"
       />
 
       <GlobalSettingsPage

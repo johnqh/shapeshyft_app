@@ -9,7 +9,7 @@ import {
   BreadcrumbBuilder,
   type BreadcrumbItem,
 } from "../utils/BreadcrumbBuilder";
-import { useApi } from "./useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 
 /**
  * Custom hook to generate breadcrumbs based on current location

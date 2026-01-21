@@ -11,7 +11,7 @@ import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
 import { useRateLimits } from "@sudobility/shapeshyft_client";
 import { useToast } from "../../hooks/useToast";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useCurrentEntity } from "../../hooks/useCurrentEntity";
 import {
   getFreeTierFeatures,

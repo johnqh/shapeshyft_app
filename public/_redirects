@@ -3,3 +3,40 @@
 
 # Fix common sitemap typo
 /sitemaps.xml /sitemap.xml 301
+
+# Trailing slash normalization - redirect to non-trailing slash versions
+# Homepage language variants
+/en/ /en 301
+/ar/ /ar 301
+/de/ /de 301
+/es/ /es 301
+/fr/ /fr 301
+/it/ /it 301
+/ja/ /ja 301
+/ko/ /ko 301
+/pt/ /pt 301
+/ru/ /ru 301
+/sv/ /sv 301
+/th/ /th 301
+/uk/ /uk 301
+/vi/ /vi 301
+/zh/ /zh 301
+/zh-hant/ /zh-hant 301
+
+# Legacy URLs without language prefix -> redirect to /en/
+/pricing /en/pricing 301
+/docs /en/docs/getting-started 301
+/docs/getting-started /en/docs/getting-started 301
+/docs/concepts /en/docs/concepts 301
+/docs/api-reference /en/docs/api-reference 301
+/use-cases /en/use-cases 301
+/use-cases/text /en/use-cases/text 301
+/use-cases/data /en/use-cases/data 301
+/use-cases/content /en/use-cases/content 301
+/about /en/about 301
+/contact /en/contact 301
+/login /en/login 301
+/privacy /en/privacy 301
+/terms /en/terms 301
+/cookies /en/cookies 301
+/sitemap /en/sitemap 301

@@ -127,6 +127,7 @@ function PrivacyPage() {
         canonical="/privacy"
         title={t("seo.title", { appName })}
         description={t("seo.description", { appName })}
+        keywords="privacy policy, ShapeShyft privacy, data protection, GDPR, data security, API privacy"
       />
 
       <AppTextPage

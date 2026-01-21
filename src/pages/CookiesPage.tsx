@@ -133,6 +133,7 @@ function CookiesPage() {
           defaultValue: `Cookie policy for ${appName}. Learn about our privacy-focused approach.`,
           appName,
         })}
+        keywords="cookie policy, ShapeShyft cookies, privacy, tracking, local storage, browser cookies"
       />
 
       <AppTextPage

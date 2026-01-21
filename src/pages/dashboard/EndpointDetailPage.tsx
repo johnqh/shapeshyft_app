@@ -41,7 +41,7 @@ import {
   EditableSelector,
 } from "@sudobility/components";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useToast } from "../../hooks/useToast";
 import SchemaEditor from "../../components/dashboard/SchemaEditor";
 import DetailErrorState from "../../components/dashboard/DetailErrorState";

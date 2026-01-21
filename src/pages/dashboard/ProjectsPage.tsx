@@ -7,7 +7,7 @@ import { InfoType } from "@sudobility/types";
 import { ItemList } from "@sudobility/components";
 import type { Project } from "@sudobility/shapeshyft_types";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
-import { useApi } from "../../hooks/useApi";
+import { useApi } from "@sudobility/building_blocks/firebase";
 import { useToast } from "../../hooks/useToast";
 
 // Icons
