@@ -61,6 +61,9 @@ interface JsonSchema {
   required: string[];
 }
 
+// Reserved field names that cannot be used by user-defined properties
+const RESERVED_FIELD_NAMES = ["context"];
+
 interface PropertyEditorProps {
   name: string;
   property: JsonSchemaProperty;
@@ -70,6 +73,74 @@ interface PropertyEditorProps {
   onRename: (oldName: string, newName: string) => void;
   onToggleRequired: (name: string) => void;
   depth?: number;
+}
+
+/**
+ * Read-only property editor for reserved fields like "context"
+ * Shows the field but doesn't allow editing name, type, or deletion
+ */
+function ReadOnlyPropertyEditor({
+  name,
+  property,
+}: {
+  name: string;
+  property: JsonSchemaProperty;
+}) {
+  const { t } = useTranslation("dashboard");
+
+  return (
+    <div className="py-2 opacity-75">
+      <div className="flex items-center gap-2 flex-wrap">
+        {/* Property Name (read-only) */}
+        <span
+          className="px-2 py-1 text-sm font-mono text-theme-text-secondary bg-theme-bg-secondary border border-theme-border rounded cursor-not-allowed"
+          title={t("schema.reservedField")}
+        >
+          {name}
+        </span>
+
+        {/* Type (read-only) */}
+        <span className="px-2 py-1 text-sm text-theme-text-secondary bg-theme-bg-secondary border border-theme-border rounded cursor-not-allowed">
+          {property.type}
+        </span>
+
+        {/* Optional indicator */}
+        <span className="text-xs text-theme-text-tertiary italic">
+          ({t("schema.optional")})
+        </span>
+
+        {/* Lock icon */}
+        <span
+          className="p-1 text-theme-text-tertiary"
+          title={t("schema.reservedFieldTooltip")}
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            />
+          </svg>
+        </span>
+      </div>
+
+      {/* Description (read-only) */}
+      <div className="mt-1 ml-6">
+        <input
+          type="text"
+          value={property.description || t("schema.contextDescriptionPlaceholder")}
+          disabled
+          className="w-full px-2 py-1 text-sm border border-theme-border rounded bg-theme-bg-secondary text-theme-text-tertiary cursor-not-allowed"
+        />
+      </div>
+    </div>
+  );
 }
 
 function PropertyEditor({
@@ -424,20 +495,35 @@ interface SchemaEditorInnerProps {
   schema: JsonSchema;
   onChange: (schema: JsonSchema) => void;
   depth?: number;
+  /** Whether to show the reserved "context" field (for input schemas) */
+  showContextField?: boolean;
 }
 
 function SchemaEditorInner({
   schema,
   onChange,
   depth = 0,
+  showContextField = false,
 }: SchemaEditorInnerProps) {
   const { t } = useTranslation("dashboard");
+
+  // Get the context property (or create a default one)
+  const contextProperty: JsonSchemaProperty = schema.properties.context ?? {
+    type: "string",
+    description: "",
+  };
+
+  // Get user-defined properties (excluding reserved fields)
+  const userProperties = Object.entries(schema.properties).filter(
+    ([name]) => !RESERVED_FIELD_NAMES.includes(name),
+  );
 
   const handleAddProperty = () => {
     const newProps = { ...schema.properties };
     let newName = "newProperty";
     let counter = 1;
-    while (newProps[newName]) {
+    // Avoid reserved names and existing names
+    while (newProps[newName] || RESERVED_FIELD_NAMES.includes(newName)) {
       newName = `newProperty${counter++}`;
     }
     newProps[newName] = { type: "string" };
@@ -452,6 +538,9 @@ function SchemaEditorInner({
   };
 
   const handleRemoveProperty = (name: string) => {
+    // Don't allow removing reserved fields
+    if (RESERVED_FIELD_NAMES.includes(name)) return;
+
     const newProps = { ...schema.properties };
     delete newProps[name];
     onChange({
@@ -462,6 +551,11 @@ function SchemaEditorInner({
   };
 
   const handleRenameProperty = (oldName: string, newName: string) => {
+    // Don't allow renaming to a reserved field name
+    if (RESERVED_FIELD_NAMES.includes(newName)) return;
+    // Don't allow renaming reserved fields
+    if (RESERVED_FIELD_NAMES.includes(oldName)) return;
+
     const newProps: Record<string, JsonSchemaProperty> = {};
     for (const [key, value] of Object.entries(schema.properties)) {
       newProps[key === oldName ? newName : key] = value;
@@ -482,7 +576,13 @@ function SchemaEditorInner({
 
   return (
     <div>
-      {Object.entries(schema.properties).map(([name, property]) => (
+      {/* Reserved context field - always shown first for input schemas */}
+      {showContextField && (
+        <ReadOnlyPropertyEditor name="context" property={contextProperty} />
+      )}
+
+      {/* User-defined properties */}
+      {userProperties.map(([name, property]) => (
         <PropertyEditor
           key={name}
           name={name}
@@ -495,7 +595,7 @@ function SchemaEditorInner({
           depth={depth}
         />
       ))}
-      {Object.keys(schema.properties).length === 0 && (
+      {userProperties.length === 0 && !showContextField && (
         <p className="text-sm text-theme-text-tertiary italic py-2">
           {t("schema.noProperties")}
         </p>
@@ -528,9 +628,16 @@ interface SchemaEditorProps {
   value: string;
   onChange: (value: string) => void;
   error?: boolean;
+  /** Whether to show the reserved "context" field (for input schemas) */
+  showContextField?: boolean;
 }
 
-function SchemaEditor({ value, onChange, error }: SchemaEditorProps) {
+function SchemaEditor({
+  value,
+  onChange,
+  error,
+  showContextField = false,
+}: SchemaEditorProps) {
   const { t } = useTranslation("dashboard");
   const [isRawMode, setIsRawMode] = useState(false);
 
@@ -603,7 +710,11 @@ function SchemaEditor({ value, onChange, error }: SchemaEditorProps) {
             className="w-full px-3 py-2 bg-theme-bg-primary border border-theme-border rounded-lg font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
           />
         ) : (
-          <SchemaEditorInner schema={schema!} onChange={handleSchemaChange} />
+          <SchemaEditorInner
+            schema={schema!}
+            onChange={handleSchemaChange}
+            showContextField={showContextField}
+          />
         )}
       </div>
     </div>

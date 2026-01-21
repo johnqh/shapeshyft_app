@@ -2,7 +2,6 @@
   "hero": {
     "title": "LLM-Ausgaben in strukturierte APIs umwandeln",
     "subtitle": "Definieren Sie Endpunkte, die beliebige LLM-Anbieter verwenden, um für Ihre Anwendungen konsistente, schema-validierte JSON-Antworten bereitzustellen.",
-    "cta": "Loslegen",
     "ctaSecondary": "Dokumentation anzeigen"
   },
   "features": {
@@ -43,7 +42,6 @@
   },
   "cta": {
     "title": "Bereit, loszulegen?",
-    "subtitle": "Erstellen Sie in wenigen Minuten Ihre erste strukturierte AI-Endpunkt.",
-    "button": "Starte mit dem Bau"
+    "subtitle": "Erstellen Sie in wenigen Minuten Ihre erste strukturierte AI-Endpunkt."
   }
 }

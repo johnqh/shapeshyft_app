@@ -2,7 +2,6 @@
   "hero": {
     "title": "Trasforma gli output dei modelli linguistici in API strutturate",
     "subtitle": "Definisci endpoint che utilizzano qualsiasi provider di LLM per fornire risposte JSON coerenti e con validazione dello schema per le tue applicazioni.",
-    "cta": "Inizia ora",
     "ctaSecondary": "Visualizza la documentazione"
   },
   "features": {
@@ -43,7 +42,6 @@
   },
   "cta": {
     "title": "Pronto per iniziare?",
-    "subtitle": "Crea il tuo primo endpoint AI strutturato in pochi minuti.",
-    "button": "Inizia a costruire"
+    "subtitle": "Crea il tuo primo endpoint AI strutturato in pochi minuti."
   }
 }

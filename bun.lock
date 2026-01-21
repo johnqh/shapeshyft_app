@@ -17,7 +17,7 @@
         "@sudobility/design": "^1.1.18",
         "@sudobility/devops-components": "^2.0.16",
         "@sudobility/di": "^1.5.25",
-        "@sudobility/di_web": "^0.1.78",
+        "@sudobility/di_web": "^0.1.79",
         "@sudobility/entity-components": "^1.0.8",
         "@sudobility/entity_client": "^0.0.17",
         "@sudobility/entity_pages": "^0.0.36",
@@ -448,7 +448,7 @@
 
     "@sudobility/di": ["@sudobility/di@1.5.25", "", { "peerDependencies": { "@notifee/react-native": ">=7.0.0", "@react-native-async-storage/async-storage": ">=1.19.0", "@react-native-community/netinfo": ">=9.0.0", "@react-native-firebase/analytics": ">=18.0.0", "@react-native-firebase/app": ">=18.0.0", "@react-native-firebase/messaging": ">=18.0.0", "@react-native-firebase/remote-config": ">=18.0.0", "@sudobility/types": "^1.9.48", "firebase": ">=10.0.0", "react": ">=18.0.0", "react-native": ">=0.70.0" }, "optionalPeers": ["@notifee/react-native", "@react-native-async-storage/async-storage", "@react-native-community/netinfo", "@react-native-firebase/analytics", "@react-native-firebase/app", "@react-native-firebase/messaging", "@react-native-firebase/remote-config", "firebase", "react-native"] }, "sha512-SJjo/zDiK6UlC35JHOzW3BIfPAwXjTRO5NfKc3mTqiVqekc0F8IX9IylUfXIWLbWYp13jOGTA3FY3huQnPBxWA=="],
 
-    "@sudobility/di_web": ["@sudobility/di_web@0.1.78", "", { "peerDependencies": { "@sudobility/components": "^5.0.1", "@sudobility/di": "^1.5.25", "@sudobility/types": "^1.9.48", "react": "^18.0.0 || ^19.0.0" } }, "sha512-qwkxbEcmQDuAwckcFJMqHunm09kfLSqeB0WS/nFHGhKuhB98PkxnjKdc1OlLf1AO4QF9hIjazZxCoE18SRVdJQ=="],
+    "@sudobility/di_web": ["@sudobility/di_web@0.1.79", "", { "peerDependencies": { "@sudobility/components": "^5.0.1", "@sudobility/di": "^1.5.25", "@sudobility/types": "^1.9.48", "react": "^18.0.0 || ^19.0.0" } }, "sha512-eUaILiPkJlz8Se+ivloRxTH8nNRTOLKBCxJy3Ts/tpdPiRc37aUpcxMxM53XcWfCKH8H7QE3aG4bNvay+wU7+Q=="],
 
     "@sudobility/entity-components": ["@sudobility/entity-components@1.0.8", "", { "optionalDependencies": { "@rollup/rollup-linux-x64-gnu": "4.52.5", "@rollup/rollup-linux-x64-musl": "4.52.5" }, "peerDependencies": { "@sudobility/components": "^4.0.160", "@sudobility/design": "^1.1.18", "@sudobility/types": "^1.9.46", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" } }, "sha512-bciTtSMyA6G/y92zlEvol5ncEuz76Ste5t+LF8Spw/WX1qvbTHvMZkyvdXfngW6PmiyAQ6PFX+z2DUy6g6Rdig=="],
 

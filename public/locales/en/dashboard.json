@@ -335,6 +335,10 @@
     "clickToEditName": "Click to edit field name",
     "basicTypes": "Basic Types",
     "mediaTypes": "Media Types",
+    "reservedField": "Reserved field",
+    "reservedFieldTooltip": "This is a reserved system field and cannot be removed",
+    "optional": "optional",
+    "contextDescriptionPlaceholder": "Describe how context will be used (optional)",
     "types": {
       "string": "String",
       "number": "Number",

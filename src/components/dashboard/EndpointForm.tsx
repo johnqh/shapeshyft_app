@@ -801,6 +801,7 @@ function EndpointForm({
                         }
                       }}
                       error={!!hasError("inputSchema")}
+                      showContextField={true}
                     />
                     {renderError("inputSchema")}
                   </div>

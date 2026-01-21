@@ -2,7 +2,6 @@
   "hero": {
     "title": "Förvandla LLM-utdata till strukturerade API:er",
     "subtitle": "Definiera slutpunkter som använder någon LLM-tillgång för att leverera konsekventa, schemavaliderade JSON-svar för dina appar.",
-    "cta": "Börja",
     "ctaSecondary": "Visa dokumentation"
   },
   "features": {
@@ -43,7 +42,6 @@
   },
   "cta": {
     "title": "Klar att börja?",
-    "subtitle": "Skapa ditt första strukturerade AI-slutpunkt på minuter.",
-    "button": "Starta bygga"
+    "subtitle": "Skapa ditt första strukturerade AI-slutpunkt på minuter."
   }
 }

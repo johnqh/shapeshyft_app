@@ -1080,6 +1080,7 @@ function EndpointDetailPage() {
                   <SchemaEditor
                     value={editInputSchema}
                     onChange={setEditInputSchema}
+                    showContextField={true}
                   />
                 ) : (
                   <p className="text-sm text-theme-text-tertiary italic p-4 bg-theme-bg-secondary rounded-xl">
@@ -1238,7 +1239,7 @@ function EndpointDetailPage() {
               )}
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 justify-end">
               <button
                 onClick={handleGenerateSample}
                 className="px-4 py-2 border border-theme-border text-theme-text-primary rounded-lg hover:bg-theme-hover-bg transition-colors text-sm"

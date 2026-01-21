@@ -2,7 +2,6 @@
   "hero": {
     "title": "Transformar salidas de LLM en APIs estructuradas",
     "subtitle": "Define endpoints que usen cualquier proveedor de LLM para ofrecer respuestas JSON coherentes y validadas según el esquema para tus aplicaciones.",
-    "cta": "Comenzar",
     "ctaSecondary": "Ver documentación"
   },
   "features": {
@@ -43,7 +42,6 @@
   },
   "cta": {
     "title": "¿Listo para comenzar?",
-    "subtitle": "Cree su primer punto de acceso de IA estructurado en minutos.",
-    "button": "Comenzar a construir"
+    "subtitle": "Cree su primer punto de acceso de IA estructurado en minutos."
   }
 }

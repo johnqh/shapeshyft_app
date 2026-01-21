@@ -2,7 +2,7 @@
   "hero": {
     "title": "Transform LLM Outputs into Structured APIs",
     "subtitle": "Define endpoints that use any LLM provider to deliver consistent, schema-validated JSON responses for your applications.",
-    "cta": "Get Started",
+    "cta": "Get Started for Free",
     "ctaSecondary": "View Documentation"
   },
   "features": {
@@ -44,6 +44,6 @@
   "cta": {
     "title": "Ready to get started?",
     "subtitle": "Create your first structured AI endpoint in minutes.",
-    "button": "Start Building"
+    "button": "Start Building for Free"
   }
 }

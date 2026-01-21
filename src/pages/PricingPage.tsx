@@ -23,7 +23,7 @@ import { refreshSubscription } from "@sudobility/subscription_lib";
 function PricingPage() {
   const { t } = useTranslation("pricing");
   const { t: tSub } = useTranslation("subscription");
-  const { user, openModal } = useAuthStatus();
+  const { user } = useAuthStatus();
   const { purchase } = useSafeSubscriptionContext();
   const { currentEntitySlug } = useCurrentEntity();
   const { navigate } = useLocalizedNavigate();
@@ -58,7 +58,7 @@ function PricingPage() {
         );
       }
     } else {
-      openModal();
+      navigate("/login");
     }
   };
 
@@ -70,7 +70,7 @@ function PricingPage() {
         navigate("/dashboard");
       }
     } else {
-      openModal();
+      navigate("/login");
     }
   };
 

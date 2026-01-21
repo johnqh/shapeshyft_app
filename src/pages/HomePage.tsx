@@ -9,7 +9,7 @@ import { CONSTANTS } from "../config/constants";
 
 function HomePage() {
   const { t } = useTranslation("home");
-  const { user, openModal } = useAuthStatus();
+  const { user } = useAuthStatus();
   const { navigate } = useLocalizedNavigate();
   const appName = CONSTANTS.APP_NAME;
 
@@ -19,7 +19,7 @@ function HomePage() {
     if (isAuthenticated) {
       navigate("/dashboard");
     } else {
-      openModal();
+      navigate("/login");
     }
   };
 
