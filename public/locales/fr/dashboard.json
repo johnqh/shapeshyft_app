@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "Le nom d'affichage est obligatoire",
         "nameTooShort": "Le nom doit comporter au moins 2 caractères",
-        "nameExists": "Un projet avec ce nom existe déjà"
+        "nameExists": "Un projet avec ce nom existe déjà",
+        "slugRequired": "Le nom du projet est requis"
       },
       "slugPreview": "Slug",
       "create": "Créer un projet"
@@ -231,6 +232,7 @@
     "configure": "Configurer le modèle",
     "projectName": "Nom du projet",
     "projectNamePlaceholder": "mon-projet",
+    "projectNameHint": "Lettres minuscules, chiffres et traits d'union uniquement",
     "llmKey": "Fournisseur",
     "selectKey": "Sélectionnez un fournisseur",
     "noKeys": "Aucune clé API disponible.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Cliquez pour modifier le nom du champ",
     "basicTypes": "Types de base",
     "mediaTypes": "Types de médias",
+    "reservedField": "Champ réservé",
+    "reservedFieldTooltip": "Ce champ système est réservé et ne peut pas être supprimé",
+    "optional": "facultatif",
+    "contextDescriptionPlaceholder": "Décrivez comment le contexte sera utilisé (facultatif)",
     "types": {
       "string": "Chaîne",
       "number": "Nombre",

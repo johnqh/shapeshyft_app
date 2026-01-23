@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "ต้องระบุชื่อแสดง",
         "nameTooShort": "ชื่อต้องมีอย่างน้อย 2 ตัวอักษร",
-        "nameExists": "โครงการที่มีชื่อนี้อยู่แล้ว"
+        "nameExists": "โครงการที่มีชื่อนี้อยู่แล้ว",
+        "slugRequired": "ต้องระบุชื่อโปรเจกต์"
       },
       "slugPreview": "สแล็ก",
       "create": "สร้างโปรเจกต์"
@@ -231,6 +232,7 @@
     "configure": "ตั้งค่าเทมเพลต",
     "projectName": "ชื่อโปรเจกต์",
     "projectNamePlaceholder": "โปรเจกต์ของฉัน",
+    "projectNameHint": "ตัวอักษรพิมพ์เล็ก ตัวเลข และเครื่องหมายกากบาทเท่านั้น",
     "llmKey": "ผู้ให้บริการ",
     "selectKey": "เลือกผู้ให้บริการ",
     "noKeys": "ไม่มีคีย์ API ให้ใช้",
@@ -333,6 +335,10 @@
     "clickToEditName": "คลิกเพื่อแก้ไขชื่อฟิลด์",
     "basicTypes": "ประเภทพื้นฐาน",
     "mediaTypes": "ประเภทสื่อ",
+    "reservedField": "ฟิลด์ที่จองไว้",
+    "reservedFieldTooltip": "เป็นฟิลด์ระบบสำรองไว้ จึงไม่สามารถลบได้",
+    "optional": "ตามความสมัครใจ",
+    "contextDescriptionPlaceholder": "อธิบายวิธีที่บริบทจะถูกใช้ (ไม่บังคับ)",
     "types": {
       "string": "สตริง",
       "number": "จำนวน",

@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "Visningsnamn krävs",
         "nameTooShort": "Namnet måste vara minst 2 tecken",
-        "nameExists": "Ett projekt med detta namn finns redan"
+        "nameExists": "Ett projekt med detta namn finns redan",
+        "slugRequired": "Projektnamn krävs"
       },
       "slugPreview": "Slug",
       "create": "Skapa projekt"
@@ -231,6 +232,7 @@
     "configure": "Konfigurera mall",
     "projectName": "Projektnamn",
     "projectNamePlaceholder": "mitt-projekt",
+    "projectNameHint": "Endast gemener, siffror och bindestreck",
     "llmKey": "Provider",
     "selectKey": "Välj en leverantör",
     "noKeys": "Inga API-nycklar tillgängliga.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Klicka för att redigera fältnamn",
     "basicTypes": "Grundläggande typer",
     "mediaTypes": "Mediatyper",
+    "reservedField": "Reserverat fält",
+    "reservedFieldTooltip": "Detta är ett reserverat systemfält och kan inte tas bort",
+    "optional": "valfritt",
+    "contextDescriptionPlaceholder": "Beskriv hur kontext kommer att användas (valfritt)",
     "types": {
       "string": "Sträng",
       "number": "Nummer",

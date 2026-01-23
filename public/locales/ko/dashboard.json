@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "표시 이름은 필수 항목입니다",
         "nameTooShort": "이름은 최소 2자 이상이어야 합니다",
-        "nameExists": "이 이름을 가진 프로젝트가 이미 존재합니다"
+        "nameExists": "이 이름을 가진 프로젝트가 이미 존재합니다",
+        "slugRequired": "프로젝트 이름이 필요합니다"
       },
       "slugPreview": "슬러그",
       "create": "프로젝트 생성"
@@ -231,6 +232,7 @@
     "configure": "템플릿 구성",
     "projectName": "프로젝트 이름",
     "projectNamePlaceholder": "my-project",
+    "projectNameHint": "소문자, 숫자, 하이픈만 사용",
     "llmKey": "공급자",
     "selectKey": "공급자 선택",
     "noKeys": "사용 가능한 API 키가 없습니다.",
@@ -333,6 +335,10 @@
     "clickToEditName": "필드 이름을 편집하려면 클릭하세요",
     "basicTypes": "기본 타입",
     "mediaTypes": "미디어 유형",
+    "reservedField": "예약된 필드",
+    "reservedFieldTooltip": "이 필드는 시스템 예약 필드이므로 제거할 수 없습니다.",
+    "optional": "선택사항",
+    "contextDescriptionPlaceholder": "컨텍스트가 어떻게 사용될지 설명하기 (선택 사항)",
     "types": {
       "string": "문자열",
       "number": "숫자",

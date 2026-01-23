@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "O nome de exibição é obrigatório",
         "nameTooShort": "O nome deve ter pelo menos 2 caracteres",
-        "nameExists": "Um projeto com este nome já existe"
+        "nameExists": "Um projeto com este nome já existe",
+        "slugRequired": "O nome do projeto é obrigatório"
       },
       "slugPreview": "Slug",
       "create": "Criar Projeto"
@@ -231,6 +232,7 @@
     "configure": "Configurar modelo",
     "projectName": "Nome do Projeto",
     "projectNamePlaceholder": "meu-projeto",
+    "projectNameHint": "Apenas letras minúsculas, números e hifens",
     "llmKey": "Fornecedor",
     "selectKey": "Selecione um provedor",
     "noKeys": "Nenhuma chave de API disponível.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Clique para editar o nome do campo",
     "basicTypes": "Tipos Básicos",
     "mediaTypes": "Tipos de mídia",
+    "reservedField": "Campo reservado",
+    "reservedFieldTooltip": "Este é um campo de sistema reservado e não pode ser removido",
+    "optional": "opcional",
+    "contextDescriptionPlaceholder": "Descreva como o contexto será utilizado (opcional)",
     "types": {
       "string": "String",
       "number": "Número",

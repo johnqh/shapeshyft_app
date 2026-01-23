@@ -134,7 +134,9 @@ function ReadOnlyPropertyEditor({
       <div className="mt-1 ml-6">
         <input
           type="text"
-          value={property.description || t("schema.contextDescriptionPlaceholder")}
+          value={
+            property.description || t("schema.contextDescriptionPlaceholder")
+          }
           disabled
           className="w-full px-2 py-1 text-sm border border-theme-border rounded bg-theme-bg-secondary text-theme-text-tertiary cursor-not-allowed"
         />

@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://shapeshyft.ai/en</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en" />
@@ -29,7 +29,7 @@
   <!-- Pricing page -->
   <url>
     <loc>https://shapeshyft.ai/en/pricing</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/pricing" />
@@ -54,7 +54,7 @@
   <!-- Documentation - Main (redirects to getting-started) -->
   <url>
     <loc>https://shapeshyft.ai/en/docs/getting-started</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/docs/getting-started" />
@@ -79,7 +79,7 @@
   <!-- Documentation - Concepts -->
   <url>
     <loc>https://shapeshyft.ai/en/docs/concepts</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/docs/concepts" />
@@ -104,7 +104,7 @@
   <!-- Documentation - API Reference -->
   <url>
     <loc>https://shapeshyft.ai/en/docs/api-reference</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/docs/api-reference" />
@@ -129,7 +129,7 @@
   <!-- Use Cases - Overview -->
   <url>
     <loc>https://shapeshyft.ai/en/use-cases</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/use-cases" />
@@ -154,7 +154,7 @@
   <!-- Use Cases - Text -->
   <url>
     <loc>https://shapeshyft.ai/en/use-cases/text</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/use-cases/text" />
@@ -179,7 +179,7 @@
   <!-- Use Cases - Data -->
   <url>
     <loc>https://shapeshyft.ai/en/use-cases/data</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/use-cases/data" />
@@ -204,7 +204,7 @@
   <!-- Use Cases - Content -->
   <url>
     <loc>https://shapeshyft.ai/en/use-cases/content</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/use-cases/content" />
@@ -229,7 +229,7 @@
   <!-- About page -->
   <url>
     <loc>https://shapeshyft.ai/en/about</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/about" />
@@ -254,7 +254,7 @@
   <!-- Contact page -->
   <url>
     <loc>https://shapeshyft.ai/en/contact</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/contact" />
@@ -279,7 +279,7 @@
   <!-- Login page -->
   <url>
     <loc>https://shapeshyft.ai/en/login</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/login" />
@@ -304,7 +304,7 @@
   <!-- Privacy Policy -->
   <url>
     <loc>https://shapeshyft.ai/en/privacy</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/privacy" />
@@ -329,7 +329,7 @@
   <!-- Terms of Service -->
   <url>
     <loc>https://shapeshyft.ai/en/terms</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/terms" />
@@ -354,7 +354,7 @@
   <!-- Cookies Policy -->
   <url>
     <loc>https://shapeshyft.ai/en/cookies</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/cookies" />
@@ -379,7 +379,7 @@
   <!-- HTML Sitemap -->
   <url>
     <loc>https://shapeshyft.ai/en/sitemap</loc>
-    <lastmod>2026-01-22</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://shapeshyft.ai/en/sitemap" />

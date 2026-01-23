@@ -4,7 +4,10 @@
  * Usage: analyticsService.trackEvent('button_click', { button_name: 'submit' })
  */
 
-import { getAnalyticsService, type AnalyticsEventParams } from "@sudobility/di_web";
+import {
+  getAnalyticsService,
+  type AnalyticsEventParams,
+} from "@sudobility/di_web";
 
 export type { AnalyticsEventParams };
 
@@ -33,7 +36,11 @@ export const analyticsService = {
       // Analytics not initialized
     }
   },
-  trackLinkClick(linkUrl: string, linkText?: string, params?: AnalyticsEventParams): void {
+  trackLinkClick(
+    linkUrl: string,
+    linkText?: string,
+    params?: AnalyticsEventParams,
+  ): void {
     try {
       getAnalyticsService().trackLinkClick(linkUrl, linkText, params);
     } catch {

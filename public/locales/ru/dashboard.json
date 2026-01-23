@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "Имя отображения обязательно",
         "nameTooShort": "Имя должно содержать не менее 2 символов",
-        "nameExists": "Проект с таким названием уже существует"
+        "nameExists": "Проект с таким названием уже существует",
+        "slugRequired": "Имя проекта обязательно"
       },
       "slugPreview": "Слаг",
       "create": "Создать проект"
@@ -231,6 +232,7 @@
     "configure": "Настроить шаблон",
     "projectName": "Название проекта",
     "projectNamePlaceholder": "my-project",
+    "projectNameHint": "Только строчные буквы, цифры и дефисы",
     "llmKey": "Поставщик",
     "selectKey": "Выберите поставщика",
     "noKeys": "Нет доступных ключей API.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Нажмите, чтобы изменить имя поля",
     "basicTypes": "Базовые типы",
     "mediaTypes": "Типы медиа",
+    "reservedField": "Зарезервированное поле",
+    "reservedFieldTooltip": "Это зарезервированное поле системы и его нельзя удалить",
+    "optional": "необязательный",
+    "contextDescriptionPlaceholder": "Опишите, как будет использоваться контекст (необязательно)",
     "types": {
       "string": "Строка",
       "number": "Число",

@@ -151,7 +151,10 @@ function AppRoutes() {
               <Route path="projects" element={<ProjectsPage />} />
               <Route path="projects/new" element={<ProjectNewPage />} />
               <Route path="projects/templates" element={<TemplatesPage />} />
-              <Route path="projects/:projectId" element={<ProjectDetailPage />} />
+              <Route
+                path="projects/:projectId"
+                element={<ProjectDetailPage />}
+              />
               <Route
                 path="projects/:projectId/endpoints/templates"
                 element={<EndpointTemplatesPage />}

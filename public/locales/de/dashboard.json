@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "Der Anzeigename ist erforderlich",
         "nameTooShort": "Der Name muss mindestens 2 Zeichen lang sein",
-        "nameExists": "Ein Projekt mit diesem Namen existiert bereits"
+        "nameExists": "Ein Projekt mit diesem Namen existiert bereits",
+        "slugRequired": "Projektname ist erforderlich"
       },
       "slugPreview": "Slug",
       "create": "Projekt erstellen"
@@ -231,6 +232,7 @@
     "configure": "Vorlage konfigurieren",
     "projectName": "Projektname",
     "projectNamePlaceholder": "mein-projekt",
+    "projectNameHint": "Nur Kleinbuchstaben, Zahlen und Bindestriche",
     "llmKey": "Anbieter",
     "selectKey": "Anbieter auswählen",
     "noKeys": "Keine API-Schlüssel verfügbar.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Klicken Sie zum Bearbeiten des Feldnamens",
     "basicTypes": "Grundtypen",
     "mediaTypes": "Mediatypen",
+    "reservedField": "Reserviertes Feld",
+    "reservedFieldTooltip": "Dies ist ein reserviertes Systemfeld und kann nicht entfernt werden",
+    "optional": "optional",
+    "contextDescriptionPlaceholder": "Beschreiben Sie, wie Kontext verwendet werden wird (optional)",
     "types": {
       "string": "String",
       "number": "Die Zahl",

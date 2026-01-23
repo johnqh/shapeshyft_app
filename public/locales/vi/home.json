@@ -2,6 +2,7 @@
   "hero": {
     "title": "Chuyển đổi đầu ra của LLM thành các API có cấu trúc",
     "subtitle": "Xác định các điểm cuối sử dụng bất kỳ nhà cung cấp LLM nào để cung cấp phản hồi JSON nhất quán, đã được xác thực theo lược đồ cho ứng dụng của bạn.",
+    "cta": "Bắt đầu miễn phí",
     "ctaSecondary": "Xem tài liệu"
   },
   "features": {
@@ -42,6 +43,7 @@
   },
   "cta": {
     "title": "Sẵn sàng để bắt đầu?",
-    "subtitle": "Tạo điểm cuối AI có cấu trúc đầu tiên của bạn trong vài phút."
+    "subtitle": "Tạo điểm cuối AI có cấu trúc đầu tiên của bạn trong vài phút.",
+    "button": "Bắt đầu xây dựng miễn phí"
   }
 }

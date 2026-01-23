@@ -2,6 +2,7 @@
   "hero": {
     "title": "Transformez les sorties de LLM en API structurées",
     "subtitle": "Définissez des points d'extrémité qui utilisent n'importe quel fournisseur d'LLM pour fournir des réponses JSON cohérentes et validées selon le schéma pour vos applications.",
+    "cta": "Commencer gratuitement",
     "ctaSecondary": "Voir la documentation"
   },
   "features": {
@@ -42,6 +43,7 @@
   },
   "cta": {
     "title": "Prêt à commencer ?",
-    "subtitle": "Créez votre premier point de terminaison AI structuré en quelques minutes."
+    "subtitle": "Créez votre premier point de terminaison AI structuré en quelques minutes.",
+    "button": "Commencez à construire gratuitement"
   }
 }

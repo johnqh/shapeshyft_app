@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "表示名は必須です",
         "nameTooShort": "名前は2文字以上でなければなりません",
-        "nameExists": "この名前のプロジェクトはすでに存在します"
+        "nameExists": "この名前のプロジェクトはすでに存在します",
+        "slugRequired": "プロジェクト名は必須です"
       },
       "slugPreview": "スラッグ",
       "create": "プロジェクトを作成する"
@@ -231,6 +232,7 @@
     "configure": "テンプレートの設定",
     "projectName": "プロジェクト名",
     "projectNamePlaceholder": "my-project",
+    "projectNameHint": "小文字の英字、数字、ハイフンのみ",
     "llmKey": "プロバイダー",
     "selectKey": "プロバイダーを選択する",
     "noKeys": "利用可能なAPIキーがありません。",
@@ -333,6 +335,10 @@
     "clickToEditName": "フィールド名を編集するにはクリックしてください",
     "basicTypes": "基本型",
     "mediaTypes": "メディアタイプ",
+    "reservedField": "予約済みフィールド",
+    "reservedFieldTooltip": "これは予約済みのシステムフィールドであり、削除できません",
+    "optional": "オプション",
+    "contextDescriptionPlaceholder": "文脈がどのように使用されるかを説明してください（任意）",
     "types": {
       "string": "文字列",
       "number": "番号",

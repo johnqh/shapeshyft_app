@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "顯示名稱是必需的",
         "nameTooShort": "名稱必須至少2個字符",
-        "nameExists": "此名稱的專案已存在"
+        "nameExists": "此名稱的專案已存在",
+        "slugRequired": "專案名稱為必要項目"
       },
       "slugPreview": "Slug",
       "create": "建立專案"
@@ -231,6 +232,7 @@
     "configure": "設定範本",
     "projectName": "專案名稱",
     "projectNamePlaceholder": "我的專案",
+    "projectNameHint": "僅限小寫字母、數字和連字符",
     "llmKey": "提供者",
     "selectKey": "選擇提供者",
     "noKeys": "沒有可用的 API 金鑰。",
@@ -333,6 +335,10 @@
     "clickToEditName": "點擊以編輯欄位名稱",
     "basicTypes": "基本類型",
     "mediaTypes": "媒體類型",
+    "reservedField": "保留欄位",
+    "reservedFieldTooltip": "這是保留的系統欄位，無法刪除",
+    "optional": "可選的",
+    "contextDescriptionPlaceholder": "說明將如何使用上下文（可選）",
     "types": {
       "string": "字串",
       "number": "數字",

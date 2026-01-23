@@ -2,6 +2,7 @@
   "hero": {
     "title": "将LLM输出转换为结构化API",
     "subtitle": "定义使用任何大语言模型（LLM）提供商来为您的应用程序提供一致且经过模式验证的JSON响应的端点。",
+    "cta": "免费开始使用",
     "ctaSecondary": "查看文档"
   },
   "features": {
@@ -42,6 +43,7 @@
   },
   "cta": {
     "title": "准备好了吗？",
-    "subtitle": "几分钟内创建您的第一个结构化AI端点。"
+    "subtitle": "几分钟内创建您的第一个结构化AI端点。",
+    "button": "免费开始构建"
   }
 }

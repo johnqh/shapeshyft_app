@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "El nombre para mostrar es obligatorio",
         "nameTooShort": "El nombre debe tener al menos 2 caracteres",
-        "nameExists": "Un proyecto con este nombre ya existe"
+        "nameExists": "Un proyecto con este nombre ya existe",
+        "slugRequired": "Se requiere el nombre del proyecto"
       },
       "slugPreview": "Slug",
       "create": "Crear proyecto"
@@ -231,6 +232,7 @@
     "configure": "Configurar plantilla",
     "projectName": "Nombre del proyecto",
     "projectNamePlaceholder": "mi-proyecto",
+    "projectNameHint": "Solo letras minúsculas, números y guiones",
     "llmKey": "Proveedor",
     "selectKey": "Seleccionar un proveedor",
     "noKeys": "No hay claves de API disponibles.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Haga clic para editar el nombre del campo",
     "basicTypes": "Tipos básicos",
     "mediaTypes": "Tipos de medios",
+    "reservedField": "Campo reservado",
+    "reservedFieldTooltip": "Este es un campo de sistema reservado y no puede eliminarse",
+    "optional": "opcional",
+    "contextDescriptionPlaceholder": "Describe cómo se utilizará el contexto (opcional)",
     "types": {
       "string": "Cadena",
       "number": "Número",

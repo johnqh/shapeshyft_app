@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "Tên hiển thị là bắt buộc",
         "nameTooShort": "Tên phải có ít nhất 2 ký tự",
-        "nameExists": "Một dự án với tên này đã tồn tại"
+        "nameExists": "Một dự án với tên này đã tồn tại",
+        "slugRequired": "Tên dự án là bắt buộc"
       },
       "slugPreview": "Slug",
       "create": "Tạo dự án"
@@ -231,6 +232,7 @@
     "configure": "Cấu hình mẫu",
     "projectName": "Tên dự án",
     "projectNamePlaceholder": "dự án-của-tôi",
+    "projectNameHint": "Chỉ chữ thường, chữ số và gạch nối",
     "llmKey": "Nhà cung cấp",
     "selectKey": "Chọn một nhà cung cấp",
     "noKeys": "Không có khóa API nào khả dụng.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Nhấp để chỉnh sửa tên trường",
     "basicTypes": "Kiểu cơ bản",
     "mediaTypes": "Loại phương tiện",
+    "reservedField": "Trường dành riêng",
+    "reservedFieldTooltip": "Đây là một trường hệ thống được dành riêng và không thể xóa bỏ",
+    "optional": "tùy chọn",
+    "contextDescriptionPlaceholder": "Mô tả cách ngữ cảnh sẽ được sử dụng (tùy chọn)",
     "types": {
       "string": "Chuỗi",
       "number": "Số",

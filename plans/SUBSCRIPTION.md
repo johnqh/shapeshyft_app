@@ -87,10 +87,10 @@ export interface AdapterProduct {
   identifier: string;
   title: string;
   description: string | null;
-  price: number;              // In standard units (not micros)
+  price: number; // In standard units (not micros)
   priceString: string;
   currencyCode: string;
-  normalPeriodDuration: string | null;  // ISO 8601
+  normalPeriodDuration: string | null; // ISO 8601
   subscriptionOptions?: Record<string, AdapterSubscriptionOption>;
 }
 
@@ -135,7 +135,12 @@ export interface AdapterPurchaseResult {
 ### 2.2 Subscription Types (`types/subscription.ts`)
 
 ```typescript
-export type SubscriptionPeriod = 'weekly' | 'monthly' | 'quarterly' | 'yearly' | 'lifetime';
+export type SubscriptionPeriod =
+  | "weekly"
+  | "monthly"
+  | "quarterly"
+  | "yearly"
+  | "lifetime";
 
 export interface SubscriptionProduct {
   productId: string;
@@ -145,7 +150,7 @@ export interface SubscriptionProduct {
   priceString: string;
   currency: string;
   period: SubscriptionPeriod;
-  periodDuration: string;     // Raw ISO 8601
+  periodDuration: string; // Raw ISO 8601
   trialPeriod?: string;
   introPrice?: string;
   introPricePeriod?: string;
@@ -155,7 +160,7 @@ export interface SubscriptionProduct {
 export interface SubscriptionPackage {
   packageId: string;
   name: string;
-  product?: SubscriptionProduct;  // undefined for free tier
+  product?: SubscriptionProduct; // undefined for free tier
   entitlements: string[];
 }
 
@@ -201,7 +206,9 @@ export function initializeSubscription(config: SubscriptionConfig): void {
 
 export function getSubscriptionInstance(): SubscriptionService {
   if (!instance) {
-    throw new Error('Subscription not initialized. Call initializeSubscription() first.');
+    throw new Error(
+      "Subscription not initialized. Call initializeSubscription() first.",
+    );
   }
   return instance;
 }
@@ -276,7 +283,9 @@ interface UseSubscriptionPeriodsResult {
   error: Error | null;
 }
 
-export function useSubscriptionPeriods(offerId: string): UseSubscriptionPeriodsResult;
+export function useSubscriptionPeriods(
+  offerId: string,
+): UseSubscriptionPeriodsResult;
 ```
 
 Extracts unique periods from all packages, sorted: weekly → monthly → quarterly → yearly → lifetime
@@ -285,14 +294,14 @@ Extracts unique periods from all packages, sorted: weekly → monthly → quarte
 
 ```typescript
 interface UseSubscriptionForPeriodResult {
-  packages: SubscriptionPackage[];  // Sorted by price (ascending), includes free tier
+  packages: SubscriptionPackage[]; // Sorted by price (ascending), includes free tier
   isLoading: boolean;
   error: Error | null;
 }
 
 export function useSubscriptionForPeriod(
   offerId: string,
-  period: SubscriptionPeriod
+  period: SubscriptionPeriod,
 ): UseSubscriptionForPeriodResult;
 ```
 
@@ -304,7 +313,7 @@ export function useSubscriptionForPeriod(
 
 ```typescript
 interface UseSubscribableResult {
-  subscribablePackageIds: string[];  // Package IDs user can subscribe/upgrade to
+  subscribablePackageIds: string[]; // Package IDs user can subscribe/upgrade to
   isLoading: boolean;
   error: Error | null;
 }
@@ -313,6 +322,7 @@ export function useSubscribable(offerId: string): UseSubscribableResult;
 ```
 
 **Upgrade eligibility logic:**
+
 1. If no current subscription → all package IDs
 2. If has subscription:
    - Get current period and entitlement level
@@ -324,8 +334,11 @@ export function useSubscribable(offerId: string): UseSubscribableResult;
 **Period ranking:** weekly(1) < monthly(2) < quarterly(3) < yearly(4) < lifetime(5)
 
 **Level calculation:**
+
 ```typescript
-function calculateEntitlementLevels(packages: SubscriptionPackage[]): Map<string, number> {
+function calculateEntitlementLevels(
+  packages: SubscriptionPackage[],
+): Map<string, number> {
   // Group packages by period
   // For each period, sort by price
   // Assign levels: 1, 2, 3... (free tier = 0)
@@ -352,7 +365,10 @@ export function getPeriodRank(period: SubscriptionPeriod): number {
   // weekly: 1, monthly: 2, quarterly: 3, yearly: 4, lifetime: 5
 }
 
-export function comparePeriods(a: SubscriptionPeriod, b: SubscriptionPeriod): number {
+export function comparePeriods(
+  a: SubscriptionPeriod,
+  b: SubscriptionPeriod,
+): number {
   return getPeriodRank(a) - getPeriodRank(b);
 }
 ```
@@ -366,6 +382,7 @@ export function comparePeriods(a: SubscriptionPeriod, b: SubscriptionPeriod): nu
 **File:** `~/0xmail/mail_box_components/packages/subscription-components/src/subscription-tile.tsx`
 
 **New/Modified Props:**
+
 ```typescript
 interface SubscriptionTileProps {
   // ... existing props
@@ -386,6 +403,7 @@ interface SubscriptionTileProps {
 | `enabled=true, current=false` | Normal | Normal | Shown | Yes |
 
 **Implementation:**
+
 - Add `current` prop with blue border styling
 - Add `enabled` prop (default: `true`)
 - When `enabled=false`: add `opacity-50` or similar graying, `cursor-not-allowed`
@@ -397,6 +415,7 @@ interface SubscriptionTileProps {
 **File:** `~/0xmail/building_blocks/src/components/subscription/AppPricingPage.tsx`
 
 **Changes:**
+
 1. Replace hardcoded `billingPeriodOptions` with `useSubscriptionPeriods(offerId)`
 2. Use `useSubscriptionForPeriod(offerId, selectedPeriod)` for tile data
 3. Use `useSubscribable(offerId)` to determine `enabled` prop
@@ -441,6 +460,7 @@ bun link @sudobility/subscription_lib
 ## 8. Files to Create/Modify
 
 ### New Files (subscription_lib)
+
 - `~/shapeshyft/subscription_lib/package.json`
 - `~/shapeshyft/subscription_lib/tsconfig.json`
 - `~/shapeshyft/subscription_lib/CLAUDE.md`
@@ -463,6 +483,7 @@ bun link @sudobility/subscription_lib
 - `~/shapeshyft/subscription_lib/src/utils/level-calculator.ts`
 
 ### Modified Files
+
 - `~/0xmail/mail_box_components/packages/subscription-components/src/subscription-tile.tsx`
 - `~/0xmail/mail_box_components/packages/subscription-components/src/types.ts`
 - `~/0xmail/building_blocks/src/components/subscription/AppPricingPage.tsx`
@@ -473,16 +494,19 @@ bun link @sudobility/subscription_lib
 ## 9. Verification
 
 ### 9.1 Unit Tests
+
 - Period parser correctly handles all ISO 8601 durations
 - Level calculator correctly ranks packages by price within period
 - `useSubscribable` returns correct package IDs for various subscription states
 
 ### 9.2 Integration Tests
+
 - Initialize with mock adapter
 - Verify hooks return correct data
 - Verify upgrade eligibility logic
 
 ### 9.3 Manual Testing
+
 1. Build all packages
 2. Run shapeshyft_app
 3. Test scenarios:

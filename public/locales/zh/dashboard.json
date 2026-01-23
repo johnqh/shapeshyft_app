@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "显示名称是必需的",
         "nameTooShort": "名称必须至少为2个字符",
-        "nameExists": "此名称的项目已存在"
+        "nameExists": "此名称的项目已存在",
+        "slugRequired": "项目名称是必需的"
       },
       "slugPreview": "Slug",
       "create": "创建项目"
@@ -231,6 +232,7 @@
     "configure": "配置模板",
     "projectName": "项目名称",
     "projectNamePlaceholder": "我的项目",
+    "projectNameHint": "仅限小写字母、数字和连字符",
     "llmKey": "提供者",
     "selectKey": "选择一个提供方",
     "noKeys": "没有可用的 API 密钥。",
@@ -333,6 +335,10 @@
     "clickToEditName": "点击以编辑字段名称",
     "basicTypes": "基本类型",
     "mediaTypes": "媒体类型",
+    "reservedField": "保留字段",
+    "reservedFieldTooltip": "这是一个保留的系统字段，无法删除",
+    "optional": "可选的",
+    "contextDescriptionPlaceholder": "描述上下文将如何被使用（可选）",
     "types": {
       "string": "字符串",
       "number": "数字",

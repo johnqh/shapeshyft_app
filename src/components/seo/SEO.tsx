@@ -178,7 +178,9 @@ export function SEO({
       <title>{fullTitle}</title>
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
-      {effectiveKeywords && <meta name="keywords" content={effectiveKeywords} />}
+      {effectiveKeywords && (
+        <meta name="keywords" content={effectiveKeywords} />
+      )}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 

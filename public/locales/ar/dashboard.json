@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "اسم العرض مطلوب",
         "nameTooShort": "يجب أن يكون الاسم على الأقل 2 أحرف",
-        "nameExists": "مشروع بهذا الاسم موجود بالفعل"
+        "nameExists": "مشروع بهذا الاسم موجود بالفعل",
+        "slugRequired": "اسم المشروع مطلوب"
       },
       "slugPreview": "Slug",
       "create": "إنشاء مشروع"
@@ -231,6 +232,7 @@
     "configure": "تكوين القالب",
     "projectName": "اسم المشروع",
     "projectNamePlaceholder": "المشروع-الخاص-بى",
+    "projectNameHint": "أحرف صغيرة والأرقام والشرطات فقط",
     "llmKey": "المزود",
     "selectKey": "اختر مزود خدمة",
     "noKeys": "لا توجد مفاتيح واجهة برمجة تطبيقات متاحة.",
@@ -333,6 +335,10 @@
     "clickToEditName": "انقر لتحرير اسم الحقل",
     "basicTypes": "الأنواع الأساسية",
     "mediaTypes": "أنواع الوسائط",
+    "reservedField": "الحقل المخصص",
+    "reservedFieldTooltip": "هذا حقل نظام مخصص ولا يمكن حذفه",
+    "optional": "اختياري",
+    "contextDescriptionPlaceholder": "اشرح كيف سيتم استخدام السياق (اختياري)",
     "types": {
       "string": "السلسلة",
       "number": "الرقم",

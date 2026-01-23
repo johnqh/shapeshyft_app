@@ -39,7 +39,8 @@
       "errors": {
         "nameRequired": "Обов’язково вказати ім’я для відображення",
         "nameTooShort": "Ім'я має містити не менше 2 символів",
-        "nameExists": "Проект з такою назвою вже існує"
+        "nameExists": "Проект з такою назвою вже існує",
+        "slugRequired": "Назва проекту обов’язкова"
       },
       "slugPreview": "Слаг",
       "create": "Створити проект"
@@ -231,6 +232,7 @@
     "configure": "Налаштувати шаблон",
     "projectName": "Назва проекту",
     "projectNamePlaceholder": "my-project",
+    "projectNameHint": "Лише малі літери, цифри і дефіси",
     "llmKey": "Постачальник",
     "selectKey": "Виберіть постачальника",
     "noKeys": "Немає доступних ключів API.",
@@ -333,6 +335,10 @@
     "clickToEditName": "Натисніть, щоб змінити назву поля",
     "basicTypes": "Базові типи",
     "mediaTypes": "Типи медіа",
+    "reservedField": "Зарезервоване поле",
+    "reservedFieldTooltip": "Це зарезервоване поле системи і видалити його неможливо",
+    "optional": "необов'язково",
+    "contextDescriptionPlaceholder": "Опишіть, як буде використано контекст (не обов’язково)",
     "types": {
       "string": "Рядок",
       "number": "Число",

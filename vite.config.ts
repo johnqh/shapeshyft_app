@@ -41,11 +41,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: [
-      "react",
-      "react-dom",
-      "@sudobility/subscription-components",
-    ],
+    include: ["react", "react-dom", "@sudobility/subscription-components"],
   },
   build: {
     target: "es2020",
