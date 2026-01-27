@@ -148,11 +148,17 @@ function ProjectNewPage() {
         display_name: displayName.trim(),
         description: description.trim() || null,
       });
-      success(t("common:toast.success.created"));
       if (project) {
+        success(t("common:toast.success.created"));
         navigate(`/dashboard/${entitySlug}/projects/${project.uuid}`);
       } else {
-        navigate(`/dashboard/${entitySlug}`);
+        // API returned an error or no data
+        getInfoService().show(
+          t("common.error"),
+          t("projects.form.errors.createFailed"),
+          InfoType.ERROR,
+          5000,
+        );
       }
     } catch (err) {
       getInfoService().show(
