@@ -166,7 +166,7 @@ function PricingPage() {
         onPlanClick={handlePlanClick}
         onFreePlanClick={handleFreePlanClick}
         faqItems={faqItems}
-        offerId="api"
+        offerId={import.meta.env.VITE_REVENUECAT_OFFER_ID}
       />
     </ScreenContainer>
   );

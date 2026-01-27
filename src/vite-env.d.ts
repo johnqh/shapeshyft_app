@@ -13,6 +13,7 @@ interface ImportMetaEnv {
   // RevenueCat
   readonly VITE_REVENUECAT_API_KEY: string;
   readonly VITE_REVENUECAT_API_KEY_SANDBOX: string;
+  readonly VITE_REVENUECAT_OFFER_ID: string;
 
   // API
   readonly VITE_SHAPESHYFT_API_URL: string;

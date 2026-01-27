@@ -145,7 +145,7 @@ function SubscriptionPage() {
 
   return (
     <AppSubscriptionsPage
-      offerId="api"
+      offerId={import.meta.env.VITE_REVENUECAT_OFFER_ID}
       rateLimitsConfig={rateLimitsConfig}
       labels={labels}
       formatters={formatters}
