@@ -1,107 +1,62 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  RateLimitsPage as RateLimitsPageComponent,
-  RateLimitHistoryPage,
-} from "@sudobility/ratelimit_pages";
+import { RateLimitsDashboard } from "@sudobility/ratelimit_pages";
 import { useApi } from "@sudobility/building_blocks/firebase";
 import { useLocalizedNavigate } from "../../hooks/useLocalizedNavigate";
-
-type TabType = "limits" | "history";
 
 function RateLimitsPage() {
   const { t } = useTranslation("dashboard");
   const { entitySlug = "" } = useParams<{ entitySlug: string }>();
-  const { networkClient, baseUrl, token } = useApi();
+  const { networkClient, baseUrl, token, testMode } = useApi();
   const { navigate } = useLocalizedNavigate();
-  const [activeTab, setActiveTab] = useState<TabType>("limits");
 
   const handleUpgradeClick = () => {
     navigate("/dashboard/subscription");
   };
 
   return (
-    <div className="space-y-6">
-      {/* Tab Navigation */}
-      <div className="border-b border-gray-200 dark:border-gray-700">
-        <nav className="-mb-px flex gap-6">
-          <button
-            onClick={() => setActiveTab("limits")}
-            className={`py-3 text-sm font-medium transition-colors ${
-              activeTab === "limits"
-                ? "border-b-2 border-blue-500 text-blue-600 dark:text-blue-400"
-                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-            }`}
-          >
-            {t("rateLimits.tabs.currentLimits")}
-          </button>
-          <button
-            onClick={() => setActiveTab("history")}
-            className={`py-3 text-sm font-medium transition-colors ${
-              activeTab === "history"
-                ? "border-b-2 border-blue-500 text-blue-600 dark:text-blue-400"
-                : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-            }`}
-          >
-            {t("rateLimits.tabs.usageHistory")}
-          </button>
-        </nav>
-      </div>
-
-      {/* Tab Content */}
-      {activeTab === "limits" && (
-        <RateLimitsPageComponent
-          networkClient={networkClient}
-          baseUrl={baseUrl}
-          token={token}
-          entitySlug={entitySlug}
-          onUpgradeClick={handleUpgradeClick}
-          upgradeButtonLabel={t("rateLimits.upgradeButton")}
-          autoFetch={true}
-          labels={{
-            title: t("rateLimits.usage.title"),
-            loadingText: t("rateLimits.loading"),
-            errorText: t("rateLimits.error"),
-            retryText: t("rateLimits.retry"),
-            usageTitle: t("rateLimits.usage.currentUsage"),
-            tiersTitle: t("rateLimits.usage.planComparison"),
-            usedLabel: t("rateLimits.usage.used"),
-            limitLabel: t("rateLimits.usage.limit"),
-            unlimitedLabel: t("rateLimits.usage.unlimited"),
-            remainingLabel: t("rateLimits.usage.remaining"),
-            hourlyLabel: t("rateLimits.periods.hourly"),
-            dailyLabel: t("rateLimits.periods.daily"),
-            monthlyLabel: t("rateLimits.periods.monthly"),
-            currentTierBadge: t("rateLimits.currentTier"),
-          }}
-        />
-      )}
-
-      {activeTab === "history" && (
-        <RateLimitHistoryPage
-          networkClient={networkClient}
-          baseUrl={baseUrl}
-          token={token}
-          entitySlug={entitySlug}
-          autoFetch={true}
-          chartHeight={350}
-          labels={{
-            title: t("rateLimits.history.title"),
-            loadingText: t("rateLimits.loading"),
-            errorText: t("rateLimits.error"),
-            retryText: t("rateLimits.retry"),
-            chartTitle: "",
-            requestsLabel: t("rateLimits.history.requests"),
-            limitLabel: t("rateLimits.usage.limit"),
-            noDataLabel: t("rateLimits.history.noData"),
-            hourlyTab: t("rateLimits.periods.hourly"),
-            dailyTab: t("rateLimits.periods.daily"),
-            monthlyTab: t("rateLimits.periods.monthly"),
-          }}
-        />
-      )}
-    </div>
+    <RateLimitsDashboard
+      networkClient={networkClient}
+      baseUrl={baseUrl}
+      token={token}
+      entitySlug={entitySlug}
+      onUpgradeClick={handleUpgradeClick}
+      upgradeButtonLabel={t("rateLimits.upgradeButton")}
+      testMode={testMode}
+      labels={{
+        currentLimitsTab: t("rateLimits.tabs.currentLimits"),
+        usageHistoryTab: t("rateLimits.tabs.usageHistory"),
+        limitsPage: {
+          title: t("rateLimits.usage.title"),
+          loadingText: t("rateLimits.loading"),
+          errorText: t("rateLimits.error"),
+          retryText: t("rateLimits.retry"),
+          usageTitle: t("rateLimits.usage.currentUsage"),
+          tiersTitle: t("rateLimits.usage.planComparison"),
+          usedLabel: t("rateLimits.usage.used"),
+          limitLabel: t("rateLimits.usage.limit"),
+          unlimitedLabel: t("rateLimits.usage.unlimited"),
+          remainingLabel: t("rateLimits.usage.remaining"),
+          hourlyLabel: t("rateLimits.periods.hourly"),
+          dailyLabel: t("rateLimits.periods.daily"),
+          monthlyLabel: t("rateLimits.periods.monthly"),
+          currentTierBadge: t("rateLimits.currentTier"),
+        },
+        historyPage: {
+          title: t("rateLimits.history.title"),
+          loadingText: t("rateLimits.loading"),
+          errorText: t("rateLimits.error"),
+          retryText: t("rateLimits.retry"),
+          chartTitle: "",
+          requestsLabel: t("rateLimits.history.requests"),
+          limitLabel: t("rateLimits.usage.limit"),
+          noDataLabel: t("rateLimits.history.noData"),
+          hourlyTab: t("rateLimits.periods.hourly"),
+          dailyTab: t("rateLimits.periods.daily"),
+          monthlyTab: t("rateLimits.periods.monthly"),
+        },
+      }}
+    />
   );
 }
 

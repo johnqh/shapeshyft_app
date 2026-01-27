@@ -9,7 +9,7 @@ import {
 } from "@sudobility/building_blocks";
 import { getInfoService } from "@sudobility/di";
 import { InfoType } from "@sudobility/types";
-import { useRateLimits } from "@sudobility/shapeshyft_client";
+import { useRateLimits } from "@sudobility/ratelimit_client";
 import { useToast } from "../../hooks/useToast";
 import { useApi } from "@sudobility/building_blocks/firebase";
 import { useCurrentEntity } from "../../hooks/useCurrentEntity";
