@@ -110,8 +110,14 @@ export class BreadcrumbBuilder {
     }
 
     // Check for dynamic titles (e.g., project names, endpoint names)
-    if (dynamicTitles?.[normalizedPath]) {
-      return dynamicTitles[normalizedPath];
+    // Use case-insensitive lookup since URLs may have different casing
+    if (dynamicTitles) {
+      const normalizedPathLower = normalizedPath.toLowerCase();
+      for (const [key, value] of Object.entries(dynamicTitles)) {
+        if (key.toLowerCase() === normalizedPathLower) {
+          return value;
+        }
+      }
     }
 
     // Check for static translation
@@ -120,26 +126,23 @@ export class BreadcrumbBuilder {
       return t(translationKey);
     }
 
-    // Handle dynamic segments like /dashboard/projects/:projectId
+    // Handle dynamic segments like /dashboard/:entitySlug/projects/:projectId
     const segments = normalizedPath.split("/").filter(Boolean);
 
     // Check if this is a dynamic route
+    // Structure: /dashboard/:entitySlug/projects/:projectId/endpoints/:endpointId
     if (
-      segments.length >= 3 &&
+      segments.length >= 4 &&
       segments[0] === "dashboard" &&
-      segments[1] === "projects"
+      segments[2] === "projects"
     ) {
-      // /dashboard/projects/:projectId
-      if (segments.length === 3) {
-        return (
-          dynamicTitles?.[normalizedPath] || t("breadcrumbs.projectDetail")
-        );
+      // /dashboard/:entitySlug/projects/:projectId
+      if (segments.length === 4) {
+        return t("breadcrumbs.projectDetail");
       }
-      // /dashboard/projects/:projectId/endpoints/:endpointId
-      if (segments.length >= 5 && segments[3] === "endpoints") {
-        return (
-          dynamicTitles?.[normalizedPath] || t("breadcrumbs.endpointDetail")
-        );
+      // /dashboard/:entitySlug/projects/:projectId/endpoints/:endpointId
+      if (segments.length >= 6 && segments[4] === "endpoints") {
+        return t("breadcrumbs.endpointDetail");
       }
     }
 
@@ -191,15 +194,12 @@ export class BreadcrumbBuilder {
       const segment = segments[i];
       currentPath += `/${segment}`;
 
-      // Skip intermediate segments that don't have meaning (like 'projects' in /dashboard/projects/:id)
-      const pathForTitle = removeLanguageFromPath(currentPath);
-
       // Check if this is an intermediate segment that should be skipped
-      // Skip /dashboard/projects when followed by a projectId
-      if (pathForTitle === "/dashboard/projects" && i < segments.length - 1) {
+      // Skip "projects" when followed by a projectId
+      if (segments[i] === "projects" && i < segments.length - 1) {
         continue;
       }
-      // Skip /dashboard/projects/:id/endpoints when followed by an endpointId
+      // Skip "endpoints" when followed by an endpointId
       if (segments[i] === "endpoints" && i < segments.length - 1) {
         continue;
       }

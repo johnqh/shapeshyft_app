@@ -45,24 +45,27 @@ export const useBreadcrumbs = () => {
   });
 
   // Build dynamic titles map
+  // URL structure: /dashboard/:entitySlug/projects/:projectId/endpoints/:endpointId
   const dynamicTitles = useMemo(() => {
     const titles: Record<string, string> = {};
 
     // Add project titles
     projects.forEach((project) => {
-      titles[`/dashboard/projects/${project.uuid}`] = project.display_name;
+      titles[`/dashboard/${entitySlug}/projects/${project.uuid}`] =
+        project.display_name;
     });
 
     // Add endpoint titles
     if (projectId) {
       endpoints.forEach((endpoint) => {
-        titles[`/dashboard/projects/${projectId}/endpoints/${endpoint.uuid}`] =
-          endpoint.display_name;
+        titles[
+          `/dashboard/${entitySlug}/projects/${projectId}/endpoints/${endpoint.uuid}`
+        ] = endpoint.display_name;
       });
     }
 
     return titles;
-  }, [projects, endpoints, projectId]);
+  }, [projects, endpoints, projectId, entitySlug]);
 
   // Memoize breadcrumbs with language as dependency
   const breadcrumbItems = useMemo(() => {

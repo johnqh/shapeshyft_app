@@ -740,7 +740,7 @@ function EndpointDetailPage() {
       endpoint.endpoint_name,
       parsedInput,
       projectApiKey ?? undefined,
-      60000, // 60 seconds timeout
+      600000, // 10 minutes timeout
     );
     setIsLoadingPrompt(false);
 
@@ -783,7 +783,7 @@ function EndpointDetailPage() {
       endpoint,
       finalInput,
       projectApiKey ?? undefined,
-      60000, // 60 seconds timeout for AI inference
+      600000, // 10 minutes timeout for AI inference
     );
     if (result?.success) {
       success(t("endpoints.tester.success"));
