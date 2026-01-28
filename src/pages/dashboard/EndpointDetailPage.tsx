@@ -118,27 +118,72 @@ function EndpointDetailPage() {
   const [mediaFiles, setMediaFiles] = useState<Record<string, string>>({});
   const initializedRef = useRef(false);
 
-  // Separate edit states for each section
+  // Separate edit mode flags for each section
   const [isEditingGeneral, setIsEditingGeneral] = useState(false);
   const [isEditingInput, setIsEditingInput] = useState(false);
   const [isEditingOutput, setIsEditingOutput] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
-  // Edit form state - General
-  const [editDisplayName, setEditDisplayName] = useState("");
-  const [editInstructions, setEditInstructions] = useState("");
-  const [editContext, setEditContext] = useState("");
-  const [editLlmKeyId, setEditLlmKeyId] = useState("");
-  const [editModel, setEditModel] = useState("");
-  const [editCustomModel, setEditCustomModel] = useState("");
+  // Shared edit state - all tabs share this state object
+  // When any field is edited, it updates this shared state
+  // When saving from any tab, the entire shared state is sent
+  interface EndpointEditState {
+    // General tab fields
+    displayName: string;
+    instructions: string;
+    context: string;
+    llmKeyId: string;
+    model: string;
+    customModel: string;
+    // Input tab fields
+    inputSchema: string;
+    useInputSchema: boolean;
+    // Output tab fields
+    outputSchema: string;
+    useOutputSchema: boolean;
+  }
 
-  // Edit form state - Input
-  const [editInputSchema, setEditInputSchema] = useState("");
-  const [useInputSchema, setUseInputSchema] = useState(false);
+  const [editState, setEditState] = useState<EndpointEditState | null>(null);
 
-  // Edit form state - Output
-  const [editOutputSchema, setEditOutputSchema] = useState("");
-  const [useOutputSchema, setUseOutputSchema] = useState(false);
+  // Helper to update specific fields in the shared edit state
+  const updateEditState = useCallback(
+    (updates: Partial<EndpointEditState>) => {
+      setEditState((prev) => (prev ? { ...prev, ...updates } : null));
+    },
+    [],
+  );
+
+  // Derived values for backward compatibility with existing JSX
+  const editDisplayName = editState?.displayName ?? "";
+  const editInstructions = editState?.instructions ?? "";
+  const editContext = editState?.context ?? "";
+  const editLlmKeyId = editState?.llmKeyId ?? "";
+  const editModel = editState?.model ?? "";
+  const editCustomModel = editState?.customModel ?? "";
+  const editInputSchema = editState?.inputSchema ?? "";
+  const useInputSchema = editState?.useInputSchema ?? false;
+  const editOutputSchema = editState?.outputSchema ?? "";
+  const useOutputSchema = editState?.useOutputSchema ?? false;
+
+  // Setters that update the shared state
+  const setEditDisplayName = (value: string) =>
+    updateEditState({ displayName: value });
+  const setEditInstructions = (value: string) =>
+    updateEditState({ instructions: value });
+  const setEditContext = (value: string) => updateEditState({ context: value });
+  const setEditLlmKeyId = (value: string) =>
+    updateEditState({ llmKeyId: value });
+  const setEditModel = (value: string) => updateEditState({ model: value });
+  const setEditCustomModel = (value: string) =>
+    updateEditState({ customModel: value });
+  const setEditInputSchema = (value: string) =>
+    updateEditState({ inputSchema: value });
+  const setUseInputSchema = (value: boolean) =>
+    updateEditState({ useInputSchema: value });
+  const setEditOutputSchema = (value: string) =>
+    updateEditState({ outputSchema: value });
+  const setUseOutputSchema = (value: boolean) =>
+    updateEditState({ useOutputSchema: value });
 
   const {
     projects,
@@ -513,15 +558,38 @@ function EndpointDetailPage() {
   }, [endpointsError, clearEndpointsError, t]);
 
   // Edit handlers for General tab
+  // Initialize the shared edit state from the endpoint if not already initialized
+  const initializeEditStateIfNeeded = useCallback(() => {
+    if (editState || !endpoint) return;
+    setEditState({
+      displayName: endpoint.display_name,
+      instructions: endpoint.instructions ?? "",
+      context: endpoint.context ?? "",
+      llmKeyId: endpoint.llm_key_id,
+      model: endpoint.model || "",
+      customModel: "",
+      inputSchema: endpoint.input_schema
+        ? JSON.stringify(endpoint.input_schema, null, 2)
+        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
+      useInputSchema: !!endpoint.input_schema,
+      outputSchema: endpoint.output_schema
+        ? JSON.stringify(endpoint.output_schema, null, 2)
+        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
+      useOutputSchema: !!endpoint.output_schema,
+    });
+  }, [editState, endpoint]);
+
+  // Reset the shared edit state when all tabs exit edit mode
+  const isAnyTabEditing = isEditingGeneral || isEditingInput || isEditingOutput;
+  useEffect(() => {
+    if (!isAnyTabEditing && editState) {
+      setEditState(null);
+    }
+  }, [isAnyTabEditing, editState]);
+
   const handleStartEditGeneral = () => {
     if (!endpoint) return;
-    setEditDisplayName(endpoint.display_name);
-    setEditInstructions(endpoint.instructions ?? "");
-    setEditContext(endpoint.context ?? "");
-    setEditLlmKeyId(endpoint.llm_key_id);
-    // Initialize model - use endpoint's model (default will be provided by editProviderConfig)
-    setEditModel(endpoint.model || "");
-    setEditCustomModel("");
+    initializeEditStateIfNeeded();
     setIsEditingGeneral(true);
   };
 
@@ -537,44 +605,70 @@ function EndpointDetailPage() {
     setIsEditingGeneral(false);
   };
 
-  const handleSaveGeneral = async () => {
-    if (!endpoint) return;
+  // Common save function that sends the entire shared state
+  // This ensures all changes across all tabs are saved together
+  const saveAllChanges = async (
+    onSuccess: () => void,
+  ): Promise<boolean> => {
+    if (!endpoint || !editState) return false;
+
+    // Parse and validate schemas
+    let parsedInputSchema = null;
+    if (editState.useInputSchema) {
+      try {
+        parsedInputSchema = JSON.parse(editState.inputSchema);
+      } catch {
+        showError(t("endpoints.form.errors.invalidInputSchema"));
+        return false;
+      }
+    }
+
+    let parsedOutputSchema = null;
+    if (editState.useOutputSchema) {
+      try {
+        parsedOutputSchema = JSON.parse(editState.outputSchema);
+      } catch {
+        showError(t("endpoints.form.errors.invalidOutputSchema"));
+        return false;
+      }
+    }
+
     setIsSaving(true);
     try {
+      // Send the entire shared state - all tabs' changes are included
       const updated = await updateEndpoint(endpoint.uuid, {
-        endpoint_name: endpoint.endpoint_name,
-        display_name: editDisplayName.trim(),
-        instructions: editInstructions.trim() || null,
-        http_method: endpoint.http_method,
-        llm_key_id: editLlmKeyId,
+        display_name: editState.displayName.trim(),
+        instructions: editState.instructions.trim() || null,
+        llm_key_id: editState.llmKeyId,
         model: editEffectiveModel || null,
-        context: editContext.trim() || null,
-        input_schema: endpoint.input_schema,
-        output_schema: endpoint.output_schema,
-        is_active: endpoint.is_active,
+        context: editState.context.trim() || null,
+        input_schema: parsedInputSchema,
+        output_schema: parsedOutputSchema,
       });
       if (updated) {
         success(t("endpoints.updated"));
-        setIsEditingGeneral(false);
+        onSuccess();
+        return true;
       } else {
         showError(endpointsError || t("common.errorOccurred"));
+        return false;
       }
     } catch (err) {
       showError(err instanceof Error ? err.message : t("common.errorOccurred"));
+      return false;
     } finally {
       setIsSaving(false);
     }
   };
 
+  const handleSaveGeneral = async () => {
+    await saveAllChanges(() => setIsEditingGeneral(false));
+  };
+
   // Edit handlers for Input tab
   const handleStartEditInput = () => {
     if (!endpoint) return;
-    setEditInputSchema(
-      endpoint.input_schema
-        ? JSON.stringify(endpoint.input_schema, null, 2)
-        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
-    );
-    setUseInputSchema(!!endpoint.input_schema);
+    initializeEditStateIfNeeded();
     setIsEditingInput(true);
   };
 
@@ -583,53 +677,13 @@ function EndpointDetailPage() {
   };
 
   const handleSaveInput = async () => {
-    if (!endpoint) return;
-
-    let parsedInputSchema = null;
-    if (useInputSchema) {
-      try {
-        parsedInputSchema = JSON.parse(editInputSchema);
-      } catch {
-        showError(t("endpoints.form.errors.invalidInputSchema"));
-        return;
-      }
-    }
-
-    setIsSaving(true);
-    try {
-      const updated = await updateEndpoint(endpoint.uuid, {
-        endpoint_name: endpoint.endpoint_name,
-        display_name: endpoint.display_name,
-        instructions: endpoint.instructions,
-        http_method: endpoint.http_method,
-        llm_key_id: endpoint.llm_key_id,
-        context: endpoint.context,
-        input_schema: parsedInputSchema,
-        output_schema: endpoint.output_schema,
-        is_active: endpoint.is_active,
-      });
-      if (updated) {
-        success(t("endpoints.updated"));
-        setIsEditingInput(false);
-      } else {
-        showError(endpointsError || t("common.errorOccurred"));
-      }
-    } catch (err) {
-      showError(err instanceof Error ? err.message : t("common.errorOccurred"));
-    } finally {
-      setIsSaving(false);
-    }
+    await saveAllChanges(() => setIsEditingInput(false));
   };
 
   // Edit handlers for Output tab
   const handleStartEditOutput = () => {
     if (!endpoint) return;
-    setEditOutputSchema(
-      endpoint.output_schema
-        ? JSON.stringify(endpoint.output_schema, null, 2)
-        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
-    );
-    setUseOutputSchema(!!endpoint.output_schema);
+    initializeEditStateIfNeeded();
     setIsEditingOutput(true);
   };
 
@@ -638,42 +692,7 @@ function EndpointDetailPage() {
   };
 
   const handleSaveOutput = async () => {
-    if (!endpoint) return;
-
-    let parsedOutputSchema = null;
-    if (useOutputSchema) {
-      try {
-        parsedOutputSchema = JSON.parse(editOutputSchema);
-      } catch {
-        showError(t("endpoints.form.errors.invalidOutputSchema"));
-        return;
-      }
-    }
-
-    setIsSaving(true);
-    try {
-      const updated = await updateEndpoint(endpoint.uuid, {
-        endpoint_name: endpoint.endpoint_name,
-        display_name: endpoint.display_name,
-        instructions: endpoint.instructions,
-        http_method: endpoint.http_method,
-        llm_key_id: endpoint.llm_key_id,
-        context: endpoint.context,
-        input_schema: endpoint.input_schema,
-        output_schema: parsedOutputSchema,
-        is_active: endpoint.is_active,
-      });
-      if (updated) {
-        success(t("endpoints.updated"));
-        setIsEditingOutput(false);
-      } else {
-        showError(endpointsError || t("common.errorOccurred"));
-      }
-    } catch (err) {
-      showError(err instanceof Error ? err.message : t("common.errorOccurred"));
-    } finally {
-      setIsSaving(false);
-    }
+    await saveAllChanges(() => setIsEditingOutput(false));
   };
 
   // Test handlers
