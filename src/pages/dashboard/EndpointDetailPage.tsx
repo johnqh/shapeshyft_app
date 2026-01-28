@@ -148,7 +148,16 @@ function EndpointDetailPage() {
   // Helper to update specific fields in the shared edit state
   const updateEditState = useCallback(
     (updates: Partial<EndpointEditState>) => {
-      setEditState((prev) => (prev ? { ...prev, ...updates } : null));
+      setEditState((prev) => {
+        if (!prev) {
+          // This should never happen - editState should be initialized before any updates
+          console.warn(
+            "updateEditState called before editState was initialized",
+          );
+          return null;
+        }
+        return { ...prev, ...updates };
+      });
     },
     [],
   );
@@ -559,25 +568,31 @@ function EndpointDetailPage() {
 
   // Edit handlers for General tab
   // Initialize the shared edit state from the endpoint if not already initialized
+  // Using functional setState to avoid stale closure issues
   const initializeEditStateIfNeeded = useCallback(() => {
-    if (editState || !endpoint) return;
-    setEditState({
-      displayName: endpoint.display_name,
-      instructions: endpoint.instructions ?? "",
-      context: endpoint.context ?? "",
-      llmKeyId: endpoint.llm_key_id,
-      model: endpoint.model || "",
-      customModel: "",
-      inputSchema: endpoint.input_schema
-        ? JSON.stringify(endpoint.input_schema, null, 2)
-        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
-      useInputSchema: !!endpoint.input_schema,
-      outputSchema: endpoint.output_schema
-        ? JSON.stringify(endpoint.output_schema, null, 2)
-        : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
-      useOutputSchema: !!endpoint.output_schema,
+    if (!endpoint) return;
+    setEditState((prev) => {
+      // If already initialized, keep the existing state (user's edits)
+      if (prev) return prev;
+      // Otherwise, initialize from the current endpoint
+      return {
+        displayName: endpoint.display_name,
+        instructions: endpoint.instructions ?? "",
+        context: endpoint.context ?? "",
+        llmKeyId: endpoint.llm_key_id,
+        model: endpoint.model || "",
+        customModel: "",
+        inputSchema: endpoint.input_schema
+          ? JSON.stringify(endpoint.input_schema, null, 2)
+          : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
+        useInputSchema: !!endpoint.input_schema,
+        outputSchema: endpoint.output_schema
+          ? JSON.stringify(endpoint.output_schema, null, 2)
+          : '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}',
+        useOutputSchema: !!endpoint.output_schema,
+      };
     });
-  }, [editState, endpoint]);
+  }, [endpoint]); // Removed editState from dependencies - we check it inside the functional update
 
   // Reset the shared edit state when all tabs exit edit mode
   const isAnyTabEditing = isEditingGeneral || isEditingInput || isEditingOutput;
@@ -725,6 +740,7 @@ function EndpointDetailPage() {
       endpoint.endpoint_name,
       parsedInput,
       projectApiKey ?? undefined,
+      60000, // 60 seconds timeout
     );
     setIsLoadingPrompt(false);
 
@@ -767,6 +783,7 @@ function EndpointDetailPage() {
       endpoint,
       finalInput,
       projectApiKey ?? undefined,
+      60000, // 60 seconds timeout for AI inference
     );
     if (result?.success) {
       success(t("endpoints.tester.success"));
